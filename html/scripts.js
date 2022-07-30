@@ -17,7 +17,7 @@ function ClearGameList(){
 	'<div class="col-md-4 mb-4 d-flex align-items-stretch">'+
 		'<div class="card">'+
 			'<div class="view view-cascade overlay banner">'+
-				'<img src="nui://ArenaLobby/html/img/games/newgame.jpg" class="card-img-top">'+
+				'<img src="./img/games/newgame.jpg" class="card-img-top">'+
 			'</div>'+
 			'<div class="card-body card-body-cascade">'+
 				'<a class="create btn btn-default btn-lg">Create Game</a>'+
@@ -63,7 +63,7 @@ window.addEventListener('message', function (event) {
 		}
 		let map = item.label.match(/\(([^)]+)\)/);
 		if(map!=null){
-			map = '<img class="card-img-top map image2" src="nui://ArenaLobby/html/img/games/map/'+map[1]+'.jpg">'
+			map = '<img class="card-img-top map image2" src="./img/games/map/'+map[1]+'.jpg">'
 		}else{
 			map = '';
 		}
@@ -72,7 +72,7 @@ window.addEventListener('message', function (event) {
 			'<div class="card">' +
 				'<div class="view-cascade overlay banner parent">' +
 					'<div class="IMGcontainer ">'+
-						'<img src="nui://ArenaLobby/html/img/games/' + item.image + '.jpg" class="card-img-top image1">' +
+						'<img src="./img/games/' + item.image + '.jpg" class="card-img-top image1">' +
 						map+
 						'<div class="centered">' + item.label + '</div>'+
 					'</div>'+
@@ -99,7 +99,7 @@ window.addEventListener('message', function (event) {
 	
 	if (item.message === "notify"){
 		$(".notify .arenaName").text(item.gamename);
-		$(".notify .banner").attr("src","nui://ArenaLobby/html/img/games/"+item.gamename+".jpg");
+		$(".notify .banner").attr("src","./img/games/"+item.gamename+".jpg");
 		$(".notify .arenaName").text(item.gameLabel);
 		$(".notify .ownername").text(item.ownername+" created room.");
 		$(".notify").fadeIn();
@@ -121,7 +121,7 @@ $(".GameList").on("click", ".join", function() {
 });
 
 $('.GameSelect select').on('change', function() {
-	$("."+this.name+" .image2").attr("src", "nui://ArenaLobby/html/img/games/map/"+this.value+".jpg");
+	$("."+this.name+" .image2").attr("src", "./img/games/map/"+this.value+".jpg");
 });
 	
 $(".GameSelect").on("click", ".newgame", function() {
