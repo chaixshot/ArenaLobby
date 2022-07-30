@@ -127,7 +127,7 @@ RegisterCommand('+ArenaLobby', function()
 end, false)
 RegisterCommand('-ArenaLobby', function()
 end, false)
-RegisterKeyMapping('+ArenaLobby', 'Supermarket Menu', 'keyboard', 'e')
+RegisterKeyMapping('+ArenaLobby', 'ArenaLobby_Menu', 'keyboard', 'e')
 
 RegisterNUICallback('quit', function(data, cb)
 	SendNUIMessage({message = "hide"})
