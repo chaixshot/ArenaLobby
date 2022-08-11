@@ -48,6 +48,9 @@ window.addEventListener('message', function (event) {
 	if (item.message == "clear"){
 		ClearGameList();
 	}
+	if (item.message == "hidegame"){
+		$("."+item.name).hide();
+	}
 	if (item.message == "add"){
 		let joinbutton = '<div class="card-footer text-muted text-center">' +
 									'<div class="join btn btn-success" name="' + item.item + '">Join</div>' +

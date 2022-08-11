@@ -7,6 +7,29 @@ function OpenGameMenu()
 			message = "show",
 			clear = true
 		})
+		local GameList = {
+			"DarkRP_Aimlab",
+			"DarkRP_Bloodbowl",
+			"DarkRP_Bomb",
+			"DarkRP_Boxing",
+			"DarkRP_Deathmacth",
+			"DarkRP_Derby",
+			"DarkRP_Paintball",
+			"DarkRP_Racing",
+			"DarkRP_Squidglass",
+			"DarkRP_Squidlight",
+			"DarkRP_Teamdeathmacth",
+			"DarkRP_ZombieInfection",
+		}
+		for k, v in pairs(GameList) do
+			if GetResourceState(v) ~= "started" then
+				SendNUIMessage({
+					message = "hidegame",
+					name = v,
+				})
+			end
+		end
+		
 		for k,v in pairs(ArenaAPI:GetAllArena()) do
 			if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 				SendNUIMessage({
