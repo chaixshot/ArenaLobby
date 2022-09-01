@@ -41,7 +41,7 @@ function UpdatePlayerList()
 	local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
 	local emptyslot = MaximumSize-CurrentSize
 	for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu',GetPlayerName(GetPlayerFromServerId(source)), "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 9, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, false)
+		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', v.name, "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 9, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, false)
 	end
 	for i=1,MaximumSize-CurrentSize do
 		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "empty", "", "", 0, "", false, 9, 18)
@@ -105,4 +105,4 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
 		TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
 	end
-end) 
+end)
