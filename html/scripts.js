@@ -192,3 +192,50 @@ $(".GameSelect").on("click", ".btnquantity", function() {
 	soundClick = new Howl({src: ["./sounds/click.ogg"], volume: 1.0});
 	soundClick.play();
 });
+
+// setInterval(() => {
+    // const myGamepad = navigator.getGamepads()[0];
+	// var press = "";
+	// if(myGamepad){
+		// if (myGamepad.buttons[0].pressed) { // A
+			// press = "A";
+		// }else if(myGamepad.buttons[1].pressed){ // B
+			// press = "B";
+		// }else if(myGamepad.buttons[2].pressed){ // X
+			// press = "X";
+		// }else if (myGamepad.buttons[3].pressed){ // Y
+			// press = "Y";
+		// }else if (myGamepad.buttons[4].pressed){ // LB
+			// press = "LB";
+		// }else if (myGamepad.buttons[5].pressed){ // RB
+			// press = "RB";
+		// }else if (myGamepad.buttons[6].pressed){ // LT
+			// press = "LT";
+		// }else if (myGamepad.buttons[7].pressed){ // RT
+			// press = "RT";
+		// }else if (myGamepad.buttons[8].pressed){ // Address
+			// press = "Address";
+		// }else if (myGamepad.buttons[9].pressed){ // Menu
+			// press = "Menu";
+		// }else if (myGamepad.buttons[10].pressed){ // L3
+			// press = "L3";
+		// }else if (myGamepad.buttons[11].pressed){ // R3
+			// press = "R3";
+		// }else if (myGamepad.buttons[12].pressed){ // Dpad Up
+			// press = "Dpad Up";
+		// }else if (myGamepad.buttons[13].pressed){ // Dpad Down
+			// press = "Dpad Down";
+		// }else if (myGamepad.buttons[14].pressed){ // Dpad Left
+			// press = "Dpad Left";
+		// }else if (myGamepad.buttons[15].pressed){ // Dpad Right
+			// press = "Dpad Right";
+		// }else if (myGamepad.buttons[16].pressed){ // Xbox Logo
+			// press = "Xbox Logo";
+		// }
+	// }
+	
+	// if(press=="A"){
+
+	// }
+	// console.log(press)
+// }, 100) // print axes 10 times per second

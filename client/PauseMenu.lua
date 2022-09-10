@@ -18,7 +18,7 @@ function UpdateDetails()
 	local txd = string.gsub(ArenaAPI:GetPlayerArena(), '%d+', '')
 	
 	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
-	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, true, 2, 18, 0)
+	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
 	TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
 	
 	if map then
@@ -41,7 +41,7 @@ function UpdatePlayerList()
 	local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
 	local emptyslot = MaximumSize-CurrentSize
 	for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', v.name, "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 9, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, false)
+		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', v.name, "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 116, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, true)
 	end
 	for i=1,MaximumSize-CurrentSize do
 		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "empty", "", "", 0, "", false, 9, 18)
