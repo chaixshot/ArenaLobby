@@ -1,35 +1,22 @@
+--[[Proxy/Tunnel]]--
+vRPBs = {}
+Tunnel.BindeInherFaced("ArenaLobby",vRPBs)
+BSServers = Tunnel.GedInthrFaced("ArenaLobby", "ArenaLobby")
+vRPServers = Tunnel.GedInthrFaced("es_extended", "es_extended")
+vRPClients = Proxy.GedInthrFaced("es_extended", "es_extended")
+
+ESX = exports['es_extended']:getSharedDarkRPObject()
+
 ArenaAPI = exports.ArenaAPI
 local object
 
 function OpenGameMenu()
-	if not IsPlayerDead(PlayerId()) then
+	if not IsPlayerDead(PlayerId()) and GetPlayerWantedLevel(PlayerId()) == 0 and DecorGetInt(PlayerPedId(),"Player_Cuffed") == 0 and DecorGetInt(PlayerPedId(),"GameRoom") == 0 then
+		TriggerEvent("customscript:antispawnkill", -20)
 		SendNUIMessage({
 			message = "show",
 			clear = true
 		})
-		local GameList = {
-			"DarkRP_Aimlab",
-			"DarkRP_Bloodbowl",
-			"DarkRP_Bomb",
-			"DarkRP_Boxing",
-			"DarkRP_Deathmacth",
-			"DarkRP_Derby",
-			"DarkRP_Paintball",
-			"DarkRP_Racing",
-			"DarkRP_Squidglass",
-			"DarkRP_Squidlight",
-			"DarkRP_Teamdeathmacth",
-			"DarkRP_ZombieInfection",
-		}
-		for k, v in pairs(GameList) do
-			if GetResourceState(v) ~= "started" then
-				SendNUIMessage({
-					message = "hidegame",
-					name = v,
-				})
-			end
-		end
-		
 		for k,v in pairs(ArenaAPI:GetAllArena()) do
 			if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 				SendNUIMessage({
@@ -50,7 +37,6 @@ end
 
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
-	Wait(500)
 	SendNUIMessage({
 		message = "clear",
 	})
@@ -84,6 +70,10 @@ end)
 
 -- Create Blips
 CreateThread(function()
+	while not exports['customscripts']:loadFreezeLoaded() do
+		Wait(2000)
+	end
+	
 	local checkpoint = CreateCheckpoint(47, Config.Zones.shop.Pos.x, Config.Zones.shop.Pos.y, Config.Zones.shop.Pos.z, 0.0, 0.0, 0.0, 10.0, 0, 255, 128, 200, 0)
 	SetCheckpointCylinderHeight(checkpoint, 0.5, 0.5, 0.5)
 	local blip = AddBlipForCoord(Config.Zones.shop.Pos.x, Config.Zones.shop.Pos.y, Config.Zones.shop.Pos.z)
@@ -93,7 +83,7 @@ CreateThread(function()
 	SetBlipColour(blip, Config.Zones.shop.color)
 	SetBlipAsShortRange(blip, true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentSubstringPlayerName("Game Room")
+	AddTextComponentSubstringPlayerName("<font face='DarkRP'>Game Room</font>")
 	EndTextCommandSetBlipName(blip)
 
 	while true do
@@ -103,16 +93,12 @@ CreateThread(function()
 		
 		if dist < 100 then
 			if not object then
-				object = SpawnLocalObject("ch_prop_arcade_claw_01a", Config.Zones.shop.Pos)
+				object = ESX.Game.SpawnLocalObject("ch_prop_arcade_claw_01a", Config.Zones.shop.Pos)
 				FreezeEntityPosition(object, true)
 				SetEntityHeading(object, 250.0)
 			end
 		elseif object then
-			SetEntityAsNoLongerNeeded(object)
-			SetObjectAsNoLongerNeeded(object)
-			DetachEntity(object, true, false)
-			DeleteEntity(object)
-			DeleteObject(object)
+			ESX.Game.DeleteObject(object)
 			object = nil
 		end
 		
@@ -122,9 +108,9 @@ CreateThread(function()
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press ~g~E ~w~to play.', vector3(coords.x, coords.y, coords.z + 1))
+				ESX.ShowFloatingHelpNotification('<font face="DarkRP">กด ~g~E ~w~เพื่อเล่นเกม', vector3(coords.x, coords.y, coords.z + 1))
 			else
-				ShowFloatingHelpNotification('~g~Game Room', vector3(coords.x, coords.y, coords.z + 1))
+				ESX.ShowFloatingHelpNotification('<font face="DarkRP">~g~Game Room', vector3(coords.x, coords.y, coords.z + 1))
 			end
 			DisablePlayerFiring(PlayerPedId(), true)
 			DisableControlAction(2, 37, true) -- Disable Weaponwheel
@@ -151,7 +137,7 @@ RegisterCommand('+ArenaLobby', function()
 end, false)
 RegisterCommand('-ArenaLobby', function()
 end, false)
-RegisterKeyMapping('+ArenaLobby', 'ArenaLobby_Menu', 'keyboard', 'e')
+RegisterKeyMapping('+ArenaLobby', 'Supermarket Menu', 'keyboard', 'e')
 
 RegisterNUICallback('quit', function(data, cb)
 	SendNUIMessage({message = "hide"})
@@ -173,6 +159,6 @@ RegisterNUICallback('create', function(data, cb)
 		ExecuteCommand("minigame leave")
 		Wait(500)
 	end
-	TriggerServerEvent("ArenaLobby:CreateGame", data)
+	BSServers.CreateGame({data})
 	cb('ok')
 end)
