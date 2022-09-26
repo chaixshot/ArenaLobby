@@ -1,6 +1,6 @@
 <head>
 	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="https://darkrpth.com/dist/fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.2/css/mdb.min.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" type="text/javascript"></script>
@@ -20,12 +20,12 @@
 				<div class="card">
 					<div class="view-cascade overlay banner parent">
 						<div class="IMGcontainer">
-							<img class="card-img-top banner image1" src="nui://ArenaLobby/html/img/games/newgame.jpg">
+							<img class="card-img-top banner image1" src="./img/games/newgame.jpg">
 							<div class="arenaName centered">GameName</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<center><p class="card-text ownername" style="font-size:0.8vw; font-weight:500;">ได้สร้างห้อง</p></center>
+						<center><p class="card-text ownername" style="font-size:0.8vw; font-weight:500;">Created a room.</p></center>
 					</div>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 	
 	<div class="GameCreate">
 		<div class="header">
-			<h1>Game Room - สร้างห้อง</h1>
+			<h1>Game Room - Create Room</h1>
 			<button class="btn btn-danger btn-md exit"><i class="fas fa-times fa-lg"></i></button>
 		</div>
 		<div class="col-12 d-flex align-items-stretch">
@@ -53,32 +53,33 @@
 		</div>
 		<div class="container" style="padding-top:15px;">
 			<div class="row GameSelect">
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card esx_aimlab">
+			
+				<div class="DarkRP_Aimlab col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_aimlab.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_Aimlab.jpg" class="card-img-top image1">
 								<div class="centered">Aim Lab</div>
 							</div>
 						</div>
 						<div class="card-footer text-muted text-center">
-							<button class="newgame btn btn-success" name="esx_aimlab">สร้างห้อง</button>
+							<button class="newgame btn btn-success" name="DarkRP_Aimlab">Create Room</button>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card esx_bomb">
+				<div class="DarkRP_Bomb col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_bomb.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_Bomb.jpg" class="card-img-top image1">
 								<div class="centered">Bomb Defuse</div>
-								<img src="nui://ArenaLobby/html/img/games/map/de_dust2.jpg" class="card-img-top image2">
+								<img src="./img/games/map/de_dust2.jpg" class="card-img-top image2">
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="esx_bomb" id="option1" class="browser-default custom-select">
-								<option value="" selected>เลือกแผนที่</option>
+							<select name="DarkRP_Bomb" id="option1" class="browser-default custom-select">
+								<option value="" selected>Select Map</option>
 								<option value="de_aztec">de_aztec</option>
 								<option value="de_cbble">de_cbble</option>
 								<option value="de_dust">de_dust</option>
@@ -87,37 +88,37 @@
 								<option value="de_vertigo">de_vertigo</option>
 							</select>
 							<br><br>
-							<center class="text-info">รอบ</center>
+							<center class="text-info">Round</center>
 							<select id="option2" class="browser-default custom-select">
-								<option value="5" selected>5 รอบ</option>
-								<option value="10">10 รอบ</option>
-								<option value="20">20 รอบ</option>
-								<option value="30">30 รอบ</option>
+								<option value="5" selected>5 Round</option>
+								<option value="10">10 Round</option>
+								<option value="20">20 Round</option>
+								<option value="30">30 Round</option>
 							</select>	
 							
 						</div>
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<button class="newgame btn btn-success" name="esx_bomb">สร้างห้อง</button>
+							<button class="newgame btn btn-success" name="DarkRP_Bomb">Create Room</button>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card zombie_infection">
+				<div class="DarkRP_ZombieInfection col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/zombie_infection.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_ZombieInfection.jpg" class="card-img-top image1">
 								<div class="centered">Zombie: Infection</div>
-								<img src="nui://ArenaLobby/html/img/games/map/zm_biohazard_base_mx.jpg" class="card-img-top image2">
+								<img src="./img/games/map/zm_biohazard_base_mx.jpg" class="card-img-top image2">
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="zombie_infection" id="option1" class="browser-default custom-select">
-								<option value="" selected>เลือกแผนที่</option>
+							<select name="DarkRP_ZombieInfection" id="option1" class="browser-default custom-select">
+								<option value="" selected>Select Map</option>
 								<option value="zm_biohazard_base_mx">zm_biohazard_base_mx</option>
 								<option value="zm_front_2020">zm_front_2020</option>
 								<option value="zm_fun_world_b">zm_fun_world_b</option>
@@ -137,33 +138,33 @@
 							<br>
 							<br>
 							<select id="option2" class="browser-default custom-select">
-								<option value="3" selected >3 นาที</option>
-								<option value="5">5 นาที</option>
-								<option value="10">10 นาที</option>
+								<option value="3" selected >3 Minute</option>
+								<option value="5">5 Minute</option>
+								<option value="10">10 Minute</option>
 							</select>	
 						</div>
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="zombie_infection">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_ZombieInfection">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card esx_teamdeathmacth">
+				<div class="DarkRP_Teamdeathmacth col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_teamdeathmacth.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_Teamdeathmacth.jpg" class="card-img-top image1">
 								<div class="centered">Team Deathmacth</div>
-								<img src="nui://ArenaLobby/html/img/games/map/awp_india.jpg" class="card-img-top image2">
+								<img src="./img/games/map/awp_india.jpg" class="card-img-top image2">
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="esx_teamdeathmacth" id="option1" class="browser-default custom-select">
-								<option value="" selected>เลือกแผนที่</option>
+							<select name="DarkRP_Teamdeathmacth" id="option1" class="browser-default custom-select">
+								<option value="" selected>Select Map</option>
 								<option value="awp_india">awp_india</option>
 								<option value="cs_italy">cs_italy</option>
 								<option value="cs_untitled">cs_untitled</option>
@@ -181,17 +182,17 @@
 								<option value="fy_snow">fy_snow</option>
 							</select>
 							<br><br>
-							<center class="text-info">ฮิทสูงสุด</center>
+							<center class="text-info">Max Hit</center>
 							<select id="option2" class="browser-default custom-select">
-								<option value="50" selected>50 ฮิท</option>
-								<option value="100">100 ฮิท</option>
-								<option value="200">200 ฮิท</option>
-								<option value="500">500 ฮิท</option>
+								<option value="50" selected>50 Hit</option>
+								<option value="100">100 Hit</option>
+								<option value="200">200 Hit</option>
+								<option value="500">500 Hit</option>
 							</select>	
 							<br><br>
-							<center class="text-info">อาวุธ</center>
+							<center class="text-info">Weapon</center>
 							<select id="option3" class="browser-default custom-select">
-								<option value="all" selected>ทั้งหมด</option>
+								<option value="all" selected>All</option>
 								<option value="pistol">Pistol</option>
 								<option value="submachine">Submachine</option>
 								<option value="assault">Assault</option>
@@ -199,34 +200,34 @@
 								<option value="sniper">Sniper</option>
 							</select>	
 							<br><br>
-							<center class="text-info">จุดตาย</center>
+							<center class="text-info">Dead Point</center>
 							<select id="option4" class="browser-default custom-select">
-								<option value="all" selected>ทั้งหมด</option>
-								<option value="head">หัวเท่านั้น</option>
+								<option value="all" selected>All</option>
+								<option value="head">Head only</option>
 							</select>	
 						</div>
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="esx_teamdeathmacth">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Teamdeathmacth">Create Room</div>
 						</div>
 					</div>
 				</div>
 			
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card esx_deathmacth">
+				<div class="DarkRP_Deathmacth col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_deathmacth.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_Deathmacth.jpg" class="card-img-top image1">
 								<div class="centered">Deathmacth</div>
-								<img src="nui://ArenaLobby/html/img/games/map/cs_italy.jpg" class="card-img-top image2">
+								<img src="./img/games/map/cs_italy.jpg" class="card-img-top image2">
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="esx_deathmacth" id="option1" class="browser-default custom-select">
-								<option value="" selected>เลือกแผนที่</option>
+							<select name="DarkRP_Deathmacth" id="option1" class="browser-default custom-select">
+								<option value="" selected>Select Map</option>
 								<option value="cs_italy">cs_italy</option>
 								<option value="cs_untitled">cs_untitled</option>
 								<option value="de_aztec">de_aztec</option>
@@ -242,17 +243,17 @@
 								<option value="fy_snow">fy_snow</option>
 							</select>
 							<br><br>
-							<center class="text-info">ฮิทสูงสุด</center>
+							<center class="text-info">Max Hit</center>
 							<select id="option2" class="browser-default custom-select">
-								<option value="40" selected>40 ฮิท</option>
-								<option value="80">80 ฮิท</option>
-								<option value="100">100 ฮิท</option>
-								<option value="200">200 ฮิท</option>
+								<option value="40" selected>40 Hit</option>
+								<option value="80">80 Hit</option>
+								<option value="100">100 Hit</option>
+								<option value="200">200 Hit</option>
 							</select>	
 							<br><br>
-							<center class="text-info">อาวุธ</center>
+							<center class="text-info">Weapon</center>
 							<select id="option3" class="browser-default custom-select">
-								<option value="all" selected>ทั้งหมด</option>
+								<option value="all" selected>All</option>
 								<option value="melee" >Melee</option>
 								<option value="pistol">Pistol</option>
 								<option value="submachine">Submachine</option>
@@ -264,25 +265,25 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="esx_deathmacth">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Deathmacth">Create Room</div>
 						</div>
 					</div>
 				</div>
 					
-				<div class="col-4 mb-4 d-flex align-items-stretch">
-					<div class="card esx_paintball_flag">
+				<div class="DarkRP_Paintball col-4 mb-4 d-flex align-items-stretch">
+					<div class="card">
 						<div class="view-cascade overlay banner parent">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_paintball_flag.jpg" class="card-img-top image1">
+								<img src="./img/games/DarkRP_Paintball.jpg" class="card-img-top image1">
 									<div class="centered">Capture The Flag</div>
-								<img src="nui://ArenaLobby/html/img/games/map/cs_italy.jpg" class="card-img-top image2">
+								<img src="./img/games/map/cs_italy.jpg" class="card-img-top image2">
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="esx_paintball_flag" id="option1" class="browser-default custom-select">
-								<option value="" selected>เลือกแผนที่</option>
+							<select name="DarkRP_Paintball" id="option1" class="browser-default custom-select">
+								<option value="" selected>Select Map</option>
 								<option value="cs_italy">cs_italy</option>
 								<option value="de_aztec">de_aztec</option>
 								<option value="de_cbble">de_cbble</option>
@@ -292,61 +293,61 @@
 								<option value="de_vertigo">de_vertigo</option>
 							</select>
 							<br><br>
-							<center class="text-info">ธงสูงสุด</center>
+							<center class="text-info">Max Flag</center>
 							<select id="option2" class="browser-default custom-select">
-								<option value="5" selected>5 ธง</option>
-								<option value="10">10 ธง</option>
-								<option value="20">30 ธง</option>
-								<option value="50">50 ธง</option>
+								<option value="5" selected>5 Flag</option>
+								<option value="10">10 Flag</option>
+								<option value="20">30 Flag</option>
+								<option value="50">50 Flag</option>
 							</select>	
 						</div>
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="esx_paintball_flag">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Paintball">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Boxing col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_boxing.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Boxing.jpg" class="card-img-top">
 								<div class="centered">Boxing</div>
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<select name="esx_paintball_flag" id="option1" class="browser-default custom-select">
+							<select name="DarkRP_Boxing" id="option1" class="browser-default custom-select">
 								<option value="FalleritusRagdoll" selected>FalleritusRagdoll</option>
 							</select>
 							
-							<center class="text-info">ฮิทสูงสุด</center>
+							<center class="text-info">Max Hit</center>
 							<select id="option2" class="browser-default custom-select">
-								<option value="20" selected>20 ฮิท</option>
-								<option value="50">50 ฮิท</option>
-								<option value="100">100 ฮิท</option>
-								<option value="200">200 ฮิท</option>
-								<option value="500">500 ฮิท</option>
+								<option value="20" selected>20 Hit</option>
+								<option value="50">50 Hit</option>
+								<option value="100">100 Hit</option>
+								<option value="200">200 Hit</option>
+								<option value="500">500 Hit</option>
 							</select>	
 						</div>
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="esx_boxing">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Boxing">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Racing col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/esx_raceing.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Racing.jpg" class="card-img-top">
 								<div class="centered">Stunt Racing</div>
 							</div>
 						</div>
@@ -355,18 +356,18 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="esx_raceing">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Racing">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Squidlight col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/squidgame_light.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Squidlight.jpg" class="card-img-top">
 								<div class="centered">SquidGame: Red Light, Green Light</div>
 							</div>
 						</div>
@@ -375,18 +376,18 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="squidgame_light">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Squidlight">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Squidglass col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/squidgame_glass.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Squidglass.jpg" class="card-img-top">
 								<div class="centered">SquidGame: The Glass Tile Game</div>
 							</div>
 						</div>
@@ -395,18 +396,18 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="squidgame_glass">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Squidglass">Create Room</div>
 						</div>
 					</div>
 				</div>
 			
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Derby col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/derby.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Derby.jpg" class="card-img-top">
 								<div class="centered">Derby: Sumo</div>
 							</div>
 						</div>
@@ -415,23 +416,23 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="derby">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Derby">Create Room</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-4 mb-4 d-flex align-items-stretch">
+				<div class="DarkRP_Bloodbowl col-4 mb-4 d-flex align-items-stretch">
 					<div class="card">
 						<div class="view view-cascade overlay banner">
 							<div class="IMGcontainer">
-								<img src="nui://ArenaLobby/html/img/games/blood_bowl_original.jpg" class="card-img-top">
+								<img src="./img/games/DarkRP_Bloodbowl.jpg" class="card-img-top">
 								<div class="centered">BloodBowl: Original</div>
 							</div>
 						</div>
 						<div class="card-body card-body-cascade">
-							<center class="text-info">แต้มสูงสุด</center>
+							<center class="text-info">Max Score</center>
 							<select id="option1" class="browser-default custom-select">
 								<option value="100" selected >100</option>
 								<option value="200">200</option>
@@ -440,7 +441,7 @@
 								<option value="500">500</option>
 							</select>
 							
-							<center class="text-info">แต้มเริ่มต้น</center>
+							<center class="text-info">Starting Point</center>
 							<select id="option2" class="browser-default custom-select">
 								<option value="30" selected >30</option>
 								<option value="60">60</option>
@@ -448,7 +449,7 @@
 								<option value="120">120</option>
 							</select>
 							
-							<center class="text-info">เพิ่มแต้ม</center>
+							<center class="text-info">Add Point</center>
 							<select id="option3" class="browser-default custom-select">
 								<option value="30" selected >30</option>
 								<option value="60">60</option>
@@ -456,7 +457,7 @@
 								<option value="120">120</option>
 							</select>
 							
-							<center class="text-info">แจกแต้ม</center>
+							<center class="text-info">Free Point</center>
 							<select id="option4" class="browser-default custom-select">
 								<option value="0" selected >0</option>
 								<option value="5">5</option>
@@ -467,14 +468,14 @@
 								<option value="100">100</option>
 							</select>
 	
-							<center class="text-info">แผนที่</center>
+							<center class="text-info">Map</center>
 							<select id="option5" class="browser-default custom-select">
 								<option value="Dystopian" selected >Dystopian</option>
 								<option value="Scifi">Scifi</option>
 								<option value="Wasteland">Wasteland</option>
 							</select>
 							
-							<center class="text-info">ฉาก</center>
+							<center class="text-info">Scene</center>
 							<select id="option6" class="browser-default custom-select">
 								<option value="1" selected >1</option>
 								<option value="2">2</option>
@@ -491,9 +492,9 @@
 						<div class="card-footer text-muted text-center">
 							<div class="md-form">
 								<input type="password" id="password" class="form-control validate">
-								<label for="password" data-success="ห้องจะถูกล็อคด้วยรหัสผ่าน">รหัสผ่าน</label>
+								<label for="password" data-success="Room will be locked with password.">Password</label>
 							</div>
-							<div class="newgame btn btn-success" name="blood_bowl_original">สร้างห้อง</div>
+							<div class="newgame btn btn-success" name="DarkRP_Bloodbowl">Create Room</div>
 						</div>
 					</div>
 				</div>

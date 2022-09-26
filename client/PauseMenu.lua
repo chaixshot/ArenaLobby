@@ -8,7 +8,7 @@ function DecimalsToMinutes(dec)
 end
 
 function UpdateDetails()
-	ESX.Streaming.RequestStreamedTextureDict("ArenaLobby")
+	RequestStreamedTextureDictC("ArenaLobby")
 	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
@@ -17,41 +17,39 @@ function UpdateDetails()
 	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")
 	local txd = string.gsub(ArenaAPI:GetPlayerArena(), '%d+', '')
 	
-	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "<font face='DarkRP'>🕹️  เกม</font>", "<font face='DarkRP'>ผู้เล่น "..CurrentSize.." จาก "..MaximumSize.."</font>", "<font face='DarkRP'>ข้อมูล</font>")
-	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, true, 2, 18, 0)
+	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
+	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
 	TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
 	
 	if map then
-		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>แผนที่</font>", map)
+		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Map", map)
 	end
-	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>ผู้เล่นขั้นต่ำ</font>", MinimumSize.." <font face='DarkRP'>คน</font>")
-	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>เหลือเวลา</font>", DecimalsToMinutes(MaximumArenaTime).." <font face='DarkRP'>นาที</font>")
+	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Min Player", MinimumSize)
+	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Time Left", DecimalsToMinutes(MaximumArenaTime).." Minute")
 	
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Setting"}, "<font face='DarkRP'>⚙️ ~p~ตั้งค่า</font>", "", false, 0, "ArenaLobby:PauseMenu.Setting")
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Map"}, "<font face='DarkRP'>🗺️  ~b~แผนที่</font>", "", false, 0, "ArenaLobby:PauseMenu.Map")
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {id = 0, text = "Exit"}, "<font face='DarkRP'>🚪 ~r~ออกจากเกม</font>", "", false, 0, "ArenaLobby:PauseMenu.leave")
+	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Setting"}, "⚙️ ~p~Setting", "", false, 0, "ArenaLobby:PauseMenu.Setting")
+	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Map"}, "🗺️  ~b~Map", "", false, 0, "ArenaLobby:PauseMenu.Map")
+	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {id = 0, text = "Exit"}, " ~r~Leave Game", "", false, 0, "ArenaLobby:PauseMenu.leave")
 	TriggerEvent('lobbymenu:SetDetailsCashRPandAP', "ArenaLobby:PauseMenu", 0, 0, 0)
 end
 
 function UpdatePlayerList()
 	TriggerEvent('lobbymenu:ResetPlayerList', 'ArenaLobby:PauseMenu')
-	local playerData = ESX.Game.GetDataPlayers()
 	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 	local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
 	local emptyslot = MaximumSize-CurrentSize
 	for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>"..playerData[source].firstname.." ["..playerData[source].user_id.."]</font>", playerData[source].gangname, (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 9, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, false)
+		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', v.name, "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 116, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, true)
 	end
 	for i=1,MaximumSize-CurrentSize do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>ว่าง</font>", "", "", 0, "", false, 9, 18)
+		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "empty", "", "", 0, "", false, 9, 18)
 	end
 end
 
 AddEventHandler("ArenaLobby:PauseMenu.UsePlayerEvent", function(_buttonParams)
-	local playerData = ESX.Game.GetDataPlayers()[_buttonParams.source]
-	TriggerEvent('lobbymenu:SetTooltipMessage', 'ArenaLobby:PauseMenu', "<font face='DarkRP'>ผู้เล่น</font>: "..playerData.firstname.." ["..playerData.user_id.."] ("..playerData.name..")")
+	TriggerEvent('lobbymenu:SetTooltipMessage', 'ArenaLobby:PauseMenu', "Player: "..GetPlayerName(GetPlayerFromServerId(_buttonParams.source)))
 	TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
 	TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
 end)
@@ -107,4 +105,4 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
 		TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
 	end
-end) 
+end)

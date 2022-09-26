@@ -17,10 +17,10 @@ function ClearGameList(){
 	'<div class="col-md-4 mb-4 d-flex align-items-stretch">'+
 		'<div class="card">'+
 			'<div class="view view-cascade overlay banner">'+
-				'<img src="nui://ArenaLobby/html/img/games/newgame.jpg" class="card-img-top">'+
+				'<img src="./img/games/newgame.jpg" class="card-img-top">'+
 			'</div>'+
 			'<div class="card-body card-body-cascade">'+
-				'<a class="create btn btn-default btn-lg">สร้างเกมใหม่</a>'+
+				'<a class="create btn btn-default btn-lg">Create Game</a>'+
 			'</div>'+
 		'</div>'+
 	'</div>');
@@ -48,22 +48,25 @@ window.addEventListener('message', function (event) {
 	if (item.message == "clear"){
 		ClearGameList();
 	}
+	if (item.message == "hidegame"){
+		$("."+item.name).remove();
+	}
 	if (item.message == "add"){
 		let joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="join btn btn-success" name="' + item.item + '">เข้าร่วมเกม</div>' +
+									'<div class="join btn btn-success" name="' + item.item + '">Join</div>' +
 								  '</div>'
 		if(item.state=="ArenaBusy"){
 			joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="btn btn-danger" name="' + item.item + '">เกมกำลังเล่นอยู่</div>' +
+									'<div class="btn btn-danger" name="' + item.item + '">Game Playing</div>' +
 								  '</div>'
 		}else if(item.password!=""){
 			joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="join btn btn-warning" name="' + item.item + '">เข้าร่วมเกม <i class="fas fa-lock prefix"></i></div>' +
+									'<div class="join btn btn-warning" name="' + item.item + '">Join <i class="fas fa-lock prefix"></i></div>' +
 								  '</div>'
 		}
 		let map = item.label.match(/\(([^)]+)\)/);
 		if(map!=null){
-			map = '<img class="card-img-top map image2" src="nui://ArenaLobby/html/img/games/map/'+map[1]+'.jpg">'
+			map = '<img class="card-img-top map image2" src="./img/games/map/'+map[1]+'.jpg">'
 		}else{
 			map = '';
 		}
@@ -72,14 +75,14 @@ window.addEventListener('message', function (event) {
 			'<div class="card">' +
 				'<div class="view-cascade overlay banner parent">' +
 					'<div class="IMGcontainer ">'+
-						'<img src="nui://ArenaLobby/html/img/games/' + item.image + '.jpg" class="card-img-top image1">' +
+						'<img src="./img/games/' + item.image + '.jpg" class="card-img-top image1">' +
 						map+
 						'<div class="centered">' + item.label + '</div>'+
 					'</div>'+
 				'</div>' +
 				'<div class="card-body card-body-cascade">' +
-					'<h5 class="card-title text-info">โดย: ' + item.ownername + '</h5>' +
-					'<h5 class="card-title text-success">ผู้เล่น: ' + item.players + '</h5>' +
+					'<h5 class="card-title text-info">By: ' + item.ownername + '</h5>' +
+					'<h5 class="card-title text-success">Players: ' + item.players + '</h5>' +
 				'</div>' +
 				joinbutton
 				 +
@@ -99,9 +102,9 @@ window.addEventListener('message', function (event) {
 	
 	if (item.message === "notify"){
 		$(".notify .arenaName").text(item.gamename);
-		$(".notify .banner").attr("src","nui://ArenaLobby/html/img/games/"+item.gamename+".jpg");
+		$(".notify .banner").attr("src","./img/games/"+item.gamename+".jpg");
 		$(".notify .arenaName").text(item.gameLabel);
-		$(".notify .ownername").text(item.ownername+"  ได้สร้างห้อง");
+		$(".notify .ownername").text(item.ownername+" created room.");
 		$(".notify").fadeIn();
 		setTimeout(function() { 
 			$(".notify").fadeOut();
@@ -121,7 +124,7 @@ $(".GameList").on("click", ".join", function() {
 });
 
 $('.GameSelect select').on('change', function() {
-	$("."+this.name+" .image2").attr("src", "nui://ArenaLobby/html/img/games/map/"+this.value+".jpg");
+	$("."+this.name+" .image2").attr("src", "./img/games/map/"+this.value+".jpg");
 });
 	
 $(".GameSelect").on("click", ".newgame", function() {
@@ -189,3 +192,50 @@ $(".GameSelect").on("click", ".btnquantity", function() {
 	soundClick = new Howl({src: ["./sounds/click.ogg"], volume: 1.0});
 	soundClick.play();
 });
+
+// setInterval(() => {
+    // const myGamepad = navigator.getGamepads()[0];
+	// var press = "";
+	// if(myGamepad){
+		// if (myGamepad.buttons[0].pressed) { // A
+			// press = "A";
+		// }else if(myGamepad.buttons[1].pressed){ // B
+			// press = "B";
+		// }else if(myGamepad.buttons[2].pressed){ // X
+			// press = "X";
+		// }else if (myGamepad.buttons[3].pressed){ // Y
+			// press = "Y";
+		// }else if (myGamepad.buttons[4].pressed){ // LB
+			// press = "LB";
+		// }else if (myGamepad.buttons[5].pressed){ // RB
+			// press = "RB";
+		// }else if (myGamepad.buttons[6].pressed){ // LT
+			// press = "LT";
+		// }else if (myGamepad.buttons[7].pressed){ // RT
+			// press = "RT";
+		// }else if (myGamepad.buttons[8].pressed){ // Address
+			// press = "Address";
+		// }else if (myGamepad.buttons[9].pressed){ // Menu
+			// press = "Menu";
+		// }else if (myGamepad.buttons[10].pressed){ // L3
+			// press = "L3";
+		// }else if (myGamepad.buttons[11].pressed){ // R3
+			// press = "R3";
+		// }else if (myGamepad.buttons[12].pressed){ // Dpad Up
+			// press = "Dpad Up";
+		// }else if (myGamepad.buttons[13].pressed){ // Dpad Down
+			// press = "Dpad Down";
+		// }else if (myGamepad.buttons[14].pressed){ // Dpad Left
+			// press = "Dpad Left";
+		// }else if (myGamepad.buttons[15].pressed){ // Dpad Right
+			// press = "Dpad Right";
+		// }else if (myGamepad.buttons[16].pressed){ // Xbox Logo
+			// press = "Xbox Logo";
+		// }
+	// }
+	
+	// if(press=="A"){
+
+	// }
+	// console.log(press)
+// }, 100) // print axes 10 times per second
