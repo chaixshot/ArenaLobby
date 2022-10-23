@@ -14,7 +14,7 @@ function OpenGameMenu()
 			"DarkRP_Boxing",
 			"DarkRP_Deathmacth",
 			"DarkRP_Derby",
-			"DarkRP_Paintball",
+			"DarkRP_CaptureTheFlag",
 			"DarkRP_Racing",
 			"DarkRP_Squidglass",
 			"DarkRP_Squidlight",

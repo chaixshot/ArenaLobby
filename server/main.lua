@@ -2,8 +2,8 @@ RegisterServerEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
 	if data.gamename == "DarkRP_Derby" then
 		TriggerEvent("DarkRP_Derby:CreateArena", source, data.password)
-	elseif data.gamename == "DarkRP_Paintball" then
-		TriggerEvent("DarkRP_Paintball:CreateArena", source, data.password, data.option1, data.option2)
+	elseif data.gamename == "DarkRP_CaptureTheFlag" then
+		TriggerEvent("DarkRP_CaptureTheFlag:CreateArena", source, data.password, data.option1, data.option2)
 	elseif data.gamename == "DarkRP_Teamdeathmacth" then
 		TriggerEvent("DarkRP_Teamdeathmacth:CreateArena", source, data.password, data.option1, data.option2, data.option3, data.option4)
 	elseif data.gamename == "DarkRP_Bomb" then
