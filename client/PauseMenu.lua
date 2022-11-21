@@ -19,25 +19,20 @@ function UpdateDetails()
 	
 	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
 	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
-	if string.find(string.lower(ArenaLabel), "racing") then
+	if string.find(string.lower(ArenaLabel), "racing") and exports["DarkRP_Racing"]:GetsvCallBackData() then
 		local image = exports["DarkRP_Racing"]:GetCurrentMapImage()
 		local ymap = exports["DarkRP_Racing"]:GetCurrentYmapName()
-		if image and image ~= "" then
-			CreateRuntimeTextureFromDuiHandle(CreateRuntimeTxd('ArenaLobby_duiTxd'), ymap, GetDuiHandle(CreateDui(image or "", 320, 180)))
-			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby_duiTxd', ymap)
-		else
-			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'DarkRP_Racing', ymap)
-		end
+		exports["DarkRP_Racing"]:UpdateSettings(true)
+		exports["DarkRP_Racing"]:UpdateDetails(true)
 	else
 		TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
+		if map then
+			TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Map", map)
+		end
+		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Min Player", MinimumSize)
+		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Time Left", DecimalsToMinutes(MaximumArenaTime).." Minute")
 	end
-	
-	if map then
-		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Map", map)
-	end
-	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Min Player", MinimumSize)
-	TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Time Left", DecimalsToMinutes(MaximumArenaTime).." Minute")
-	
+
 	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Setting"}, "⚙️ ~p~Setting", "", false, 0, "ArenaLobby:PauseMenu.Setting")
 	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Map"}, "🗺️  ~b~Map", "", false, 0, "ArenaLobby:PauseMenu.Map")
 	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {id = 0, text = "Exit"}, " ~r~Leave Game", "", false, 0, "ArenaLobby:PauseMenu.leave")
