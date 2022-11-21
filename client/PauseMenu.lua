@@ -19,7 +19,17 @@ function UpdateDetails()
 	
 	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
 	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
-	TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
+	if string.find(string.lower(ArenaLabel), "racing") then
+		local image = exports["DarkRP_Racing"]:GetCurrentMapImage()
+		local ymap = exports["DarkRP_Racing"]:GetCurrentYmapName()
+		if image and image ~= "" then
+			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'DarkRP_Racing_duiTxd', ymap)
+		else
+			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'DarkRP_Racing', ymap)
+		end
+	else
+		TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
+	end
 	
 	if map then
 		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Map", map)
