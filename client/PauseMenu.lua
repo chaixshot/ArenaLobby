@@ -23,7 +23,8 @@ function UpdateDetails()
 		local image = exports["DarkRP_Racing"]:GetCurrentMapImage()
 		local ymap = exports["DarkRP_Racing"]:GetCurrentYmapName()
 		if image and image ~= "" then
-			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'DarkRP_Racing_duiTxd', ymap)
+			CreateRuntimeTextureFromDuiHandle(CreateRuntimeTxd('ArenaLobby_duiTxd'), ymap, GetDuiHandle(CreateDui(image or "", 320, 180)))
+			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby_duiTxd', ymap)
 		else
 			TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'DarkRP_Racing', ymap)
 		end
