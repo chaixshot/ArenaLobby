@@ -19,9 +19,7 @@ function UpdateDetails()
 	
 	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
 	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
-	if string.find(string.lower(ArenaLabel), "racing") and exports["DarkRP_Racing"]:GetsvCallBackData() then
-		local image = exports["DarkRP_Racing"]:GetCurrentMapImage()
-		local ymap = exports["DarkRP_Racing"]:GetCurrentYmapName()
+	if string.find(string.lower(ArenaLabel), "racing") and exports["DarkRP_Racing"]:IsInGame() then
 		exports["DarkRP_Racing"]:UpdateSettings(true)
 		exports["DarkRP_Racing"]:UpdateDetails(true)
 	else
