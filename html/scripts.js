@@ -50,6 +50,9 @@ window.addEventListener('message', function (event) {
 	}
 	if (item.message == "hidegame"){
 		$("."+item.name).remove();
+		if(item.name=="DarkRP_Racing"){
+			$(".DarkRP_CreateRacing").remove();
+		}
 	}
 	if (item.message == "add"){
 		let joinbutton = '<div class="card-footer text-muted text-center">' +
