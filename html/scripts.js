@@ -109,7 +109,7 @@ window.addEventListener('message', function (event) {
 		$(".notify .arenaName").text(item.gameLabel);
 		$(".notify .ownername").text(item.ownername+" created room.");
 		$(".notify").fadeIn();
-		soundCreateRoom = new Howl({src: ["./sounds/createroom.ogg"], volume: 1.0});
+		soundCreateRoom = new Howl({src: ["./sounds/createlobby.ogg"], volume: 1.0});
 		soundCreateRoom.play();
 		setTimeout(function() { 
 			$(".notify").fadeOut();
