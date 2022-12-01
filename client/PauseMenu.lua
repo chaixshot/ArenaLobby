@@ -103,6 +103,7 @@ RegisterKeyMapping('+ArenaLobby_PauseMenu1', 'ArenaLobby_PauseMenu1', 'keyboard'
 
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
+	Wait(100)
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
 		UpdateDetails()
 		UpdatePlayerList()

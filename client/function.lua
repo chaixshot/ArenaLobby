@@ -44,7 +44,8 @@ SpawnLocalObject = function(model, coords, cb)
 	RequestModelC(model)
 
 	local object = CreateObject(model, coords.x, coords.y, coords.z, false, false, false)
-	
+	DisableCamCollisionForEntity(object)
+	DisableCamCollisionForObject(object)
 	if cb ~= nil then
 		cb(object)
 	else

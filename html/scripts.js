@@ -73,12 +73,19 @@ window.addEventListener('message', function (event) {
 		}else{
 			map = '';
 		}
+		
+		let ImageTag = ""
+		if(item.imageUrl && item.imageUrl != ""){
+			ImageTag = '<img src="'+item.imageUrl+'" class="card-img-top image1">'
+		}else{
+			ImageTag = '<img src="./img/games/' + item.image + '.jpg" class="card-img-top image1">'
+		}
 		$( ".GameList" ).append(
 		'<div class="col-md-4 mb-4 d-flex align-items-stretch-4">' +
 			'<div class="card">' +
 				'<div class="view-cascade overlay banner parent">' +
 					'<div class="IMGcontainer ">'+
-						'<img src="./img/games/' + item.image + '.jpg" class="card-img-top image1">' +
+						ImageTag+
 						map+
 						'<div class="centered">' + item.label + '</div>'+
 					'</div>'+
