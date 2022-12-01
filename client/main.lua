@@ -1,5 +1,5 @@
-ArenaAPI = exports.ArenaAPI
 local object
+ArenaAPI = exports.ArenaAPI
 
 function OpenGameMenu()
 	if not IsPlayerDead(PlayerId()) then
@@ -86,13 +86,13 @@ end)
 
 -- Create Blips
 CreateThread(function()
-	local checkpoint = CreateCheckpoint(47, Config.Zones.shop.Pos.x, Config.Zones.shop.Pos.y, Config.Zones.shop.Pos.z, 0.0, 0.0, 0.0, 10.0, 0, 255, 128, 200, 0)
-	SetCheckpointCylinderHeight(checkpoint, 0.5, 0.5, 0.5)
-	local blip = AddBlipForCoord(Config.Zones.shop.Pos.x, Config.Zones.shop.Pos.y, Config.Zones.shop.Pos.z)
-	SetBlipSprite (blip, Config.Zones.shop.blip)
+	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, 10.0, Config.Color.r, Config.Color.g, Config.Color.b, Config.Color.a, 0)
+	SetCheckpointCylinderHeight(checkpoint, Config.Size.z, Config.Size.y, Config.Size.z)
+	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
+	SetBlipSprite (blip, Config.Blip)
 	SetBlipDisplay(blip, 4)
 	SetBlipScale(blip, 0.7)
-	SetBlipColour(blip, Config.Zones.shop.color)
+	SetBlipColour(blip, Config.BlipColor)
 	SetBlipAsShortRange(blip, true)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentSubstringPlayerName("Game Room")
@@ -102,35 +102,28 @@ CreateThread(function()
 	DecorRegister("GameRoom", 2)
 	while true do
 		local sleep = 500
-		local coords = Config.Zones.shop.Pos
-		local dist =GetDistanceBetweenCoords(coords.x, coords.y, coords.z, GetEntityCoords(PlayerPedId()), true)
-		
-		if dist < 100 then
+		local playerPed = PlayerPedId()
+		local playerCoords = GetEntityCoords(playerPed)
+		local dist =GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
+
+		if dist < Config.DrawDistance*1.2 then
 			if not object then
-				object = SpawnLocalObject("ch_prop_arcade_claw_01a", Config.Zones.shop.Pos)
+				object = SpawnLocalObject(Config.Prop, Config.Location)
 				FreezeEntityPosition(object, true)
 				SetEntityHeading(object, 250.0)
 			end
-		elseif object then
-			SetEntityAsNoLongerNeeded(object)
-			SetObjectAsNoLongerNeeded(object)
-			DetachEntity(object, true, false)
-			DeleteEntity(object)
-			DeleteObject(object)
-			object = nil
-		end
-		
-		if dist < 10 then
-			if dist < 6 then
+			
+			if dist < Config.DrawDistance then
 				if not InPoint then
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press ~g~E ~w~to play.', vector3(coords.x, coords.y, coords.z + 1))
+				ShowFloatingHelpNotification('Press ~g~E ~w~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
 			else
-				ShowFloatingHelpNotification('~g~Game Room', vector3(coords.x, coords.y, coords.z + 1))
+				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z+1))
 			end
-			DisablePlayerFiring(PlayerPedId(), true)
+			
+			DisablePlayerFiring(playerPed, true)
 			DisableControlAction(2, 37, true) -- Disable Weaponwheel
 			DisableControlAction(0, 45, true) -- Disable reloading
 			DisableControlAction(0, 24, true) -- Disable attacking
@@ -143,6 +136,15 @@ CreateThread(function()
 			SendNUIMessage({message = "stopsound_MainRoom"})
 			SendNUIMessage({message = "hide"})
 			SetNuiFocus(false, false)
+			
+			if object then
+				SetEntityAsNoLongerNeeded(object)
+				SetObjectAsNoLongerNeeded(object)
+				DetachEntity(object, true, false)
+				DeleteEntity(object)
+				DeleteObject(object)
+				object = nil
+			end
 		end
 		Citizen.Wait(sleep)
 	end
