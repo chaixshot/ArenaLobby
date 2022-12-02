@@ -83,7 +83,9 @@ window.addEventListener('message', function (event) {
 		
 		var avatraList = "";
 		for (const [key, value] of Object.entries(item.PlayerAvatar)) {
-			avatraList += "<img src="+value+" class='avatar'>";
+			if(value != null){
+				avatraList += "<img src="+value+" class='avatar'>";
+			}
 		}
 		
 		$( ".GameList" ).append(
