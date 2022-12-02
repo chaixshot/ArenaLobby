@@ -80,6 +80,12 @@ window.addEventListener('message', function (event) {
 		}else{
 			ImageTag = '<img src="./img/games/' + item.image + '.jpg" class="card-img-top image1">'
 		}
+		
+		var avatraList = "";
+		for (const [key, value] of Object.entries(item.PlayerAvatar)) {
+			avatraList += "<img src="+value+" class='avatar'>";
+		}
+		
 		$( ".GameList" ).append(
 		'<div class="col-md-4 mb-4 d-flex align-items-stretch-4">' +
 			'<div class="card">' +
@@ -92,7 +98,7 @@ window.addEventListener('message', function (event) {
 				'</div>' +
 				'<div class="card-body card-body-cascade">' +
 					'<h5 class="card-title text-info">By: ' + item.ownername + '</h5>' +
-					'<h5 class="card-title text-success">Players: ' + item.players + '</h5>' +
+					'<h5 class="card-title text-success">Players: ' + item.players + '</h5>' +avatraList+
 				'</div>' +
 				joinbutton
 				 +

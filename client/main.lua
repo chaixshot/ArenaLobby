@@ -42,6 +42,7 @@ function OpenGameMenu()
 					state = (v.CanJoinAfterStart and "" or v.ArenaState),
 					players = v.CurrentCapacity.."/"..v.MaximumCapacity,
 					password = v.Password,
+					PlayerAvatar = v.PlayerAvatar,
 				})
 			end
 		end
@@ -67,6 +68,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
 				password = v.Password,
+				PlayerAvatar = v.PlayerAvatar
 			})
 		end
 	end
@@ -86,8 +88,8 @@ end)
 
 -- Create Blips
 CreateThread(function()
-	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, 10.0, Config.Color.r, Config.Color.g, Config.Color.b, Config.Color.a, 0)
-	SetCheckpointCylinderHeight(checkpoint, Config.Size.z, Config.Size.y, Config.Size.z)
+	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance, Config.Color.r, Config.Color.g, Config.Color.b, Config.Color.a, 0)
+	SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
 	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
 	SetBlipSprite (blip, Config.Blip)
 	SetBlipDisplay(blip, 4)
@@ -98,7 +100,6 @@ CreateThread(function()
 	AddTextComponentSubstringPlayerName("Game Room")
 	EndTextCommandSetBlipName(blip)
 
-	
 	DecorRegister("GameRoom", 2)
 	while true do
 		local sleep = 500
@@ -106,7 +107,7 @@ CreateThread(function()
 		local playerCoords = GetEntityCoords(playerPed)
 		local dist =GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
 
-		if dist < Config.DrawDistance*1.2 then
+		if dist < Config.DrawDistance*1.5 then
 			if not object then
 				object = SpawnLocalObject(Config.Prop, Config.Location)
 				FreezeEntityPosition(object, true)

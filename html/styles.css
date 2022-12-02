@@ -227,3 +227,11 @@ select:hover {
 	text-align: center;
 	color: white;
 }
+
+.avatar {
+	width: 0.8vw;
+	height: 0.8vw;
+	border-radius: 100%;
+	vertical-align: middle;
+	border: 1px solid #eeeeee;
+}
