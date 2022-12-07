@@ -68,7 +68,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
 				password = v.Password,
-				PlayerAvatar = v.PlayerAvatar
+				PlayerAvatar = v.PlayerAvatar,
 			})
 		end
 	end
