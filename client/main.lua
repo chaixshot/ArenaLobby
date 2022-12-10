@@ -168,7 +168,6 @@ end)
 
 RegisterNUICallback('join', function(data, cb)
 	if ArenaAPI:IsPlayerInAnyArena() then
-		ExecuteCommand("minigame leave")
 		Wait(500)
 	end
 	ExecuteCommand("minigame join " .. data.item)
