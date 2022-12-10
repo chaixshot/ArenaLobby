@@ -122,15 +122,10 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		UpdatePlayerList()
 		TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
 		TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
-	end
-end)
-
-CreateThread(function()
-	while true do
-		if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
+		while ArenaAPI:IsPlayerInAnyArena() do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)
+			Wait(0)
 		end
-		Wait(0)
 	end
 end)
