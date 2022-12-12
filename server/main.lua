@@ -1,5 +1,7 @@
 RegisterServerEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
+	data.password = tostring(data.password)
+	
 	if data.gamename == "DarkRP_Derby" then
 		TriggerEvent("DarkRP_Derby:CreateArena", source, data.password)
 	elseif data.gamename == "DarkRP_CaptureTheFlag" then

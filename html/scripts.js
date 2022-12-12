@@ -62,7 +62,7 @@ window.addEventListener('message', function (event) {
 			joinbutton = '<div class="card-footer text-muted text-center">' +
 									'<div class="btn btn-danger" name="' + item.item + '">Game Playing</div>' +
 								  '</div>'
-		}else if(item.password!=""){
+		}else if(item.password!==""){
 			joinbutton = '<div class="card-footer text-muted text-center">' +
 									'<div class="join btn btn-warning" name="' + item.item + '">Join <i class="fas fa-lock prefix"></i></div>' +
 								  '</div>'

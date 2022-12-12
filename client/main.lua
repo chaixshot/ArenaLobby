@@ -41,7 +41,7 @@ function OpenGameMenu()
 					label = v.ArenaLabel,
 					state = (v.CanJoinAfterStart and "" or v.ArenaState),
 					players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-					password = v.Password,
+					password = tostring(v.Password),
 					PlayerAvatar = v.PlayerAvatar,
 				})
 			end
@@ -67,7 +67,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 				label = v.ArenaLabel,
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-				password = v.Password,
+				password = tostring(v.Password),
 				PlayerAvatar = v.PlayerAvatar,
 			})
 		end
