@@ -50,6 +50,20 @@ function OpenGameMenu(withXbox)
 		
 		if withXbox then
 			SetNuiFocus(true, false)
+			
+			local form = Scaleform.Request("instructional_buttons")
+			form:CallFunction("CLEAR_ALL")
+			form:CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(1, 194, true), "Back")
+			form:CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(1, 191, true), "Select")
+			form:CallFunction("SET_DATA_SLOT", 2, GetControlInstructionalButton(1, 190, true), GetControlInstructionalButton(1, 187, true), "Next")
+			form:CallFunction("SET_DATA_SLOT", 3, GetControlInstructionalButton(1, 189, true), GetControlInstructionalButton(1, 187, true), "Previous")
+			form:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
+			form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
+			while IsNuiFocused() do
+				form:Draw2D()
+				Wait(1)
+			end
+			form:Dispose()
 		else
 			SetNuiFocus(true, true)
 		end
