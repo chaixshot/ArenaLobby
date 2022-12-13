@@ -3,11 +3,6 @@ ArenaAPI = exports.ArenaAPI
 
 function OpenGameMenu(withXbox)
 	if not IsPlayerDead(PlayerId()) then
-		SendNUIMessage({
-			message = "show",
-			clear = true,
-			withXbox = withXbox,
-		})
 		local GameList = {
 			"DarkRP_Aimlab",
 			"DarkRP_Bloodbowl",
@@ -31,6 +26,10 @@ function OpenGameMenu(withXbox)
 			end
 		end
 		
+		SendNUIMessage({
+			message = "clear",
+		})
+		
 		for k,v in pairs(ArenaAPI:GetAllArena()) do
 			if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 				SendNUIMessage({
@@ -47,6 +46,11 @@ function OpenGameMenu(withXbox)
 				})
 			end
 		end
+		
+		SendNUIMessage({
+			message = "show",
+			withXbox = withXbox,
+		})
 		
 		if withXbox then
 			SetNuiFocus(true, false)
@@ -73,9 +77,11 @@ end
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(500)
+	
 	SendNUIMessage({
 		message = "clear",
 	})
+	
 	for k,v in pairs(ArenaAPI:GetAllArena()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
