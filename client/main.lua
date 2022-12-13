@@ -119,7 +119,7 @@ CreateThread(function()
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press ~g~E ~w~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
+				ShowFloatingHelpNotification('Press  ~INPUT_VEH_CAR_JUMP~ to play.', playerCoords+vector3(0.0, 0.0, 1.0))
 			else
 				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z+1))
 			end
@@ -151,14 +151,33 @@ CreateThread(function()
 	end
 end)
 
-RegisterCommand('+ArenaLobby', function()
+RegisterCommand('+ArenaLobby_Menu_Keyboard', function()
 	if InPoint then
 		OpenGameMenu()
 	end
 end, false)
-RegisterCommand('-ArenaLobby', function()
+RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby_Menu_Keyboard', 'keyboard', 'e')
+
+RegisterCommand('+ArenaLobby_Menu_XBox', function()
+	if InPoint then
+		OpenGameMenu()
+	end
 end, false)
-RegisterKeyMapping('+ArenaLobby', 'ArenaLobby_Menu', 'keyboard', 'e')
+RegisterKeyMapping('+ArenaLobby_Menu_XBox', 'ArenaLobby_Menu_XBox', 'PAD_ANALOGBUTTON', 'L3_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_XBox_A', function()
+	if IsNuiFocused() then
+		SendNUIMessage({message = "control_a"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_XBox_A', 'ArenaLobby_Menu_XBox_A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_XBox_B', function()
+	if IsNuiFocused() then
+		SendNUIMessage({message = "control_b"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_XBox_B', 'ArenaLobby_Menu_XBox_B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
 
 RegisterNUICallback('quit', function(data, cb)
 	SendNUIMessage({message = "hide"})
