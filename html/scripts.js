@@ -274,6 +274,9 @@ window.addEventListener('message', function (event) {
 			container.animate({
 					scrollTop: position-800
 			}, 300);
+			
+			soundClick = new Howl({src: ["./sounds/click.ogg"], volume: 1.0});
+			soundClick.play();
 		}
 	}
 	
@@ -289,6 +292,9 @@ window.addEventListener('message', function (event) {
 			container.animate({
 					scrollTop: position-800
 			}, 300);
+			
+			soundClick = new Howl({src: ["./sounds/click.ogg"], volume: 1.0});
+			soundClick.play();
 		}
 	}
 	
