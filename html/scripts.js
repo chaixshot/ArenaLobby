@@ -57,6 +57,11 @@ window.addEventListener('message', function (event) {
 		}
 		if(withXbox){
 			$(".controller_index-"+controller_index).addClass("controllerHovered");
+			$(".ButtonBack").hide();
+			$(".exit").hide();
+		}else{
+			$(".ButtonBack").show();
+			$(".exit").show();
 		}
 	}
 
