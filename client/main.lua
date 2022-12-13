@@ -1,11 +1,12 @@
 local object
 ArenaAPI = exports.ArenaAPI
 
-function OpenGameMenu()
+function OpenGameMenu(withXbox)
 	if not IsPlayerDead(PlayerId()) then
 		SendNUIMessage({
 			message = "show",
-			clear = true
+			clear = true,
+			withXbox = withXbox,
 		})
 		local GameList = {
 			"DarkRP_Aimlab",
@@ -46,7 +47,12 @@ function OpenGameMenu()
 				})
 			end
 		end
-		SetNuiFocus(true, true)
+		
+		if withXbox then
+			SetNuiFocus(true, false)
+		else
+			SetNuiFocus(true, true)
+		end
 	end
 end
 
@@ -119,7 +125,7 @@ CreateThread(function()
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press  ~INPUT_VEH_CAR_JUMP~ to play.', playerCoords+vector3(0.0, 0.0, 1.0))
+				ShowFloatingHelpNotification('Press  ~INPUT_VEH_CAR_JUMP~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
 			else
 				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z+1))
 			end
@@ -153,31 +159,72 @@ end)
 
 RegisterCommand('+ArenaLobby_Menu_Keyboard', function()
 	if InPoint then
-		OpenGameMenu()
+		OpenGameMenu(false)
 	end
 end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby_Menu_Keyboard', 'keyboard', 'e')
 
-RegisterCommand('+ArenaLobby_Menu_XBox', function()
-	if InPoint then
-		OpenGameMenu()
+local timeUI = {}
+function CheckUiTime(type, time)
+	if not timeUI[type] then
+		timeUI[type] = GetGameTimer()
+		return true
+	end
+	if (GetGameTimer() - timeUI[type]) > time then
+		timeUI[type] = GetGameTimer()
+		return true
+	end
+	return false
+end
+
+RegisterCommand('+ArenaLobby_Menu_Xbox', function()
+	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
+		OpenGameMenu(true)
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_XBox', 'ArenaLobby_Menu_XBox', 'PAD_ANALOGBUTTON', 'L3_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox', 'ArenaLobby_Menu_Xbox', 'PAD_ANALOGBUTTON', 'L3_INDEX')
 
-RegisterCommand('+ArenaLobby_Menu_XBox_A', function()
-	if IsNuiFocused() then
+RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
 		SendNUIMessage({message = "control_a"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_XBox_A', 'ArenaLobby_Menu_XBox_A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_A', 'ArenaLobby_Menu_Xbox_A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
 
-RegisterCommand('+ArenaLobby_Menu_XBox_B', function()
-	if IsNuiFocused() then
+RegisterCommand('+ArenaLobby_Menu_Xbox_B', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_B", 100) then
 		SendNUIMessage({message = "control_b"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_XBox_B', 'ArenaLobby_Menu_XBox_B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby_Menu_Xbox_B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_Xbox_Right', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Right", 100) then
+		SendNUIMessage({message = "control_right"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby_Menu_Xbox_Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_Xbox_Left', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Left", 100) then
+		SendNUIMessage({message = "control_left"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby_Menu_Xbox_Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_Xbox_Up', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Up", 100) then
+		SendNUIMessage({message = "control_left"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby_Menu_Xbox_Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
+
+RegisterCommand('+ArenaLobby_Menu_Xbox_Down', function()
+	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Down", 100) then
+		SendNUIMessage({message = "control_right"})
+	end
+end, false)
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Down', 'ArenaLobby_Menu_Xbox_Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')
 
 RegisterNUICallback('quit', function(data, cb)
 	SendNUIMessage({message = "hide"})

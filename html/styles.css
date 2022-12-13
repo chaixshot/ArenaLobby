@@ -235,3 +235,10 @@ select:hover {
 	vertical-align: middle;
 	border: 1px solid #eeeeee;
 }
+
+.controllerHovered  {
+	-webkit-box-shadow:inset 0px 0px 0px 3px #000;
+    -moz-box-shadow:inset 0px 0px 0px 3px #000;
+    box-shadow:inset 0px 0px 0px 3px #000;
+	cursor: pointer;
+}

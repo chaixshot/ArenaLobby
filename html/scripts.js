@@ -1,3 +1,6 @@
+var controller_index = 1;
+var withXbox = false;
+
 $(document).keydown(function (e) // Disable Tab Key
 {
     var keycode1 = (e.keyCode ? e.keyCode : e.which);
@@ -27,7 +30,7 @@ function ClearGameList(){
 				'<img src="./img/games/newgame.jpg" class="card-img-top">'+
 			'</div>'+
 			'<div class="card-body card-body-cascade">'+
-				'<buttton class="create btn btn-default btn-lg text-white">Create Game</buttton>'+
+				'<buttton class="create btn btn-default btn-lg text-white controller_index controller_index-1">Create Game</buttton>'+
 			'</div>'+
 		'</div>'+
 	'</div>');
@@ -41,6 +44,14 @@ window.addEventListener('message', function (event) {
 		soundOpen.play();
 		if (item.clear == true){
 			ClearGameList();
+		}
+		withXbox = item.withXbox
+		controller_index = 1;
+		for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
+		  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+		}
+		if(withXbox){
+			$(".controller_index-"+controller_index).addClass("controllerHovered");
 		}
 		$(".GameLobby").fadeIn();
 	}
@@ -62,16 +73,17 @@ window.addEventListener('message', function (event) {
 		}
 	}
 	if (item.message == "add"){
+		let joinCount = $(".controller_join").length+2
 		let joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="join btn btn-success" name="' + item.item + '">Join</div>' +
+									'<button class="join controller_join btn btn-success controller_index-'+joinCount+'" name="' + item.item + '">Join</button>' +
 								  '</div>'
 		if(item.state=="ArenaBusy"){
 			joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="btn btn-danger" name="' + item.item + '">Game Playing</div>' +
+									'<button class="controller_join btn btn-danger controller_index-'+joinCount+'" name="' + item.item + '">Game Playing</button>' +
 								  '</div>'
 		}else if(item.password!==""){
 			joinbutton = '<div class="card-footer text-muted text-center">' +
-									'<div class="join btn btn-warning" name="' + item.item + '">Join <i class="fas fa-lock prefix"></i></div>' +
+									'<button class="join controller_join btn btn-warning controller_index-'+joinCount+'" name="' + item.item + '">Join <i class="fas fa-lock prefix"></i></button>' +
 								  '</div>'
 		}
 		let map = item.label.match(/\(([^)]+)\)/);
@@ -193,6 +205,18 @@ $(".GameList").on("click", ".create", function() {
 	$(".GameCreate").fadeIn();
 	soundClick = new Howl({src: ["./sounds/click.ogg"], volume: 1.0});
 	soundClick.play();
+	
+	for (let i = 0; i < $(".GameList .btn").length; i++) {
+	  $(".GameSelect").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+	}
+	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
+	  $(".GameSelect").parent().find(".newgame").eq(i).addClass("controller_index-"+(i+1))
+	}
+
+	controller_index = 1;
+	if(withXbox){
+		$(".controller_index-"+controller_index).addClass("controllerHovered");
+	}
 });
 
 $(".GameCreate").on("click", ".ButtonBack", function() {
@@ -200,6 +224,14 @@ $(".GameCreate").on("click", ".ButtonBack", function() {
 	soundClick.play();
 	$(".GameLobby").fadeIn();
 	$(".GameCreate").fadeOut();
+	
+	controller_index = 1;
+	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
+	  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+	}
+	if(withXbox){
+		$(".controller_index-"+controller_index).addClass("controllerHovered");
+	}
 });
 
 $(".GameSelect").on("click", ".btnquantity", function() {
@@ -222,9 +254,40 @@ $(".GameSelect").on("click", ".btnquantity", function() {
 
 window.addEventListener('message', function (event) {
 	var item = event.data;
+
+	if (item.message == "control_right") {
+		if($(".controller_index-"+(controller_index+1)).length !== 0){
+			controller_index += 1
+			$(".controller_index-"+(controller_index)).addClass("controllerHovered");
+			$(".controller_index-"+(controller_index-1)).removeClass("controllerHovered");
+			
+			var container = $('.GameCreate .container');
+			var scrollTo = $(".controller_index-"+(controller_index));
+			var position = scrollTo.offset().top - container.offset().top  + container.scrollTop();
+			container.animate({
+					scrollTop: position-800
+			}, 300);
+		}
+	}
+	
+	if (item.message == "control_left") {
+		if($(".controller_index-"+(controller_index-1)).length !== 0){
+			controller_index -= 1
+			$(".controller_index-"+(controller_index)).addClass("controllerHovered");
+			$(".controller_index-"+(controller_index+1)).removeClass("controllerHovered");
+			
+			var container = $('.GameCreate .container');
+			var scrollTo = $(".controller_index-"+(controller_index));
+			var position = scrollTo.offset().top - container.offset().top  + container.scrollTop();
+			container.animate({
+					scrollTop: position-800
+			}, 300);
+		}
+	}
+	
 	if (item.message == "control_a") {
 		var selector = document.getElementsByName('DarkRP_Racing');
-		$(selector).trigger("click");
+		$(".controller_index-"+controller_index).trigger("click");
 	}
 	
 	if (item.message == "control_b") {
@@ -233,6 +296,12 @@ window.addEventListener('message', function (event) {
 			soundClick.play();
 			$(".GameLobby").fadeIn();
 			$(".GameCreate").fadeOut();
+			
+			controller_index = 1;
+			for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
+			  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+			}
+			$(".controller_index-"+controller_index).addClass("controllerHovered");
 		} else{
 			$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
 		}
