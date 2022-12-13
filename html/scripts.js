@@ -45,15 +45,19 @@ window.addEventListener('message', function (event) {
 		if (item.clear == true){
 			ClearGameList();
 		}
+		$(".GameLobby").fadeIn();
+		
 		withXbox = item.withXbox
 		controller_index = 1;
 		for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
 		  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
 		}
+		for (let i = 0; i < $(".GameList .btn").length; i++) {
+		  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
+		}
 		if(withXbox){
 			$(".controller_index-"+controller_index).addClass("controllerHovered");
 		}
-		$(".GameLobby").fadeIn();
 	}
 
 	if (item.message == "hide") {
@@ -207,7 +211,7 @@ $(".GameList").on("click", ".create", function() {
 	soundClick.play();
 	
 	for (let i = 0; i < $(".GameList .btn").length; i++) {
-	  $(".GameSelect").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+	  $(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
 	}
 	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
 	  $(".GameSelect").parent().find(".newgame").eq(i).addClass("controller_index-"+(i+1))
@@ -228,6 +232,9 @@ $(".GameCreate").on("click", ".ButtonBack", function() {
 	controller_index = 1;
 	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
 	  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+	}
+	for (let i = 0; i < $(".GameList .btn").length; i++) {
+	  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
 	}
 	if(withXbox){
 		$(".controller_index-"+controller_index).addClass("controllerHovered");
@@ -300,6 +307,9 @@ window.addEventListener('message', function (event) {
 			controller_index = 1;
 			for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
 			  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+			}
+			for (let i = 0; i < $(".GameList .btn").length; i++) {
+			  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
 			}
 			$(".controller_index-"+controller_index).addClass("controllerHovered");
 		} else{
