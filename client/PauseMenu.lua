@@ -75,7 +75,7 @@ AddEventHandler("ArenaLobby:PauseMenu.leave", function(_buttonParams)
 	ExecuteCommand("minigame leave")
 end)
 
-RegisterCommand('+ArenaLobby_PauseMenu_ESC', function()
+RegisterCommand('ArenaLobby_PauseMenu_ESC', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if not IsPauseMenuActive() then
 			UpdateDetails()
@@ -84,11 +84,9 @@ RegisterCommand('+ArenaLobby_PauseMenu_ESC', function()
 		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_PauseMenu_ESC', function()
-end, false)
-RegisterKeyMapping('+ArenaLobby_PauseMenu_ESC', 'ArenaLobby PauseMenu ESC', 'keyboard', "ESCAPE")
+RegisterKeyMapping('ArenaLobby_PauseMenu_ESC', 'ArenaLobby PauseMenu ESC', 'keyboard', "ESCAPE")
 
-RegisterCommand('+ArenaLobby_PauseMenu_P', function()
+RegisterCommand('ArenaLobby_PauseMenu_P', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if not IsPauseMenuActive() then
 			UpdateDetails()
@@ -97,11 +95,9 @@ RegisterCommand('+ArenaLobby_PauseMenu_P', function()
 		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_PauseMenu_P', function()
-end, false)
-RegisterKeyMapping('+ArenaLobby_PauseMenu_P', 'ArenaLobby PauseMenu P', 'keyboard', "P")
+RegisterKeyMapping('ArenaLobby_PauseMenu_P', 'ArenaLobby PauseMenu P', 'keyboard', "P")
 
-RegisterCommand('+ArenaLobby_PauseMenu_Xbox', function()
+RegisterCommand('ArenaLobby_PauseMenu_Xbox', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if not IsPauseMenuActive() then
 			UpdateDetails()
@@ -110,9 +106,7 @@ RegisterCommand('+ArenaLobby_PauseMenu_Xbox', function()
 		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_PauseMenu_Xbox', function()
-end, false)
-RegisterKeyMapping('+ArenaLobby_PauseMenu_Xbox', 'ArenaLobby PauseMenu Xbox', 'PAD_ANALOGBUTTON', "START_INDEX")
+RegisterKeyMapping('ArenaLobby_PauseMenu_Xbox', 'ArenaLobby PauseMenu Xbox', 'PAD_ANALOGBUTTON', "START_INDEX")
 
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
