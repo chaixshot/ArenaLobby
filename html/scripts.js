@@ -69,6 +69,23 @@ window.addEventListener('message', function (event) {
 			$(".exit").css("opacity", "1.0");
 		}
 	}
+	
+	if (item.message == "refresh_controller_index") { // When ArenaAPI:sendStatus add or remove lobby update .GameList
+		for (let i = 0; i < $(".GameList .btn").length; i++) { // Clear all controller_index
+		  $(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+		}
+		for (let i = 0; i < $(".GameList .btn").length; i++) { // Add new controller_index
+		  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
+		}
+		
+		if (controllerIndex > $(".GameList .btn").length){ // Check current controllerIndex > #GameList
+			controllerIndex = $(".GameList .btn").length;
+		}
+		
+		if($(".GameList").offset().top !== 0){ // Check on screen
+			$(".controller_index-"+controllerIndex).addClass("controllerHovered");
+		}
+	}
 
 	if (item.message == "hide") {
 		$(".GameLobby").fadeOut(200);

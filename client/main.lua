@@ -98,6 +98,10 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 			})
 		end
 	end
+	
+	SendNUIMessage({
+		message = "refresh_controller_index",
+	})
 end)
 
 RegisterNetEvent("ArenaLobby:PlayerCreateGame")
@@ -182,7 +186,7 @@ RegisterCommand('+ArenaLobby_Menu_Keyboard', function()
 		OpenGameMenu(false)
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby_Menu_Keyboard', 'keyboard', 'e')
+RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', 'E')
 
 local timeUI = {}
 function CheckUiTime(type, time)
@@ -197,54 +201,54 @@ function CheckUiTime(type, time)
 	return false
 end
 
-RegisterCommand('+ArenaLobby_Menu_Xbox', function()
+RegisterCommand('+ArenaLobby_Menu_Xbox_L3', function()
 	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
 		OpenGameMenu(true)
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox', 'ArenaLobby_Menu_Xbox', 'PAD_ANALOGBUTTON', 'L3_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_L3', 'ArenaLobby Xbox L3', 'PAD_ANALOGBUTTON', 'L3_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
 		SendNUIMessage({message = "control_a"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_A', 'ArenaLobby_Menu_Xbox_A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_A', 'ArenaLobby Xbox A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_B', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_B", 100) then
 		SendNUIMessage({message = "control_b"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby_Menu_Xbox_B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby Xbox B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Right', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Right", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby_Menu_Xbox_Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby Xbox Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Left', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Left", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby_Menu_Xbox_Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby Xbox Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Up', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Up", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby_Menu_Xbox_Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby Xbox Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Down', function()
 	if IsNuiFocused() and CheckUiTime("ArenaLobby_Menu_Xbox_Down", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Down', 'ArenaLobby_Menu_Xbox_Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Down', 'ArenaLobby Xbox Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')
 
 RegisterNUICallback('quit', function(data, cb)
 	SendNUIMessage({message = "hide"})
