@@ -82,7 +82,7 @@ window.addEventListener('message', function (event) {
 			controllerIndex = $(".GameList .btn").length;
 		}
 		
-		if($(".GameList").offset().top !== 0){ // Check on screen
+		if(withXbox && $(".GameList").offset().top !== 0){ // Check on screen
 			$(".controller_index-"+controllerIndex).addClass("controllerHovered");
 		}
 	}
