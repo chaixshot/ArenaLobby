@@ -50,15 +50,16 @@ window.addEventListener('message', function (event) {
 		
 		// Reset
 		for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
-		  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+			$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+			$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controllerHovered")
 		}
 		for (let i = 0; i < $(".GameList .btn").length; i++) {
-		  $(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+			$(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
 		}
 		
 		controllerIndex = 1;
 		for (let i = 0; i < $(".GameList .btn").length; i++) {
-		  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
+			$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
 		}
 		if(withXbox){
 			$(".controller_index-"+controllerIndex).addClass("controllerHovered");
@@ -72,10 +73,10 @@ window.addEventListener('message', function (event) {
 	
 	if (item.message == "refresh_controller_index") { // When ArenaAPI:sendStatus add or remove lobby update .GameList
 		for (let i = 0; i < $(".GameList .btn").length; i++) { // Clear all controller_index
-		  $(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+			$(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
 		}
 		for (let i = 0; i < $(".GameList .btn").length; i++) { // Add new controller_index
-		  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
+			$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
 		}
 		
 		if (controllerIndex > $(".GameList .btn").length){ // Check current controllerIndex > #GameList
@@ -237,10 +238,11 @@ $(".GameList").on("click", ".create", function() {
 	soundClick.play();
 	
 	for (let i = 0; i < $(".GameList .btn").length; i++) {
-	  $(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+		$(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-"+(i+1))
+		$(".GameList").parent().find(".btn").eq(i).removeClass("controllerHovered")
 	}
 	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
-	  $(".GameSelect").parent().find(".newgame").eq(i).addClass("controller_index-"+(i+1))
+		$(".GameSelect").parent().find(".newgame").eq(i).addClass("controller_index-"+(i+1))
 	}
 
 	controllerIndex = 1;
@@ -257,10 +259,11 @@ $(".GameCreate").on("click", ".ButtonBack", function() {
 	
 	controllerIndex = 1;
 	for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
-	  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+		$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+		$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controllerHovered")
 	}
 	for (let i = 0; i < $(".GameList .btn").length; i++) {
-	  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
+		$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))
 	}
 	if(withXbox){
 		$(".controller_index-"+controllerIndex).addClass("controllerHovered");
@@ -338,7 +341,8 @@ window.addEventListener('message', function (event) {
 			
 			controllerIndex = 1;
 			for (let i = 0; i < $(".GameSelect .newgame").length; i++) {
-			  $(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+				$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controller_index-"+(i+1))
+				$(".GameSelect").parent().find(".newgame").eq(i).removeClass("controllerHovered")
 			}
 			for (let i = 0; i < $(".GameList .btn").length; i++) {
 			  $(".GameList").parent().find(".btn").eq(i).addClass("controller_index-"+(i+1))

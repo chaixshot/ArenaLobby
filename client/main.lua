@@ -1,6 +1,19 @@
 local object
 ArenaAPI = exports.ArenaAPI
 
+local timeUI = {}
+local function CheckUiTime(type, time)
+	if not timeUI[type] then
+		timeUI[type] = GetGameTimer()
+		return true
+	end
+	if (GetGameTimer() - timeUI[type]) > time then
+		timeUI[type] = GetGameTimer()
+		return true
+	end
+	return false
+end
+
 function OpenGameMenu(withXbox)
 	if not IsPlayerDead(PlayerId()) then
 		local GameList = {
@@ -181,25 +194,35 @@ CreateThread(function()
 	end
 end)
 
+RegisterNUICallback('quit', function(data, cb)
+	SendNUIMessage({message = "hide"})
+	SetNuiFocus(false, false)
+	cb('ok')
+end)
+
+RegisterNUICallback('join', function(data, cb)
+	if ArenaAPI:IsPlayerInAnyArena() then
+		Wait(500)
+	end
+	ExecuteCommand("minigame join " .. data.item)
+	cb('ok')
+end)
+
+RegisterNUICallback('create', function(data, cb)
+	if ArenaAPI:IsPlayerInAnyArena() then
+		ExecuteCommand("minigame leave")
+		Wait(500)
+	end
+	TriggerServerEvent("ArenaLobby:CreateGame", data)
+	cb('ok')
+end)
+
 RegisterCommand('ArenaLobby_Menu_Keyboard', function()
 	if InPoint then
 		OpenGameMenu(false)
 	end
 end, false)
 RegisterKeyMapping('ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', 'E')
-
-local timeUI = {}
-function CheckUiTime(type, time)
-	if not timeUI[type] then
-		timeUI[type] = GetGameTimer()
-		return true
-	end
-	if (GetGameTimer() - timeUI[type]) > time then
-		timeUI[type] = GetGameTimer()
-		return true
-	end
-	return false
-end
 
 RegisterCommand('ArenaLobby_Menu_Xbox_L3', function()
 	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
@@ -249,26 +272,3 @@ RegisterCommand('ArenaLobby_Menu_Xbox_Down', function()
 	end
 end, false)
 RegisterKeyMapping('ArenaLobby_Menu_Xbox_Down', 'ArenaLobby Xbox Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')
-
-RegisterNUICallback('quit', function(data, cb)
-	SendNUIMessage({message = "hide"})
-	SetNuiFocus(false, false)
-	cb('ok')
-end)
-
-RegisterNUICallback('join', function(data, cb)
-	if ArenaAPI:IsPlayerInAnyArena() then
-		Wait(500)
-	end
-	ExecuteCommand("minigame join " .. data.item)
-	cb('ok')
-end)
-
-RegisterNUICallback('create', function(data, cb)
-	if ArenaAPI:IsPlayerInAnyArena() then
-		ExecuteCommand("minigame leave")
-		Wait(500)
-	end
-	TriggerServerEvent("ArenaLobby:CreateGame", data)
-	cb('ok')
-end)
