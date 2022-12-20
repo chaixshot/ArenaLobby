@@ -232,6 +232,7 @@ RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', '
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_L3', function()
 	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
+		DisableControlAction(0, 36, true)
 		OpenGameMenu(true)
 	end
 end, false)
