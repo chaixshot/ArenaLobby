@@ -1,86 +1,179 @@
-function DecimalsToMinutes(dec)
-	if dec then
-		local ms = tonumber(dec)
-		return math.floor(ms / 60) .. ":" .. (ms % 60)
-	else
-		return 0
-	end
-end
-
 function UpdateDetails()
 	RequestStreamedTextureDictC("ArenaLobby")
 	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
-	local ArenaLabel = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())
 	local MaximumArenaTime = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).MaximumArenaTime
 	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")
 	local txd = string.gsub(ArenaAPI:GetPlayerArena(), '%d+', '')
 	
-	TriggerEvent('lobbymenu:CreateMenu', 'ArenaLobby:PauseMenu', "DarkRP - GameRoom", ArenaLabel, "🕹️  Game", "Players "..CurrentSize.." of "..MaximumSize, "Info")
-	TriggerEvent('lobbymenu:SetHeaderDetails', 'ArenaLobby:PauseMenu', false, false, 123, 0, 0)
-	if string.find(string.lower(ArenaLabel), "racing") and exports["DarkRP_Racing"]:IsInGame() then
-		exports["DarkRP_Racing"]:UpdateSettings(true)
-		exports["DarkRP_Racing"]:UpdateDetails(true)
-	else
-		TriggerEvent('lobbymenu:SetDetailsTitle', 'ArenaLobby:PauseMenu', string.gsub(ArenaLabel, "%((.*)%)", ''), 'ArenaLobby', txd)
-		if map then
-			TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Map", map)
-		end
-		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Min Player", MinimumSize)
-		TriggerEvent('lobbymenu:AddDetailsRow', 'ArenaLobby:PauseMenu', "Time Left", DecimalsToMinutes(MaximumArenaTime).." Minute")
-	end
+	local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
+	
+	TriggerEvent("ArenaLobby:lobbymenu:SetHeaderMenu", {
+		Title = "DarkRP - GameRoom",
+		Subtitle = (ArenaLabel[1] and ArenaLabel[1]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+		SideTop = (ArenaLabel[2] and ArenaLabel[2]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+		SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+		SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
+		Col1 = "🕹️  Game",
+		Col2 = "Players "..CurrentSize.." of "..MaximumSize,
+		Col3 = "Info",
+		ColColor1 = 116,
+		ColColor2 = 116,
+		ColColor3 = 116,
+	})
 
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Setting"}, "⚙️ ~p~Setting", "", false, 0, "ArenaLobby:PauseMenu.Setting")
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {text = "Map"}, "🗺️  ~b~Map", "", false, 0, "ArenaLobby:PauseMenu.Map")
-	TriggerEvent('lobbymenu:AddButton', 'ArenaLobby:PauseMenu', {id = 0, text = "Exit"}, " ~r~Leave Game", "", false, 0, "ArenaLobby:PauseMenu.leave")
-	TriggerEvent('lobbymenu:SetDetailsCashRPandAP', "ArenaLobby:PauseMenu", 0, 0, 0)
+	TriggerEvent('ArenaLobby:lobbymenu:SetInfoTitle', {
+		Title = ArenaLabel[1],
+	})
+	
+	
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+		exports["DarkRP_Racing"]:UpdateSettings()
+	end
+		
+	local settingList = {
+		{
+			label = "⚙️ Setting",
+			dec = "Open game setting menu.",
+			callbackEvent = "ArenaLobby:PauseMenu.Setting",
+		},
+		{
+			label = "🗺️  Map",
+			dec = "Open map menu.",
+			callbackEvent = "ArenaLobby:PauseMenu.Map",
+		},
+		{
+			label = "Leave Game",
+			dec = "Leave current lobby.",
+			callbackEvent = "ArenaLobby:PauseMenu.leave",
+			color = 6,
+			Blink = true,
+		},
+	}
+	
+	TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
 end
 
 function UpdatePlayerList()
-	TriggerEvent('lobbymenu:ResetPlayerList', 'ArenaLobby:PauseMenu')
-	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
-	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
-	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
-	local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
-	local emptyslot = MaximumSize-CurrentSize
-	for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', v.name, "", (ArenaBusy and "PLAYING" or "WAITING"), 65, (Player(source).state.PlayerXP or 1), true, 116, (ArenaBusy and 18 or 12), 'ArenaLobby:PauseMenu.UsePlayerEvent', {source = source}, true)
-	end
-	for i=1,MaximumSize-CurrentSize do
-		TriggerEvent('lobbymenu:AddPlayer', 'ArenaLobby:PauseMenu', "empty", "", "", 0, "", false, 9, 18)
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+		exports["DarkRP_Racing"]:UpdatePlayerList()
+	else
+		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
+		local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
+		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
+		local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
+		
+		local playerList = {}
+		for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
+			local player = GetPlayerFromServerId(source)
+			local ped = PlayerPedId()
+			if player ~= -1 then
+				ped = GetPlayerPed(player)
+			end
+			table.insert(playerList, {
+				name = v.name,
+				Colours = (ArenaBusy and 18 or 12),
+				LobbyBadgeIcon = LobbyBadgeIcon.IS_PC_PLAYER,
+				Status = (ArenaBusy and "PLAYING" or "WAITING"),
+				CrewTag = "",
+				lev = (Player(source).state.PlayerXP or 1),
+				ped = ped,
+				HasPlane = IsPedInAnyPlane(ped),
+				HasHeli = IsPedInAnyHeli(ped),
+				HasBoat = IsPedInAnyBoat(ped),
+				HasVehicle = IsPedInAnyVehicle(ped),
+			})
+		end
+		for i=1,MaximumSize-CurrentSize do
+			table.insert(playerList, {
+				name = "empty",
+				Colours = 3,
+				LobbyBadgeIcon = false,
+				Status = false,
+				CrewTag = "",
+				lev = "",
+				ped = false,
+			})
+		end
+		
+		TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 	end
 end
 
-AddEventHandler("ArenaLobby:PauseMenu.UsePlayerEvent", function(_buttonParams)
-	TriggerEvent('lobbymenu:SetTooltipMessage', 'ArenaLobby:PauseMenu', "Player: "..GetPlayerName(GetPlayerFromServerId(_buttonParams.source)))
-	TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
-	TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
-end)
-
 AddEventHandler("ArenaLobby:PauseMenu.Map", function(_buttonParams)
-	TriggerEvent('lobbymenu:CloseMenu')
+	TriggerEvent('ArenaLobby:lobbymenu:Hide')
 	Wait(100)
 	ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
 end)
 
 AddEventHandler("ArenaLobby:PauseMenu.Setting", function(_buttonParams)
-	TriggerEvent('lobbymenu:CloseMenu')
+	TriggerEvent('ArenaLobby:lobbymenu:Hide')
 	Wait(100)
 	ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
 end)
 
 AddEventHandler("ArenaLobby:PauseMenu.leave", function(_buttonParams)
-	TriggerEvent('lobbymenu:CloseMenu')
+	TriggerEvent('ArenaLobby:lobbymenu:Hide')
 	ExecuteCommand("minigame leave")
+end)
+
+local function OpenPauseMenu()
+	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
+	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
+	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
+	local MaximumArenaTime = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).MaximumArenaTime
+	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")
+	local txd = string.gsub(ArenaAPI:GetPlayerArena(), '%d+', '')
+
+	TriggerEvent('ArenaLobby:lobbymenu:SetInfoTitle', {
+		tex = 'ArenaLobby',
+		txd = txd
+	})
+		
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+		exports["DarkRP_Racing"]:UpdateDetails()
+	else
+		local infoList = {
+		{
+			LeftLabel = "Map",
+			RightLabel = map,
+			BadgeStyle = 179,
+			Colours = false,
+		},
+		{
+			LeftLabel = "Min Player",
+			RightLabel = MinimumSize,
+			BadgeStyle = 179,
+			Colours = false,
+		},
+		{
+			LeftLabel = "Time Left",
+			RightLabel = DecimalsToMinutes(MaximumArenaTime).." Minute",
+			BadgeStyle = 179,
+			Colours = false,
+		},
+		}
+		TriggerEvent("ArenaLobby:lobbymenu:SetInfo", infoList)
+	end
+	UpdateDetails()
+	UpdatePlayerList()
+	
+	TriggerEvent('ArenaLobby:lobbymenu:Show')
+end
+AddEventHandler("ArenaLobby:OpenPauseMenu", function()
+	OpenPauseMenu()
 end)
 
 RegisterCommand('+ArenaLobby_PauseMenu_ESC', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
+		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") then
+			if exports["DarkRP_Racing"]:IsOnSpectate() then 
+				return
+			end
+		end
 		if not IsPauseMenuActive() then
-			UpdateDetails()
-			UpdatePlayerList()
-			TriggerEvent('lobbymenu:OpenMenu', 'ArenaLobby:PauseMenu', true)
+			OpenPauseMenu()
 		end
 	end
 end, false)
@@ -91,9 +184,7 @@ RegisterKeyMapping('+ArenaLobby_PauseMenu_ESC', 'ArenaLobby PauseMenu ESC', 'key
 RegisterCommand('+ArenaLobby_PauseMenu_P', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if not IsPauseMenuActive() then
-			UpdateDetails()
-			UpdatePlayerList()
-			TriggerEvent('lobbymenu:OpenMenu', 'ArenaLobby:PauseMenu', true)
+			OpenPauseMenu()
 		end
 	end
 end, false)
@@ -104,9 +195,7 @@ RegisterKeyMapping('+ArenaLobby_PauseMenu_P', 'ArenaLobby PauseMenu P', 'keyboar
 RegisterCommand('+ArenaLobby_PauseMenu_Xbox', function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if not IsPauseMenuActive() then
-			UpdateDetails()
-			UpdatePlayerList()
-			TriggerEvent('lobbymenu:OpenMenu', 'ArenaLobby:PauseMenu', true)
+			OpenPauseMenu()
 		end
 	end
 end, false)
@@ -118,10 +207,8 @@ RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(100)
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
-		UpdateDetails()
+		-- UpdateDetails()
 		UpdatePlayerList()
-		TriggerEvent('lobbymenu:UpdateMenu', 'ArenaLobby:PauseMenu')
-		TriggerEvent('lobbymenu:ReloadMenu', 'ArenaLobby:PauseMenu')
 		while ArenaAPI:IsPlayerInAnyArena() do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)

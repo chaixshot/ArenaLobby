@@ -22,10 +22,12 @@ server_scripts {
 }
 
 client_scripts {
+	'client/ScaleformUI.lua',
+	'client/scaleform.lua',
 	'config.lua',
 	'client/function.lua',
-	'client/scaleform.lua',
 	'client/main.lua',
 	'client/PauseMenu.lua',
+	'client/lobbymenu.lua',
 }
 

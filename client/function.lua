@@ -60,3 +60,24 @@ ShowFloatingHelpNotification = function(msg, coords)
     BeginTextCommandDisplayHelp('FloatingHelpNotification')
     EndTextCommandDisplayHelp(2, false, false, -1)
 end
+
+function DecimalsToMinutes(dec)
+	if dec then
+		local ms = tonumber(dec)
+		return math.floor(ms / 60) .. ":" .. (ms % 60)
+	else
+		return 0
+	end
+end
+
+function string.split(inputstr, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+    local t={} ; i=1
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+        t[i] = str
+        i = i + 1
+    end
+    return t
+end
