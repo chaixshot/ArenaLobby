@@ -28,6 +28,5 @@ client_scripts {
 	'client/function.lua',
 	'client/main.lua',
 	'client/PauseMenu.lua',
-	'client/lobbymenu.lua',
+	'client/menu_lobby.lua',
 }
-

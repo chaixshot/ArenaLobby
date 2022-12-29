@@ -4823,7 +4823,7 @@ function FriendItem.New(label, itemColor, coloredTag, rank, status, crewTag)
         _Selected = false,
         _Hovered = false,
         _label = label or "",
-        _itemColor = itemColor or 9,
+        _itemColor = coloredTag or 9,
         _rank = rank or 0,
         _status = status or "",
         _statusColor = itemColor,
@@ -5374,10 +5374,11 @@ function MainView:Visible(visible)
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
 			if not IsPauseMenuActive() then
+				PlaySoundFrontend(-1, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
 				self:BuildPauseMenu()
 				self.OnLobbyMenuOpen(self)
-				AnimpostfxPlay("PauseMenuIn", 800, true)
+				TriggerScreenblurFadeIn(1000) --screen blur
 				ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
 				SetPlayerControl(PlayerId(), false, 0)
 				self._firstTick = true
@@ -5385,12 +5386,12 @@ function MainView:Visible(visible)
 			end
         else
 			ScaleformUI.Scaleforms._pauseMenu:Dispose()
-			AnimpostfxStop("PauseMenuIn")
-			AnimpostfxPlay("PauseMenuOut", 800, false)
+			TriggerScreenblurFadeOut(1000)--screen blur
 			self.OnLobbyMenuClose(self)
 			SetPlayerControl(PlayerId(), true, 0)
 			self._internalpool:ProcessMenus(false)
 			if IsPauseMenuActive() then
+				PlaySoundFrontend(-1, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, false, -1)
 			end
 			SetFrontendActive(false)
@@ -6973,21 +6974,27 @@ function TabView:Visible(visible)
         self._visible = visible
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
-            ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
-            self:BuildPauseMenu()
-            self._internalpool:ProcessMenus(true)
-            self.OnPauseMenuOpen(self)
-            AnimpostfxPlay("PauseMenuIn", 800, true)
-            ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
-            SetPlayerControl(PlayerId(), false, 0)
+			if not IsPauseMenuActive() then
+				PlaySoundFrontend(-1, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
+				self:BuildPauseMenu()
+				self._internalpool:ProcessMenus(true)
+				self.OnPauseMenuOpen(self)
+				TriggerScreenblurFadeIn(1000) --screen blur
+				ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
+				SetPlayerControl(PlayerId(), false, 0)
+			end
         else
             ScaleformUI.Scaleforms._pauseMenu:Dispose()
-            AnimpostfxStop("PauseMenuIn")
-            AnimpostfxPlay("PauseMenuOut", 800, false)
+            TriggerScreenblurFadeOut(1000)--screen blur
             self.OnPauseMenuClose(self)
             SetPlayerControl(PlayerId(), true, 0)
             self._internalpool:ProcessMenus(false)
-            ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
+			if IsPauseMenuActive() then
+				PlaySoundFrontend(-1, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
+			end
+			SetFrontendActive(false)
         end
     else
         return self._visible
@@ -8066,6 +8073,7 @@ function handler:UpdateButtons()
 end
 
 function handler:Draw()
+	SetScriptGfxDrawBehindPausemenu(true)
     self._sc:Render2D()
 end
 
@@ -8204,8 +8212,7 @@ AddEventHandler("onResourceStop", function(resName)
     if resName == GetCurrentResourceName() then
         if IsPauseMenuActive() and GetCurrentFrontendMenuVersion() == -2060115030 then
             ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
-            AnimpostfxStop("PauseMenuIn");
-            AnimpostfxPlay("PauseMenuOut", 800, false);
+            TriggerScreenblurFadeOut(0)--screen blur
         end
         ScaleformUI.Scaleforms._pauseMenu:Dispose()
         ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL", false)
@@ -8217,7 +8224,7 @@ AddEventHandler("onResourceStop", function(resName)
 end)
 
 Citizen.CreateThread(function()
-    ScaleformUI.Scaleforms._ui = ScaleformUV.Request("scaleformui")
+    ScaleformUI.Scaleforms._ui = Scaleform.Request("scaleformui")
     ScaleformUI.Scaleforms.BigMessageInstance = BigMessageInstance.New()
     ScaleformUI.Scaleforms.MidMessageInstance = MidMessageInstance.New()
     ScaleformUI.Scaleforms.Warning = WarningInstance.New()
@@ -8228,7 +8235,7 @@ Citizen.CreateThread(function()
     ScaleformUI.Scaleforms._pauseMenu = PauseMenu.New()
     ScaleformUI.Scaleforms._pauseMenu:Load()
     
-    local wait = 0
+    local wait = 500
     while true do
         if not IsPauseMenuActive() then
             if ScaleformUI.Scaleforms.BigMessageInstance._sc ~= 0 then
@@ -8260,13 +8267,23 @@ Citizen.CreateThread(function()
             wait = 0
         end
         if ScaleformUI.Scaleforms._ui == 0 or ScaleformUI.Scaleforms._ui == nil then
-            ScaleformUI.Scaleforms._ui = ScaleformUV.Request("scaleformui")
+            ScaleformUI.Scaleforms._ui = Scaleform.Request("scaleformui")
         end
         if not ScaleformUI.Scaleforms._pauseMenu.Loaded then
             ScaleformUI.Scaleforms._pauseMenu:Load()
         end
 
-        Citizen.Wait(0)
+        if ScaleformUI.Scaleforms.BigMessageInstance._sc == 0 and
+            ScaleformUI.Scaleforms.MidMessageInstance._sc == 0 and
+            ScaleformUI.Scaleforms.Warning._sc == 0 and
+            (ScaleformUI.Scaleforms.PlayerListScoreboard._sc == nil or not ScaleformUI.Scaleforms.PlayerListScoreboard.Enabled) and
+            (ScaleformUI.Scaleforms.JobMissionSelector.enabled or ScaleformUI.Scaleforms.JobMissionSelector._sc == nil) and
+            (not ScaleformUI.Scaleforms.InstructionalButtons._enabled or (ScaleformUI.Scaleforms.InstructionalButtons.ControlButtons == nil or #ScaleformUI.Scaleforms.InstructionalButtons.ControlButtons == 0 and not ScaleformUI.Scaleforms.InstructionalButtons.IsSaving))
+        then
+            wait = 500
+        end
+
+        Citizen.Wait(wait)
     end
 end)
 
