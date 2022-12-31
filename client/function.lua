@@ -81,3 +81,102 @@ function string.split(inputstr, sep)
     end
     return t
 end
+
+function GetSkillStaminaDescription(value)
+	if value > 81 then
+		return "Tri-Athlete"
+	elseif value > 61 then
+		return "Athlete"
+	elseif value > 41 then
+		return "Healthy"
+	elseif value > 21 then
+		return "Out of Shape"
+	else
+		return "Lethargic"
+	end
+end
+
+function GetSkillShootingDescription(value)
+	if value > 81 then
+		return "Dead-Eye"
+	elseif value > 61 then
+		return "Military Training"
+	elseif value > 41 then
+		return "Police Training"
+	elseif value > 21 then
+		return "Spray-and-Pray"
+	else
+		return "Untrained"
+	end
+end
+
+function GetSkillStrengthDescription(value)
+	if value > 81 then
+		return "Bodybuilder"
+	elseif value > 61 then
+		return "Tough"
+	elseif value > 41 then
+		return "Average"
+	elseif value > 21 then
+		return "Weak"
+	else
+		return "Fragile"
+	end
+end
+
+function GetSkillStealthDescription(value)
+	if value > 81 then
+		return "Ninja"
+	elseif value > 61 then
+		return "Hunter"
+	elseif value > 41 then
+		return "Sneaky"
+	elseif value > 21 then
+		return "Loud"
+	else
+		return "Clumsy"
+	end
+end
+
+function GetSkillFlyingDescription(value)
+	if value > 81 then
+		return "Ace"
+	elseif value > 61 then
+		return "Fighter Pilot"
+	elseif value > 41 then
+		return "Commercial Pilot"
+	elseif value > 21 then
+		return "RC Pilot"
+	else
+		return "Dangerous"
+	end
+end
+
+function GetSkillDrivingDescription(value)
+	if value > 81 then
+		return "Pro-Racer"
+	elseif value > 61 then
+		return "Street Racer"
+	elseif value > 41 then
+		return "Commuter"
+	elseif value > 21 then
+		return "Sunday Driver"
+	else
+		return "Unlicensed"
+	end
+end
+
+function GetSkillMentalStateDescription(value)
+	if value > 81 then
+		return "Psychopath"
+	elseif value > 61 then
+		return "Maniac"
+	elseif value > 41 then
+		return "Deranged"
+	elseif value > 21 then
+		return "Unstable"
+	else
+		return "Normal"
+	end
+end
+

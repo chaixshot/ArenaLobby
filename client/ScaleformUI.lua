@@ -5302,6 +5302,7 @@ MainView.__index = MainView
 MainView.__call = function()
     return "LobbyMenu"
 end
+MainView.SoundId = GetSoundId()
 
 function MainView.New(title, subtitle, sideTop, sideMid, sideBot)
     local _data = {
@@ -5354,6 +5355,15 @@ function MainView:FocusLevel(index)
     if index ~= nil then
         self.focusLevel = index
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_FOCUS", false, index-1)
+		if index == 2 then
+			CreateThread(function()
+				Wait(100)
+				local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+				GivePedToPauseMenu(ped, 2)
+				SetPauseMenuPedSleepState(true);
+				SetPauseMenuPedLighting(true);
+			end)
+		end
     else
         return self.focusLevel
     end
@@ -5374,11 +5384,12 @@ function MainView:Visible(visible)
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
 			if not IsPauseMenuActive() then
-				PlaySoundFrontend(-1, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				self.focusLevel = 1
+				PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
 				self:BuildPauseMenu()
 				self.OnLobbyMenuOpen(self)
-				TriggerScreenblurFadeIn(1000) --screen blur
+				AnimpostfxPlay("PauseMenuIn", 800, true)
 				ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
 				SetPlayerControl(PlayerId(), false, 0)
 				self._firstTick = true
@@ -5386,12 +5397,13 @@ function MainView:Visible(visible)
 			end
         else
 			ScaleformUI.Scaleforms._pauseMenu:Dispose()
-			TriggerScreenblurFadeOut(1000)--screen blur
+			AnimpostfxStop("PauseMenuIn")
+			AnimpostfxPlay("PauseMenuOut", 800, false)
 			self.OnLobbyMenuClose(self)
 			SetPlayerControl(PlayerId(), true, 0)
 			self._internalpool:ProcessMenus(false)
 			if IsPauseMenuActive() then
-				PlaySoundFrontend(-1, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, false, -1)
 			end
 			SetFrontendActive(false)
@@ -5664,13 +5676,12 @@ function MainView:ProcessControl()
             self:GoBack()
         end)
     end
-
-    if (IsControlJustPressed(1, 241)) then
+    if (IsControlJustPressed(2, 241) or IsDisabledControlJustPressed(2, 241)) then
         Citizen.CreateThread(function()
             ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(-1)
         end)
     end
-    if (IsControlJustPressed(1, 242)) then
+    if (IsControlJustPressed(2, 242) or IsDisabledControlJustPressed(2, 242)) then
         Citizen.CreateThread(function()
             ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(1)
         end)
@@ -5730,7 +5741,6 @@ end
 
 function MainView:GoBack()
     if self:CanPlayerCloseMenu() then
-        PlaySoundFrontend(-1, "BACK", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
         self:Visible(false)
     end
 end
@@ -6893,6 +6903,7 @@ TabView.__index = TabView
 TabView.__call = function()
     return "PauseMenu"
 end
+TabView.SoundId = GetSoundId()
 
 function TabView.New(title, subtitle, sideTop, sideMid, sideBot)
     local _data = {
@@ -6975,23 +6986,24 @@ function TabView:Visible(visible)
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
 			if not IsPauseMenuActive() then
-				PlaySoundFrontend(-1, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
 				self:BuildPauseMenu()
 				self._internalpool:ProcessMenus(true)
 				self.OnPauseMenuOpen(self)
-				TriggerScreenblurFadeIn(1000) --screen blur
+				AnimpostfxPlay("PauseMenuIn", 800, true)
 				ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
 				SetPlayerControl(PlayerId(), false, 0)
 			end
         else
             ScaleformUI.Scaleforms._pauseMenu:Dispose()
-            TriggerScreenblurFadeOut(1000)--screen blur
+            AnimpostfxStop("PauseMenuIn")
+			AnimpostfxPlay("PauseMenuOut", 800, false)
             self.OnPauseMenuClose(self)
             SetPlayerControl(PlayerId(), true, 0)
             self._internalpool:ProcessMenus(false)
 			if IsPauseMenuActive() then
-				PlaySoundFrontend(-1, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
+				PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
 			end
 			SetFrontendActive(false)
@@ -7340,7 +7352,6 @@ function TabView:Select()
 end
 
 function TabView:GoBack()
-    PlaySoundFrontend(-1, "BACK", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     if self:FocusLevel() > 0 then
         if self:FocusLevel() == 1 then
             local tab = self.Tabs[self.Index]
@@ -7976,7 +7987,7 @@ function handler:Enabled(bool)
     if bool == nil then
         return self._enabled
     else
-        if not bool then
+        if not bool and type(self._sc) ~= "number" then
             self._sc:CallFunction("CLEAR_ALL", false)
             self._sc:CallFunction("CLEAR_RENDER", false)
             self._sc:Dispose()
@@ -8212,7 +8223,8 @@ AddEventHandler("onResourceStop", function(resName)
     if resName == GetCurrentResourceName() then
         if IsPauseMenuActive() and GetCurrentFrontendMenuVersion() == -2060115030 then
             ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
-            TriggerScreenblurFadeOut(0)--screen blur
+            AnimpostfxStop("PauseMenuIn")
+			AnimpostfxPlay("PauseMenuOut", 0, false)
         end
         ScaleformUI.Scaleforms._pauseMenu:Dispose()
         ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL", false)

@@ -44,7 +44,7 @@ function OpenGameMenu(withXbox)
 			message = "clear",
 		})
 		
-		for k,v in pairs(ArenaAPI:GetAllArena()) do
+		for k,v in pairs(ArenaAPI:GetArenaList()) do
 			if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 				SendNUIMessage({
 					message = "add",
@@ -74,8 +74,7 @@ function OpenGameMenu(withXbox)
 			form:CallFunction("CLEAR_ALL")
 			form:CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(1, 194, true), "Back")
 			form:CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(1, 191, true), "Select")
-			form:CallFunction("SET_DATA_SLOT", 2, GetControlInstructionalButton(1, 190, true), GetControlInstructionalButton(1, 187, true), "Next")
-			form:CallFunction("SET_DATA_SLOT", 3, GetControlInstructionalButton(1, 189, true), GetControlInstructionalButton(1, 187, true), "Previous")
+			form:CallFunction("SET_DATA_SLOT", 2, "~INPUTGROUP_FRONTEND_DPAD_ALL~", "Change")
 			form:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
 			form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
 			while isMenuOpen do
@@ -97,7 +96,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		message = "clear",
 	})
 	
-	for k,v in pairs(ArenaAPI:GetAllArena()) do
+	for k,v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
 				message = "add",

@@ -4,9 +4,7 @@ function UpdateDetails()
 	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 	local MaximumArenaTime = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).MaximumArenaTime
-	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")
-	local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
-	
+	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")	
 	local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
 	
 	TriggerEvent("ArenaLobby:lobbymenu:SetHeaderMenu", {
@@ -15,9 +13,9 @@ function UpdateDetails()
 		SideTop = (ArenaLabel[2] and ArenaLabel[2]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
 		SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
 		SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
-		Col1 = "🕹️  Game",
-		Col2 = "Players "..CurrentSize.." of "..MaximumSize,
-		Col3 = "Info",
+		Col1 = "🕹️  GAME",
+		Col2 = "PLAYERS "..CurrentSize.." OF "..MaximumSize,
+		Col3 = "INFO",
 		ColColor1 = 116,
 		ColColor2 = 116,
 		ColColor3 = 116,
@@ -34,20 +32,34 @@ function UpdateDetails()
 		
 	local settingList = {
 		{
-			label = "⚙️ Setting",
+			label = "Setting",
 			dec = "Open game setting menu.",
-			callbackEvent = "ArenaLobby:PauseMenu.Setting",
+			callbackFunction = function()
+				TriggerEvent("ArenaLobby:lobbymenu:Hide")
+				Wait(100)
+				ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
+			end,
 		},
 		{
-			label = "🗺️  Map",
+			label = "Map",
 			dec = "Open map menu.",
-			callbackEvent = "ArenaLobby:PauseMenu.Map",
+			callbackFunction = function()
+				TriggerEvent("ArenaLobby:lobbymenu:Hide")
+				Wait(100)
+				ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
+			end,
 		},
 		{
 			label = "Leave Game",
 			dec = "Leave current lobby.",
-			callbackEvent = "ArenaLobby:PauseMenu.leave",
-			color = 6,
+			callbackFunction = function()
+				TriggerEvent("ArenaLobby:lobbymenu:Hide")
+				ExecuteCommand("minigame leave")
+			end,
+			mainColor = 8,
+			highlightColor = 6,
+			textColor = 0,
+			highlightedTextColor = 0,
 			Blink = true,
 		},
 	}
@@ -93,8 +105,8 @@ function UpdatePlayerList()
 		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 		local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
-		local ArenaBusy = ArenaAPI:IsCurrentArenaBusy()
-		
+		local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
+
 		local playerList = {}
 		for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
 			local player = GetPlayerFromServerId(source)
@@ -102,18 +114,16 @@ function UpdatePlayerList()
 			if player ~= -1 then
 				ped = GetPlayerPed(player)
 			end
+
 			table.insert(playerList, {
+				source = source,
 				name = v.name,
+				rowColor = 116,
 				Colours = (ArenaBusy and 18 or 15),
-				LobbyBadgeIcon = LobbyBadgeIcon.IS_PC_PLAYER,
 				Status = (ArenaBusy and "PLAYING" or "WAITING"),
 				CrewTag = "",
 				lev = (Player(source).state.PlayerXP or 1),
 				ped = ped,
-				HasPlane = IsPedInAnyPlane(ped),
-				HasHeli = IsPedInAnyHeli(ped),
-				HasBoat = IsPedInAnyBoat(ped),
-				HasVehicle = IsPedInAnyVehicle(ped),
 			})
 		end
 		for i=1,MaximumSize-CurrentSize do
@@ -132,23 +142,6 @@ function UpdatePlayerList()
 	end
 end
 
-AddEventHandler("ArenaLobby:PauseMenu.Map", function(_buttonParams)
-	TriggerEvent("ArenaLobby:lobbymenu:Hide")
-	Wait(100)
-	ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
-end)
-
-AddEventHandler("ArenaLobby:PauseMenu.Setting", function(_buttonParams)
-	TriggerEvent("ArenaLobby:lobbymenu:Hide")
-	Wait(100)
-	ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
-end)
-
-AddEventHandler("ArenaLobby:PauseMenu.leave", function(_buttonParams)
-	TriggerEvent("ArenaLobby:lobbymenu:Hide")
-	ExecuteCommand("minigame leave")
-end)
-
 local function OpenPauseMenu()
 	local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
 	TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
@@ -159,7 +152,7 @@ local function OpenPauseMenu()
 	UpdateDetails()
 	UpdatePlayerList()
 	
-	TriggerEvent("ArenaLobby:lobbymenu:Show")
+	TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
 end
 AddEventHandler("ArenaLobby:OpenPauseMenu", function()
 	OpenPauseMenu()
@@ -207,6 +200,7 @@ RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(100)
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
+		UpdatePlayerState()
 		-- UpdateInfos()
 		UpdatePlayerList()
 		while ArenaAPI:IsPlayerInAnyArena() do
@@ -216,3 +210,18 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		end
 	end
 end)
+
+function UpdatePlayerState()
+	StatSetBool(GetHashKey("MP0_DEFAULT_STATS_SET"), true, true)
+	StatSetBool(GetHashKey("MP1_DEFAULT_STATS_SET"), true, true)
+
+	LocalPlayer.state:set("ArenaLobby_IsUsingKeyboard", IsUsingKeyboard(0), true)
+	LocalPlayer.state:set("ArenaLobby_MP0_STAMINA", table.pack(StatGetInt(`MP0_STAMINA`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_STRENGTH", table.pack(StatGetInt(`MP0_STRENGTH`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_LUNG_CAPACITY", table.pack(StatGetInt(`MP0_LUNG_CAPACITY`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_SHOOTING_ABILITY", table.pack(StatGetInt(`MP0_SHOOTING_ABILITY`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_WHEELIE_ABILITY", table.pack(StatGetInt(`MP0_WHEELIE_ABILITY`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_FLYING_ABILITY", table.pack(StatGetInt(`MP0_FLYING_ABILITY`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_STEALTH_ABILITY", table.pack(StatGetInt(`MP0_STEALTH_ABILITY`))[2], true)
+	LocalPlayer.state:set("ArenaLobby_MP0_HIGHEST_MENTAL_STATE", table.pack(StatGetInt(`MP0_HIGHEST_MENTAL_STATE`))[2], true)
+end
