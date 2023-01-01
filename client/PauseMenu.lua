@@ -27,7 +27,7 @@ function UpdateDetails()
 	
 	
 	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
-		exports["DarkRP_Racing"]:UpdateSettings()
+		exports["DarkRP_Racing"]:UpdateDetails()
 	end
 		
 	local settingList = {

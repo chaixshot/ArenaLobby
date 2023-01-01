@@ -6986,6 +6986,7 @@ function TabView:Visible(visible)
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
 			if not IsPauseMenuActive() then
+				self.focusLevel = 1
 				PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET")
 				ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
 				self:BuildPauseMenu()

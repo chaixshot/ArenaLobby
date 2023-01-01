@@ -254,6 +254,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 		else
 			item = UIMenuItem.New(v.label, v.dec, v.mainColor, v.highlightColor, v.textColor, v.highlightedTextColor)
+			if v.rightLabel then
+				item:RightLabel(rightLabel)
+			end
 		end
 		lobbyMenu.SettingsColumn.Items[k] = item
 		item:BlinkDescription(v.Blink)
