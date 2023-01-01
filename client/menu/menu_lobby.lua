@@ -402,11 +402,13 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()
-	lobbyMenu:Visible(false)
+	if lobbyMenu:Visible() then
+		lobbyMenu:Visible(false)
+	end
 end)
 
 RegisterNetEvent("ArenaLobby:lobbymenu:leaveLobby")
-AddEventHandler("ArenaLobby:lobbymenu:leaveLobby", function(type, data)
+AddEventHandler("ArenaLobby:lobbymenu:leaveLobby", function()
 	ExecuteCommand("minigame leave")
 	if lobbyMenu:Visible() then
 		lobbyMenu:Visible(false)

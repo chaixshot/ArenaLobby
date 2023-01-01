@@ -230,5 +230,7 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(FocusLevel, canclose, onC
 end)
 
 AddEventHandler("ArenaLobby:playermenu:Hide", function()
-	playerMenu:Visible(false)
+	if playerMenu:Visible() then
+		playerMenu:Visible(false)
+	end
 end)
