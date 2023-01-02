@@ -120,7 +120,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 	end
 end)
 
-local ClonePedData = {}
+-- local ClonePedData = {}
 local DataPlayerList = {}
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	while not menuLoaded do
@@ -194,18 +194,18 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		local friend = FriendItem.New(v.name, v.Colours, v.rowColor, v.lev, v.Status, v.CrewTag)
 		if v.ped then
-			if v.ped ~= playerPed and (not ClonePedData[v.name] or not DoesEntityExist(ClonePedData[v.name])) then
-				ClonePedData[v.name] = ClonePed(v.ped, false, true, false)
-			end
-			if ClonePedData[v.name] then
-				SetEntityCollision(ClonePedData[v.name], false, true)
-				SetEntityVisible(ClonePedData[v.name], false)
-				FreezeEntityPosition(ClonePedData[v.name], true)
-				SetEntityCoords(ClonePedData[v.name], playerCoords)
-				AttachEntityToEntity(ClonePedData[v.name], PlayerPedId(), 9816, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, false, false, false, false, 2, false)
-			end
+			-- if v.ped ~= playerPed and (not ClonePedData[v.name] or not DoesEntityExist(ClonePedData[v.name])) then
+				-- ClonePedData[v.name] = ClonePed(v.ped, false, true, false)
+			-- end
+			-- if ClonePedData[v.name] then
+				-- SetEntityCollision(ClonePedData[v.name], false, true)
+				-- SetEntityVisible(ClonePedData[v.name], false)
+				-- FreezeEntityPosition(ClonePedData[v.name], true)
+				-- SetEntityCoords(ClonePedData[v.name], playerCoords)
+				-- AttachEntityToEntity(ClonePedData[v.name], PlayerPedId(), 9816, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, false, false, false, false, 2, false)
+			-- end
 			friend:SetLeftIcon(v.LobbyBadge, false)
-			friend:AddPedToPauseMenu((ClonePedData[v.name] or PlayerPedId())) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
+			friend:AddPedToPauseMenu((v.ped or PlayerPedId())) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
 			local panel = PlayerStatsPanel.New(v.name, v.rowColor)
 			panel:Description("My name is "..v.name)
 			panel:HasPlane(v.HasPlane)
