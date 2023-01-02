@@ -1,3 +1,11 @@
+-- CreateThread(function()
+	-- while true do
+		-- DisableControlAction(0, 200, true)
+		-- DisableControlAction(0, 199, true)
+		-- Wait(0)
+	-- end
+-- end)
+
 local pool = MenuPool.New()
 lobbyMenu = nil
 
@@ -8,7 +16,9 @@ local ColumnCallbackFunction = {}
 ColumnCallbackFunction[1] = {}
 ColumnCallbackFunction[2] = {}
 
-CreateThread(function()
+local menuLoaded = false
+local firstLoad = true
+local function CreateLobbyMenu()
 	if not lobbyMenu then
 		lobbyMenu = MainView.New("name", "dec", "", "", "")
 		local columns = {
@@ -53,10 +63,18 @@ CreateThread(function()
 			currentSelectId = idx
 			currentColumnId = 2
 		end
+		Wait(100)
+		menuLoaded = true
+		Wait(100)
+		firstLoad = false
 	end
-end)
+end
 
 AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if data.Title then
 		lobbyMenu.Title = data.Title
 	end
@@ -105,6 +123,10 @@ end)
 local ClonePedData = {}
 local DataPlayerList = {}
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	local HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
 	ColumnCallbackFunction[2] = {}
 	
@@ -127,6 +149,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 
 
 	local playerPed = PlayerPedId()
+	local playerCoords = GetEntityCoords(playerPed)
 	for k,v in pairs(data) do
 		if HostSource == v.source then
 			v.Status = "HOST"
@@ -173,8 +196,13 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		if v.ped then
 			if v.ped ~= playerPed and (not ClonePedData[v.name] or not DoesEntityExist(ClonePedData[v.name])) then
 				ClonePedData[v.name] = ClonePed(v.ped, false, true, false)
-				SetEntityCoords(ClonePedData[v.name], 0.0, 0.0, 0.0)
+			end
+			if ClonePedData[v.name] then
+				SetEntityCollision(ClonePedData[v.name], false, true)
+				SetEntityVisible(ClonePedData[v.name], false)
 				FreezeEntityPosition(ClonePedData[v.name], true)
+				SetEntityCoords(ClonePedData[v.name], playerCoords)
+				AttachEntityToEntity(ClonePedData[v.name], PlayerPedId(), 9816, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, false, false, false, false, 2, false)
 			end
 			friend:SetLeftIcon(v.LobbyBadge, false)
 			friend:AddPedToPauseMenu((ClonePedData[v.name] or PlayerPedId())) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
@@ -208,12 +236,16 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			ColumnCallbackFunction[2][#lobbyMenu.PlayersColumn.Items] = v.callbackFunction
 		end
 	end
-	
+		
 	DataPlayerList = data
 end)
 
 local DataSetInfo = {}
 AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	for i=1, #lobbyMenu.MissionPanel.Items do
 		lobbyMenu.MissionPanel:RemoveItem(#lobbyMenu.MissionPanel.Items)
 	end
@@ -226,6 +258,10 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if data.Title then
 		lobbyMenu.MissionPanel:Title(data.Title)
 	end
@@ -236,6 +272,10 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	ColumnCallbackFunction[1] = {}
 	
 	for i=1, #lobbyMenu.SettingsColumn.Items do
@@ -255,7 +295,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 		else
 			item = UIMenuItem.New(v.label, v.dec, v.mainColor, v.highlightColor, v.textColor, v.highlightedTextColor)
 			if v.rightLabel then
-				item:RightLabel(rightLabel)
+				item:RightLabel(v.rightLabel)
 			end
 		end
 		lobbyMenu.SettingsColumn.Items[k] = item
@@ -268,6 +308,10 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:UpdateSettingsColumn", function(index, data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	ColumnCallbackFunction[1][index] = nil
 	
 	local item
@@ -291,7 +335,13 @@ AddEventHandler("ArenaLobby:lobbymenu:UpdateSettingsColumn", function(index, dat
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onClose)
+	CreateLobbyMenu()
+	
 	while IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) do
+		Wait(0)
+	end
+	
+	while firstLoad do
 		Wait(0)
 	end
 	
@@ -306,6 +356,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 	currentSelectId = 1
 	currentColumnId = 1
 	lobbyMenu:CanPlayerCloseMenu(canclose)
+
 	lobbyMenu:Visible(true)
 	lobbyMenu:FocusLevel(FocusLevel)
 	ScaleformUI.Scaleforms.InstructionalButtons:Enabled(false)
@@ -402,6 +453,10 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if lobbyMenu:Visible() then
 		lobbyMenu:Visible(false)
 	end
@@ -409,6 +464,10 @@ end)
 
 RegisterNetEvent("ArenaLobby:lobbymenu:leaveLobby")
 AddEventHandler("ArenaLobby:lobbymenu:leaveLobby", function()
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	ExecuteCommand("minigame leave")
 	if lobbyMenu:Visible() then
 		lobbyMenu:Visible(false)

@@ -3242,6 +3242,7 @@ function UIMenuItem:ItemData(data)
     end
 end
 
+-- not supported on Lobby and Pause menu yet
 function UIMenuItem:LabelFont(fontTable)
     if fontTable == nil then
         return self._labelFont
@@ -4805,6 +4806,84 @@ function SettingsListColumn:AddSettings(item)
     self.Items[#self.Items + 1] = item
 end
 
+function SettingsListColumn:UpdateItemLabels(index, leftLabel, rightLabel)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABELS", false, index-1, leftLabel, rightLabel)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABELS", false, self.ParentTab, index-1, leftLabel, rightLabel)
+        end
+    end
+end
+
+function SettingsListColumn:UpdateItemBlinkDescription(index, blink)
+	if blink == 1 then blink = true elseif blink == 0 then blink = false end
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_BLINK_DESC", false, index-1, blink)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_BLINK_DESC", false, self.ParentTab, index-1, leftLabel, rightLabel)
+        end
+    end
+end
+
+function SettingsListColumn:UpdateItemLabel(index, label)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL", false, index-1,label)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL", false, self.ParentTab, index-1, label)
+        end
+    end
+end
+
+function SettingsListColumn:UpdateItemRightLabel(index, label)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", false, index-1,label)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", false, self.ParentTab, index-1, label)
+        end
+    end
+end
+
+function SettingsListColumn:UpdateItemLeftBadge(index, badge)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", false, index-1, badge)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", false, self.ParentTab, index-1, badge)
+        end
+    end
+end
+
+function SettingsListColumn:UpdateItemRightBadge(index, badge)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", false, index-1, badge)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", false, self.ParentTab, index-1, badge)
+        end
+    end
+end
+
+function SettingsListColumn:EnableItem(index, enable)
+    if self.Parent ~= nil then
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ENABLE_SETTINGS_ITEM", false, index-1, enable)
+        elseif pSubT == "PauseMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_PLAYERS_TAB_SETTINGS_ITEM", false, self.ParentTab, index-1, enable)
+        end
+    end
+end
+
 
 
 
@@ -5493,17 +5572,17 @@ function MainView:BuildPauseMenu()
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", false, 4, item:Label(), "menu_lobby_desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor, item.SliderColor)
             else
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", false, 0, item:Label(), "menu_lobby_desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item._mainColor, item._highlightColor, item._textColor, item._highlightedTextColor)
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SETTINGS_SET_RIGHT_LABEL", false, it - 1, item:RightLabel())
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", false, it - 1, item:RightLabel())
                 if item._rightBadge ~= BadgeStyle.NONE then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SETTINGS_SET_RIGHT_BADGE", false, it - 1, item._rightBadge)
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", false, it - 1, item._rightBadge)
                 end
             end
         
             if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
                 if SubType ~= "UIMenuItem" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SETTINGS_SET_LEFT_BADGE", false, it - 1, item.Base._leftBadge)
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", false, it - 1, item.Base._leftBadge)
                 else
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SETTINGS_SET_LEFT_BADGE", false, it - 1, item._leftBadge)
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", false, it - 1, item._leftBadge)
                 end
             end
     
@@ -7152,17 +7231,17 @@ function TabView:BuildPauseMenu()
                         ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM", false, tabIndex, 4, item:Label(), "menu_pause_playerTab{" .. it .."}", item:Enabled(), item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor, item.SliderColor)
                     else
                         ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM", false, tabIndex, 0, item:Label(), "menu_pause_playerTab{" .. it .."}", item:Enabled(), item:BlinkDescription(), item._mainColor, item._highlightColor, item._textColor, item._highlightedTextColor)
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SETTINGS_SET_RIGHT_LABEL", false, it - 1, item:RightLabel())
+                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_RIGHT_LABEL", false, it - 1, item:RightLabel())
                         if item._rightBadge ~= BadgeStyle.NONE then
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SETTINGS_SET_RIGHT_BADGE", false, it - 1, item._rightBadge)
+                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_RIGHT_BADGE", false, it - 1, item._rightBadge)
                         end
                     end
                     --[[
                     if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
                         if SubType ~= "UIMenuItem" then
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SETTINGS_SET_LEFT_BADGE", false, it - 1, item.Base._leftBadge)
+                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_RIGHT_BADGE", false, it - 1, item.Base._leftBadge)
                         else
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SETTINGS_SET_LEFT_BADGE", false, it - 1, item._leftBadge)
+                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_RIGHT_BADGE", false, it - 1, item._leftBadge)
                         end
                     end
                     ]]

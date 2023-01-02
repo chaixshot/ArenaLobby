@@ -201,8 +201,9 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(100)
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
 		UpdatePlayerState()
-		-- UpdateInfos()
-		UpdatePlayerList()
+		if IsPauseMenuActive() then
+			UpdatePlayerList()
+		end
 		while ArenaAPI:IsPlayerInAnyArena() do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)

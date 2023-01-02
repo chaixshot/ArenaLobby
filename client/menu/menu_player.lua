@@ -6,7 +6,9 @@ local ColumnCallbackFunction = {}
 ColumnCallbackFunction[1] = {}
 ColumnCallbackFunction[2] = {}
 
-CreateThread(function()
+local menuLoaded = false
+local firstLoad = true
+local function CreatePlayerMenuMenu()
 	if not playerMenu then
 		playerMenu = MainView.New("Player Management", "dec", "", "", "")
 		local columns = {
@@ -38,10 +40,19 @@ CreateThread(function()
 			currentSelectId = idx
 			currentColumnId = 2
 		end
+		
+		Wait(100)
+		menuLoaded = true
+		Wait(100)
+		firstLoad = false
 	end
-end)
+end
 
 AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if data.Title then
 		playerMenu.Title = data.Title
 	end
@@ -89,6 +100,10 @@ end)
 
 local ClonePedData = {}
 AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDict, TextureName)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	ColumnCallbackFunction[2] = {}
 	playerMenu.MissionPanel:UpdatePanelPicture(TextureDict, TextureName)
 	
@@ -128,6 +143,10 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	for i=1, #playerMenu.MissionPanel.Items do
 		playerMenu.MissionPanel:RemoveItem(#playerMenu.MissionPanel.Items)
 	end
@@ -138,6 +157,10 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if data.Title then
 		playerMenu.MissionPanel:Title(data.Title)
 	end
@@ -148,6 +171,10 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	ColumnCallbackFunction[1] = {}
 	
 	for k,v in pairs(data) do
@@ -173,7 +200,13 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:Show", function(FocusLevel, canclose, onClose)
+	CreatePlayerMenuMenu()
+	
 	while IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) do
+		Wait(0)
+	end
+	
+	while firstLoad do
 		Wait(0)
 	end
 	
@@ -230,6 +263,10 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(FocusLevel, canclose, onC
 end)
 
 AddEventHandler("ArenaLobby:playermenu:Hide", function()
+	while not menuLoaded do
+		Wait(0)
+	end
+	
 	if playerMenu:Visible() then
 		playerMenu:Visible(false)
 	end
