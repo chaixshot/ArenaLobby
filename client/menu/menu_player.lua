@@ -17,7 +17,7 @@ local function CreatePlayerMenuMenu()
 			MissionDetailsPanel.New("PLAYER INFO", Colours.HUD_COLOUR_GREEN),
 		}
 		playerMenu:SetupColumns(columns)
-		playerMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") 	-- playerMenu:CrewPicture used to add a picture on the left of the HeaderPicture
+		-- playerMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") 	-- playerMenu:CrewPicture used to add a picture on the left of the HeaderPicture
 		
 		pool:AddPauseMenu(playerMenu)
 		playerMenu:CanPlayerCloseMenu(true)
@@ -52,6 +52,7 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
+	print("ArenaLobby:lobbymenu:UpdateSettingsColumn")
 	
 	if data.Title then
 		playerMenu.Title = data.Title
@@ -61,6 +62,7 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 		playerMenu.Subtitle = data.Subtitle
 	end
 	
+	--[[
 	if data.SideTop then
 		playerMenu.SideTop = data.SideTop
 	end
@@ -72,6 +74,7 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 	if data.SideBot then
 		playerMenu.SideBot = data.SideBot
 	end
+	]]
 	
 	if data.Col1 then
 		playerMenu._listCol[1]._label = data.Col1
@@ -103,6 +106,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	while not menuLoaded do
 		Wait(0)
 	end
+	print("ArenaLobby:playermenu:SetPlayerList")
 	
 	ColumnCallbackFunction[2] = {}
 	playerMenu.MissionPanel:UpdatePanelPicture(TextureDict, TextureName)
@@ -110,11 +114,28 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	for i=1, #playerMenu.PlayersColumn.Items do
 		playerMenu.PlayersColumn:RemovePlayer(#playerMenu.PlayersColumn.Items)
 	end
+	Wait(1)
 	
 	playerMenu.Subtitle = data.name
 	
+	local LobbyBadge = 120
+	if data.LobbyBadgeIcon then
+		LobbyBadge = data.LobbyBadgeIcon
+	elseif GetPlayerFromServerId(data.source) ~= -1 then
+		if not Player(data.source).state.ArenaLobby_IsUsingKeyboard then
+			LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
+		end
+	end
+	
+	if ArenaAPI:IsPlayerInAnyArena() then
+		if data.source == ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource then
+			data.Status = "HOST"
+			data.Colours = 116
+		end
+	end
+
 	local friend = FriendItem.New(data.name, data.Colours, 116, data.lev, data.Status, data.CrewTag)
-	friend:SetLeftIcon(data.LobbyBadge, false)
+	friend:SetLeftIcon(LobbyBadge, false)
 	friend:AddPedToPauseMenu((ClonePedData[data.name] or PlayerPedId())) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
 	local panel = PlayerStatsPanel.New(data.name, 116)
 	panel:Description("My name is "..data.name)
@@ -146,10 +167,12 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
+	print("ArenaLobby:playermenu:SetInfo")
 	
 	for i=1, #playerMenu.MissionPanel.Items do
 		playerMenu.MissionPanel:RemoveItem(#playerMenu.MissionPanel.Items)
 	end
+	
 	for k,v in pairs(data) do
 		local detailItem = UIMenuFreemodeDetailsItem.New(v.LeftLabel, v.RightLabel, false, v.BadgeStyle, v.Colours)
 		playerMenu.MissionPanel:AddItem(detailItem)
@@ -160,6 +183,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
+	print("ArenaLobby:playermenu:SetInfoTitle")
 	
 	if data.Title then
 		playerMenu.MissionPanel:Title(data.Title)
@@ -174,6 +198,7 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
+	print("ArenaLobby:playermenu:SettingsColumn")
 	
 	ColumnCallbackFunction[1] = {}
 	

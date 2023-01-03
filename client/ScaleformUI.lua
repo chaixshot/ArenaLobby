@@ -1,21 +1,21 @@
 local ScaleformUV = {}
 
-local scaleform = {}
-scaleform = setmetatable({}, scaleform)
+local scaleformUV = {}
+scaleformUV = setmetatable({}, scaleformUV)
 
-scaleform.__call = function()
+scaleformUV.__call = function()
     return true
 end
 
-scaleform.__index = scaleform
+scaleformUV.__index = scaleformUV
 
 function ScaleformUV.Request(Name)
 	local ScaleformHandle = RequestScaleformMovie(Name)
 	local data = {name = Name, handle = ScaleformHandle}
-	return setmetatable(data, scaleform)
+	return setmetatable(data, scaleformUV)
 end
 
-function scaleform:CallFunction(theFunction, returndata, ...)
+function scaleformUV:CallFunction(theFunction, returndata, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
     local arg = {...}
     if arg ~= nil then
@@ -34,7 +34,7 @@ function scaleform:CallFunction(theFunction, returndata, ...)
 					BeginTextCommandScaleformString(arg[i])
 					EndTextCommandScaleformString_2()
 				else
-					PushScaleformMovieMethodParameterString(arg[i])
+					ScaleformMovieMethodAddParamTextureNameString(arg[i])
 				end
             end
 		end
@@ -47,15 +47,15 @@ function scaleform:CallFunction(theFunction, returndata, ...)
 	end
 end
 
-function scaleform:Render2D()
+function scaleformUV:Render2D()
 	DrawScaleformMovieFullscreen(self.handle, 255, 255, 255, 255)
 end
 
-function scaleform:Render2DNormal(x, y, width, height)
+function scaleformUV:Render2DNormal(x, y, width, height)
 	DrawScaleformMovie(self.handle, x, y, width, height, 255, 255, 255, 255)
 end
 
-function scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
+function scaleformUV:Render2DScreenSpace(locx, locy, sizex, sizey)
 	local Width, Height = GetScreenResolution()
 	local x = locy / Width
 	local y = locx / Height
@@ -64,24 +64,24 @@ function scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
 	DrawScaleformMovie(self.handle, x + (width / 2.0), y + (height / 2.0), width, height, 255, 255, 255, 255)
 end
 
-function scaleform:Render3D(x, y, z, rx, ry, rz, scalex, scaley, scalez)
+function scaleformUV:Render3D(x, y, z, rx, ry, rz, scalex, scaley, scalez)
 	DrawScaleformMovie_3dNonAdditive(self.handle, x, y, z, rx, ry, rz, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
 end
 
-function scaleform:Render3DAdditive(x, y, z, rx, ry, rz, scalex, scaley, scalez)
+function scaleformUV:Render3DAdditive(x, y, z, rx, ry, rz, scalex, scaley, scalez)
 	DrawScaleformMovie_3d(self.handle, x, y, z, rx, ry, rz, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
 end
 
-function scaleform:Dispose()
+function scaleformUV:Dispose()
 	SetScaleformMovieAsNoLongerNeeded(self.handle)
 	self = nil
 end
 
-function scaleform:IsValid()
+function scaleformUV:IsValid()
 	return self and true or false
 end
 
-function scaleform:IsLoaded() 
+function scaleformUV:IsLoaded() 
     return HasScaleformMovieLoaded(self.handle)
 end
 
@@ -808,7 +808,7 @@ function UIMenu:RemoveItemAt(Index)
             local SelectedItem = self:CurrentSelection()
             table.remove(self.Items, tonumber(Index))
             if self:Visible() then
-                ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_ITEM", false, Index - 1) -- scaleform index starts at 0, better remove 1 to the index
+                ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_ITEM", false, Index - 1) -- scaleformUV index starts at 0, better remove 1 to the index
             end
             self:CurrentSelection(SelectedItem)
         end
@@ -972,7 +972,7 @@ function UIMenu:BuildUpMenuAsync()
 
             if SubType == "UIMenuListItem" then
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 1, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), table.concat(item.Items, ","), item:Index()-1, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
-            elseif SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
+            elseif SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleformUV.. so the type remains 1
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 1, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item:CurrentListItem(), 0, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
             elseif SubType == "UIMenuCheckboxItem" then
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 2, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle, item._Checked, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
@@ -1087,7 +1087,7 @@ function UIMenu:BuildUpMenuSync()
 
             if SubType == "UIMenuListItem" then
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 1, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), table.concat(item.Items, ","), item:Index()-1, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
-            elseif SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
+            elseif SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleformUV.. so the type remains 1
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 1, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item:CurrentListItem(), 0, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
             elseif SubType == "UIMenuCheckboxItem" then
                 ScaleformUI.Scaleforms._ui:CallFunction("ADD_ITEM", false, 2, item:Label(), "desc_{" .. it .."}", item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle, item._Checked, item.Base._mainColor, item.Base._highlightColor, item.Base._textColor, item.Base._highlightedTextColor)
@@ -4693,16 +4693,19 @@ function PlayerListColumn:CurrentSelection(idx)
     else
         if #self.Items == 0 then
             self._currentSelection = 0
+		else
+			self.Items[self:CurrentSelection()]:Selected(false)
         end
-        self.Items[self:CurrentSelection()]:Selected(false)
+        
         if idx < 0 then
             self._currentSelection = 0
         elseif idx > #self.Items then
             self._currentSelection = #self.Items
-        else
+        elseif #self.Items ~= 0 then
             self._currentSelection = 1000000 - (1000000 % #self.Items) + tonumber(idx)
+			self.Items[self:CurrentSelection()]:Selected(true)
         end
-        self.Items[self:CurrentSelection()]:Selected(true)
+		
         if self.Parent ~= nil and self.Parent:Visible() then
             local pSubT = self.Parent()
             if pSubT == "LobbyMenu" then
@@ -4786,10 +4789,11 @@ function SettingsListColumn:CurrentSelection(idx)
     else
         if #self.Items == 0 then
             self._currentSelection = 0
+		else
+			self.Items[self:CurrentSelection()]:Selected(false)
+			self._currentSelection = 1000000 - (1000000 % #self.Items) + tonumber(idx)
+			self.Items[self:CurrentSelection()]:Selected(true)
         end
-        self.Items[self:CurrentSelection()]:Selected(false)
-        self._currentSelection = 1000000 - (1000000 % #self.Items) + tonumber(idx)
-        self.Items[self:CurrentSelection()]:Selected(true)
         if self.Parent ~= nil and self.Parent:Visible() then
             local pSubT = self.Parent()
             if pSubT == "LobbyMenu" then
@@ -4953,7 +4957,7 @@ function FriendItem:AddPedToPauseMenu(ped)
             Citizen.CreateThread(function()
                 if pSubT == "LobbyMenu" then
                     if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                        local ped = ClonePed(self.ClonePed, false, false, true)
+                        local ped = ClonePedEx(self.ClonePed, false, false, true)
                         FinalizeHeadBlend(ped)
                         GivePedToPauseMenu(ped, 2);
                         SetPauseMenuPedSleepState(true)
@@ -4964,7 +4968,7 @@ function FriendItem:AddPedToPauseMenu(ped)
                     local _, subT = tab()
                     if subT == "PlayerListTab" then
                         if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                            local ped = ClonePed(self.ClonePed, false, false, true)
+                            local ped = ClonePedEx(self.ClonePed, false, false, true)
                             FinalizeHeadBlend(ped)
                             GivePedToPauseMenu(ped, 2);
                             SetPauseMenuPedSleepState(true)
@@ -5437,7 +5441,7 @@ function MainView:FocusLevel(index)
 		if index == 2 then
 			CreateThread(function()
 				Wait(100)
-				local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+				local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
 				GivePedToPauseMenu(ped, 2)
 				SetPauseMenuPedSleepState(true);
 				SetPauseMenuPedLighting(true);
@@ -5596,13 +5600,15 @@ function MainView:BuildPauseMenu()
         while it <= #items do
             Citizen.Wait(1)
             local item = items[it]
-            local Type, SubType = item()
-            if SubType == "FriendItem" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_PLAYER_ITEM", false, 1, 1, item:Label(), item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag());
-            end
-            if item.Panel ~= nil then
-                item.Panel:UpdatePanel(true)
-            end
+				if item then
+				local Type, SubType = item()
+				if SubType == "FriendItem" then
+					ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_PLAYER_ITEM", false, 1, 1, item:Label(), item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag());
+				end
+				if item.Panel ~= nil then
+					item.Panel:UpdatePanel(true)
+				end
+			end
             it = it+1
         end
         self.PlayersColumn:CurrentSelection(0)
@@ -5690,7 +5696,7 @@ function MainView:ProcessMouse()
                 col:CurrentSelection(item_id)
                 col.OnIndexChanged(item_id+1)
                 if col.Items[item_id+1].ClonePed ~= nil and col.Items[item_id+1].ClonePed ~= 0 then
-                    local ped = ClonePed(col.Items[item_id+1].ClonePed, false, true, true);
+                    local ped = ClonePedEx(col.Items[item_id+1].ClonePed, false, true, true);
                     Citizen.Wait(0)
                     GivePedToPauseMenu(ped, 2)
                     SetPauseMenuPedSleepState(true);
@@ -5839,7 +5845,7 @@ function MainView:GoUp()
     elseif self:FocusLevel() == self.PlayersColumn.Order then
         self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
         if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-            local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+            local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
             Citizen.Wait(0)
             GivePedToPauseMenu(ped, 2)
             SetPauseMenuPedSleepState(true);
@@ -5866,7 +5872,7 @@ function MainView:GoDown()
     elseif self:FocusLevel() == self.PlayersColumn.Order then
         self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
         if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-            local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+            local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
             Citizen.Wait(0)
             GivePedToPauseMenu(ped, 2)
             SetPauseMenuPedSleepState(true);
@@ -5896,7 +5902,7 @@ function MainView:GoLeft()
         elseif self:FocusLevel() == self.PlayersColumn.Order then
             self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
             if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+                local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
                 Citizen.Wait(0)
                 GivePedToPauseMenu(ped, 2)
                 SetPauseMenuPedSleepState(true);
@@ -5945,7 +5951,7 @@ function MainView:GoRight()
         elseif self:FocusLevel() == self.PlayersColumn.Order then
             self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
             if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+                local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
                 Citizen.Wait(0)
                 GivePedToPauseMenu(ped, 2)
                 SetPauseMenuPedSleepState(true);

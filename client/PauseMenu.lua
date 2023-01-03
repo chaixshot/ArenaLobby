@@ -1,29 +1,27 @@
 function UpdateDetails()
 	RequestStreamedTextureDictC("ArenaLobby")
-	local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
-	local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
-	local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
-	local MaximumArenaTime = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).MaximumArenaTime
-	local map = ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):match("%((.*)%)")	
-	local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
-	
-	TriggerEvent("ArenaLobby:lobbymenu:SetHeaderMenu", {
-		Title = "DarkRP - GameRoom",
-		Subtitle = (ArenaLabel[1] and ArenaLabel[1]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
-		SideTop = (ArenaLabel[2] and ArenaLabel[2]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
-		SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
-		SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
-		Col1 = "🕹️  GAME",
-		Col2 = "PLAYERS "..CurrentSize.." OF "..MaximumSize,
-		Col3 = "INFO",
-		ColColor1 = 116,
-		ColColor2 = 116,
-		ColColor3 = 116,
-	})
 	
 	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
 		exports["DarkRP_Racing"]:UpdateDetails()
 	else
+		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
+		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
+		local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
+	
+		TriggerEvent("ArenaLobby:lobbymenu:SetHeaderMenu", {
+			Title = "DarkRP - GameRoom",
+			Subtitle = (ArenaLabel[1] and ArenaLabel[1]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+			SideTop = (ArenaLabel[2] and ArenaLabel[2]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+			SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+			SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
+			Col1 = "🕹️  GAME",
+			Col2 = "PLAYERS "..CurrentSize.." OF "..MaximumSize,
+			Col3 = "INFO",
+			ColColor1 = 116,
+			ColColor2 = 116,
+			ColColor3 = 116,
+		})
+	
 		local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
 		TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
 			Title = ArenaLabel[1],
@@ -101,46 +99,48 @@ local function UpdateInfos()
 end
 
 function UpdatePlayerList()
-	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
-		exports["DarkRP_Racing"]:UpdatePlayerList()
-	else
-		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
-		local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
-		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
-		local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
+	if ArenaAPI:IsPlayerInAnyArena() then
+		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+			exports["DarkRP_Racing"]:UpdatePlayerList()
+		else
+			local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
+			local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
+			local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
+			local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
 
-		local playerList = {}
-		for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
-			local player = GetPlayerFromServerId(source)
-			local ped = PlayerPedId()
-			if player ~= -1 then
-				ped = GetPlayerPed(player)
+			local playerList = {}
+			for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
+				local player = GetPlayerFromServerId(source)
+				local ped = PlayerPedId()
+				if player ~= -1 then
+					ped = GetPlayerPed(player)
+				end
+
+				table.insert(playerList, {
+					source = source,
+					name = v.name,
+					rowColor = 116,
+					Colours = (ArenaBusy and 18 or 15),
+					Status = (ArenaBusy and "PLAYING" or "WAITING"),
+					CrewTag = "",
+					lev = (Player(source).state.PlayerXP or 1),
+					ped = ped,
+				})
 			end
-
-			table.insert(playerList, {
-				source = source,
-				name = v.name,
-				rowColor = 116,
-				Colours = (ArenaBusy and 18 or 15),
-				Status = (ArenaBusy and "PLAYING" or "WAITING"),
-				CrewTag = "",
-				lev = (Player(source).state.PlayerXP or 1),
-				ped = ped,
-			})
+			for i=1,MaximumSize-CurrentSize do
+				table.insert(playerList, {
+					name = "empty",
+					Colours = 3,
+					LobbyBadgeIcon = false,
+					Status = false,
+					CrewTag = "",
+					lev = "",
+					ped = false,
+				})
+			end
+			
+			TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 		end
-		for i=1,MaximumSize-CurrentSize do
-			table.insert(playerList, {
-				name = "empty",
-				Colours = 3,
-				LobbyBadgeIcon = false,
-				Status = false,
-				CrewTag = "",
-				lev = "",
-				ped = false,
-			})
-		end
-		
-		TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 	end
 end
 
