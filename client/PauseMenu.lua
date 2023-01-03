@@ -20,14 +20,16 @@ function UpdateDetails()
 		ColColor2 = 116,
 		ColColor3 = 116,
 	})
-
-	TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
-		Title = ArenaLabel[1],
-	})
-	
 	
 	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
 		exports["DarkRP_Racing"]:UpdateDetails()
+	else
+		local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
+		TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
+			Title = ArenaLabel[1],
+			tex = "ArenaLobby",
+			txd = txd
+		})
 	end
 		
 	local settingList = {
@@ -143,17 +145,13 @@ function UpdatePlayerList()
 end
 
 local function OpenPauseMenu()
-	local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
-	TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
-		tex = "ArenaLobby",
-		txd = txd
-	})
 	UpdateInfos()
 	UpdateDetails()
 	UpdatePlayerList()
 	
 	TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
 end
+
 AddEventHandler("ArenaLobby:OpenPauseMenu", function()
 	OpenPauseMenu()
 end)

@@ -127,7 +127,11 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		Wait(0)
 	end
 	
-	local HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
+	local HostSource = -1
+	if ArenaAPI:IsPlayerInAnyArena() then
+		HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
+	end
+	
 	ColumnCallbackFunction[2] = {}
 	
 	for i=1, #lobbyMenu.PlayersColumn.Items do
@@ -384,7 +388,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 				ColumnCallbackFunction[currentColumnId][currentSelectId]()
 			end
 			
-			if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource == GetPlayerServerId(PlayerId()) then
+			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource == GetPlayerServerId(PlayerId()) then
 				if currentColumnId == 2 and DataPlayerList[currentSelectId] and DataPlayerList[currentSelectId].ped then
 					lobbyMenu:Visible(false)
 					-- Wait(100)

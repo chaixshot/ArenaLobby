@@ -1,4 +1,4 @@
-function RequestStreamedTextureDictC(textureDict, cb)
+function RequestStreamedTextureDictC(textureDict)
 	if not HasStreamedTextureDictLoaded(textureDict) then
 		local timer = 1000
 		RequestStreamedTextureDict(textureDict, true)
@@ -6,13 +6,6 @@ function RequestStreamedTextureDictC(textureDict, cb)
 			timer = timer-1
 			Citizen.Wait(100)
 		end
-	end
-	SetTimeout(1000, function()
-		SetStreamedTextureDictAsNoLongerNeeded(textureDict)
-	end)
-
-	if cb ~= nil then
-		cb()
 	end
 end
 
