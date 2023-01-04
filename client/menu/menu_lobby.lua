@@ -178,7 +178,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 	end
 
-	if isChange then
+	-- if isChange then
 		print("ArenaLobby:lobbymenu:SetPlayerList")
 		DataPlayerListUnsort = table.deepcopy(data)
 		table.sort(DataPlayerListUnsort, function(a,b)
@@ -209,6 +209,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		for i=1, #lobbyMenu.PlayersColumn.Items do
 			lobbyMenu.PlayersColumn:RemovePlayer(#lobbyMenu.PlayersColumn.Items)
+			Wait(1)
 		end
 		Wait(1)
 
@@ -304,7 +305,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 			
 		DataPlayerList = table.deepcopy(data)
-	end
+	-- end
 end)
 
 local DataSetInfo = {}
@@ -336,6 +337,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	
 		for i=1, #lobbyMenu.MissionPanel.Items do
 			lobbyMenu.MissionPanel:RemoveItem(#lobbyMenu.MissionPanel.Items)
+			Wait(1)
 		end
 		
 		for k,v in pairs(data) do

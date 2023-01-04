@@ -113,6 +113,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	
 	for i=1, #playerMenu.PlayersColumn.Items do
 		playerMenu.PlayersColumn:RemovePlayer(#playerMenu.PlayersColumn.Items)
+		Wait(1)
 	end
 	Wait(1)
 	
@@ -171,6 +172,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 	
 	for i=1, #playerMenu.MissionPanel.Items do
 		playerMenu.MissionPanel:RemoveItem(#playerMenu.MissionPanel.Items)
+		Wait(1)
 	end
 	
 	for k,v in pairs(data) do
