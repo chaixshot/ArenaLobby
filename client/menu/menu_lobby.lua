@@ -96,7 +96,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 	end
 	
 	if isChange then
-		print("ArenaLobby:lobbymenu:SetHeaderMenu")
+		-- print("ArenaLobby:lobbymenu:SetHeaderMenu")
 		
 		if data.Title then
 			lobbyMenu.Title = data.Title
@@ -178,8 +178,8 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 	end
 
-	-- if isChange then
-		print("ArenaLobby:lobbymenu:SetPlayerList")
+	if isChange then
+		-- print("ArenaLobby:lobbymenu:SetPlayerList")
 		DataPlayerListUnsort = table.deepcopy(data)
 		table.sort(DataPlayerListUnsort, function(a,b)
 			return a.name < b.name
@@ -305,7 +305,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 			
 		DataPlayerList = table.deepcopy(data)
-	-- end
+	end
 end)
 
 local DataSetInfo = {}
@@ -333,7 +333,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	end
 	
 	if isChange then
-		print("ArenaLobby:lobbymenu:SetInfo")
+		-- print("ArenaLobby:lobbymenu:SetInfo")
 	
 		for i=1, #lobbyMenu.MissionPanel.Items do
 			lobbyMenu.MissionPanel:RemoveItem(#lobbyMenu.MissionPanel.Items)
@@ -372,7 +372,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 	end
 	
 	if isChange then
-		print("ArenaLobby:lobbymenu:SetInfoTitle")
+		-- print("ArenaLobby:lobbymenu:SetInfoTitle")
 		
 		if data.Title then
 			lobbyMenu.MissionPanel:Title(data.Title)
@@ -411,7 +411,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	end
 	
 	if isChange then
-		print("ArenaLobby:lobbymenu:SettingsColumn")
+		-- print("ArenaLobby:lobbymenu:SettingsColumn")
 		
 		ColumnCallbackFunction[1] = {}
 		
@@ -451,7 +451,7 @@ AddEventHandler("ArenaLobby:lobbymenu:UpdateSettingsColumn", function(index, dat
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:lobbymenu:UpdateSettingsColumn")
+	-- print("ArenaLobby:lobbymenu:UpdateSettingsColumn")
 	
 	ColumnCallbackFunction[1][index] = nil
 	

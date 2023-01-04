@@ -78,19 +78,19 @@ local function UpdateInfos()
 			{
 				LeftLabel = "Map",
 				RightLabel = map,
-				BadgeStyle = nil,
+				BadgeStyle = 179,
 				Colours = false,
 			},
 			{
 				LeftLabel = "Min Player",
 				RightLabel = MinimumSize,
-				BadgeStyle = nil,
+				BadgeStyle = 179,
 				Colours = false,
 			},
 			{
 				LeftLabel = "Time Left",
 				RightLabel = DecimalsToMinutes(MaximumArenaTime).." Minute",
-				BadgeStyle = nil,
+				BadgeStyle = 179,
 				Colours = false,
 			},
 		}

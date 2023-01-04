@@ -52,7 +52,7 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:lobbymenu:UpdateSettingsColumn")
+	-- print("ArenaLobby:lobbymenu:UpdateSettingsColumn")
 	
 	if data.Title then
 		playerMenu.Title = data.Title
@@ -106,7 +106,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:playermenu:SetPlayerList")
+	-- print("ArenaLobby:playermenu:SetPlayerList")
 	
 	ColumnCallbackFunction[2] = {}
 	playerMenu.MissionPanel:UpdatePanelPicture(TextureDict, TextureName)
@@ -168,7 +168,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:playermenu:SetInfo")
+	-- print("ArenaLobby:playermenu:SetInfo")
 	
 	for i=1, #playerMenu.MissionPanel.Items do
 		playerMenu.MissionPanel:RemoveItem(#playerMenu.MissionPanel.Items)
@@ -185,7 +185,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:playermenu:SetInfoTitle")
+	-- print("ArenaLobby:playermenu:SetInfoTitle")
 	
 	if data.Title then
 		playerMenu.MissionPanel:Title(data.Title)
@@ -200,7 +200,7 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 	while not menuLoaded do
 		Wait(0)
 	end
-	print("ArenaLobby:playermenu:SettingsColumn")
+	-- print("ArenaLobby:playermenu:SettingsColumn")
 	
 	ColumnCallbackFunction[1] = {}
 	

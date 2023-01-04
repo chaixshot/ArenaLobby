@@ -4739,14 +4739,16 @@ end
 function PlayerListColumn:RemovePlayer(id)
     if self.Parent ~= nil and self.Parent:Visible() then
         local item = self.Items[id]
-        local Type, SubType = item()
-        if SubType == "FriendItem" then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("REMOVE_PLAYER_ITEM", false, id-1)
-            elseif pSubT == "PauseMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_PLAYERS_TAB_PLAYER_ITEM", false, self.ParentTab, id-1)
-            end
+		if item then
+			local Type, SubType = item()
+			if SubType == "FriendItem" then
+				local pSubT = self.Parent()
+				if pSubT == "LobbyMenu" then
+					ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("REMOVE_PLAYER_ITEM", false, id-1)
+				elseif pSubT == "PauseMenu" then
+					ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_PLAYERS_TAB_PLAYER_ITEM", false, self.ParentTab, id-1)
+				end
+			end
         end
     end
     table.remove(self.Items, id)
@@ -7152,6 +7154,9 @@ function TabView:ShowHeader()
 end
 
 function TabView:BuildPauseMenu()
+	BeginTextCommandBusyspinnerOn("FMMC_DOWNLOAD")
+	EndTextCommandBusyspinnerOn(1)
+			
     self:ShowHeader()
     for k, tab in pairs(self.Tabs) do
         local tabIndex = k-1
@@ -7214,8 +7219,9 @@ function TabView:BuildPauseMenu()
                     else
                         ScaleformUI.Scaleforms._pauseMenu:AddRightListLabel(tabIndex , itemIndex, ii.Label)
                     end
-					Wait(0)
+					Citizen.Wait(0)
                 end
+				Citizen.Wait(0)
             end
         elseif subtype == "PlayerListTab" then
             ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(tab.Base.Title, 1, tab.Base.Type)
@@ -7275,6 +7281,8 @@ function TabView:BuildPauseMenu()
             end)
         end
     end
+	
+	BusyspinnerOff()
 end
 
 
