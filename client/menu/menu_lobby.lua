@@ -28,16 +28,18 @@ local function CreateLobbyMenu()
 		}
 		lobbyMenu:SetupColumns(columns)
 		
-		-- RequestStreamedTextureDictC("ArenaLobby")
-		-- local mugshot = RegisterPedheadshot(PlayerPedId())
-		-- local timer = GetGameTimer()
-		-- while not IsPedheadshotReady(mugshot) and GetGameTimer() - timer < 1000 do
-			-- Citizen.Wait(0)
-		-- end
-		-- local headshot = GetPedheadshotTxdString(mugshot)
-		-- AddReplaceTexture("ArenaLobby", "LobbyHeadshot", headshot, headshot)
-		-- lobbyMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") -- lobbyMenu:CrewPicture used to add a picture on the left of the HeaderPicture
-		-- UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform.. 
+		--[[
+		RequestStreamedTextureDictC("ArenaLobby")
+		local mugshot = RegisterPedheadshot(PlayerPedId())
+		local timer = GetGameTimer()
+		while not IsPedheadshotReady(mugshot) and GetGameTimer() - timer < 1000 do
+			Citizen.Wait(0)
+		end
+		local headshot = GetPedheadshotTxdString(mugshot)
+		AddReplaceTexture("ArenaLobby", "LobbyHeadshot", headshot, headshot)
+		lobbyMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") -- lobbyMenu:CrewPicture used to add a picture on the left of the HeaderPicture
+		UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform.. 
+		]]
 		
 		pool:AddPauseMenu(lobbyMenu)
 		lobbyMenu:CanPlayerCloseMenu(true)
@@ -209,7 +211,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		for i=1, #lobbyMenu.PlayersColumn.Items do
 			lobbyMenu.PlayersColumn:RemovePlayer(#lobbyMenu.PlayersColumn.Items)
-			Wait(1)
+			Wait(0)
 		end
 		Wait(1)
 
@@ -337,7 +339,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	
 		for i=1, #lobbyMenu.MissionPanel.Items do
 			lobbyMenu.MissionPanel:RemoveItem(#lobbyMenu.MissionPanel.Items)
-			Wait(1)
+			-- Wait(1)
 		end
 		
 		for k,v in pairs(data) do

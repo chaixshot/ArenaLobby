@@ -1,9 +1,9 @@
 function UpdateDetails()
-	RequestStreamedTextureDictC("ArenaLobby")
-	
-	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then -- Racing call
 		exports["DarkRP_Racing"]:UpdateDetails()
 	else
+		RequestStreamedTextureDictC("ArenaLobby")
+		
 		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 		local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
@@ -28,43 +28,43 @@ function UpdateDetails()
 			tex = "ArenaLobby",
 			txd = txd
 		})
+        
+        local settingList = {
+            {
+                label = "Setting",
+                dec = "Open game setting menu.",
+                callbackFunction = function()
+                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
+                    Wait(100)
+                    ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
+                end,
+            },
+            {
+                label = "Map",
+                dec = "Open map menu.",
+                callbackFunction = function()
+                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
+                    Wait(100)
+                    ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
+                end,
+            },
+            {
+                label = "Leave Game",
+                dec = "Leave current lobby.",
+                callbackFunction = function()
+                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
+                    ExecuteCommand("minigame leave")
+                end,
+                mainColor = 8,
+                highlightColor = 6,
+                textColor = 0,
+                highlightedTextColor = 0,
+                Blink = true,
+            },
+        }
+        
+        TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
 	end
-		
-	local settingList = {
-		{
-			label = "Setting",
-			dec = "Open game setting menu.",
-			callbackFunction = function()
-				TriggerEvent("ArenaLobby:lobbymenu:Hide")
-				Wait(100)
-				ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
-			end,
-		},
-		{
-			label = "Map",
-			dec = "Open map menu.",
-			callbackFunction = function()
-				TriggerEvent("ArenaLobby:lobbymenu:Hide")
-				Wait(100)
-				ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
-			end,
-		},
-		{
-			label = "Leave Game",
-			dec = "Leave current lobby.",
-			callbackFunction = function()
-				TriggerEvent("ArenaLobby:lobbymenu:Hide")
-				ExecuteCommand("minigame leave")
-			end,
-			mainColor = 8,
-			highlightColor = 6,
-			textColor = 0,
-			highlightedTextColor = 0,
-			Blink = true,
-		},
-	}
-	
-	TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
 end
 
 local function UpdateInfos()
@@ -104,7 +104,6 @@ function UpdatePlayerList()
 			exports["DarkRP_Racing"]:UpdatePlayerList()
 		else
 			local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
-			local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
 			local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 			local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
 
@@ -127,17 +126,17 @@ function UpdatePlayerList()
 					ped = ped,
 				})
 			end
-			for i=1,MaximumSize-CurrentSize do
-				table.insert(playerList, {
-					name = "empty",
-					Colours = 3,
-					LobbyBadgeIcon = false,
-					Status = false,
-					CrewTag = "",
-					lev = "",
-					ped = false,
-				})
-			end
+			-- for i=1,MaximumSize-CurrentSize do
+				-- table.insert(playerList, {
+					-- name = "empty",
+					-- Colours = 3,
+					-- LobbyBadgeIcon = false,
+					-- Status = false,
+					-- CrewTag = "",
+					-- lev = "",
+					-- ped = false,
+				-- })
+			-- end
 			
 			TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 		end

@@ -4957,9 +4957,10 @@ function FriendItem:AddPedToPauseMenu(ped)
             end
             local pSubT = self.ParentColumn.Parent()
             Citizen.CreateThread(function()
+				Wait(100)
                 if pSubT == "LobbyMenu" then
                     if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                        local ped = ClonePedEx(self.ClonePed, false, false, true)
+                        local ped = ClonePed(self.ClonePed, false, false, true)
                         FinalizeHeadBlend(ped)
                         GivePedToPauseMenu(ped, 2);
                         SetPauseMenuPedSleepState(true)
@@ -4970,7 +4971,7 @@ function FriendItem:AddPedToPauseMenu(ped)
                     local _, subT = tab()
                     if subT == "PlayerListTab" then
                         if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                            local ped = ClonePedEx(self.ClonePed, false, false, true)
+                            local ped = ClonePed(self.ClonePed, false, false, true)
                             FinalizeHeadBlend(ped)
                             GivePedToPauseMenu(ped, 2);
                             SetPauseMenuPedSleepState(true)
@@ -5443,7 +5444,7 @@ function MainView:FocusLevel(index)
 		if index == 2 then
 			CreateThread(function()
 				Wait(100)
-				local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+				local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
 				GivePedToPauseMenu(ped, 2)
 				SetPauseMenuPedSleepState(true);
 				SetPauseMenuPedLighting(true);
@@ -5698,7 +5699,7 @@ function MainView:ProcessMouse()
                 col:CurrentSelection(item_id)
                 col.OnIndexChanged(item_id+1)
                 if col.Items[item_id+1].ClonePed ~= nil and col.Items[item_id+1].ClonePed ~= 0 then
-                    local ped = ClonePedEx(col.Items[item_id+1].ClonePed, false, true, true);
+                    local ped = ClonePed(col.Items[item_id+1].ClonePed, false, true, true);
                     Citizen.Wait(0)
                     GivePedToPauseMenu(ped, 2)
                     SetPauseMenuPedSleepState(true);
@@ -5847,7 +5848,7 @@ function MainView:GoUp()
     elseif self:FocusLevel() == self.PlayersColumn.Order then
         self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
         if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-            local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+            local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
             Citizen.Wait(0)
             GivePedToPauseMenu(ped, 2)
             SetPauseMenuPedSleepState(true);
@@ -5874,7 +5875,7 @@ function MainView:GoDown()
     elseif self:FocusLevel() == self.PlayersColumn.Order then
         self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
         if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-            local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+            local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
             Citizen.Wait(0)
             GivePedToPauseMenu(ped, 2)
             SetPauseMenuPedSleepState(true);
@@ -5904,7 +5905,7 @@ function MainView:GoLeft()
         elseif self:FocusLevel() == self.PlayersColumn.Order then
             self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
             if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+                local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
                 Citizen.Wait(0)
                 GivePedToPauseMenu(ped, 2)
                 SetPauseMenuPedSleepState(true);
@@ -5953,7 +5954,7 @@ function MainView:GoRight()
         elseif self:FocusLevel() == self.PlayersColumn.Order then
             self.PlayersColumn:CurrentSelection(tonumber(splitted[2]))
             if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                local ped = ClonePedEx(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
+                local ped = ClonePed(self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed, false, true, true);
                 Citizen.Wait(0)
                 GivePedToPauseMenu(ped, 2)
                 SetPauseMenuPedSleepState(true);
@@ -7358,7 +7359,7 @@ function TabView:Select()
         end
         if allDisabled then return end
         --[[ end check all disabled ]]--
-        while(not self.Tabs[self.Index].LeftItemList[self.leftItemIndex]:Enabled()) do
+        while self.Tabs[self.Index] and self.Tabs[self.Index].LeftItemList[self.leftItemIndex] and  not self.Tabs[self.Index].LeftItemList[self.leftItemIndex]:Enabled() do
             Citizen.Wait(0)
             self.leftItemIndex = self.leftItemIndex + 1
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", false, self.leftItemIndex-1)
@@ -7368,28 +7369,30 @@ function TabView:Select()
         local cur_tab, cur_sub_tab = tab()
         if cur_sub_tab == "SubmenuTab" then
             local leftItem = tab.LeftItemList[self.leftItemIndex]
-            if not leftItem:Enabled() then
-                PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                return
-            end
-            if leftItem.ItemType == LeftItemType.Settings then
-                self:FocusLevel(2)
-                --[[ check if all disabled ]]
-                local allDisabled = true
-                for _,v in ipairs(self.Tabs[self.Index].LeftItemList) do
-                    if v:Enabled() then
-                        allDisabled = false
-                        break
-                    end
-                end
-                if allDisabled then return end
-                PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                --[[ end check all disabled ]]--
-                while(not self.Tabs[self.Index].LeftItemList[self.leftItemIndex]:Enabled()) do
-                    Citizen.Wait(0)
-                    self.rightItemIndex = self.rightItemIndex+1
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_RIGHT_ITEM_INDEX", false, self.rightItemIndex-1)
-                end
+			if leftItem then
+				if not leftItem:Enabled() then
+					PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+					return
+				end
+				if leftItem.ItemType == LeftItemType.Settings then
+					self:FocusLevel(2)
+					--[[ check if all disabled ]]
+					local allDisabled = true
+					for _,v in ipairs(self.Tabs[self.Index].LeftItemList) do
+						if v:Enabled() then
+							allDisabled = false
+							break
+						end
+					end
+					if allDisabled then return end
+					PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+					--[[ end check all disabled ]]--
+					while(not self.Tabs[self.Index].LeftItemList[self.leftItemIndex]:Enabled()) do
+						Citizen.Wait(0)
+						self.rightItemIndex = self.rightItemIndex+1
+						ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_RIGHT_ITEM_INDEX", false, self.rightItemIndex-1)
+					end
+				end
             end
         elseif cur_sub_tab == "PlayerListTab" then
             if tab:Focus() == 0 then
