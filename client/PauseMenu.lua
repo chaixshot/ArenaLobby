@@ -162,7 +162,7 @@ RegisterCommand("+ArenaLobby_PauseMenu_ESC", function()
 				return
 			end
 		end
-		if not IsPauseMenuActive() then
+		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
 			OpenPauseMenu()
 		end
 	end
@@ -173,7 +173,7 @@ RegisterKeyMapping("+ArenaLobby_PauseMenu_ESC", "ArenaLobby PauseMenu ESC", "key
 
 RegisterCommand("+ArenaLobby_PauseMenu_P", function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if not IsPauseMenuActive() then
+		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
 			OpenPauseMenu()
 		end
 	end
@@ -184,7 +184,7 @@ RegisterKeyMapping("+ArenaLobby_PauseMenu_P", "ArenaLobby PauseMenu P", "keyboar
 
 RegisterCommand("+ArenaLobby_PauseMenu_Xbox", function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if not IsPauseMenuActive() then
+		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
 			OpenPauseMenu()
 		end
 	end
@@ -193,6 +193,7 @@ RegisterCommand("-ArenaLobby_PauseMenu_Xbox", function()
 end, false)
 RegisterKeyMapping("+ArenaLobby_PauseMenu_Xbox", "ArenaLobby PauseMenu Xbox", "PAD_ANALOGBUTTON", "START_INDEX")
 
+local DisablePauseMenu = false
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(100)
@@ -201,11 +202,16 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 		if IsPauseMenuActive() then
 			UpdatePlayerList()
 		end
-		while ArenaAPI:IsPlayerInAnyArena() do
+		DisablePauseMenu = false
+        Wait(1)
+        DisablePauseMenu = true
+		while DisablePauseMenu do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)
 			Wait(0)
 		end
+    else
+        DisablePauseMenu = false
 	end
 end)
 

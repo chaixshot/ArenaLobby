@@ -163,7 +163,7 @@ CreateThread(function()
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press  ~INPUT_VEH_CAR_JUMP~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
+				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
 			else
 				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z+1))
 			end
@@ -229,18 +229,18 @@ RegisterCommand('-ArenaLobby_Menu_Keyboard', function()
 end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', 'E')
 
-RegisterCommand('+ArenaLobby_Menu_Xbox_L3', function()
-	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
+RegisterCommand('+ArenaLobby_Menu_Xbox_Open', function()
+	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox_Open", 100) then
 		DisableControlAction(0, 36, true)
 		OpenGameMenu(true)
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_L3', function()
+RegisterCommand('-ArenaLobby_Menu_Xbox_Open', function()
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_L3', 'ArenaLobby Xbox L3', 'PAD_ANALOGBUTTON', 'L3_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Open', 'ArenaLobby Xbox L3', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox", 100) then
+	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_A", 100) then
 		SendNUIMessage({message = "control_a"})
 	end
 end, false)
