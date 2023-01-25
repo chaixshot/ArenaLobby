@@ -159,26 +159,33 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	end
 	
 	local isChange = false
-	local temp = table.deepcopy(data)
-	table.sort(temp, function(a,b)
-		return a.name < b.name
-	end)
-	for k,v in pairs(temp) do
-		if not DataPlayerListUnsort[k] then
-			isChange = true
-			break
-		else
-			for kk,vv in pairs(v) do
-				if kk ~= "callbackFunction" and kk ~= "ped" and DataPlayerListUnsort[k][kk] and DataPlayerListUnsort[k][kk] ~= vv then
-					isChange = true
-					break
-				end
-			end
-			if isChange then
-				break
-			end
-		end
-	end
+    local temp = table.deepcopy(data)
+    table.sort(temp, function(a,b)
+        return a.name < b.name
+    end)
+
+    if #temp ~= #DataPlayerListUnsort then
+        isChange = true
+    end
+    
+    if not isChange then
+        for k,v in pairs(temp) do
+            if not DataPlayerListUnsort[k] then
+                isChange = true
+                break
+            else
+                for kk,vv in pairs(v) do
+                    if kk ~= "callbackFunction" and kk ~= "ped" and DataPlayerListUnsort[k][kk] and DataPlayerListUnsort[k][kk] ~= vv then
+                        isChange = true
+                        break
+                    end
+                end
+                if isChange then
+                    break
+                end
+            end
+        end
+    end
 
 	if isChange then
 		-- print("ArenaLobby:lobbymenu:SetPlayerList")
