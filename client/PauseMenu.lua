@@ -197,11 +197,13 @@ local DisablePauseMenu = false
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Wait(100)
-	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
-		UpdatePlayerState()
-		if IsPauseMenuActive() then
-			UpdatePlayerList()
-		end
+	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
+        if ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
+            UpdatePlayerState()
+            if IsPauseMenuActive() then
+                UpdatePlayerList()
+            end
+        end
 		DisablePauseMenu = false
         Wait(1)
         DisablePauseMenu = true
