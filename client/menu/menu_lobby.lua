@@ -217,12 +217,6 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		ColumnCallbackFunction[2] = {}
 		
-        OnPlayerListRefresh = true
-        lobbyMenu:Visible(false)
-        while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
-			Wait(0)
-		end
-        
 		local PlayerList = PlayerListColumn.New("COLUMN PLAYERS", Colours.HUD_COLOUR_ORANGE)
         lobbyMenu.PlayersColumn = PlayerList
         lobbyMenu.PlayersColumn.Parent = lobbyMenu
@@ -321,7 +315,14 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			
 		DataPlayerList = table.deepcopy(data)
         
+        Wait(500)
+        OnPlayerListRefresh = true
+        lobbyMenu:Visible(false)
+        while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
+			Wait(0)
+		end
         lobbyMenu:Visible(true)
+        lobbyMenu:FocusLevel(1)
         OnPlayerListRefresh = false
 	end
 end)

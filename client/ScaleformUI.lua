@@ -5801,9 +5801,9 @@ function PlayerListColumn:AddPlayer(item)
                     item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag())
             end
         end
-        if item.Panel ~= nil then
-            item.Panel:UpdatePanel(true)
-        end
+        -- if item.Panel ~= nil then
+            -- item.Panel:UpdatePanel(true)
+        -- end
     end
 end
 
@@ -5828,9 +5828,9 @@ function PlayerListColumn:RemovePlayer(item)
                     self.ParentTab, id - 1)
             end
         end
-        if item.Panel ~= nil then
-            item.Panel:UpdatePanel(true)
-        end
+        -- if item.Panel ~= nil then
+            -- item.Panel:UpdatePanel(true)
+        -- end
     end
     table.remove(self.Items, id)
 end
