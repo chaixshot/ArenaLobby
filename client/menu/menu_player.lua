@@ -112,9 +112,9 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	playerMenu.MissionPanel:UpdatePanelPicture(TextureDict, TextureName)
 	
 	for i=1, #playerMenu.PlayersColumn.Items do
-		playerMenu.PlayersColumn:RemovePlayer(#playerMenu.PlayersColumn.Items)
-		Wait(0)
-	end
+        playerMenu.PlayersColumn:RemovePlayer(playerMenu.PlayersColumn.Items[#playerMenu.PlayersColumn.Items])
+        Wait(0)
+    end
 	Wait(1)
 	
 	playerMenu.Subtitle = data.name

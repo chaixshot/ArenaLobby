@@ -153,6 +153,7 @@ end)
 -- local ClonePedData = {}
 local DataPlayerList = {}
 local DataPlayerListUnsort = {}
+local OnPlayerListRefresh = false
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	while not menuLoaded do
 		Wait(0)
@@ -216,11 +217,16 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		ColumnCallbackFunction[2] = {}
 		
-		for i=1, #lobbyMenu.PlayersColumn.Items do
-			lobbyMenu.PlayersColumn:RemovePlayer(#lobbyMenu.PlayersColumn.Items)
+        OnPlayerListRefresh = true
+        lobbyMenu:Visible(false)
+        while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 			Wait(0)
 		end
-		Wait(1)
+        
+		local PlayerList = PlayerListColumn.New("COLUMN PLAYERS", Colours.HUD_COLOUR_ORANGE)
+        lobbyMenu.PlayersColumn = PlayerList
+        lobbyMenu.PlayersColumn.Parent = lobbyMenu
+        lobbyMenu.PlayersColumn.Order = 2
 
 		local playerPed = PlayerPedId()
 		local playerCoords = GetEntityCoords(playerPed)
@@ -314,6 +320,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 			
 		DataPlayerList = table.deepcopy(data)
+        
+        lobbyMenu:Visible(true)
+        OnPlayerListRefresh = false
 	end
 end)
 
@@ -525,7 +534,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 	instructional_buttons:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
 	instructional_buttons:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
 		
-	while lobbyMenu:Visible() do
+	while lobbyMenu:Visible() or OnPlayerListRefresh do
 		SetScriptGfxDrawBehindPausemenu(true)
 		instructional_buttons:Draw2D()
 		
