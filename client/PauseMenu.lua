@@ -127,16 +127,17 @@ function UpdatePlayerList()
 				})
 			end
 			-- for i=1,MaximumSize-CurrentSize do
-				-- table.insert(playerList, {
-					-- name = "empty",
-					-- Colours = 3,
-					-- LobbyBadgeIcon = false,
-					-- Status = false,
-					-- CrewTag = "",
-					-- lev = "",
-					-- ped = false,
-				-- })
-			-- end
+			for i=1, 11-CurrentSize do
+				table.insert(playerList, {
+					name = "empty",
+					Colours = 3,
+					LobbyBadgeIcon = false,
+					Status = false,
+					CrewTag = "",
+					lev = "",
+					ped = false,
+				})
+			end
 			
 			TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 		end

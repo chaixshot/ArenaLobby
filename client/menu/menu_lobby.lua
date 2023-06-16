@@ -154,6 +154,7 @@ end)
 local DataPlayerList = {}
 local DataPlayerListUnsort = {}
 local OnPlayerListRefresh = false
+local PlayerListRefresh_Order = 0
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	while not menuLoaded do
 		Wait(0)
@@ -217,13 +218,18 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		
 		ColumnCallbackFunction[2] = {}
 		
+        -- Clean all player list colume
 		local PlayerList = PlayerListColumn.New("COLUMN PLAYERS", Colours.HUD_COLOUR_ORANGE)
         lobbyMenu.PlayersColumn = PlayerList
         lobbyMenu.PlayersColumn.Parent = lobbyMenu
         lobbyMenu.PlayersColumn.Order = 2
+        lobbyMenu.PlayersColumn.OnIndexChanged = function(idx)
+			currentSelectId = idx
+			currentColumnId = 2
+		end
 
-		local playerPed = PlayerPedId()
-		local playerCoords = GetEntityCoords(playerPed)
+		-- local playerPed = PlayerPedId()
+		-- local playerCoords = GetEntityCoords(playerPed)
 		for k,v in pairs(data) do
 			local Status = v.Status
 			local Colours = v.Colours
@@ -315,15 +321,22 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			
 		DataPlayerList = table.deepcopy(data)
         
-        Wait(500)
-        OnPlayerListRefresh = true
-        lobbyMenu:Visible(false)
-        while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
-			Wait(0)
-		end
-        lobbyMenu:Visible(true)
-        lobbyMenu:FocusLevel(1)
-        OnPlayerListRefresh = false
+        -- Refresh player list colume
+        PlayerListRefresh_Order += 1
+        local ListRefresh_Order = PlayerListRefresh_Order
+        Wait(1000)
+        if ListRefresh_Order == PlayerListRefresh_Order then
+            if lobbyMenu:Visible() then
+                OnPlayerListRefresh = true
+                lobbyMenu:Visible(false, true)
+                while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
+                    Wait(0)
+                end
+                lobbyMenu:Visible(true, true)
+                lobbyMenu:FocusLevel(1)
+                OnPlayerListRefresh = false
+            end
+        end
 	end
 end)
 
@@ -506,7 +519,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 	end
 	
 	if lobbyMenu:Visible() then
-		lobbyMenu:Visible(false)
+		lobbyMenu:Visible(false, true)
 		-- Wait(100)
 		while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 			Wait(0)
@@ -538,7 +551,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(FocusLevel, canclose, onCl
 	while lobbyMenu:Visible() or OnPlayerListRefresh do
 		SetScriptGfxDrawBehindPausemenu(true)
 		instructional_buttons:Draw2D()
-		
+
 		if IsDisabledControlJustPressed(0, 201) then
 			if ColumnCallbackFunction[currentColumnId][currentSelectId] then
 				ColumnCallbackFunction[currentColumnId][currentSelectId]()

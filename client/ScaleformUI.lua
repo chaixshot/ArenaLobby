@@ -1,4 +1,4 @@
-local scaleformUV = setmetatable({}, scaleformUV)
+scaleformUV = setmetatable({}, scaleformUV)
 scaleformUV.__index = scaleformUV
 scaleformUV.__call = function()
     return "scaleformUV"
@@ -5757,15 +5757,21 @@ function PlayerListColumn:CurrentSelection(idx)
         if #self.Items == 0 then
             self._currentSelection = 0
         end
-        self.Items[self:CurrentSelection()]:Selected(false)
+        if self.Items[self:CurrentSelection()] then
+            self.Items[self:CurrentSelection()]:Selected(false)
+        end
         if idx < 0 then
             self._currentSelection = 0
         elseif idx > #self.Items then
             self._currentSelection = #self.Items
         else
-            self._currentSelection = 1000000 - (1000000 % #self.Items) + tonumber(idx)
+            if #self.Items > 0 then
+                self._currentSelection = 1000000 - (1000000 % #self.Items) + tonumber(idx)
+            end
         end
-        self.Items[self:CurrentSelection()]:Selected(true)
+        if self.Items[self:CurrentSelection()] then
+            self.Items[self:CurrentSelection()]:Selected(true)
+        end
         if self.Parent ~= nil and self.Parent:Visible() then
             local pSubT = self.Parent()
             if pSubT == "LobbyMenu" then
@@ -6812,7 +6818,7 @@ function MainView:CanPlayerCloseMenu(canHe)
     end
 end
 
-function MainView:Visible(visible)
+function MainView:Visible(visible, noeffect)
     if visible ~= nil then
         self._visible = visible
         ScaleformUI.Scaleforms.InstructionalButtons:Enabled(visible)
@@ -6820,11 +6826,13 @@ function MainView:Visible(visible)
         if visible == true then
             if not IsPauseMenuActive() then
                 self.focusLevel = 1
-                PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
+                if not noeffect then
+                    PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
+                end
                 ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
                 ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, true, -1)
                 self:BuildPauseMenu()
-                self.OnLobbyMenuOpen(self)
+                self.OnLobbyMenuOpen(self) 
                 AnimpostfxPlay("PauseMenuIn", 800, true)
                 ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
                 SetPlayerControl(PlayerId(), false, 0)
@@ -6839,7 +6847,9 @@ function MainView:Visible(visible)
             SetPlayerControl(PlayerId(), true, 0)
             self.ParentPool:ProcessMenus(false)
             if IsPauseMenuActive() then
-                PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
+                if not noeffect then
+                    PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
+                end
                 ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY_NO_BACKGROUND`, false, -1)
             end
             SetFrontendActive(false)
