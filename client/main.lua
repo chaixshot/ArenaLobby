@@ -151,7 +151,7 @@ CreateThread(function()
 		local playerCoords = GetEntityCoords(playerPed)
 		local dist =GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
 
-		if dist < Config.DrawDistance*1.5 then
+		if dist < Config.DrawDistance*1.5 and not ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena()) then
 			if not object then
 				object = SpawnLocalObject(Config.Prop, Config.Location)
 				FreezeEntityPosition(object, true)
