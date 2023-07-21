@@ -16,75 +16,79 @@ local function CheckUiTime(type, time)
 end
 
 function OpenGameMenu(withXbox)
-	if not IsPlayerDead(PlayerId()) then
-		local GameList = {
-			"DarkRP_Aimlab",
-			"DarkRP_Bloodbowl",
-			"DarkRP_Bomb",
-			"DarkRP_Boxing",
-			"DarkRP_Deathmacth",
-			"DarkRP_Derby",
-			"DarkRP_CaptureTheFlag",
-			"DarkRP_Racing",
-			"DarkRP_Squidglass",
-			"DarkRP_Squidlight",
-			"DarkRP_Teamdeathmacth",
-			"DarkRP_ZombieInfection",
-		}
-		for k, v in pairs(GameList) do
-			if GetResourceState(v) ~= "started" then
-				SendNUIMessage({
-					message = "hidegame",
-					name = v,
-				})
-			end
+	if not InPoint or IsPlayerDead(PlayerId()) or not CheckUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 then
+		return
+	end
+	
+	DisableControlAction(0, 36, true)
+	
+	local GameList = {
+		"DarkRP_Aimlab",
+		"DarkRP_Bloodbowl",
+		"DarkRP_Bomb",
+		"DarkRP_Boxing",
+		"DarkRP_Deathmacth",
+		"DarkRP_Derby",
+		"DarkRP_CaptureTheFlag",
+		"DarkRP_Racing",
+		"DarkRP_Squidglass",
+		"DarkRP_Squidlight",
+		"DarkRP_Teamdeathmacth",
+		"DarkRP_ZombieInfection",
+	}
+	for k, v in pairs(GameList) do
+		if GetResourceState(v) ~= "started" then
+			SendNUIMessage({
+				message = "hidegame",
+				name = v,
+			})
 		end
-		
-		SendNUIMessage({
-			message = "clear",
-		})
-		
-		for k,v in pairs(ArenaAPI:GetArenaList()) do
-			if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
-				SendNUIMessage({
-					message = "add",
-					item = v.ArenaIdentifier,
-					ownername = v.ownername,
-					image = string.gsub(k, "%d+", ""),
-					imageUrl =v.ArenaImageUrl,
-					label = v.ArenaLabel,
-					state = (v.CanJoinAfterStart and "" or v.ArenaState),
-					players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-					password = tostring(v.Password),
-					PlayerAvatar = v.PlayerAvatar,
-				})
-			end
+	end
+	
+	SendNUIMessage({
+		message = "clear",
+	})
+	
+	for k,v in pairs(ArenaAPI:GetArenaList()) do
+		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
+			SendNUIMessage({
+				message = "add",
+				item = v.ArenaIdentifier,
+				ownername = v.ownername,
+				image = string.gsub(k, "%d+", ""),
+				imageUrl =v.ArenaImageUrl,
+				label = v.ArenaLabel,
+				state = (v.CanJoinAfterStart and "" or v.ArenaState),
+				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
+				password = tostring(v.Password),
+				PlayerAvatar = v.PlayerAvatar,
+			})
 		end
+	end
+	
+	SendNUIMessage({
+		message = "show",
+		withXbox = withXbox,
+	})
+	
+	isMenuOpen = true
+	if withXbox then
+		SetNuiFocus(true, false)
 		
-		SendNUIMessage({
-			message = "show",
-			withXbox = withXbox,
-		})
-		
-		isMenuOpen = true
-		if withXbox then
-			SetNuiFocus(true, false)
-			
-			local form = Scaleform.Request("instructional_buttons")
-			form:CallFunction("CLEAR_ALL")
-			form:CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(1, 194, true), "Back")
-			form:CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(1, 191, true), "Select")
-			form:CallFunction("SET_DATA_SLOT", 2, "~INPUTGROUP_FRONTEND_DPAD_ALL~", "Change")
-			form:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
-			form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
-			while isMenuOpen do
-				form:Draw2D()
-				Wait(1)
-			end
-			form:Dispose()
-		else
-			SetNuiFocus(true, true)
+		local form = Scaleform.Request("instructional_buttons")
+		form:CallFunction("CLEAR_ALL")
+		form:CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(1, 194, true), "Back")
+		form:CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(1, 191, true), "Select")
+		form:CallFunction("SET_DATA_SLOT", 2, "~INPUTGROUP_FRONTEND_DPAD_ALL~", "Change")
+		form:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
+		form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
+		while isMenuOpen do
+			form:Draw2D()
+			Wait(1)
 		end
+		form:Dispose()
+	else
+		SetNuiFocus(true, true)
 	end
 end
 
@@ -221,19 +225,14 @@ RegisterNUICallback('create', function(data, cb)
 end)
 
 RegisterCommand('+ArenaLobby_Menu_Keyboard', function()
-	if InPoint then
-		OpenGameMenu(false)
-	end
+	OpenGameMenu(false)
 end, false)
 RegisterCommand('-ArenaLobby_Menu_Keyboard', function()
 end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', 'E')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Open', function()
-	if InPoint and CheckUiTime("ArenaLobby_Menu_Xbox_Open", 100) then
-		DisableControlAction(0, 36, true)
-		OpenGameMenu(true)
-	end
+	OpenGameMenu(true)
 end, false)
 RegisterCommand('-ArenaLobby_Menu_Xbox_Open', function()
 end, false)
