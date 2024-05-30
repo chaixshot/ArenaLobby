@@ -1,5 +1,5 @@
 function UpdateDetails()
-	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then -- Racing call
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then -- Racing call
 		exports["DarkRP_Racing"]:UpdateDetails()
 	else
 		RequestStreamedTextureDictC("ArenaLobby")
@@ -68,7 +68,7 @@ function UpdateDetails()
 end
 
 local function UpdateInfos()
-	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then
 		exports["DarkRP_Racing"]:UpdateInfos()
 	else
 		local MinimumSize = ArenaAPI:GetArenaMinimumSize(ArenaAPI:GetPlayerArena())
@@ -100,7 +100,7 @@ end
 
 function UpdatePlayerList()
 	if ArenaAPI:IsPlayerInAnyArena() then
-		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsInGame() then
+		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then
 			exports["DarkRP_Racing"]:UpdatePlayerList()
 		else
 			local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
