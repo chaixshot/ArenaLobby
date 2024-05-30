@@ -159,7 +159,7 @@ end)
 RegisterCommand("+ArenaLobby_PauseMenu_ESC", function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") then
-			if exports["DarkRP_Racing"]:IsOnSpectate() then 
+			if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then 
 				return
 			end
 		end
