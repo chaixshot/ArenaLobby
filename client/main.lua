@@ -236,7 +236,7 @@ RegisterCommand('+ArenaLobby_Menu_Xbox_Open', function()
 end, false)
 RegisterCommand('-ArenaLobby_Menu_Xbox_Open', function()
 end, false)
-RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Open', 'ArenaLobby Xbox L3', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
+RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Open', 'ArenaLobby Xbox Open', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
 	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_A", 100) then
