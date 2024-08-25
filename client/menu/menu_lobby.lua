@@ -233,10 +233,6 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		for k,v in pairs(data) do
 			local Status = v.Status
 			local Colours = v.Colours
-			if HostSource == v.source then
-				Status = "HOST"
-				Colours = 116
-			end
 			
 			if GetPlayerFromServerId(v.source) ~= -1 then
 				v.MP0_STAMINA = Player(v.source).state.ArenaLobby_MP0_STAMINA or 0

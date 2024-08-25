@@ -103,24 +103,26 @@ function UpdatePlayerList()
 		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then
 			exports["DarkRP_Racing"]:UpdatePlayerList()
 		else
+			local HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
 			local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 			local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 			local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
 
 			local playerList = {}
 			for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
+				local isHost = HostSource == source
 				local player = GetPlayerFromServerId(source)
 				local ped = PlayerPedId()
 				if player ~= -1 then
 					ped = GetPlayerPed(player)
 				end
-
+				
 				table.insert(playerList, {
 					source = source,
 					name = v.name,
 					rowColor = 116,
-					Colours = (ArenaBusy and 18 or 15),
-					Status = (ArenaBusy and "PLAYING" or "WAITING"),
+					Colours = (isHost and 116 or ArenaBusy and 18 or 15),
+					Status = (isHost and "HOST" or ArenaBusy and "PLAYING" or "WAITING"),
 					CrewTag = "",
 					lev = (Player(source).state.PlayerXP or 1),
 					ped = ped,
