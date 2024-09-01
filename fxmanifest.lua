@@ -11,6 +11,7 @@ files {
 	'html/img/games/*.*',
 	'html/img/games/map/*.*',
 	'html/sounds/*.*',
+	'files/MINIMAP_LOADER.gfx',
 }
 
 ui_page 'html/ui.html'

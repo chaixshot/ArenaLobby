@@ -3,11 +3,11 @@ function UpdateDetails()
 		exports["DarkRP_Racing"]:UpdateDetails()
 	else
 		RequestStreamedTextureDictC("ArenaLobby")
-		
+
 		local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 		local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 		local ArenaLabel = string.split(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena()):gsub("<br>", "|"), "|")
-	
+
 		TriggerEvent("ArenaLobby:lobbymenu:SetHeaderMenu", {
 			Title = "DarkRP - GameRoom",
 			Subtitle = (ArenaLabel[1] and ArenaLabel[1]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
@@ -15,55 +15,55 @@ function UpdateDetails()
 			SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
 			SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
 			Col1 = "🕹️  GAME",
-			Col2 = "PLAYERS "..CurrentSize.." OF "..MaximumSize,
+			Col2 = "PLAYERS " .. CurrentSize .. " OF " .. MaximumSize,
 			Col3 = "INFO",
 			ColColor1 = 116,
 			ColColor2 = 116,
 			ColColor3 = 116,
 		})
-	
+
 		local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
 		TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
 			Title = ArenaLabel[1],
 			tex = "ArenaLobby",
 			txd = txd
 		})
-        
-        local settingList = {
-            {
-                label = "Setting",
-                dec = "Open game setting menu.",
-                callbackFunction = function()
-                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
-                    Wait(100)
-                    ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
-                end,
-            },
-            {
-                label = "Map",
-                dec = "Open map menu.",
-                callbackFunction = function()
-                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
-                    Wait(100)
-                    ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
-                end,
-            },
-            {
-                label = "Leave Game",
-                dec = "Leave current lobby.",
-                callbackFunction = function()
-                    TriggerEvent("ArenaLobby:lobbymenu:Hide")
-                    ExecuteCommand("minigame leave")
-                end,
-                mainColor = 8,
-                highlightColor = 6,
-                textColor = 0,
-                highlightedTextColor = 0,
-                Blink = true,
-            },
-        }
-        
-        TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
+
+		local settingList = {
+			{
+				label = "Setting",
+				dec = "Open game setting menu.",
+				callbackFunction = function()
+					TriggerEvent("ArenaLobby:lobbymenu:Hide")
+					Citizen.Wait(100)
+					ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 6)
+				end,
+			},
+			{
+				label = "Map",
+				dec = "Open map menu.",
+				callbackFunction = function()
+					TriggerEvent("ArenaLobby:lobbymenu:Hide")
+					Citizen.Wait(100)
+					ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), false, 0)
+				end,
+			},
+			{
+				label = "Leave Game",
+				dec = "Leave current lobby.",
+				callbackFunction = function()
+					TriggerEvent("ArenaLobby:lobbymenu:Hide")
+					ExecuteCommand("minigame leave")
+				end,
+				mainColor = 8,
+				highlightColor = 6,
+				textColor = 0,
+				highlightedTextColor = 0,
+				Blink = true,
+			},
+		}
+
+		TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
 	end
 end
 
@@ -89,7 +89,7 @@ local function UpdateInfos()
 			},
 			{
 				LeftLabel = "Time Left",
-				RightLabel = DecimalsToMinutes(MaximumArenaTime).." Minute",
+				RightLabel = DecimalsToMinutes(MaximumArenaTime) .. " Minute",
 				BadgeStyle = 179,
 				Colours = false,
 			},
@@ -109,14 +109,14 @@ function UpdatePlayerList()
 			local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
 
 			local playerList = {}
-			for source,v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
+			for source, v in pairs(ArenaAPI:GetPlayerListArena(ArenaAPI:GetPlayerArena())) do
 				local isHost = HostSource == source
 				local player = GetPlayerFromServerId(source)
 				local ped = PlayerPedId()
 				if player ~= -1 then
 					ped = GetPlayerPed(player)
 				end
-				
+
 				table.insert(playerList, {
 					source = source,
 					name = v.name,
@@ -128,10 +128,11 @@ function UpdatePlayerList()
 					ped = ped,
 				})
 			end
-			-- for i=1,MaximumSize-CurrentSize do
-			for i=1, 11-CurrentSize do
+			for i=1, MaximumSize-#playerList do
+				-- for i=1, 16-CurrentSize do
 				table.insert(playerList, {
 					name = "empty",
+					rowColor = 3,
 					Colours = 3,
 					LobbyBadgeIcon = false,
 					Status = false,
@@ -140,7 +141,7 @@ function UpdatePlayerList()
 					ped = false,
 				})
 			end
-			
+
 			TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", playerList)
 		end
 	end
@@ -150,7 +151,7 @@ local function OpenPauseMenu()
 	UpdateInfos()
 	UpdateDetails()
 	UpdatePlayerList()
-	
+
 	TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
 end
 
@@ -161,7 +162,7 @@ end)
 RegisterCommand("+ArenaLobby_PauseMenu_ESC", function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") then
-			if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then 
+			if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
 				return
 			end
 		end
@@ -199,24 +200,24 @@ RegisterKeyMapping("+ArenaLobby_PauseMenu_Xbox", "ArenaLobby PauseMenu Xbox", "P
 local DisablePauseMenu = false
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
-	Wait(100)
+	Citizen.Wait(100)
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-        if ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
-            UpdatePlayerState()
-            if IsPauseMenuActive() then
-                UpdatePlayerList()
-            end
-        end
+		if ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
+			UpdatePlayerState()
+			if IsPauseMenuActive() then
+				UpdatePlayerList()
+			end
+		end
 		DisablePauseMenu = false
-        Wait(1)
-        DisablePauseMenu = true
+		Citizen.Wait(1)
+		DisablePauseMenu = true
 		while DisablePauseMenu do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)
-			Wait(0)
+			Citizen.Wait(0)
 		end
-    else
-        DisablePauseMenu = false
+	else
+		DisablePauseMenu = false
 	end
 end)
 
