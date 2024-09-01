@@ -87,9 +87,9 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 		PlayerMenu.listCol[3]._label = data.Col3
 	end
 
-	PlayerMenu.listCol[1]._color = SColor.FromHudColor(116)
-	PlayerMenu.listCol[2]._color = SColor.FromHudColor(116)
-	PlayerMenu.listCol[3]._color = SColor.FromHudColor(116)
+	PlayerMenu.listCol[1]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
+	PlayerMenu.listCol[2]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
+	PlayerMenu.listCol[3]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
 end)
 
 local ClonePedData = {}
@@ -105,7 +105,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 
 	PlayerMenu.Subtitle = data.name
 
-	local LobbyBadge = 120
+	local LobbyBadge = BadgeStyle.BRAND_BANSHEE
 	if data.LobbyBadgeIcon then
 		LobbyBadge = data.LobbyBadgeIcon
 	elseif GetPlayerFromServerId(data.source) ~= -1 then
@@ -117,7 +117,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	if ArenaAPI:IsPlayerInAnyArena() then
 		if data.source == ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource then
 			data.Status = "HOST"
-			data.Colours = 116
+			data.Colours = HudColours.HUD_COLOUR_FREEMODE
 		end
 	end
 
@@ -127,7 +127,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	friend.ClonePed = (ClonePedData[data.name] or PlayerPedId())
 	friend:SetLeftIcon(LobbyBadge, false)
 	friend:AddPedToPauseMenu(friend.ClonePed) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
-	local panel = PlayerStatsPanel.New(data.name, SColor.FromHudColor(data.rowColor or 158))
+	local panel = PlayerStatsPanel.New(data.name, SColor.FromHudColor(data.rowColor or HudColours.HUD_COLOUR_VIDEO_EDITOR_AMBIENT))
 	panel:Description("My name is " .. data.name)
 	panel:HasPlane(data.HasPlane)
 	panel:HasHeli(data.HasHeli)
@@ -194,7 +194,7 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 	for k,v in pairs(data) do
 		local item
 		if v.type == "List" then
-			item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or 0), SColor.FromHudColor(v.highlightColor or 0), SColor.FromHudColor(v.textColor or 0), SColor.FromHudColor(v.highlightedTextColor or 0))
+			item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
 		elseif v.type == "Checkbox" then
 			item = UIMenuCheckboxItem.New(v.label, true, 1, v.dec)
 		elseif v.type == "Slider" then
@@ -202,7 +202,7 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 		elseif v.type == "Progress" then
 			item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 		else
-			item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or 0), SColor.FromHudColor(v.highlightColor or 0), SColor.FromHudColor(v.textColor or 0), SColor.FromHudColor(v.highlightedTextColor or 0))
+			item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
 			if v.rightLabel then
 				item:RightLabel(v.rightLabel)
 			end

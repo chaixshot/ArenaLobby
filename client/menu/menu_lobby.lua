@@ -205,7 +205,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		for k, v in pairs(data) do
 			if HostSource == v.source then
 				v.sortOrder = 1
-			elseif v.LobbyBadgeIcon == 66 then -- JoinAsSpectatorMode
+			elseif v.LobbyBadgeIcon == ScoreRightIconType.SPECTATOR then -- JoinAsSpectatorMode
 				v.sortOrder = 3
 			elseif v.ped then
 				v.sortOrder = 2
@@ -247,7 +247,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			v.HasBoat = IsPedInAnyBoat(v.ped)
 			v.HasVehicle = IsPedInAnyVehicle(v.ped, false)
 
-			local LobbyBadge = 120
+			local LobbyBadge = LobbyBadgeIcon.IS_PC_PLAYER
 			if v.LobbyBadgeIcon then
 				LobbyBadge = v.LobbyBadgeIcon
 			elseif GetPlayerFromServerId(v.source) ~= -1 then
@@ -260,7 +260,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			local friend = FriendItem.New(v.name, SColor.FromHudColor(Colours), true, v.rowColor, Status, crew)
 			
 			friend.ClonePed = v.ped
-			local panel = PlayerStatsPanel.New(v.name, SColor.FromHudColor(v.rowColor or 158))
+			local panel = PlayerStatsPanel.New(v.name, SColor.FromHudColor(v.rowColor or HudColours.HUD_COLOUR_PAUSE_DESELECT))
 			panel:HasPlane(v.HasPlane)
 			panel:HasHeli(v.HasHeli)
 			panel:HasBoat(v.HasBoat)
@@ -411,7 +411,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 		for k,v in pairs(data) do
 			local item
 			if v.type == "List" then
-				item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or 0), SColor.FromHudColor(v.highlightColor or 0), SColor.FromHudColor(v.textColor or 0), SColor.FromHudColor(v.highlightedTextColor or 0))
+				item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
 			elseif v.type == "Checkbox" then
 				item = UIMenuCheckboxItem.New(v.label, true, 1, v.dec)
 			elseif v.type == "Slider" then
@@ -419,7 +419,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			elseif v.type == "Progress" then
 				item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 			else
-				item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or 0), SColor.FromHudColor(v.highlightColor or 0), SColor.FromHudColor(v.textColor or 0), SColor.FromHudColor(v.highlightedTextColor or 0))
+				item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
 				if v.rightLabel then
 					item:RightLabel(v.rightLabel)
 				end

@@ -17,9 +17,9 @@ function UpdateDetails()
 			Col1 = "🕹️  GAME",
 			Col2 = "PLAYERS " .. CurrentSize .. " OF " .. MaximumSize,
 			Col3 = "INFO",
-			ColColor1 = 116,
-			ColColor2 = 116,
-			ColColor3 = 116,
+			ColColor1 = HudColours.HUD_COLOUR_FREEMODE,
+			ColColor2 = HudColours.HUD_COLOUR_FREEMODE,
+			ColColor3 = HudColours.HUD_COLOUR_FREEMODE,
 		})
 
 		local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
@@ -49,16 +49,16 @@ function UpdateDetails()
 				end,
 			},
 			{
-				label = "Leave Game",
+				label = "<font color='#c8423b'>Leave Game</font>",
 				dec = "Leave current lobby.",
 				callbackFunction = function()
 					TriggerEvent("ArenaLobby:lobbymenu:Hide")
 					ExecuteCommand("minigame leave")
 				end,
-				mainColor = 8,
-				highlightColor = 6,
-				textColor = 0,
-				highlightedTextColor = 0,
+				mainColor = HudColours.HUD_COLOUR_RED,
+				highlightColor = HudColours.HUD_COLOUR_REDDARK,
+				textColor = HudColours.HUD_COLOUR_PURE_WHITE,
+				highlightedTextColor = HudColours.HUD_COLOUR_PURE_WHITE,
 				Blink = true,
 			},
 		}
@@ -78,19 +78,19 @@ local function UpdateInfos()
 			{
 				LeftLabel = "Map",
 				RightLabel = map,
-				BadgeStyle = 179,
+				BadgeStyle = BadgeStyle.INFO,
 				Colours = false,
 			},
 			{
 				LeftLabel = "Min Player",
 				RightLabel = MinimumSize,
-				BadgeStyle = 179,
+				BadgeStyle = BadgeStyle.INFO,
 				Colours = false,
 			},
 			{
 				LeftLabel = "Time Left",
 				RightLabel = DecimalsToMinutes(MaximumArenaTime) .. " Minute",
-				BadgeStyle = 179,
+				BadgeStyle = BadgeStyle.INFO,
 				Colours = false,
 			},
 		}
@@ -120,8 +120,8 @@ function UpdatePlayerList()
 				table.insert(playerList, {
 					source = source,
 					name = v.name,
-					rowColor = 116,
-					Colours = (isHost and 116 or ArenaBusy and 18 or 15),
+					rowColor = HudColours.HUD_COLOUR_FREEMODE,
+					Colours = (isHost and HudColours.HUD_COLOUR_FREEMODE or ArenaBusy and HudColours.HUD_COLOUR_GREEN or HudColours.HUD_COLOUR_ORANGE),
 					Status = (isHost and "HOST" or ArenaBusy and "PLAYING" or "WAITING"),
 					CrewTag = "",
 					lev = (Player(source).state.PlayerXP or 1),
@@ -132,8 +132,8 @@ function UpdatePlayerList()
 				-- for i=1, 16-CurrentSize do
 				table.insert(playerList, {
 					name = "empty",
-					rowColor = 3,
-					Colours = 3,
+					rowColor = HudColours.HUD_COLOUR_GREY,
+					Colours = HudColours.HUD_COLOUR_GREY,
 					LobbyBadgeIcon = false,
 					Status = false,
 					CrewTag = "",
