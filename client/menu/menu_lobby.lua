@@ -98,6 +98,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	local isChange = false
 	if #data ~= #DataSet.HeaderMenu then
@@ -170,6 +173,9 @@ end)
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
+	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
 	end
 
 	local isChange = false
@@ -309,6 +315,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	local isChange = false
 	if #data ~= #DataSet.Info then
@@ -350,6 +359,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	local isChange = false
 	if #data ~= #DataSet.InfoTitle then
@@ -383,6 +395,9 @@ end)
 AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
+	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
 	end
 	
 	local isChange = false
@@ -445,6 +460,9 @@ end)
 AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 	while not LobbyMenu do
 		Citizen.Wait(0)
+	end
+	if LobbyMenu:Visible() then
+		Citizen.Wait(300)
 	end
 
 	minimapLobbyEnabled = false

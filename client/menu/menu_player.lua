@@ -49,6 +49,9 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if PlayerMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	if data.Title then
 		PlayerMenu.Title = data.Title
@@ -93,6 +96,9 @@ local ClonePedData = {}
 AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
+	end
+	if PlayerMenu:Visible() then
+		Citizen.Wait(300)
 	end
 
 	ColumnCallbackFunction[2] = {}
@@ -156,6 +162,9 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if PlayerMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	for i = 1, #PlayerMenu.MissionPanel.Items do
 		PlayerMenu.MissionPanel:RemoveItem(#PlayerMenu.MissionPanel.Items)
@@ -171,6 +180,9 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
+	if PlayerMenu:Visible() then
+		Citizen.Wait(300)
+	end
 
 	if data.Title then
 		PlayerMenu.MissionPanel:Title(data.Title)
@@ -184,6 +196,9 @@ end)
 AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
+	end
+	if PlayerMenu:Visible() then
+		Citizen.Wait(300)
 	end
 
 	ColumnCallbackFunction[1] = {}
