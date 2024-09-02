@@ -3,7 +3,7 @@ lua54 'yes'
 game 'gta5'
 -- use_fxv2_oal 'yes'
 
-version '3.3.5'
+version '3.4'
 
 files {
 	'html/*.*',
@@ -11,6 +11,7 @@ files {
 	'html/img/games/*.*',
 	'html/img/games/map/*.*',
 	'html/sounds/*.*',
+	'files/MINIMAP_LOADER.gfx',
 }
 
 ui_page 'html/ui.html'
