@@ -128,7 +128,7 @@ function UpdatePlayerList()
 					ped = ped,
 				})
 			end
-			for i=1, MaximumSize-#playerList do
+			for i=1, MaximumSize-CurrentSize do
 				-- for i=1, 16-CurrentSize do
 				table.insert(playerList, {
 					name = "empty",
