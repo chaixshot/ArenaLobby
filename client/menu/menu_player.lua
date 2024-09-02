@@ -1,7 +1,7 @@
 local PlayerMenu
 
-local currentColumnId = 1
-local currentSelectId = 1
+local selectColumnID = 1
+local selectRowID = 1
 
 local ColumnCallbackFunction = {}
 ColumnCallbackFunction[1] = {}
@@ -32,13 +32,13 @@ local function CreatePlayerMenuMenu()
 		PlayerMenu.MissionPanel:AddItem(detailItem)
 
 		PlayerMenu.SettingsColumn.OnIndexChanged = function(idx)
-			currentSelectId = idx
-			currentColumnId = 1
+			selectRowID = idx
+			selectColumnID = 1
 		end
 
 		PlayerMenu.PlayersColumn.OnIndexChanged = function(idx)
-			currentSelectId = idx
-			currentColumnId = 2
+			selectRowID = idx
+			selectColumnID = 2
 		end
 
 		Citizen.Wait(50)
@@ -93,15 +93,13 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 end)
 
 local ClonePedData = {}
-AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDict, TextureName)
+AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	while not menuLoaded do
 		Citizen.Wait(0)
 	end
 
 	ColumnCallbackFunction[2] = {}
-	PlayerMenu.MissionPanel:UpdatePanelPicture(TextureDict, TextureName)
 	PlayerMenu.PlayersColumn:Clear()
-	PlayerMenu.PlayersColumn:refreshColumn()
 
 	PlayerMenu.Subtitle = data.name
 
@@ -151,6 +149,10 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data, TextureDic
 	if data.callbackFunction then
 		ColumnCallbackFunction[2][#PlayerMenu.PlayersColumn.Items] = data.callbackFunction
 	end
+
+	if PlayerMenu:Visible() then
+		PlayerMenu.PlayersColumn:refreshColumn()
+	end
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
@@ -189,7 +191,6 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 
 	ColumnCallbackFunction[1] = {}
 	PlayerMenu.SettingsColumn:Clear()
-	PlayerMenu.SettingsColumn:refreshColumn()
 
 	for k,v in pairs(data) do
 		local item
@@ -214,6 +215,10 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 			ColumnCallbackFunction[1][k] = v.callbackFunction
 		end
 	end
+
+	if PlayerMenu:Visible() then
+		PlayerMenu.SettingsColumn:refreshColumn()
+	end
 end)
 
 AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
@@ -221,6 +226,7 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 
 	if PlayerMenu:Visible() then
 		PlayerMenu:Visible(false)
+		Citizen.Wait(50)
 	end
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
@@ -228,8 +234,8 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 		Citizen.Wait(0)
 	end
 
-	currentSelectId = 1
-	currentColumnId = 1
+	selectRowID = 1
+	selectColumnID = 1
 
 	PlayerMenu.InstructionalButtons = {}
 	table.insert(PlayerMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT2"), -1, 191, 191, -1))
@@ -238,14 +244,13 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 
 	PlayerMenu:Visible(true)
 	Citizen.SetTimeout(50, function()
-		PlayerMenu:updateFocus(1, false)
+		PlayerMenu:updateFocus(2, false)
 	end)
 
 	while PlayerMenu:Visible() do
 		if IsDisabledControlJustPressed(0, 201) then
-			if ColumnCallbackFunction[currentColumnId][currentSelectId] then
-				ColumnCallbackFunction[currentColumnId][currentSelectId]()
-				PlayerMenu:Visible(false)
+			if ColumnCallbackFunction[selectColumnID][selectRowID] then
+				ColumnCallbackFunction[selectColumnID][selectRowID]()
 			end
 		end
 		Citizen.Wait(0)

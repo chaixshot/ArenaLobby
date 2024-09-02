@@ -8,8 +8,8 @@
 
 local LobbyMenu
 
-local currentColumnId = 1
-local currentSelectId = 1
+local selectColumnID = 1
+local selectRowID = 1
 
 local ColumnCallbackFunction = {}
 ColumnCallbackFunction[1] = {}
@@ -65,13 +65,13 @@ local function CreateLobbyMenu()
 		LobbyMenu.MissionPanel:AddItem(detailItem)
 
 		LobbyMenu.SettingsColumn.OnIndexChanged = function(idx)
-			currentSelectId = idx
-			currentColumnId = 1
+			selectRowID = idx
+			selectColumnID = 1
 		end
 
 		LobbyMenu.PlayersColumn.OnIndexChanged = function(idx)
-			currentSelectId = idx
-			currentColumnId = 2
+			selectRowID = idx
+			selectColumnID = 2
 		end
 
 		--[[ -- EXAMPLE OF FILTERING, SORTING AND RESET TO ORIGINAL
@@ -279,14 +279,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			friend:AddPanel(panel)
 			
 			if v.ped then
-				panel:Description("My name is " .. v.name)
 				friend:Enabled(true)
+				panel:Description("My name is " .. v.name)
 				friend:SetLeftIcon(LobbyBadge, false)
+				friend:SetRightIcon(BadgeStyle.INV_MISSION, false)
 			else
-				panel:Description("Empty")
-				friend:SetLeftIcon(0, false)
-				friend:SetRightIcon(0, false)
 				friend:Enabled(false)
+				panel:Description("Empty")
+				friend:SetLeftIcon(BadgeStyle.NONE, false)
+				friend:SetRightIcon(BadgeStyle.NONE, false)
 			end
 
 			LobbyMenu.PlayersColumn:AddPlayer(friend)
@@ -296,7 +297,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			end
 		end
 
-		LobbyMenu.PlayersColumn:refreshColumn()
+		if LobbyMenu:Visible() then
+			LobbyMenu.PlayersColumn:refreshColumn()
+		end
 		DataSet.PlayerList = table.deepcopy(data)
 	end
 end)
@@ -365,7 +368,6 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 	end
 	
 	if isChange then
-
 		if data.Title then
 			LobbyMenu.MissionPanel:Title(data.Title)
 		end
@@ -432,8 +434,10 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			end
 		end
 
-		LobbyMenu.SettingsColumn:refreshColumn()
-		DataSet.SettingsColumn = data
+		if LobbyMenu:Visible() then
+			LobbyMenu.SettingsColumn:refreshColumn()
+		end
+		DataSet.SettingsColumn = table.deepcopy(data)
 	end
 end)
 
@@ -485,6 +489,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 
 	if LobbyMenu:Visible() then
 		LobbyMenu:Visible(false)
+		Citizen.Wait(50)
 	end
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
@@ -499,8 +504,8 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	end
 	table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT8"), -1, -1, -1, "INPUTGROUP_FRONTEND_DPAD_ALL"))
 
-	currentSelectId = 1
-	currentColumnId = 1
+	selectRowID = 1
+	selectColumnID = 1
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
 	Citizen.SetTimeout(50, function()
@@ -509,18 +514,15 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 
 	while LobbyMenu:Visible() do
 		if IsDisabledControlJustPressed(2, 201) then
-			if ColumnCallbackFunction[currentColumnId][currentSelectId] then
-				ColumnCallbackFunction[currentColumnId][currentSelectId]()
+			-- Select setting row
+			if ColumnCallbackFunction[selectColumnID][selectRowID] then
+				ColumnCallbackFunction[selectColumnID][selectRowID]()
 			end
 
+			-- Host select player row
 			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource == GetPlayerServerId(PlayerId()) then
-				if currentColumnId == 2 and DataSet.PlayerList[currentSelectId] and DataSet.PlayerList[currentSelectId].ped then
-					LobbyMenu:Visible(false)
-
-					while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
-						Citizen.Wait(0)
-					end
-
+				if selectColumnID == 2 and DataSet.PlayerList[selectRowID] and DataSet.PlayerList[selectRowID].ped then
+					local targetSource = DataSet.PlayerList[selectRowID].source
 					local settingList = {}
 
 					table.insert(settingList, {
@@ -531,18 +533,19 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 						end,
 					})
 
-					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource ~= DataSet.PlayerList[currentSelectId].source then
+					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource ~= targetSource then
 						table.insert(settingList, {
-							label = "Kick",
+							label = "<font color='#c8423b'>Kick</font",
 							dec = "Kick player from current lobby.",
-							mainColor = 8,
-							highlightColor = 6,
-							textColor = 0,
-							highlightedTextColor = 0,
+							HudColours.HUD_COLOUR_RED,
+							highlightColor = HudColours.HUD_COLOUR_REDDARK,
+							textColor = HudColours.HUD_COLOUR_PURE_WHITE,
+							highlightedTextColor = HudColours.HUD_COLOUR_PURE_WHITE,
 							Blink = true,
 							callbackFunction = function()
 								PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
-								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", DataSet.PlayerList[currentSelectId].source)
+								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
+								TriggerEvent("ArenaLobby:playermenu:Hide")
 							end,
 						})
 					end
@@ -564,10 +567,11 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 						ColColor3 = LobbyMenu.listCol[3]._color,
 					})
 
-					TriggerEvent("ArenaLobby:playermenu:SetPlayerList", DataSet.PlayerList[currentSelectId], LobbyMenu.MissionPanel.TextureDict, LobbyMenu.MissionPanel.TextureName)
+					TriggerEvent("ArenaLobby:playermenu:SetPlayerList", DataSet.PlayerList[selectRowID])
 
+					LobbyMenu:Visible(false)
 					TriggerEvent("ArenaLobby:playermenu:Show", function()
-						TriggerEvent("ArenaLobby:lobbymenu:Show", focusColume, true)
+						TriggerEvent("ArenaLobby:lobbymenu:Show", 2, true)
 					end)
 				end
 			end

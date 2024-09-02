@@ -6595,38 +6595,63 @@ function MainView:ProcessControl()
         return
     end
 
-    if (IsControlPressed(2, 172)) then
+    if (IsDisabledControlJustPressed(2, 172)) then
         if GlobalGameTimer - self._time > self._delay then
-            self:ButtonDelay()
             Citizen.CreateThread(function()
                 self:GoUp()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 172) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoUp()
+                    end
+                    Citizen.Wait(50)
+                end
                 return
             end)
         end
     end
-    if (IsControlPressed(2, 173)) then
+    if (IsDisabledControlJustPressed(2, 173)) then
         if GlobalGameTimer - self._time > self._delay then
-            self:ButtonDelay()
             Citizen.CreateThread(function()
                 self:GoDown()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 173) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoDown()
+                    end
+                    Citizen.Wait(50)
+                end
                 return
             end)
         end
     end
-    if (IsControlPressed(2, 174)) then
+    if (IsDisabledControlJustPressed(2, 174)) then
         if GlobalGameTimer - self._time > self._delay then
-            self:ButtonDelay()
             Citizen.CreateThread(function()
                 self:GoLeft()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 174) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoLeft()
+                    end
+                    Citizen.Wait(50)
+                end
                 return
             end)
         end
     end
-    if (IsControlPressed(2, 175)) then
+    if (IsDisabledControlJustPressed(2, 175)) then
         if GlobalGameTimer - self._time > self._delay then
             self:ButtonDelay()
             Citizen.CreateThread(function()
                 self:GoRight()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 175) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoRight()
+                    end
+                    Citizen.Wait(50)
+                end
                 return
             end)
         end
@@ -6734,10 +6759,12 @@ end
 
 function MainView:GoUp()
     self.listCol[self._focus]:GoUp()
+    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
 end
 
 function MainView:GoDown()
     self.listCol[self._focus]:GoDown()
+    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
 end
 
 function MainView:GoLeft()
@@ -6996,7 +7023,7 @@ function MinimapPanel:Enabled(_e)
             self.localMapStage = -1
             if self.turnedOn then
                 DisplayRadar(false);
-                SetMapFullScreen(false);
+                RaceGalleryFullscreen(false);
                 self.turnedOn = false;
             end
         end
@@ -7111,18 +7138,18 @@ function MinimapPanel:ProcessMap()
     if self.enabled then
         if not self.turnedOn then
             DisplayRadar(true)
-            SetMapFullScreen(true)
+            RaceGalleryFullscreen(true)
             self.turnedOn = true
         end
     else
         if self.turnedOn then
             DisplayRadar(false)
-            SetMapFullScreen(false)
+            RaceGalleryFullscreen(false)
             self.turnedOn = false
             self:Dispose()
         end
     end
-    SetPlayerBlipPositionThisFrame(-5000.0, -5000.0)
+    SetFakePausemapPlayerPositionThisFrame(-5000.0, -5000.0)
     self:RefreshZoom()
 end
 
@@ -7158,7 +7185,7 @@ function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
     PauseToggleFullscreenMap(1);
-    DisplayRadar(false);
+    DisplayRadar(true);
     RaceGalleryFullscreen(false);
     ClearRaceGalleryBlips();
     self.zoomDistance = 0;
