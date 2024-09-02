@@ -148,6 +148,7 @@ function UpdatePlayerList()
 end
 
 local function OpenPauseMenu()
+	UpdatePlayerState()
 	UpdateInfos()
 	UpdateDetails()
 	UpdatePlayerList()

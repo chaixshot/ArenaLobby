@@ -7,7 +7,6 @@ local ColumnCallbackFunction = {}
 ColumnCallbackFunction[1] = {}
 ColumnCallbackFunction[2] = {}
 
-local menuLoaded = false
 local firstLoad = true
 
 local function CreatePlayerMenuMenu()
@@ -41,15 +40,13 @@ local function CreatePlayerMenuMenu()
 			selectColumnID = 2
 		end
 
-		Citizen.Wait(50)
-		menuLoaded = true
-		Citizen.Wait(50)
+		Citizen.Wait(100)
 		firstLoad = false
 	end
 end
 
 AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -94,7 +91,7 @@ end)
 
 local ClonePedData = {}
 AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -156,7 +153,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -171,7 +168,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -185,7 +182,7 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 

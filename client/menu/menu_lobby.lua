@@ -16,7 +16,6 @@ ColumnCallbackFunction[1] = {}
 ColumnCallbackFunction[2] = {}
 
 local minimapLobbyEnabled = false
-local menuLoaded = false
 local firstLoad = true
 local DataSet = {
 	HeaderMenu = {},
@@ -58,6 +57,10 @@ local function CreateLobbyMenu()
 		item:BlinkDescription(true)
 		LobbyMenu.SettingsColumn:AddSettings(item)
 
+		local crew = CrewTag.New("", true, false, CrewHierarchy.Leader, SColor.HUD_Green)
+		local friend = FriendItem.New("Name", SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE), true, HudColours.HUD_COLOUR_FREEMODE, "BLANK", crew)
+		LobbyMenu.PlayersColumn:AddPlayer(friend)
+
 		LobbyMenu.MissionPanel:UpdatePanelPicture("scaleformui", "lobby_panelbackground")
 		LobbyMenu.MissionPanel:Title("ScaleformUI - Title")
 
@@ -86,15 +89,13 @@ local function CreateLobbyMenu()
 		Citizen.Wait(3000)
 		lobbyMenu.SettingsColumn:ResetFilter()
 		]]
-		Citizen.Wait(50)
-		menuLoaded = true
-		Citizen.Wait(50)
+		Citizen.Wait(100)
 		firstLoad = false
 	end
 end
 
 AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -167,7 +168,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -305,7 +306,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -346,7 +347,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 
@@ -380,7 +381,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
-	while not menuLoaded do
+	while firstLoad do
 		Citizen.Wait(0)
 	end
 	
@@ -442,7 +443,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
-	while not menuLoaded or not LobbyMenu:Visible() do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
 
