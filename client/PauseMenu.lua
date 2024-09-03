@@ -132,8 +132,8 @@ function UpdatePlayerList()
 				-- for i=1, 16-CurrentSize do
 				table.insert(playerList, {
 					name = "empty",
-					rowColor = HudColours.HUD_COLOUR_PAUSE_DESELECT,
-					Colours = HudColours.HUD_COLOUR_PAUSE_DESELECT,
+					rowColor = HudColours.HUD_COLOUR_MENU_GREY_DARK,
+					Colours = HudColours.HUD_COLOUR_MENU_GREY_DARK,
 					LobbyBadgeIcon = 0,
 					Status = false,
 					CrewTag = "",

@@ -210,18 +210,20 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end
 
 		for k, v in pairs(data) do
-			if HostSource == v.source then
-				v.sortOrder = 1
-			elseif v.LobbyBadgeIcon == ScoreRightIconType.SPECTATOR then -- JoinAsSpectatorMode
-				v.sortOrder = 3
-			elseif v.ped then
-				v.sortOrder = 2
-			else
-				v.sortOrder = 4
+			if not v.sortScore then
+				if HostSource == v.source then
+					v.sortScore = 1
+				elseif v.LobbyBadgeIcon == ScoreRightIconType.SPECTATOR then -- JoinAsSpectatorMode
+					v.sortScore = 3
+				elseif v.ped then
+					v.sortScore = 2
+				else
+					v.sortScore = 4
+				end
 			end
 		end
 		table.sort(data, function(a, b)
-			return a.sortOrder < b.sortOrder
+			return a.sortScore < b.sortScore
 		end)
 
 		for k, v in pairs(data) do
