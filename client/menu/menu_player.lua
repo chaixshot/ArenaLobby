@@ -1,4 +1,5 @@
 local PlayerMenu
+local defaultSubtitle = "Template by H@mer"
 
 local selectColumnID = 1
 local selectRowID = 1
@@ -16,7 +17,7 @@ local function CreatePlayerMenuMenu()
 			PlayerListColumn.New("COLUMN PLAYERS", SColor.HUD_Orange),
 			MissionDetailsPanel.New("COLUMN INFO PANEL", SColor.HUD_Green),
 		}
-		PlayerMenu = MainView.New("Lobby Menu", "ScaleformUI for you by Manups4e!", "", "", "")
+		PlayerMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 		PlayerMenu:SetupColumns(columns)
 		PlayerMenu:CanPlayerCloseMenu(true)
 
@@ -45,12 +46,10 @@ local function CreatePlayerMenuMenu()
 	end
 end
 
+---Can't change while PlayerMenu already visible
 AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
-	end
-	if PlayerMenu:Visible() then
-		Citizen.Wait(300)
 	end
 
 	if data.Title then
@@ -110,7 +109,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	if data.LobbyBadgeIcon then
 		LobbyBadge = data.LobbyBadgeIcon
 	elseif GetPlayerFromServerId(data.source) ~= -1 then
-		if not Player(data.source).state.ArenaLobby_IsUsingKeyboard then
+		if not Player(data.source).state.IsUsingKeyboard then
 			LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
 		end
 	end
@@ -123,7 +122,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	end
 
 	local crew = CrewTag.New(data.CrewTag, true, false, CrewHierarchy.Leader, SColor.HUD_Green)
-	local friend = FriendItem.New(data.name, SColor.FromHudColor(data.Colours), true, data.lev, data.Status, crew)
+	local friend = FriendItem.New(data.name, SColor.FromHudColor(data.Colours), true, data.level, data.Status, crew)
 
 	friend.ClonePed = (ClonePedData[data.name] or PlayerPedId())
 	friend:SetLeftIcon(LobbyBadge, false)
@@ -134,7 +133,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	panel:HasHeli(data.HasHeli)
 	panel:HasBoat(data.HasBoat)
 	panel:HasVehicle(data.HasVehicle)
-	panel.RankInfo:RankLevel(data.lev)
+	panel.RankInfo:RankLevel(data.level)
 	-- panel.RankInfo:LowLabel("This is the low label")
 	-- panel.RankInfo:MidLabel("This is the middle label")
 	-- panel.RankInfo:UpLabel("This is the upper label")
@@ -243,6 +242,9 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
 		SetFrontendActive(false)
+		Citizen.Wait(0)
+	end
+	while PlayerMenu.Subtitle == defaultSubtitle do
 		Citizen.Wait(0)
 	end
 

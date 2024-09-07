@@ -124,7 +124,7 @@ function UpdatePlayerList()
 					Colours = (isHost and HudColours.HUD_COLOUR_FREEMODE or ArenaBusy and HudColours.HUD_COLOUR_GREEN or HudColours.HUD_COLOUR_ORANGE),
 					Status = (isHost and "HOST" or ArenaBusy and "PLAYING" or "WAITING"),
 					CrewTag = "",
-					lev = (Player(source).state.PlayerXP or 1),
+					level = (Player(source).state.PlayerXP or 1),
 					ped = ped,
 				})
 			end
@@ -137,7 +137,7 @@ function UpdatePlayerList()
 					LobbyBadgeIcon = 0,
 					Status = false,
 					CrewTag = "",
-					lev = "",
+					level = "",
 					ped = false,
 				})
 			end
@@ -226,7 +226,7 @@ function UpdatePlayerState()
 	StatSetBool(GetHashKey("MP0_DEFAULT_STATS_SET"), true, true)
 	StatSetBool(GetHashKey("MP1_DEFAULT_STATS_SET"), true, true)
 
-	LocalPlayer.state:set("ArenaLobby_IsUsingKeyboard", IsUsingKeyboard(0), true)
+	LocalPlayer.state:set("IsUsingKeyboard", IsUsingKeyboard(0), true)
 	LocalPlayer.state:set("ArenaLobby_MP0_STAMINA", table.pack(StatGetInt(`MP0_STAMINA`))[2], true)
 	LocalPlayer.state:set("ArenaLobby_MP0_STRENGTH", table.pack(StatGetInt(`MP0_STRENGTH`))[2], true)
 	LocalPlayer.state:set("ArenaLobby_MP0_LUNG_CAPACITY", table.pack(StatGetInt(`MP0_LUNG_CAPACITY`))[2], true)

@@ -7,6 +7,7 @@
 -- end)
 
 local LobbyMenu
+local defaultSubtitle = "Template by H@mer"
 
 local selectColumnID = 1
 local selectRowID = 1
@@ -32,7 +33,7 @@ local function CreateLobbyMenu()
 			PlayerListColumn.New("COLUMN PLAYERS", SColor.HUD_Orange),
 			MissionDetailsPanel.New("COLUMN INFO PANEL", SColor.HUD_Green),
 		}
-		LobbyMenu = MainView.New("Lobby Menu", "ScaleformUI for you by Manups4e!", "", "", "")
+		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 		-- LobbyMenu:ShowStoreBackground(true)
 		-- LobbyMenu:StoreBackgroundAnimationSpeed(50)
 		LobbyMenu:SetupColumns(columns)
@@ -94,12 +95,10 @@ local function CreateLobbyMenu()
 	end
 end
 
+---Can't change while LobbyMenu already visible
 AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
-	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
 	end
 
 	local isChange = false
@@ -260,13 +259,13 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			if v.LobbyBadgeIcon then
 				LobbyBadge = v.LobbyBadgeIcon
 			elseif GetPlayerFromServerId(v.source) ~= -1 then
-				if not Player(v.source).state.ArenaLobby_IsUsingKeyboard then
+				if not Player(v.source).state.IsUsingKeyboard then
 					LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
 				end
 			end
 
 			local crew = CrewTag.New(v.CrewTag, true, false, CrewHierarchy.Leader, SColor.HUD_Green)
-			local friend = FriendItem.New(v.name, SColor.FromHudColor(Colours), true, v.rowColor, Status, crew)
+			local friend = FriendItem.New(v.name, SColor.FromHudColor(Colours), true, v.level, Status, crew)
 			
 			friend.ClonePed = v.ped
 			local panel = PlayerStatsPanel.New(v.name, SColor.FromHudColor(v.rowColor or HudColours.HUD_COLOUR_PAUSE_DESELECT))
@@ -274,7 +273,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			panel:HasHeli(v.HasHeli)
 			panel:HasBoat(v.HasBoat)
 			panel:HasVehicle(v.HasVehicle)
-			panel.RankInfo:RankLevel(v.lev)
+			panel.RankInfo:RankLevel(v.level)
 			-- panel.RankInfo:LowLabel("This is the low label")
 			-- panel.RankInfo:MidLabel("This is the middle label")
 			-- panel.RankInfo:UpLabel("This is the upper label")
@@ -289,7 +288,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			
 			if v.ped then
 				friend:Enabled(true)
-				panel:Description("My name is " .. v.name)
+				panel:Description("My name is "..tostring(v.name))
 				friend:SetLeftIcon(LobbyBadge, false)
 				friend:SetRightIcon(BadgeStyle.INV_MISSION, false)
 			else
@@ -515,6 +514,9 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
 		SetFrontendActive(false)
+		Citizen.Wait(0)
+	end
+	while LobbyMenu.Subtitle == defaultSubtitle do
 		Citizen.Wait(0)
 	end
 
