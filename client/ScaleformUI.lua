@@ -5436,7 +5436,7 @@ function PlayerStatsPanel:UpdatePanel(override)
         if pSubT == "LobbyMenu" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL", idx, 0, (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0), self:Title(), self:Description(), self:TitleColor(), self.RankInfo:RankLevel(), self:HasPlane(), self:HasHeli(), self:HasBoat(), self:HasVehicle(), 0, self.RankInfo:LowLabel(), 0, 0, self.RankInfo:MidLabel(), 0, 0, self.RankInfo:UpLabel(), 0, 0, self._hardwareVisible)
             for k, stat in pairs(self.Items) do
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_STAT", idx, stat.idx, 0, stat:Label(), stat:Description(), stat:Value())
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_STAT", idx, stat._idx, 0, stat:Label(), stat:Description(), stat:Value())
             end
             if not self:Description():IsNullOrEmpty() then
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_DESCRIPTION", idx, self:Description(), 0, "", (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0))
@@ -5448,7 +5448,7 @@ function PlayerStatsPanel:UpdatePanel(override)
         elseif pSubT == "PauseMenu" and self.ParentItem.ParentColumn.ParentTab.Visible then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL", idx, 0, (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0), self:Title(), self:Description(), self:TitleColor(), self.RankInfo:RankLevel(), self:HasPlane(), self:HasHeli(), self:HasBoat(), self:HasVehicle(), 0, self.RankInfo:LowLabel(), 0, 0, self.RankInfo:MidLabel(), 0, 0, self.RankInfo:UpLabel(), 0, 0, self._hardwareVisible)
             for k, stat in pairs(self.Items) do
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_STAT", idx, stat.idx, 0, stat:Label(), stat:Description(), stat:Value())
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_STAT", idx, stat._idx, 0, stat:Label(), stat:Description(), stat:Value())
             end
             if not self:Description():IsNullOrEmpty() then
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_DESCRIPTION", idx, self:Description(), 0, "", (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0))
@@ -8881,7 +8881,7 @@ function TabView:Visible(visible)
             while(not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
             if not IsPauseMenuActive() then
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
+                ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY`, true, 0)
                 self.OnPauseMenuOpen(self)
                 AnimpostfxPlay("PauseMenuIn", 0, true)
                 self._firstDrawTick = true
@@ -9788,7 +9788,7 @@ function TabView:GoLeft()
         ScaleformUI.Scaleforms._pauseMenu:HeaderGoLeft()
         local tab = self.Tabs[self.index]
         local _, subT = tab()
-        if subT == "SubmenuTab" then
+        if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
             tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
         end
         self:Index(self.index - 1)
@@ -10002,7 +10002,7 @@ function TabView:GoRight()
         ScaleformUI.Scaleforms._pauseMenu:HeaderGoRight()
         local tab = self.Tabs[self.index]
         local _, subT = tab()
-        if subT == "SubmenuTab" then
+        if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
             tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
         end
         self:Index(self.index + 1)
@@ -19375,8 +19375,8 @@ AddEventHandler("onResourceStop", function(resName)
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             MenuHandler:CloseAndClearHistory()
         end
-        if IsPauseMenuActive() or GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
-            ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, false, 0)
+        if IsPauseMenuActive() or GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_EMPTY` then
+            ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY`, false, 0)
             AnimpostfxStop("PauseMenuIn");
             AnimpostfxPlay("PauseMenuOut", 800, false);
         end
@@ -19403,7 +19403,7 @@ Citizen.CreateThread(function()
 
     while true do
         if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
-            if GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
+            if GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_EMPTY` then
                 SetScriptGfxDrawBehindPausemenu(true)
                 BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS");
                 ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY");
