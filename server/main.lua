@@ -1,4 +1,4 @@
-RegisterServerEvent('ArenaLobby:CreateGame')
+RegisterNetEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
 	data.password = tostring(data.password)
 	
@@ -39,8 +39,8 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 end)
 
 
-CreateThread(function()
-	Wait(2000)
+Citizen.CreateThread(function()
+	Citizen.Wait(2000)
 	local resourceName = GetCurrentResourceName()
 	local currentVersion = GetResourceMetadata(resourceName, "version", 0)
 	PerformHttpRequest("https://api.github.com/repos/chaixshot/ArenaLobby/releases/latest", function (errorCode, resultData, resultHeaders)
