@@ -230,15 +230,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			local Colours = v.Colours
 
 			if GetPlayerFromServerId(v.source) ~= -1 then
-				v.MP0_STAMINA = Player(v.source).state.ArenaLobby_MP0_STAMINA or 0
-				v.MP0_STRENGTH = Player(v.source).state.ArenaLobby_MP0_STRENGTH or 0
-				v.MP0_LUNG_CAPACITY = Player(v.source).state.ArenaLobby_MP0_LUNG_CAPACITY or 0
-				v.MP0_SHOOTING_ABILITY = Player(v.source).state.ArenaLobby_MP0_SHOOTING_ABILITY or 0
-				v.MP0_DRIVING_ABILITY = Player(v.source).state.ArenaLobby_MP0_WHEELIE_ABILITY or 0
-				v.MP0_WHEELIE_ABILITY = Player(v.source).state.ArenaLobby_MP0_WHEELIE_ABILITY or 0
-				v.MP0_FLYING_ABILITY = Player(v.source).state.ArenaLobby_MP0_FLYING_ABILITY or 0
-				v.MP0_STEALTH_ABILITY = Player(v.source).state.ArenaLobby_MP0_STEALTH_ABILITY or 0
-				v.MPPLY_KILLS_PLAYERS = Player(v.source).state.ArenaLobby_MP0_HIGHEST_MENTAL_STATE or 0
+				v.MP0_STAMINA = Player(v.source).state.AL_MP0_STAMINA or 0
+				v.MP0_STRENGTH = Player(v.source).state.AL_MP0_STRENGTH or 0
+				v.MP0_LUNG_CAPACITY = Player(v.source).state.AL_MP0_LUNG_CAPACITY or 0
+				v.MP0_SHOOTING_ABILITY = Player(v.source).state.AL_MP0_SHOOTING_ABILITY or 0
+				v.MP0_DRIVING_ABILITY = Player(v.source).state.AL_MP0_WHEELIE_ABILITY or 0
+				v.MP0_WHEELIE_ABILITY = Player(v.source).state.AL_MP0_WHEELIE_ABILITY or 0
+				v.MP0_FLYING_ABILITY = Player(v.source).state.AL_MP0_FLYING_ABILITY or 0
+				v.MP0_STEALTH_ABILITY = Player(v.source).state.AL_MP0_STEALTH_ABILITY or 0
+				v.MPPLY_KILLS_PLAYERS = Player(v.source).state.AL_MP0_HIGHEST_MENTAL_STATE or 0
 			else
 				v.MP0_STAMINA = GetRandomIntInRange(10, 100)
 				v.MP0_STRENGTH = GetRandomIntInRange(10, 100)

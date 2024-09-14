@@ -148,62 +148,53 @@ function UpdatePlayerList()
 end
 
 local function OpenPauseMenu()
-	UpdatePlayerState()
-	UpdateInfos()
-	UpdateDetails()
-	UpdatePlayerList()
+	local isSpectate = false
 
-	TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
+	if GetResourceState("DarkRP_Racing") == "started" then
+		if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
+			isSpectate = true
+		end
+	end
+	if GetResourceState("DarkRP_Bomb") == "started" then
+		if exports["DarkRP_Bomb"]:IsPlayerOnSpectate() then
+			isSpectate = true
+		end
+	end
+	if GetResourceState("DarkRDarkRP_TeamdeathmacthP_Racing") == "started" then
+		if exports["DarkRP_Teamdeathmacth"]:IsPlayerOnSpectate() then
+			isSpectate = true
+		end
+	end
+	if GetResourceState("DarkRP_CaptureTheFlag") == "started" then
+		if exports["DarkRP_CaptureTheFlag"]:IsPlayerOnSpectate() then
+			isSpectate = true
+		end
+	end
+
+	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and not isSpectate then
+		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() and IsGameplayCamRendering() then
+			UpdatePlayerState()
+			UpdateInfos()
+			UpdateDetails()
+			UpdatePlayerList()
+
+			TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
+		end
+	end
 end
 
-AddEventHandler("ArenaLobby:OpenPauseMenu", function()
-	OpenPauseMenu()
-end)
+AddEventHandler("ArenaLobby:OpenPauseMenu", OpenPauseMenu)
 
-RegisterCommand("+ArenaLobby_PauseMenu_ESC", function()
-	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
-			return
-		end
-		if exports["DarkRP_Bomb"]:IsPlayerOnSpectate() then
-			return
-		end
-		if exports["DarkRP_Teamdeathmacth"]:IsPlayerOnSpectate() then
-			return
-		end
-		if exports["DarkRP_CaptureTheFlag"]:IsPlayerOnSpectate() then
-			return
-		end
+RegisterCommand("+ArenaLobby_PauseMenu", OpenPauseMenu, false)
+RegisterCommand("-ArenaLobby_PauseMenu", function() end, false)
+RegisterKeyMapping("+ArenaLobby_PauseMenu", "ArenaLobby PauseMenu", "keyboard", "ESCAPE")
 
-		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
-			OpenPauseMenu()
-		end
-	end
-end, false)
-RegisterCommand("-ArenaLobby_PauseMenu_ESC", function()
-end, false)
-RegisterKeyMapping("+ArenaLobby_PauseMenu_ESC", "ArenaLobby PauseMenu ESC", "keyboard", "ESCAPE")
-
-RegisterCommand("+ArenaLobby_PauseMenu_P", function()
-	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
-			OpenPauseMenu()
-		end
-	end
-end, false)
-RegisterCommand("-ArenaLobby_PauseMenu_P", function()
-end, false)
+RegisterCommand("+ArenaLobby_PauseMenu_P", OpenPauseMenu, false)
+RegisterCommand("-ArenaLobby_PauseMenu_P", function() end, false)
 RegisterKeyMapping("+ArenaLobby_PauseMenu_P", "ArenaLobby PauseMenu P", "keyboard", "P")
 
-RegisterCommand("+ArenaLobby_PauseMenu_Xbox", function()
-	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
-			OpenPauseMenu()
-		end
-	end
-end, false)
-RegisterCommand("-ArenaLobby_PauseMenu_Xbox", function()
-end, false)
+RegisterCommand("+ArenaLobby_PauseMenu_Xbox", OpenPauseMenu, false)
+RegisterCommand("-ArenaLobby_PauseMenu_Xbox", function() end, false)
 RegisterKeyMapping("+ArenaLobby_PauseMenu_Xbox", "ArenaLobby PauseMenu Xbox", "PAD_ANALOGBUTTON", "START_INDEX")
 
 local DisablePauseMenu = false
@@ -235,12 +226,12 @@ function UpdatePlayerState()
 	StatSetBool(GetHashKey("MP1_DEFAULT_STATS_SET"), true, true)
 
 	LocalPlayer.state:set("IsUsingKeyboard", IsUsingKeyboard(0), true)
-	LocalPlayer.state:set("ArenaLobby_MP0_STAMINA", table.pack(StatGetInt(`MP0_STAMINA`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_STRENGTH", table.pack(StatGetInt(`MP0_STRENGTH`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_LUNG_CAPACITY", table.pack(StatGetInt(`MP0_LUNG_CAPACITY`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_SHOOTING_ABILITY", table.pack(StatGetInt(`MP0_SHOOTING_ABILITY`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_WHEELIE_ABILITY", table.pack(StatGetInt(`MP0_WHEELIE_ABILITY`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_FLYING_ABILITY", table.pack(StatGetInt(`MP0_FLYING_ABILITY`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_STEALTH_ABILITY", table.pack(StatGetInt(`MP0_STEALTH_ABILITY`))[2], true)
-	LocalPlayer.state:set("ArenaLobby_MP0_HIGHEST_MENTAL_STATE", table.pack(StatGetInt(`MP0_HIGHEST_MENTAL_STATE`))[2], true)
+	LocalPlayer.state:set("AL_MP0_STAMINA", select(2, StatGetInt(`MP0_STAMINA`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_STRENGTH", select(2, StatGetInt(`MP0_STRENGTH`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_LUNG_CAPACITY", select(2, StatGetInt(`MP0_LUNG_CAPACITY`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_SHOOTING_ABILITY", select(2, StatGetInt(`MP0_SHOOTING_ABILITY`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_WHEELIE_ABILITY", select(2, StatGetInt(`MP0_WHEELIE_ABILITY`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_FLYING_ABILITY", select(2, StatGetInt(`MP0_FLYING_ABILITY`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_STEALTH_ABILITY", select(2, StatGetInt(`MP0_STEALTH_ABILITY`, -1)), true)
+	LocalPlayer.state:set("AL_MP0_HIGHEST_MENTAL_STATE", select(2, StatGetInt(`MP0_HIGHEST_MENTAL_STATE`, -1)), true)
 end
