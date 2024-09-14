@@ -162,11 +162,19 @@ end)
 
 RegisterCommand("+ArenaLobby_PauseMenu_ESC", function()
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
-		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") then
-			if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
-				return
-			end
+		if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
+			return
 		end
+		if exports["DarkRP_Bomb"]:IsPlayerOnSpectate() then
+			return
+		end
+		if exports["DarkRP_Teamdeathmacth"]:IsPlayerOnSpectate() then
+			return
+		end
+		if exports["DarkRP_CaptureTheFlag"]:IsPlayerOnSpectate() then
+			return
+		end
+
 		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() then
 			OpenPauseMenu()
 		end
