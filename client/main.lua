@@ -34,7 +34,7 @@ function OpenGameMenu(withXbox)
 		"DarkRP_Squidglass",
 		"DarkRP_Squidlight",
 		"DarkRP_Teamdeathmacth",
-		"DarkRP_ZombieInfection",
+		"DarkRP_ZombieSurvival",
 	}
 	for k, v in pairs(GameList) do
 		if GetResourceState(v) ~= "started" then

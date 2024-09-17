@@ -14,8 +14,8 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 		TriggerEvent("DarkRP_Deathmacth:CreateArena", source, data.password, data.option1, data.option2, data.option3)
 	elseif data.gamename == "DarkRP_Bloodbowl" then
 		TriggerEvent("DarkRP_Bloodbowl:CreateArena", source, data.password, data.option1, data.option2, data.option3, data.option4, data.option5, data.option6)
-	elseif data.gamename == "DarkRP_ZombieInfection" then
-		TriggerEvent("DarkRP_ZombieInfection:CreateArena", source, data.password, data.option1, data.option2)
+	elseif data.gamename == "DarkRP_ZombieSurvival" then
+		TriggerEvent("DarkRP_ZombieSurvival:CreateArena", source, data.password, data.option1, data.option2, data.option3)
 	elseif data.gamename == "DarkRP_Squidlight" then
 		TriggerEvent("DarkRP_Squidlight:CreateArena", source, data.password)
 	elseif data.gamename == "DarkRP_Squidglass" then

@@ -170,6 +170,11 @@ local function OpenPauseMenu()
 			isSpectate = true
 		end
 	end
+	if GetResourceState("DarkRP_ZombieSurvival") == "started" then
+		if exports["DarkRP_ZombieSurvival"]:IsPlayerOnSpectate() then
+			isSpectate = true
+		end
+	end
 
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and not isSpectate then
 		if not IsPauseMenuActive() and not IsPlayerSwitchInProgress() and IsGameplayCamRendering() then
