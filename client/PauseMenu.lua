@@ -1,3 +1,11 @@
+local function GetCurrentRank()
+	if GetResourceState("DarkRP_XP") == "started" then -- DarkRP_XP request.
+		return exports.DarkRP_XP:GetCurrentPlayerLevel()
+	else
+		return 1
+	end
+end
+
 function UpdateDetails()
 	if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then -- Racing call
 		exports["DarkRP_Racing"]:UpdateDetails()
@@ -15,7 +23,7 @@ function UpdateDetails()
 			SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
 			SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
 			Col1 = "🕹️  GAME",
-			Col2 = "PLAYERS " .. CurrentSize .. " OF " .. MaximumSize,
+			Col2 = "PLAYERS "..CurrentSize.." OF "..MaximumSize,
 			Col3 = "INFO",
 			ColColor1 = HudColours.HUD_COLOUR_FREEMODE,
 			ColColor2 = HudColours.HUD_COLOUR_FREEMODE,
@@ -89,7 +97,7 @@ local function UpdateInfos()
 			},
 			{
 				LeftLabel = "Time Left",
-				RightLabel = DecimalsToMinutes(MaximumArenaTime) .. " Minute",
+				RightLabel = DecimalsToMinutes(MaximumArenaTime).." Minute",
 				BadgeStyle = BadgeStyle.INFO,
 				Colours = false,
 			},
@@ -124,11 +132,11 @@ function UpdatePlayerList()
 					Colours = (isHost and HudColours.HUD_COLOUR_FREEMODE or ArenaBusy and HudColours.HUD_COLOUR_GREEN or HudColours.HUD_COLOUR_ORANGE),
 					Status = (isHost and "HOST" or ArenaBusy and "PLAYING" or "WAITING"),
 					CrewTag = "",
-					level = (Player(source).state.PlayerXP or 1),
+					level = DecorGetInt(ped, "AL_Rank"),
 					ped = ped,
 				})
 			end
-			for i=1, MaximumSize-CurrentSize do
+			for i = 1, MaximumSize - CurrentSize do
 				-- for i=1, 16-CurrentSize do
 				table.insert(playerList, {
 					name = "empty",
@@ -206,6 +214,7 @@ local DisablePauseMenu = false
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Citizen.Wait(100)
+
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() then
 		if ArenaAPI:GetPlayerArena() == data.ArenaIdentifier then
 			UpdatePlayerState()
@@ -213,12 +222,15 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 				UpdatePlayerList()
 			end
 		end
+
 		DisablePauseMenu = false
 		Citizen.Wait(1)
 		DisablePauseMenu = true
+
 		while DisablePauseMenu do
 			DisableControlAction(0, 200, true)
 			DisableControlAction(0, 199, true)
+
 			Citizen.Wait(0)
 		end
 	else
@@ -226,17 +238,30 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	end
 end)
 
+DecorRegister("IsUsingKeyboard", 3)
+DecorRegister("AL_Rank", 2)
+DecorRegister("AL_MP0_STAMINA", 2)
+DecorRegister("AL_MP0_STRENGTH", 2)
+DecorRegister("AL_MP0_LUNG_CAPACITY", 2)
+DecorRegister("AL_MP0_SHOOTING_ABILITY", 2)
+DecorRegister("AL_MP0_WHEELIE_ABILITY", 2)
+DecorRegister("AL_MP0_FLYING_ABILITY", 2)
+DecorRegister("AL_MP0_STEALTH_ABILITY", 2)
+DecorRegister("AL_MP0_HIGHEST_MENTAL_STATE", 2)
 function UpdatePlayerState()
+	local playerPed = PlayerPedId()
+
 	StatSetBool(GetHashKey("MP0_DEFAULT_STATS_SET"), true, true)
 	StatSetBool(GetHashKey("MP1_DEFAULT_STATS_SET"), true, true)
 
-	LocalPlayer.state:set("IsUsingKeyboard", IsUsingKeyboard(0), true)
-	LocalPlayer.state:set("AL_MP0_STAMINA", select(2, StatGetInt(`MP0_STAMINA`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_STRENGTH", select(2, StatGetInt(`MP0_STRENGTH`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_LUNG_CAPACITY", select(2, StatGetInt(`MP0_LUNG_CAPACITY`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_SHOOTING_ABILITY", select(2, StatGetInt(`MP0_SHOOTING_ABILITY`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_WHEELIE_ABILITY", select(2, StatGetInt(`MP0_WHEELIE_ABILITY`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_FLYING_ABILITY", select(2, StatGetInt(`MP0_FLYING_ABILITY`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_STEALTH_ABILITY", select(2, StatGetInt(`MP0_STEALTH_ABILITY`, -1)), true)
-	LocalPlayer.state:set("AL_MP0_HIGHEST_MENTAL_STATE", select(2, StatGetInt(`MP0_HIGHEST_MENTAL_STATE`, -1)), true)
+	DecorSetBool(playerPed, "IsUsingKeyboard", IsUsingKeyboard(0))
+	DecorSetInt(playerPed, "AL_Rank", GetCurrentRank())
+	DecorSetInt(playerPed, "AL_MP0_STAMINA", select(2, StatGetInt(`MP0_STAMINA`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_STRENGTH", select(2, StatGetInt(`MP0_STRENGTH`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_LUNG_CAPACITY", select(2, StatGetInt(`MP0_LUNG_CAPACITY`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_SHOOTING_ABILITY", select(2, StatGetInt(`MP0_SHOOTING_ABILITY`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_WHEELIE_ABILITY", select(2, StatGetInt(`MP0_WHEELIE_ABILITY`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_FLYING_ABILITY", select(2, StatGetInt(`MP0_FLYING_ABILITY`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_STEALTH_ABILITY", select(2, StatGetInt(`MP0_STEALTH_ABILITY`, -1)))
+	DecorSetInt(playerPed, "AL_MP0_HIGHEST_MENTAL_STATE", select(2, StatGetInt(`MP0_HIGHEST_MENTAL_STATE`, -1)))
 end

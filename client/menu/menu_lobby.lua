@@ -48,7 +48,7 @@ local function CreateLobbyMenu()
 		local headshot = GetPedheadshotTxdString(mugshot)
 		AddReplaceTexture("ArenaLobby", "LobbyHeadshot", headshot, headshot)
 		LobbyMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") -- lobbyMenu:CrewPicture used to add a picture on the left of the HeaderPicture
-		UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform.. 
+		UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform..
 		]]
 
 		LobbyMenu:CanPlayerCloseMenu(true)
@@ -105,7 +105,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 	if #data ~= #DataSet.HeaderMenu then
 		isChange = true
 	else
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			if not DataSet.HeaderMenu[k] then
 				isChange = true
 				break
@@ -117,7 +117,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 			end
 		end
 	end
-	
+
 	if isChange then
 		if data.Title then
 			LobbyMenu.Title = data.Title
@@ -181,12 +181,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	if #data ~= #DataSet.PlayerList then
 		isChange = true
 	else
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			if not DataSet.PlayerList[k] then
 				isChange = true
 				break
 			else
-				for kk,vv in pairs(v) do
+				for kk, vv in pairs(v) do
 					if kk ~= "callbackFunction" and kk ~= "ped" and DataSet.PlayerList[k][kk] and DataSet.PlayerList[k][kk] ~= vv then
 						isChange = true
 						break
@@ -202,7 +202,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	if isChange then
 		ColumnCallbackFunction[2] = {}
 		LobbyMenu.PlayersColumn:Clear()
-		
+
 		local HostSource = -1
 		if ArenaAPI:IsPlayerInAnyArena() then
 			HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
@@ -226,19 +226,16 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		end)
 
 		for k, v in pairs(data) do
-			local Status = v.Status
-			local Colours = v.Colours
-
 			if GetPlayerFromServerId(v.source) ~= -1 then
-				v.MP0_STAMINA = Player(v.source).state.AL_MP0_STAMINA or 0
-				v.MP0_STRENGTH = Player(v.source).state.AL_MP0_STRENGTH or 0
-				v.MP0_LUNG_CAPACITY = Player(v.source).state.AL_MP0_LUNG_CAPACITY or 0
-				v.MP0_SHOOTING_ABILITY = Player(v.source).state.AL_MP0_SHOOTING_ABILITY or 0
-				v.MP0_DRIVING_ABILITY = Player(v.source).state.AL_MP0_WHEELIE_ABILITY or 0
-				v.MP0_WHEELIE_ABILITY = Player(v.source).state.AL_MP0_WHEELIE_ABILITY or 0
-				v.MP0_FLYING_ABILITY = Player(v.source).state.AL_MP0_FLYING_ABILITY or 0
-				v.MP0_STEALTH_ABILITY = Player(v.source).state.AL_MP0_STEALTH_ABILITY or 0
-				v.MPPLY_KILLS_PLAYERS = Player(v.source).state.AL_MP0_HIGHEST_MENTAL_STATE or 0
+				v.MP0_STAMINA = DecorGetInt(v.ped, "AL_MP0_STAMINA")
+				v.MP0_STRENGTH = DecorGetInt(v.ped, "AL_MP0_STRENGTH")
+				v.MP0_LUNG_CAPACITY = DecorGetInt(v.ped, "AL_MP0_LUNG_CAPACITY")
+				v.MP0_SHOOTING_ABILITY = DecorGetInt(v.ped, "AL_MP0_SHOOTING_ABILITY")
+				v.MP0_DRIVING_ABILITY = DecorGetInt(v.ped, "AL_MP0_WHEELIE_ABILITY")
+				v.MP0_WHEELIE_ABILITY = DecorGetInt(v.ped, "AL_MP0_WHEELIE_ABILITY")
+				v.MP0_FLYING_ABILITY = DecorGetInt(v.ped, "AL_MP0_FLYING_ABILITY")
+				v.MP0_STEALTH_ABILITY = DecorGetInt(v.ped, "AL_MP0_STEALTH_ABILITY")
+				v.MPPLY_KILLS_PLAYERS = DecorGetInt(v.ped, "AL_MP0_HIGHEST_MENTAL_STATE")
 			else
 				v.MP0_STAMINA = GetRandomIntInRange(10, 100)
 				v.MP0_STRENGTH = GetRandomIntInRange(10, 100)
@@ -259,14 +256,14 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			if v.LobbyBadgeIcon then
 				LobbyBadge = v.LobbyBadgeIcon
 			elseif GetPlayerFromServerId(v.source) ~= -1 then
-				if not Player(v.source).state.IsUsingKeyboard then
+				if not DecorGetBool(v.ped, "IsUsingKeyboard") then
 					LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
 				end
 			end
 
 			local crew = CrewTag.New(v.CrewTag, true, false, CrewHierarchy.Leader, SColor.HUD_Green)
-			local friend = FriendItem.New(v.name, SColor.FromHudColor(Colours), true, v.level, Status, crew)
-			
+			local friend = FriendItem.New(v.name, SColor.FromHudColor(v.Colours), true, v.level, v.Status, crew)
+
 			friend.ClonePed = v.ped
 			local panel = PlayerStatsPanel.New(v.name, SColor.FromHudColor(v.rowColor or HudColours.HUD_COLOUR_PAUSE_DESELECT))
 			panel:HasPlane(v.HasPlane)
@@ -285,7 +282,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			panel:AddStat(PlayerStatsPanelStatItem.New("Flying", GetSkillFlyingDescription(v.MP0_FLYING_ABILITY), v.MP0_FLYING_ABILITY))
 			panel:AddStat(PlayerStatsPanelStatItem.New("Mental State", GetSkillMentalStateDescription(v.MPPLY_KILLS_PLAYERS), v.MPPLY_KILLS_PLAYERS))
 			friend:AddPanel(panel)
-			
+
 			if v.ped then
 				friend:Enabled(true)
 				panel:Description("My name is "..tostring(v.name))
@@ -308,7 +305,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 		if LobbyMenu:Visible() then
 			LobbyMenu.PlayersColumn:refreshColumn()
 		end
-		DataSet.PlayerList = table.deepcopy(data)
+		DataSet.PlayerList = table.clone(data)
 	end
 end)
 
@@ -324,12 +321,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	if #data ~= #DataSet.Info then
 		isChange = true
 	else
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			if not DataSet.Info[k] then
 				isChange = true
 				break
 			else
-				for kk,vv in pairs(v) do
+				for kk, vv in pairs(v) do
 					if DataSet.Info[k][kk] and DataSet.Info[k][kk] ~= vv then
 						isChange = true
 						break
@@ -341,18 +338,18 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 			end
 		end
 	end
-	
+
 	if isChange then
-		for i=1, #LobbyMenu.MissionPanel.Items do
+		for i = 1, #LobbyMenu.MissionPanel.Items do
 			LobbyMenu.MissionPanel:RemoveItem(#LobbyMenu.MissionPanel.Items)
 		end
 
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			local detailItem = UIMenuFreemodeDetailsItem.New(v.LeftLabel, v.RightLabel, false, v.BadgeStyle, v.Colours)
 			LobbyMenu.MissionPanel:AddItem(detailItem)
 		end
 
-		DataSet.Info = table.deepcopy(data)
+		DataSet.Info = table.clone(data)
 	end
 end)
 
@@ -368,7 +365,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 	if #data ~= #DataSet.InfoTitle then
 		isChange = true
 	else
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			if not DataSet.InfoTitle[k] then
 				isChange = true
 				break
@@ -380,7 +377,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 			end
 		end
 	end
-	
+
 	if isChange then
 		if data.Title then
 			LobbyMenu.MissionPanel:Title(data.Title)
@@ -400,17 +397,17 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	if LobbyMenu:Visible() then
 		Citizen.Wait(300)
 	end
-	
+
 	local isChange = false
 	if #data ~= #DataSet.SettingsColumn then
 		isChange = true
 	else
-		for k,v in pairs(data) do
+		for k, v in pairs(data) do
 			if not DataSet.SettingsColumn[k] then
 				isChange = true
 				break
 			else
-				for kk,vv in pairs(v) do
+				for kk, vv in pairs(v) do
 					if kk ~= "callbackFunction" and DataSet.SettingsColumn[k][kk] and DataSet.SettingsColumn[k][kk] ~= vv then
 						isChange = true
 						break
@@ -422,12 +419,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			end
 		end
 	end
-	
+
 	if isChange then
 		ColumnCallbackFunction[1] = {}
 		LobbyMenu.SettingsColumn:Clear()
-		
-		for k,v in pairs(data) do
+
+		for k, v in pairs(data) do
 			local item
 			if v.type == "List" then
 				item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
@@ -454,7 +451,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 		if LobbyMenu:Visible() then
 			LobbyMenu.SettingsColumn:refreshColumn()
 		end
-		DataSet.SettingsColumn = table.deepcopy(data)
+		DataSet.SettingsColumn = table.clone(data)
 	end
 end)
 
@@ -474,7 +471,7 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 		if minimapLobbyEnabled then
 			LobbyMenu.Minimap.MinimapRoute.RouteColor = HudColours.HUD_COLOUR_YELLOW
 			LobbyMenu.Minimap.MinimapRoute.MapThickness = 17
-			for k,v in pairs(data) do
+			for k, v in pairs(data) do
 				local blipColor = 5
 				if v.path == 2 then
 					blipColor = 3
@@ -500,7 +497,7 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 		end
 		LobbyMenu.Minimap:Enabled(minimapLobbyEnabled)
 	end
-	
+
 	table.insert(LobbyMenu.InstructionalButtons, button)
 end)
 
@@ -572,7 +569,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 							end,
 						})
 					end
-					
+
 					TriggerEvent("ArenaLobby:playermenu:SettingsColumn", settingList)
 					TriggerEvent("ArenaLobby:playermenu:SetInfo", DataSet.Info)
 					TriggerEvent("ArenaLobby:playermenu:SetInfoTitle", {

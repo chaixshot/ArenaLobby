@@ -109,7 +109,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	if data.LobbyBadgeIcon then
 		LobbyBadge = data.LobbyBadgeIcon
 	elseif GetPlayerFromServerId(data.source) ~= -1 then
-		if not Player(data.source).state.IsUsingKeyboard then
+		if not DecorGetBool(data.ped, "IsUsingKeyboard") then
 			LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
 		end
 	end
@@ -124,7 +124,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	local crew = CrewTag.New(data.CrewTag, true, false, CrewHierarchy.Leader, SColor.HUD_Green)
 	local friend = FriendItem.New(data.name, SColor.FromHudColor(data.Colours), true, data.level, data.Status, crew)
 
-	friend.ClonePed = (ClonePedData[data.name] or PlayerPedId())
+	friend.ClonePed = data.ped
 	friend:SetLeftIcon(LobbyBadge, false)
 	friend:AddPedToPauseMenu(friend.ClonePed) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
 	local panel = PlayerStatsPanel.New(data.name, SColor.FromHudColor(data.rowColor or HudColours.HUD_COLOUR_VIDEO_EDITOR_AMBIENT))

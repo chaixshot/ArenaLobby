@@ -1,7 +1,7 @@
 RegisterNetEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
 	data.password = tostring(data.password)
-	
+
 	if data.gamename == "DarkRP_Derby" then
 		TriggerEvent("DarkRP_Derby:CreateArena", source, data.password)
 	elseif data.gamename == "DarkRP_CaptureTheFlag" then
@@ -21,10 +21,11 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 	elseif data.gamename == "DarkRP_Squidglass" then
 		TriggerEvent("DarkRP_Squidglass:CreateArena", source, data.password)
 	elseif data.gamename == "DarkRP_Racing" then
-		local source=source
-		local data=data
-		TriggerEvent("DarkRP_Racing:CreateArena", source, data.password, function()
-			TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gamename, data.gameLabel..(data.option1~=nil and " ("..data.option1..")" or ""))
+		local _source = source
+		local _data = data
+
+		TriggerEvent("DarkRP_Racing:CreateArena", _source, _data.password, function()
+			TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(_source), _data.gamename, _data.gameLabel..(_data.option1 ~= nil and " (".._data.option1..")" or ""))
 		end)
 	elseif data.gamename == "DarkRP_CreateRacing" then
 		TriggerEvent("DarkRP_Racing:CreateMap", source)
@@ -33,17 +34,18 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 	elseif data.gamename == "DarkRP_Aimlab" then
 		TriggerEvent("DarkRP_Aimlab:CreateArena", source)
 	end
+
 	if not data.gamename == "DarkRP_Racing" then
-		TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gamename, data.gameLabel..(data.option1~=nil and " ("..data.option1..")" or ""))
+		TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gamename, data.gameLabel..(data.option1 ~= nil and " ("..data.option1..")" or ""))
 	end
 end)
 
-
 Citizen.CreateThread(function()
 	Citizen.Wait(2000)
+
 	local resourceName = GetCurrentResourceName()
 	local currentVersion = GetResourceMetadata(resourceName, "version", 0)
-	PerformHttpRequest("https://api.github.com/repos/chaixshot/ArenaLobby/releases/latest", function (errorCode, resultData, resultHeaders)
+	PerformHttpRequest("https://api.github.com/repos/chaixshot/ArenaLobby/releases/latest", function(errorCode, resultData, resultHeaders)
 		if errorCode == 200 then
 			local data = json.decode(resultData)
 			if currentVersion ~= data.name then

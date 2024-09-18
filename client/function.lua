@@ -1,78 +1,68 @@
 function RequestStreamedTextureDictC(textureDict)
 	if not HasStreamedTextureDictLoaded(textureDict) then
-		local timer = 1000
+		local timeout = GetNetworkTime()
 		RequestStreamedTextureDict(textureDict, true)
-		while not HasStreamedTextureDictLoaded(textureDict) and timer > 0 do
-			timer = timer-1
+		while not HasStreamedTextureDictLoaded(textureDict) and GetNetworkTime()-timeout < 10000 do
 			Citizen.Wait(100)
 		end
+		
+		Citizen.SetTimeout(1000, function()
+			SetStreamedTextureDictAsNoLongerNeeded(textureDict)
+		end)
 	end
 end
 
-function RequestModelC(model, cb)
-	local RealName = model
+function RequestModelC(model)
 	local model = (type(model) == 'number' and model or GetHashKey(model))
 
 	if not HasModelLoaded(model) then
-		if IsModelInCdimage(model) and IsModelValid(model) then
-			local timer = 1000
-			RequestModel(model)
-			while not HasModelLoaded(model) and timer > 0 do
-				timer = timer-1
-				Citizen.Wait(100)
-			end
+		local timeout = GetNetworkTime()
+		RequestModel(model)
+		while not HasModelLoaded(model) and GetNetworkTime()-timeout < 10000 do
+			Citizen.Wait(0)
 		end
-	end
-	SetTimeout(1000, function()
-		SetModelAsNoLongerNeeded(model)
-	end)
-
-	if cb ~= nil then
-		cb()
 	end
 end
 
-SpawnLocalObject = function(model, coords, cb)
+SpawnLocalObject = function(model, coords)
 	local model = (type(model) == 'number' and model or GetHashKey(model))
 	RequestModelC(model)
 
 	local object = CreateObject(model, coords.x, coords.y, coords.z, false, false, false)
 	DisableCamCollisionForEntity(object)
 	DisableCamCollisionForObject(object)
-	if cb ~= nil then
-		cb(object)
-	else
-		return object
-	end
+
+	return object
 end
 
 ShowFloatingHelpNotification = function(msg, coords)
 	AddTextEntry('FloatingHelpNotification', msg)
-    SetFloatingHelpTextWorldPosition(1, coords)
-    SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
-    BeginTextCommandDisplayHelp('FloatingHelpNotification')
-    EndTextCommandDisplayHelp(2, false, false, -1)
+	SetFloatingHelpTextWorldPosition(1, coords)
+	SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
+	BeginTextCommandDisplayHelp('FloatingHelpNotification')
+	EndTextCommandDisplayHelp(2, false, false, -1)
 end
 
 function DecimalsToMinutes(dec)
 	if dec then
 		local ms = tonumber(dec)
-		return math.floor(ms / 60) .. ":" .. (ms % 60)
+		return math.floor(ms / 60)..":"..(ms % 60)
 	else
 		return 0
 	end
 end
 
 function string.split(inputstr, sep)
-    if sep == nil then
-        sep = "%s"
-    end
-    local t={} ; i=1
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        t[i] = str
-        i = i + 1
-    end
-    return t
+	if sep == nil then
+		sep = "%s"
+	end
+	local t = {}
+	local i = 1
+	for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+		t[i] = str
+		i += 1
+	end
+	return t
 end
 
 function GetSkillStaminaDescription(value)
@@ -173,17 +163,17 @@ function GetSkillMentalStateDescription(value)
 	end
 end
 
-function table.deepcopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            copy[table.deepcopy(orig_key)] = table.deepcopy(orig_value)
-        end
-        setmetatable(copy, table.deepcopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
-    end
-    return copy
+function table.clone(orig)
+	local orig_type = type(orig)
+	local copy
+	if orig_type == 'table' then
+		copy = {}
+		for orig_key, orig_value in next, orig, nil do
+			copy[table.clone(orig_key)] = table.clone(orig_value)
+		end
+		setmetatable(copy, table.clone(getmetatable(orig)))
+	else  -- number, string, boolean, etc
+		copy = orig
+	end
+	return copy
 end

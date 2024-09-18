@@ -1,12 +1,16 @@
 Scaleform = {}
 
-scaleform = {}
+local scaleform = {}
 scaleform.__index = scaleform
 
 function Scaleform.Request(Name)
     local ScaleformHandle = RequestScaleformMovie(Name)
-    while not HasScaleformMovieLoaded(ScaleformHandle) do Citizen.Wait(0) end
-    local data = { name = Name, handle = ScaleformHandle }
+    local timer = (Config.Game.ScaleformRequestTimeout or 1000)
+    while not HasScaleformMovieLoaded(ScaleformHandle) and timer > 0 do
+        timer = timer-1
+        Citizen.Wait(0)
+    end
+    local data = {name = Name, handle = ScaleformHandle}
     return setmetatable(data, scaleform)
 end
 
@@ -17,12 +21,12 @@ function scaleform:CallFunction(theFunction, ...)
         for i = 1, #arg do
             local sType = type(arg[i])
             if sType == "boolean" then
-                PushScaleformMovieMethodParameterBool(arg[i])
+                ScaleformMovieMethodAddParamBool(arg[i])
             elseif sType == "number" then
                 if math.type(arg[i]) == "integer" then
-                    PushScaleformMovieMethodParameterInt(arg[i])
+                    ScaleformMovieMethodAddParamInt(arg[i])
                 else
-                    PushScaleformMovieMethodParameterFloat(arg[i])
+                    ScaleformMovieMethodAddParamFloat(arg[i])
                 end
             elseif sType == "string" then
 				ScaleformMovieMethodAddParamTextureNameString(arg[i])
@@ -33,7 +37,7 @@ function scaleform:CallFunction(theFunction, ...)
 end
 
 function scaleform:Draw2D()
-    DrawScaleformMovieFullscreen(self.handle, 255, 255, 255, 255)
+    DrawScaleformMovieFullscreen(self.handle, 255, 255, 255, 255, 0)
 end
 
 function scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
@@ -42,11 +46,11 @@ function scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
     local y = locx / Height
     local width = sizex / Width
     local height = sizey / Height
-    DrawScaleformMovie(self.handle, x + (width / 2.0), y + (height / 2.0), width, height, 255, 255, 255, 255)
+    DrawScaleformMovie(self.handle, x + (width / 2.0), y + (height / 2.0), width, height, 255, 255, 255, 255, 0)
 end
 
 function scaleform:Render3D(pos, rot, scalex, scaley, scalez)
-    DrawScaleformMovie_3dNonAdditive(self.handle, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
+    DrawScaleformMovie_3dSolid(self.handle, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
 end
 
 function scaleform:Render3DAdditive(pos, rot, scalex, scaley, scalez)

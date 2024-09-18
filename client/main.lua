@@ -8,10 +8,12 @@ local function CheckUiTime(type, time)
 		timeUI[type] = GetGameTimer()
 		return true
 	end
-	if (GetGameTimer() - timeUI[type]) > time then
+	
+	if GetGameTimer() - timeUI[type] > time then
 		timeUI[type] = GetGameTimer()
 		return true
 	end
+
 	return false
 end
 
@@ -82,9 +84,10 @@ function OpenGameMenu(withXbox)
 		form:CallFunction("SET_DATA_SLOT", 2, "~INPUTGROUP_FRONTEND_DPAD_ALL~", "Change")
 		form:CallFunction("DRAW_INSTRUCTIONAL_BUTTONS")
 		form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
+
 		while isMenuOpen do
 			form:Draw2D()
-			
+
 			Citizen.Wait(1)
 		end
 		form:Dispose()
@@ -154,7 +157,7 @@ Citizen.CreateThread(function()
 	while true do
 		local sleep = 500
 		local playerPed = PlayerPedId()
-		local playerCoords = GetEntityCoords(playerPed)
+		local playerCoords = GetEntityCoords(playerPed, false)
 		local dist = GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
 
 		if dist < Config.DrawDistance * 1.5 and not ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena()) and DecorGetInt(PlayerPedId(), "GameRoom") == 0 then
