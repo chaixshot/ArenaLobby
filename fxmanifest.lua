@@ -3,7 +3,7 @@ lua54 'yes'
 game 'gta5'
 -- use_fxv2_oal 'yes'
 
-version '3.4.5'
+version '3.4.6'
 
 files {
 	'html/*.*',
