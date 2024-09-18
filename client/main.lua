@@ -19,9 +19,9 @@ function OpenGameMenu(withXbox)
 	if not InPoint or IsPlayerDead(PlayerId()) or not CheckUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
 		return
 	end
-	
+
 	DisableControlAction(0, 36, true)
-	
+
 	local GameList = {
 		"DarkRP_Aimlab",
 		"DarkRP_Bloodbowl",
@@ -44,19 +44,19 @@ function OpenGameMenu(withXbox)
 			})
 		end
 	end
-	
+
 	SendNUIMessage({
 		message = "clear",
 	})
-	
-	for k,v in pairs(ArenaAPI:GetArenaList()) do
+
+	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
 				message = "add",
 				item = v.ArenaIdentifier,
 				ownername = v.ownername,
 				image = string.gsub(k, "%d+", ""),
-				imageUrl =v.ArenaImageUrl,
+				imageUrl = v.ArenaImageUrl,
 				label = v.ArenaLabel,
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
@@ -65,16 +65,16 @@ function OpenGameMenu(withXbox)
 			})
 		end
 	end
-	
+
 	SendNUIMessage({
 		message = "show",
 		withXbox = withXbox,
 	})
-	
+
 	isMenuOpen = true
 	if withXbox then
 		SetNuiFocus(true, false)
-		
+
 		local form = Scaleform.Request("instructional_buttons")
 		form:CallFunction("CLEAR_ALL")
 		form:CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(1, 194, true), "Back")
@@ -84,7 +84,8 @@ function OpenGameMenu(withXbox)
 		form:CallFunction("SET_BACKGROUND_COLOUR", 0, 0, 0, 80)
 		while isMenuOpen do
 			form:Draw2D()
-			Wait(1)
+			
+			Citizen.Wait(1)
 		end
 		form:Dispose()
 	else
@@ -94,20 +95,20 @@ end
 
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
-	Wait(500)
-	
+	Citizen.Wait(500)
+
 	SendNUIMessage({
 		message = "clear",
 	})
-	
-	for k,v in pairs(ArenaAPI:GetArenaList()) do
+
+	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
 				message = "add",
 				item = v.ArenaIdentifier,
 				ownername = v.ownername,
 				image = string.gsub(k, "%d+", ""),
-				imageUrl =v.ArenaImageUrl,
+				imageUrl = v.ArenaImageUrl,
 				label = v.ArenaLabel,
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
@@ -116,7 +117,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 			})
 		end
 	end
-	
+
 	SendNUIMessage({
 		message = "refresh_controller_index",
 	})
@@ -135,11 +136,11 @@ AddEventHandler("ArenaLobby:PlayerCreateGame", function(ownername, gamename, gam
 end)
 
 -- Create Blips
-CreateThread(function()
+Citizen.CreateThread(function()
 	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance, Config.Color.r, Config.Color.g, Config.Color.b, Config.Color.a, 0)
 	SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
 	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
-	SetBlipSprite (blip, Config.Blip)
+	SetBlipSprite(blip, Config.Blip)
 	SetBlipDisplay(blip, 4)
 	SetBlipScale(blip, 0.7)
 	SetBlipColour(blip, Config.BlipColor)
@@ -149,29 +150,30 @@ CreateThread(function()
 	EndTextCommandSetBlipName(blip)
 
 	DecorRegister("GameRoom", 2)
+	DecorRegister("GameRoomTeam", 2)
 	while true do
 		local sleep = 500
 		local playerPed = PlayerPedId()
 		local playerCoords = GetEntityCoords(playerPed)
-		local dist =GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
+		local dist = GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
 
-		if dist < Config.DrawDistance*1.5 and not ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena()) and DecorGetInt(PlayerPedId(), "GameRoom") == 0 then
+		if dist < Config.DrawDistance * 1.5 and not ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena()) and DecorGetInt(PlayerPedId(), "GameRoom") == 0 then
 			if not object then
 				object = SpawnLocalObject(Config.Prop, Config.Location)
 				FreezeEntityPosition(object, true)
 				SetEntityHeading(object, 250.0)
 			end
-			
+
 			if dist < Config.DrawDistance then
 				if not InPoint then
 					InPoint = true
 					SendNUIMessage({message = "playsound_MainRoom"})
 				end
-				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords+vector3(0.0, 0.0, 1.0))
+				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords + vector3(0.0, 0.0, 1.0))
 			else
-				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z+1))
+				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z + 1))
 			end
-			
+
 			DisablePlayerFiring(playerPed, true)
 			DisableControlAction(2, 37, true) -- Disable Weaponwheel
 			DisableControlAction(0, 45, true) -- Disable reloading
@@ -186,7 +188,7 @@ CreateThread(function()
 			SendNUIMessage({message = "hide"})
 			isMenuOpen = false
 			SetNuiFocus(false, false)
-			
+
 			if object then
 				SetEntityAsNoLongerNeeded(object)
 				SetObjectAsNoLongerNeeded(object)
@@ -209,16 +211,16 @@ end)
 
 RegisterNUICallback('join', function(data, cb)
 	if ArenaAPI:IsPlayerInAnyArena() then
-		Wait(500)
+		Citizen.Wait(500)
 	end
-	ExecuteCommand("minigame join " .. data.item)
+	ExecuteCommand("minigame join "..data.item)
 	cb('ok')
 end)
 
 RegisterNUICallback('create', function(data, cb)
 	if ArenaAPI:IsPlayerInAnyArena() then
 		ExecuteCommand("minigame leave")
-		Wait(500)
+		Citizen.Wait(500)
 	end
 	TriggerServerEvent("ArenaLobby:CreateGame", data)
 	cb('ok')
