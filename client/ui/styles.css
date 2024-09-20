@@ -1,17 +1,17 @@
-*{
+* {
 	user-select: none; /* supported by Chrome and Opera */
-   -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
-   font-size:0.5vw;
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	font-size: 0.5vw;
 }
 
-body{
+body {
 	background-color: rgba(0, 0, 0, 0);
 }
 
-.notify{
+.notify {
 	width: 20%;
 	background-color: rgba(0, 0, 0, 0);
 	position: absolute;
@@ -20,12 +20,14 @@ body{
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	overflow: hidden;
-	display:none;
+	display: none;
 }
 
 .container {
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	height: 90%;
+	box-sizing: border-box;
 }
 
 .parent {
@@ -38,12 +40,12 @@ body{
 	position: relative;
 	top: 0;
 	left: 0;
-	width:100%;
+	width: 100%;
 	border-radius: 5px;
 }
 
 .image2 {
-	width:40%;
+	width: 40%;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -58,13 +60,15 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 
 .create:hover {
-	opacity:0.7;
+	opacity: 0.7;
 }
 
-.join, .newgame {
+.join,
+.newGame {
 	background: #43b05c;
 	border-radius: 0px;
 	color: #ffffff;
@@ -78,8 +82,9 @@ body{
 	width: 100%;
 }
 
-.join:hover, .newgame:hover {
-	opacity:0.7;
+.join:hover,
+.newGame:hover {
+	opacity: 0.7;
 }
 
 .join:hover {
@@ -92,12 +97,12 @@ body{
 	/* padding-top: 1.047vw; */
 	/* margin-right: 3.141vw; */
 	display: flex;
-	text-align:center;
+	text-align: center;
 	padding: 0;
 	width: 100%;
 	background-color: #dddddd;
 	border-radius: 500px;
-	max-height:0.9vw;
+	max-height: 0.9vw;
 }
 
 .quantity .number {
@@ -107,40 +112,41 @@ body{
 	text-align: center;
 	width: 5vw;
 	font-size: 0.6vw;
-	color: #00;
+	color: #000000;
 	font-weight: 300;
-	top:10%;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
- 
-.btnquantity {
-	text-align: center;
-  width: 1vw;
-  height: 1vw;
-  /* background-color: #E1E8EE; */
-  /* border-radius: 6px; */
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
+	top: 10%;
 }
 
-.btnquantity:hover {
-	opacity:0.7;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.btnQuantity {
+	text-align: center;
+	width: 1vw;
+	height: 1vw;
+	/* background-color: #E1E8EE; */
+	/* border-radius: 6px; */
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btnQuantity:hover {
+	opacity: 0.7;
 }
 
 .minus-btn img {
-  width: 0.9vw;
-  height: 0.9vw;
+	width: 0.9vw;
+	height: 0.9vw;
 }
 .plus-btn img {
-  width: 0.9vw;
-  height: 0.9vw;
+	width: 0.9vw;
+	height: 0.9vw;
 }
 
 .banner {
@@ -150,10 +156,11 @@ input::-webkit-inner-spin-button {
 
 button:focus,
 input:focus {
-  outline:0;
+	outline: 0;
 }
 
-.GameLobby, .GameCreate {
+.GameLobby,
+.GameCreate {
 	width: 50%;
 	height: 70%;
 	background-image: url("./img/background.jpg");
@@ -167,16 +174,15 @@ input:focus {
 	left: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
-	overflow: auto;
 	z-index: 10000;
 	display: none;
 	overflow: hidden;
 }
 
 .header {
-	width:100%;
+	width: 100%;
 	height: 1.4vw;
-	background-color: #4285F4;
+	background-color: #4285f4;
 	color: white;
 	display: flex;
 	flex-direction: row;
@@ -185,31 +191,31 @@ input:focus {
 }
 
 .header h1 {
-  font-size: 1.0vw;
-  text-align: center;
-  margin:auto;
+	font-size: 1vw;
+	text-align: center;
+	margin: auto;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+	width: 7px;
+	height: 5px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.7);
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: rgb(250,80,121); 
+	background: rgb(250, 80, 121);
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(250,80,121,0.8);
+	background: rgba(250, 80, 121, 0.8);
 }
 
 select:hover {
-	opacity:0.7;
+	opacity: 0.7;
 }
 
 .centered {
@@ -217,7 +223,7 @@ select:hover {
 	top: 83%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	font-size:0.5vw;
+	font-size: 0.5vw;
 	font-weight: bold;
 	text-shadow: 0.039vw 0.078vw 0.156vw rgb(0 0 0 / 60%);
 }
@@ -236,9 +242,9 @@ select:hover {
 	border: 1px solid #eeeeee;
 }
 
-.controllerHovered  {
-	-webkit-box-shadow:inset 0px 0px 0px 3px #000;
-    -moz-box-shadow:inset 0px 0px 0px 3px #000;
-    box-shadow:inset 0px 0px 0px 3px #000;
+.controllerHovered {
+	-webkit-box-shadow: inset 0px 0px 0px 3px #000;
+	-moz-box-shadow: inset 0px 0px 0px 3px #000;
+	box-shadow: inset 0px 0px 0px 3px #000;
 	cursor: pointer;
 }

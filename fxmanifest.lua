@@ -5,17 +5,6 @@ game 'gta5'
 
 version '3.4.7'
 
-files {
-	'html/*.*',
-	'html/img/*.*',
-	'html/img/games/*.*',
-	'html/img/games/map/*.*',
-	'html/sounds/*.*',
-	'files/MINIMAP_LOADER.gfx',
-}
-
-ui_page 'html/ui.html'
-
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
 	'config.lua',
@@ -30,7 +19,20 @@ client_scripts {
 	'client/function.lua',
 	'client/main.lua',
 	'client/PauseMenu.lua',
-	
+
 	'client/menu/menu_lobby.lua',
 	'client/menu/menu_player.lua',
 }
+
+
+files {
+	'client/ui/*.*',
+	'client/ui/img/*.*',
+	'client/ui/img/games/*.*',
+	'client/ui/img/games/map/*.*',
+	'client/ui/sounds/*.*',
+
+	'files/MINIMAP_LOADER.gfx',
+}
+
+ui_page 'client/ui/ui.html'

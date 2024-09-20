@@ -2,41 +2,39 @@ RegisterNetEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
 	data.password = tostring(data.password)
 
-	if data.gamename == "DarkRP_Derby" then
+	if data.gameName == "DarkRP_Derby" then
 		TriggerEvent("DarkRP_Derby:CreateArena", source, data.password)
-	elseif data.gamename == "DarkRP_CaptureTheFlag" then
+	elseif data.gameName == "DarkRP_CaptureTheFlag" then
 		TriggerEvent("DarkRP_CaptureTheFlag:CreateArena", source, data.password, data.option1, data.option2)
-	elseif data.gamename == "DarkRP_Teamdeathmacth" then
+	elseif data.gameName == "DarkRP_Teamdeathmacth" then
 		TriggerEvent("DarkRP_Teamdeathmacth:CreateArena", source, data.password, data.option1, data.option2, data.option3, data.option4)
-	elseif data.gamename == "DarkRP_Bomb" then
+	elseif data.gameName == "DarkRP_Bomb" then
 		TriggerEvent("DarkRP_Bomb:CreateArena", source, data.password, data.option1, data.option2)
-	elseif data.gamename == "DarkRP_Deathmacth" then
+	elseif data.gameName == "DarkRP_Deathmacth" then
 		TriggerEvent("DarkRP_Deathmacth:CreateArena", source, data.password, data.option1, data.option2, data.option3)
-	elseif data.gamename == "DarkRP_Bloodbowl" then
+	elseif data.gameName == "DarkRP_Bloodbowl" then
 		TriggerEvent("DarkRP_Bloodbowl:CreateArena", source, data.password, data.option1, data.option2, data.option3, data.option4, data.option5, data.option6)
-	elseif data.gamename == "DarkRP_ZombieSurvival" then
+	elseif data.gameName == "DarkRP_ZombieSurvival" then
 		TriggerEvent("DarkRP_ZombieSurvival:CreateArena", source, data.password, data.option1, data.option2, data.option3)
-	elseif data.gamename == "DarkRP_Squidlight" then
+	elseif data.gameName == "DarkRP_Squidlight" then
 		TriggerEvent("DarkRP_Squidlight:CreateArena", source, data.password)
-	elseif data.gamename == "DarkRP_Squidglass" then
+	elseif data.gameName == "DarkRP_Squidglass" then
 		TriggerEvent("DarkRP_Squidglass:CreateArena", source, data.password)
-	elseif data.gamename == "DarkRP_Racing" then
+	elseif data.gameName == "DarkRP_Racing" then
 		local _source = source
 		local _data = data
 
 		TriggerEvent("DarkRP_Racing:CreateArena", _source, _data.password, function()
-			TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(_source), _data.gamename, _data.gameLabel..(_data.option1 ~= nil and " (".._data.option1..")" or ""))
+			TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(_source), _data.gameName, _data.gameLabel..(_data.option1 ~= nil and " (".._data.option1..")" or ""))
 		end)
-	elseif data.gamename == "DarkRP_CreateRacing" then
+	elseif data.gameName == "DarkRP_CreateRacing" then
 		TriggerEvent("DarkRP_Racing:CreateMap", source)
-	elseif data.gamename == "DarkRP_Boxing" then
-		TriggerEvent("DarkRP_Boxing:CreateArena", source, data.password, data.option1, data.option2)
-	elseif data.gamename == "DarkRP_Aimlab" then
+	elseif data.gameName == "DarkRP_Aimlab" then
 		TriggerEvent("DarkRP_Aimlab:CreateArena", source)
 	end
 
-	if not data.gamename == "DarkRP_Racing" then
-		TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gamename, data.gameLabel..(data.option1 ~= nil and " ("..data.option1..")" or ""))
+	if not (data.gameName == "DarkRP_Racing") then
+		TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gameName, data.gameLabel..(data.option1 ~= nil and " ("..data.option1..")" or ""))
 	end
 end)
 

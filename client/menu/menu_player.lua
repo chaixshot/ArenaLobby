@@ -115,7 +115,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	end
 
 	if ArenaAPI:IsPlayerInAnyArena() then
-		if data.source == ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource then
+		if data.source == ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource then
 			data.Status = "HOST"
 			data.Colours = HudColours.HUD_COLOUR_FREEMODE
 		end

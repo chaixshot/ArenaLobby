@@ -28,7 +28,6 @@ function OpenGameMenu(withXbox)
 		"DarkRP_Aimlab",
 		"DarkRP_Bloodbowl",
 		"DarkRP_Bomb",
-		"DarkRP_Boxing",
 		"DarkRP_Deathmacth",
 		"DarkRP_Derby",
 		"DarkRP_CaptureTheFlag",
@@ -41,22 +40,19 @@ function OpenGameMenu(withXbox)
 	for k, v in pairs(GameList) do
 		if GetResourceState(v) ~= "started" then
 			SendNUIMessage({
-				message = "hidegame",
+				message = "hideGame",
 				name = v,
 			})
 		end
 	end
 
-	SendNUIMessage({
-		message = "clear",
-	})
-
+	SendNUIMessage({ message = "clear" })
 	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
 				message = "add",
 				item = v.ArenaIdentifier,
-				ownername = v.ownername,
+				ownerName = v.ownerName,
 				image = string.gsub(k, "%d+", ""),
 				imageUrl = v.ArenaImageUrl,
 				label = v.ArenaLabel,
@@ -88,7 +84,7 @@ function OpenGameMenu(withXbox)
 		while isMenuOpen do
 			form:Draw2D()
 
-			Citizen.Wait(1)
+			Citizen.Wait(0)
 		end
 		form:Dispose()
 	else
@@ -100,16 +96,13 @@ RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	Citizen.Wait(500)
 
-	SendNUIMessage({
-		message = "clear",
-	})
-
+	SendNUIMessage({ message = "clear" })
 	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
 				message = "add",
 				item = v.ArenaIdentifier,
-				ownername = v.ownername,
+				ownerName = v.ownerName,
 				image = string.gsub(k, "%d+", ""),
 				imageUrl = v.ArenaImageUrl,
 				label = v.ArenaLabel,
@@ -127,12 +120,12 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 end)
 
 RegisterNetEvent("ArenaLobby:PlayerCreateGame")
-AddEventHandler("ArenaLobby:PlayerCreateGame", function(ownername, gamename, gameLabel)
+AddEventHandler("ArenaLobby:PlayerCreateGame", function(ownerName, gameName, gameLabel)
 	if object and not ArenaAPI:IsPlayerInAnyArena() then
 		SendNUIMessage({
 			message = "notify",
-			ownername = ownername,
-			gamename = gamename,
+			ownerName = ownerName,
+			gameName = gameName,
 			gameLabel = gameLabel,
 		})
 	end
@@ -170,7 +163,7 @@ Citizen.CreateThread(function()
 			if dist < Config.DrawDistance then
 				if not InPoint then
 					InPoint = true
-					SendNUIMessage({message = "playsound_MainRoom"})
+					SendNUIMessage({message = "music_play"})
 				end
 				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords + vector3(0.0, 0.0, 1.0))
 			else
@@ -187,7 +180,7 @@ Citizen.CreateThread(function()
 			sleep = 0
 		elseif InPoint then
 			InPoint = false
-			SendNUIMessage({message = "stopsound_MainRoom"})
+			SendNUIMessage({message = "music_stop"})
 			SendNUIMessage({message = "hide"})
 			isMenuOpen = false
 			SetNuiFocus(false, false)

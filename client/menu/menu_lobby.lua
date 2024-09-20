@@ -205,7 +205,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 
 		local HostSource = -1
 		if ArenaAPI:IsPlayerInAnyArena() then
-			HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
+			HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
 		end
 
 		for k, v in pairs(data) do
@@ -540,7 +540,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 			end
 
 			-- Host select player row
-			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource == GetPlayerServerId(PlayerId()) then
+			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource == GetPlayerServerId(PlayerId()) then
 				if selectColumnID == 2 and DataSet.PlayerList[selectRowID] and DataSet.PlayerList[selectRowID].ped then
 					local targetSource = DataSet.PlayerList[selectRowID].source
 					local settingList = {}
@@ -553,7 +553,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 						end,
 					})
 
-					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource ~= targetSource then
+					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource ~= targetSource then
 						table.insert(settingList, {
 							label = "<font color='#c8423b'>Kick</font",
 							dec = "Kick player from current lobby.",

@@ -111,7 +111,7 @@ function UpdatePlayerList()
 		if string.find(string.lower(ArenaAPI:GetArenaLabel(ArenaAPI:GetPlayerArena())), "racing") and exports["DarkRP_Racing"]:IsPlayerInGame() then
 			exports["DarkRP_Racing"]:UpdatePlayerList()
 		else
-			local HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownersource
+			local HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
 			local CurrentSize = ArenaAPI:GetArenaCurrentSize(ArenaAPI:GetPlayerArena())
 			local MaximumSize = ArenaAPI:GetArenaMaximumSize(ArenaAPI:GetPlayerArena())
 			local ArenaBusy = ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena())
