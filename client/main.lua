@@ -121,6 +121,7 @@ end)
 
 RegisterNetEvent("ArenaLobby:PlayerCreateGame")
 AddEventHandler("ArenaLobby:PlayerCreateGame", function(ownerName, gameName, gameLabel)
+	Citizen.Wait(500)
 	if object and not ArenaAPI:IsPlayerInAnyArena() then
 		SendNUIMessage({
 			message = "notify",
