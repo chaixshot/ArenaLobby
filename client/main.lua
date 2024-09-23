@@ -134,7 +134,7 @@ end)
 
 -- Create Blips
 Citizen.CreateThread(function()
-	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance, Config.Color.r, Config.Color.g, Config.Color.b, Config.Color.a, 0)
+	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance, Config.Color.red, Config.Color.green, Config.Color.blue, Config.Color.alpha, 0)
 	SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
 	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
 	SetBlipSprite(blip, Config.Blip)

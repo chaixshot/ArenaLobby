@@ -5,7 +5,7 @@ scaleform.__index = scaleform
 
 function Scaleform.Request(Name)
     local ScaleformHandle = RequestScaleformMovie(Name)
-    local timer = (Config.Game.ScaleformRequestTimeout or 1000)
+    local timer = 1000
     while not HasScaleformMovieLoaded(ScaleformHandle) and timer > 0 do
         timer = timer-1
         Citizen.Wait(0)
