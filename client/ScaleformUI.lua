@@ -8812,9 +8812,13 @@ end
 
 function TabView:LeftItemIndex(index)
     if index ~= nil then
-        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(false)
+        if self.Tabs[self.index] and self.Tabs[self.index].LeftItemList[self.leftItemIndex] then
+            self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(false)
+        end
         self.leftItemIndex = index
-        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(true)
+        if self.Tabs[self.index] and self.Tabs[self.index].LeftItemList[self.leftItemIndex] then
+            self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(true)
+        end
         self.OnLeftItemChange(self, self.Tabs[self.index].LeftItemList[self.leftItemIndex], self.leftItemIndex)
     else
         return self.leftItemIndex
