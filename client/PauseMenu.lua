@@ -185,7 +185,7 @@ local function OpenPauseMenu()
 	end
 
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and not isSpectate then
-		if not IsPauseMenuActive() then
+		if not IsPauseMenuActive() and (IsGameplayCamRendering() or IsPlayerSwitchInProgress()) then
 			UpdatePlayerState()
 			UpdateInfos()
 			UpdateDetails()
