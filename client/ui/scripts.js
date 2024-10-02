@@ -199,10 +199,10 @@ window.addEventListener('message', function (event) {
 		}
 
 		$(".GameList").append(
-			'<div class="col-md-4 mb-4 d-flex align-items-stretch-4 ArenaList">' +
+			'<div class="col-md-4 mb-4 d-flex align-items-stretch ArenaList">' +
 			'<div class="card">' +
 			'<div class="view-cascade overlay banner parent">' +
-			'<div class="IMGcontainer ">' +
+			'<div class="IMGcontainer">' +
 			ImageTag +
 			map +
 			'<div class="centered">' + item.label + '</div>' +
