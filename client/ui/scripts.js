@@ -157,9 +157,10 @@ window.addEventListener('message', function (event) {
 
 	//?? Hide not started script games
 	if (item.message == "hideGame") {
-		$("." + item.name).remove();
-		if (item.name == "DarkRP_Racing") {
-			$(".DarkRP_CreateRacing").remove();
+		if (item.isHide) {
+			$("." + item.name).attr('style', 'display: none !important');
+		} else {
+			$("." + item.name).show();
 		}
 	}
 

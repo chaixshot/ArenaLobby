@@ -38,12 +38,11 @@ function OpenGameMenu(withXbox)
 		"DarkRP_ZombieSurvival",
 	}
 	for k, v in pairs(GameList) do
-		if GetResourceState(v) ~= "started" then
-			SendNUIMessage({
-				message = "hideGame",
-				name = v,
-			})
-		end
+		SendNUIMessage({
+			message = "hideGame",
+			name = v,
+			isHide = GetResourceState(v) ~= "started",
+		})
 	end
 
 	SendNUIMessage({ message = "clear" })
