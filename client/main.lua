@@ -92,7 +92,7 @@ function OpenGameMenu(withXbox)
 end
 
 RegisterNetEvent("ArenaAPI:sendStatus")
-AddEventHandler("ArenaAPI:sendStatus", function(type, data)
+AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 	Citizen.Wait(500)
 
 	SendNUIMessage({ message = "clear" })
@@ -118,16 +118,18 @@ AddEventHandler("ArenaAPI:sendStatus", function(type, data)
 	})
 end)
 
-RegisterNetEvent("ArenaLobby:PlayerCreateGame")
-AddEventHandler("ArenaLobby:PlayerCreateGame", function(ownerName, gameName, gameLabel)
-	Citizen.Wait(500)
-	if object and not ArenaAPI:IsPlayerInAnyArena() then
-		SendNUIMessage({
-			message = "notify",
-			ownerName = ownerName,
-			gameName = gameName,
-			gameLabel = gameLabel,
-		})
+RegisterNetEvent("ArenaAPI:sendStatus")
+AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
+	if eType == "create" then
+		if object and not ArenaAPI:IsPlayerInAnyArena() then
+			SendNUIMessage({
+				message = "notify",
+				ownerName = data.ownerName,
+				gameName = data.ArenaIdentifier:gsub("[0-9]", ""),
+				gameLabel = data.ArenaLabel,
+				ArenaImageUrl = data.ArenaImageUrl,
+			})
+		end
 	end
 end)
 

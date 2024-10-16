@@ -236,13 +236,23 @@ window.addEventListener('message', function (event) {
 
 	//?? Create notification
 	if (item.message === "notify") {
-		$(".notify .arenaName").text(item.gameName);
-		$(".notify .banner").attr("src", "./img/games/" + item.gameName + ".jpg");
-		$(".notify .arenaName").text(item.gameLabel);
+		if (item.ArenaImageUrl) {
+			$(".notify .banner").attr("src", item.ArenaImageUrl);
+		} else {
+			$(".notify .banner").attr("src", "./img/games/" + item.gameName + ".jpg");
+		}
+		if (item.gameLabel) {
+			$(".notify .arenaName").text("");
+			$(".notify .arenaName").append(item.gameLabel);
+		} else {
+			$(".notify .arenaName").text(item.gameName);
+		}
 		$(".notify .ownerName").text(item.ownerName + " created room.");
 		$(".notify").fadeIn(200);
+
 		soundCreateRoom = new Howl({ src: ["./sounds/createLobby.ogg"], volume: 1.0 });
 		soundCreateRoom.play();
+		
 		setTimeout(function () {
 			$(".notify").fadeOut(200);
 		}, 3000);

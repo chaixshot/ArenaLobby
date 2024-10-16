@@ -21,20 +21,11 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 	elseif data.gameName == "DarkRP_Squidglass" then
 		TriggerEvent("DarkRP_Squidglass:CreateArena", source, data.password)
 	elseif data.gameName == "DarkRP_Racing" then
-		local _source = source
-		local _data = data
-
-		TriggerEvent("DarkRP_Racing:CreateArena", _source, _data.password, function()
-			TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(_source), _data.gameName, _data.gameLabel..(_data.option1 ~= nil and " (".._data.option1..")" or ""))
-		end)
+		TriggerEvent("DarkRP_Racing:CreateArena")
 	elseif data.gameName == "DarkRP_CreateRacing" then
 		TriggerEvent("DarkRP_Racing:CreateMap", source)
 	elseif data.gameName == "DarkRP_Aimlab" then
 		TriggerEvent("DarkRP_Aimlab:CreateArena", source)
-	end
-
-	if not (data.gameName == "DarkRP_Racing") then
-		TriggerClientEvent("ArenaLobby:PlayerCreateGame", -1, GetPlayerName(source), data.gameName, data.gameLabel..(data.option1 ~= nil and " ("..data.option1..")" or ""))
 	end
 end)
 
