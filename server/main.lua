@@ -21,7 +21,7 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 	elseif data.gameName == "DarkRP_Squidglass" then
 		TriggerEvent("DarkRP_Squidglass:CreateArena", source, data.password)
 	elseif data.gameName == "DarkRP_Racing" then
-		TriggerEvent("DarkRP_Racing:CreateArena")
+		TriggerEvent("DarkRP_Racing:CreateArena", source, data.password)
 	elseif data.gameName == "DarkRP_CreateRacing" then
 		TriggerEvent("DarkRP_Racing:CreateMap", source)
 	elseif data.gameName == "DarkRP_Aimlab" then
