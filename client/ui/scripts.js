@@ -221,6 +221,9 @@ window.addEventListener('message', function (event) {
 		$(".map").error(function () {
 			$(this).hide();
 		});
+		$(".image1").error(function () {
+			$(this).attr("src", './img/games/' + item.image + '.jpg');
+		});
 	}
 
 	if (item.message === "music_play") {
@@ -252,7 +255,7 @@ window.addEventListener('message', function (event) {
 
 		soundCreateRoom = new Howl({ src: ["./sounds/createLobby.ogg"], volume: 1.0 });
 		soundCreateRoom.play();
-		
+
 		setTimeout(function () {
 			$(".notify").fadeOut(200);
 		}, 3000);
