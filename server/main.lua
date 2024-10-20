@@ -29,20 +29,36 @@ AddEventHandler('ArenaLobby:CreateGame', function(data)
 	end
 end)
 
+-- Version checker
 Citizen.CreateThread(function()
 	Citizen.Wait(2000)
 
 	local resourceName = GetCurrentResourceName()
 	local currentVersion = GetResourceMetadata(resourceName, "version", 0)
+
 	PerformHttpRequest("https://api.github.com/repos/chaixshot/ArenaLobby/releases/latest", function(errorCode, resultData, resultHeaders)
 		if errorCode == 200 then
 			local data = json.decode(resultData)
-			if currentVersion ~= data.name then
-				print("------------------------------")
-				print("Update available for ^1"..resourceName.." ^3(current version: "..currentVersion..")^0")
-				print("Please update to the latest release ^2(version: "..data.name..")^0")
-				print("Check in ^3"..data.html_url.."^0")
-				print("------------------------------")
+			local updateVersion = currentVersion
+			if currentVersion ~= data.tag_name then
+				updateVersion = data.tag_name
+			end
+
+			if updateVersion ~= currentVersion then
+				local function Do()
+					print("\n^0--------------- "..resourceName.." ---------------")
+					print("^3"..resourceName.."^7 update available")
+					print("^1✗ Current version: "..currentVersion)
+					print("^2✓ Latest version: "..updateVersion)
+					print("^5https://github.com/chaixshot/ArenaLobby/releases/latest")
+					if data.body then
+						print("^3Changelog:")
+						print("^7"..data.body)
+					end
+					print("^0--------------- "..resourceName.." ---------------\n")
+					Citizen.SetTimeout(10 * 60 * 1000, Do)
+				end
+				Do()
 			end
 		end
 	end)
