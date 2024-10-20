@@ -20453,8 +20453,13 @@ function KeyOf(tbl, value)
     return nil
 end
 
-function math.round(num, numDecimalPlaces)
-    return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", num))
+function math.round(value, numDecimalPlaces)
+	if numDecimalPlaces then
+		local power = 10^numDecimalPlaces
+		return math.floor((value * power) + 0.5) / (power)
+	else
+		return math.floor(value + 0.5)
+	end
 end
 
 function ToBool(input)
