@@ -6827,6 +6827,7 @@ function MainView:ProcessControl()
         self._delay = 150
     end
 end
+
 function MainView:ButtonDelay()
     self._times = self._times + 1
     if self._times % 5 == 0 then

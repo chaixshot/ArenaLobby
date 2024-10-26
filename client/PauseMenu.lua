@@ -185,7 +185,7 @@ local function OpenPauseMenu()
 	end
 
 	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and not isSpectate then
-		if not IsPauseMenuActive() and (IsGameplayCamRendering() or IsPlayerSwitchInProgress()) then
+		if not IsPauseMenuActive() and (IsGameplayCamRendering() or IsPlayerSwitchInProgress() or NetworkIsInSpectatorMode()) then
 			UpdatePlayerState()
 			UpdateInfos()
 			UpdateDetails()
@@ -265,3 +265,11 @@ function UpdatePlayerState()
 	DecorSetInt(playerPed, "AL_MP0_STEALTH_ABILITY", select(2, StatGetInt(`MP0_STEALTH_ABILITY`, -1)))
 	DecorSetInt(playerPed, "AL_MP0_HIGHEST_MENTAL_STATE", select(2, StatGetInt(`MP0_HIGHEST_MENTAL_STATE`, -1)))
 end
+
+exports("IsAnyMenuOpen", function()
+	return MenuHandler:IsAnyMenuOpen()
+end)
+
+exports("IsAnyPauseMenuOpen", function()
+	return MenuHandler:IsAnyPauseMenuOpen()
+end)

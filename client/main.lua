@@ -18,7 +18,7 @@ local function CheckUiTime(type, time)
 end
 
 function OpenGameMenu(withXbox)
-	if not InPoint or IsPlayerDead(PlayerId()) or not CheckUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
+	if isMenuOpen or not InPoint or IsPlayerDead(PlayerId()) or not CheckUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
 		return
 	end
 
