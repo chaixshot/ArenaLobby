@@ -487,9 +487,9 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 					blipColor = 23
 				end
 				if k == 1 then
-					LobbyMenu.Minimap.MinimapRoute.StartPoint = MinimapRaceCheckpoint.New(309, vector3(v.x, v.y, v.z), 0, 0.8, false)
+					LobbyMenu.Minimap.MinimapRoute.StartPoint = MinimapRaceCheckpoint.New(309, vector3(v.x, v.y, v.z), 0, 0.6, false)
 				elseif k == #data then
-					LobbyMenu.Minimap.MinimapRoute.EndPoint = MinimapRaceCheckpoint.New(38, vector3(v.x, v.y, v.z), 0, 0.8, false)
+					LobbyMenu.Minimap.MinimapRoute.EndPoint = MinimapRaceCheckpoint.New(38, vector3(v.x, v.y, v.z), 0, 0.6, false)
 				else
 					table.insert(LobbyMenu.Minimap.MinimapRoute.CheckPoints, MinimapRaceCheckpoint.New(271, vector3(v.x, v.y, v.z), blipColor, 0.5, v.order))
 				end
@@ -535,7 +535,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	selectColumnID = 1
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
-	Citizen.SetTimeout(50, function()
+	Citizen.SetTimeout(100, function()
 		LobbyMenu:updateFocus(focusColume, false)
 	end)
 

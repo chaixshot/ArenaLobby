@@ -5783,11 +5783,22 @@ function MinimapRoute:SetupCustomRoute()
     SetGpsFlags(8, 0.0)
     StartGpsCustomRoute(self.RouteColor, true, true)
 
-    RaceGalleryNextBlipSprite(self.StartPoint.Sprite)
-    RaceGalleryAddBlip(self.StartPoint.Position.x, self.StartPoint.Position.y, self.StartPoint.Position.z)
+    -- Start Point
+    local startPoint = self.StartPoint
+    RaceGalleryNextBlipSprite(startPoint.Sprite)
+    local bStart = RaceGalleryAddBlip(startPoint.Position.x, startPoint.Position.y, startPoint.Position.z)
+    if startPoint.Scale > 0 then
+        SetBlipScale(bStart, startPoint.Scale)
+    end
+    SetBlipColour(bStart, startPoint.Color)
+    if startPoint.Number then
+        ShowNumberOnBlip(bStart, startPoint.Number)
+    else
+        HideNumberOnBlip(bStart)
+    end
+    AddPointToGpsCustomRoute(startPoint.Position.x, startPoint.Position.y, startPoint.Position.z)
 
-    AddPointToGpsCustomRoute(self.StartPoint.Position.x, self.StartPoint.Position.y, self.StartPoint.Position.z)
-
+    -- CheckPoints
     for i = 1, #self.CheckPoints, 1 do
         local checkPoint = self.CheckPoints[i]
         RaceGalleryNextBlipSprite(checkPoint.Sprite)
@@ -5804,9 +5815,20 @@ function MinimapRoute:SetupCustomRoute()
         AddPointToGpsCustomRoute(checkPoint.Position.x, checkPoint.Position.y, checkPoint.Position.z)
     end
 
-    RaceGalleryNextBlipSprite(self.EndPoint.Sprite)
-    RaceGalleryAddBlip(self.EndPoint.Position.x, self.EndPoint.Position.y, self.EndPoint.Position.z)
-    AddPointToGpsCustomRoute(self.EndPoint.Position.x, self.EndPoint.Position.y, self.EndPoint.Position.z)
+    -- End Point
+    local endPoint = self.EndPoint
+    RaceGalleryNextBlipSprite(endPoint.Sprite)
+    local bEnd = RaceGalleryAddBlip(endPoint.Position.x, endPoint.Position.y, endPoint.Position.z)
+    if startPoint.Scale > 0 then
+        SetBlipScale(bEnd, endPoint.Scale)
+    end
+    SetBlipColour(bEnd, endPoint.Color)
+    if endPoint.Number then
+        ShowNumberOnBlip(bEnd, endPoint.Number)
+    else
+        HideNumberOnBlip(bEnd)
+    end
+    AddPointToGpsCustomRoute(endPoint.Position.x, endPoint.Position.y, endPoint.Position.z)
 
     SetGpsCustomRouteRender(true, 18, self.MapThickness)
 end
@@ -7097,6 +7119,7 @@ end
 ---@field private turnedOn boolean
 ---@field private mapPosition vector2
 ---@field private localMapStage number
+---@field private IsRadarVisible boolean
 ---@field private New fun(parent:BaseTab)
 ---@field public Parent BaseTab
 ---@field public MinimapBlips FakeBlip[]
@@ -7121,7 +7144,8 @@ function MinimapPanel.New(parent, parentTab)
         mapPosition = vector2(0, 0),
         enabled = false,
         turnedOn = false,
-        localMapStage = 0
+        localMapStage = 0,
+        IsRadarVisible = not IsRadarHidden(),
     }
     return setmetatable(_data, MinimapPanel)
 end
@@ -7165,6 +7189,7 @@ function MinimapPanel:Enabled(_e)
         else
             self.localMapStage = -1
             if self.turnedOn then
+                self.IsRadarVisible = not IsRadarHidden()
                 DisplayRadar(false);
                 RaceGalleryFullscreen(false);
                 self.turnedOn = false;
@@ -7279,12 +7304,13 @@ end
 function MinimapPanel:ProcessMap()
     if self.enabled then
         if not self.turnedOn then
-            DisplayRadar(true)
+            DisplayRadar(self.IsRadarVisible)
             RaceGalleryFullscreen(true)
             self.turnedOn = true
         end
     else
         if self.turnedOn then
+            self.IsRadarVisible = not IsRadarHidden()
             DisplayRadar(false)
             RaceGalleryFullscreen(false)
             self.turnedOn = false
@@ -7327,7 +7353,7 @@ function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
     PauseToggleFullscreenMap(1);
-    DisplayRadar(false);
+    DisplayRadar(self.IsRadarVisible);
     RaceGalleryFullscreen(false);
     ClearRaceGalleryBlips();
     self.zoomDistance = 0;
