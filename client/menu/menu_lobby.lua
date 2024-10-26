@@ -473,7 +473,9 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 			LobbyMenu.Minimap.MinimapRoute.MapThickness = 17
 			for k, v in pairs(data) do
 				local blipColor = 5
-				if v.path == 2 then
+				if v.path == 1 then
+					blipColor = 83
+				elseif v.path == 2 then
 					blipColor = 3
 				elseif v.path == 3 then
 					blipColor = 29
@@ -485,11 +487,11 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 					blipColor = 23
 				end
 				if k == 1 then
-					LobbyMenu.Minimap.MinimapRoute.StartPoint = MinimapRaceCheckpoint.New(309, vector3(v.x, v.y, v.z), blipColor, 0.8)
+					LobbyMenu.Minimap.MinimapRoute.StartPoint = MinimapRaceCheckpoint.New(309, vector3(v.x, v.y, v.z), 0, 0.8, false)
 				elseif k == #data then
-					LobbyMenu.Minimap.MinimapRoute.EndPoint = MinimapRaceCheckpoint.New(38, vector3(v.x, v.y, v.z), blipColor, 0.8)
+					LobbyMenu.Minimap.MinimapRoute.EndPoint = MinimapRaceCheckpoint.New(38, vector3(v.x, v.y, v.z), 0, 0.8, false)
 				else
-					table.insert(LobbyMenu.Minimap.MinimapRoute.CheckPoints, MinimapRaceCheckpoint.New(271, vector3(v.x, v.y, v.z), 5, 0.8))
+					table.insert(LobbyMenu.Minimap.MinimapRoute.CheckPoints, MinimapRaceCheckpoint.New(271, vector3(v.x, v.y, v.z), blipColor, 0.5, v.order))
 				end
 			end
 		else
