@@ -36,6 +36,7 @@ MenuBuildingAnimation = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum BadgeStyle
 BadgeStyle = {
+    CUSTOM = -1,
     NONE = 0,
     LOCK = 1,
     STAR = 2,
@@ -215,7 +216,18 @@ BadgeStyle = {
     BRAND_WESTERNMOTORCYCLE = 176,
     BRAND_WILLARD = 177,
     BRAND_ZIRCONIUM = 178,
-    INFO = 179
+    INFO = 179,
+	MISSION_YELLOW = 180,
+	MISSION_BLUE = 181,
+	MISSION_GREEN = 182,
+	MISSION_PURPLE = 183,
+	MISSION_ORANGE = 184,
+	MISSION_RED = 185,
+	MISSION_AQUA = 186,
+	MISSION_LIGHTRED = 187,
+	PLUS = 188,
+	ARROW_LEFT = 189,
+	ARROW_RIGHT = 190
 }
 
 function GetSpriteDictionary(icon)
@@ -3015,7 +3027,7 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
             newMenu:MouseSettings(currentMenu:MouseControlsEnabled(), currentMenu:MouseEdgeEnabled(), currentMenu:MouseWheelControlEnabled(), currentMenu.Settings.ResetCursorOnOpen, currentMenu.leftClickEnabled)
             newMenu.enabled3DAnimations = currentMenu.enabled3DAnimations
             newMenu.fadingTime = currentMenu.fadingTime
-            newMenu.SubtitleColor = currentMenu.SubtitleColor
+            newMenu:SubtitleColor(currentMenu:SubtitleColor())
             --[[
                 newMenu.Settings.MouseControlsEnabled = currentMenu.Settings.MouseControlsEnabled
                 newMenu.Settings.MouseEdgeEnabled = currentMenu.Settings.MouseEdgeEnabled
@@ -3186,6 +3198,9 @@ function MissionListColumn:CurrentSelection(value)
     if value == nil then
         return self.Pagination:CurrentMenuIndex()
     else
+        if value == self.Pagination:CurrentMenuIndex() then
+            return
+        end
         if value < 1 then
             self.Pagination:CurrentMenuIndex(1)
         elseif value > #self.Items then
@@ -3246,6 +3261,14 @@ function MissionListColumn:AddMissionItem(item)
                 end
             end
         end
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        end
     end
 end
 
@@ -3268,12 +3291,30 @@ function MissionListColumn:_itemCreation(page, pageIndex, before, overflow)
     end
 
     local item = self.Items[menuIndex]
+    local scIndex = self.Pagination:GetScaleformIndex(menuIndex)
     local pSubT = self.Parent()
     if pSubT == "LobbyMenu" then
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSIONS_ITEM", before, menuIndex, item.type, item.Label, item.MainColor, item.HighlightColor, item.LeftIcon, item.LeftIconColor, item.RightIcon, item.RightIconColor, item.RightIconChecked, item.enabled)
     elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
         ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSIONS_ITEM", before, menuIndex, item.type, item.Label, item.MainColor, item.HighlightColor, item.LeftIcon, item.LeftIconColor, item.RightIcon, item.RightIconColor, item.RightIconChecked, item.enabled)
     end
+
+    if item.LeftIcon == BadgeStyle.CUSTOM then
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_LEFT_ICON", scIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_LEFT_ICON", scIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
+        end
+    end
+
+    if item.RightIcon == BadgeStyle.CUSTOM then
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_RIGHT_ICON", scIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_RIGHT_ICON", scIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
+        end
+    end
+
 end
 
 ---Removes a player from the column.
@@ -3563,6 +3604,25 @@ function PlayerListColumn:CurrentSelection(value)
     if value == nil then
         return self.Pagination:CurrentMenuIndex()
     else
+        if value == self.Pagination:CurrentMenuIndex() then
+            if self.Parent ~= nil and self.Parent:Visible() then
+                local pSubT = self.Parent()
+                if pSubT == "LobbyMenu" then
+                    self.Items[self:CurrentSelection()]:Selected(true)
+                    if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
+                        self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
+                    end
+                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+                    if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
+                        self.Items[self:CurrentSelection()]:Selected(true)
+                        if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
+                            self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
+                        end
+                    end
+                end
+            end
+            return
+        end
         ClearPedInPauseMenu()
         if value < 1 then
             self.Pagination:CurrentMenuIndex(1)
@@ -3628,6 +3688,14 @@ function PlayerListColumn:AddPlayer(item)
                     self:CurrentSelection(sel)
                 end
             end
+        end
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
         end
     end
 end
@@ -3963,6 +4031,9 @@ function SettingsListColumn:CurrentSelection(value)
     if value == nil then
         return self.Pagination:CurrentMenuIndex()
     else
+        if value == self.Pagination:CurrentMenuIndex() then
+            return
+        end
         if value < 1 then
             self.Pagination:CurrentMenuIndex(1)
         elseif value > #self.Items then
@@ -4025,6 +4096,14 @@ function SettingsListColumn:AddSettings(item)
                     self:CurrentSelection(sel)
                 end
             end
+        end
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
         end
     end
 end
@@ -4093,18 +4172,31 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex,
                 item._formatRightLabel)
             if item._rightBadge ~= BadgeStyle.NONE then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex,
+                if item._rightBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
+                    item.customRightIcon.TXD, item.customRightIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex,
                     item._rightBadge)
+                end
             end
         end
 
         if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
             if SubType ~= "UIMenuItem" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+                if item.Base._leftBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+                end
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._rightLabelFont.FontName, item.Base._rightLabelFont.FontID)
             else
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
+                if item.Base._leftBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
+                end
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
             end
@@ -4149,16 +4241,29 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
                 item._highlightedTextColor:ToArgb())
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex, item._formatRightLabel)
             if item._rightBadge ~= BadgeStyle.NONE then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex, item._rightBadge)
+                if item._rightBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
+                    item.customRightIcon.TXD, item.customRightIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex, item._rightBadge)
+                end
             end
         end
         if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
             if SubType ~= "UIMenuItem" then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+                if item.Base._leftBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+                end
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
             else
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
+                if item.Base._leftBadge == BadgeStyle.CUSTOM then
+                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
+                else
+                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
+                end
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
             end
@@ -4511,6 +4616,9 @@ function StoreListColumn:CurrentSelection(value)
     if value == nil then
         return self.Pagination:CurrentMenuIndex()
     else
+        if value == self.Pagination:CurrentMenuIndex() then
+            return
+        end
         if value < 1 then
             self.Pagination:CurrentMenuIndex(1)
         elseif value > #self.Items then
@@ -4569,6 +4677,14 @@ function StoreListColumn:AddStoreItem(item)
                     self:CurrentSelection(sel)
                 end
             end
+        end
+        local pSubT = self.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
         end
     end
 end
@@ -5678,8 +5794,8 @@ function MinimapRoute:SetupCustomRoute()
         if checkPoint.Scale > 0 then
             SetBlipScale(b, checkPoint.Scale)
         end
-        ShowNumberOnBlip(b, i)
         SetBlipColour(b, checkPoint.Color)
+        ShowNumberOnBlip(b, i)
         AddPointToGpsCustomRoute(checkPoint.Position.x, checkPoint.Position.y, checkPoint.Position.z)
     end
 
@@ -5740,6 +5856,8 @@ function MissionItem.New(label, mainColor, highlightColor)
         RightIconChecked = false,
         _Selected = false,
         hovered = false,
+        customLeftIcon = {TXD="",TXN=""},
+        customRightIcon = {TXD="",TXN=""},
         Activated = function(item)
         end
     }
@@ -5796,6 +5914,34 @@ function MissionItem:SetRightIcon(icon, color, checked)
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_RIGHT_ICON", idx, icon, checked, color)
         elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_RIGHT_ICON", idx, icon, checked or false, color)
+        end
+    end
+end
+
+function MissionItem:SetCustomLeftIcon(txd, txn)
+    self.LeftIcon = BadgeStyle.CUSTOM
+    self.customLeftIcon = {TXD=txd, TXN=txn}
+    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
+        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
+        local pSubT = self.ParentColumn.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_LEFT_ICON", idx, txd, txn)
+        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_LEFT_ICON", idx, txd, txn)
+        end
+    end
+end
+function MissionItem:SetCustomRightIcon(txd, txn, checked)
+    self.RightIcon = BadgeStyle.CUSTOM
+    self.RightIconChecked = checked or false
+    self.customRightIcon = {TXD=txd, TXN=txn}
+    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
+        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
+        local pSubT = self.ParentColumn.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_RIGHT_ICON", idx, txd, txn, checked)
+        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_RIGHT_ICON", idx, txd, txn, checked or false)
         end
     end
 end
@@ -6140,11 +6286,10 @@ function MainView:Visible(visible)
             if not IsPauseMenuActive() then
                 self._focus = 1
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-                ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY`, true, 0)
+                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
                 self:BuildPauseMenu()
                 self.OnLobbyMenuOpen(self)
                 AnimpostfxPlay("PauseMenuIn", 800, true)
-                TriggerScreenblurFadeIn(800)
                 ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
                 SetPlayerControl(PlayerId(), false, 0)
                 self._firstTick = true
@@ -6159,12 +6304,10 @@ function MainView:Visible(visible)
             ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
             AnimpostfxStop("PauseMenuIn")
             AnimpostfxPlay("PauseMenuOut", 800, false)
-            TriggerScreenblurFadeOut(800)
             self.OnLobbyMenuClose(self)
             SetPlayerControl(PlayerId(), true, 0)
             PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-            SetPauseMenuActive(false)
-		    SetFrontendActive(false)
+            SetFrontendActive(false)
         end
     else
         return self._visible
@@ -6684,7 +6827,6 @@ function MainView:ProcessControl()
         self._delay = 150
     end
 end
-
 function MainView:ButtonDelay()
     self._times = self._times + 1
     if self._times % 5 == 0 then
@@ -6755,12 +6897,10 @@ end
 
 function MainView:GoUp()
     self.listCol[self._focus]:GoUp()
-    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
 end
 
 function MainView:GoDown()
     self.listCol[self._focus]:GoDown()
-    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
 end
 
 function MainView:GoLeft()
@@ -7036,52 +7176,46 @@ function MinimapPanel:Enabled(_e)
 end
 
 function MinimapPanel:InitializeMapSize()
-    local iMaxNodesToCheck = 202
-    local vNodeMax = vector3(0, 0, 0)
-    local vNodeMin = vector3(0, 0, 0)
+    local top = -math.huge
+    local bottom = math.huge
+    local left = math.huge
+    local right = -math.huge
 
-    for i = 1, iMaxNodesToCheck + 1, 1 do
-        local vectorNode = self:GetVectorToCheck(i)
-
-        if (#self.MinimapBlips > i) then
-            if (LengthSquared(self.MinimapBlips[i].Position) > LengthSquared(vectorNode)) then
-                vectorNode = self.MinimapBlips[i].Position
-            end
-        end
-
-        if i == 1 then
-            vNodeMax = vectorNode
-            vNodeMin = vectorNode
-        else
-            if (vectorNode.x > vNodeMax.x) then
-                vNodeMax = vector3(vectorNode.x, vNodeMax.y, vNodeMax.z)
-            end
-            if (vectorNode.x < vNodeMin.x) then
-                vNodeMin = vector3(vectorNode.x, vNodeMax.y, vNodeMax.z)
-            end
-            if (vectorNode.y > vNodeMax.y) then
-                vNodeMax = vector3(vNodeMax.x, vectorNode.y, vNodeMax.z)
-            end
-            if (vectorNode.y < vNodeMin.y) then
-                vNodeMin = vector3(vNodeMax.x, vectorNode.y, vNodeMax.z)
-            end
-        end
+    for k, data in pairs(self.MinimapRoute.CheckPoints) do
+        top = math.max(top, data.Position.y)
+        bottom = math.min(bottom, data.Position.y)
+        left = math.min(left, data.Position.x)
+        right = math.max(right, data.Position.x)
     end
 
-    -- Calculate our range and get the correct zoom.
-    self.mapPosition = vector2((vNodeMax.x + vNodeMin.x) / 2, (vNodeMax.y + vNodeMin.y) / 2)
+    local topLeft = vector3(left, top, 0)
+    local bottomRight = vector3(right, bottom, 0)
 
-    local DistanceX = vNodeMax.x - vNodeMin.x
-    local DistanceY = vNodeMax.y - vNodeMin.y
+    -- Center of square area
+    self.mapPosition = vector2((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2)
+    
+    -- Calculate our range and get the correct zoom.
+    local DistanceX = math.abs(left - right)
+    local DistanceY = math.abs(top - bottom)
 
     if (DistanceX > DistanceY) then
         self.zoomDistance = DistanceX / 1.5
     else
-        self.zoomDistance = DistanceY / 1.5
+        self.zoomDistance = DistanceY / 2.0
     end
 
     self:RefreshMapPosition(self.mapPosition)
     LockMinimapAngle(0)
+
+    --!! Draw Debug
+    -- local blipArea = AddBlipForArea(self.mapPosition.x, self.mapPosition.y, 0.0, DistanceX, DistanceY)
+    -- SetBlipAlpha(blipArea, 150)
+    -- RaceGalleryNextBlipSprite(1)
+    -- local blipTop = RaceGalleryAddBlip(topLeft.x, topLeft.y, 0.0)
+    -- RaceGalleryNextBlipSprite(1)
+    -- local blipBottom = RaceGalleryAddBlip(bottomRight.x, bottomRight.y, 0.0)
+    -- ShowNumberOnBlip(blipTop, 1)
+    -- ShowNumberOnBlip(blipBottom, 2)
 end
 
 function MinimapPanel:RefreshMapPosition(position)
@@ -7181,7 +7315,7 @@ function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
     PauseToggleFullscreenMap(1);
-    DisplayRadar(true);
+    DisplayRadar(false);
     RaceGalleryFullscreen(false);
     ClearRaceGalleryBlips();
     self.zoomDistance = 0;
@@ -8881,7 +9015,7 @@ function TabView:Visible(visible)
             while(not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
             if not IsPauseMenuActive() then
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-                ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY`, true, 0)
+                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
                 self.OnPauseMenuOpen(self)
                 AnimpostfxPlay("PauseMenuIn", 0, true)
                 self._firstDrawTick = true
@@ -8911,8 +9045,7 @@ function TabView:Visible(visible)
             self.OnPauseMenuClose(self)
             SetPlayerControl(PlayerId(), true, 0)
             PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-            SetPauseMenuActive(false)
-		    SetFrontendActive(false)
+            SetFrontendActive(false)
         end
     else
         return self._visible
@@ -9535,7 +9668,7 @@ function TabView:GoBack()
                 end
             end
             self:FocusLevel(self:FocusLevel() - 1)
-            if subT == "SubmenuTab" then
+            if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
                 tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
             end
         elseif subT == "PlayerListTab" then
@@ -10451,7 +10584,7 @@ RadialMenu.__call = function()
     return "RadialMenu"
 end
 
----@class RadialMenu: _Scaleform
+---@class RadialMenu: Scaleform
 ---@field public Segments table
 ---@field public InstructionalButtons table
 ---@field public OnMenuOpen fun(menu:RadialMenu, data:any)
@@ -10931,7 +11064,7 @@ UIRadioMenu.__call = function()
     return "UIRadioMenu"
 end
 
----@class UIRadioMenu: _Scaleform
+---@class UIRadioMenu: Scaleform
 ---@field public visible boolean
 ---@field public isAnimating boolean
 ---@field public currentSelection number
@@ -11182,10 +11315,7 @@ function UIRadioMenu:animateIn()
     ScaleformUI.Scaleforms._radioMenu:CallFunction("ANIMATE_IN", self._animDuration, self._AnimDirection, "zoom")
     repeat
         Citizen.Wait(0)
-        local return_value = ScaleformUI.Scaleforms._radioMenu:CallFunction("GET_IS_ANIMATING", true) --[[@as number]]
-        while not IsScaleformMovieMethodReturnValueReady(return_value) do
-            Citizen.Wait(0)
-        end
+        local return_value = ScaleformUI.Scaleforms._radioMenu:CallFunctionAsyncReturnBool("GET_IS_ANIMATING", true) --[[@as number]]
         self.isAnimating = GetScaleformMovieMethodReturnValueBool(return_value)
     until not self.isAnimating
 end
@@ -11194,14 +11324,10 @@ function UIRadioMenu:animateOut()
     ScaleformUI.Scaleforms._radioMenu:CallFunction("ANIMATE_OUT", self._animDuration, self._AnimDirection, "zoom")
     repeat
         Citizen.Wait(0)
-        local return_value = ScaleformUI.Scaleforms._radioMenu:CallFunction("GET_IS_ANIMATING", true) --[[@as number]]
-        while not IsScaleformMovieMethodReturnValueReady(return_value) do
-            Citizen.Wait(0)
-        end
+        local return_value = ScaleformUI.Scaleforms._radioMenu:CallFunctionAsyncReturnBool("GET_IS_ANIMATING", true) --[[@as number]]
         self.isAnimating = GetScaleformMovieMethodReturnValueBool(return_value)
     until not self.isAnimating
 end
-
 
 
 --///////////////////////////////////////////////////////////////////--
@@ -11393,9 +11519,21 @@ function UIMenuCheckboxItem:LeftBadge(Badge)
     end
 end
 
+function UIMenuCheckboxItem:CustomLeftBadge(txd,txn)
+    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
+        self.Base:CustomLeftBadge(txd,txn, self)
+    else
+        return self.Base:LeftBadge()
+    end
+end
+
 ---RightBadge
 function UIMenuCheckboxItem:RightBadge()
-    error("This item does not support badges")
+    error("This item does not support right badges")
+end
+
+function UIMenuCheckboxItem:CustomRightBadge()
+    error("This item does not support right badges")
 end
 
 ---RightLabel
@@ -11645,9 +11783,21 @@ function UIMenuDynamicListItem:LeftBadge(Badge)
     end
 end
 
+function UIMenuDynamicListItem:CustomLeftBadge(txd,txn)
+    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
+        self.Base:CustomLeftBadge(txd,txn, self)
+    else
+        return self.Base:LeftBadge()
+    end
+end
+
 ---RightBadge
 function UIMenuDynamicListItem:RightBadge()
-    error("This item does not support badges")
+    error("This item does not support right badges")
+end
+
+function UIMenuDynamicListItem:CustomRightBadge()
+    error("This item does not support right badges")
 end
 
 ---RightLabel
@@ -11776,6 +11926,8 @@ function UIMenuItem.New(text, description, color, highlightColor, textColor, hig
         Panels = {},
         SidePanel = nil,
         ItemId = 0,
+        customLeftIcon = {TXD="",TXN=""},
+        customRightIcon = {TXD="",TXN=""},
         Activated = function(menu, item)
         end,
         Highlighted = function(menu, item)
@@ -12101,6 +12253,41 @@ function UIMenuItem:LeftBadge(Badge, item)
         return self._leftBadge
     end
 end
+
+function UIMenuItem:CustomRightBadge(txd,txn, item)
+    if item == nil then item = self end
+    self._rightBadge = -1
+    self.customRightIcon = {TXD=txd, TXN=txn}
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_RIGHT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
+    end
+    if self.ParentColumn ~= nil then
+        local pSubT = self.ParentColumn.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
+        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
+        end
+    end
+end
+
+function UIMenuItem:CustomLeftBadge(txd,txn, item)
+    if item == nil then item = self end
+    self._leftBadge = -1
+    self.customLeftIcon = {TXD=txd, TXN=txn}
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
+    end
+    if self.ParentColumn ~= nil then
+        local pSubT = self.ParentColumn.Parent()
+        if pSubT == "LobbyMenu" then
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)),  txd, txn)
+        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)),  txd, txn)
+        end
+    end
+end
+
 
 function UIMenuItem:AddPanel(Panel)
     if Panel() == "UIMenuPanel" then
@@ -12455,9 +12642,23 @@ function UIMenuListItem:LeftBadge(Badge)
     end
 end
 
+--- CustomLeftBadge
+function UIMenuListItem:CustomLeftBadge(txd,txn)
+    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
+        self.Base:CustomLeftBadge(txd,txn, self)
+    else
+        return self.Base:LeftBadge()
+    end
+end
+
+
 ---RightBadge
 function UIMenuListItem:RightBadge()
-    error("This item does not support badges")
+    error("This item does not support right badges")
+end
+
+function UIMenuListItem:CustomRightBadge()
+    error("This item does not support right badges")
 end
 
 ---RightLabel
@@ -12530,20 +12731,24 @@ end
 function UIMenuListItem:createListString()
     local list = {}
     for k, v in ipairs(self.Items) do
+        local value = v
+        if type(value) ~= "string" then
+            value = tostring(v)
+        end
         if not self:Enabled() then
-            v.ReplaceRstarColorsWith("~c~")
+            value.ReplaceRstarColorsWith("~c~")
         else
-            if not v:StartsWith("~") then
-                v = "~s~" .. v
+            if not value:StartsWith("~") then
+                value = "~s~" .. value
             end
             if self:Selected() then
-                v = v:gsub("~w~", "~l~")
-                v = v:gsub("~s~", "~l~")
+                value = value:gsub("~w~", "~l~")
+                value = value:gsub("~s~", "~l~")
             else
-                v = v:gsub("~l~", "~s~")
+                value = value:gsub("~l~", "~s~")
             end
         end
-        table.insert(list, v)
+        table.insert(list, value)
     end
     return table.concat(list, ",")
 end
@@ -12776,6 +12981,15 @@ function UIMenuProgressItem:Index(Index)
     end
 end
 
+---AddPanel
+---@param panel UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel
+function UIMenuProgressItem:AddPanel(panel)
+    if panel() == "UIMenuPanel" then
+        panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = panel
+    end
+end
+
 ---LeftBadge
 function UIMenuProgressItem:LeftBadge(Badge)
     if tonumber(Badge) then
@@ -12785,9 +12999,21 @@ function UIMenuProgressItem:LeftBadge(Badge)
     end
 end
 
+function UIMenuProgressItem:CustomLeftBadge(txd,txn)
+    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
+        self.Base:CustomLeftBadge(txd,txn, self)
+    else
+        return self.Base:LeftBadge()
+    end
+end
+
 ---RightBadge
 function UIMenuProgressItem:RightBadge()
-    error("This item does not support badges")
+    error("This item does not support right badges")
+end
+
+function UIMenuProgressItem:CustomRightBadge()
+    error("This item does not support right badges")
 end
 
 ---RightLabel
@@ -12963,6 +13189,15 @@ end
 
 ---RightBadge
 function UIMenuSeparatorItem:RightBadge()
+    error("This item does not support badges")
+end
+
+function UIMenuSeparatorItem:CustomLeftBadge()
+    error("This item does not support badges")
+end
+
+---RightBadge
+function UIMenuSeparatorItem:CustomRightBadge()
     error("This item does not support badges")
 end
 
@@ -13190,6 +13425,15 @@ function UIMenuSliderItem:Index(Index)
     end
 end
 
+---AddPanel
+---@param panel UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel
+function UIMenuSliderItem:AddPanel(panel)
+    if panel() == "UIMenuPanel" then
+        panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = panel
+    end
+end
+
 function UIMenuSliderItem:LeftBadge(Badge)
     if tonumber(Badge) then
         self.Base:LeftBadge(Badge, self)
@@ -13198,8 +13442,20 @@ function UIMenuSliderItem:LeftBadge(Badge)
     end
 end
 
+function UIMenuSliderItem:CustomLeftBadge(txd,txn)
+    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
+        self.Base:CustomLeftBadge(txd,txn, self)
+    else
+        return self.Base:LeftBadge()
+    end
+end
+
 function UIMenuSliderItem:RightBadge()
-    error("This item does not support badges")
+    error("This item does not support right badges")
+end
+
+function UIMenuSliderItem:CustomRightBadge()
+    error("This item does not support right badges")
 end
 
 function UIMenuSliderItem:RightLabel()
@@ -13429,6 +13685,14 @@ end
 
 ---RightBadge
 function UIMenuStatsItem:RightBadge()
+    error("This item does not support badges")
+end
+
+function UIMenuStatsItem:CustomLeftBadge()
+    error("This item does not support badges")
+end
+
+function UIMenuStatsItem:CustomRightBadge()
     error("This item does not support badges")
 end
 
@@ -14189,10 +14453,10 @@ end
 ---@field public DescriptionFont fun(self: UIMenu, fontTable: ScaleformFonts|nil):ScaleformFonts -- Menu description font
 ---@field public Subtitle fun(self: UIMenu, subTitle: string|nil):string -- Menu subtitle
 ---@field public CounterColor fun(self: UIMenu, color: SColor|nil):SColor -- Counter color
+---@field public SubtitleColor fun(self: UIMenu, color: HudColours|nil):SColor -- Description color
 ---@field public DisableGameControls fun(self: UIMenu, bool: boolean|nil):boolean -- Disable non menu controls
 ---@field public HasInstructionalButtons fun(self: UIMenu, enabled: boolean|nil):boolean -- If the menu has instructional buttons
 ---@field public CanPlayerCloseMenu fun(self: UIMenu, playerCanCloseMenu: boolean|nil):boolean -- If the player can close the menu
----@field public ControlDisablingEnabled fun(self: UIMenu, enabled: boolean|nil):boolean -- If the menu disables controls
 ---@field public MouseEdgeEnabled fun(self: UIMenu, enabled: boolean|nil):boolean -- If the mouse edge is enabled
 ---@field public MouseWheelControlEnabled fun(self: UIMenu, enabled: boolean|nil):boolean -- If the mouse wheel is enabled
 ---@field public MouseControlsEnabled fun(self: UIMenu, enabled: boolean|nil):boolean -- If the mouse controls are enabled
@@ -14236,7 +14500,7 @@ end
 ---@field private animationType MenuAnimationType -- Sets the menu animation type (default: MenuAnimationType.LINEAR)
 ---@field private buildingAnimation MenuBuildingAnimation -- Sets the menu building animation type (default: MenuBuildingAnimation.NONE)
 ---@field private descFont ScaleformFonts -- Sets the desctiption text font. (default: ScaleformFonts.CHALET_LONDON_NINETEENSIXTY)
----@field private SubtitleColor HudColours -- Sets the subtitle color (default: HudColours.NONE)
+---@field private subtitleColor HudColours -- Sets the subtitle color (default: HudColours.NONE)
 ---@field private leftClickEnabled boolean -- Enable or disable left click controls (default: false)
 ---@field private bannerColor SColor -- Sets the menu banner color (default: SColor.HUD_None)
 ---@field private _unfilteredMenuItems table -- {}
@@ -14312,7 +14576,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         buildingAnimation = MenuBuildingAnimation.NONE,
         scrollingType = MenuScrollingType.CLASSIC,
         descFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        SubtitleColor = HudColours.NONE,
+        subtitleColor = HudColours.NONE,
         leftClickEnabled = false,
         bannerColor = SColor.HUD_None,
         Extra = {},
@@ -14409,7 +14673,6 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
             MouseControlsEnabled = true,
             MouseWheelEnabled = true,
             MouseEdgeEnabled = true,
-            ControlDisablingEnabled = true,
             Audio = {
                 Library = "HUD_FRONTEND_DEFAULT_SOUNDSET",
                 UpDown = "NAV_UP_DOWN",
@@ -14432,23 +14695,29 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     return setmetatable(_UIMenu, UIMenu)
 end
 
+---Getter / Setter for the menu title.
+---@param title any
+---@return any
 function UIMenu:Title(title)
     if title == nil then
         return self._Title
     else
         self._Title = title
         if self:Visible() then
-            if self.SubtitleColor == HudColours.NONE then
+            if self.subtitleColor == HudColours.NONE then
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
                     self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.SubtitleColor .. "~" .. self._Subtitle,
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle,
                     self.alternativeTitle)
             end
         end
     end
 end
 
+---Getter / Setter for the description font.
+---@param fontTable any
+---@return any
 function UIMenu:DescriptionFont(fontTable)
     if fontTable == nil then
         return self.descFont
@@ -14460,23 +14729,29 @@ function UIMenu:DescriptionFont(fontTable)
     end
 end
 
+---Getter / Setter for the subtitle.
+---@param sub any
+---@return any
 function UIMenu:Subtitle(sub)
     if sub == nil then
         return self._Subtitle
     else
         self._Subtitle = sub
         if self:Visible() then
-            if self.SubtitleColor == HudColours.NONE then
+            if self.subtitleColor == HudColours.NONE then
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
                     self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.SubtitleColor .. "~" .. self._Subtitle,
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle,
                     self.alternativeTitle)
             end
         end
     end
 end
 
+---Getter / Setter for the counter color.
+---@param color SColor
+---@return any
 function UIMenu:CounterColor(color)
     if color == nil then
         return self.counterColor
@@ -14484,6 +14759,24 @@ function UIMenu:CounterColor(color)
         self.counterColor = color
         if self:Visible() then
             ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_COLOR", self.counterColor)
+        end
+    end
+end
+
+---Getter / Setter for the subtitle color.
+---@param color HudColours
+---@return any
+function UIMenu:SubtitleColor(color)
+    if color == nil then
+        return self.subtitleColor
+    else
+        self.subtitleColor = color
+        if self:Visible() then
+            if color == HudColours.NONE then
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle, self.alternativeTitle)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle, self.alternativeTitle)
+            end
         end
     end
 end
@@ -14530,17 +14823,6 @@ function UIMenu:CanPlayerCloseMenu(playerCanCloseMenu)
         end
     end
     return self._canHe
-end
-
--- TODO: Refactor this method and process as its rather backwards.
----Sets if some controls (attack, game camera movement) are disabled when the menu is open. (Default: true) (set to false to disable default left click controls)
----@param enabled boolean|nil
----@return boolean
-function UIMenu:ControlDisablingEnabled(enabled)
-    if enabled ~= nil then
-        self.Settings.ControlDisablingEnabled = ToBool(enabled)
-    end
-    return self.Settings.ControlDisablingEnabled
 end
 
 ---Sets if the camera can be rotated when the mouse cursor is near the edges of the screen. (Default: true)
@@ -14830,7 +15112,7 @@ function UIMenu:AddItemAt(item, index)
     self.Pagination:TotalItems(#self.Items)
     if self:Visible() then
         if self.Pagination:IsItemVisible(index) then
-            self:RefreshMenu();
+            self:RefreshMenu()
         end
         local it = self.Items[self:CurrentSelection()]
         local t, subt = it()
@@ -14962,10 +15244,10 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
     if self._itemless then
         BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "CREATE_MENU")
         PushScaleformMovieMethodParameterString(self._Title)
-        if self.SubtitleColor == HudColours.NONE then
+        if self.subtitleColor == HudColours.NONE then
             PushScaleformMovieMethodParameterString(self._Subtitle)
         else
-            PushScaleformMovieMethodParameterString("~HC_" .. self.SubtitleColor .. "~" .. self._Subtitle)
+            PushScaleformMovieMethodParameterString("~HC_" .. self.subtitleColor .. "~" .. self._Subtitle)
         end
         PushScaleformMovieMethodParameterFloat(self.Position.x)
         PushScaleformMovieMethodParameterFloat(self.Position.y)
@@ -14993,14 +15275,14 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
 
     if not itemsOnly then
         while not ScaleformUI.Scaleforms._ui:IsLoaded() do Citizen.Wait(0) end
-        if self.SubtitleColor == HudColours.NONE then
+        if self.subtitleColor == HudColours.NONE then
             ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
                 self.Position.y,
                 self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
                 self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
                 self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false)
         else
-            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_" .. self.SubtitleColor .. "~" .. self._Subtitle, self.Position.x,
+            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle, self.Position.x,
                 self.Position.y,
                 self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
                 self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
@@ -15190,7 +15472,11 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
         EndScaleformMovieMethod()
         ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_LABEL", scaleformIndex, item._formatRightLabel)
         if item._rightBadge ~= BadgeStyle.NONE then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_BADGE", scaleformIndex, item._rightBadge)
+            if item._rightBadge == -1 then
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_RIGHT_BADGE", scaleformIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_BADGE", scaleformIndex, item._rightBadge)
+            end
         end
     end
 
@@ -15200,7 +15486,11 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
         ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_RIGHT_LABEL_FONT", scaleformIndex,
             item.Base._rightLabelFont.FontName, item.Base._rightLabelFont.FontID)
         if item.Base._leftBadge ~= BadgeStyle.NONE then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+            if item.Base._leftBadge == -1 then
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
+            end
         end
     else
         ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName,
@@ -15208,7 +15498,11 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
         ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_RIGHT_LABEL_FONT", scaleformIndex,
             item._rightLabelFont.FontName, item._rightLabelFont.FontID)
         if item._leftBadge ~= BadgeStyle.NONE then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item._leftBadge)
+            if item._leftBadge == -1 then
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item._leftBadge)
+            end
         end
     end
     if item.SidePanel ~= nil then
@@ -16151,7 +16445,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 BigFeedInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     _title = "",
     _subtitle = "",
     _bodyText = "",
@@ -16167,7 +16461,7 @@ BigFeedInstance.__call = function()
 end
 
 ---@class BigFeedInstance
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field private _title string
 ---@field private _subtitle string
 ---@field private _bodyText string
@@ -16332,7 +16626,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 BigMessageInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     _start = 0,
     _duration = 0,
     _transition = "TRANSITION_OUT", -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -16347,7 +16641,7 @@ BigMessageInstance.__call = function()
 end
 
 ---@class BigMessageInstance
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field private _start number
 ---@field private _duration number
 ---@field private _transition string -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -16580,7 +16874,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 CountdownHandler = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     _start = 0,
     _timer = 0,
     _colour = { r = 255, g = 255, b = 255, a = 255 }
@@ -16594,7 +16888,7 @@ end
 local renderCountdown = false
 
 ---@class CountdownHandler
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field private _start number
 ---@field private _timer number
 ---@field private _colour {r:number, g:number, b:number, a:number}
@@ -16723,7 +17017,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 ButtonsHandler = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     UseMouseButtons = false,
     IsUsingKeyboard = false,
     _changed = true,
@@ -16737,7 +17031,7 @@ ButtonsHandler.__call = function()
 end
 
 ---@class ButtonsHandler
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field public UseMouseButtons boolean
 ---@field public _enabled boolean
 ---@field public IsUsingKeyboard boolean
@@ -17053,7 +17347,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 MidMessageInstance = setmetatable({
-    _sc = nil, --[[@type _Scaleform]]
+    _sc = nil, --[[@type Scaleform]]
     _start = 0,
     _timer = 0,
     _hasAnimatedOut = false,
@@ -17064,7 +17358,7 @@ MidMessageInstance.__call = function()
 end
 
 ---@class MidMessageInstance
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public _hasAnimatedOut boolean
@@ -17507,7 +17801,7 @@ MissionSelectorHandler.__call = function()
 end
 
 ---@class MissionSelectorHandler
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public enabled boolean
@@ -17874,7 +18168,7 @@ MultiplayerChat.__call = function()
 end
 
 ---@class MultiplayerChat
----@field public _sc _Scaleform
+---@field public _sc Scaleform
 
 local INITIALIZED = false
 
@@ -17897,7 +18191,7 @@ ChatVisible = {
 ---@return table
 function MultiplayerChat.New()
   local data = {
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
     _start = 0,
     _enabled = false,
@@ -17957,7 +18251,7 @@ function MultiplayerChat:Show()
 end
 
 function MultiplayerChat:StartTyping(scopeType, scopeText)
-  self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.White)
+  self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.HUD_COLOUR_WHITE)
 end
 
 ---Scroll the chat up
@@ -18064,11 +18358,11 @@ PauseMenu.__call = function()
     return "PauseMenu"
 end
 
----@class PauseMenu: _Scaleform
----@field public _header _Scaleform
----@field public _pause _Scaleform
----@field public _lobby _Scaleform
----@field public _pauseBG _Scaleform
+---@class PauseMenu: Scaleform
+---@field public _header Scaleform
+---@field public _pause Scaleform
+---@field public _lobby Scaleform
+---@field public _pauseBG Scaleform
 ---@field public Loaded boolean
 ---@field public _visible boolean
 ---@field public BGEnabled boolean
@@ -18673,7 +18967,7 @@ end
 ---@field _uptime number
 ---@field _start number
 ---@field _timer number
----@field _sc _Scaleform
+---@field _sc Scaleform
 ---@field public Enabled boolean
 ---@field public Index number
 ---@field public MaxPages number
@@ -18746,7 +19040,7 @@ end
 function PlayerListScoreboard:SetTitle(title, label, icon)
     self.TitleLeftText = title or ""
     self.TitleRightText = label or ""
-    self.TitleIcon = icon or 0
+    self.TitleIcon = icon or ""
 end
 
 ---Set the position of the scoreboard
@@ -19194,7 +19488,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 WarningInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type Scaleform]],
     _disableControls = false,
     _buttonList = {},
     OnButtonPressed = function(button)
@@ -19206,7 +19500,7 @@ WarningInstance.__call = function()
 end
 
 ---@class WarningInstance
----@field _sc _Scaleform
+---@field _sc Scaleform
 ---@field _disableControls boolean
 ---@field _buttonList table<InstructionalButton>
 ---@field OnButtonPressed fun(button: InstructionalButton)
@@ -19351,7 +19645,7 @@ end
 --///////////////////////////////////////////////////////////////////--
 ScaleformUI = {}
 ScaleformUI.Scaleforms = {}
-ScaleformUI.Scaleforms._ui = nil --[[@type _Scaleform]]                                                -- scaleformui
+ScaleformUI.Scaleforms._ui = nil --[[@type Scaleform]]                                                -- scaleformui
 ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]]                                         -- pausemenu
 ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]]                                       -- radialmenu
 ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]]                                       -- radiomenu
@@ -19375,8 +19669,8 @@ AddEventHandler("onResourceStop", function(resName)
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             MenuHandler:CloseAndClearHistory()
         end
-        if IsPauseMenuActive() or GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_EMPTY` then
-            ActivateFrontendMenu(`FE_MENU_VERSION_EMPTY`, false, 0)
+        if IsPauseMenuActive() or GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
+            ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, false, 0)
             AnimpostfxStop("PauseMenuIn");
             AnimpostfxPlay("PauseMenuOut", 800, false);
         end
@@ -19402,48 +19696,44 @@ Citizen.CreateThread(function()
     ScaleformUI.Scaleforms.MinimapOverlays:Load()
 
     while true do
-        if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
-            if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
-                if GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_EMPTY` then
-                    SetScriptGfxDrawBehindPausemenu(true)
-                    BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS");
-                    ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY");
-                    EndScaleformMovieMethod()
-                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_MENU");
-                    ScaleformMovieMethodAddParamBool(false);
-                    EndScaleformMovieMethod();
-                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_HEADING_DETAILS");
-                    ScaleformMovieMethodAddParamBool(false);
-                    EndScaleformMovieMethod();
-                end
-                MenuHandler:ProcessMenus()
+        if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
+            if GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
+                SetScriptGfxDrawBehindPausemenu(true)
+                BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS");
+                ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY");
+                EndScaleformMovieMethod()
+                BeginScaleformMovieMethodOnFrontendHeader("SHOW_MENU");
+                ScaleformMovieMethodAddParamBool(false);
+                EndScaleformMovieMethod();
+                BeginScaleformMovieMethodOnFrontendHeader("SHOW_HEADING_DETAILS");
+                ScaleformMovieMethodAddParamBool(false);
+                EndScaleformMovieMethod();
             end
-            ScaleformUI.Scaleforms.Warning:Update()
-            if ScaleformUI.Scaleforms.SplashText ~= nil then
-                ScaleformUI.Scaleforms.SplashText:Draw()
+            MenuHandler:ProcessMenus()
+        end
+        ScaleformUI.Scaleforms.Warning:Update()
+        if ScaleformUI.Scaleforms.SplashText ~= nil then
+            ScaleformUI.Scaleforms.SplashText:Draw()
+        end
+        ScaleformUI.Scaleforms.InstructionalButtons:Update()
+        if not IsPauseMenuActive() then
+            ScaleformUI.Scaleforms.BigMessageInstance:Update()
+            ScaleformUI.Scaleforms.MidMessageInstance:Update()
+            ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
+            ScaleformUI.Scaleforms.JobMissionSelector:Update()
+            ScaleformUI.Scaleforms.BigFeed:Update()
+            if ScaleformUI.Scaleforms._ui == nil then
+                ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
             end
-            ScaleformUI.Scaleforms.InstructionalButtons:Update()
-            if not IsPauseMenuActive() then
-                ScaleformUI.Scaleforms.BigMessageInstance:Update()
-                ScaleformUI.Scaleforms.MidMessageInstance:Update()
-                ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
-                ScaleformUI.Scaleforms.JobMissionSelector:Update()
-                ScaleformUI.Scaleforms.BigFeed:Update()
-                if ScaleformUI.Scaleforms._ui == nil then
-                    ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
-                end
-                if ScaleformUI.Scaleforms._radialMenu == nil then
-                    ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
-                end
-                if ScaleformUI.Scaleforms._radioMenu == nil then
-                    ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
-                end
-                if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
-                    ScaleformUI.Scaleforms._pauseMenu:Load()
-                end
+            if ScaleformUI.Scaleforms._radialMenu == nil then
+                ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
             end
-        else
-            Citizen.Wait(500)
+            if ScaleformUI.Scaleforms._radioMenu == nil then
+                ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
+            end
+            if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
+                ScaleformUI.Scaleforms._pauseMenu:Load()
+            end
         end
         Citizen.Wait(0)
     end
@@ -19455,26 +19745,26 @@ end)
 _Scaleform = setmetatable({}, _Scaleform)
 _Scaleform.__index = _Scaleform
 _Scaleform.__call = function()
-    return "_Scaleform"
+    return "Scaleform"
 end
 
----@class _Scaleform
----@field public CallFunction fun(self:_Scaleform, theFunction:string, ...:any):nil
----@field public CallFunctionAsyncReturnInt fun(self:_Scaleform, theFunction:string, ...:any):number
----@field public CallFunctionAsyncReturnBool fun(self:_Scaleform, theFunction:string, ...:any):boolean
----@field public CallFunctionAsyncReturnString fun(self:_Scaleform, theFunction:string, ...:any):string
----@field public Dispose fun(self:_Scaleform):nil
----@field public IsLoaded fun(self:_Scaleform):boolean
----@field public IsValid fun(self:_Scaleform):boolean
----@field public Render2D fun(self:_Scaleform):nil
----@field public Render2DNormal fun(self:_Scaleform, x:number, y:number, width:number, height:number):nil
----@field public Render3D fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
----@field public Render3DAdditive fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@class Scaleform
+---@field public CallFunction fun(self:Scaleform, theFunction:string, ...:any):nil
+---@field public CallFunctionAsyncReturnInt fun(self:Scaleform, theFunction:string, ...:any):number
+---@field public CallFunctionAsyncReturnBool fun(self:Scaleform, theFunction:string, ...:any):boolean
+---@field public CallFunctionAsyncReturnString fun(self:Scaleform, theFunction:string, ...:any):string
+---@field public Dispose fun(self:Scaleform):nil
+---@field public IsLoaded fun(self:Scaleform):boolean
+---@field public IsValid fun(self:Scaleform):boolean
+---@field public Render2D fun(self:Scaleform):nil
+---@field public Render2DNormal fun(self:Scaleform, x:number, y:number, width:number, height:number):nil
+---@field public Render3D fun(self:Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@field public Render3DAdditive fun(self:Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
 ---@field public handle number
 
 ---Create a new scaleform instance
 ---@param Name string
----@return _Scaleform
+---@return Scaleform
 function _Scaleform.Request(Name)
     assert(Name ~= "string",
         "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
@@ -19487,7 +19777,7 @@ end
 
 ---Create a new scaleform instance
 ---@param Name string
----@return _Scaleform
+---@return Scaleform
 function _Scaleform.RequestWidescreen(Name)
     assert(Name ~= "string",
         "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
