@@ -1,4 +1,3 @@
-
 --///////////////////////////////////////////////////////////////////--
 ---@enum MenuAnimationType
 MenuAnimationType = {
@@ -217,17 +216,17 @@ BadgeStyle = {
     BRAND_WILLARD = 177,
     BRAND_ZIRCONIUM = 178,
     INFO = 179,
-	MISSION_YELLOW = 180,
-	MISSION_BLUE = 181,
-	MISSION_GREEN = 182,
-	MISSION_PURPLE = 183,
-	MISSION_ORANGE = 184,
-	MISSION_RED = 185,
-	MISSION_AQUA = 186,
-	MISSION_LIGHTRED = 187,
-	PLUS = 188,
-	ARROW_LEFT = 189,
-	ARROW_RIGHT = 190
+    MISSION_YELLOW = 180,
+    MISSION_BLUE = 181,
+    MISSION_GREEN = 182,
+    MISSION_PURPLE = 183,
+    MISSION_ORANGE = 184,
+    MISSION_RED = 185,
+    MISSION_AQUA = 186,
+    MISSION_LIGHTRED = 187,
+    PLUS = 188,
+    ARROW_LEFT = 189,
+    ARROW_RIGHT = 190
 }
 
 function GetSpriteDictionary(icon)
@@ -608,8 +607,6 @@ function GetSpriteName(icon, selected)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ---@enum HudColours
 HudColours = {
@@ -936,8 +933,6 @@ function ReplaceRstarColorsWith(label, color)
     return tmp
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 Controls = setmetatable({
     NecessaryControlsKeyboard = {
@@ -956,20 +951,20 @@ Controls = setmetatable({
         240, -- CursorY
         237, -- CursorAccept
         238, -- CursorCancel
-        31,  -- MoveUpDown
-        30,  -- MoveLeftRight
-        21,  -- Sprint
-        22,  -- Jump
-        23,  -- Enter
-        75,  -- VehicleExit
-        71,  -- VehicleAccelerate
-        72,  -- VehicleBrake
-        59,  -- VehicleMoveLeftRight
-        89,  -- VehicleFlyYawLeft
-        9,   -- FlyLeftRight
-        8,   -- FlyUpDown
-        90,  -- VehicleFlyYawRight
-        76   -- VehicleHandbrake
+        31, -- MoveUpDown
+        30, -- MoveLeftRight
+        21, -- Sprint
+        22, -- Jump
+        23, -- Enter
+        75, -- VehicleExit
+        71, -- VehicleAccelerate
+        72, -- VehicleBrake
+        59, -- VehicleMoveLeftRight
+        89, -- VehicleFlyYawLeft
+        9, -- FlyLeftRight
+        8, -- FlyUpDown
+        90, -- VehicleFlyYawRight
+        76 -- VehicleHandbrake
     },
 
     NecessaryControlsGamePad = {
@@ -988,30 +983,30 @@ Controls = setmetatable({
         240, -- CursorY
         237, -- CursorAccept
         238, -- CursorCancel
-        31,  -- MoveUpDown
-        30,  -- MoveLeftRight
-        21,  -- Sprint
-        22,  -- Jump
-        23,  -- Enter
-        75,  -- VehicleExit
-        71,  -- VehicleAccelerate
-        72,  -- VehicleBrake
-        59,  -- VehicleMoveLeftRight
-        89,  -- VehicleFlyYawLeft
-        9,   -- FlyLeftRight
-        8,   -- FlyUpDown
-        90,  -- VehicleFlyYawRight
-        76,  -- VehicleHandbrake
-        2,   -- LookUpDown
-        1,   -- LookLeftRight
-        25,  -- Aim
-        24,  -- Attack
-        71,  -- VehicleAccelerate
-        72,  -- VehicleBrake
-        59,  -- VehicleMoveLeftRight
-        31,  -- MoveUpDown
-        30,  -- MoveLeftRight
-        75,  -- VehicleExit
+        31, -- MoveUpDown
+        30, -- MoveLeftRight
+        21, -- Sprint
+        22, -- Jump
+        23, -- Enter
+        75, -- VehicleExit
+        71, -- VehicleAccelerate
+        72, -- VehicleBrake
+        59, -- VehicleMoveLeftRight
+        89, -- VehicleFlyYawLeft
+        9, -- FlyLeftRight
+        8, -- FlyUpDown
+        90, -- VehicleFlyYawRight
+        76, -- VehicleHandbrake
+        2, -- LookUpDown
+        1, -- LookLeftRight
+        25, -- Aim
+        24, -- Attack
+        71, -- VehicleAccelerate
+        72, -- VehicleBrake
+        59, -- VehicleMoveLeftRight
+        31, -- MoveUpDown
+        30, -- MoveLeftRight
+        75, -- VehicleExit
     }
 }, Controls)
 
@@ -1037,8 +1032,6 @@ function Controls:ToggleAll(toggle)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ---@enum CrewHierarchy
 CrewHierarchy = {
@@ -1055,11 +1048,11 @@ CrewHierarchy = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum Font
 Font = {
-  CHALET_LONDON = 0,
-  HOUSE_SCRIPT = 1,
-  MONOSPACE = 2,
-  CHALET_COMPRIME_COLOGNE = 4,
-  PRICEDOWN = 7
+    CHALET_LONDON = 0,
+    HOUSE_SCRIPT = 1,
+    MONOSPACE = 2,
+    CHALET_COMPRIME_COLOGNE = 4,
+    PRICEDOWN = 7
 }
 
 
@@ -1093,28 +1086,26 @@ function ItemFont.RegisterFont(gfxName, fontName)
     return setmetatable(font, ItemFont)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ---@enum JobIcon
 JobIcon = {
-  NONE = -1,
-  GTAOMission = 0,
-  Deathmatch = 1,
-  RaceFinish = 2,
-  GTAOSurvival = 3,
-  TeamDeathmatch = 4,
-  Castle = 6,
-  Parachute = 8,
-  VehicleDeathmatch = 9,
-  RaceCar = 10,
-  RaceFoot = 11,
-  RaceSea = 12,
-  RaceBike = 13,
-  RaceAir = 14,
-  LastTeamStanding = 15,
-  Briefcase = 16,
-  RaceStunt = 18
+    NONE = -1,
+    GTAOMission = 0,
+    Deathmatch = 1,
+    RaceFinish = 2,
+    GTAOSurvival = 3,
+    TeamDeathmatch = 4,
+    Castle = 6,
+    Parachute = 8,
+    VehicleDeathmatch = 9,
+    RaceCar = 10,
+    RaceFoot = 11,
+    RaceSea = 12,
+    RaceBike = 13,
+    RaceAir = 14,
+    LastTeamStanding = 15,
+    Briefcase = 16,
+    RaceStunt = 18
 }
 
 
@@ -1122,25 +1113,25 @@ JobIcon = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum JobSelectionCardIcon
 JobSelectionCardIcon = {
-  NONE = -1,
-  CUSTOM_MISSION = 0,
-  DEATHMATCH = 1,
-  RACE = 2,
-  SURVIVAL = 3,
-  TEAM_DEATHMATCH = 4,
-  GANG_ATTACK = 6,
-  BASE_JUMPING = 8,
-  VEHICLE_DEATHMATCH = 9,
-  RACE_LAND = 10,
-  RACE_FOOT = 11,
-  RACE_BICYCLE = 12,
-  RACE_WATER = 13,
-  RACE_AIR = 14,
-  LAST_TEAM_STANDING = 15,
-  CAPTURE_THE_FLAG = 16,
-  HEIST_PREPARATION = 17,
-  HEIST = 18,
-  RACE_STUNT = 19,
+    NONE = -1,
+    CUSTOM_MISSION = 0,
+    DEATHMATCH = 1,
+    RACE = 2,
+    SURVIVAL = 3,
+    TEAM_DEATHMATCH = 4,
+    GANG_ATTACK = 6,
+    BASE_JUMPING = 8,
+    VEHICLE_DEATHMATCH = 9,
+    RACE_LAND = 10,
+    RACE_FOOT = 11,
+    RACE_BICYCLE = 12,
+    RACE_WATER = 13,
+    RACE_AIR = 14,
+    LAST_TEAM_STANDING = 15,
+    CAPTURE_THE_FLAG = 16,
+    HEIST_PREPARATION = 17,
+    HEIST = 18,
+    RACE_STUNT = 19,
 }
 
 
@@ -1201,173 +1192,173 @@ MarkerType = {
 
 ---@class NotificationCharacters @Enum for notification characters (used in ShowAdvancedNotification)
 NotificationCharacters = {
-  Abigail = "CHAR_ABIGAIL",
-  AllPlayersConf = "CHAR_ALL_PLAYERS_CONF",
-  Amanda = "CHAR_AMANDA",
-  Ammunation = "CHAR_AMMUNATION",
-  Andreas = "CHAR_ANDREAS",
-  Antonia = "CHAR_ANTONIA",
-  Arthur = "CHAR_ARTHUR",
-  Ashley = "CHAR_ASHLEY",
-  BankOfLiberty = "CHAR_BANK_BOL",
-  BankFleeca = "CHAR_BANK_FLEECA",
-  BankMaze = "CHAR_BANK_MAZE",
-  Barry = "CHAR_BARRY",
-  Beverly = "CHAR_BEVERLY",
-  BikeSite = "CHAR_BIKESITE",
-  BlankEntry = "CHAR_BLANK_ENTRY",
-  Blimp = "CHAR_BLIMP",
-  Blocked = "CHAR_BLOCKED",
-  BoatSite = "CHAR_BOATSITE",
-  BrokenDownGirl = "CHAR_BROKEN_DOWN_GIRL",
-  BugStars = "CHAR_BUGSTARS",
-  Call911 = "CHAR_CALL911",
-  LegendaryMotorsport = "CHAR_CARSITE",
-  SSASuperAutos = "CHAR_CARSITE2",
-  Castro = "CHAR_CASTRO",
-  ChatCall = "CHAR_CHAT_CALL",
-  Chef = "CHAR_CHEF",
-  Cheng = "CHAR_CHENG",
-  ChengSenior = "CHAR_CHENGSR",
-  Chop = "CHAR_CHOP",
-  Cris = "CHAR_CRIS",
-  Dave = "CHAR_DAVE",
-  Default = "CHAR_DEFAULT",
-  Denise = "CHAR_DENISE",
-  DetonateBomb = "CHAR_DETONATEBOMB",
-  DetonatePhone = "CHAR_DETONATEPHONE",
-  Devin = "CHAR_DEVIN",
-  SubMarine = "CHAR_DIAL_A_SUB",
-  Dom = "CHAR_DOM",
-  DomesticGirl = "CHAR_DOMESTIC_GIRL",
-  Dreyfuss = "CHAR_DREYFUSS",
-  DrFriedlander = "CHAR_DR_FRIEDLANDER",
-  Epsilon = "CHAR_EPSILON",
-  EstateAgent = "CHAR_ESTATE_AGENT",
-  Facebook = "CHAR_FACEBOOK",
-  FilmNoir = "CHAR_FILMNOIR",
-  Floyd = "CHAR_FLOYD",
-  Franklin = "CHAR_FRANKLIN",
-  FranklinTrevor = "CHAR_FRANK_TREV_CONF",
-  GayMilitary = "CHAR_GAYMILITARY",
-  Hao = "CHAR_HAO",
-  HitcherGirl = "CHAR_HITCHER_GIRL",
-  HumanDefault = "CHAR_HUMANDEFAULT",
-  Hunter = "CHAR_HUNTER",
-  Jimmy = "CHAR_JIMMY",
-  JimmyBoston = "CHAR_JIMMY_BOSTON",
-  Joe = "CHAR_JOE",
-  Josef = "CHAR_JOSEF",
-  Josh = "CHAR_JOSH",
-  LamarDog = "CHAR_LAMAR",
-  Lazlow = "CHAR_LAZLOW",
-  Lester = "CHAR_LESTER",
-  Skull = "CHAR_LESTER_DEATHWISH",
-  LesterFranklin = "CHAR_LEST_FRANK_CONF",
-  LesterMichael = "CHAR_LEST_MIKE_CONF",
-  LifeInvader = "CHAR_LIFEINVADER",
-  LSCustoms = "CHAR_LS_CUSTOMS",
-  LSTI = "CHAR_LS_TOURIST_BOARD",
-  Manuel = "CHAR_MANUEL",
-  Marnie = "CHAR_MARNIE",
-  Martin = "CHAR_MARTIN",
-  MaryAnn = "CHAR_MARY_ANN",
-  Maude = "CHAR_MAUDE",
-  Mechanic = "CHAR_MECHANIC",
-  Michael = "CHAR_MICHAEL",
-  MichaelFranklin = "CHAR_MIKE_FRANK_CONF",
-  MichaelTrevor = "CHAR_MIKE_TREV_CONF",
-  WarStock = "CHAR_MILSITE",
-  Minotaur = "CHAR_MINOTAUR",
-  Molly = "CHAR_MOLLY",
-  MPArmyContact = "CHAR_MP_ARMY_CONTACT",
-  MPBikerBoss = "CHAR_MP_BIKER_BOSS",
-  MPBikerMechanic = "CHAR_MP_BIKER_MECHANIC",
-  MPBrucie = "CHAR_MP_BRUCIE",
-  MPDetonatePhone = "CHAR_MP_DETONATEPHONE",
-  MPFamBoss = "CHAR_MP_FAM_BOSS",
-  MPFIBContact = "CHAR_MP_FIB_CONTACT",
-  MPFMContact = "CHAR_MP_FM_CONTACT",
-  MPGerald = "CHAR_MP_GERALD",
-  MPJulio = "CHAR_MP_JULIO",
-  MPMechanic = "CHAR_MP_MECHANIC",
-  MPMerryweather = "CHAR_MP_MERRYWEATHER",
-  MPMexBoss = "CHAR_MP_MEX_BOSS",
-  MPMexDocks = "CHAR_MP_MEX_DOCKS",
-  MPMexLT = "CHAR_MP_MEX_LT",
-  MPMorsMutual = "CHAR_MP_MORS_MUTUAL",
-  MPProfBoss = "CHAR_MP_PROF_BOSS",
-  MPRayLavoy = "CHAR_MP_RAY_LAVOY",
-  MPRoberto = "CHAR_MP_ROBERTO",
-  MPSnitch = "CHAR_MP_SNITCH",
-  MPStretch = "CHAR_MP_STRETCH",
-  MPStripClubPR = "CHAR_MP_STRIPCLUB_PR",
-  MrsThornhill = "CHAR_MRS_THORNHILL",
-  Multiplayer = "CHAR_MULTIPLAYER",
-  Nigel = "CHAR_NIGEL",
-  Omega = "CHAR_OMEGA",
-  ONeil = "CHAR_ONEIL",
-  Ortega = "CHAR_ORTEGA",
-  Oscar = "CHAR_OSCAR",
-  Patricia = "CHAR_PATRICIA",
-  PegasusDelivery = "CHAR_PEGASUS_DELIVERY",
-  ElitasTravel = "CHAR_PLANESITE",
-  PropertyArmsTrafficking = "CHAR_PROPERTY_ARMS_TRAFFICKING",
-  PropertyBarAirport = "CHAR_PROPERTY_BAR_AIRPORT",
-  PropertyBarBayview = "CHAR_PROPERTY_BAR_BAYVIEW",
-  PropertyBarCafeRojo = "CHAR_PROPERTY_BAR_CAFE_ROJO",
-  PropertyBarCockotoos = "CHAR_PROPERTY_BAR_COCKOTOOS",
-  PropertyBarEclipse = "CHAR_PROPERTY_BAR_ECLIPSE",
-  PropertyBarFes = "CHAR_PROPERTY_BAR_FES",
-  PropertyBarHenHouse = "CHAR_PROPERTY_BAR_HEN_HOUSE",
-  PropertyBarHiMen = "CHAR_PROPERTY_BAR_HI_MEN",
-  PropertyBarHookies = "CHAR_PROPERTY_BAR_HOOKIES",
-  PropertyBarIrish = "CHAR_PROPERTY_BAR_IRISH",
-  PropertyBarLesBianco = "CHAR_PROPERTY_BAR_LES_BIANCO",
-  PropertyBarMirrorPark = "CHAR_PROPERTY_BAR_MIRROR_PARK",
-  PropertyBarPitchers = "CHAR_PROPERTY_BAR_PITCHERS",
-  PropertyBarSingletons = "CHAR_PROPERTY_BAR_SINGLETONS",
-  PropertyBarTequilala = "CHAR_PROPERTY_BAR_TEQUILALA",
-  PropertyBarUnbranded = "CHAR_PROPERTY_BAR_UNBRANDED",
-  PropertyCarModShop = "CHAR_PROPERTY_CAR_MOD_SHOP",
-  PropertyCarScrapYard = "CHAR_PROPERTY_CAR_SCRAP_YARD",
-  PropertyCinemaDowntown = "CHAR_PROPERTY_CINEMA_DOWNTOWN",
-  PropertyCinemaMorningwood = "CHAR_PROPERTY_CINEMA_MORNINGWOOD",
-  PropertyCinemaVinewood = "CHAR_PROPERTY_CINEMA_VINEWOOD",
-  PropertyGolfClub = "CHAR_PROPERTY_GOLF_CLUB",
-  PropertyPlaneScrapYard = "CHAR_PROPERTY_PLANE_SCRAP_YARD",
-  PropertySonarCollections = "CHAR_PROPERTY_SONAR_COLLECTIONS",
-  PropertyTaxiLot = "CHAR_PROPERTY_TAXI_LOT",
-  PropertyTowingImpound = "CHAR_PROPERTY_TOWING_IMPOUND",
-  PropertyWeedShop = "CHAR_PROPERTY_WEED_SHOP",
-  Ron = "CHAR_RON",
-  Saeeda = "CHAR_SAEEDA",
-  Sasquatch = "CHAR_SASQUATCH",
-  Simeon = "CHAR_SIMEON",
-  SocialClub = "CHAR_SOCIAL_CLUB",
-  Solomon = "CHAR_SOLOMON",
-  Steve = "CHAR_STEVE",
-  SteveMikeConf = "CHAR_STEVE_MIKE_CONF",
-  SteveTrevConf = "CHAR_STEVE_TREV_CONF",
-  Stretch = "CHAR_STRETCH",
-  StripperChastity = "CHAR_STRIPPER_CHASTITY",
-  StripperCheetah = "CHAR_STRIPPER_CHEETAH",
-  StripperFufu = "CHAR_STRIPPER_FUFU",
-  StripperInfernus = "CHAR_STRIPPER_INFERNUS",
-  StripperJuliet = "CHAR_STRIPPER_JULIET",
-  StripperNikki = "CHAR_STRIPPER_NIKKI",
-  StripperPeach = "CHAR_STRIPPER_PEACH",
-  StripperSapphire = "CHAR_STRIPPER_SAPPHIRE",
-  Tanisha = "CHAR_TANISHA",
-  Taxi = "CHAR_TAXI",
-  TaxiLiz = "CHAR_TAXI_LIZ",
-  TennisCoach = "CHAR_TENNIS_COACH",
-  TowTonya = "CHAR_TOW_TONYA",
-  Tracey = "CHAR_TRACEY",
-  Trevor = "CHAR_TREVOR",
-  Wade = "CHAR_WADE",
-  YouTube = "CHAR_YOUTUBE",
-  CreatorPortraits = "CHAR_CREATOR_PORTRAITS",
+    Abigail = "CHAR_ABIGAIL",
+    AllPlayersConf = "CHAR_ALL_PLAYERS_CONF",
+    Amanda = "CHAR_AMANDA",
+    Ammunation = "CHAR_AMMUNATION",
+    Andreas = "CHAR_ANDREAS",
+    Antonia = "CHAR_ANTONIA",
+    Arthur = "CHAR_ARTHUR",
+    Ashley = "CHAR_ASHLEY",
+    BankOfLiberty = "CHAR_BANK_BOL",
+    BankFleeca = "CHAR_BANK_FLEECA",
+    BankMaze = "CHAR_BANK_MAZE",
+    Barry = "CHAR_BARRY",
+    Beverly = "CHAR_BEVERLY",
+    BikeSite = "CHAR_BIKESITE",
+    BlankEntry = "CHAR_BLANK_ENTRY",
+    Blimp = "CHAR_BLIMP",
+    Blocked = "CHAR_BLOCKED",
+    BoatSite = "CHAR_BOATSITE",
+    BrokenDownGirl = "CHAR_BROKEN_DOWN_GIRL",
+    BugStars = "CHAR_BUGSTARS",
+    Call911 = "CHAR_CALL911",
+    LegendaryMotorsport = "CHAR_CARSITE",
+    SSASuperAutos = "CHAR_CARSITE2",
+    Castro = "CHAR_CASTRO",
+    ChatCall = "CHAR_CHAT_CALL",
+    Chef = "CHAR_CHEF",
+    Cheng = "CHAR_CHENG",
+    ChengSenior = "CHAR_CHENGSR",
+    Chop = "CHAR_CHOP",
+    Cris = "CHAR_CRIS",
+    Dave = "CHAR_DAVE",
+    Default = "CHAR_DEFAULT",
+    Denise = "CHAR_DENISE",
+    DetonateBomb = "CHAR_DETONATEBOMB",
+    DetonatePhone = "CHAR_DETONATEPHONE",
+    Devin = "CHAR_DEVIN",
+    SubMarine = "CHAR_DIAL_A_SUB",
+    Dom = "CHAR_DOM",
+    DomesticGirl = "CHAR_DOMESTIC_GIRL",
+    Dreyfuss = "CHAR_DREYFUSS",
+    DrFriedlander = "CHAR_DR_FRIEDLANDER",
+    Epsilon = "CHAR_EPSILON",
+    EstateAgent = "CHAR_ESTATE_AGENT",
+    Facebook = "CHAR_FACEBOOK",
+    FilmNoir = "CHAR_FILMNOIR",
+    Floyd = "CHAR_FLOYD",
+    Franklin = "CHAR_FRANKLIN",
+    FranklinTrevor = "CHAR_FRANK_TREV_CONF",
+    GayMilitary = "CHAR_GAYMILITARY",
+    Hao = "CHAR_HAO",
+    HitcherGirl = "CHAR_HITCHER_GIRL",
+    HumanDefault = "CHAR_HUMANDEFAULT",
+    Hunter = "CHAR_HUNTER",
+    Jimmy = "CHAR_JIMMY",
+    JimmyBoston = "CHAR_JIMMY_BOSTON",
+    Joe = "CHAR_JOE",
+    Josef = "CHAR_JOSEF",
+    Josh = "CHAR_JOSH",
+    LamarDog = "CHAR_LAMAR",
+    Lazlow = "CHAR_LAZLOW",
+    Lester = "CHAR_LESTER",
+    Skull = "CHAR_LESTER_DEATHWISH",
+    LesterFranklin = "CHAR_LEST_FRANK_CONF",
+    LesterMichael = "CHAR_LEST_MIKE_CONF",
+    LifeInvader = "CHAR_LIFEINVADER",
+    LSCustoms = "CHAR_LS_CUSTOMS",
+    LSTI = "CHAR_LS_TOURIST_BOARD",
+    Manuel = "CHAR_MANUEL",
+    Marnie = "CHAR_MARNIE",
+    Martin = "CHAR_MARTIN",
+    MaryAnn = "CHAR_MARY_ANN",
+    Maude = "CHAR_MAUDE",
+    Mechanic = "CHAR_MECHANIC",
+    Michael = "CHAR_MICHAEL",
+    MichaelFranklin = "CHAR_MIKE_FRANK_CONF",
+    MichaelTrevor = "CHAR_MIKE_TREV_CONF",
+    WarStock = "CHAR_MILSITE",
+    Minotaur = "CHAR_MINOTAUR",
+    Molly = "CHAR_MOLLY",
+    MPArmyContact = "CHAR_MP_ARMY_CONTACT",
+    MPBikerBoss = "CHAR_MP_BIKER_BOSS",
+    MPBikerMechanic = "CHAR_MP_BIKER_MECHANIC",
+    MPBrucie = "CHAR_MP_BRUCIE",
+    MPDetonatePhone = "CHAR_MP_DETONATEPHONE",
+    MPFamBoss = "CHAR_MP_FAM_BOSS",
+    MPFIBContact = "CHAR_MP_FIB_CONTACT",
+    MPFMContact = "CHAR_MP_FM_CONTACT",
+    MPGerald = "CHAR_MP_GERALD",
+    MPJulio = "CHAR_MP_JULIO",
+    MPMechanic = "CHAR_MP_MECHANIC",
+    MPMerryweather = "CHAR_MP_MERRYWEATHER",
+    MPMexBoss = "CHAR_MP_MEX_BOSS",
+    MPMexDocks = "CHAR_MP_MEX_DOCKS",
+    MPMexLT = "CHAR_MP_MEX_LT",
+    MPMorsMutual = "CHAR_MP_MORS_MUTUAL",
+    MPProfBoss = "CHAR_MP_PROF_BOSS",
+    MPRayLavoy = "CHAR_MP_RAY_LAVOY",
+    MPRoberto = "CHAR_MP_ROBERTO",
+    MPSnitch = "CHAR_MP_SNITCH",
+    MPStretch = "CHAR_MP_STRETCH",
+    MPStripClubPR = "CHAR_MP_STRIPCLUB_PR",
+    MrsThornhill = "CHAR_MRS_THORNHILL",
+    Multiplayer = "CHAR_MULTIPLAYER",
+    Nigel = "CHAR_NIGEL",
+    Omega = "CHAR_OMEGA",
+    ONeil = "CHAR_ONEIL",
+    Ortega = "CHAR_ORTEGA",
+    Oscar = "CHAR_OSCAR",
+    Patricia = "CHAR_PATRICIA",
+    PegasusDelivery = "CHAR_PEGASUS_DELIVERY",
+    ElitasTravel = "CHAR_PLANESITE",
+    PropertyArmsTrafficking = "CHAR_PROPERTY_ARMS_TRAFFICKING",
+    PropertyBarAirport = "CHAR_PROPERTY_BAR_AIRPORT",
+    PropertyBarBayview = "CHAR_PROPERTY_BAR_BAYVIEW",
+    PropertyBarCafeRojo = "CHAR_PROPERTY_BAR_CAFE_ROJO",
+    PropertyBarCockotoos = "CHAR_PROPERTY_BAR_COCKOTOOS",
+    PropertyBarEclipse = "CHAR_PROPERTY_BAR_ECLIPSE",
+    PropertyBarFes = "CHAR_PROPERTY_BAR_FES",
+    PropertyBarHenHouse = "CHAR_PROPERTY_BAR_HEN_HOUSE",
+    PropertyBarHiMen = "CHAR_PROPERTY_BAR_HI_MEN",
+    PropertyBarHookies = "CHAR_PROPERTY_BAR_HOOKIES",
+    PropertyBarIrish = "CHAR_PROPERTY_BAR_IRISH",
+    PropertyBarLesBianco = "CHAR_PROPERTY_BAR_LES_BIANCO",
+    PropertyBarMirrorPark = "CHAR_PROPERTY_BAR_MIRROR_PARK",
+    PropertyBarPitchers = "CHAR_PROPERTY_BAR_PITCHERS",
+    PropertyBarSingletons = "CHAR_PROPERTY_BAR_SINGLETONS",
+    PropertyBarTequilala = "CHAR_PROPERTY_BAR_TEQUILALA",
+    PropertyBarUnbranded = "CHAR_PROPERTY_BAR_UNBRANDED",
+    PropertyCarModShop = "CHAR_PROPERTY_CAR_MOD_SHOP",
+    PropertyCarScrapYard = "CHAR_PROPERTY_CAR_SCRAP_YARD",
+    PropertyCinemaDowntown = "CHAR_PROPERTY_CINEMA_DOWNTOWN",
+    PropertyCinemaMorningwood = "CHAR_PROPERTY_CINEMA_MORNINGWOOD",
+    PropertyCinemaVinewood = "CHAR_PROPERTY_CINEMA_VINEWOOD",
+    PropertyGolfClub = "CHAR_PROPERTY_GOLF_CLUB",
+    PropertyPlaneScrapYard = "CHAR_PROPERTY_PLANE_SCRAP_YARD",
+    PropertySonarCollections = "CHAR_PROPERTY_SONAR_COLLECTIONS",
+    PropertyTaxiLot = "CHAR_PROPERTY_TAXI_LOT",
+    PropertyTowingImpound = "CHAR_PROPERTY_TOWING_IMPOUND",
+    PropertyWeedShop = "CHAR_PROPERTY_WEED_SHOP",
+    Ron = "CHAR_RON",
+    Saeeda = "CHAR_SAEEDA",
+    Sasquatch = "CHAR_SASQUATCH",
+    Simeon = "CHAR_SIMEON",
+    SocialClub = "CHAR_SOCIAL_CLUB",
+    Solomon = "CHAR_SOLOMON",
+    Steve = "CHAR_STEVE",
+    SteveMikeConf = "CHAR_STEVE_MIKE_CONF",
+    SteveTrevConf = "CHAR_STEVE_TREV_CONF",
+    Stretch = "CHAR_STRETCH",
+    StripperChastity = "CHAR_STRIPPER_CHASTITY",
+    StripperCheetah = "CHAR_STRIPPER_CHEETAH",
+    StripperFufu = "CHAR_STRIPPER_FUFU",
+    StripperInfernus = "CHAR_STRIPPER_INFERNUS",
+    StripperJuliet = "CHAR_STRIPPER_JULIET",
+    StripperNikki = "CHAR_STRIPPER_NIKKI",
+    StripperPeach = "CHAR_STRIPPER_PEACH",
+    StripperSapphire = "CHAR_STRIPPER_SAPPHIRE",
+    Tanisha = "CHAR_TANISHA",
+    Taxi = "CHAR_TAXI",
+    TaxiLiz = "CHAR_TAXI_LIZ",
+    TennisCoach = "CHAR_TENNIS_COACH",
+    TowTonya = "CHAR_TOW_TONYA",
+    Tracey = "CHAR_TRACEY",
+    Trevor = "CHAR_TREVOR",
+    Wade = "CHAR_WADE",
+    YouTube = "CHAR_YOUTUBE",
+    CreatorPortraits = "CHAR_CREATOR_PORTRAITS",
 }
 
 
@@ -1375,12 +1366,12 @@ NotificationCharacters = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum NotificationIcon
 NotificationIcon = {
-  ChatBox = 1,
-  Email = 2,
-  AdDFriendRequest = 3,
-  RightJumpingArrow = 7,
-  RPIcon = 8,
-  DollarIcon = 9
+    ChatBox = 1,
+    Email = 2,
+    AdDFriendRequest = 3,
+    RightJumpingArrow = 7,
+    RPIcon = 8,
+    DollarIcon = 9
 }
 
 
@@ -1388,14 +1379,14 @@ NotificationIcon = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum NotificationType
 NotificationType = {
-  Default = 0,
-  Bubble = 1,
-  Mail = 2,
-  FriendRequest = 3,
-  Default2 = 4,
-  Reply = 7,
-  ReputationPoints = 8,
-  Money = 9
+    Default = 0,
+    Bubble = 1,
+    Mail = 2,
+    FriendRequest = 3,
+    Default2 = 4,
+    Reply = 7,
+    ReputationPoints = 8,
+    Money = 9
 }
 
 
@@ -1447,7 +1438,7 @@ ScaleformFonts = {
 
 
 --///////////////////////////////////////////////////////////////////--
-SColor = setmetatable({ A = 0, R = 0, G = 0, B = 0 }, SColor)
+SColor = setmetatable({A = 0, R = 0, G = 0, B = 0}, SColor)
 SColor.__index = SColor
 SColor.__call = function()
     return "SColor"
@@ -1847,13 +1838,13 @@ end
 ---@return table
 function SColor.FromHex(hexColor)
     assert(hexColor:sub(1, 1) == "#", "Invalid Hex value")
-    local color = { A = 0, R = 0, G = 0, B = 0 }
+    local color = {A = 0, R = 0, G = 0, B = 0}
     if hexColor:sub(1, 1) == "#" then
-        local hex = hexColor:gsub("#", "")       -- Remove "#" symbol if present
-        local a = tonumber("0x" .. hex:sub(1, 2)) -- Convert first two characters to decimal (alpha channel)
-        local r = tonumber("0x" .. hex:sub(3, 4)) -- Convert next two characters to decimal (red channel)
-        local g = tonumber("0x" .. hex:sub(5, 6)) -- Convert next two characters to decimal (green channel)
-        local b = tonumber("0x" .. hex:sub(7, 8)) -- Convert last two characters to decimal (blue channel)
+        local hex = hexColor:gsub("#", "") -- Remove "#" symbol if present
+        local a = tonumber("0x"..hex:sub(1, 2)) -- Convert first two characters to decimal (alpha channel)
+        local r = tonumber("0x"..hex:sub(3, 4)) -- Convert next two characters to decimal (red channel)
+        local g = tonumber("0x"..hex:sub(5, 6)) -- Convert next two characters to decimal (green channel)
+        local b = tonumber("0x"..hex:sub(7, 8)) -- Convert last two characters to decimal (blue channel)
 
         color = {
             A = a,
@@ -1869,7 +1860,7 @@ end
 ---@return table
 function SColor.FromHudColor(color)
     assert(color ~= nil, "Invalid HUD color value")
-    local _color = { A = 0, R = 0, G = 0, B = 0 }
+    local _color = {A = 0, R = 0, G = 0, B = 0}
     local r, g, b, a = GetHudColour(color)
     _color = {
         A = a,
@@ -1894,7 +1885,7 @@ end
 ---@param ... number
 ---@return table|unknown
 function SColor.FromArgb(...)
-    local args = { ... }
+    local args = {...}
     local color = {}
     assert(args ~= nil, "nil values are not accepted")
     assert(#args == 1 or #args == 4, "accepted args are ARGB Int value or Alpha, Red, Green, Blue values")
@@ -1918,14 +1909,14 @@ function SColor.FromArgb(...)
             b = 255 - b
         end
 
-        color = { A = a, R = r, G = g, B = b }
+        color = {A = a, R = r, G = g, B = b}
     elseif #args == 4 then
         local alpha, red, green, blue = table.unpack(args)
         assert(alpha ~= nil, "alpha cannot be nil")
         assert(red ~= nil, "red cannot be nil")
         assert(green ~= nil, "green cannot be nil")
         assert(blue ~= nil, "blue cannot be nil")
-        color = { A = alpha, R = red, G = green, B = blue }
+        color = {A = alpha, R = red, G = green, B = blue}
     end
     return setmetatable(color, SColor)
 end
@@ -1936,7 +1927,7 @@ end
 ---@param blue number
 ---@return table
 function SColor.FromRgb(red, green, blue)
-    local color = { A = 255, R = red, G = green, B = blue }
+    local color = {A = 255, R = red, G = green, B = blue}
     return setmetatable(color, SColor)
 end
 
@@ -2026,7 +2017,7 @@ end
 ---@comment Returns this color information as string
 ---@return string
 function SColor:ToString()
-    return "Color [A=" .. self.A .. ", R=:" .. self.R .. ", G=" .. self.G .. ", B=" .. self.B .. "] - INT=" .. self:ToArgb() .. " - HEX=" .. self:ToHex()
+    return "Color [A="..self.A..", R=:"..self.R..", G="..self.G..", B="..self.B.."] - INT="..self:ToArgb().." - HEX="..self:ToHex()
 end
 
 function SColor:__eq(other)
@@ -2417,9 +2408,9 @@ SColor.HUD_Tech_green_very_dark = SColor.FromHudColor(223)
 --///////////////////////////////////////////////////////////////////--
 ---@enum ScoreDisplayType
 ScoreDisplayType = {
-  NUMBER_ONLY = 0,
-  ICON = 1,
-  NONE = 2
+    NUMBER_ONLY = 0,
+    ICON = 1,
+    NONE = 2
 }
 
 
@@ -2427,20 +2418,20 @@ ScoreDisplayType = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum ScoreRightIconType
 ScoreRightIconType = {
-  NONE = 0,
-  INACTIVE_HEADSET = 48,
-  MUTED_HEADSET = 49,
-  ACTIVE_HEADSET = 47,
-  RANK_FREEMODE = 65,
-  KICK = 64,
-  LOBBY_DRIVER = 79,
-  LOBBY_CODRIVER = 80,
-  SPECTATOR = 66,
-  BOUNTY = 115,
-  DEAD = 116,
-  DPAD_GANG_CEO = 121,
-  DPAD_GANG_BIKER = 122,
-  DPAD_DOWN_TARGET = 123
+    NONE = 0,
+    INACTIVE_HEADSET = 48,
+    MUTED_HEADSET = 49,
+    ACTIVE_HEADSET = 47,
+    RANK_FREEMODE = 65,
+    KICK = 64,
+    LOBBY_DRIVER = 79,
+    LOBBY_CODRIVER = 80,
+    SPECTATOR = 66,
+    BOUNTY = 115,
+    DEAD = 116,
+    DPAD_GANG_CEO = 121,
+    DPAD_GANG_BIKER = 122,
+    DPAD_DOWN_TARGET = 123
 }
 
 
@@ -2550,7 +2541,7 @@ function Marker:IsInRange()
     local pos = GetEntityCoords(PlayerPedId(), true)
     local dist = vector3(0, 0, 0)
     if (self.CheckZ) then
-        dist = #(pos - self.Position) --[[@as vector3]]       -- Use Z
+        dist = #(pos - self.Position) --[[@as vector3]] -- Use Z
     else
         dist = #(pos.xy - self.Position.xy) --[[@as vector3]] -- Do not use Z
     end
@@ -2561,8 +2552,6 @@ end
 function Marker:SetColor(color)
     self.Color = color
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 Notifications = setmetatable({
@@ -2939,8 +2928,6 @@ function Notifications:ShowSubtitle(msg, duration)
     EndTextCommandPrint(duration, true)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 BreadcrumbsHandler = setmetatable({
     breadcrumbs = {},
@@ -2960,7 +2947,7 @@ function BreadcrumbsHandler:PreviousMenu()
 end
 
 function BreadcrumbsHandler:Forward(menu, data)
-    table.insert(self.breadcrumbs, { menu = menu, data = data })
+    table.insert(self.breadcrumbs, {menu = menu, data = data})
 end
 
 function BreadcrumbsHandler:Clear()
@@ -2970,8 +2957,6 @@ end
 function BreadcrumbsHandler:Backwards()
     table.remove(self.breadcrumbs, #self.breadcrumbs)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MenuHandler = setmetatable({
@@ -3095,8 +3080,6 @@ function MenuHandler:IsAnyPauseMenuOpen()
     return self._currentPauseMenu ~= nil and self._currentPauseMenu:Visible()
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 CrewTag = setmetatable({}, CrewTag)
 CrewTag.__index = CrewTag
@@ -3120,19 +3103,17 @@ function CrewTag.New(tag, crewTypeIsPrivate, crewTagContainsRockstar, level, cre
 
     local result = "";
     if tag ~= nil and tag ~= "" then
-        if crewTypeIsPrivate then result = result .. "(" else result = result .. " " end
-        if crewTagContainsRockstar then result = result .. "*" else result = result .. " " end
-        result = result .. level
-        result = result .. string.upper(tag)
-        result = result .. hexColor
+        if crewTypeIsPrivate then result = result.."(" else result = result.." " end
+        if crewTagContainsRockstar then result = result.."*" else result = result.." " end
+        result = result..level
+        result = result..string.upper(tag)
+        result = result..hexColor
     end
     local data = {
         TAG = result
     }
     return setmetatable(data, CrewTag)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MissionListColumn = setmetatable({}, MissionListColumn)
@@ -3314,7 +3295,6 @@ function MissionListColumn:_itemCreation(page, pageIndex, before, overflow)
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_RIGHT_ICON", scIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
         end
     end
-
 end
 
 ---Removes a player from the column.
@@ -3537,8 +3517,6 @@ function MissionListColumn:refreshColumn()
         self._isBuilding = false
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 PlayerListColumn = setmetatable({}, PlayerListColumn)
@@ -3970,8 +3948,6 @@ function PlayerListColumn:refreshColumn()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 SettingsListColumn = setmetatable({}, SettingsListColumn)
 SettingsListColumn.__index = SettingsListColumn
@@ -4134,7 +4110,7 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
 
     if pSubT == "LobbyMenu" then
         local Type, SubType = item()
-        local descLabel = "menu_lobby_desc_{" .. menuIndex .. "}"
+        local descLabel = "menu_lobby_desc_{"..menuIndex.."}"
         AddTextEntry(descLabel, item:Description())
 
         if SubType == "UIMenuListItem" then
@@ -4174,10 +4150,10 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
             if item._rightBadge ~= BadgeStyle.NONE then
                 if item._rightBadge == BadgeStyle.CUSTOM then
                     ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
-                    item.customRightIcon.TXD, item.customRightIcon.TXN)
+                        item.customRightIcon.TXD, item.customRightIcon.TXN)
                 else
                     ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex,
-                    item._rightBadge)
+                        item._rightBadge)
                 end
             end
         end
@@ -4203,7 +4179,7 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
         end
     elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
         local Type, SubType = item()
-        local descLabel = "menu_pause_playerTab_{" .. menuIndex .. "}"
+        local descLabel = "menu_pause_playerTab_{"..menuIndex.."}"
         AddTextEntry(descLabel, item:Description())
         if SubType == "UIMenuListItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
@@ -4243,7 +4219,7 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
             if item._rightBadge ~= BadgeStyle.NONE then
                 if item._rightBadge == BadgeStyle.CUSTOM then
                     ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
-                    item.customRightIcon.TXD, item.customRightIcon.TXN)
+                        item.customRightIcon.TXD, item.customRightIcon.TXN)
                 else
                     ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex, item._rightBadge)
                 end
@@ -4554,8 +4530,6 @@ function SettingsListColumn:refreshColumn()
         self._isBuilding = false
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 StoreListColumn = setmetatable({}, StoreListColumn)
@@ -5002,8 +4976,6 @@ function StoreListColumn:refreshColumn()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 FakeBlip = setmetatable({}, FakeBlip)
 FakeBlip.__index = FakeBlip
@@ -5025,8 +4997,6 @@ function FakeBlip.New(sprite, position, color, scale)
     }
     return setmetatable(_data, FakeBlip)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 FriendItem = setmetatable({}, FriendItem)
@@ -5384,8 +5354,6 @@ function FriendItem:AddPanel(panel)
     self.Panel:UpdatePanel()
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 PlayerStatsPanel = setmetatable({}, PlayerStatsPanel)
 PlayerStatsPanel.__index = PlayerStatsPanel
@@ -5573,8 +5541,6 @@ function PlayerStatsPanel:UpdatePanel(override)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 PlayerStatsPanelStatItem = setmetatable({}, PlayerStatsPanelStatItem)
 PlayerStatsPanelStatItem.__index = PlayerStatsPanelStatItem
@@ -5640,8 +5606,6 @@ function PlayerStatsPanelStatItem:Value(value)
     end
     return self._value
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UpperInformation = setmetatable({}, UpperInformation)
@@ -5719,8 +5683,6 @@ function UpperInformation:LowLabel(label)
     return self._lowLabel
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MinimapRaceCheckpoint = setmetatable({}, MinimapRaceCheckpoint)
 MinimapRaceCheckpoint.__index = MinimapRaceCheckpoint
@@ -5743,8 +5705,6 @@ function MinimapRaceCheckpoint.New(sprite, position, color, scale, number)
     }
     return setmetatable(_data, MinimapRaceCheckpoint)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MinimapRoute = setmetatable({}, MinimapRoute)
@@ -5833,8 +5793,6 @@ function MinimapRoute:SetupCustomRoute()
     SetGpsCustomRouteRender(true, 18, self.MapThickness)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MissionItem = setmetatable({}, MissionItem)
 MissionItem.__index = MissionItem
@@ -5883,8 +5841,8 @@ function MissionItem.New(label, mainColor, highlightColor)
         RightIconChecked = false,
         _Selected = false,
         hovered = false,
-        customLeftIcon = {TXD="",TXN=""},
-        customRightIcon = {TXD="",TXN=""},
+        customLeftIcon = {TXD = "", TXN = ""},
+        customRightIcon = {TXD = "", TXN = ""},
         Activated = function(item)
         end
     }
@@ -5947,7 +5905,7 @@ end
 
 function MissionItem:SetCustomLeftIcon(txd, txn)
     self.LeftIcon = BadgeStyle.CUSTOM
-    self.customLeftIcon = {TXD=txd, TXN=txn}
+    self.customLeftIcon = {TXD = txd, TXN = txn}
     if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
         local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
         local pSubT = self.ParentColumn.Parent()
@@ -5958,10 +5916,11 @@ function MissionItem:SetCustomLeftIcon(txd, txn)
         end
     end
 end
+
 function MissionItem:SetCustomRightIcon(txd, txn, checked)
     self.RightIcon = BadgeStyle.CUSTOM
     self.RightIconChecked = checked or false
-    self.customRightIcon = {TXD=txd, TXN=txn}
+    self.customRightIcon = {TXD = txd, TXN = txn}
     if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
         local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
         local pSubT = self.ParentColumn.Parent()
@@ -5980,8 +5939,6 @@ function MissionItem:Selected(bool)
         self._Selected = bool
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MissionSeparatorItem = setmetatable({}, MissionSeparatorItem)
@@ -6100,8 +6057,6 @@ function MissionSeparatorItem:Selected(bool)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 StoreItem = setmetatable({}, StoreItem)
 StoreItem.__index = StoreItem
@@ -6175,8 +6130,6 @@ function StoreItem:Selected(bool)
         self._Selected = bool
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 ---@enum LobbyBadgeIcon
@@ -6343,7 +6296,7 @@ end
 
 function MainView:HeaderPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._headerPicture = { txd = Txd, txn = Txn }
+        self._headerPicture = {txd = Txd, txn = Txn}
     else
         return self._headerPicture
     end
@@ -6351,7 +6304,7 @@ end
 
 function MainView:CrewPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._crewPicture = { txd = Txd, txn = Txn }
+        self._crewPicture = {txd = Txd, txn = Txn}
     else
         return self._crewPicture
     end
@@ -6448,7 +6401,7 @@ function MainView:ShowHeader()
         ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title)
     else
         ScaleformUI.Scaleforms._pauseMenu:ShiftCoronaDescription(true, false)
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title, self.Subtitle .. "\n\n\n\n\n\n\n\n\n\n\n")
+        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title, self.Subtitle.."\n\n\n\n\n\n\n\n\n\n\n")
     end
     if (self:HeaderPicture() ~= nil) then
         ScaleformUI.Scaleforms._pauseMenu:SetHeaderCharImg(self:HeaderPicture().txd, self:HeaderPicture().txn, true)
@@ -6762,65 +6715,56 @@ function MainView:ProcessControl()
     end
 
     if (IsDisabledControlJustPressed(2, 172)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoUp()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 172) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoUp()
-                    end
-                    Citizen.Wait(50)
+        Citizen.CreateThread(function()
+            self:GoUp()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 172) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoUp()
                 end
-                return
-            end)
-        end
+                Citizen.Wait(50)
+            end
+            return
+        end)
     end
     if (IsDisabledControlJustPressed(2, 173)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoDown()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 173) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoDown()
-                    end
-                    Citizen.Wait(50)
+        Citizen.CreateThread(function()
+            self:GoDown()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 173) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoDown()
                 end
-                return
-            end)
-        end
+                Citizen.Wait(50)
+            end
+            return
+        end)
     end
     if (IsDisabledControlJustPressed(2, 174)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoLeft()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 174) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoLeft()
-                    end
-                    Citizen.Wait(50)
+        Citizen.CreateThread(function()
+            self:GoLeft()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 174) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoLeft()
                 end
-                return
-            end)
-        end
+                Citizen.Wait(50)
+            end
+            return
+        end)
     end
     if (IsDisabledControlJustPressed(2, 175)) then
-        if GlobalGameTimer - self._time > self._delay then
-            self:ButtonDelay()
-            Citizen.CreateThread(function()
-                self:GoRight()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 175) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoRight()
-                    end
-                    Citizen.Wait(50)
+        Citizen.CreateThread(function()
+            self:GoRight()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 175) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoRight()
                 end
-                return
-            end)
-        end
+                Citizen.Wait(50)
+            end
+            return
+        end)
     end
 
     if (IsControlJustPressed(2, 201)) then
@@ -6833,7 +6777,7 @@ function MainView:ProcessControl()
             self:GoBack()
         end)
     end
-    
+
     if (IsControlJustPressed(1, 241)) then
         Citizen.CreateThread(function()
             ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(-1)
@@ -6853,17 +6797,6 @@ function MainView:ProcessControl()
         self._times = 0
         self._delay = 150
     end
-end
-
-function MainView:ButtonDelay()
-    self._times = self._times + 1
-    if self._times % 5 == 0 then
-        self._delay = self._delay - 10
-        if self._delay < 50 then
-            self._delay = 50
-        end
-    end
-    self._time = GlobalGameTimer
 end
 
 function MainView:Select()
@@ -7105,8 +7038,6 @@ function MainView:GoRight()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MinimapPanel = setmetatable({}, MinimapPanel)
 MinimapPanel.__index = MinimapPanel
@@ -7237,7 +7168,7 @@ function MinimapPanel:InitializeMapSize()
 
     -- Center of square area
     self.mapPosition = vector2((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2)
-    
+
     -- Calculate our range and get the correct zoom.
     local DistanceX = math.abs(left - right)
     local DistanceY = math.abs(top - bottom)
@@ -7382,8 +7313,6 @@ function MinimapPanel:ClearMinimap()
     ClearGpsFlags();
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MissionDetailsPanel = setmetatable({}, MissionDetailsPanel)
 MissionDetailsPanel.__index = MissionDetailsPanel
@@ -7489,8 +7418,6 @@ function MissionDetailsPanel:Clear()
     self.Items = {}
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 BasicTabItem = setmetatable({}, BasicTabItem)
 BasicTabItem.__index = BasicTabItem
@@ -7513,8 +7440,6 @@ function BasicTabItem.New(label, labelFont)
     }
     return setmetatable(data, BasicTabItem)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 GalleryItem = setmetatable({}, GalleryItem)
@@ -7585,8 +7510,6 @@ function GalleryItem:SetRightDescription(description)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 KeymapItem = setmetatable({}, KeymapItem)
 KeymapItem.__index = KeymapItem
@@ -7629,8 +7552,6 @@ function KeymapItem.New(title, primaryKeyboard, primaryGamepad, secondaryKeyboar
     end
     return setmetatable(data, KeymapItem)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 SettingsCheckboxItem = setmetatable({}, SettingsCheckboxItem)
@@ -7721,8 +7642,6 @@ function SettingsCheckboxItem:Checked(checked)
     return self._isChecked
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 SettingsItem = setmetatable({}, SettingsItem)
 SettingsItem.__index = SettingsItem
@@ -7809,8 +7728,6 @@ function SettingsItem:RightLabel(label)
     end
     return self._rightLabel
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 SettingsListItem = setmetatable({}, SettingsListItem)
@@ -7904,8 +7821,6 @@ function SettingsListItem:ItemIndex(index)
     end
     return self._itemIndex
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 SettingsProgressItem = setmetatable({}, SettingsProgressItem)
@@ -8021,8 +7936,6 @@ function SettingsProgressItem:ColoredBarColor(color)
     return self._coloredBarColor
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 SettingsSliderItem = setmetatable({}, SettingsSliderItem)
 SettingsSliderItem.__index = SettingsSliderItem
@@ -8129,8 +8042,6 @@ function SettingsSliderItem:ColoredBarColor(color)
     return self._coloredBarColor
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 StatsTabItem = setmetatable({}, StatsTabItem)
 StatsTabItem.__index = StatsTabItem
@@ -8198,7 +8109,7 @@ function StatsTabItem:RightLabel(label)
         for k, v in pairs(StatItemType) do
             if v == self.Type then _type = tostring(k) end
         end
-        print("SCALEFORMUI - WARNING: RightLabel function can only be called by Basic items.. your item is of type: " ..
+        print("SCALEFORMUI - WARNING: RightLabel function can only be called by Basic items.. your item is of type: "..
             _type)
     end
     return self._rightLabel
@@ -8223,7 +8134,7 @@ function StatsTabItem:Value(value)
         for k, v in pairs(StatItemType) do
             if v == self.Type then _type = tostring(k) end
         end
-        print("SCALEFORMUI - WARNING: Value function can only be called by colored bar items.. your item is of type: " ..
+        print("SCALEFORMUI - WARNING: Value function can only be called by colored bar items.. your item is of type: "..
             _type)
     end
     return self._value
@@ -8248,13 +8159,11 @@ function StatsTabItem:ColoredBarColor(color)
             if v == self.Type then _type = tostring(k) end
         end
         print(
-            "SCALEFORMUI - WARNING: ColoredBarColor function can only be called by colored bar items.. your item is of type: " ..
+            "SCALEFORMUI - WARNING: ColoredBarColor function can only be called by colored bar items.. your item is of type: "..
             _type)
     end
     return self._coloredBarColor
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 ---@class StatItemType
@@ -8321,8 +8230,6 @@ function BaseTab.New(title, type, color)
     }
     return setmetatable(data, BaseTab)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 GalleryTab = setmetatable({}, GalleryTab)
@@ -8502,8 +8409,6 @@ function GalleryTab:updatePage()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 PlayerListTab = setmetatable({}, PlayerListTab)
 PlayerListTab.__index = PlayerListTab
@@ -8641,8 +8546,6 @@ function PlayerListTab:Focus()
     return self._focus
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 SubmenuTab = setmetatable({}, SubmenuTab)
 SubmenuTab.__index = SubmenuTab
@@ -8669,8 +8572,6 @@ function SubmenuTab:AddLeftItem(item)
     item.Parent = self
     self.LeftItemList[#self.LeftItemList + 1] = item
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 TabLeftItem = setmetatable({}, TabLeftItem)
@@ -8705,7 +8606,7 @@ end
 function TabLeftItem.New(label, _type, mainColor, highlightColor, labelFont)
     local __formatLeftLabel = (tostring(label))
     if not __formatLeftLabel:StartsWith("~") then
-        __formatLeftLabel = "~s~" .. __formatLeftLabel
+        __formatLeftLabel = "~s~"..__formatLeftLabel
     end
     local data = {
         Label = label or "",
@@ -8750,7 +8651,7 @@ function TabLeftItem:Label(label)
         self.Label = label
         self._formatLeftLabel = tostring(label)
         if not self._formatLeftLabel:StartsWith("~") then
-            self._formatLeftLabel = "~s~" .. self._formatLeftLabel
+            self._formatLeftLabel = "~s~"..self._formatLeftLabel
         end
         if self:Selected() then
             self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
@@ -8857,8 +8758,6 @@ function TabLeftItem:UpdateBackground(txd, txn, resizeType)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 TextTab = setmetatable({}, TextTab)
 TextTab.__index = TextTab
@@ -8913,8 +8812,6 @@ function TextTab:AddPicture(txd, txn)
         ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_BASE_TAB_RIGHT_PICTURE", tab, txd, txn)
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 TabView = setmetatable({}, TabView)
@@ -9050,7 +8947,7 @@ function TabView:Visible(visible)
         self._visible = visible
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
-            while(not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
+            while (not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
             if not IsPauseMenuActive() then
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
                 ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
@@ -9101,7 +8998,7 @@ end
 
 function TabView:HeaderPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._headerPicture = { txd = Txd, txn = Txn }
+        self._headerPicture = {txd = Txd, txn = Txn}
     else
         return self._headerPicture
     end
@@ -9109,7 +9006,7 @@ end
 
 function TabView:CrewPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._crewPicture = { txd = Txd, txn = Txn }
+        self._crewPicture = {txd = Txd, txn = Txn}
     else
         return self._crewPicture
     end
@@ -9725,6 +9622,7 @@ function TabView:GoBack()
                 end
             end
         end
+        PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     else
         if self:CanPlayerCloseMenu() then
             self:Visible(false)
@@ -9790,8 +9688,10 @@ function TabView:GoUp()
     if retVal ~= -1 then
         if self:FocusLevel() == 1 then
             self:LeftItemIndex(retVal + 1)
+            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
         elseif self:FocusLevel() == 2 then
             self:RightItemIndex(retVal + 1)
+            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
         end
     end
 end
@@ -9853,8 +9753,10 @@ function TabView:GoDown()
     local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 9)
     if retVal ~= -1 then
         if self:FocusLevel() == 1 then
+            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
             self:LeftItemIndex(retVal + 1)
         elseif self:FocusLevel() == 2 then
+            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
             self:RightItemIndex(retVal + 1)
         end
     end
@@ -10535,25 +10437,59 @@ function TabView:ProcessControl()
     if not self:Visible() or self.TemporarilyHidden then
         return
     end
+
     EnableControlAction(2, 177, true)
-    if (IsControlJustPressed(2, 172)) then
+
+    if (IsDisabledControlJustPressed(2, 172)) then
         Citizen.CreateThread(function()
             self:GoUp()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 172) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoUp()
+                end
+                Citizen.Wait(50)
+            end
+            return
         end)
     end
-    if (IsControlJustPressed(2, 173)) then
+    if (IsDisabledControlJustPressed(2, 173)) then
         Citizen.CreateThread(function()
             self:GoDown()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 173) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoDown()
+                end
+                Citizen.Wait(50)
+            end
+            return
         end)
     end
-    if (IsControlJustPressed(2, 174)) then
+    if (IsDisabledControlJustPressed(2, 174)) then
         Citizen.CreateThread(function()
             self:GoLeft()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 174) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoLeft()
+                end
+                Citizen.Wait(50)
+            end
+            return
         end)
     end
-    if (IsControlJustPressed(2, 175)) then
+    if (IsDisabledControlJustPressed(2, 175)) then
         Citizen.CreateThread(function()
             self:GoRight()
+            local timer = GetGameTimer()
+            while IsDisabledControlPressed(2, 175) do
+                if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                    self:GoRight()
+                end
+                Citizen.Wait(50)
+            end
+            return
         end)
     end
     if (IsControlJustPressed(2, 205) or (IsUsingKeyboard(2) and IsControlJustPressed(2, 192) and IsControlPressed(2, 21))) then
@@ -10611,9 +10547,16 @@ function TabView:ProcessControl()
             self._timer = GlobalGameTimer
         end
     end
+
+    if (IsControlJustReleased(0, 172) or IsControlJustReleased(1, 172) or IsControlJustReleased(2, 172)) or
+        (IsControlJustReleased(0, 173) or IsControlJustReleased(1, 173) or IsControlJustReleased(2, 173)) or
+        (IsControlJustReleased(0, 174) or IsControlJustReleased(1, 174) or IsControlJustReleased(2, 174)) or
+        (IsControlJustReleased(0, 175) or IsControlJustReleased(1, 175) or IsControlJustReleased(2, 175))
+    then
+        self._times = 0
+        self._delay = 150
+    end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 RadialMenu = setmetatable({}, RadialMenu)
@@ -10661,7 +10604,7 @@ function RadialMenu.New(x, y)
         oldAngle = 0,
         changed = false,
         enable3D = true,
-        offset = { x = X, y = Y },
+        offset = {x = X, y = Y},
         Segments = {
             RadialSegment.New(1),
             RadialSegment.New(2),
@@ -10888,8 +10831,6 @@ function RadialMenu:Draw()
     ScaleformUI.Scaleforms._radialMenu:Render2D()
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 RadialSegment = setmetatable({}, RadialSegment)
 RadialSegment.__index = RadialSegment
@@ -10940,8 +10881,6 @@ function RadialSegment:CycleItems(dir)
     self.OnIndexChanged(self.currentSelection)
     return self:CurrentSelection()
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 SegmentItem = setmetatable({}, SegmentItem)
@@ -11072,8 +11011,6 @@ function SegmentItem:SetQuantity(qtty, max)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 RadioItem = setmetatable({}, RadioItem)
 RadioItem.__index = RadioItem
@@ -11092,8 +11029,6 @@ function RadioItem.New(_station, _artist, _track, _txd, _txn)
     }
     return setmetatable(data, RadioItem)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIRadioMenu = setmetatable({}, UIRadioMenu)
@@ -11367,7 +11302,6 @@ function UIRadioMenu:animateOut()
     until not self.isAnimating
 end
 
-
 --///////////////////////////////////////////////////////////////////--
 UIMenuCheckboxItem = setmetatable({}, UIMenuCheckboxItem)
 UIMenuCheckboxItem.__index = UIMenuCheckboxItem
@@ -11557,9 +11491,9 @@ function UIMenuCheckboxItem:LeftBadge(Badge)
     end
 end
 
-function UIMenuCheckboxItem:CustomLeftBadge(txd,txn)
+function UIMenuCheckboxItem:CustomLeftBadge(txd, txn)
     if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd,txn, self)
+        self.Base:CustomLeftBadge(txd, txn, self)
     else
         return self.Base:LeftBadge()
     end
@@ -11590,8 +11524,6 @@ function UIMenuCheckboxItem:Checked(bool)
         return self._Checked
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuDynamicListItem = setmetatable({}, UIMenuDynamicListItem)
@@ -11821,9 +11753,9 @@ function UIMenuDynamicListItem:LeftBadge(Badge)
     end
 end
 
-function UIMenuDynamicListItem:CustomLeftBadge(txd,txn)
+function UIMenuDynamicListItem:CustomLeftBadge(txd, txn)
     if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd,txn, self)
+        self.Base:CustomLeftBadge(txd, txn, self)
     else
         return self.Base:LeftBadge()
     end
@@ -11885,8 +11817,6 @@ function UIMenuDynamicListItem:FindPanelItem()
     return nil
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 UIMenuItem = setmetatable({}, UIMenuItem)
 UIMenuItem.__index = UIMenuItem
@@ -11937,7 +11867,7 @@ end
 function UIMenuItem.New(text, description, color, highlightColor, textColor, highlightedTextColor)
     local __formatLeftLabel = (tostring(text))
     if not __formatLeftLabel:StartsWith("~") then
-        __formatLeftLabel = "~s~" .. __formatLeftLabel
+        __formatLeftLabel = "~s~"..__formatLeftLabel
     end
 
     _UIMenuItem = {
@@ -11964,8 +11894,8 @@ function UIMenuItem.New(text, description, color, highlightColor, textColor, hig
         Panels = {},
         SidePanel = nil,
         ItemId = 0,
-        customLeftIcon = {TXD="",TXN=""},
-        customRightIcon = {TXD="",TXN=""},
+        customLeftIcon = {TXD = "", TXN = ""},
+        customRightIcon = {TXD = "", TXN = ""},
         Activated = function(menu, item)
         end,
         Highlighted = function(menu, item)
@@ -12117,19 +12047,19 @@ function UIMenuItem:Description(str, item)
         if item == nil then item = self end
         self._Description = tostring(str)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            local desc = "menu_" ..
-                BreadcrumbsHandler:CurrentDepth() .. "_desc_" .. (IndexOf(self.ParentMenu.Items, item) - 1)
+            local desc = "menu_"..
+                BreadcrumbsHandler:CurrentDepth().."_desc_"..(IndexOf(self.ParentMenu.Items, item) - 1)
             AddTextEntry(desc, str)
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_ITEM_DESCRIPTION", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), desc)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
             if pSubT == "LobbyMenu" then
-                local desc = "menu_lobby_desc_{" .. IndexOf(self.ParentColumn.Items, item) .. "}"
+                local desc = "menu_lobby_desc_{"..IndexOf(self.ParentColumn.Items, item).."}"
                 AddTextEntry(desc, str)
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_DESCRIPTION", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), desc)
             elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                local desc = "menu_pause_playerTab_{" .. self.ParentColumn.ParentTab .. "}_{" .. item.ItemId .. "}"
+                local desc = "menu_pause_playerTab_{"..self.ParentColumn.ParentTab.."}_{"..item.ItemId.."}"
                 AddTextEntry(desc, str)
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_DESCRIPTION", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), desc)
             end
@@ -12193,7 +12123,7 @@ function UIMenuItem:Label(Text, item)
         self._label = tostring(Text)
         self._formatLeftLabel = tostring(Text)
         if not self._formatLeftLabel:StartsWith("~") then
-            self._formatLeftLabel = "~s~" .. self._formatLeftLabel
+            self._formatLeftLabel = "~s~"..self._formatLeftLabel
         end
         if self:Selected() then
             self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
@@ -12225,7 +12155,7 @@ function UIMenuItem:RightLabel(Text)
         self._rightLabel = tostring(Text)
         self._formatRightLabel = tostring(Text)
         if not self._formatRightLabel:StartsWith("~") then
-            self._formatRightLabel = "~s~" .. self._formatRightLabel
+            self._formatRightLabel = "~s~"..self._formatRightLabel
         end
         if self:Selected() then
             self._formatRightLabel = self._formatRightLabel:gsub("~w~", "~l~")
@@ -12292,10 +12222,10 @@ function UIMenuItem:LeftBadge(Badge, item)
     end
 end
 
-function UIMenuItem:CustomRightBadge(txd,txn, item)
+function UIMenuItem:CustomRightBadge(txd, txn, item)
     if item == nil then item = self end
     self._rightBadge = -1
-    self.customRightIcon = {TXD=txd, TXN=txn}
+    self.customRightIcon = {TXD = txd, TXN = txn}
     if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
         ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_RIGHT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
     end
@@ -12309,23 +12239,22 @@ function UIMenuItem:CustomRightBadge(txd,txn, item)
     end
 end
 
-function UIMenuItem:CustomLeftBadge(txd,txn, item)
+function UIMenuItem:CustomLeftBadge(txd, txn, item)
     if item == nil then item = self end
     self._leftBadge = -1
-    self.customLeftIcon = {TXD=txd, TXN=txn}
+    self.customLeftIcon = {TXD = txd, TXN = txn}
     if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
         ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
     end
     if self.ParentColumn ~= nil then
         local pSubT = self.ParentColumn.Parent()
         if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)),  txd, txn)
+            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
         elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)),  txd, txn)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
         end
     end
 end
-
 
 function UIMenuItem:AddPanel(Panel)
     if Panel() == "UIMenuPanel" then
@@ -12397,8 +12326,6 @@ function UIMenuItem:BlinkDescription(bool, item)
         return self.blinkDescription
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuListItem = setmetatable({}, UIMenuListItem)
@@ -12681,14 +12608,13 @@ function UIMenuListItem:LeftBadge(Badge)
 end
 
 --- CustomLeftBadge
-function UIMenuListItem:CustomLeftBadge(txd,txn)
+function UIMenuListItem:CustomLeftBadge(txd, txn)
     if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd,txn, self)
+        self.Base:CustomLeftBadge(txd, txn, self)
     else
         return self.Base:LeftBadge()
     end
 end
-
 
 ---RightBadge
 function UIMenuListItem:RightBadge()
@@ -12777,7 +12703,7 @@ function UIMenuListItem:createListString()
             value.ReplaceRstarColorsWith("~c~")
         else
             if not value:StartsWith("~") then
-                value = "~s~" .. value
+                value = "~s~"..value
             end
             if self:Selected() then
                 value = value:gsub("~w~", "~l~")
@@ -12790,8 +12716,6 @@ function UIMenuListItem:createListString()
     end
     return table.concat(list, ",")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuProgressItem = setmetatable({}, UIMenuProgressItem)
@@ -13037,9 +12961,9 @@ function UIMenuProgressItem:LeftBadge(Badge)
     end
 end
 
-function UIMenuProgressItem:CustomLeftBadge(txd,txn)
+function UIMenuProgressItem:CustomLeftBadge(txd, txn)
     if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd,txn, self)
+        self.Base:CustomLeftBadge(txd, txn, self)
     else
         return self.Base:LeftBadge()
     end
@@ -13058,8 +12982,6 @@ end
 function UIMenuProgressItem:RightLabel()
     error("This item does not support a right label")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuSeparatorItem = setmetatable({}, UIMenuSeparatorItem)
@@ -13243,8 +13165,6 @@ end
 function UIMenuSeparatorItem:RightLabel()
     error("This item does not support a right label")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuSliderItem = setmetatable({}, UIMenuSliderItem)
@@ -13480,9 +13400,9 @@ function UIMenuSliderItem:LeftBadge(Badge)
     end
 end
 
-function UIMenuSliderItem:CustomLeftBadge(txd,txn)
+function UIMenuSliderItem:CustomLeftBadge(txd, txn)
     if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd,txn, self)
+        self.Base:CustomLeftBadge(txd, txn, self)
     else
         return self.Base:LeftBadge()
     end
@@ -13499,8 +13419,6 @@ end
 function UIMenuSliderItem:RightLabel()
     error("This item does not support a right label")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuStatsItem = setmetatable({}, UIMenuStatsItem)
@@ -13738,8 +13656,6 @@ end
 function UIMenuStatsItem:RightLabel()
     error("This item does not support a right label")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 PaginationHandler = setmetatable({}, PaginationHandler)
@@ -14013,19 +13929,17 @@ end
 
 function PaginationHandler:ToString()
     local str = ""
-    str = str .. "self._currentMenuIndex: " .. self._currentMenuIndex .. ", "
-    str = str .. "self._currentPageIndex: " .. self._currentPageIndex .. ", "
-    str = str .. "CurrentPageStartIndex: " + self:CurrentPageStartIndex() + ", ";
-    str = str .. "CurrentPageEndIndex: " + self:CurrentPageEndIndex() + ", ";
-    str = str .. "self.currentPage: " .. self.currentPage .. ", "
-    str = str .. "self.itemsPerPage: " .. self.itemsPerPage .. ", "
-    str = str .. "self.minItem: " .. self.minItem .. ", "
-    str = str .. "self.maxItem: " .. self.maxItem .. ", "
-    str = str .. "self.totalItems: " .. self.totalItems .. ", "
-    str = str .. "self.scaleformIndex: " .. self.scaleformIndex .. ", "
+    str = str.."self._currentMenuIndex: "..self._currentMenuIndex..", "
+    str = str.."self._currentPageIndex: "..self._currentPageIndex..", "
+    str = str.."CurrentPageStartIndex: " + self:CurrentPageStartIndex() + ", ";
+    str = str.."CurrentPageEndIndex: " + self:CurrentPageEndIndex() + ", ";
+    str = str.."self.currentPage: "..self.currentPage..", "
+    str = str.."self.itemsPerPage: "..self.itemsPerPage..", "
+    str = str.."self.minItem: "..self.minItem..", "
+    str = str.."self.maxItem: "..self.maxItem..", "
+    str = str.."self.totalItems: "..self.totalItems..", "
+    str = str.."self.scaleformIndex: "..self.scaleformIndex..", "
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuColorPanel = setmetatable({}, UIMenuColorPanel)
@@ -14075,18 +13989,16 @@ end
 function UIMenuColorPanel:CurrentSelection(new_value)
     if new_value ~= nil then
         self.value = new_value
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() 
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
             and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
             local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
             local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_COLOR_PANEL_VALUE", it, van-1, new_value)
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_COLOR_PANEL_VALUE", it, van - 1, new_value)
         end
     else
         return self.value
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuGridPanel = setmetatable({}, UIMenuGridPanel)
@@ -14138,9 +14050,8 @@ end
 function UIMenuGridPanel:CirclePosition(position)
     if position ~= nil then
         self._CirclePosition = position
-        if (self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil) and self.ParentItem:SetParentMenu():Visible() 
+        if (self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil) and self.ParentItem:SetParentMenu():Visible()
             and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-
             local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
             local van = IndexOf(self.ParentItem.Panels, self)
             ScaleformUI.Scaleforms._ui:CallFunction("SET_GRID_PANEL_VALUE_RETURN_VALUE", it, van - 1,
@@ -14150,8 +14061,6 @@ function UIMenuGridPanel:CirclePosition(position)
         return self._CirclePosition
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuPercentagePanel = setmetatable({}, UIMenuPercentagePanel)
@@ -14188,11 +14097,11 @@ end
 function UIMenuPercentagePanel:Percentage(value)
     if value ~= nil then
         self._percentage = value
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() 
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
             and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
             local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
             local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_PERCENT_PANEL_RETURN_VALUE", it, van-1, value)
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_PERCENT_PANEL_RETURN_VALUE", it, van - 1, value)
         end
     else
         return self._percentage
@@ -14208,8 +14117,6 @@ function UIMenuPercentagePanel:SetParentItem(Item) -- required
         return self.ParentItem
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuStatisticsPanel = setmetatable({}, UIMenuStatisticsPanel)
@@ -14249,13 +14156,12 @@ function UIMenuStatisticsPanel:AddStatistic(name, value) -- required
         elseif value < 0 then
             value = 0
         end
-        table.insert(self.Items, { ['name'] = name, ['value'] = value })
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() 
+        table.insert(self.Items, {['name'] = name, ['value'] = value})
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
             and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-
             local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
             local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATISTIC_TO_PANEL", it, van-1, name, value)
+            ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATISTIC_TO_PANEL", it, van - 1, name, value)
         end
     end
 end
@@ -14295,8 +14201,6 @@ function UIMenuStatisticsPanel:UpdateStatistic(index, value)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 UIMenuFreemodeDetailsItem = setmetatable({}, UIMenuFreemodeDetailsItem)
 UIMenuFreemodeDetailsItem.__index = UIMenuFreemodeDetailsItem
@@ -14334,8 +14238,6 @@ function UIMenuFreemodeDetailsItem:SetLabelsFonts(leftFont, rightFont)
         self._rightLabelFont = rightFont
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMissionDetailsPanel = setmetatable({}, UIMissionDetailsPanel)
@@ -14416,8 +14318,6 @@ function UIMissionDetailsPanel:RemoveItemAt(index)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 UIVehicleColorPickerPanel = setmetatable({}, UIVehicleColorPickerPanel)
 UIVehicleColorPickerPanel.__index = UIVehicleColorPickerPanel
@@ -14459,8 +14359,6 @@ function UIVehicleColorPickerPanel:UpdatePanelTitle(title)
         ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_SIDE_PANEL_TITLE", item, title)
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenu = setmetatable({}, UIMenu)
@@ -14607,7 +14505,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _Subtitle = subTitle,
         AlternativeTitle = alternativeTitleStyle,
         counterColor = SColor.HUD_Freemode,
-        Position = { x = X, y = Y },
+        Position = {x = X, y = Y},
         Pagination = PaginationHandler.New(),
         enableAnimation = true,
         animationType = MenuAnimationType.LINEAR,
@@ -14640,7 +14538,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _timeBeforeOverflow = 0,
         _canHe = true,
         _scaledWidth = (720 * GetAspectRatio(false)),
-        _glarePos = {x=0,y=0},
+        _glarePos = {x = 0, y = 0},
         fSavedGlareDirection = 0,
         enabled3DAnimations = true,
         isFading = false,
@@ -14728,7 +14626,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     if (_UIMenu._menuGlare == 0) then
         _UIMenu._menuGlare = _Scaleform.Request("mp_menu_glare")
     end
-    _UIMenu._glarePos ={x=_UIMenu.Position.x / 1280 + 0.4499, y = (_UIMenu.Position.y / 720) + 0.496}
+    _UIMenu._glarePos = {x = _UIMenu.Position.x / 1280 + 0.4499, y = (_UIMenu.Position.y / 720) + 0.496}
 
     return setmetatable(_UIMenu, UIMenu)
 end
@@ -14746,7 +14644,7 @@ function UIMenu:Title(title)
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
                     self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle,
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle,
                     self.alternativeTitle)
             end
         end
@@ -14780,7 +14678,7 @@ function UIMenu:Subtitle(sub)
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
                     self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle,
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle,
                     self.alternativeTitle)
             end
         end
@@ -14813,7 +14711,7 @@ function UIMenu:SubtitleColor(color)
             if color == HudColours.NONE then
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle, self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle, self.alternativeTitle)
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.alternativeTitle)
             end
         end
     end
@@ -15173,7 +15071,7 @@ function UIMenu:RemoveItemAt(index)
                 self:RefreshMenu(true);
             end
         else
-            print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: " .. index .. ", Items: " .. #self.Items .. ")")
+            print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..index..", Items: "..#self.Items..")")
         end
     end
 end
@@ -15238,7 +15136,7 @@ function UIMenu:Visible(bool)
         if bool then
             if not self._itemless and #self.Items == 0 then
                 MenuHandler:CloseAndClearHistory()
-                assert(self._itemless or #self.Items == 0, "UIMenu " .. self:Title() .. " menu is empty... Closing and clearing history.")
+                assert(self._itemless or #self.Items == 0, "UIMenu "..self:Title().." menu is empty... Closing and clearing history.")
             end
             ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
             MenuHandler._currentMenu = self
@@ -15268,8 +15166,8 @@ function UIMenu:Visible(bool)
 end
 
 function UIMenu:clearLabels()
-    for k,v in ipairs(self.Items) do
-        AddTextEntry("menu_" .. (BreadcrumbsHandler:CurrentDepth() + 1) .. "_desc_" .. k, "")
+    for k, v in ipairs(self.Items) do
+        AddTextEntry("menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..k, "")
     end
 end
 
@@ -15285,7 +15183,7 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
         if self.subtitleColor == HudColours.NONE then
             PushScaleformMovieMethodParameterString(self._Subtitle)
         else
-            PushScaleformMovieMethodParameterString("~HC_" .. self.subtitleColor .. "~" .. self._Subtitle)
+            PushScaleformMovieMethodParameterString("~HC_"..self.subtitleColor.."~"..self._Subtitle)
         end
         PushScaleformMovieMethodParameterFloat(self.Position.x)
         PushScaleformMovieMethodParameterFloat(self.Position.y)
@@ -15320,7 +15218,7 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
                 self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
                 self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false)
         else
-            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle, self.Position.x,
+            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
                 self.Position.y,
                 self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
                 self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
@@ -15422,7 +15320,7 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
 
     local item = self.Items[menuIndex]
     local Type, SubType = item()
-    local textEntry = "menu_" .. (BreadcrumbsHandler:CurrentDepth() + 1) .. "_desc_" .. menuIndex
+    local textEntry = "menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..menuIndex
     AddTextEntry(textEntry, item:Description())
 
     BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "ADD_ITEM")
@@ -15448,8 +15346,8 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
         PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
         EndScaleformMovieMethod()
     elseif SubType == "UIMenuListItem" then
-        AddTextEntry("listitem_" .. menuIndex .. "_list", item:createListString())
-        BeginTextCommandScaleformString("listitem_" .. menuIndex .. "_list")
+        AddTextEntry("listitem_"..menuIndex.."_list", item:createListString())
+        BeginTextCommandScaleformString("listitem_"..menuIndex.."_list")
         EndTextCommandScaleformString()
         PushScaleformMovieFunctionParameterInt(item:Index() - 1)
         PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
@@ -16025,7 +15923,7 @@ end
 function UIMenu:UpdateDescription()
     ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_ITEM_DESCRIPTION",
         self.Pagination:GetScaleformIndex(self:CurrentSelection()),
-        "menu_" .. BreadcrumbsHandler:CurrentDepth() .. "_desc_" .. self:CurrentSelection())
+        "menu_"..BreadcrumbsHandler:CurrentDepth().."_desc_"..self:CurrentSelection())
 end
 
 ---Draw
@@ -16099,7 +15997,7 @@ function UIMenu:ProcessMouse()
     success, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms._ui.handle)
 
     if success == 1 then
-        if event_type == 5 then  --ON CLICK
+        if event_type == 5 then --ON CLICK
             if context == 0 then -- normal menu items
                 local item = self.Items[item_id]
                 if (item == nil) then return end
@@ -16162,7 +16060,7 @@ function UIMenu:ProcessMouse()
                 cursor_pressed = true
             elseif context == 12 then -- panels (12 => context 1, panel_type 2) // GridPanel
                 cursor_pressed = true
-            elseif context == 2 then  -- sidepanel
+            elseif context == 2 then -- sidepanel
                 local panel = self.Items[self:CurrentSelection()].SidePanel
                 if item_id ~= -1 then
                     panel.Value = item_id - 1
@@ -16288,7 +16186,7 @@ end
 ---@param Controller table
 function UIMenu:AddEnabledControl(Inputgroup, Control, Controller)
     if tonumber(Inputgroup) and tonumber(Control) then
-        table.insert(self.Settings.EnabledControls[(Controller and "Controller" or "Keyboard")], { Inputgroup, Control })
+        table.insert(self.Settings.EnabledControls[(Controller and "Controller" or "Keyboard")], {Inputgroup, Control})
     end
 end
 
@@ -16306,15 +16204,13 @@ function UIMenu:RemoveEnabledControl(Inputgroup, Control, Controller)
     end
 end
 
-function UIMenu:SetMenuOffset(x,y)
-    self.Position = {x=x, y=y}
-    self._glarePos ={x=self.Position.x / 1280 + 0.4499, y = self.Position.y / 720 + 0.496}
+function UIMenu:SetMenuOffset(x, y)
+    self.Position = {x = x, y = y}
+    self._glarePos = {x = self.Position.x / 1280 + 0.4499, y = self.Position.y / 720 + 0.496}
     if self:Visible() then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_OFFSET", x,y)
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_OFFSET", x, y)
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuDetailsWindow = setmetatable({}, UIMenuDetailsWindow)
@@ -16324,7 +16220,7 @@ UIMenuDetailsWindow.__call = function() return "UIMenuWindow", "UIMenuDetailsWin
 --- TODO: Refactor method arguments so they can be documented better
 ---New
 function UIMenuDetailsWindow.New(...)
-    local args = { ... }
+    local args = {...}
 
     if #args == 3 or #args == 4 then
         _UIMenuDetailsWindow = {
@@ -16428,8 +16324,6 @@ function UIMenuDetailsWindow:UpdateStatsToWheel()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 UIMenuHeritageWindow = setmetatable({}, UIMenuHeritageWindow)
 UIMenuHeritageWindow.__index = UIMenuHeritageWindow
@@ -16478,8 +16372,6 @@ function UIMenuHeritageWindow:Index(Mom, Dad)
     local wid = IndexOf(self.ParentMenu.Windows, self) - 1
     ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_HERITAGE_WINDOW", wid, self.Mom, self.Dad)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 BigFeedInstance = setmetatable({
@@ -16574,14 +16466,14 @@ end
 ---@param textureDictionary? string
 ---@return table<string, string>
 function BigFeedInstance:Texture(textureName, textureDictionary)
-    if textureName == nil and textureDictionary == nil then return { txd = self._txd, txn = self._txn } end
+    if textureName == nil and textureDictionary == nil then return {txd = self._txd, txn = self._txn} end
     self._txn = textureName
     self._txd = textureDictionary
     if self._enabled then
         self._sc:CallFunction("SET_BIGFEED_IMAGE", textureDictionary, textureName)
         self:UpdateInfo()
     end
-    return { txd = self._txd, txn = self._txn }
+    return {txd = self._txd, txn = self._txn}
 end
 
 ---Toggles the BigFeedInstance on or off, if a state is not provided it will return the current enabled state
@@ -16659,8 +16551,6 @@ function BigFeedInstance:Dispose()
     self._sc:Dispose()
     self._sc = nil
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 BigMessageInstance = setmetatable({
@@ -16908,14 +16798,12 @@ function BigMessageInstance:Update()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 CountdownHandler = setmetatable({
     _sc = nil --[[@type Scaleform]],
     _start = 0,
     _timer = 0,
-    _colour = { r = 255, g = 255, b = 255, a = 255 }
+    _colour = {r = 255, g = 255, b = 255, a = 255}
 }, CountdownHandler)
 CountdownHandler.__index = CountdownHandler
 CountdownHandler.__call = function()
@@ -17050,8 +16938,6 @@ function CountdownHandler:Start(number, hudColour, countdownAudioName, countdown
 
     return p
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 ButtonsHandler = setmetatable({
@@ -17277,8 +17163,6 @@ function ButtonsHandler:Update()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 InstructionalButton = setmetatable({}, InstructionalButton)
 InstructionalButton.__index = InstructionalButton
@@ -17353,9 +17237,9 @@ function InstructionalButton:GetButtonId()
             if self.GamepadButtons ~= nil then
                 for i = #self.GamepadButtons, 1, -1 do
                     if i == 1 then
-                        retVal = retVal .. GetControlInstructionalButton(2, self.GamepadButtons[i], true)
+                        retVal = retVal..GetControlInstructionalButton(2, self.GamepadButtons[i], true)
                     else
-                        retVal = retVal .. GetControlInstructionalButton(2, self.GamepadButtons[i], true) .. "%"
+                        retVal = retVal..GetControlInstructionalButton(2, self.GamepadButtons[i], true).."%"
                     end
                 end
             end
@@ -17363,16 +17247,16 @@ function InstructionalButton:GetButtonId()
             if self.KeyboardButtons ~= nil then
                 for i = #self.KeyboardButtons, 1, -1 do
                     if i == 1 then
-                        retVal = retVal .. GetControlInstructionalButton(2, self.KeyboardButtons[i], true)
+                        retVal = retVal..GetControlInstructionalButton(2, self.KeyboardButtons[i], true)
                     else
-                        retVal = retVal .. GetControlInstructionalButton(2, self.KeyboardButtons[i], true) .. "%"
+                        retVal = retVal..GetControlInstructionalButton(2, self.KeyboardButtons[i], true).."%"
                     end
                 end
             end
         end
         return retVal
     elseif self.InputGroupButton ~= -1 then
-        return "~" .. self.InputGroupButton .. "~"
+        return "~"..self.InputGroupButton.."~"
     end
     if self:IsUsingController() then
         return GetControlInstructionalButton(2, self.GamepadButton, true)
@@ -17380,8 +17264,6 @@ function InstructionalButton:GetButtonId()
         return GetControlInstructionalButton(2, self.KeyboardButton, true)
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MidMessageInstance = setmetatable({
@@ -17454,8 +17336,6 @@ function MidMessageInstance:Update()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MinimapOverlay = setmetatable({}, MinimapOverlay)
 MinimapOverlay.__index = MinimapOverlay
@@ -17482,14 +17362,12 @@ function MinimapOverlay.New(handle, textureDict, textureName, x, y, rotation, wi
         Color = SColor.HUD_None,
         Position = vector2(x or 0, y or 0),
         Rotation = rotation or 0,
-        Size = { width or 0, height or 0 },
+        Size = {width or 0, height or 0},
         Alpha = alpha or 0,
         Centered = centered or false,
     }
     return setmetatable(_data, MinimapOverlay)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 MinimapOverlays = setmetatable({
@@ -17658,7 +17536,7 @@ function MinimapOverlays:SetOverlaySizeOrScale(overlayId, width, height)
     ScaleformMovieMethodAddParamFloat(width);
     ScaleformMovieMethodAddParamFloat(height);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].size = { width, height };
+    self.minimaps[overlayId - 1].size = {width, height};
 end
 
 ---Removes the desired overlay from the minimap
@@ -17683,8 +17561,6 @@ function MinimapOverlays:ClearAll()
     EndScaleformMovieMethod();
     self.minimaps = {}
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 JobSelectionButton = setmetatable({}, JobSelectionButton)
@@ -17714,8 +17590,6 @@ function JobSelectionButton.New(title, description, details)
     }
     return setmetatable(data, JobSelectionButton)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 JobSelectionCard = setmetatable({}, JobSelectionCard)
@@ -17766,8 +17640,6 @@ function JobSelectionCard.New(title, description, txd, txn, rpMult, cashMult, ic
     return setmetatable(data, JobSelectionCard)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MissionDetailsItem = setmetatable({}, MissionDetailsItem)
 MissionDetailsItem.__index = MissionDetailsItem
@@ -17811,8 +17683,6 @@ function MissionDetailsItem.New(textLeft, textRight, seperator, icon, iconColor,
     return setmetatable(_MissionDetailsItem, MissionDetailsItem)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MissionSelectorHandler = setmetatable({
     _sc = nil,
@@ -17820,7 +17690,7 @@ MissionSelectorHandler = setmetatable({
     _timer = 0,
     enabled = false,
     alreadyVoted = false,
-    Votes = { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    Votes = {0, 0, 0, 0, 0, 0, 0, 0, 0},
     VotedFor = -1,
     MaxVotes = 0,
     SelectedCard = 1,
@@ -17877,11 +17747,11 @@ end
 ---@param actual number
 ---@param label string?
 function MissionSelectorHandler:SetVotes(actual, label)
-    local tot = actual .. " / " .. self.MaxVotes
+    local tot = actual.." / "..self.MaxVotes
     if not string.IsNullOrEmpty(label or "") then
         self.JobTitle.Label = label
     end
-    self.JobTitle.Votes = tot .. " " .. self.JobTitle.Label
+    self.JobTitle.Votes = tot.." "..self.JobTitle.Label
 end
 
 ---Adds a card to the mission selector grid menu (max 9)
@@ -18196,13 +18066,11 @@ function MissionSelectorHandler:SetDetailsItem(id, menu_id, unique_id, type, ini
         rText, icon, iconColor, tick)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 MultiplayerChat = setmetatable({}, MultiplayerChat)
 MultiplayerChat.__index = MultiplayerChat
 MultiplayerChat.__call = function()
-  return "MultiplayerChat"
+    return "MultiplayerChat"
 end
 
 ---@class MultiplayerChat
@@ -18212,58 +18080,58 @@ local INITIALIZED = false
 
 ---@enum ChatScope
 ChatScope = {
-  Global = 0,
-  Team = 1,
-  All = 2,
-  Clan = 3
+    Global = 0,
+    Team = 1,
+    All = 2,
+    Clan = 3
 }
 
 ---@enum ChatVisible
 ChatVisible = {
-  Hidden = 0,
-  Default = 1,
-  Typing = 2
+    Hidden = 0,
+    Default = 1,
+    Typing = 2
 }
 
 ---Create a new MultiplayerChat instance
 ---@return table
 function MultiplayerChat.New()
-  local data = {
-    _sc = nil --[[@type Scaleform]],
-    messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
-    _start = 0,
-    _enabled = false,
-    _isTyping = false,
-  }
-  return setmetatable(data, MultiplayerChat)
+    local data = {
+        _sc = nil --[[@type Scaleform]],
+        messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
+        _start = 0,
+        _enabled = false,
+        _isTyping = false,
+    }
+    return setmetatable(data, MultiplayerChat)
 end
 
 ---Load the MULTIPLAYER_CHAT scaleform
 ---@return promise
 function MultiplayerChat:Load()
-  local p = promise.new()
+    local p = promise.new()
 
-  if self._sc ~= nil then
-    p:resolve()
-    return p
-  end
-
-  self._sc = _Scaleform.Request("MULTIPLAYER_CHAT")
-  local timeout = 1000
-  local start = GlobalGameTimer
-  while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
-
-  if self._sc:IsLoaded() then
-    if not INITIALIZED then
-      self._sc:CallFunction("RESET")
-      INITIALIZED = true
+    if self._sc ~= nil then
+        p:resolve()
+        return p
     end
-    p:resolve()
-  else
-    p:reject()
-  end
 
-  return p
+    self._sc = _Scaleform.Request("MULTIPLAYER_CHAT")
+    local timeout = 1000
+    local start = GlobalGameTimer
+    while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
+
+    if self._sc:IsLoaded() then
+        if not INITIALIZED then
+            self._sc:CallFunction("RESET")
+            INITIALIZED = true
+        end
+        p:resolve()
+    else
+        p:reject()
+    end
+
+    return p
 end
 
 ---Set the focus of the chat
@@ -18273,44 +18141,44 @@ end
 ---@param playerName? string
 ---@param colour? HudColours
 function MultiplayerChat:SetFocus(visibleState, scopeType, scopeText, playerName, colour)
-  if visibleState == ChatVisible.Hidden then
-    self._start = 0
-  elseif visibleState == ChatVisible.Default then
-    self._start = GlobalGameTimer
-  elseif visibleState == ChatVisible.Typing then
-    self._isTyping = true
-  end
+    if visibleState == ChatVisible.Hidden then
+        self._start = 0
+    elseif visibleState == ChatVisible.Default then
+        self._start = GlobalGameTimer
+    elseif visibleState == ChatVisible.Typing then
+        self._isTyping = true
+    end
 
-  self._sc:CallFunction("SET_FOCUS", visibleState, scopeType, scopeText, playerName, colour)
+    self._sc:CallFunction("SET_FOCUS", visibleState, scopeType, scopeText, playerName, colour)
 end
 
 function MultiplayerChat:Show()
-  self:SetFocus(ChatVisible.Default)
+    self:SetFocus(ChatVisible.Default)
 end
 
 function MultiplayerChat:StartTyping(scopeType, scopeText)
-  self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.HUD_COLOUR_WHITE)
+    self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.HUD_COLOUR_WHITE)
 end
 
 ---Scroll the chat up
 function MultiplayerChat:PageUp()
-  self._sc:CallFunction("PAGE_UP")
+    self._sc:CallFunction("PAGE_UP")
 end
 
 ---Scroll the chat down
 function MultiplayerChat:PageDown()
-  self._sc:CallFunction("PAGE_DOWN")
+    self._sc:CallFunction("PAGE_DOWN")
 end
 
 ---Delete last character
 function MultiplayerChat:DeleteText()
-  self._sc:CallFunction("DELETE_TEXT")
+    self._sc:CallFunction("DELETE_TEXT")
 end
 
 ---Set the typing state as completed
 function MultiplayerChat:SetTypingDone()
-  self._sc:CallFunction("SET_TYPING_DONE")
-  self._isTyping = false
+    self._sc:CallFunction("SET_TYPING_DONE")
+    self._isTyping = false
 end
 
 ---Add a message with player name to the chat
@@ -18320,7 +18188,7 @@ end
 ---@param teamOnly? boolean
 ---@param playerColour? HudColours
 function MultiplayerChat:AddMessage(playerName, message, scope, teamOnly, playerColour)
-  self._sc:CallFunction("ADD_MESSAGE", playerName, message, scope, teamOnly, playerColour)
+    self._sc:CallFunction("ADD_MESSAGE", playerName, message, scope, teamOnly, playerColour)
 end
 
 -- As a key is pressed this will add the letter onto the current message in the capture field
@@ -18330,64 +18198,62 @@ end
 ---Add a character to the chat
 ---@param text string -- The character to add, or "ENTER", "BACKSPACE", or "ESCAPE"
 function MultiplayerChat:AddText(text)
-  self._sc:CallFunction("ADD_TEXT", text)
+    self._sc:CallFunction("ADD_TEXT", text)
 end
 
 ---Close the chat
 function MultiplayerChat:Close()
-  self:SetFocus(ChatVisible.Hidden, ChatScope.Global, "")
-  self._start = 0
-  self._enabled = false
-  self._isTyping = false
+    self:SetFocus(ChatVisible.Hidden, ChatScope.Global, "")
+    self._start = 0
+    self._enabled = false
+    self._isTyping = false
 end
 
 ---Complete Text -- this will add the current messahe information to the chat locally, its also called by SetTypingDone
 function MultiplayerChat:CompleteText()
-  self._sc:CallFunction("COMPLETE_TEXT")
+    self._sc:CallFunction("COMPLETE_TEXT")
 end
 
 ---Abort Text
 function MultiplayerChat:AbortText()
-  self._sc:CallFunction("ABORT_TEXT")
+    self._sc:CallFunction("ABORT_TEXT")
 end
 
 ---Reset Text
 function MultiplayerChat:Reset()
-  self._sc:CallFunction("RESET")
+    self._sc:CallFunction("RESET")
 end
 
 function MultiplayerChat:IsEnabled()
-  if self._sc == nil then return false end
-  return self._start > 10000 or self._enabled
+    if self._sc == nil then return false end
+    return self._start > 10000 or self._enabled
 end
 
 function MultiplayerChat:IsTyping()
-  if self._sc == nil then return false end
-  return self._isTyping
+    if self._sc == nil then return false end
+    return self._isTyping
 end
 
 ---Update is called every frame to render the MULTIPLAYER_CHAT scaleform to the screen by mainScaleform.lua
 function MultiplayerChat:Update()
-  if self._sc == nil then return end
-  ScaleformUI.WaitTime = 0
-  self._sc:Render2D()
+    if self._sc == nil then return end
+    ScaleformUI.WaitTime = 0
+    self._sc:Render2D()
 
-  if self._enabled then
-    DisableControlAction(0, 200, true);
-  end
+    if self._enabled then
+        DisableControlAction(0, 200, true);
+    end
 
-  if GlobalGameTimer - self._start > 10000 and not self._enabled then
-    self:Close()
-  end
+    if GlobalGameTimer - self._start > 10000 and not self._enabled then
+        self:Close()
+    end
 end
 
 ---Dispose the MULTIPLAYER_CHAT scaleform
 function MultiplayerChat:Dispose()
-  self._sc:Dispose()
-  self._sc = nil
+    self._sc:Dispose()
+    self._sc = nil
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 PauseMenu = setmetatable({}, PauseMenu)
@@ -18608,11 +18474,11 @@ end
 ---@param leftItemIndex number
 ---@param label string
 function PauseMenu:AddRightListLabel(leftItemIndex, label, fontName, fontId)
-    AddTextEntry("PauseMenu_" .. leftItemIndex, label)
+    AddTextEntry("PauseMenu_"..leftItemIndex, label)
     BeginScaleformMovieMethod(self._pause.handle, "ADD_RIGHT_LIST_ITEM")
     ScaleformMovieMethodAddParamInt(leftItemIndex)
     ScaleformMovieMethodAddParamInt(0)
-    BeginTextCommandScaleformString("PauseMenu_" .. leftItemIndex)
+    BeginTextCommandScaleformString("PauseMenu_"..leftItemIndex)
     EndTextCommandScaleformString_2()
     ScaleformMovieMethodAddParamPlayerNameString(fontName)
     ScaleformMovieMethodAddParamInt(fontId)
@@ -18868,8 +18734,6 @@ function PauseMenu:Draw(isLobby)
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 RankbarHandler = setmetatable({}, RankbarHandler)
 RankbarHandler.__index = RankbarHandler
@@ -18976,8 +18840,6 @@ function RankbarHandler:OverrideOnscreenDuration(duration)
             print("RankbarHandler:Load() failed")
         end)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 PlayerListScoreboard = setmetatable({
@@ -19166,7 +19028,7 @@ end
 function PlayerListScoreboard:UpdateSlot(id, row)
     if row.CrewLabelText ~= "" then
         self._sc:CallFunction("UPDATE_SLOT", id - 1, row.RightText, row.Name, row.Color, row.RightIcon,
-            row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
+            row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
             row.TextureString,
             row.TextureString, row.FriendType)
     else
@@ -19182,7 +19044,7 @@ function PlayerListScoreboard:RefreshAll()
         for index, row in pairs(self.PlayerRows) do
             if row.CrewLabelText ~= "" then
                 self._sc:CallFunction("UPDATE_SLOT", index - 1, row.RightText, row.Name, row.Color, row.RightIcon,
-                    row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
+                    row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
                     row.TextureString, row.TextureString, row.FriendType)
             else
                 self._sc:CallFunction("UPDATE_SLOT", index - 1, row.RightText, row.Name, row.Color, row.RightIcon,
@@ -19225,15 +19087,13 @@ function PlayerListScoreboard:BuildMenu()
                 row.FriendType)
         else
             self._sc:CallFunction("SET_DATA_SLOT", self.Index, row.RightText, row.Name, row.Color, row.RightIcon,
-                row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
+                row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
                 row.TextureString, row.TextureString, row.FriendType)
         end
         self.Index = self.Index + 1
     end
     self._sc:CallFunction("DISPLAY_VIEW")
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 SCPlayerItem = setmetatable({}, SCPlayerItem)
@@ -19286,8 +19146,6 @@ function SCPlayerItem.New(label, color, rightIcon, rightText, friendType, crewLa
     return setmetatable(data, SCPlayerItem)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ScoreDisplayType = {
     NUMBER_ONLY = 0,
@@ -19318,90 +19176,88 @@ ScoreRightIconType = {
 SplashTextInstance = setmetatable({}, SplashTextInstance)
 SplashTextInstance.__index = SplashTextInstance
 SplashTextInstance.__call = function()
-  return "SplashText"
+    return "SplashText"
 end
 
 function SplashTextInstance.New(posX, posY, width, height)
-  local data = {
-    _scaleform = nil,
-    _posX = posX or 0.5,
-    _posY = posY or 0.5,
-    _width = width or 1.0,
-    _height = height or 1.0
-  };
-  return setmetatable(data, SplashTextInstance);
+    local data = {
+        _scaleform = nil,
+        _posX = posX or 0.5,
+        _posY = posY or 0.5,
+        _width = width or 1.0,
+        _height = height or 1.0
+    };
+    return setmetatable(data, SplashTextInstance);
 end
 
 function SplashTextInstance:SetLabel(label, sColor, transistionIn)
-  AddTextEntry("LBL_SPLASH_TEXT", label);
+    AddTextEntry("LBL_SPLASH_TEXT", label);
 
-  if not sColor then
-    sColor = SColor.White;
-  end
+    if not sColor then
+        sColor = SColor.White;
+    end
 
-  self.SetTextLabel({ type = "label", data = "LBL_SPLASH_TEXT" }, sColor);
-  if transistionIn then
-    self:TransitionIn(300);
-  end
+    self.SetTextLabel({type = "label", data = "LBL_SPLASH_TEXT"}, sColor);
+    if transistionIn then
+        self:TransitionIn(300);
+    end
 end
 
 function SplashTextInstance:SetTextLabel(label, sColor)
-  AddTextEntry("LBL_SPLASH_TEXT", label);
+    AddTextEntry("LBL_SPLASH_TEXT", label);
 
-  if not sColor then
-    sColor = SColor.White;
-  end
+    if not sColor then
+        sColor = SColor.White;
+    end
 
-  self._scaleform:CallFunction("SPLASH_TEXT_LABEL", { type = "label", data = "LBL_SPLASH_TEXT" }, sColor.R,
-    sColor.G, sColor.B, sColor.A);
+    self._scaleform:CallFunction("SPLASH_TEXT_LABEL", {type = "label", data = "LBL_SPLASH_TEXT"}, sColor.R,
+        sColor.G, sColor.B, sColor.A);
 end
 
 function SplashTextInstance:TransitionIn(duration, managed)
-  self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_IN", duration or 300, managed or false);
+    self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_IN", duration or 300, managed or false);
 end
 
 function SplashTextInstance:TransitionOut(duration, managed)
-  self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_OUT", duration or 300, managed or false);
+    self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_OUT", duration or 300, managed or false);
 end
 
 function SplashTextInstance:SetScale(width, height)
-  self._width = width;
-  self._height = height;
+    self._width = width;
+    self._height = height;
 end
 
 function SplashTextInstance:SetPosition(x, y)
-  self._posX = x;
-  self._posY = y;
+    self._posX = x;
+    self._posY = y;
 end
 
 function SplashTextInstance:Load()
-  local prom = promise.new();
+    local prom = promise.new();
 
-  self._scaleform = _Scaleform.RequestWidescreen("SPLASH_TEXT");
+    self._scaleform = _Scaleform.RequestWidescreen("SPLASH_TEXT");
 
-  while not self._scaleform:IsLoaded() do
-    Citizen.Wait(0);
-  end
+    while not self._scaleform:IsLoaded() do
+        Citizen.Wait(0);
+    end
 
-  prom:resolve();
-  return prom;
+    prom:resolve();
+    return prom;
 end
 
 function SplashTextInstance:Draw()
-  if not self._scaleform then
-    return
-  end
+    if not self._scaleform then
+        return
+    end
 
-  self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
+    self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 TaxiMeterInstance = setmetatable({}, TaxiMeterInstance)
 TaxiMeterInstance.__index = TaxiMeterInstance
 TaxiMeterInstance.__call = function()
-  return "TaxiMeter"
+    return "TaxiMeter"
 end
 
 --[[
@@ -19423,106 +19279,104 @@ end
 ]]
 
 function TaxiMeterInstance.New(posX, posY, width, height)
-  local data = {
-    _scaleform = nil,
-    _posX = posX or 0.5,
-    _posY = posY or 0.5,
-    _width = width or 1.0,
-    _height = height or 1.0,
-    _current = 0,
-    _destinations = {}
-  };
-  return setmetatable(data, TaxiMeterInstance);
+    local data = {
+        _scaleform = nil,
+        _posX = posX or 0.5,
+        _posY = posY or 0.5,
+        _width = width or 1.0,
+        _height = height or 1.0,
+        _current = 0,
+        _destinations = {}
+    };
+    return setmetatable(data, TaxiMeterInstance);
 end
 
 function TaxiMeterInstance:AddDestination(index, sprite, color, destinationName, destinationZone, streetName)
-  -- scaleform param layout:
-  -- 1: index (starts at 0)
-  -- 2: sprite (any blip sprite)
-  -- 3: Color Red (0-255)
-  -- 4: Color Green (0-255)
-  -- 5: Color Blue (0-255)
-  -- 6: Destination Name (usually the name of the blip)
-  -- 7: Destination Zone (usually uses `GetNameOfZone`)
-  -- 8: Street Name (usually uses `GetStreetNameAtCoord`)
+    -- scaleform param layout:
+    -- 1: index (starts at 0)
+    -- 2: sprite (any blip sprite)
+    -- 3: Color Red (0-255)
+    -- 4: Color Green (0-255)
+    -- 5: Color Blue (0-255)
+    -- 6: Destination Name (usually the name of the blip)
+    -- 7: Destination Zone (usually uses `GetNameOfZone`)
+    -- 8: Street Name (usually uses `GetStreetNameAtCoord`)
 
-  self._scaleform:CallFunction("ADD_TAXI_DESTINATION", index, sprite, color.r, color.g, color.b, destinationName, destinationZone, streetName)
-  self._destinations[index + 1] = {
-    index = index,
-    sprite = sprite,
-    color = color,
-    destinationName = destinationName,
-    destinationZone = destinationZone,
-    streetName = streetName
-  }
+    self._scaleform:CallFunction("ADD_TAXI_DESTINATION", index, sprite, color.r, color.g, color.b, destinationName, destinationZone, streetName)
+    self._destinations[index + 1] = {
+        index = index,
+        sprite = sprite,
+        color = color,
+        destinationName = destinationName,
+        destinationZone = destinationZone,
+        streetName = streetName
+    }
 end
 
 function TaxiMeterInstance:ShowDestination()
-  self._scaleform:CallFunction("SHOW_TAXI_DESTINATION");
+    self._scaleform:CallFunction("SHOW_TAXI_DESTINATION");
 end
 
 ---@param destination integer @index of the destination
 function TaxiMeterInstance:HighlightDestination(destination)
-  self._scaleform:CallFunction("HIGHLIGHT_DESTINATION", destination)
+    self._scaleform:CallFunction("HIGHLIGHT_DESTINATION", destination)
 end
 
 ---@param price integer
 function TaxiMeterInstance:SetPrice(price)
-  self._scaleform:CallFunction("SET_TAXI_PRICE", price)
+    self._scaleform:CallFunction("SET_TAXI_PRICE", price)
 end
 
 function TaxiMeterInstance:GetCurrentDestination()
-  return self._destinations[self._current + 1]
+    return self._destinations[self._current + 1]
 end
 
 function TaxiMeterInstance:Clear()
-  self._scaleform:CallFunction("CLEAR_TAXI_DISPLAY")
+    self._scaleform:CallFunction("CLEAR_TAXI_DISPLAY")
 end
 
 function TaxiMeterInstance:NextDestination()
-  local increased = self._current + 1
-  self._current = increased > #self._destinations and #self._destinations or increased
-  self:HighlightDestination(self._current)
+    local increased = self._current + 1
+    self._current = increased > #self._destinations and #self._destinations or increased
+    self:HighlightDestination(self._current)
 end
 
 function TaxiMeterInstance:PreviousDestination()
-  local decreased = self._current - 1
-  self._current = decreased < 0 and 0 or decreased
-  self:HighlightDestination(self._current)
+    local decreased = self._current - 1
+    self._current = decreased < 0 and 0 or decreased
+    self:HighlightDestination(self._current)
 end
 
 function TaxiMeterInstance:SetScale(width, height)
-  self._width = width;
-  self._height = height;
+    self._width = width;
+    self._height = height;
 end
 
 function TaxiMeterInstance:SetPosition(x, y)
-  self._posX = x;
-  self._posY = y;
+    self._posX = x;
+    self._posY = y;
 end
 
 function TaxiMeterInstance:Load()
-  local prom = promise.new();
+    local prom = promise.new();
 
-  self._scaleform = _Scaleform.RequestWidescreen("TAXI_DISPLAY");
+    self._scaleform = _Scaleform.RequestWidescreen("TAXI_DISPLAY");
 
-  while not self._scaleform:IsLoaded() do
-    Citizen.Wait(0);
-  end
+    while not self._scaleform:IsLoaded() do
+        Citizen.Wait(0);
+    end
 
-  prom:resolve();
-  return prom;
+    prom:resolve();
+    return prom;
 end
 
 function TaxiMeterInstance:Draw()
-  if not self._scaleform then
-    return
-  end
+    if not self._scaleform then
+        return
+    end
 
-  self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
+    self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 WarningInstance = setmetatable({
@@ -19606,7 +19460,7 @@ function WarningInstance:ShowWarning(title, subtitle, prompt, errorMsg, warningT
         if showBackground == nil then showBackground = true end
         self._sc:CallFunction("SHOW_POPUP_WARNING", 1000, title, subtitle, prompt, showBackground, warningType, errorMsg)
     end, function(value)
-        print("Error loading warning: " .. value)
+        print("Error loading warning: "..value)
     end)
 end
 
@@ -19641,7 +19495,7 @@ function WarningInstance:ShowWarningWithButtons(title, subtitle, prompt, buttons
         ScaleformUI.Scaleforms.InstructionalButtons.UseMouseButtons = true
         self._sc:CallFunction("SHOW_POPUP_WARNING", 1000, title, subtitle, prompt, showBackground, warningType, errorMsg)
     end, function(value)
-        print("Error loading warning: " .. value)
+        print("Error loading warning: "..value)
     end)
 end
 
@@ -19678,22 +19532,20 @@ function WarningInstance:Update()
     end
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ScaleformUI = {}
 ScaleformUI.Scaleforms = {}
-ScaleformUI.Scaleforms._ui = nil --[[@type Scaleform]]                                                -- scaleformui
-ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]]                                         -- pausemenu
-ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]]                                       -- radialmenu
-ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]]                                       -- radiomenu
-ScaleformUI.Scaleforms.MidMessageInstance = MidMessageInstance --[[@type MidMessageInstance]]         -- midmessage
-ScaleformUI.Scaleforms.PlayerListScoreboard = PlayerListScoreboard --[[@type PlayerListScoreboard]]   -- playerlist
-ScaleformUI.Scaleforms.InstructionalButtons = ButtonsHandler --[[@type ButtonsHandler]]               -- buttons
-ScaleformUI.Scaleforms.BigMessageInstance = BigMessageInstance --[[@type BigMessageInstance]]         -- bigmessage
-ScaleformUI.Scaleforms.Warning = WarningInstance --[[@type WarningInstance]]                          -- warning
+ScaleformUI.Scaleforms._ui = nil --[[@type Scaleform]] -- scaleformui
+ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]] -- pausemenu
+ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]] -- radialmenu
+ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]] -- radiomenu
+ScaleformUI.Scaleforms.MidMessageInstance = MidMessageInstance --[[@type MidMessageInstance]] -- midmessage
+ScaleformUI.Scaleforms.PlayerListScoreboard = PlayerListScoreboard --[[@type PlayerListScoreboard]] -- playerlist
+ScaleformUI.Scaleforms.InstructionalButtons = ButtonsHandler --[[@type ButtonsHandler]] -- buttons
+ScaleformUI.Scaleforms.BigMessageInstance = BigMessageInstance --[[@type BigMessageInstance]] -- bigmessage
+ScaleformUI.Scaleforms.Warning = WarningInstance --[[@type WarningInstance]] -- warning
 ScaleformUI.Scaleforms.JobMissionSelector = MissionSelectorHandler --[[@type MissionSelectorHandler]] -- missionselector
-ScaleformUI.Scaleforms.RankbarHandler = RankbarHandler --[[@type RankbarHandler]]                     -- rankbar
+ScaleformUI.Scaleforms.RankbarHandler = RankbarHandler --[[@type RankbarHandler]] -- rankbar
 ScaleformUI.Scaleforms.SplashText = SplashTextInstance
 ScaleformUI.Notifications = Notifications
 ScaleformUI.Scaleforms.BigFeed = BigFeedInstance
@@ -19809,7 +19661,7 @@ end
 ---@return Scaleform
 function _Scaleform.Request(Name)
     assert(Name ~= "string",
-        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
+        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
     local _scaleform = {
         name = Name,
         handle = RequestScaleformMovie(Name)
@@ -19822,7 +19674,7 @@ end
 ---@return Scaleform
 function _Scaleform.RequestWidescreen(Name)
     assert(Name ~= "string",
-        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
+        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
     local _scaleform = {
         name = Name,
         handle = RequestScaleformMovieInstance(Name)
@@ -19836,7 +19688,7 @@ end
 ---@return nil|number -- If returndata is true, returns the return value of the function
 function _Scaleform:CallFunction(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = { ... }
+    local arg = {...}
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -19860,7 +19712,7 @@ function _Scaleform:CallFunction(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -19883,7 +19735,7 @@ end
 ---@return number -- If returndata is true, returns the return value of the function
 function _Scaleform:CallFunctionAsyncReturnInt(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = { ... }
+    local arg = {...}
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -19907,7 +19759,7 @@ function _Scaleform:CallFunctionAsyncReturnInt(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -19931,7 +19783,7 @@ end
 ---@return boolean -- If returndata is true, returns the return value of the function
 function _Scaleform:CallFunctionAsyncReturnBool(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = { ... }
+    local arg = {...}
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -19955,7 +19807,7 @@ function _Scaleform:CallFunctionAsyncReturnBool(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -19979,7 +19831,7 @@ end
 ---@return string -- If returndata is true, returns the return value of the function
 function _Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = { ... }
+    local arg = {...}
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -20003,7 +19855,7 @@ function _Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -20069,8 +19921,6 @@ function _Scaleform:IsLoaded()
     return HasScaleformMovieLoaded(self.handle)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ---@diagnostic disable: missing-parameter -- false positive
 
@@ -20081,8 +19931,8 @@ ProgressTimerBar.__call = function()
 end
 
 function ProgressTimerBar.New(label, backgroundColor, foregroundColor, percentage, time)
-    if backgroundColor == nil then backgroundColor = { R = 112, G = 25, B = 25, A = 255 } end
-    if foregroundColor == nil then foregroundColor = { R = 224, G = 50, B = 50, A = 255 } end
+    if backgroundColor == nil then backgroundColor = {R = 112, G = 25, B = 25, A = 255} end
+    if foregroundColor == nil then foregroundColor = {R = 224, G = 50, B = 50, A = 255} end
     if percentage == nil then percentage = 0 end
     if percentage > 1 then percentage = 1 end
     if percentage < 0 then percentage = 0 end
@@ -20093,8 +19943,8 @@ function ProgressTimerBar.New(label, backgroundColor, foregroundColor, percentag
         _percentage = percentage or 0,
         _maxTime = time or 0,
         _time = GetGameTimer(),
-        _backgroundColor = backgroundColor or { R = 112, G = 25, B = 25, A = 255 }, --darkred
-        _foregroundColor = foregroundColor or { R = 224, G = 50, B = 50, A = 255 }, -- red
+        _backgroundColor = backgroundColor or {R = 112, G = 25, B = 25, A = 255}, --darkred
+        _foregroundColor = foregroundColor or {R = 224, G = 50, B = 50, A = 255}, -- red
         _backgroundRect = UIResRectangle.New(0, 0, 150, 15, backgroundColor.R or 112, backgroundColor.G or 25,
             backgroundColor.B or 25, backgroundColor.A or 255),
         _foregroundRect = UIResRectangle.New(0, 0, 0, 15, foregroundColor.R or 224, foregroundColor.G or 50,
@@ -20200,8 +20050,6 @@ function ProgressTimerBar:Draw(interval)
     HideHudComponentThisFrame(9);
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 ---@diagnostic disable: missing-parameter
 
@@ -20212,7 +20060,7 @@ TextTimerBar.__call = function()
 end
 
 function TextTimerBar.New(label, text, captionColor)
-    if captionColor == nil then captionColor = { R = 240, G = 240, B = 240, A = 255 } end
+    if captionColor == nil then captionColor = {R = 240, G = 240, B = 240, A = 255} end
     local _data = {
         _label = label or "",
         _caption = text or "",
@@ -20291,8 +20139,6 @@ function TextTimerBar:Draw(interval)
     HideHudComponentThisFrame(9);
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 Sprite = setmetatable({}, Sprite)
 Sprite.__index = Sprite
@@ -20335,7 +20181,7 @@ function Sprite.New(TxtDictionary, TxtName, X, Y, Width, Height, Heading, R, G, 
         Width = tonumber(Width) or 0,
         Height = tonumber(Height) or 0,
         Heading = tonumber(Heading) or 0,
-        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
+        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
     }
     return setmetatable(_Sprite, Sprite)
 end
@@ -20348,7 +20194,7 @@ function Sprite:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return { X = self.X, Y = self.Y }
+        return {X = self.X, Y = self.Y}
     end
 end
 
@@ -20360,7 +20206,7 @@ function Sprite:Size(Width, Height)
         self.Width = tonumber(Width)
         self.Height = tonumber(Height)
     else
-        return { Width = self.Width, Height = self.Height }
+        return {Width = self.Width, Height = self.Height}
     end
 end
 
@@ -20393,8 +20239,6 @@ function Sprite:Draw()
         Size.Width, Size.Height, self.Heading, self._Colour.R, self._Colour.G, self._Colour.B, self._Colour.A)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 TimerBarPool = setmetatable({}, TimerBarPool)
 TimerBarPool.__index = TimerBarPool
@@ -20417,7 +20261,7 @@ function TimerBarPool:AddBar(timerBar)
     self.Bars[timerBar.Handle] = timerBar
 end
 
-function TimerBarPool:RemoveBar(timerBar)    
+function TimerBarPool:RemoveBar(timerBar)
     self.Bars[timerBar.Handle] = nil
 end
 
@@ -20430,8 +20274,6 @@ function TimerBarPool:Draw()
         v:Draw((k * 10) + offset)
     end
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIResRectangle = setmetatable({}, UIResRectangle)
@@ -20453,7 +20295,7 @@ function UIResRectangle.New(X, Y, Width, Height, R, G, B, A)
         Y = tonumber(Y) or 0,
         Width = tonumber(Width) or 0,
         Height = tonumber(Height) or 0,
-        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
+        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
     }
     return setmetatable(_UIResRectangle, UIResRectangle)
 end
@@ -20466,7 +20308,7 @@ function UIResRectangle:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return { X = self.X, Y = self.Y }
+        return {X = self.X, Y = self.Y}
     end
 end
 
@@ -20478,7 +20320,7 @@ function UIResRectangle:Size(Width, Height)
         self.Width = tonumber(Width)
         self.Height = tonumber(Height)
     else
-        return { Width = self.Width, Height = self.Height }
+        return {Width = self.Width, Height = self.Height}
     end
 end
 
@@ -20507,8 +20349,6 @@ function UIResRectangle:Draw()
     DrawRect(Position.X + Size.Width * 0.5, Position.Y + Size.Height * 0.5, Size.Width, Size.Height, self._Colour.R,
         self._Colour.G, self._Colour.B, self._Colour.A)
 end
-
-
 
 --///////////////////////////////////////////////////////////////////--
 UIResText = setmetatable({}, UIResText)
@@ -20633,7 +20473,7 @@ function UIResText.New(Text, X, Y, Scale, R, G, B, A, Font, Alignment, DropShado
         X = tonumber(X) or 0,
         Y = tonumber(Y) or 0,
         Scale = tonumber(Scale) or 0,
-        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
+        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
         Font = tonumber(Font) or 0,
         Alignment = Alignment or nil,
         DropShadow = DropShadow or nil,
@@ -20651,7 +20491,7 @@ function UIResText:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return { X = self.X, Y = self.Y }
+        return {X = self.X, Y = self.Y}
     end
 end
 
@@ -20719,8 +20559,6 @@ function UIResText:Draw()
     EndTextCommandDisplayText(Position.X, Position.Y)
 end
 
-
-
 --///////////////////////////////////////////////////////////////////--
 -- Globals
 GlobalGameTimer = GetNetworkTime() --[[@type number]] -- GlobalGameTimer is used in many places, so we'll just define it here.
@@ -20750,7 +20588,7 @@ end
 ---@param str string
 ---@return boolean
 string.StartsWith = function(self, str)
-    return self:find('^' .. str) ~= nil
+    return self:find('^'..str) ~= nil
 end
 
 ---IsNullOrEmpty
@@ -20765,7 +20603,7 @@ end
 ---@param pos number
 ---@param str2 string
 string.Insert = function(self, pos, str2)
-    return self:sub(1, pos) .. str2 .. self:sub(pos + 1)
+    return self:sub(1, pos)..str2..self:sub(pos + 1)
 end
 
 -- Return the first index with the given value (or -1 if not found).
@@ -20790,12 +20628,12 @@ function KeyOf(tbl, value)
 end
 
 function math.round(value, numDecimalPlaces)
-	if numDecimalPlaces then
-		local power = 10^numDecimalPlaces
-		return math.floor((value * power) + 0.5) / (power)
-	else
-		return math.floor(value + 0.5)
-	end
+    if numDecimalPlaces then
+        local power = 10 ^ numDecimalPlaces
+        return math.floor((value * power) + 0.5) / (power)
+    else
+        return math.floor(value + 0.5)
+    end
 end
 
 function ToBool(input)
@@ -20811,7 +20649,7 @@ function string.split(inputstr, sep)
         sep = "%s"
     end
     local t, i = {}, 1
-    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
         t[i] = str
         i = i + 1
     end
@@ -20821,7 +20659,7 @@ end
 
 function Split(pString, pPattern)
     local Table = {} -- NOTE: use {n = 0} in Lua-5.0
-    local fpat = "(.-)" .. pPattern
+    local fpat = "(.-)"..pPattern
     local last_end = 1
     local s, e, cap = pString:find(fpat, 1)
     while s do
@@ -20943,7 +20781,7 @@ end
 ---@param realY number
 ---@return vector2
 function ConvertResolutionCoordsToScaleformCoords(realX, realY)
-    local x,y = GetActiveScreenResolution()
+    local x, y = GetActiveScreenResolution()
     return vector2(realX / x * 1280, realY / y * 720)
 end
 
@@ -20952,8 +20790,8 @@ end
 ---@param scaleformY number
 ---@return vector2
 function ConvertScaleformCoordsToResolutionCoords(scaleformX, scaleformY)
-    local x,y = GetActiveScreenResolution()
-    return vector2(scaleformX / 1280 * x,scaleformY / 720 * y)
+    local x, y = GetActiveScreenResolution()
+    return vector2(scaleformX / 1280 * x, scaleformY / 720 * y)
 end
 
 ---Converts screen coords (0.0 - 1.0) into scaleform coords (1280 x 720)
@@ -20970,7 +20808,5 @@ end
 ---@return vector2
 function ConvertScaleformCoordsToScreenCoords(scaleformX, scaleformY)
     -- Normalize coordinates to 0.0 - 1.0 range
-    return vector2((scaleformX / 1280) * 2 - 1,(scaleformY / 720) * 2 - 1)
+    return vector2((scaleformX / 1280) * 2 - 1, (scaleformY / 720) * 2 - 1)
 end
-
-
