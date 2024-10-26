@@ -6902,10 +6902,12 @@ function MainView:GoBack()
 end
 
 function MainView:GoUp()
+    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     self.listCol[self._focus]:GoUp()
 end
 
 function MainView:GoDown()
+    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     self.listCol[self._focus]:GoDown()
 end
 
@@ -7101,7 +7103,6 @@ end
 ---@field public MinimapRoute MinimapRoute
 ---@field public Enabled fun(_e: boolean|nil)
 ---@field private InitializeMapSize fun()
----@field private GetVectorToCheck fun(i:number)
 ---@field private SetupBlips fun()
 ---@field private MaintainMap fun()
 ---@field private ProcessMap fun()
@@ -7178,6 +7179,8 @@ function MinimapPanel:Enabled(_e)
                 ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("HIDE_PLAYERS_TAB_MISSION_PANEL", show)
             end
         end
+
+        PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     end
 end
 
@@ -7193,6 +7196,16 @@ function MinimapPanel:InitializeMapSize()
         left = math.min(left, data.Position.x)
         right = math.max(right, data.Position.x)
     end
+
+    top = math.max(top, self.MinimapRoute.StartPoint.Position.y)
+    bottom = math.min(bottom, self.MinimapRoute.StartPoint.Position.y)
+    left = math.min(left, self.MinimapRoute.StartPoint.Position.x)
+    right = math.max(right, self.MinimapRoute.StartPoint.Position.x)
+
+    top = math.max(top, self.MinimapRoute.EndPoint.Position.y)
+    bottom = math.min(bottom, self.MinimapRoute.EndPoint.Position.y)
+    left = math.min(left, self.MinimapRoute.EndPoint.Position.x)
+    right = math.max(right, self.MinimapRoute.EndPoint.Position.x)
 
     local topLeft = vector3(left, top, 0)
     local bottomRight = vector3(right, bottom, 0)
@@ -7236,18 +7249,6 @@ function MinimapPanel:RefreshMapPosition(position)
                 self.zoomDistance = 1200.0
             end
         end
-    end
-end
-
-function MinimapPanel:GetVectorToCheck(i)
-    if i == 1 then
-        return self.MinimapRoute.StartPoint.Position
-    elseif #self.MinimapRoute.CheckPoints >= i then
-        return self.MinimapRoute.CheckPoints[i].Position
-    elseif i == #self.MinimapRoute.CheckPoints + 1 then
-        return self.MinimapRoute.EndPoint.Position
-    else
-        return vector3(0, 0, 0)
     end
 end
 
