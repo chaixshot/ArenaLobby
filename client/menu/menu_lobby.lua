@@ -459,9 +459,9 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
-	end
+	
+	LobbyMenu.MinimapButton = nil
+	LobbyMenu.hasMapPanel = true
 
 	minimapLobbyEnabled = false
 	LobbyMenu.Minimap:Enabled(false) -- Force refresh map position
@@ -524,7 +524,10 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	end
 	table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT8"), -1, -1, -1, "INPUTGROUP_FRONTEND_DPAD_ALL"))
 
-	if LobbyMenu.MinimapButton then
+	if LobbyMenu.hasMapPanel then
+		while not LobbyMenu.MinimapButton do
+			Citizen.Wait(0)
+		end
 		table.insert(LobbyMenu.InstructionalButtons, LobbyMenu.MinimapButton)
 	end
 
@@ -603,6 +606,10 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 
 		Citizen.Wait(0)
 	end
+
+	-- onClose
+
+	LobbyMenu.hasMapPanel = false
 
 	if onClose then
 		while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
