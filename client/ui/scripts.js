@@ -1,5 +1,5 @@
-var controllerIndex = 1;
-var withXbox = false;
+var xboxIndex = 1;
+var isXbox = false;
 
 // Disable Tab Key
 $(document).keydown(function (e) {
@@ -36,15 +36,24 @@ $(".GameList").on("click", ".create", function () {
 
 	for (let i = 0; i < $(".GameList .btn").length; i++) {
 		$(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-" + (i + 1))
-		$(".GameList").parent().find(".btn").eq(i).removeClass("controllerHovered")
+		$(".GameList").parent().find(".btn").eq(i).removeClass("xboxHovered")
 	}
 	for (let i = 0; i < $(".GameSelect .newGame").length; i++) {
 		$(".GameSelect").parent().find(".newGame").eq(i).addClass("controller_index-" + (i + 1))
 	}
 
-	controllerIndex = 1;
-	if (withXbox) {
-		$(".controller_index-" + controllerIndex).addClass("controllerHovered");
+	xboxIndex = 0;
+
+	// Find first visible game
+	$('.GameSelect').children('.align-items-stretch').each(function () {
+		xboxIndex += 1;
+		if ($(this).is(":visible")) {
+			return false
+		}
+	});
+
+	if (isXbox) {
+		$(".controller_index-" + xboxIndex).addClass("xboxHovered");
 	}
 });
 
@@ -54,16 +63,16 @@ $(".GameCreate").on("click", ".ButtonBack", function () {
 	$(".GameLobby").show();
 	$(".GameCreate").hide();
 
-	controllerIndex = 1;
+	xboxIndex = 1;
 	for (let i = 0; i < $(".GameSelect .newGame").length; i++) {
 		$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controller_index-" + (i + 1))
-		$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controllerHovered")
+		$(".GameSelect").parent().find(".newGame").eq(i).removeClass("xboxHovered")
 	}
 	for (let i = 0; i < $(".GameList .btn").length; i++) {
 		$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-" + (i + 1))
 	}
-	if (withXbox) {
-		$(".controller_index-" + controllerIndex).addClass("controllerHovered");
+	if (isXbox) {
+		$(".controller_index-" + xboxIndex).addClass("xboxHovered");
 	}
 });
 
@@ -90,7 +99,7 @@ window.addEventListener('message', function (event) {
 
 	//?? Open main window
 	if (item.message == "show") {
-		withXbox = item.withXbox
+		isXbox = item.withXbox
 
 		soundOpen = new Howl({ src: ["./sounds/open.ogg"], volume: 1.0 });
 		soundOpen.play();
@@ -100,18 +109,18 @@ window.addEventListener('message', function (event) {
 		// Reset
 		for (let i = 0; i < $(".GameSelect .newGame").length; i++) {
 			$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controller_index-" + (i + 1))
-			$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controllerHovered")
+			$(".GameSelect").parent().find(".newGame").eq(i).removeClass("xboxHovered")
 		}
 		for (let i = 0; i < $(".GameList .btn").length; i++) {
 			$(".GameList").parent().find(".btn").eq(i).removeClass("controller_index-" + (i + 1))
 		}
 
-		controllerIndex = 1;
+		xboxIndex = 1;
 		for (let i = 0; i < $(".GameList .btn").length; i++) {
 			$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-" + (i + 1))
 		}
-		if (withXbox) {
-			$(".controller_index-" + controllerIndex).addClass("controllerHovered");
+		if (isXbox) {
+			$(".controller_index-" + xboxIndex).addClass("xboxHovered");
 			$(".ButtonBack").css("opacity", "0.0");
 			$(".exit").css("opacity", "0.0");
 		} else {
@@ -141,13 +150,13 @@ window.addEventListener('message', function (event) {
 		}
 
 		// Check current controllerIndex > #GameList
-		if (controllerIndex > $(".GameList .btn").length) {
-			controllerIndex = $(".GameList .btn").length;
+		if (xboxIndex > $(".GameList .btn").length) {
+			xboxIndex = $(".GameList .btn").length;
 		}
 
 		// Check on screen
-		if (withXbox && $(".GameList").offset().top !== 0) {
-			$(".controller_index-" + controllerIndex).addClass("controllerHovered");
+		if (isXbox && $(".GameList").offset().top !== 0) {
+			$(".controller_index-" + xboxIndex).addClass("xboxHovered");
 		}
 	}
 
@@ -312,13 +321,13 @@ window.addEventListener('message', function (event) {
 	var item = event.data;
 
 	if (item.message == "control_right") {
-		if ($(".controller_index-" + (controllerIndex + 1)).length !== 0) {
-			controllerIndex += 1
-			$(".controller_index-" + (controllerIndex)).addClass("controllerHovered");
-			$(".controller_index-" + (controllerIndex - 1)).removeClass("controllerHovered");
+		if ($(".controller_index-" + (xboxIndex + 1)).length !== 0) {
+			xboxIndex += 1
+			$(".controller_index-" + (xboxIndex)).addClass("xboxHovered");
+			$(".controller_index-" + (xboxIndex - 1)).removeClass("xboxHovered");
 
 			var container = $('.GameCreate .container');
-			var scrollTo = $(".controller_index-" + (controllerIndex));
+			var scrollTo = $(".controller_index-" + (xboxIndex));
 			var position = scrollTo.offset().top - container.offset().top + container.scrollTop();
 			container.animate({
 				scrollTop: position - 800
@@ -330,13 +339,13 @@ window.addEventListener('message', function (event) {
 	}
 
 	if (item.message == "control_left") {
-		if ($(".controller_index-" + (controllerIndex - 1)).length !== 0) {
-			controllerIndex -= 1
-			$(".controller_index-" + (controllerIndex)).addClass("controllerHovered");
-			$(".controller_index-" + (controllerIndex + 1)).removeClass("controllerHovered");
+		if ($(".controller_index-" + (xboxIndex - 1)).length !== 0) {
+			xboxIndex -= 1
+			$(".controller_index-" + (xboxIndex)).addClass("xboxHovered");
+			$(".controller_index-" + (xboxIndex + 1)).removeClass("xboxHovered");
 
 			var container = $('.GameCreate .container');
-			var scrollTo = $(".controller_index-" + (controllerIndex));
+			var scrollTo = $(".controller_index-" + (xboxIndex));
 			var position = scrollTo.offset().top - container.offset().top + container.scrollTop();
 			container.animate({
 				scrollTop: position - 800
@@ -348,7 +357,7 @@ window.addEventListener('message', function (event) {
 	}
 
 	if (item.message == "control_a") {
-		$(".controller_index-" + controllerIndex).trigger("click");
+		$(".controller_index-" + xboxIndex).trigger("click");
 	}
 
 	if (item.message == "control_b") {
@@ -358,15 +367,15 @@ window.addEventListener('message', function (event) {
 			$(".GameLobby").fadeIn(200);
 			$(".GameCreate").fadeOut(200);
 
-			controllerIndex = 1;
+			xboxIndex = 1;
 			for (let i = 0; i < $(".GameSelect .newGame").length; i++) {
 				$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controller_index-" + (i + 1))
-				$(".GameSelect").parent().find(".newGame").eq(i).removeClass("controllerHovered")
+				$(".GameSelect").parent().find(".newGame").eq(i).removeClass("xboxHovered")
 			}
 			for (let i = 0; i < $(".GameList .btn").length; i++) {
 				$(".GameList").parent().find(".btn").eq(i).addClass("controller_index-" + (i + 1))
 			}
-			$(".controller_index-" + controllerIndex).addClass("controllerHovered");
+			$(".controller_index-" + xboxIndex).addClass("xboxHovered");
 		} else {
 			$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
 		}
