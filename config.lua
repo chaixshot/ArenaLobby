@@ -22,7 +22,9 @@ Config.BlipColor = 83
 
 -- Custom font support languages.
 -- Uncomment to enable font.
-Citizen.CreateThread(function()
-    -- RegisterFontFile('arabic')
-    -- RegisterFontFile('chinese')
-end)
+if not IsDuplicityVersion() then
+    Citizen.CreateThread(function()
+        -- RegisterFontFile('arabic')
+        -- RegisterFontFile('chinese')
+    end)
+end
