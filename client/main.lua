@@ -68,8 +68,10 @@ function OpenGameMenu(withXbox)
 		withXbox = withXbox,
 	})
 
+	CheckUiTime("ArenaLobby_Menu_Xbox_Right", 100)
 	isMenuOpen = true
 	if withXbox then
+		SetCursorLocation(0.1, 0.1)
 		SetNuiFocus(true, false)
 
 		local form = Scaleform.Request("instructional_buttons")
@@ -87,6 +89,7 @@ function OpenGameMenu(withXbox)
 		end
 		form:Dispose()
 	else
+		SetCursorLocation(0.5, 0.5)
 		SetNuiFocus(true, true)
 	end
 end
