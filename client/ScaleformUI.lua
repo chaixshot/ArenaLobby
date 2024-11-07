@@ -5131,7 +5131,7 @@ function FriendItem:AddPedToPauseMenu()
         end
         local pSubT = self.ParentColumn.Parent()
         Citizen.CreateThread(function()
-            Wait(100)
+            -- Wait(100)
             if pSubT == "LobbyMenu" then
                 if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
                     local ped = ClonePed(self.ClonePed, false, false, true)

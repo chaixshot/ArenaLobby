@@ -535,9 +535,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	selectColumnID = 1
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
-	Citizen.SetTimeout(100, function()
-		LobbyMenu:updateFocus(focusColume, false)
-	end)
+	LobbyMenu:updateFocus(focusColume, false)
 
 	while LobbyMenu:Visible() do
 		if IsDisabledControlJustPressed(2, 201) then
