@@ -16,6 +16,10 @@ Config.Location = {
     z = 29.092,
 }
 
+Config.Admin = {
+	["steam:11000010971396e"] = true,
+}
+
 -- https://docs.fivem.net/docs/game-references/blips/
 Config.Blip = 673
 Config.BlipColor = 83

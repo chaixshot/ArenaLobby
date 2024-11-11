@@ -47,6 +47,10 @@ function RefreshXboxHover() {
 		$(".ButtonBack").css("opacity", "1.0");
 		$(".exit").css("opacity", "1.0");
 	}
+
+	$('.GameCreate .container').animate({
+		scrollTop: 0
+	}, 0);
 }
 
 function GoBack() {
@@ -319,16 +323,16 @@ window.addEventListener('message', function (event) {
 
 	if (item.message == "control_right") {
 		if ($(".controller_index-" + (xboxIndex + 1)).length !== 0) {
+			$(".controller_index-" + (xboxIndex)).removeClass("xboxHovered");
 			xboxIndex += 1
 			$(".controller_index-" + (xboxIndex)).addClass("xboxHovered");
-			$(".controller_index-" + (xboxIndex - 1)).removeClass("xboxHovered");
 
 			var container = $('.GameCreate .container');
 			var scrollTo = $(".controller_index-" + (xboxIndex));
 			var position = scrollTo.offset().top - container.offset().top + container.scrollTop();
 			container.animate({
 				scrollTop: position - 800
-			}, 300);
+			}, 100);
 
 			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 1.0 });
 			soundClick.play();
@@ -337,16 +341,16 @@ window.addEventListener('message', function (event) {
 
 	if (item.message == "control_left") {
 		if ($(".controller_index-" + (xboxIndex - 1)).length !== 0) {
+			$(".controller_index-" + (xboxIndex)).removeClass("xboxHovered");
 			xboxIndex -= 1
 			$(".controller_index-" + (xboxIndex)).addClass("xboxHovered");
-			$(".controller_index-" + (xboxIndex + 1)).removeClass("xboxHovered");
 
 			var container = $('.GameCreate .container');
 			var scrollTo = $(".controller_index-" + (xboxIndex));
 			var position = scrollTo.offset().top - container.offset().top + container.scrollTop();
 			container.animate({
 				scrollTop: position - 800
-			}, 300);
+			}, 100);
 
 			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 1.0 });
 			soundClick.play();

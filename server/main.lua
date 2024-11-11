@@ -1,3 +1,28 @@
+---Get steam or license
+---@param source integer Player server id
+---@return string
+function GetIdentifier(source)
+	local _source = source
+	local Identifier = "none"
+    
+	for k,v in pairs(GetPlayerIdentifiers(_source)) do
+		if string.sub(v, 1, string.len("steam:")) == "steam:" then
+			Identifier = v
+		end
+	end
+    
+	if Identifier == "none" then
+		for k,v in pairs(GetPlayerIdentifiers(_source)) do
+			if string.sub(v, 1, string.len("license:")) == "license:" then
+				Identifier = v
+			end
+		end
+		return Identifier
+	else
+		return Identifier
+	end
+end
+
 RegisterNetEvent('ArenaLobby:CreateGame')
 AddEventHandler('ArenaLobby:CreateGame', function(data)
 	data.password = tostring(data.password)

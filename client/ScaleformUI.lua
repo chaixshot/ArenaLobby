@@ -10418,7 +10418,7 @@ function TabView:ProcessMouse()
                             item:Hovered(item:Enabled() and i == item_id + 1)
                         end
                     elseif context == 2 then
-                        for i, item in ipairs(tab.LeftItemList?[self.leftItemIndex].ItemList or {}) do
+                        for i, item in ipairs(tab.LeftItemList?[self.leftItemIndex]?.ItemList or {}) do
                             item:Hovered(item:Enabled() and i == item_id + 1)
                         end
                     end
