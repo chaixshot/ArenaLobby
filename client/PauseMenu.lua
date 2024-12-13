@@ -156,35 +156,37 @@ function UpdatePlayerList()
 end
 
 local function OpenPauseMenu()
-	local isSpectate = false
+	local allow = true
 
 	if GetResourceState("DarkRP_Racing") == "started" then
 		if exports["DarkRP_Racing"]:IsPlayerOnSpectate() then
-			isSpectate = true
+			allow = false
+		elseif exports["DarkRP_Racing"]:GetEndScreen().IsOnEndScreen then
+			allow = false
 		end
 	end
 	if GetResourceState("DarkRP_Bomb") == "started" then
 		if exports["DarkRP_Bomb"]:IsPlayerOnSpectate() then
-			isSpectate = true
+			allow = false
 		end
 	end
 	if GetResourceState("DarkRDarkRP_TeamdeathmacthP_Racing") == "started" then
 		if exports["DarkRP_Teamdeathmacth"]:IsPlayerOnSpectate() then
-			isSpectate = true
+			allow = false
 		end
 	end
 	if GetResourceState("DarkRP_CaptureTheFlag") == "started" then
 		if exports["DarkRP_CaptureTheFlag"]:IsPlayerOnSpectate() then
-			isSpectate = true
+			allow = false
 		end
 	end
 	if GetResourceState("DarkRP_ZombieSurvival") == "started" then
 		if exports["DarkRP_ZombieSurvival"]:IsPlayerOnSpectate() then
-			isSpectate = true
+			allow = false
 		end
 	end
 
-	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and not isSpectate then
+	if ArenaAPI and ArenaAPI:IsPlayerInAnyArena() and allow then
 		if not IsPauseMenuActive() and (IsGameplayCamRendering() or IsPlayerSwitchInProgress() or NetworkIsInSpectatorMode()) then
 			UpdatePlayerState()
 			UpdateInfos()
