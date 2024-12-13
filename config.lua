@@ -1,7 +1,7 @@
 Config = {}
 
 Config.Prop = "ch_prop_arcade_claw_01a"
-Config.DrawDistance = 10.0
+Config.DrawDistance = 5.0
 Config.Height = 1.5
 Config.Color = {
     red = 0,

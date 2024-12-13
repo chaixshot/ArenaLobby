@@ -1,5 +1,5 @@
 local isMenuOpen = false
-local object
+local Object
 ArenaAPI = exports.ArenaAPI
 
 local timeUI = {}
@@ -8,7 +8,7 @@ local function CheckUiTime(type, time)
 		timeUI[type] = GetGameTimer()
 		return true
 	end
-	
+
 	if GetGameTimer() - timeUI[type] > time then
 		timeUI[type] = GetGameTimer()
 		return true
@@ -45,7 +45,7 @@ function OpenGameMenu(withXbox)
 		})
 	end
 
-	SendNUIMessage({ message = "clear" })
+	SendNUIMessage({message = "clear"})
 	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
@@ -98,7 +98,7 @@ RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 	Citizen.Wait(500)
 
-	SendNUIMessage({ message = "clear" })
+	SendNUIMessage({message = "clear"})
 	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
@@ -124,7 +124,7 @@ end)
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 	if eType == "create" then
-		if object and not ArenaAPI:IsPlayerInAnyArena() then
+		if Object and not ArenaAPI:IsPlayerInAnyArena() then
 			SendNUIMessage({
 				message = "notify",
 				ownerName = data.ownerName,
@@ -138,8 +138,9 @@ end)
 
 -- Create Blips
 Citizen.CreateThread(function()
-	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance, Config.Color.red, Config.Color.green, Config.Color.blue, Config.Color.alpha, 0)
+	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance * 2.0, Config.Color.red, Config.Color.green, Config.Color.blue, Config.Color.alpha, 0)
 	SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
+
 	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
 	SetBlipSprite(blip, Config.Blip)
 	SetBlipDisplay(blip, 4)
@@ -152,27 +153,37 @@ Citizen.CreateThread(function()
 
 	DecorRegister("GameRoom", 2)
 	DecorRegister("GameRoomTeam", 2)
+
 	while true do
 		local sleep = 500
 		local playerPed = PlayerPedId()
 		local playerCoords = GetEntityCoords(playerPed, false)
 		local dist = GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
 
-		if dist < Config.DrawDistance * 1.5 and not ArenaAPI:IsArenaBusy(ArenaAPI:GetPlayerArena()) and DecorGetInt(PlayerPedId(), "GameRoom") == 0 then
-			if not object then
-				object = SpawnLocalObject(Config.Prop, Config.Location)
-				FreezeEntityPosition(object, true)
-				SetEntityHeading(object, 250.0)
+		if dist < Config.DrawDistance * 5.0 then
+			if not Object then
+				Object = SpawnLocalObject(Config.Prop, Config.Location)
+				FreezeEntityPosition(Object, true)
+				SetEntityHeading(Object, 250.0)
 			end
 
-			if dist < Config.DrawDistance then
+			if dist < Config.DrawDistance and not ArenaAPI:IsPlayerInAnyArena() then
 				if not InPoint then
 					InPoint = true
 					SendNUIMessage({message = "music_play"})
 				end
 				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords + vector3(0.0, 0.0, 1.0))
 			else
-				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z + 1))
+				if InPoint then
+					InPoint = false
+					isMenuOpen = false
+
+					SendNUIMessage({message = "music_stop"})
+					SendNUIMessage({message = "hide"})
+					SetNuiFocus(false, false)
+				end
+
+				ShowFloatingHelpNotification('~g~Game Room', vector3(Config.Location.x, Config.Location.y, Config.Location.z + 2.3))
 			end
 
 			DisablePlayerFiring(playerPed, true)
@@ -182,23 +193,18 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, 263, true) -- Disable melee attack 1
 			DisableControlAction(0, 140, true) -- Disable light melee attack (r)
 			DisableControlAction(0, 142, true) -- Disable left mouse button (pistol whack etc)
-			sleep = 0
-		elseif InPoint then
-			InPoint = false
-			SendNUIMessage({message = "music_stop"})
-			SendNUIMessage({message = "hide"})
-			isMenuOpen = false
-			SetNuiFocus(false, false)
 
-			if object then
-				SetEntityAsNoLongerNeeded(object)
-				SetObjectAsNoLongerNeeded(object)
-				DetachEntity(object, true, false)
-				DeleteEntity(object)
-				DeleteObject(object)
-				object = nil
-			end
+			sleep = 0
+		elseif Object then
+			SetObjectAsNoLongerNeeded(Object)
+			SetEntityAsNoLongerNeeded(Object)
+			SetEntityAsMissionEntity(Object, true, true)
+			DeleteEntity(Object)
+			DeleteObject(Object)
+
+			Object = nil
 		end
+
 		Citizen.Wait(sleep)
 	end
 end)

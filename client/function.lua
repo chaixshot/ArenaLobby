@@ -26,6 +26,11 @@ end
 
 SpawnLocalObject = function(model, coords)
 	local model = (type(model) == 'number' and model or GetHashKey(model))
+
+	if not IsModelInCdimage(model) or not IsModelValid(model) then
+		model = GetHashKey("prop_ex_hidden")
+	end
+
 	RequestModelC(model)
 
 	local object = CreateObject(model, coords.x, coords.y, coords.z, false, false, false)
