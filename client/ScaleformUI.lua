@@ -1188,6 +1188,14 @@ MarkerType = {
 
 
 --///////////////////////////////////////////////////////////////////--
+---@enum MenuAlignment
+MenuAlignment = {
+    LEFT = 0,
+    RIGHT = 1
+}
+
+
+--///////////////////////////////////////////////////////////////////--
 -- There are more characters, just don't have the time to add them all. Feel free to add them yourself and make a pull request.
 
 ---@class NotificationCharacters @Enum for notification characters (used in ShowAdvancedNotification)
@@ -2447,6 +2455,538 @@ MenuScrollingType = {
 
 
 --///////////////////////////////////////////////////////////////////--
+VehicleColors = setmetatable({}, VehicleColors)
+VehicleColors.__index = VehicleColors
+VehicleColors.__call = function()
+    return "VehicleColors"
+end
+
+---@class VehicleColors
+---@field public GetColorById fun(self: VehicleColors, id:integer)
+---@field public GetColorByRGB fun(self: VehicleColors, r:integer, g:integer, b:integer)
+---@field public IsCustomColor fun(self: VehicleColors, r:integer, g:integer, b:integer)
+---@field public GetColorBySColor fun(self: VehicleColors, color:SColor)
+---@field public Metallic_Black SColor
+---@field public Metallic_Graphite_Black SColor
+---@field public Metallic_Black_Steal SColor
+---@field public Metallic_Dark_Silver SColor
+---@field public Metallic_Silver SColor
+---@field public Metallic_Blue_Silver SColor
+---@field public Metallic_Steel_Gray SColor
+---@field public Metallic_Shadow_Silver SColor
+---@field public Metallic_Stone_Silver SColor
+---@field public Metallic_Midnight_Silver SColor
+---@field public Metallic_Gun_Metal SColor
+---@field public Metallic_Anthracite_Grey SColor
+---@field public Matte_Black SColor
+---@field public Matte_Gray SColor
+---@field public Matte_Light_Grey SColor
+---@field public Util_Black SColor
+---@field public Util_Black_Poly SColor
+---@field public Util_Dark_silver SColor
+---@field public Util_Silver SColor
+---@field public Util_Gun_Metal SColor
+---@field public Util_Shadow_Silver SColor
+---@field public Worn_Black SColor
+---@field public Worn_Graphite SColor
+---@field public Worn_Silver_Grey SColor
+---@field public Worn_Silver SColor
+---@field public Worn_Blue_Silver SColor
+---@field public Worn_Shadow_Silver SColor
+---@field public Metallic_Red SColor
+---@field public Metallic_Torino_Red SColor
+---@field public Metallic_Formula_Red SColor
+---@field public Metallic_Blaze_Red SColor
+---@field public Metallic_Graceful_Red SColor
+---@field public Metallic_Garnet_Red SColor
+---@field public Metallic_Desert_Red SColor
+---@field public Metallic_Cabernet_Red SColor
+---@field public Metallic_Candy_Red SColor
+---@field public Metallic_Sunrise_Orange SColor
+---@field public Metallic_Classic_Gold SColor
+---@field public Metallic_Orange SColor
+---@field public Matte_Red SColor
+---@field public Matte_Dark_Red SColor
+---@field public Matte_Orange SColor
+---@field public Matte_Yellow SColor
+---@field public Util_Red SColor
+---@field public Util_Bright_Red SColor
+---@field public Util_Garnet_Red SColor
+---@field public Worn_Red SColor
+---@field public Worn_Golden_Red SColor
+---@field public Worn_Dark_Red SColor
+---@field public Metallic_Dark_Green SColor
+---@field public Metallic_Racing_Green SColor
+---@field public Metallic_Sea_Green SColor
+---@field public Metallic_Olive_Green SColor
+---@field public Metallic_Green SColor
+---@field public Metallic_Gasoline_Blue_Green SColor
+---@field public Matte_Lime_Green SColor
+---@field public Util_Dark_Green SColor
+---@field public Util_Green SColor
+---@field public Worn_Dark_Green SColor
+---@field public Worn_Green SColor
+---@field public Worn_Sea_Wash SColor
+---@field public Metallic_Midnight_Blue SColor
+---@field public Metallic_Dark_Blue SColor
+---@field public Metallic_Saxony_Blue SColor
+---@field public Metallic_Blue SColor
+---@field public Metallic_Mariner_Blue SColor
+---@field public Metallic_Harbor_Blue SColor
+---@field public Metallic_Diamond_Blue SColor
+---@field public Metallic_Surf_Blue SColor
+---@field public Metallic_Nautical_Blue SColor
+---@field public Metallic_Bright_Blue SColor
+---@field public Metallic_Purple_Blue SColor
+---@field public Metallic_Spinnaker_Blue SColor
+---@field public Metallic_Ultra_Blue SColor
+---@field public Dark_Pastel_Blue SColor
+---@field public Util_Dark_Blue SColor
+---@field public Util_Midnight_Blue SColor
+---@field public Util_Blue SColor
+---@field public Util_Sea_Foam_Blue SColor
+---@field public Util_Lightning_blue SColor
+---@field public Util_Maui_Blue_Poly SColor
+---@field public Util_Bright_Blue SColor
+---@field public Matte_Dark_Blue SColor
+---@field public Matte_Blue SColor
+---@field public Matte_Midnight_Blue SColor
+---@field public Worn_Dark_blue SColor
+---@field public Worn_Blue SColor
+---@field public Worn_Light_blue SColor
+---@field public Metallic_Taxi_Yellow SColor
+---@field public Metallic_Race_Yellow SColor
+---@field public Metallic_Bronze SColor
+---@field public Metallic_Yellow_Bird SColor
+---@field public Metallic_Lime SColor
+---@field public Metallic_Champagne SColor
+---@field public Metallic_Pueblo_Beige SColor
+---@field public Metallic_Dark_Ivory SColor
+---@field public Metallic_Choco_Brown SColor
+---@field public Metallic_Golden_Brown SColor
+---@field public Metallic_Light_Brown SColor
+---@field public Metallic_Straw_Beige SColor
+---@field public Metallic_Moss_Brown SColor
+---@field public Metallic_Biston_Brown SColor
+---@field public Metallic_Beechwood SColor
+---@field public Metallic_Dark_Beechwood SColor
+---@field public Metallic_Choco_Orange SColor
+---@field public Metallic_Beach_Sand SColor
+---@field public Metallic_Sun_Bleeched_Sand SColor
+---@field public Metallic_Cream SColor
+---@field public Util_Brown SColor
+---@field public Util_Medium_Brown SColor
+---@field public Util_Light_Brown SColor
+---@field public Metallic_White SColor
+---@field public Metallic_Frost_White SColor
+---@field public Worn_Honey_Beige SColor
+---@field public Worn_Brown SColor
+---@field public Worn_Dark_Brown SColor
+---@field public Worn_straw_beige SColor
+---@field public Brushed_Steel SColor
+---@field public Brushed_Black_steel SColor
+---@field public Brushed_Aluminium SColor
+---@field public Chrome SColor
+---@field public Worn_Off_White SColor
+---@field public Util_Off_White SColor
+---@field public Worn_Orange SColor
+---@field public Worn_Light_Orange SColor
+---@field public Metallic_Securicor_Green SColor
+---@field public Worn_Taxi_Yellow SColor
+---@field public Police_Car_Blue SColor
+---@field public Matte_Green SColor
+---@field public Matte_Brown SColor
+---@field public Texas_Rose SColor
+---@field public Matte_White SColor
+---@field public Worn_White SColor
+---@field public Worn_Olive_Army_Green SColor
+---@field public Pure_White SColor
+---@field public Hot_Pink SColor
+---@field public Salmon_pink SColor
+---@field public Metallic_Vermillion_Pink SColor
+---@field public Orange_ SColor
+---@field public Green_ SColor
+---@field public Blue_ SColor
+---@field public Mettalic_Black_Blue SColor
+---@field public Metallic_Black_Purple SColor
+---@field public Metallic_Black_Red SColor
+---@field public Hunter_Green SColor
+---@field public Metallic_Purple SColor
+---@field public Metaillic_V_Dark_Blue SColor
+---@field public MODSHOP_BLACK1 SColor
+---@field public Matte_Purple SColor
+---@field public Matte_Dark_Purple SColor
+---@field public Metallic_Lava_Red SColor
+---@field public Matte_Forest_Green SColor
+---@field public Matte_Olive_Drab SColor
+---@field public Matte_Desert_Brown SColor
+---@field public Matte_Desert_Tan SColor
+---@field public Matte_Foilage_Green SColor
+---@field public DEFAULT_ALLOY_COLOR SColor
+---@field public Epsilon_Blue SColor
+---@field public Pure_Gold SColor
+---@field public Brushed_Gold SColor
+
+Metallic_Black = SColor.FromArgb(255, 13, 17, 22); --i: 0
+Metallic_Graphite_Black = SColor.FromArgb(255, 28, 29, 33); --i: 1
+Metallic_Black_Steal = SColor.FromArgb(255, 50, 56, 61); --i: 2
+Metallic_Dark_Silver = SColor.FromArgb(255, 69, 75, 79); --i: 3
+Metallic_Silver = SColor.FromArgb(255, 153, 157, 160); --i: 4
+Metallic_Blue_Silver = SColor.FromArgb(255, 194, 196, 198); --i: 5
+Metallic_Steel_Gray = SColor.FromArgb(255, 151, 154, 151); --i: 6
+Metallic_Shadow_Silver = SColor.FromArgb(255, 99, 115, 128); --i: 7
+Metallic_Stone_Silver = SColor.FromArgb(255, 99, 98, 92); --i: 8
+Metallic_Midnight_Silver = SColor.FromArgb(255, 60, 63, 71); --i: 9
+Metallic_Gun_Metal = SColor.FromArgb(255, 68, 78, 84); --i: 10
+Metallic_Anthracite_Grey = SColor.FromArgb(255, 29, 33, 41); --i: 11
+Matte_Black = SColor.FromArgb(255, 19, 24, 31); --i: 12
+Matte_Gray = SColor.FromArgb(255, 38, 40, 42); --i: 13
+Matte_Light_Grey = SColor.FromArgb(255, 81, 85, 84); --i: 14
+Util_Black = SColor.FromArgb(255, 21, 25, 33); --i: 15
+Util_Black_Poly = SColor.FromArgb(255, 30, 36, 41); --i: 16
+Util_Dark_silver = SColor.FromArgb(255, 51, 58, 60); --i: 17
+Util_Silver = SColor.FromArgb(255, 140, 144, 149); --i: 18
+Util_Gun_Metal = SColor.FromArgb(255, 57, 67, 77); --i: 19
+Util_Shadow_Silver = SColor.FromArgb(255, 80, 98, 114); --i: 20
+Worn_Black = SColor.FromArgb(255, 30, 35, 47); --i: 21
+Worn_Graphite = SColor.FromArgb(255, 54, 58, 63); --i: 22
+Worn_Silver_Grey = SColor.FromArgb(255, 160, 161, 153); --i: 23
+Worn_Silver = SColor.FromArgb(255, 211, 211, 211); --i: 24
+Worn_Blue_Silver = SColor.FromArgb(255, 183, 191, 202); --i: 25
+Worn_Shadow_Silver = SColor.FromArgb(255, 119, 135, 148); --i: 26
+Metallic_Red = SColor.FromArgb(255, 192, 14, 26); --i: 27
+Metallic_Torino_Red = SColor.FromArgb(255, 218, 25, 24); --i: 28
+Metallic_Formula_Red = SColor.FromArgb(255, 182, 17, 27); --i: 29
+Metallic_Blaze_Red = SColor.FromArgb(255, 165, 30, 35); --i: 30
+Metallic_Graceful_Red = SColor.FromArgb(255, 123, 26, 34); --i: 31
+Metallic_Garnet_Red = SColor.FromArgb(255, 142, 27, 31); --i: 32
+Metallic_Desert_Red = SColor.FromArgb(255, 111, 24, 24); --i: 33
+Metallic_Cabernet_Red = SColor.FromArgb(255, 73, 17, 29); --i: 34
+Metallic_Candy_Red = SColor.FromArgb(255, 182, 15, 37); --i: 35
+Metallic_Sunrise_Orange = SColor.FromArgb(255, 212, 74, 23); --i: 36
+Metallic_Classic_Gold = SColor.FromArgb(255, 194, 148, 79); --i: 37
+Metallic_Orange = SColor.FromArgb(255, 247, 134, 22); --i: 38
+Matte_Red = SColor.FromArgb(255, 207, 31, 33); --i: 39
+Matte_Dark_Red = SColor.FromArgb(255, 115, 32, 33); --i: 40
+Matte_Orange = SColor.FromArgb(255, 242, 125, 32); --i: 41
+Matte_Yellow = SColor.FromArgb(255, 255, 201, 31); --i: 42
+Util_Red = SColor.FromArgb(255, 156, 16, 22); --i: 43
+Util_Bright_Red = SColor.FromArgb(255, 222, 15, 24); --i: 44
+Util_Garnet_Red = SColor.FromArgb(255, 143, 30, 23); --i: 45
+Worn_Red = SColor.FromArgb(255, 169, 71, 68); --i: 46
+Worn_Golden_Red = SColor.FromArgb(255, 177, 108, 81); --i: 47
+Worn_Dark_Red = SColor.FromArgb(255, 55, 28, 37); --i: 48
+Metallic_Dark_Green = SColor.FromArgb(255, 19, 36, 40); --i: 49
+Metallic_Racing_Green = SColor.FromArgb(255, 18, 46, 43); --i: 50
+Metallic_Sea_Green = SColor.FromArgb(255, 18, 56, 60); --i: 51
+Metallic_Olive_Green = SColor.FromArgb(255, 49, 66, 63); --i: 52
+Metallic_Green = SColor.FromArgb(255, 21, 92, 45); --i: 53
+Metallic_Gasoline_Blue_Green = SColor.FromArgb(255, 27, 103, 112); --i: 54
+Matte_Lime_Green = SColor.FromArgb(255, 102, 184, 31); --i: 55
+Util_Dark_Green = SColor.FromArgb(255, 34, 56, 62); --i: 56
+Util_Green = SColor.FromArgb(255, 29, 90, 63); --i: 57
+Worn_Dark_Green = SColor.FromArgb(255, 45, 66, 63); --i: 58
+Worn_Green = SColor.FromArgb(255, 69, 89, 75); --i: 59
+Worn_Sea_Wash = SColor.FromArgb(255, 101, 134, 127); --i: 60
+Metallic_Midnight_Blue = SColor.FromArgb(255, 34, 46, 70); --i: 61
+Metallic_Dark_Blue = SColor.FromArgb(255, 35, 49, 85); --i: 62
+Metallic_Saxony_Blue = SColor.FromArgb(255, 48, 76, 126); --i: 63
+Metallic_Blue = SColor.FromArgb(255, 71, 87, 143); --i: 64
+Metallic_Mariner_Blue = SColor.FromArgb(255, 99, 123, 167); --i: 65
+Metallic_Harbor_Blue = SColor.FromArgb(255, 57, 71, 98); --i: 66
+Metallic_Diamond_Blue = SColor.FromArgb(255, 214, 231, 241); --i: 67
+Metallic_Surf_Blue = SColor.FromArgb(255, 118, 175, 190); --i: 68
+Metallic_Nautical_Blue = SColor.FromArgb(255, 52, 94, 114); --i: 69
+Metallic_Bright_Blue = SColor.FromArgb(255, 11, 156, 241); --i: 70
+Metallic_Purple_Blue = SColor.FromArgb(255, 47, 45, 82); --i: 71
+Metallic_Spinnaker_Blue = SColor.FromArgb(255, 40, 44, 77); --i: 72
+Metallic_Ultra_Blue = SColor.FromArgb(255, 35, 84, 161); --i: 73
+Dark_Pastel_Blue = SColor.FromArgb(255, 110, 163, 198); --i: 74
+Util_Dark_Blue = SColor.FromArgb(255, 17, 37, 82); --i: 75
+Util_Midnight_Blue = SColor.FromArgb(255, 27, 32, 62); --i: 76
+Util_Blue = SColor.FromArgb(255, 39, 81, 144); --i: 77
+Util_Sea_Foam_Blue = SColor.FromArgb(255, 96, 133, 146); --i: 78
+Util_Lightning_blue = SColor.FromArgb(255, 36, 70, 168); --i: 79
+Util_Maui_Blue_Poly = SColor.FromArgb(255, 66, 113, 225); --i: 80
+Util_Bright_Blue = SColor.FromArgb(255, 59, 57, 224); --i: 81
+Matte_Dark_Blue = SColor.FromArgb(255, 31, 40, 82); --i: 82
+Matte_Blue = SColor.FromArgb(255, 37, 58, 167); --i: 83
+Matte_Midnight_Blue = SColor.FromArgb(255, 28, 53, 81); --i: 84
+Worn_Dark_blue = SColor.FromArgb(255, 76, 95, 129); --i: 85
+Worn_Blue = SColor.FromArgb(255, 88, 104, 142); --i: 86
+Worn_Light_blue = SColor.FromArgb(255, 116, 181, 216); --i: 87
+Metallic_Taxi_Yellow = SColor.FromArgb(255, 255, 207, 32); --i: 88
+Metallic_Race_Yellow = SColor.FromArgb(255, 251, 226, 18); --i: 89
+Metallic_Bronze = SColor.FromArgb(255, 145, 101, 50); --i: 90
+Metallic_Yellow_Bird = SColor.FromArgb(255, 224, 225, 61); --i: 91
+Metallic_Lime = SColor.FromArgb(255, 152, 210, 35); --i: 92
+Metallic_Champagne = SColor.FromArgb(255, 155, 140, 120); --i: 93
+Metallic_Pueblo_Beige = SColor.FromArgb(255, 80, 50, 24); --i: 94
+Metallic_Dark_Ivory = SColor.FromArgb(255, 71, 63, 43); --i: 95
+Metallic_Choco_Brown = SColor.FromArgb(255, 34, 27, 25); --i: 96
+Metallic_Golden_Brown = SColor.FromArgb(255, 101, 63, 35); --i: 97
+Metallic_Light_Brown = SColor.FromArgb(255, 119, 92, 62); --i: 98
+Metallic_Straw_Beige = SColor.FromArgb(255, 172, 153, 117); --i: 99
+Metallic_Moss_Brown = SColor.FromArgb(255, 108, 107, 75); --i: 100
+Metallic_Biston_Brown = SColor.FromArgb(255, 64, 46, 43); --i: 101
+Metallic_Beechwood = SColor.FromArgb(255, 164, 150, 95); --i: 102
+Metallic_Dark_Beechwood = SColor.FromArgb(255, 70, 35, 26); --i: 103
+Metallic_Choco_Orange = SColor.FromArgb(255, 117, 43, 25); --i: 104
+Metallic_Beach_Sand = SColor.FromArgb(255, 191, 174, 123); --i: 105
+Metallic_Sun_Bleeched_Sand = SColor.FromArgb(255, 223, 213, 178); --i: 106
+Metallic_Cream = SColor.FromArgb(255, 247, 237, 213); --i: 107
+Util_Brown = SColor.FromArgb(255, 58, 42, 27); --i: 108
+Util_Medium_Brown = SColor.FromArgb(255, 120, 95, 51); --i: 109
+Util_Light_Brown = SColor.FromArgb(255, 181, 160, 121); --i: 110
+Metallic_White = SColor.FromArgb(255, 255, 255, 246); --i: 111
+Metallic_Frost_White = SColor.FromArgb(255, 234, 234, 234); --i: 112
+Worn_Honey_Beige = SColor.FromArgb(255, 176, 171, 148); --i: 113
+Worn_Brown = SColor.FromArgb(255, 69, 56, 49); --i: 114
+Worn_Dark_Brown = SColor.FromArgb(255, 42, 40, 43); --i: 115
+Worn_straw_beige = SColor.FromArgb(255, 114, 108, 87); --i: 116
+Brushed_Steel = SColor.FromArgb(255, 106, 116, 124); --i: 117
+Brushed_Black_steel = SColor.FromArgb(255, 53, 65, 88); --i: 118
+Brushed_Aluminium = SColor.FromArgb(255, 155, 160, 168); --i: 119
+Chrome = SColor.FromArgb(255, 88, 112, 161); --i: 120
+Worn_Off_White = SColor.FromArgb(255, 234, 230, 222); --i: 121
+Util_Off_White = SColor.FromArgb(255, 223, 221, 208); --i: 122
+Worn_Orange = SColor.FromArgb(255, 242, 173, 46); --i: 123
+Worn_Light_Orange = SColor.FromArgb(255, 249, 164, 88); --i: 124
+Metallic_Securicor_Green = SColor.FromArgb(255, 131, 197, 102); --i: 125
+Worn_Taxi_Yellow = SColor.FromArgb(255, 241, 204, 64); --i: 126
+Police_Car_Blue = SColor.FromArgb(255, 76, 195, 218); --i: 127
+Matte_Green = SColor.FromArgb(255, 78, 100, 67); --i: 128
+Matte_Brown = SColor.FromArgb(255, 188, 172, 143); --i: 129
+Texas_Rose = SColor.FromArgb(255, 248, 182, 88); --i: 130
+Matte_White = SColor.FromArgb(255, 252, 249, 241); --i: 131
+Worn_White = SColor.FromArgb(255, 255, 255, 251); --i: 132
+Worn_Olive_Army_Green = SColor.FromArgb(255, 129, 132, 76); --i: 133
+Pure_White = SColor.FromArgb(255, 255, 255, 255); --i: 134
+Hot_Pink = SColor.FromArgb(255, 242, 31, 153); --i: 135
+Salmon_pink = SColor.FromArgb(255, 253, 214, 205); --i: 136
+Metallic_Vermillion_Pink = SColor.FromArgb(255, 223, 88, 145); --i: 137
+Orange_ = SColor.FromArgb(255, 246, 174, 32); --i: 138
+Green_ = SColor.FromArgb(255, 176, 238, 110); --i: 139
+Blue_ = SColor.FromArgb(255, 8, 233, 250); --i: 140
+Mettalic_Black_Blue = SColor.FromArgb(255, 10, 12, 23); --i: 141
+Metallic_Black_Purple = SColor.FromArgb(255, 12, 13, 24); --i: 142
+Metallic_Black_Red = SColor.FromArgb(255, 14, 13, 20); --i: 143
+Hunter_green = SColor.FromArgb(255, 159, 158, 138); --i: 144
+Metallic_Purple = SColor.FromArgb(255, 98, 18, 118); --i: 145
+Metaillic_V_Dark_Blue = SColor.FromArgb(255, 11, 20, 33); --i: 146
+MODSHOP_BLACK1 = SColor.FromArgb(255, 17, 20, 26); --i: 147
+Matte_Purple = SColor.FromArgb(255, 107, 31, 123); --i: 148
+Matte_Dark_Purple = SColor.FromArgb(255, 30, 29, 34); --i: 149
+Metallic_Lava_Red = SColor.FromArgb(255, 188, 25, 23); --i: 150
+Matte_Forest_Green = SColor.FromArgb(255, 45, 54, 42); --i: 151
+Matte_Olive_Drab = SColor.FromArgb(255, 105, 103, 72); --i: 152
+Matte_Desert_Brown = SColor.FromArgb(255, 122, 108, 85); --i: 153
+Matte_Desert_Tan = SColor.FromArgb(255, 195, 180, 146); --i: 154
+Matte_Foilage_Green = SColor.FromArgb(255, 90, 99, 82); --i: 155
+DEFAULT_ALLOY_COLOR = SColor.FromArgb(255, 129, 130, 127); --i: 156
+Epsilon_Blue = SColor.FromArgb(255, 175, 214, 228); --i: 157
+Pure_Gold = SColor.FromArgb(255, 122, 100, 64); --i: 158
+Brushed_Gold = SColor.FromArgb(255, 127, 106, 72); --i: 159
+
+local vehColors = {
+    [0] = SColor.FromArgb(255, 13, 17, 22),
+    [1] = SColor.FromArgb(255, 28, 29, 33),
+    [2] = SColor.FromArgb(255, 50, 56, 61),
+    [3] = SColor.FromArgb(255, 69, 75, 79),
+    [4] = SColor.FromArgb(255, 153, 157, 160),
+    [5] = SColor.FromArgb(255, 194, 196, 198),
+    [6] = SColor.FromArgb(255, 151, 154, 151),
+    [7] = SColor.FromArgb(255, 99, 115, 128),
+    [8] = SColor.FromArgb(255, 99, 98, 92),
+    [9] = SColor.FromArgb(255, 60, 63, 71),
+    [10] = SColor.FromArgb(255, 68, 78, 84),
+    [11] = SColor.FromArgb(255, 29, 33, 41),
+    [12] = SColor.FromArgb(255, 19, 24, 31),
+    [13] = SColor.FromArgb(255, 38, 40, 42),
+    [14] = SColor.FromArgb(255, 81, 85, 84),
+    [15] = SColor.FromArgb(255, 21, 25, 33),
+    [16] = SColor.FromArgb(255, 30, 36, 41),
+    [17] = SColor.FromArgb(255, 51, 58, 60),
+    [18] = SColor.FromArgb(255, 140, 144, 149),
+    [19] = SColor.FromArgb(255, 57, 67, 77),
+    [20] = SColor.FromArgb(255, 80, 98, 114),
+    [21] = SColor.FromArgb(255, 30, 35, 47),
+    [22] = SColor.FromArgb(255, 54, 58, 63),
+    [23] = SColor.FromArgb(255, 160, 161, 153),
+    [24] = SColor.FromArgb(255, 211, 211, 211),
+    [25] = SColor.FromArgb(255, 183, 191, 202),
+    [26] = SColor.FromArgb(255, 119, 135, 148),
+    [27] = SColor.FromArgb(255, 192, 14, 26),
+    [28] = SColor.FromArgb(255, 218, 25, 24),
+    [29] = SColor.FromArgb(255, 182, 17, 27),
+    [30] = SColor.FromArgb(255, 165, 30, 35),
+    [31] = SColor.FromArgb(255, 123, 26, 34),
+    [32] = SColor.FromArgb(255, 142, 27, 31),
+    [33] = SColor.FromArgb(255, 111, 24, 24),
+    [34] = SColor.FromArgb(255, 73, 17, 29),
+    [35] = SColor.FromArgb(255, 182, 15, 37),
+    [36] = SColor.FromArgb(255, 212, 74, 23),
+    [37] = SColor.FromArgb(255, 194, 148, 79),
+    [38] = SColor.FromArgb(255, 247, 134, 22),
+    [39] = SColor.FromArgb(255, 207, 31, 33),
+    [40] = SColor.FromArgb(255, 115, 32, 33),
+    [41] = SColor.FromArgb(255, 242, 125, 32),
+    [42] = SColor.FromArgb(255, 255, 201, 31),
+    [43] = SColor.FromArgb(255, 156, 16, 22),
+    [44] = SColor.FromArgb(255, 222, 15, 24),
+    [45] = SColor.FromArgb(255, 143, 30, 23),
+    [46] = SColor.FromArgb(255, 169, 71, 68),
+    [47] = SColor.FromArgb(255, 177, 108, 81),
+    [48] = SColor.FromArgb(255, 55, 28, 37),
+    [49] = SColor.FromArgb(255, 19, 36, 40),
+    [50] = SColor.FromArgb(255, 18, 46, 43),
+    [51] = SColor.FromArgb(255, 18, 56, 60),
+    [52] = SColor.FromArgb(255, 49, 66, 63),
+    [53] = SColor.FromArgb(255, 21, 92, 45),
+    [54] = SColor.FromArgb(255, 27, 103, 112),
+    [55] = SColor.FromArgb(255, 102, 184, 31),
+    [56] = SColor.FromArgb(255, 34, 56, 62),
+    [57] = SColor.FromArgb(255, 29, 90, 63),
+    [58] = SColor.FromArgb(255, 45, 66, 63),
+    [59] = SColor.FromArgb(255, 69, 89, 75),
+    [60] = SColor.FromArgb(255, 101, 134, 127),
+    [61] = SColor.FromArgb(255, 34, 46, 70),
+    [62] = SColor.FromArgb(255, 35, 49, 85),
+    [63] = SColor.FromArgb(255, 48, 76, 126),
+    [64] = SColor.FromArgb(255, 71, 87, 143),
+    [65] = SColor.FromArgb(255, 99, 123, 167),
+    [66] = SColor.FromArgb(255, 57, 71, 98),
+    [67] = SColor.FromArgb(255, 214, 231, 241),
+    [68] = SColor.FromArgb(255, 118, 175, 190),
+    [69] = SColor.FromArgb(255, 52, 94, 114),
+    [70] = SColor.FromArgb(255, 11, 156, 241),
+    [71] = SColor.FromArgb(255, 47, 45, 82),
+    [72] = SColor.FromArgb(255, 40, 44, 77),
+    [73] = SColor.FromArgb(255, 35, 84, 161),
+    [74] = SColor.FromArgb(255, 110, 163, 198),
+    [75] = SColor.FromArgb(255, 17, 37, 82),
+    [76] = SColor.FromArgb(255, 27, 32, 62),
+    [77] = SColor.FromArgb(255, 39, 81, 144),
+    [78] = SColor.FromArgb(255, 96, 133, 146),
+    [79] = SColor.FromArgb(255, 36, 70, 168),
+    [80] = SColor.FromArgb(255, 66, 113, 225),
+    [81] = SColor.FromArgb(255, 59, 57, 224),
+    [82] = SColor.FromArgb(255, 31, 40, 82),
+    [83] = SColor.FromArgb(255, 37, 58, 167),
+    [84] = SColor.FromArgb(255, 28, 53, 81),
+    [85] = SColor.FromArgb(255, 76, 95, 129),
+    [86] = SColor.FromArgb(255, 88, 104, 142),
+    [87] = SColor.FromArgb(255, 116, 181, 216),
+    [88] = SColor.FromArgb(255, 255, 207, 32),
+    [89] = SColor.FromArgb(255, 251, 226, 18),
+    [90] = SColor.FromArgb(255, 145, 101, 50),
+    [91] = SColor.FromArgb(255, 224, 225, 61),
+    [92] = SColor.FromArgb(255, 152, 210, 35),
+    [93] = SColor.FromArgb(255, 155, 140, 120),
+    [94] = SColor.FromArgb(255, 80, 50, 24),
+    [95] = SColor.FromArgb(255, 71, 63, 43),
+    [96] = SColor.FromArgb(255, 34, 27, 25),
+    [97] = SColor.FromArgb(255, 101, 63, 35),
+    [98] = SColor.FromArgb(255, 119, 92, 62),
+    [99] = SColor.FromArgb(255, 172, 153, 117),
+    [100] = SColor.FromArgb(255, 108, 107, 75),
+    [101] = SColor.FromArgb(255, 64, 46, 43),
+    [102] = SColor.FromArgb(255, 164, 150, 95),
+    [103] = SColor.FromArgb(255, 70, 35, 26),
+    [104] = SColor.FromArgb(255, 117, 43, 25),
+    [105] = SColor.FromArgb(255, 191, 174, 123),
+    [106] = SColor.FromArgb(255, 223, 213, 178),
+    [107] = SColor.FromArgb(255, 247, 237, 213),
+    [108] = SColor.FromArgb(255, 58, 42, 27),
+    [109] = SColor.FromArgb(255, 120, 95, 51),
+    [110] = SColor.FromArgb(255, 181, 160, 121),
+    [111] = SColor.FromArgb(255, 255, 255, 246),
+    [112] = SColor.FromArgb(255, 234, 234, 234),
+    [113] = SColor.FromArgb(255, 176, 171, 148),
+    [114] = SColor.FromArgb(255, 69, 56, 49),
+    [115] = SColor.FromArgb(255, 42, 40, 43),
+    [116] = SColor.FromArgb(255, 114, 108, 87),
+    [117] = SColor.FromArgb(255, 106, 116, 124),
+    [118] = SColor.FromArgb(255, 53, 65, 88),
+    [119] = SColor.FromArgb(255, 155, 160, 168),
+    [120] = SColor.FromArgb(255, 88, 112, 161),
+    [121] = SColor.FromArgb(255, 234, 230, 222),
+    [122] = SColor.FromArgb(255, 223, 221, 208),
+    [123] = SColor.FromArgb(255, 242, 173, 46),
+    [124] = SColor.FromArgb(255, 249, 164, 88),
+    [125] = SColor.FromArgb(255, 131, 197, 102),
+    [126] = SColor.FromArgb(255, 241, 204, 64),
+    [127] = SColor.FromArgb(255, 76, 195, 218),
+    [128] = SColor.FromArgb(255, 78, 100, 67),
+    [129] = SColor.FromArgb(255, 188, 172, 143),
+    [130] = SColor.FromArgb(255, 248, 182, 88),
+    [131] = SColor.FromArgb(255, 252, 249, 241),
+    [132] = SColor.FromArgb(255, 255, 255, 251),
+    [133] = SColor.FromArgb(255, 129, 132, 76),
+    [134] = SColor.FromArgb(255, 255, 255, 255),
+    [135] = SColor.FromArgb(255, 242, 31, 153),
+    [136] = SColor.FromArgb(255, 253, 214, 205),
+    [137] = SColor.FromArgb(255, 223, 88, 145),
+    [138] = SColor.FromArgb(255, 246, 174, 32),
+    [139] = SColor.FromArgb(255, 176, 238, 110),
+    [140] = SColor.FromArgb(255, 8, 233, 250),
+    [141] = SColor.FromArgb(255, 10, 12, 23),
+    [142] = SColor.FromArgb(255, 12, 13, 24),
+    [143] = SColor.FromArgb(255, 14, 13, 20),
+    [144] = SColor.FromArgb(255, 159, 158, 138),
+    [145] = SColor.FromArgb(255, 98, 18, 118),
+    [146] = SColor.FromArgb(255, 11, 20, 33),
+    [147] = SColor.FromArgb(255, 17, 20, 26),
+    [148] = SColor.FromArgb(255, 107, 31, 123),
+    [149] = SColor.FromArgb(255, 30, 29, 34),
+    [150] = SColor.FromArgb(255, 188, 25, 23),
+    [151] = SColor.FromArgb(255, 45, 54, 42),
+    [152] = SColor.FromArgb(255, 105, 103, 72),
+    [153] = SColor.FromArgb(255, 122, 108, 85),
+    [154] = SColor.FromArgb(255, 195, 180, 146),
+    [155] = SColor.FromArgb(255, 90, 99, 82),
+    [156] = SColor.FromArgb(255, 129, 130, 127),
+    [157] = SColor.FromArgb(255, 175, 214, 228),
+    [158] = SColor.FromArgb(255, 122, 100, 64),
+    [159] = SColor.FromArgb(255, 127, 106, 72)
+};
+
+function VehicleColors:GetColorById(id)
+    return vehColors[id];
+end
+
+function VehicleColors:GetColorByRGB(r, g, b)
+    if (IsCustomColor(r, g, b)) then
+        return -1;
+    end
+    for k, v in pairs(vehColors) do
+        if v.R == color.R and v.G == color.G and v.B == color.B then
+            return k
+        end
+    end
+end
+
+function VehicleColors:IsCustomColor(r, g, b)
+    for k, v in pairs(vehColors) do
+        if v.R == color.R and v.G == color.G and v.B == color.B then
+            return false
+        end
+    end
+    return true
+end
+
+function VehicleColors:GetColorBySColor(color)
+    if (IsCustomColor(color.R, color.G, color.B)) then
+        return -1;
+    end
+    for k, v in pairs(vehColors) do
+        if v.R == color.R and v.G == color.G and v.B == color.B then
+            return k
+        end
+    end
+end
+
+--///////////////////////////////////////////////////////////////////--
 Marker = setmetatable({}, Marker)
 Marker.__index = Marker
 Marker.__call = function()
@@ -2994,7 +3534,8 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
                 newMenu.TxtDictionary = currentMenu.TxtDictionary
                 newMenu.TxtName = currentMenu.TxtName
             end
-            newMenu.Position = currentMenu.Position
+            newMenu:MenuAlignment(currentMenu:MenuAlignment())
+            newMenu:SetMenuOffset(currentMenu.Position.x, currentMenu.Position.y)
 
             if currentMenu.Logo ~= nil then
                 newMenu.Logo = currentMenu.Logo
@@ -3002,16 +3543,13 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
                 newMenu.Logo = nil
                 newMenu.Banner = currentMenu.Banner
             end
-
+            newMenu._differentBanner = currentMenu.TxtDictionary ~= newMenu.TxtDictionary and currentMenu.TxtName ~= newMenu.TxtName;
             newMenu.Glare = currentMenu.Glare
+            newMenu.AlternativeTitle = currentMenu.AlternativeTitle
             newMenu:MaxItemsOnScreen(currentMenu:MaxItemsOnScreen())
-            newMenu:AnimationEnabled(currentMenu:AnimationEnabled())
-            newMenu:AnimationType(currentMenu:AnimationType())
-            newMenu:BuildingAnimation(currentMenu:BuildingAnimation())
             newMenu:ScrollingType(currentMenu:ScrollingType())
+            newMenu:SetMenuAnimations(currentMenu:AnimationEnabled(), currentMenu:Enabled3DAnimations(), currentMenu:AnimationType(), currentMenu:BuildingAnimation(), currentMenu.fadingTime)
             newMenu:MouseSettings(currentMenu:MouseControlsEnabled(), currentMenu:MouseEdgeEnabled(), currentMenu:MouseWheelControlEnabled(), currentMenu.Settings.ResetCursorOnOpen, currentMenu.leftClickEnabled)
-            newMenu.enabled3DAnimations = currentMenu.enabled3DAnimations
-            newMenu.fadingTime = currentMenu.fadingTime
             newMenu:SubtitleColor(currentMenu:SubtitleColor())
             --[[
                 newMenu.Settings.MouseControlsEnabled = currentMenu.Settings.MouseControlsEnabled
@@ -3035,6 +3573,15 @@ end
 function MenuHandler:ProcessMenus()
     self:Draw()
     self:ProcessControl()
+    self:ProcessMenuExtensionMethod()
+end
+
+function MenuHandler:ProcessMenuExtensionMethod()
+    if self._currentMenu ~= nil then
+        if self._currentMenu() == "UIMenu" then
+            self._currentMenu:CallExtensionMethod()
+        end
+    end
 end
 
 ---ProcessControl
@@ -6715,56 +7262,64 @@ function MainView:ProcessControl()
     end
 
     if (IsDisabledControlJustPressed(2, 172)) then
-        Citizen.CreateThread(function()
-            self:GoUp()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 172) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoUp()
+        if GlobalGameTimer - self._time > self._delay then
+            Citizen.CreateThread(function()
+                self:GoUp()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 172) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoUp()
+                    end
+                    Citizen.Wait(50)
                 end
-                Citizen.Wait(50)
-            end
-            return
-        end)
+                return
+            end)
+        end
     end
     if (IsDisabledControlJustPressed(2, 173)) then
-        Citizen.CreateThread(function()
-            self:GoDown()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 173) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoDown()
+        if GlobalGameTimer - self._time > self._delay then
+            Citizen.CreateThread(function()
+                self:GoDown()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 173) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoDown()
+                    end
+                    Citizen.Wait(50)
                 end
-                Citizen.Wait(50)
-            end
-            return
-        end)
+                return
+            end)
+        end
     end
     if (IsDisabledControlJustPressed(2, 174)) then
-        Citizen.CreateThread(function()
-            self:GoLeft()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 174) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoLeft()
+        if GlobalGameTimer - self._time > self._delay then
+            Citizen.CreateThread(function()
+                self:GoLeft()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 174) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoLeft()
+                    end
+                    Citizen.Wait(50)
                 end
-                Citizen.Wait(50)
-            end
-            return
-        end)
+                return
+            end)
+        end
     end
     if (IsDisabledControlJustPressed(2, 175)) then
-        Citizen.CreateThread(function()
-            self:GoRight()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 175) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoRight()
+        if GlobalGameTimer - self._time > self._delay then
+            Citizen.CreateThread(function()
+                self:GoRight()
+                local timer = GetGameTimer()
+                while IsDisabledControlPressed(2, 175) do
+                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
+                        self:GoRight()
+                    end
+                    Citizen.Wait(50)
                 end
-                Citizen.Wait(50)
-            end
-            return
-        end)
+                return
+            end)
+        end
     end
 
     if (IsControlJustPressed(2, 201)) then
@@ -7122,7 +7677,7 @@ function MinimapPanel:Enabled(_e)
             if self.turnedOn then
                 self.IsRadarVisible = not IsRadarHidden()
                 DisplayRadar(false);
-                RaceGalleryFullscreen(false);
+                SetMapFullScreen(false);
                 self.turnedOn = false;
             end
         end
@@ -7236,19 +7791,19 @@ function MinimapPanel:ProcessMap()
     if self.enabled then
         if not self.turnedOn then
             DisplayRadar(self.IsRadarVisible)
-            RaceGalleryFullscreen(true)
+            SetMapFullScreen(true)
             self.turnedOn = true
         end
     else
         if self.turnedOn then
             self.IsRadarVisible = not IsRadarHidden()
             DisplayRadar(false)
-            RaceGalleryFullscreen(false)
+            SetMapFullScreen(false)
             self.turnedOn = false
             self:Dispose()
         end
     end
-    SetFakePausemapPlayerPositionThisFrame(-5000.0, -5000.0)
+    SetPlayerBlipPositionThisFrame(-5000.0, -5000.0)
     self:RefreshZoom()
 end
 
@@ -7283,7 +7838,7 @@ end
 function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
-    PauseToggleFullscreenMap(1);
+    PauseToggleFullscreenMap(true);
     DisplayRadar(self.IsRadarVisible);
     RaceGalleryFullscreen(false);
     ClearRaceGalleryBlips();
@@ -8854,6 +9409,7 @@ function TabView.New(title, subtitle, sideTop, sideMiddle, sideBottom)
         setHeaderDynamicWidth = false,
         _firstDrawTick = false,
         timer = 100,
+        ShowBlur = true,
         InstructionalButtons = {
             InstructionalButton.New(GetLabelText("HUD_INPUT2"), -1, 176, 176, -1),
             InstructionalButton.New(GetLabelText("HUD_INPUT3"), -1, 177, 177, -1),
@@ -8881,13 +9437,9 @@ end
 
 function TabView:LeftItemIndex(index)
     if index ~= nil then
-        if self.Tabs[self.index] and self.Tabs[self.index].LeftItemList[self.leftItemIndex] then
-            self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(false)
-        end
+        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(false)
         self.leftItemIndex = index
-        if self.Tabs[self.index] and self.Tabs[self.index].LeftItemList[self.leftItemIndex] then
-            self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(true)
-        end
+        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(true)
         self.OnLeftItemChange(self, self.Tabs[self.index].LeftItemList[self.leftItemIndex], self.leftItemIndex)
     else
         return self.leftItemIndex
@@ -8934,8 +9486,10 @@ function TabView:Index(idx)
         if self.index < 1 then
             self.index = #self.Tabs
         end
-        self.Tabs[self.index].Visible = true
-        self:BuildPauseMenu()
+        if self:Visible() then
+            self.Tabs[self.index].Visible = true
+            self:BuildPauseMenu()
+        end
         self.OnPauseMenuTabChanged(self, self.Tabs[self.index], self.index)
     else
         return self.index
@@ -8952,7 +9506,9 @@ function TabView:Visible(visible)
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
                 ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
                 self.OnPauseMenuOpen(self)
-                AnimpostfxPlay("PauseMenuIn", 0, true)
+                if self.ShowBlur then
+                    AnimpostfxPlay("PauseMenuIn", 0, true)
+                end
                 self._firstDrawTick = true
                 ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
                 SetPlayerControl(PlayerId(), false, 0)
@@ -8975,8 +9531,10 @@ function TabView:Visible(visible)
             MenuHandler._currentPauseMenu = nil
             ScaleformUI.Scaleforms._pauseMenu:Dispose()
             ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
-            AnimpostfxStop("PauseMenuIn")
-            AnimpostfxPlay("PauseMenuOut", 0, false)
+            if self.ShowBlur or AnimpostfxIsRunning("PauseMenuIn") then
+                AnimpostfxStop("PauseMenuIn")
+                AnimpostfxPlay("PauseMenuOut", 0, false)
+            end
             self.OnPauseMenuClose(self)
             SetPlayerControl(PlayerId(), true, 0)
             PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
@@ -9380,6 +9938,7 @@ function TabView:Draw()
     DisableControlAction(2, 199, true)
     DisableControlAction(2, 200, true)
     ScaleformUI.Scaleforms._pauseMenu:Draw(false)
+    ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("SHOW_ARROWS")
     self:UpdateKeymapItems()
 end
 
@@ -9445,7 +10004,7 @@ function TabView:Select()
         if allDisabled then return end
         --[[ end check all disabled ]]
         --
-        while (not tab.LeftItemList?[self.leftItemIndex]:Enabled()) do
+        while (not tab.LeftItemList[self.leftItemIndex]:Enabled()) do
             Citizen.Wait(0)
             self:LeftItemIndex(self.leftItemIndex + 1)
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", self.leftItemIndex - 1)
@@ -9603,7 +10162,7 @@ function TabView:GoBack()
                 end
             end
             self:FocusLevel(self:FocusLevel() - 1)
-            if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
+            if subT == "SubmenuTab" then
                 tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
             end
         elseif subT == "PlayerListTab" then
@@ -9687,11 +10246,11 @@ function TabView:GoUp()
     local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 8)
     if retVal ~= -1 then
         if self:FocusLevel() == 1 then
+            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
             self:LeftItemIndex(retVal + 1)
-            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
         elseif self:FocusLevel() == 2 then
-            self:RightItemIndex(retVal + 1)
             PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+            self:RightItemIndex(retVal + 1)
         end
     end
 end
@@ -9858,10 +10417,10 @@ function TabView:GoLeft()
 
     if self:FocusLevel() == 0 then
         ClearPedInPauseMenu()
-        ScaleformUI.Scaleforms._pauseMenu:HeaderGoLeft()
+        --ScaleformUI.Scaleforms._pauseMenu:HeaderGoLeft()
         local tab = self.Tabs[self.index]
         local _, subT = tab()
-        if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
+        if subT == "SubmenuTab" then
             tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
         end
         self:Index(self.index - 1)
@@ -10072,10 +10631,10 @@ function TabView:GoRight()
 
     if self:FocusLevel() == 0 then
         ClearPedInPauseMenu()
-        ScaleformUI.Scaleforms._pauseMenu:HeaderGoRight()
+        --ScaleformUI.Scaleforms._pauseMenu:HeaderGoRight()
         local tab = self.Tabs[self.index]
         local _, subT = tab()
-        if subT == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
+        if subT == "SubmenuTab" then
             tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
         end
         self:Index(self.index + 1)
@@ -10254,6 +10813,14 @@ function TabView:ProcessMouse()
                             self:LeftItemIndex(self:LeftItemIndex() + 1)
                             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", self.leftItemIndex - 1)
                         end
+                    end
+                end
+            elseif event_type_h == 6 then
+                if context_h == 1000 then
+                    if item_id == -1 then
+                        self:Index(self:Index() - 1)
+                    elseif item_id == 1 then
+                        self:Index(self:Index() + 1)
                     end
                 end
             end
@@ -10437,9 +11004,7 @@ function TabView:ProcessControl()
     if not self:Visible() or self.TemporarilyHidden then
         return
     end
-
     EnableControlAction(2, 177, true)
-
     if (IsDisabledControlJustPressed(2, 172)) then
         Citizen.CreateThread(function()
             self:GoUp()
@@ -10547,15 +11112,6 @@ function TabView:ProcessControl()
             self._timer = GlobalGameTimer
         end
     end
-
-    if (IsControlJustReleased(0, 172) or IsControlJustReleased(1, 172) or IsControlJustReleased(2, 172)) or
-        (IsControlJustReleased(0, 173) or IsControlJustReleased(1, 173) or IsControlJustReleased(2, 173)) or
-        (IsControlJustReleased(0, 174) or IsControlJustReleased(1, 174) or IsControlJustReleased(2, 174)) or
-        (IsControlJustReleased(0, 175) or IsControlJustReleased(1, 175) or IsControlJustReleased(2, 175))
-    then
-        self._times = 0
-        self._delay = 150
-    end
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -10565,7 +11121,7 @@ RadialMenu.__call = function()
     return "RadialMenu"
 end
 
----@class RadialMenu: Scaleform
+---@class RadialMenu: _Scaleform
 ---@field public Segments table
 ---@field public InstructionalButtons table
 ---@field public OnMenuOpen fun(menu:RadialMenu, data:any)
@@ -11037,7 +11593,7 @@ UIRadioMenu.__call = function()
     return "UIRadioMenu"
 end
 
----@class UIRadioMenu: Scaleform
+---@class UIRadioMenu: _Scaleform
 ---@field public visible boolean
 ---@field public isAnimating boolean
 ---@field public currentSelection number
@@ -11427,7 +11983,8 @@ function UIMenuCheckboxItem:Label(Text)
 end
 
 function UIMenuCheckboxItem:MainColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -11439,7 +11996,8 @@ function UIMenuCheckboxItem:MainColor(color)
 end
 
 function UIMenuCheckboxItem:TextColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -11451,7 +12009,8 @@ function UIMenuCheckboxItem:TextColor(color)
 end
 
 function UIMenuCheckboxItem:HighlightColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -11463,7 +12022,8 @@ function UIMenuCheckboxItem:HighlightColor(color)
 end
 
 function UIMenuCheckboxItem:HighlightedTextColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -11594,10 +12154,17 @@ function UIMenuDynamicListItem:CurrentListItem(item)
         return tostring(self._currentItem)
     else
         self._currentItem = item
+        local str = self:createListString()
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                tostring(self._currentItem), 0)
+            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
+        end
+        if self.Base.ParentColumn ~= nil then
+            local pSubT = self.Base.ParentColumn.Parent()
+            if pSubT == "LobbyMenu" then
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            end
         end
     end
 end
@@ -11639,6 +12206,18 @@ end
 function UIMenuDynamicListItem:Selected(bool)
     if bool ~= nil then
         self.Base:Selected(ToBool(bool), self)
+        local str = self:createListString()
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
+            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
+        end
+        if self.Base.ParentColumn ~= nil then
+            local pSubT = self.Base.ParentColumn.Parent()
+            if pSubT == "LobbyMenu" then
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            end
+        end
     else
         return self.Base._Selected
     end
@@ -11659,6 +12238,18 @@ end
 function UIMenuDynamicListItem:Enabled(bool)
     if bool ~= nil then
         self.Base:Enabled(bool, self)
+        local str = self:createListString()
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
+            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
+        end
+        if self.Base.ParentColumn ~= nil then
+            local pSubT = self.Base.ParentColumn.Parent()
+            if pSubT == "LobbyMenu" then
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            end
+        end
     else
         return self.Base._Enabled
     end
@@ -11693,7 +12284,8 @@ function UIMenuDynamicListItem:Label(Text)
 end
 
 function UIMenuDynamicListItem:MainColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -11706,7 +12298,8 @@ function UIMenuDynamicListItem:MainColor(color)
 end
 
 function UIMenuDynamicListItem:TextColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -11719,7 +12312,8 @@ function UIMenuDynamicListItem:TextColor(color)
 end
 
 function UIMenuDynamicListItem:HighlightColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -11732,7 +12326,8 @@ function UIMenuDynamicListItem:HighlightColor(color)
 end
 
 function UIMenuDynamicListItem:HighlightedTextColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -11815,6 +12410,28 @@ function UIMenuDynamicListItem:FindPanelItem()
         end
     end
     return nil
+end
+
+function UIMenuDynamicListItem:createListString()
+    local list = {}
+    local value = self._currentItem
+    if type(value) ~= "string" then
+        value = tostring(v)
+    end
+    if not self:Enabled() then
+        value.ReplaceRstarColorsWith("~c~")
+    else
+        if not value:StartsWith("~") then
+            value = "~s~"..value
+        end
+        if self:Selected() then
+            value = value:gsub("~w~", "~l~")
+            value = value:gsub("~s~", "~l~")
+        else
+            value = value:gsub("~l~", "~s~")
+        end
+    end
+    return value
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -12070,7 +12687,8 @@ function UIMenuItem:Description(str, item)
 end
 
 function UIMenuItem:MainColor(color, item)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._mainColor = color
         if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
@@ -12082,7 +12700,8 @@ function UIMenuItem:MainColor(color, item)
 end
 
 function UIMenuItem:TextColor(color, item)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._textColor = color
         if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
@@ -12094,7 +12713,8 @@ function UIMenuItem:TextColor(color, item)
 end
 
 function UIMenuItem:HighlightColor(color, item)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._highlightColor = color
         if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
@@ -12106,7 +12726,8 @@ function UIMenuItem:HighlightColor(color, item)
 end
 
 function UIMenuItem:HighlightedTextColor(color, item)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._highlightedTextColor = color
         if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
@@ -12417,7 +13038,7 @@ function UIMenuListItem:AddSidePanel(sidePanel)
 end
 
 ---Selected
----@param bool boolean
+---@param bool? boolean
 function UIMenuListItem:Selected(bool)
     if bool ~= nil then
         self.Base:Selected(ToBool(bool), self)
@@ -12451,7 +13072,7 @@ function UIMenuListItem:Hovered(bool)
 end
 
 ---Enabled
----@param bool boolean
+---@param bool? boolean
 function UIMenuListItem:Enabled(bool)
     if bool ~= nil then
         self.Base:Enabled(bool, self)
@@ -12503,7 +13124,8 @@ function UIMenuListItem:Label(Text)
 end
 
 function UIMenuListItem:MainColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -12516,7 +13138,8 @@ function UIMenuListItem:MainColor(color)
 end
 
 function UIMenuListItem:TextColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -12529,7 +13152,8 @@ function UIMenuListItem:TextColor(color)
 end
 
 function UIMenuListItem:HighlightColor(color)
-    if (color) then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -12543,6 +13167,7 @@ end
 
 function UIMenuListItem:HighlightedTextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
@@ -12847,6 +13472,7 @@ end
 
 function UIMenuProgressItem:MainColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -12859,6 +13485,7 @@ end
 
 function UIMenuProgressItem:TextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -12871,6 +13498,7 @@ end
 
 function UIMenuProgressItem:HighlightColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -12883,6 +13511,7 @@ end
 
 function UIMenuProgressItem:HighlightedTextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -12895,6 +13524,7 @@ end
 
 function UIMenuProgressItem:SliderColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.SliderColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13048,7 +13678,8 @@ function UIMenuSeparatorItem:Label(Text)
 end
 
 function UIMenuSeparatorItem:MainColor(color)
-    if color ~= nil then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13060,7 +13691,8 @@ function UIMenuSeparatorItem:MainColor(color)
 end
 
 function UIMenuSeparatorItem:TextColor(color)
-    if color ~= nil then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13072,7 +13704,8 @@ function UIMenuSeparatorItem:TextColor(color)
 end
 
 function UIMenuSeparatorItem:HighlightColor(color)
-    if color ~= nil then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13084,7 +13717,8 @@ function UIMenuSeparatorItem:HighlightColor(color)
 end
 
 function UIMenuSeparatorItem:HighlightedTextColor(color)
-    if color ~= nil then
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13296,6 +13930,7 @@ end
 
 function UIMenuSliderItem:MainColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13308,6 +13943,7 @@ end
 
 function UIMenuSliderItem:TextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13320,6 +13956,7 @@ end
 
 function UIMenuSliderItem:HighlightColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13332,6 +13969,7 @@ end
 
 function UIMenuSliderItem:HighlightedTextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13344,6 +13982,7 @@ end
 
 function UIMenuSliderItem:SliderColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.SliderColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13546,6 +14185,7 @@ end
 
 function UIMenuStatsItem:MainColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._mainColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13558,6 +14198,7 @@ end
 
 function UIMenuStatsItem:TextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._textColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13570,6 +14211,7 @@ end
 
 function UIMenuStatsItem:HighlightColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13582,6 +14224,7 @@ end
 
 function UIMenuStatsItem:HighlightedTextColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self.Base._highlightedTextColor = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -13594,6 +14237,7 @@ end
 
 function UIMenuStatsItem:SliderColor(color)
     if color then
+        assert(color() == "SColor", "Color must be SColor type")
         self._Color = color
         if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
             ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
@@ -14111,7 +14755,7 @@ end
 ---SetParentItem
 ---@param Item table
 function UIMenuPercentagePanel:SetParentItem(Item) -- required
-    if not Item() == nil then
+    if Item ~= nil then
         self.ParentItem = Item
     else
         return self.ParentItem
@@ -14199,6 +14843,73 @@ function UIMenuStatisticsPanel:UpdateStatistic(index, value)
             ScaleformUI.Scaleforms._ui:CallFunction("SET_PANEL_STATS_ITEM_VALUE", it, pan - 1, index - 1, value)
         end
     end
+end
+
+--///////////////////////////////////////////////////////////////////--
+UIMenuVehicleColourPickerPanel = setmetatable({}, UIMenuVehicleColourPickerPanel)
+UIMenuVehicleColourPickerPanel.__index = UIMenuVehicleColourPickerPanel
+UIMenuVehicleColourPickerPanel.__call = function() return "UIMenuPanel", "UIMenuVehicleColourPickerPanel" end
+
+function UIMenuVehicleColourPickerPanel.New()
+    local _data = {
+        ParentItem = nil, -- required
+        _value = 1,
+        _color = SColor.HUD_None,
+        PickerSelect = function(value, color)
+        end,
+        PickerHovered = function(value, color)
+        end,
+        PickerRollOut = function(value, color)
+        end
+    }
+    return setmetatable(_data, UIMenuVehicleColourPickerPanel)
+end
+
+function UIMenuVehicleColourPickerPanel:Color()
+    return self._color
+end
+
+function UIMenuVehicleColourPickerPanel:Value(val)
+    if val == nil then
+        return self._value
+    else
+        self._value = val
+        if val == -1 then
+            self:_setValue(self._value)
+            return
+        end
+        if self._value < 0 then
+            self._value = 0
+        end
+        if self._value > 159 then
+            self._value = 159
+        end
+        self:_setValue(self._value)
+        self._color = VehicleColors:GetColorById(self._value)
+        self:_PickerSelect(self._color)
+    end
+end
+
+function UIMenuVehicleColourPickerPanel:_setValue(val)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
+        and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
+        local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
+        local van = IndexOf(self.ParentItem.Panels, self)
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_COLOR_PICKER_PANEL_VALUE", it, van - 1, val)
+    end
+end
+
+function UIMenuVehicleColourPickerPanel:_PickerSelect(color)
+    self.Color = color
+    self.PickerSelect(self.ParentItem.ParentMenu, self.ParentItem, self.Value, self.Color)
+end
+
+function UIMenuVehicleColourPickerPanel:_PickerHovered(colorId, color)
+    self.PickerHovered(self.ParentItem.ParentMenu, colorId, color)
+end
+
+function UIMenuVehicleColourPickerPanel:_PickerRollout()
+    self.PickerRollOut(self.ParentItem.ParentMenu, self.ParentItem, self.Value, self.Color)
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -14338,14 +15049,17 @@ function UIVehicleColorPickerPanel.New(side, title, color)
         TitleType = 0,
         Value = 1,
         ParentItem = nil,
-        PickerSelect = function(menu, item, newindex)
+        Color = SColor.HUD_None,
+        PickerSelect = function(menu, item, newindex, color)
+        end,
+        PickerHovered = function(menu, item, index, color)
         end
     }
     return setmetatable(_UIVehicleColorPickerPanel, UIVehicleColorPickerPanel)
 end
 
 function UIVehicleColorPickerPanel:SetParentItem(Item) -- required
-    if not Item() == nil then
+    if Item() ~= nil then
         self.ParentItem = Item
     else
         return self.ParentItem
@@ -14358,6 +15072,19 @@ function UIVehicleColorPickerPanel:UpdatePanelTitle(title)
         local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
         ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_SIDE_PANEL_TITLE", item, title)
     end
+end
+
+function UIVehicleColorPickerPanel:_PickerSelect(color)
+    self.Color = color
+    self.PickerSelect(self.ParentItem.ParentMenu, self.ParentItem, self.Value, self.Color)
+end
+
+function UIVehicleColorPickerPanel:_PickerHovered(colorId, color)
+    self.PickerHovered(self:SetParentItem():SetParentMenu(), colorId, color)
+end
+
+function UIVehicleColorPickerPanel:_PickerRollout()
+    self.PickerHovered(self:SetParentItem():SetParentMenu(), self.ParentItem, self.Value, self.Color)
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -14472,7 +15199,7 @@ end
 ---@param txtDictionary string|nil -- Custom texture dictionary for the menu banner background (default: commonmenu)
 ---@param txtName string|nil -- Custom texture name for the menu banner background (default: interaction_bgd)
 ---@param alternativeTitleStyle boolean|nil -- Use alternative title style (default: false)
-function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, alternativeTitleStyle, fadeTime, longdesc)
+function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, alternativeTitleStyle, fadeTime, longdesc, align)
     local X, Y = tonumber(x) or 0, tonumber(y) or 0
     if title ~= nil then
         title = tostring(title) or ""
@@ -14497,7 +15224,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     if alternativeTitleStyle == nil then
         alternativeTitleStyle = false
     end
-    if longdesc ~= nil then
+    if longdesc ~= nil and string.IsNullOrEmpty(longdesc) then
         AddTextEntry("ScaleformUILongDesc", longdesc)
     end
     local _UIMenu = {
@@ -14505,7 +15232,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _Subtitle = subTitle,
         AlternativeTitle = alternativeTitleStyle,
         counterColor = SColor.HUD_Freemode,
-        Position = {x = X, y = Y},
+        Position = vector2(X, Y),
         Pagination = PaginationHandler.New(),
         enableAnimation = true,
         animationType = MenuAnimationType.LINEAR,
@@ -14518,7 +15245,9 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         Extra = {},
         Description = {},
         Items = {},
+        ParentItem = nil,
         _unfilteredMenuItems = {},
+        mouseReset = false,
         Windows = {},
         TxtDictionary = txtDictionary,
         TxtName = txtName,
@@ -14536,9 +15265,13 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _delay = 100,
         _delayBeforeOverflow = 350,
         _timeBeforeOverflow = 0,
+        _differentBanner = false,
         _canHe = true,
         _scaledWidth = (720 * GetAspectRatio(false)),
         _glarePos = {x = 0, y = 0},
+        _glareSize = {w = 1.0, h = 1.0},
+        menuAlignment = align or 0,
+        _mouseOnMenu = false,
         fSavedGlareDirection = 0,
         enabled3DAnimations = true,
         isFading = false,
@@ -14601,6 +15334,8 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         end,
         OnGridPanelChanged = function(menu, item, index)
         end,
+        ExtensionMethod = function(menu)
+        end,
         Settings = {
             InstructionalButtons = true,
             MultilineFormats = true,
@@ -14626,7 +15361,31 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     if (_UIMenu._menuGlare == 0) then
         _UIMenu._menuGlare = _Scaleform.Request("mp_menu_glare")
     end
-    _UIMenu._glarePos = {x = _UIMenu.Position.x / 1280 + 0.4499, y = (_UIMenu.Position.y / 720) + 0.496}
+
+    _UIMenu.Position = vector2(X, Y)
+    local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005;
+    local rightAlign = _UIMenu.menuAlignment == MenuAlignment.RIGHT
+    local glareX = 0.45
+    local glareW = 1.0
+    if not GetIsWidescreen() then
+        glareX = 0.585
+        glareW = 1.35
+    end
+
+    local pos1080 = ConvertScaleformCoordsToResolutionCoords(X, Y)
+    local screenCoords = ConvertResolutionCoordsToScreenCoords(pos1080.x, pos1080.y)
+    _UIMenu._glarePos = vector2(screenCoords.x + glareX + safezone, screenCoords.y + 0.45 + safezone)
+    if rightAlign then
+        local w, h = GetActualScreenResolution()
+        screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
+        glareX = 0.225
+        if not GetIsWidescreen() then
+            glareX = 0.36
+        end
+        _UIMenu._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
+    end
+
+    _UIMenu._glareSize = {w = glareW, h = 1.0}
 
     return setmetatable(_UIMenu, UIMenu)
 end
@@ -14713,6 +15472,21 @@ function UIMenu:SubtitleColor(color)
             else
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.alternativeTitle)
             end
+        end
+    end
+end
+
+---Getter / Setter for the Menu Alignment.
+---@param align MenuAlignment
+---@return MenuAlignment | nil
+function UIMenu:MenuAlignment(align)
+    if align == nil then
+        return self.menuAlignment
+    else
+        self.menuAlignment = align
+        self:SetMenuOffset(self.Position.x, self.Position.y)
+        if self:Visible() then
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_ORIENTATION", align)
         end
     end
 end
@@ -14869,11 +15643,23 @@ end
 ---@param enable3DAnim boolean
 ---@param scrollingAnimation MenuAnimationType
 ---@param buildingAnimation MenuBuildingAnimation
-function UIMenu:SetMenuAnimations(enableScrollingAnim, enable3DAnim, scrollingAnimation, buildingAnimation)
+---@param fadingTime number
+function UIMenu:SetMenuAnimations(enableScrollingAnim, enable3DAnim, scrollingAnimation, buildingAnimation, fadingTime)
+    if scrollingAnimation == nil then
+        scrollingAnimation = MenuAnimationType.QUADRATIC_IN
+    end
+    if buildingAnimation == nil then
+        buildingAnimation = MenuBuildingAnimation.LEFT_RIGHT
+    end
+    if fadingTime == nil then
+        fadingTime = 0.1
+    end
+
     self:AnimationEnabled(enableScrollingAnim)
     self:Enabled3DAnimations(enable3DAnim)
     self:AnimationType(scrollingAnimation)
     self:BuildingAnimation(buildingAnimation)
+    self.fadingTime = fadingTime
 end
 
 --- Enables or disabls the menu's animations while the menu is visible.
@@ -14987,18 +15773,23 @@ function UIMenu:CurrentSelection(value)
             self.Pagination:CurrentMenuIndex(#self.Items)
             value = #self.Items
         end
-
-        self.Items[self:CurrentSelection()]:Selected(false)
+        if self:CurrentSelection() < #self.Items then
+            self.Items[self:CurrentSelection()]:Selected(false)
+        end
         self.Pagination:CurrentMenuIndex(value)
         self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()))
         self.Pagination:CurrentPageIndex(value)
         self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-        self.Items[self:CurrentSelection()]:Selected(true)
+        if (value > self.Pagination:MaxItem() or value < self.Pagination:MinItem()) then
+            self:RefreshMenu(true)
+        end
+
         if self:Visible() then
             ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM",
                 self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
             ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
         end
+        self.Items[value]:Selected(true)
     else
         return self.Pagination:CurrentMenuIndex()
     end
@@ -15129,11 +15920,14 @@ end
 ---@param bool boolean|nil
 function UIMenu:Visible(bool)
     if bool ~= nil then
-        self._Visible = ToBool(bool)
         self.JustOpened = ToBool(bool)
         self.Dirty = ToBool(bool)
 
         if bool then
+            if self._Visible then
+                return
+            end
+            self._Visible = bool;
             if not self._itemless and #self.Items == 0 then
                 MenuHandler:CloseAndClearHistory()
                 assert(self._itemless or #self.Items == 0, "UIMenu "..self:Title().." menu is empty... Closing and clearing history.")
@@ -15141,17 +15935,20 @@ function UIMenu:Visible(bool)
             ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
             MenuHandler._currentMenu = self
             MenuHandler.ableToDraw = true
-            Citizen.CreateThread(function()
-                self:BuildUpMenuAsync()
-            end)
+            self:BuildUpMenuAsync()
             self.OnMenuOpen(self)
             if BreadcrumbsHandler:Count() == 0 then
                 BreadcrumbsHandler:Forward(self)
             end
         else
+            self._Visible = bool;
             self:FadeOutMenu()
             ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
-            ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL")
+            if BreadcrumbsHandler.SwitchInProgress and not self._differentBanner then
+                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL")
+            end
             MenuHandler._currentMenu = nil
             MenuHandler.ableToDraw = false
             self.OnMenuClose(self)
@@ -15203,6 +16000,7 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
         PushScaleformMovieFunctionParameterBool(true)
         BeginTextCommandScaleformString("ScaleformUILongDesc")
         EndTextCommandScaleformString_2()
+        PushScaleformMovieFunctionParameterInt(self.menuAlignment);
         EndScaleformMovieMethod()
         self:FadeInMenu()
         self._isBuilding = false
@@ -15211,18 +16009,34 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
 
     if not itemsOnly then
         while not ScaleformUI.Scaleforms._ui:IsLoaded() do Citizen.Wait(0) end
-        if self.subtitleColor == HudColours.NONE then
-            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
-                self.Position.y,
-                self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false)
+        if not BreadcrumbsHandler.SwitchInProgress or self._differentBanner then
+            if self.subtitleColor == HudColours.NONE then
+                ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
+                    self.Position.y,
+                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
+                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
+                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
+                    self.Position.y,
+                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
+                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
+                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
+            end
         else
-            ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
-                self.Position.y,
-                self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false)
+            if self.subtitleColor == HudColours.NONE then
+                ScaleformUI.Scaleforms._ui:CallFunction("RE_CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
+                    self.Position.y,
+                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
+                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
+                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction("RE_CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
+                    self.Position.y,
+                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
+                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
+                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
+            end
         end
         if #self.Windows > 0 then
             for w_id, window in pairs(self.Windows) do
@@ -15332,13 +16146,18 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
     else
         PushScaleformMovieMethodParameterString(item._formatLeftLabel)
     end
-    BeginTextCommandScaleformString(textEntry)
-    EndTextCommandScaleformString_2()
+    if string.IsNullOrEmpty(item:Description()) then
+        PushScaleformMovieMethodParameterString("")
+    else
+        BeginTextCommandScaleformString(textEntry)
+        EndTextCommandScaleformString_2()
+    end
     PushScaleformMovieFunctionParameterBool(item:Enabled())
     PushScaleformMovieFunctionParameterBool(item:BlinkDescription())
 
     if SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
-        PushScaleformMovieMethodParameterString(item:CurrentListItem())
+        local str = item:createListString()
+        PushScaleformMovieMethodParameterString(str)
         PushScaleformMovieFunctionParameterInt(0)
         PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
         PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
@@ -15488,6 +16307,8 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
                         ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATISTIC_TO_PANEL", scaleformIndex, pan - 1, stat['name'], stat['value'])
                     end
                 end
+            elseif pSubType == "UIMenuVehicleColourPickerPanel" then
+                ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 4)
             end
         end
     end
@@ -15641,6 +16462,33 @@ function UIMenu:ProcessControl()
                 end
             end
         end
+    end
+
+    if IsDisabledControlJustPressed(0, 10) then
+        local index = self:CurrentSelection() - self.Pagination:ItemsPerPage()
+        if index < 0 then
+            local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
+            local newPage = self.Pagination:TotalPages()
+            index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pageIndex)
+            local menuMaxItem = #self.Items
+            if index > menuMaxItem then
+                index = menuMaxItem
+            end
+        end
+        self:CurrentSelection(index)
+        self.OnIndexChange(self, self:CurrentSelection())
+    end
+    if IsDisabledControlJustPressed(0, 11) then
+        local index = self:CurrentSelection() + self.Pagination:ItemsPerPage()
+        if index >= #self.Items and self.Pagination:CurrentPage() < self.Pagination:TotalPages() then
+            index = #self.Items
+        elseif index >= #self.Items and self.Pagination:CurrentPage() == self.Pagination:TotalPages() then
+            local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
+            local newPage = 0
+            index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pagIndex)
+        end
+        self:CurrentSelection(index)
+        self.OnIndexChange(self, self:CurrentSelection())
     end
 
     if self.Controls.Select.Enabled and ((IsDisabledControlJustPressed(0, 201) or IsDisabledControlJustPressed(1, 201) or IsDisabledControlJustPressed(2, 201)) or (self.leftClickEnabled and IsDisabledControlJustPressed(0, 24))) then
@@ -15882,14 +16730,21 @@ function UIMenu:GoBack(boolean, bypass)
             PlaySoundFrontend(-1, self.Settings.Audio.Back, self.Settings.Audio.Library, true)
         end
         if BreadcrumbsHandler:CurrentDepth() == 1 then
-            self:Visible(false)
+            MenuHandler:CloseAndClearHistory()
             BreadcrumbsHandler:Clear()
         else
             BreadcrumbsHandler.SwitchInProgress = true
             local prevMenu = BreadcrumbsHandler:PreviousMenu()
             BreadcrumbsHandler:Backwards()
             self:Visible(false)
-            prevMenu.menu:Visible(true)
+            if prevMenu ~= nil then
+                if prevMenu.menu() == "UIMenu" then
+                    prevMenu.menu.differentBanner = self.TxtDictionary ~= prevMenu.menu.TxtDictionary and self.TxtName ~= prevMenu.menu.TxtName;
+                    prevMenu.menu:Visible(true)
+                else
+                    prevMenu.menu:Visible(true)
+                end
+            end
             BreadcrumbsHandler.SwitchInProgress = false
         end
     end
@@ -15945,7 +16800,7 @@ function UIMenu:Draw()
             self.fSavedGlareDirection = fvar;
             self._menuGlare:CallFunction("SET_DATA_SLOT", self.fSavedGlareDirection)
         end
-        self._menuGlare:Render2DNormal(self._glarePos.x, self._glarePos.y, 1.0, 1.1)
+        DrawScaleformMovie(self._menuGlare.handle, self._glarePos.x, self._glarePos.y, self._glareSize.w, self._glareSize.h, 255, 255, 255, 255, 0)
     end
 
     if not IsUsingKeyboard(2) then
@@ -15963,6 +16818,27 @@ function UIMenu:Draw()
         self:UpdateDescription()
         self._changed = false
     end
+    Citizen.CreateThread(function()
+        self:mouseCheck()
+    end)
+end
+
+function UIMenu:CallExtensionMethod()
+    self.ExtensionMethod(self)
+end
+
+function UIMenu:mouseCheck()
+    self._mouseOnMenu = self:MouseControlsEnabled() and ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("IS_MOUSE_ON_MENU");
+end
+
+function UIMenu:clearAllLabels()
+    for k, v in pairs(self.Items) do
+        AddTextEntry("menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..k, "")
+    end
+end
+
+function UIMenu:IsMouseOverTheMenu()
+    return self._mouseOnMenu
 end
 
 local cursor_pressed = false
@@ -16056,6 +16932,17 @@ function UIMenu:ProcessMouse()
                     self.OnColorPanelChanged(panel.ParentItem, panel, panel:CurrentSelection())
                     panel.OnColorPanelChanged(panel.ParentItem, panel, panel:CurrentSelection())
                 end)
+            elseif context == 14 then
+                Citizen.CreateThread(function()
+                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
+                    local picker = self.Items[self:CurrentSelection()].Panels[res]
+                    if item_id ~= -1 then
+                        local colString = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("GET_PICKER_COLOR", item_id)
+                        local split = Split(colString, ",")
+                        picker._value = item_id
+                        picker:_pickerSelect(SColor.FromArgb(tonumber(split[1]), tonumber(split[2]), tonumber(split[3])))
+                    end
+                end)
             elseif context == 11 then -- panels (11 => context 1, panel_type 1) // PercentagePanel
                 cursor_pressed = true
             elseif context == 12 then -- panels (12 => context 1, panel_type 2) // GridPanel
@@ -16072,15 +16959,45 @@ function UIMenu:ProcessMouse()
         elseif event_type == 7 then -- ON CLICK RELEASED OUTSIDE
             cursor_pressed = false
             SetMouseCursorSprite(1)
+            if (self.mouseReset) then
+                self.mouseReset = false;
+            end
         elseif event_type == 8 then -- ON NOT HOVER
             cursor_pressed = false
             if context == 0 then
                 self.Items[item_id]:Hovered(false)
+            elseif context == 2 then
+                local panel = self.Items[self:CurrentSelection()].SidePanel
+                panel:_PickerRollout()
+            elseif context == 14 then
+                local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
+                local picker = self.Items[self:CurrentSelection()].Panels[res]
+                picker:_PickerRollout();
+            end
+            if not self:IsMouseOverTheMenu() then
+                return
             end
             SetMouseCursorSprite(1)
+            if (self.mouseReset) then
+                self.mouseReset = false;
+            end
         elseif event_type == 9 then -- ON HOVERED
             if context == 0 then
                 self.Items[item_id]:Hovered(true)
+            elseif context == 2 then
+                local panel = self.Items[self:CurrentSelection()].SidePanel
+                if item_id ~= -1 then
+                    panel:_PickerHovered(item_id, VehicleColors:GetColorById(item_id))
+                end
+            elseif context == 14 then
+                if item_id ~= -1 then
+                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
+                    local picker = self.Items[self:CurrentSelection()].Panels[res]
+                    picker:_PickerHovered(item_id, VehicleColors:GetColorById(item_id))
+                end
+            end
+            if self.mouseReset then
+                self.mouseReset = true
             end
             SetMouseCursorSprite(5)
         elseif event_type == 0 then -- DRAGGED OUTSIDE
@@ -16129,6 +17046,9 @@ function UIMenu:ProcessMouse()
                 end
                 SetGameplayCamRelativeHeading(GetGameplayCamRelativeHeading() + (70 * mouseSpeed))
                 SetCursorSprite(6)
+                if self.mouseReset then
+                    self.mouseReset = false
+                end
             end
         elseif IsMouseInBounds(1920 - 30, 0, 30, 1080) then
             if mouseVariance > (1 - (0.05 * 0.75)) then
@@ -16138,12 +17058,25 @@ function UIMenu:ProcessMouse()
                 end
                 SetGameplayCamRelativeHeading(GetGameplayCamRelativeHeading() - (70 * mouseSpeed))
                 SetCursorSprite(7)
+                if self.mouseReset then
+                    self.mouseReset = false
+                end
             end
         else
-            SetCursorSprite(1)
+            if not self:IsMouseOverTheMenu() then
+                if not self.mouseReset then
+                    SetCursorSprite(1)
+                end
+                self.mouseReset = true
+            end
         end
     else
-        SetCursorSprite(1)
+        if not self:IsMouseOverTheMenu() then
+            if not self.mouseReset then
+                SetCursorSprite(1)
+            end
+            self.mouseReset = true
+        end
     end
 end
 
@@ -16205,8 +17138,31 @@ function UIMenu:RemoveEnabledControl(Inputgroup, Control, Controller)
 end
 
 function UIMenu:SetMenuOffset(x, y)
-    self.Position = {x = x, y = y}
-    self._glarePos = {x = self.Position.x / 1280 + 0.4499, y = self.Position.y / 720 + 0.496}
+    self.Position = vector2(x, y)
+    local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005;
+    local rightAlign = self.menuAlignment == MenuAlignment.RIGHT
+    local glareX = 0.45
+    local glareW = 1.0
+    if not GetIsWidescreen() then
+        glareX = 0.585
+        glareW = 1.35
+    end
+
+    local pos1080 = ConvertScaleformCoordsToResolutionCoords(x, y)
+    local screenCoords = ConvertResolutionCoordsToScreenCoords(pos1080.x, pos1080.y)
+    self._glarePos = vector2(screenCoords.x + glareX + safezone, screenCoords.y + 0.45 + safezone)
+    if rightAlign then
+        local w, h = GetActualScreenResolution()
+        screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
+        glareX = 0.225
+        if not GetIsWidescreen() then
+            glareX = 0.36
+        end
+        self._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
+    end
+
+    self._glareSize = {w = glareW, h = 1.0}
+
     if self:Visible() then
         ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_OFFSET", x, y)
     end
@@ -16375,7 +17331,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 BigFeedInstance = setmetatable({
-    _sc = nil --[[@type Scaleform]],
+    _sc = nil --[[@type _Scaleform]],
     _title = "",
     _subtitle = "",
     _bodyText = "",
@@ -16391,7 +17347,7 @@ BigFeedInstance.__call = function()
 end
 
 ---@class BigFeedInstance
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field private _title string
 ---@field private _subtitle string
 ---@field private _bodyText string
@@ -16554,7 +17510,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 BigMessageInstance = setmetatable({
-    _sc = nil --[[@type Scaleform]],
+    _sc = nil --[[@type _Scaleform]],
     _start = 0,
     _duration = 0,
     _transition = "TRANSITION_OUT", -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -16569,7 +17525,7 @@ BigMessageInstance.__call = function()
 end
 
 ---@class BigMessageInstance
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field private _start number
 ---@field private _duration number
 ---@field private _transition string -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -16658,7 +17614,7 @@ function BigMessageInstance:ShowColoredShard(msg, desc, textColor, bgColor, dura
     self:Load()
     self._start = GlobalGameTimer
     self._manualDispose = manualDispose or false
-    self._sc:CallFunction("SHOW_SHARD_CENTERED_MP_MESSAGE", msg, desc, bgColor, textColor)
+    self._sc:CallFunction("SHOW_SHARD_CENTERED_MP_MESSAGE", msg, desc, textColor, bgColor)
     self._duration = duration
 end
 
@@ -16800,7 +17756,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 CountdownHandler = setmetatable({
-    _sc = nil --[[@type Scaleform]],
+    _sc = nil --[[@type _Scaleform]],
     _start = 0,
     _timer = 0,
     _colour = {r = 255, g = 255, b = 255, a = 255}
@@ -16814,7 +17770,7 @@ end
 local renderCountdown = false
 
 ---@class CountdownHandler
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field private _start number
 ---@field private _timer number
 ---@field private _colour {r:number, g:number, b:number, a:number}
@@ -16940,8 +17896,215 @@ function CountdownHandler:Start(number, hudColour, countdownAudioName, countdown
 end
 
 --///////////////////////////////////////////////////////////////////--
+DrillingInstance = setmetatable({}, DrillingInstance)
+DrillingInstance.__index = DrillingInstance
+DrillingInstance.__call = function()
+    return "DrillingInstance"
+end
+
+---@class DrillingInstance
+---@field private _scaleform _Scaleform
+---@field private _drillSound number
+---@field private active boolean
+---@field private success boolean
+---@field private pinsData table
+---@field private drillPosition number
+---@field private currentDepth number
+---@field private drillSpeed number
+---@field private temperature number
+---@field private SetSpeed fun(self: DrillingInstance, value: number):nil Sets the speed of the drill (private as it's only used internally)
+---@field private SetDrillPosition fun(self: DrillingInstance, value: number):nil Sets the position of the drill (private as it's only used internally)
+---@field private SetTemperature fun(self: DrillingInstance, value: number):nil Sets the temperature of the drill (private as it's only used internally)
+---@field private Process fun(self: DrillingInstance):nil Processes the drill (private as it's only used internally)
+---@field public Start fun(self: DrillingInstance, callback: fun(success: boolean):nil):nil Starts the drill asynchronously
+---@field public StartSync fun(self: DrillingInstance):boolean Starts the drill synchronously
+---@field public Cancel fun(self: DrillingInstance):nil Cancels the drill
+---@field private Draw fun(self: DrillingInstance):nil Draws the drill (private as it's only used internally)
+---@field private Load fun(self: DrillingInstance):nil Loads the drill (private as it's only used internally)
+---@field private Dispose fun(self: DrillingInstance):nil Disposes the drill (private as it's only used internally)
+---@field public New fun():DrillingInstance Creates a new instance of DrillingInstance
+
+function DrillingInstance.New()
+    local _data = {
+        _scaleform = nil,
+        _drillSound = nil,
+        active = false,
+        success = false,
+        pinsData = {0.325, 0.475, 0.625, 0.775},
+        drillPosition = 0.0,
+        currentDepth = 0.0,
+        drillSpeed = 0.0,
+        temperature = 0.0,
+    }
+    return setmetatable(_data, DrillingInstance)
+end
+
+function DrillingInstance:SetSpeed(value)
+    if not self._scaleform then return end
+    if value > 0.0 and not self._drillSound then
+        self._drillSound = GetSoundId()
+        PlaySoundFromEntity(self._drillSound, "Drill", PlayerPedId(), "DLC_HEIST_FLEECA_SOUNDSET", 0, 0)
+    elseif value == 0.0 and self._drillSound then
+        StopSound(self._drillSound)
+        self._drillSound = nil
+    end
+    self._scaleform:CallFunction("SET_SPEED", value)
+end
+
+function DrillingInstance:SetDrillPosition(value)
+    if not self._scaleform then return end
+    self._scaleform:CallFunction("SET_DRILL_POSITION", value)
+end
+
+function DrillingInstance:SetTemperature(value)
+    if not self._scaleform then return end
+    self._scaleform:CallFunction("SET_TEMPERATURE", value)
+end
+
+function DrillingInstance:Process()
+    -- Position handling
+    local cachedPosition = self.drillPosition
+
+    if IsControlJustPressed(0, 172) then
+        self.drillPosition = math.min(1.0, self.drillPosition + 0.01)
+    elseif IsControlPressed(0, 172) then
+        self.drillPosition = math.min(1.0, self.drillPosition + (0.1 * GetFrameTime() / (math.max(0.1, self.temperature) * 10)))
+    elseif IsControlJustPressed(0, 173) then
+        self.drillPosition = math.max(0.0, self.drillPosition - 0.01)
+    elseif IsControlPressed(0, 173) then
+        self.drillPosition = math.max(0.0, self.drillPosition - (0.1 * GetFrameTime()))
+    end
+
+    local cachedSpeed = self.drillSpeed
+
+    if IsControlJustPressed(0, 175) then
+        self.drillSpeed = math.min(1.0, self.drillSpeed + 0.05)
+    elseif IsControlPressed(0, 175) then
+        self.drillSpeed = math.min(1.0, self.drillSpeed + (0.5 * GetFrameTime()))
+    elseif IsControlJustPressed(0, 174) then
+        self.drillSpeed = math.max(0.0, self.drillSpeed - 0.05)
+    elseif IsControlPressed(0, 174) then
+        self.drillSpeed = math.max(0.0, self.drillSpeed - (0.5 * GetFrameTime()))
+    end
+
+    if cachedSpeed ~= self.drillSpeed then
+        self:SetSpeed(self.drillSpeed)
+    end
+
+    local cachedTemperature = self.temperature
+
+    if self.drillPosition > self.currentDepth then
+        if self.drillSpeed > 0.1 then
+            -- Don't update temperature until first pins is reached
+            if self.drillPosition >= self.pinsData[1] then
+                self.temperature = math.min(1.0, self.temperature + ((1.0 * GetFrameTime()) * self.drillSpeed))
+            end
+
+            for i = 1, #self.pinsData do
+                if self.currentDepth < self.pinsData[i] and self.drillPosition >= self.pinsData[i] then
+                    PlaySoundFrontend(-1, "Drill_Pin_Break", "DLC_HEIST_FLEECA_SOUNDSET", true)
+                    break
+                end
+            end
+            self.currentDepth = self.drillPosition
+        else
+            self.drillPosition = self.currentDepth
+        end
+    else
+        self.temperature = math.max(0.0, self.temperature - (1.0 * GetFrameTime()))
+    end
+
+    if self.drillPosition ~= cachedPosition then
+        self:SetDrillPosition(self.drillPosition)
+    end
+
+    if cachedTemperature ~= self.temperature then
+        self:SetTemperature(self.temperature)
+    end
+
+    if self.temperature >= 1.0 then
+        self.success = false
+        self.active = false
+    elseif self.drillPosition >= 1.0 then
+        self.success = true
+        self.active = false
+    end
+end
+
+function DrillingInstance:Start(callback)
+    if not self._scaleform then
+        self:Load()
+    end
+    self.active = true
+    self:SetSpeed(0.0)
+    self:SetDrillPosition(0.0)
+    self:SetTemperature(0.0)
+
+    self.drillPosition = 0.0
+    self.currentDepth = 0.0
+    self.drillSpeed = 0.0
+    self.temperature = 0.0
+
+    while self.active do
+        self:Draw()
+        self:Process()
+        Citizen.Wait(0)
+    end
+    StopSound(self._drillSound)
+    ReleaseNamedScriptAudioBank("DLC_HEIST_FLEECA_SOUNDSET")
+    ReleaseNamedScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL")
+    ReleaseNamedScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL_2")
+    if not self.success then
+        PlaySoundFrontend(-1, "Drill_Jam", "DLC_HEIST_FLEECA_SOUNDSET", true)
+    end
+    self:Dispose()
+    callback(self.success)
+end
+
+function DrillingInstance:StartSync()
+    local prom = promise.new()
+    self:Start(function(success)
+        prom:resolve(success)
+    end)
+    return Citizen.Await(prom)
+end
+
+function DrillingInstance:Cancel()
+    self.active = false
+end
+
+function DrillingInstance:Draw()
+    if not self._scaleform then return end
+
+    self._scaleform:Render2D()
+end
+
+function DrillingInstance:Load()
+    local prom = promise.new()
+
+    RequestScriptAudioBank("DLC_HEIST_FLEECA_SOUNDSET", 0)
+    RequestScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL", 0)
+    RequestScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL_2", 0)
+    self._scaleform = _Scaleform.RequestWidescreen("DRILLING")
+
+    while not self._scaleform:IsLoaded() do
+        Citizen.Wait(0)
+    end
+
+    prom:resolve()
+    return prom
+end
+
+function DrillingInstance:Dispose()
+    if self._scaleform then
+        self._scaleform:Dispose()
+        self._scaleform = nil
+    end
+end
+
+--///////////////////////////////////////////////////////////////////--
 ButtonsHandler = setmetatable({
-    _sc = nil --[[@type Scaleform]],
+    _sc = nil --[[@type _Scaleform]],
     UseMouseButtons = false,
     IsUsingKeyboard = false,
     _changed = true,
@@ -16955,7 +18118,7 @@ ButtonsHandler.__call = function()
 end
 
 ---@class ButtonsHandler
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field public UseMouseButtons boolean
 ---@field public _enabled boolean
 ---@field public IsUsingKeyboard boolean
@@ -17267,7 +18430,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 MidMessageInstance = setmetatable({
-    _sc = nil, --[[@type Scaleform]]
+    _sc = nil, --[[@type _Scaleform]]
     _start = 0,
     _timer = 0,
     _hasAnimatedOut = false,
@@ -17278,7 +18441,7 @@ MidMessageInstance.__call = function()
 end
 
 ---@class MidMessageInstance
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public _hasAnimatedOut boolean
@@ -17709,7 +18872,7 @@ MissionSelectorHandler.__call = function()
 end
 
 ---@class MissionSelectorHandler
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public enabled boolean
@@ -18074,7 +19237,7 @@ MultiplayerChat.__call = function()
 end
 
 ---@class MultiplayerChat
----@field public _sc Scaleform
+---@field public _sc _Scaleform
 
 local INITIALIZED = false
 
@@ -18097,7 +19260,7 @@ ChatVisible = {
 ---@return table
 function MultiplayerChat.New()
     local data = {
-        _sc = nil --[[@type Scaleform]],
+        _sc = nil --[[@type _Scaleform]],
         messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
         _start = 0,
         _enabled = false,
@@ -18262,11 +19425,11 @@ PauseMenu.__call = function()
     return "PauseMenu"
 end
 
----@class PauseMenu: Scaleform
----@field public _header Scaleform
----@field public _pause Scaleform
----@field public _lobby Scaleform
----@field public _pauseBG Scaleform
+---@class PauseMenu: _Scaleform
+---@field public _header _Scaleform
+---@field public _pause _Scaleform
+---@field public _lobby _Scaleform
+---@field public _pauseBG _Scaleform
 ---@field public Loaded boolean
 ---@field public _visible boolean
 ---@field public BGEnabled boolean
@@ -18867,7 +20030,7 @@ end
 ---@field _uptime number
 ---@field _start number
 ---@field _timer number
----@field _sc Scaleform
+---@field _sc _Scaleform
 ---@field public Enabled boolean
 ---@field public Index number
 ---@field public MaxPages number
@@ -19380,7 +20543,7 @@ end
 
 --///////////////////////////////////////////////////////////////////--
 WarningInstance = setmetatable({
-    _sc = nil --[[@type Scaleform]],
+    _sc = nil --[[@type _Scaleform]],
     _disableControls = false,
     _buttonList = {},
     OnButtonPressed = function(button)
@@ -19392,7 +20555,7 @@ WarningInstance.__call = function()
 end
 
 ---@class WarningInstance
----@field _sc Scaleform
+---@field _sc _Scaleform
 ---@field _disableControls boolean
 ---@field _buttonList table<InstructionalButton>
 ---@field OnButtonPressed fun(button: InstructionalButton)
@@ -19535,7 +20698,7 @@ end
 --///////////////////////////////////////////////////////////////////--
 ScaleformUI = {}
 ScaleformUI.Scaleforms = {}
-ScaleformUI.Scaleforms._ui = nil --[[@type Scaleform]] -- scaleformui
+ScaleformUI.Scaleforms._ui = nil --[[@type _Scaleform]] -- scaleformui
 ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]] -- pausemenu
 ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]] -- radialmenu
 ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]] -- radiomenu
@@ -19639,26 +20802,26 @@ end)
 _Scaleform = setmetatable({}, _Scaleform)
 _Scaleform.__index = _Scaleform
 _Scaleform.__call = function()
-    return "Scaleform"
+    return "_Scaleform"
 end
 
----@class Scaleform
----@field public CallFunction fun(self:Scaleform, theFunction:string, ...:any):nil
----@field public CallFunctionAsyncReturnInt fun(self:Scaleform, theFunction:string, ...:any):number
----@field public CallFunctionAsyncReturnBool fun(self:Scaleform, theFunction:string, ...:any):boolean
----@field public CallFunctionAsyncReturnString fun(self:Scaleform, theFunction:string, ...:any):string
----@field public Dispose fun(self:Scaleform):nil
----@field public IsLoaded fun(self:Scaleform):boolean
----@field public IsValid fun(self:Scaleform):boolean
----@field public Render2D fun(self:Scaleform):nil
----@field public Render2DNormal fun(self:Scaleform, x:number, y:number, width:number, height:number):nil
----@field public Render3D fun(self:Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
----@field public Render3DAdditive fun(self:Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@class _Scaleform
+---@field public CallFunction fun(self:_Scaleform, theFunction:string, ...:any):nil
+---@field public CallFunctionAsyncReturnInt fun(self:_Scaleform, theFunction:string, ...:any):number
+---@field public CallFunctionAsyncReturnBool fun(self:_Scaleform, theFunction:string, ...:any):boolean
+---@field public CallFunctionAsyncReturnString fun(self:_Scaleform, theFunction:string, ...:any):string
+---@field public Dispose fun(self:_Scaleform):nil
+---@field public IsLoaded fun(self:_Scaleform):boolean
+---@field public IsValid fun(self:_Scaleform):boolean
+---@field public Render2D fun(self:_Scaleform):nil
+---@field public Render2DNormal fun(self:_Scaleform, x:number, y:number, width:number, height:number):nil
+---@field public Render3D fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@field public Render3DAdditive fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
 ---@field public handle number
 
 ---Create a new scaleform instance
 ---@param Name string
----@return Scaleform
+---@return _Scaleform
 function _Scaleform.Request(Name)
     assert(Name ~= "string",
         "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
@@ -19671,7 +20834,7 @@ end
 
 ---Create a new scaleform instance
 ---@param Name string
----@return Scaleform
+---@return _Scaleform
 function _Scaleform.RequestWidescreen(Name)
     assert(Name ~= "string",
         "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
@@ -20627,12 +21790,12 @@ function KeyOf(tbl, value)
     return nil
 end
 
-function math.round(value, numDecimalPlaces)
+function math.round(num, numDecimalPlaces)
     if numDecimalPlaces then
         local power = 10 ^ numDecimalPlaces
-        return math.floor((value * power) + 0.5) / (power)
+        return math.floor((num * power) + 0.5) / (power)
     else
-        return math.floor(value + 0.5)
+        return math.floor(num + 0.5)
     end
 end
 
@@ -20808,5 +21971,56 @@ end
 ---@return vector2
 function ConvertScaleformCoordsToScreenCoords(scaleformX, scaleformY)
     -- Normalize coordinates to 0.0 - 1.0 range
-    return vector2((scaleformX / 1280) * 2 - 1, (scaleformY / 720) * 2 - 1)
+    local w, h = GetActualScreenResolution()
+    return vector2((scaleformX / w) * 2.0 - 1.0, (scaleformY / h) * 2.0 - 1.0)
+end
+
+function ConvertResolutionCoordsToScreenCoords(x, y)
+    local w, h = GetActualScreenResolution()
+    local normalizedX = math.max(0.0, math.min(1.0, x / w))
+    local normalizedY = math.max(0.0, math.min(1.0, y / h))
+    return vector2(normalizedX, normalizedY)
+end
+
+---Converts player's current screen resolution size into scaleform size (1280 x 720)
+---@param realWidth number
+---@param realHeight number
+---@return vector2
+function ConvertResolutionSizeToScaleformSize(realWidth, realHeight)
+    local x, y = GetActiveScreenResolution()
+    return vector2(realWidth / x * 1280, realHeight / y * 720)
+end
+
+---Converts scaleform size (1280 x 720) into player's current screen resolution size
+---@param scaleformWidth number
+---@param scaleformHeight number
+---@return vector2
+function ConvertScaleformSizeToResolutionSize(scaleformWidth, scaleformHeight)
+    local x, y = GetActiveScreenResolution()
+    return vector2(scaleformWidth / 1280 * x, scaleformHeight / 720 * y)
+end
+
+---Converts screen size (0.0 - 1.0) into scaleform size (1280 x 720)
+---@param scWidth number
+---@param scHeight number
+---@return vector2
+function ConvertScreenSizeToScaleformSize(scWidth, scHeight)
+    return vector2(scWidth * 1280, scHeight * 720)
+end
+
+---Converts scaleform size (1280 x 720) into screen size (0.0 - 1.0)
+---@param scaleformWidth number
+---@param scaleformHeight number
+---@return vector2
+function ConvertScaleformSizeToScreenSize(scaleformWidth, scaleformHeight)
+    -- Normalize size to 0.0 - 1.0 range
+    local w, h = GetActualScreenResolution()
+    return vector2((scaleformWidth / w) * 2.0 - 1.0, (scaleformHeight / h) * 2.0 - 1.0)
+end
+
+function ConvertResolutionSizeToScreenSize(width, height)
+    local w, h = GetActualScreenResolution()
+    local normalizedWidth = math.max(0.0, math.min(1.0, width / w))
+    local normalizedHeight = math.max(0.0, math.min(1.0, height / h))
+    return vector2(normalizedWidth, normalizedHeight)
 end
