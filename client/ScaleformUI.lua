@@ -1060,6 +1060,8 @@ Font = {
 --///////////////////////////////////////////////////////////////////--
 ItemFont = setmetatable({}, ItemFont)
 
+---@class ItemFont
+
 ---@comment Creates a new ItemFont
 ---@param fontName string
 ---@param fontId? number
@@ -4571,6 +4573,7 @@ function SettingsListColumn:CurrentSelection(value)
             self:refreshColumn()
         end
         if self.Parent ~= nil and self.Parent:Visible() then
+            AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
             local pSubT = self.Parent()
             if pSubT == "LobbyMenu" then
                 ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
@@ -4657,40 +4660,37 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
 
     if pSubT == "LobbyMenu" then
         local Type, SubType = item()
-        local descLabel = "menu_lobby_desc_{"..menuIndex.."}"
-        AddTextEntry(descLabel, item:Description())
-
         if SubType == "UIMenuListItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 1, item.Base._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(),
+                item:Enabled(), item:BlinkDescription(),
                 item:createListString(),
                 item:Index() - 1, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
                 item.Base._highlightedTextColor:ToArgb())
         elseif SubType == "UIMenuCheckboxItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 2, item.Base._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle,
+                item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle,
                 item._Checked, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
                 item.Base._highlightedTextColor:ToArgb())
         elseif SubType == "UIMenuSliderItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 3, item.Base._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(), item._Max,
+                item:Enabled(), item:BlinkDescription(), item._Max,
                 item._Multiplier,
                 item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
                 item.Base._highlightedTextColor:ToArgb(), item.SliderColor:ToArgb(), item._heritage)
         elseif SubType == "UIMenuProgressItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 4, item.Base._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(), item._Max,
+                item:Enabled(), item:BlinkDescription(), item._Max,
                 item._Multiplier,
                 item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
                 item.Base._highlightedTextColor:ToArgb(), item.SliderColor:ToArgb())
         elseif SubType == "UIMenuSeparatorItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 6, item.Base._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
+                item:Enabled(), item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(),
                 item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
         else
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 0, item._formatLeftLabel,
-                descLabel, item:Enabled(), item:BlinkDescription(), item._mainColor:ToArgb(),
+                item:Enabled(), item:BlinkDescription(), item._mainColor:ToArgb(),
                 item._highlightColor:ToArgb(), item._textColor:ToArgb(), item._highlightedTextColor:ToArgb())
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex,
                 item._formatRightLabel)
@@ -4726,40 +4726,38 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
         end
     elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
         local Type, SubType = item()
-        local descLabel = "menu_pause_playerTab_{"..menuIndex.."}"
-        AddTextEntry(descLabel, item:Description())
         if SubType == "UIMenuListItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 1, item.Base._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 1, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item:createListString(), item:Index() - 1,
                 item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
         elseif SubType == "UIMenuCheckboxItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 2, item.Base._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 2, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item.CheckBoxStyle, item._Checked, item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
         elseif SubType == "UIMenuSliderItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 3, item.Base._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 3, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
                 item.SliderColor:ToArgb(), item._heritage)
         elseif SubType == "UIMenuProgressItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 4, item.Base._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 4, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
                 item.SliderColor:ToArgb())
         elseif SubType == "UIMenuSeparatorItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 6, item.Base._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 6, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
                 item.SliderColor:ToArgb())
         else
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 0, item._formatLeftLabel, descLabel, item:Enabled(),
+                before, menuIndex, 0, item._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item._mainColor:ToArgb(), item._highlightColor:ToArgb(), item._textColor:ToArgb(),
                 item._highlightedTextColor:ToArgb())
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex, item._formatRightLabel)
@@ -4794,6 +4792,16 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
     end
 end
 
+---Refreshes the menu description
+function SettingsListColumn:UpdateDescription()
+    local pSubT = self.Parent()
+    if pSubT == "LobbyMenu" then
+        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_DESCRIPTION")
+    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_DESCRIPTION")
+    end
+end
+
 function SettingsListColumn:GoUp()
     self.Items[self:CurrentSelection()]:Selected(false)
     repeat
@@ -4823,6 +4831,7 @@ function SettingsListColumn:GoUp()
             end
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
+    AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
     local pSubT = self.Parent()
     if pSubT == "LobbyMenu" then
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
@@ -4864,6 +4873,7 @@ function SettingsListColumn:GoDown()
             end
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
+    AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
     local pSubT = self.Parent()
     if pSubT == "LobbyMenu" then
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
@@ -5067,6 +5077,7 @@ function SettingsListColumn:refreshColumn()
             self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
         end
         self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
+        AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
         if pSubT == "LobbyMenu" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
@@ -7059,6 +7070,7 @@ function MainView:buildSettings(tab, tabIndex)
         self.SettingsColumn.Pagination:ScaleformIndex(self.SettingsColumn.Pagination:GetScaleformIndex(self.SettingsColumn:CurrentSelection()))
         self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(true)
 
+        AddTextEntry("PAUSEMENU_Current_Description", self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Description());
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.SettingsColumn.Pagination:GetScaleformIndex(self.SettingsColumn.Pagination:CurrentMenuIndex()))
         ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self.SettingsColumn:CurrentSelection(), #self.SettingsColumn.Items)
 
@@ -7677,7 +7689,7 @@ function MinimapPanel:Enabled(_e)
             if self.turnedOn then
                 self.IsRadarVisible = not IsRadarHidden()
                 DisplayRadar(false);
-                SetMapFullScreen(false);
+                RaceGalleryFullscreen(false);
                 self.turnedOn = false;
             end
         end
@@ -7791,14 +7803,14 @@ function MinimapPanel:ProcessMap()
     if self.enabled then
         if not self.turnedOn then
             DisplayRadar(self.IsRadarVisible)
-            SetMapFullScreen(true)
+            RaceGalleryFullscreen(true)
             self.turnedOn = true
         end
     else
         if self.turnedOn then
             self.IsRadarVisible = not IsRadarHidden()
             DisplayRadar(false)
-            SetMapFullScreen(false)
+            RaceGalleryFullscreen(false)
             self.turnedOn = false
             self:Dispose()
         end
@@ -7838,7 +7850,8 @@ end
 function MinimapPanel:Dispose()
     self.localMapStage = -1;
     self.enabled = false;
-    PauseToggleFullscreenMap(true);
+    SetPoliceRadarBlips(true);
+    PauseToggleFullscreenMap(false);
     DisplayRadar(self.IsRadarVisible);
     RaceGalleryFullscreen(false);
     ClearRaceGalleryBlips();
@@ -9489,6 +9502,7 @@ function TabView:Index(idx)
         if self:Visible() then
             self.Tabs[self.index].Visible = true
             self:BuildPauseMenu()
+            ScaleformUI.Scaleforms._pauseMenu:SelectTab(self.index - 1)
         end
         self.OnPauseMenuTabChanged(self, self.Tabs[self.index], self.index)
     else
@@ -9769,6 +9783,7 @@ function TabView:buildSettings(tab)
     tab.SettingsColumn.Pagination:ScaleformIndex(tab.SettingsColumn.Pagination:GetScaleformIndex(tab.SettingsColumn:CurrentSelection()))
     tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
 
+    AddTextEntry("PAUSEMENU_Current_Description", tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Description());
     ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", tab.SettingsColumn.Pagination:GetScaleformIndex(tab.SettingsColumn.Pagination:CurrentMenuIndex()))
     ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", tab.SettingsColumn:CurrentSelection(), #tab.SettingsColumn.Items)
 
@@ -11060,7 +11075,7 @@ function TabView:ProcessControl()
     if (IsControlJustPressed(2, 205) or (IsUsingKeyboard(2) and IsControlJustPressed(2, 192) and IsControlPressed(2, 21))) then
         Citizen.CreateThread(function()
             if (self:FocusLevel() ~= 0) then
-                self:FocusLevel(0)
+                self:GoBack()
             end
             self:GoLeft()
         end)
@@ -11068,7 +11083,7 @@ function TabView:ProcessControl()
     if (IsControlJustPressed(2, 206) or (IsUsingKeyboard(2) and IsControlJustPressed(2, 192))) then
         Citizen.CreateThread(function()
             if (self:FocusLevel() ~= 0) then
-                self:FocusLevel(0)
+                self:GoBack()
             end
             self:GoRight()
         end)
@@ -12664,22 +12679,12 @@ function UIMenuItem:Description(str, item)
         if item == nil then item = self end
         self._Description = tostring(str)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            local desc = "menu_"..
-                BreadcrumbsHandler:CurrentDepth().."_desc_"..(IndexOf(self.ParentMenu.Items, item) - 1)
-            AddTextEntry(desc, str)
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_ITEM_DESCRIPTION", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), desc)
+            AddTextEntry("UIMenu_Current_Description", value);
+            self.ParentMenu:UpdateDescription();
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                local desc = "menu_lobby_desc_{"..IndexOf(self.ParentColumn.Items, item).."}"
-                AddTextEntry(desc, str)
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_DESCRIPTION", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), desc)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                local desc = "menu_pause_playerTab_{"..self.ParentColumn.ParentTab.."}_{"..item.ItemId.."}"
-                AddTextEntry(desc, str)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_DESCRIPTION", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), desc)
-            end
+            AddTextEntry("PAUSEMENU_Current_Description", value);
+            self.ParentColumn:UpdateDescription();
         end
     else
         return self._Description
@@ -15367,7 +15372,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     local rightAlign = _UIMenu.menuAlignment == MenuAlignment.RIGHT
     local glareX = 0.45
     local glareW = 1.0
-    if not GetIsWidescreen() then
+    if not GetWideScreen() then
         glareX = 0.585
         glareW = 1.35
     end
@@ -15379,7 +15384,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         local w, h = GetActualScreenResolution()
         screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
         glareX = 0.225
-        if not GetIsWidescreen() then
+        if not GetWideScreen() then
             glareX = 0.36
         end
         _UIMenu._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
@@ -15411,8 +15416,8 @@ function UIMenu:Title(title)
 end
 
 ---Getter / Setter for the description font.
----@param fontTable any
----@return any
+---@param fontTable ItemFont
+---@return ItemFont
 function UIMenu:DescriptionFont(fontTable)
     if fontTable == nil then
         return self.descFont
@@ -15425,8 +15430,8 @@ function UIMenu:DescriptionFont(fontTable)
 end
 
 ---Getter / Setter for the subtitle.
----@param sub any
----@return any
+---@param sub string
+---@return string | nil
 function UIMenu:Subtitle(sub)
     if sub == nil then
         return self._Subtitle
@@ -15785,6 +15790,7 @@ function UIMenu:CurrentSelection(value)
         end
 
         if self:Visible() then
+            AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
             ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM",
                 self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
             ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
@@ -16094,6 +16100,7 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
     self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
     self.Items[self:CurrentSelection()]:Selected(true)
 
+    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
     ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM",
         self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
     ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
@@ -16134,9 +16141,6 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
 
     local item = self.Items[menuIndex]
     local Type, SubType = item()
-    local textEntry = "menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..menuIndex
-    AddTextEntry(textEntry, item:Description())
-
     BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "ADD_ITEM")
     PushScaleformMovieFunctionParameterBool(before)
     PushScaleformMovieFunctionParameterInt(item.ItemId)
@@ -16145,12 +16149,6 @@ function UIMenu:_itemCreation(page, pageIndex, before, overflow)
         PushScaleformMovieMethodParameterString(item.Base._formatLeftLabel)
     else
         PushScaleformMovieMethodParameterString(item._formatLeftLabel)
-    end
-    if string.IsNullOrEmpty(item:Description()) then
-        PushScaleformMovieMethodParameterString("")
-    else
-        BeginTextCommandScaleformString(textEntry)
-        EndTextCommandScaleformString_2()
     end
     PushScaleformMovieFunctionParameterBool(item:Enabled())
     PushScaleformMovieFunctionParameterBool(item:BlinkDescription())
@@ -16520,6 +16518,10 @@ function UIMenu:ButtonDelay()
     self._time = GlobalGameTimer
 end
 
+function UIMenu:CurrentItem()
+    return self.Items[self:CurrentSelection()]
+end
+
 ---GoUp
 function UIMenu:GoUp()
     self.Items[self:CurrentSelection()]:Selected(false)
@@ -16546,6 +16548,7 @@ function UIMenu:GoUp()
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
     PlaySoundFrontend(-1, self.Settings.Audio.UpDown, self.Settings.Audio.Library, true)
+    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
     ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM", self.Pagination:ScaleformIndex())
     ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
     self.Items[self:CurrentSelection()]:Selected(true)
@@ -16581,6 +16584,7 @@ function UIMenu:GoDown()
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
     PlaySoundFrontend(-1, self.Settings.Audio.UpDown, self.Settings.Audio.Library, true)
+    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
     ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM", self.Pagination:ScaleformIndex())
     ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
     self.Items[self:CurrentSelection()]:Selected(true)
@@ -16775,10 +16779,9 @@ function UIMenu:ReleaseMenuFromItem(Item)
     end
 end
 
+---Refreshes the menu description
 function UIMenu:UpdateDescription()
-    ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_ITEM_DESCRIPTION",
-        self.Pagination:GetScaleformIndex(self:CurrentSelection()),
-        "menu_"..BreadcrumbsHandler:CurrentDepth().."_desc_"..self:CurrentSelection())
+    ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_ITEM_DESCRIPTION")
 end
 
 ---Draw
@@ -16790,6 +16793,7 @@ function UIMenu:Draw()
 
     Controls:ToggleAll(not self:DisableGameControls())
 
+    self:SetMenuOffset(self.Position.x, self.Position.y)
     ScaleformUI.Scaleforms._ui:Render2D()
 
     if self.Glare then
@@ -16829,12 +16833,6 @@ end
 
 function UIMenu:mouseCheck()
     self._mouseOnMenu = self:MouseControlsEnabled() and ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("IS_MOUSE_ON_MENU");
-end
-
-function UIMenu:clearAllLabels()
-    for k, v in pairs(self.Items) do
-        AddTextEntry("menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..k, "")
-    end
 end
 
 function UIMenu:IsMouseOverTheMenu()
@@ -17141,11 +17139,11 @@ function UIMenu:SetMenuOffset(x, y)
     self.Position = vector2(x, y)
     local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005;
     local rightAlign = self.menuAlignment == MenuAlignment.RIGHT
-    local glareX = 0.45
-    local glareW = 1.0
-    if not GetIsWidescreen() then
-        glareX = 0.585
-        glareW = 1.35
+    local glareX = 0.585
+    local glareW = 1.35
+    if not GetWideScreen() then
+        glareX = 0.45
+        glareW = 1.0
     end
 
     local pos1080 = ConvertScaleformCoordsToResolutionCoords(x, y)
@@ -17154,9 +17152,9 @@ function UIMenu:SetMenuOffset(x, y)
     if rightAlign then
         local w, h = GetActualScreenResolution()
         screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
-        glareX = 0.225
-        if not GetIsWidescreen() then
-            glareX = 0.36
+        glareX = 0.36
+        if not GetWideScreen() then
+            glareX = 0.225
         end
         self._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
     end
@@ -19887,11 +19885,16 @@ function PauseMenu:Draw(isLobby)
             if self.BGEnabled then
                 self._pauseBG:Render2D()
             end
-            self._header:Render2DNormal(0.501, 0.162, 0.6782, 0.145)
+
+
+            local headx, heady, headw, headh = AdjustNormalized16_9ValuesForCurrentAspectRatio(0.501, 0.162, 0.6782, 0.145)
+            local pausex, pausey, pausew, pauseh = AdjustNormalized16_9ValuesForCurrentAspectRatio(0.6617187, 0.7226667, 1.0, 1.0)
+
+            self._header:Render2DNormal(headx, heady, headw, headh)
             if isLobby then
-                self._lobby:Render2DNormal(0.6617187, 0.7226667, 1.0, 1.0)
+                self._lobby:Render2DNormal(pausex, pausey, pausew, pauseh)
             else
-                self._pause:Render2DNormal(0.6617187, 0.7226667, 1.0, 1.0)
+                self._pause:Render2DNormal(pausex, pausey, pausew, pauseh)
             end
         end
     end
@@ -22023,4 +22026,64 @@ function ConvertResolutionSizeToScreenSize(width, height)
     local normalizedWidth = math.max(0.0, math.min(1.0, width / w))
     local normalizedHeight = math.max(0.0, math.min(1.0, height / h))
     return vector2(normalizedWidth, normalizedHeight)
+end
+
+---Adjust 1080p values to any aspect ratio
+---@param x number
+---@param y number
+---@param w number
+---@param h number
+---@return number
+---@return number
+---@return number
+---@return number
+function AdjustNormalized16_9ValuesForCurrentAspectRatio(x, y, w, h)
+    local fPhysicalAspect = GetAspectRatio(false)
+    if IsSuperWideScreen() then
+        fPhysicalAspect = 16.0 / 9.0
+    end
+
+    local fScalar = (16.0 / 9.0) / fPhysicalAspect
+    local fAdjustPos = 1.0 - fScalar
+
+    w = w * fScalar
+
+    local newX = x * fScalar
+    x = newX + fAdjustPos * 0.5
+    x, w = AdjustForSuperWidescreen(x, w)
+    return x, y, w, h
+end
+
+function GetWideScreen()
+    local WIDESCREEN_ASPECT = 1.5
+    local fLogicalAspectRatio = GetAspectRatio(false)
+    local w, h = GetActualScreenResolution()
+    local fPhysicalAspectRatio = w / h
+    if fPhysicalAspectRatio <= WIDESCREEN_ASPECT then
+        return false
+    end
+    return fLogicalAspectRatio > WIDESCREEN_ASPECT;
+end
+
+---Adjusts normalized values to SuperWidescreen resolutions
+---@param x number
+---@param w number
+---@return number
+---@return number
+function AdjustForSuperWidescreen(x, w)
+    if not IsSuperWideScreen() then
+        return x, w
+    end
+
+    local difference = ((16.0 / 9.0) / GetAspectRatio(false))
+
+    x = 0.5 - ((0.5 - x) * difference)
+    w = w * difference
+
+    return x, w
+end
+
+function IsSuperWideScreen()
+    local aspRat = GetAspectRatio(false)
+    return aspRat > (16.0 / 9.0)
 end
