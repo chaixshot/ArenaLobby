@@ -1061,6 +1061,9 @@ Font = {
 ItemFont = setmetatable({}, ItemFont)
 
 ---@class ItemFont
+---@field public FontName string
+---@field public FontID number
+
 
 ---@comment Creates a new ItemFont
 ---@param fontName string
@@ -3523,7 +3526,6 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
     assert(currentMenu == self._currentMenu, "The menu you're switching from must be opened")
     assert(newMenu ~= nil, "The menu you're switching to cannot be null")
     assert(newMenu ~= currentMenu, "You cannot switch a menu to itself")
-    assert(#newMenu.Items > 0, "You cannot switch to an empty menu.")
     assert(not newMenu:Visible(), "The menu you're switching to is already open!")
     if BreadcrumbsHandler.SwitchInProgress then return end
     BreadcrumbsHandler.SwitchInProgress = true
@@ -3549,8 +3551,6 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
             newMenu.Glare = currentMenu.Glare
             newMenu.AlternativeTitle = currentMenu.AlternativeTitle
             newMenu:MaxItemsOnScreen(currentMenu:MaxItemsOnScreen())
-            newMenu:ScrollingType(currentMenu:ScrollingType())
-            newMenu:SetMenuAnimations(currentMenu:AnimationEnabled(), currentMenu:Enabled3DAnimations(), currentMenu:AnimationType(), currentMenu:BuildingAnimation(), currentMenu.fadingTime)
             newMenu:MouseSettings(currentMenu:MouseControlsEnabled(), currentMenu:MouseEdgeEnabled(), currentMenu:MouseWheelControlEnabled(), currentMenu.Settings.ResetCursorOnOpen, currentMenu.leftClickEnabled)
             newMenu:SubtitleColor(currentMenu:SubtitleColor())
             --[[
@@ -3559,15 +3559,24 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
             ]]
         end
     end
-    newMenu:CurrentSelection(newMenuCurrentSelection)
-    if (current == "UIMenu") then
-        currentMenu:FadeOutMenu()
+    if newMenuCurrentSelection > 1 then
+        local max = #newer.Items;
+
+        if max >= newer._maxItemsOnScreen then
+            max = newer._maxItemsOnScreen
+        end
+
+        newer._currentSelection = math.max(1, math.min(newMenuCurrentSelection, #newer.Items));
+        if newMenuCurrentSelection >= newer.topEdge + newer._visibleItems then
+            newer.topEdge = math.max(1, math.min(newMenuCurrentSelection, #newer.Items - newer._visibleItems))
+        elseif newMenuCurrentSelection < newer.topEdge then
+            newer.topEdge = newMenuCurrentSelection
+        end
     end
+
+
     currentMenu:Visible(false)
     newMenu:Visible(true)
-    if (new == "UIMenu") then
-        newMenu:FadeInMenu()
-    end
     BreadcrumbsHandler:Forward(newMenu, data)
     BreadcrumbsHandler.SwitchInProgress = false
 end
@@ -4664,34 +4673,34 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 1, item.Base._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(),
                 item:createListString(),
-                item:Index() - 1, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
-                item.Base._highlightedTextColor:ToArgb())
+                item:Index() - 1, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
+                item.Base._mainColor:ToArgb())
         elseif SubType == "UIMenuCheckboxItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 2, item.Base._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle,
-                item._Checked, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
-                item.Base._highlightedTextColor:ToArgb())
+                item._Checked, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
+                item.Base._mainColor:ToArgb())
         elseif SubType == "UIMenuSliderItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 3, item.Base._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(), item._Max,
                 item._Multiplier,
-                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
-                item.Base._highlightedTextColor:ToArgb(), item.SliderColor:ToArgb(), item._heritage)
+                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
+                item.Base._mainColor:ToArgb(), item.SliderColor:ToArgb(), item._heritage)
         elseif SubType == "UIMenuProgressItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 4, item.Base._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(), item._Max,
                 item._Multiplier,
-                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(),
-                item.Base._highlightedTextColor:ToArgb(), item.SliderColor:ToArgb())
+                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
+                item.Base._mainColor:ToArgb(), item.SliderColor:ToArgb())
         elseif SubType == "UIMenuSeparatorItem" then
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 6, item.Base._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
                 item.Base._highlightColor:ToArgb(),
-                item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
+                item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
         else
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 0, item._formatLeftLabel,
                 item:Enabled(), item:BlinkDescription(), item._mainColor:ToArgb(),
-                item._highlightColor:ToArgb(), item._textColor:ToArgb(), item._highlightedTextColor:ToArgb())
+                item._highlightColor:ToArgb(), item._mainColor:ToArgb(), item._mainColor:ToArgb())
             ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex,
                 item._formatRightLabel)
             if item._rightBadge ~= BadgeStyle.NONE then
@@ -4731,35 +4740,35 @@ function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
                 before, menuIndex, 1, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item:createListString(), item:Index() - 1,
                 item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
+                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
         elseif SubType == "UIMenuCheckboxItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
                 before, menuIndex, 2, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item.CheckBoxStyle, item._Checked, item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb())
+                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
         elseif SubType == "UIMenuSliderItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
                 before, menuIndex, 3, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
+                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
                 item.SliderColor:ToArgb(), item._heritage)
         elseif SubType == "UIMenuProgressItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
                 before, menuIndex, 4, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
+                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
                 item.SliderColor:ToArgb())
         elseif SubType == "UIMenuSeparatorItem" then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
                 before, menuIndex, 6, item.Base._formatLeftLabel, item:Enabled(),
                 item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._textColor:ToArgb(), item.Base._highlightedTextColor:ToArgb(),
+                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
                 item.SliderColor:ToArgb())
         else
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
                 before, menuIndex, 0, item._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item._mainColor:ToArgb(), item._highlightColor:ToArgb(), item._textColor:ToArgb(),
-                item._highlightedTextColor:ToArgb())
+                item:BlinkDescription(), item._mainColor:ToArgb(), item._highlightColor:ToArgb(), item._mainColor:ToArgb(),
+                item._mainColor:ToArgb())
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex, item._formatRightLabel)
             if item._rightBadge ~= BadgeStyle.NONE then
                 if item._rightBadge == BadgeStyle.CUSTOM then
@@ -5689,7 +5698,7 @@ function FriendItem:AddPedToPauseMenu()
         end
         local pSubT = self.ParentColumn.Parent()
         Citizen.CreateThread(function()
-            -- Wait(100)
+            Wait(100)
             if pSubT == "LobbyMenu" then
                 if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
                     local ped = ClonePed(self.ClonePed, false, false, true)
@@ -7643,7 +7652,7 @@ function MinimapPanel.New(parent, parentTab)
         enabled = false,
         turnedOn = false,
         localMapStage = 0,
-        IsRadarVisible = not IsRadarHidden(),
+        IsRadarVisible = IsMinimapRendering(),
     }
     return setmetatable(_data, MinimapPanel)
 end
@@ -7687,7 +7696,7 @@ function MinimapPanel:Enabled(_e)
         else
             self.localMapStage = -1
             if self.turnedOn then
-                self.IsRadarVisible = not IsRadarHidden()
+                self.IsRadarVisible = IsMinimapRendering()
                 DisplayRadar(false);
                 RaceGalleryFullscreen(false);
                 self.turnedOn = false;
@@ -7808,7 +7817,7 @@ function MinimapPanel:ProcessMap()
         end
     else
         if self.turnedOn then
-            self.IsRadarVisible = not IsRadarHidden()
+            self.IsRadarVisible = IsMinimapRendering()
             DisplayRadar(false)
             RaceGalleryFullscreen(false)
             self.turnedOn = false
@@ -11000,7 +11009,7 @@ function TabView:ProcessMouse()
                             item:Hovered(item:Enabled() and i == item_id + 1)
                         end
                     elseif context == 2 then
-                        for i, item in ipairs(tab.LeftItemList?[self.leftItemIndex]?.ItemList or {}) do
+                        for i, item in ipairs(tab.LeftItemList[self.leftItemIndex].ItemList or {}) do
                             item:Hovered(item:Enabled() and i == item_id + 1)
                         end
                     end
@@ -11885,10 +11894,9 @@ UIMenuCheckboxItem.__call = function() return "UIMenuItem", "UIMenuCheckboxItem"
 ---@param Text string
 ---@param Check boolean
 ---@param Description string
-function UIMenuCheckboxItem.New(Text, Check, checkStyle, Description, color, highlightColor, textColor,
-                                highlightedTextColor)
+function UIMenuCheckboxItem.New(Text, Check, checkStyle, Description, color, highlightColor)
     local _UIMenuCheckboxItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         _Checked = ToBool(Check),
         Panels = {},
         SidePanel = nil,
@@ -11902,176 +11910,157 @@ end
 
 function UIMenuCheckboxItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
+        self.Base:ItemData()
     end
 end
 
----SetParentMenu
----@param Menu table
-function UIMenuCheckboxItem:SetParentMenu(Menu)
-    if Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
+-- not supported on Lobby and Pause menu yet
+function UIMenuCheckboxItem:LabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:LabelFont()
+    end
+    self.Base:LabelFont(itemFont, self)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuCheckboxItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:RightLabelFont()
+    end
+    self.Base:RightLabelFont(itemFont, self)
+end
+
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuCheckboxItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
+    end
+    self.Base:SetParentMenu(menu)
+end
+
+function UIMenuCheckboxItem:Selected(bool)
+    if bool == nil then
+        return self.Base:Selected()
+    end
+    self.Base:Selected(bool, self)
+end
+
+function UIMenuCheckboxItem:Hovered(bool)
+    if bool == nil then
+        return self.Base:Hovered()
+    end
+    self.Base:Hovered(bool)
+end
+
+function UIMenuCheckboxItem:Enabled(bool)
+    if bool == nil then
+        return self.Base:Enabled()
+    end
+    self.Base:Hovered(bool, self)
+end
+
+function UIMenuCheckboxItem:Description(str)
+    if str == nil then
+        return self.Base:Description()
+    end
+    self.Base:Description(str, self)
+end
+
+function UIMenuCheckboxItem:MainColor(color)
+    if color == nil then
+        return self.Base:MainColor()
+    end
+    self.Base:MainColor(color, self)
+end
+
+function UIMenuCheckboxItem:HighlightColor(color)
+    if color == nil then
+        return self.Base:HighlightColor()
+    end
+    self.Base:HighlightColor(color, self)
+end
+
+function UIMenuCheckboxItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
+    end
+    self.Base:Label(Text, self)
+end
+
+function UIMenuCheckboxItem:LeftBadge(Badge)
+    if Badge == nil then
+        return self.Base:LeftBadge()
+    end
+    self.Base:LeftBadge(Badge, self)
+end
+
+function UIMenuCheckboxItem:CustomLeftBadge(txd, txn)
+    self.Base:CustomLeftBadge(txd, txn, self)
+end
+
+function UIMenuCheckboxItem:AddPanel(Panel)
+    if Panel() == "UIMenuPanel" then
+        Panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = Panel
     end
 end
 
 function UIMenuCheckboxItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0, sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuCheckboxItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuCheckboxItem:RemovePanelAt(Index)
+    if tonumber(Index) then
+        if self.Panels[Index] then
+            table.remove(self.Panels, tonumber(Index))
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
         end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
+    end
+end
+
+function UIMenuCheckboxItem:FindPanelIndex(Panel)
+    if Panel() == "UIMenuPanel" then
+        for Index = 1, #self.Panels do
+            if self.Panels[Index] == Panel then
+                return Index
+            end
         end
     end
+    return nil
 end
 
----Selected
----@param bool boolean
-function UIMenuCheckboxItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-    else
-        return self.Base._Selected
+function UIMenuCheckboxItem:FindPanelItem()
+    for Index = #self.Items, 1, -1 do
+        if self.Items[Index].Panel then
+            return Index
+        end
     end
-end
-
----Hovered
----@param bool boolean
-function UIMenuCheckboxItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
-    end
-end
-
----Enabled
----@param bool boolean
-function UIMenuCheckboxItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-    else
-        return self.Base._Enabled
-    end
-end
-
----Description
----@param str string
-function UIMenuCheckboxItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
-    end
+    return nil
 end
 
 function UIMenuCheckboxItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
+    if bool == nil then
         return self.Base:BlinkDescription()
     end
-end
-
----Text
----@param Text string
-function UIMenuCheckboxItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
-end
-
-function UIMenuCheckboxItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._mainColor
-    end
-end
-
-function UIMenuCheckboxItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
-end
-
-function UIMenuCheckboxItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
-    end
-end
-
-function UIMenuCheckboxItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
-    end
-end
-
-function UIMenuCheckboxItem:LabelFont(fontTable)
-    if fontTable == nil then
-        return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
-    end
-end
-
----LeftBadge
-function UIMenuCheckboxItem:LeftBadge(Badge)
-    if tonumber(Badge) then
-        self.Base:LeftBadge(Badge, self)
-    else
-        return self.Base:LeftBadge()
-    end
-end
-
-function UIMenuCheckboxItem:CustomLeftBadge(txd, txn)
-    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd, txn, self)
-    else
-        return self.Base:LeftBadge()
-    end
+    self.Base:BlinkDescription(bool, self)
 end
 
 ---RightBadge
@@ -12091,9 +12080,9 @@ end
 function UIMenuCheckboxItem:Checked(bool)
     if bool ~= nil then
         self._Checked = ToBool(bool)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            local it = self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self))
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_VALUE", it, self._Checked)
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self._Checked
@@ -12121,12 +12110,9 @@ UIMenuDynamicListItem.__call = function() return "UIMenuItem", "UIMenuDynamicLis
 ---@param callback function
 ---@param color SColor
 ---@param highlightColor SColor
----@param textColor SColor
----@param highlightedTextColor SColor
-function UIMenuDynamicListItem.New(Text, Description, StartingItem, callback, color, highlightColor, textColor,
-                                   highlightedTextColor)
+function UIMenuDynamicListItem.New(Text, Description, StartingItem, callback, color, highlightColor)
     local _UIMenuDynamicListItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         Panels = {},
         SidePanel = nil,
         _currentItem = StartingItem,
@@ -12140,235 +12126,103 @@ end
 
 function UIMenuDynamicListItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
+        self.Base:ItemData()
     end
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuDynamicListItem:LabelFont(fontTable)
-    if fontTable == nil then
+function UIMenuDynamicListItem:LabelFont(itemFont)
+    if itemFont == nil then
         return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
     end
+    self.Base:LabelFont(itemFont, self)
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuDynamicListItem:RightLabelFont(fontTable)
-    if fontTable == nil then
+function UIMenuDynamicListItem:RightLabelFont(itemFont)
+    if itemFont == nil then
         return self.Base:RightLabelFont()
-    else
-        self.Base:RightLabelFont(fontTable)
     end
+    self.Base:RightLabelFont(itemFont, self)
 end
 
-function UIMenuDynamicListItem:CurrentListItem(item)
-    if item == nil then
-        return tostring(self._currentItem)
-    else
-        self._currentItem = item
-        local str = self:createListString()
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            end
-        end
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuDynamicListItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
     end
+    self.Base:SetParentMenu(menu)
 end
 
----SetParentMenu
----@param Menu table
-function UIMenuDynamicListItem:SetParentMenu(Menu)
-    if Menu ~= nil and Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
-    end
-end
-
-function UIMenuDynamicListItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0,
-                sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
-        end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
-        end
-    end
-end
-
----Selected
----@param bool boolean
 function UIMenuDynamicListItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-        local str = self:createListString()
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            end
-        end
-    else
-        return self.Base._Selected
+    if bool == nil then
+        return self.Base:Selected()
     end
+    self.Base:Selected(bool, self)
 end
 
----Hovered
----@param bool boolean
 function UIMenuDynamicListItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
+    if bool == nil then
+        return self.Base:Hovered()
     end
+    self.Base:Hovered(bool)
 end
 
----Enabled
----@param bool boolean
 function UIMenuDynamicListItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-        local str = self:createListString()
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), str, 0)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            end
-        end
-    else
-        return self.Base._Enabled
+    if bool == nil then
+        return self.Base:Enabled()
     end
+    self.Base:Hovered(bool, self)
 end
 
----Description
----@param str string
 function UIMenuDynamicListItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
+    if str == nil then
+        return self.Base:Description()
     end
-end
-
-function UIMenuDynamicListItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
-        return self.Base:BlinkDescription()
-    end
-end
-
----Text
----@param Text string
-function UIMenuDynamicListItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
+    self.Base:Description(str, self)
 end
 
 function UIMenuDynamicListItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._mainColor
+    if color == nil then
+        return self.Base:MainColor()
     end
-end
-
-function UIMenuDynamicListItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
+    self.Base:MainColor(color, self)
 end
 
 function UIMenuDynamicListItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
+    if color == nil then
+        return self.Base:HighlightColor()
     end
+    self.Base:HighlightColor(color, self)
 end
 
-function UIMenuDynamicListItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if (self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible()) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
+function UIMenuDynamicListItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
     end
+    self.Base:Label(Text, self)
 end
 
----LeftBadge
+function UIMenuDynamicListItem:BlinkDescription(bool)
+    if bool == nil then
+        return self.Base:BlinkDescription()
+    end
+    self.Base:BlinkDescription(bool, self)
+end
+
 function UIMenuDynamicListItem:LeftBadge(Badge)
-    if tonumber(Badge) then
-        self.Base:LeftBadge(Badge, self)
-    else
+    if Badge == nil then
         return self.Base:LeftBadge()
     end
+    self.Base:LeftBadge(Badge, self)
 end
 
 function UIMenuDynamicListItem:CustomLeftBadge(txd, txn)
-    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd, txn, self)
-    else
-        return self.Base:LeftBadge()
-    end
+    self.Base:CustomLeftBadge(txd, txn, self)
 end
 
 ---RightBadge
@@ -12427,6 +12281,28 @@ function UIMenuDynamicListItem:FindPanelItem()
     return nil
 end
 
+function UIMenuDynamicListItem:CurrentListItem(item, _item)
+    if item == nil then
+        return tostring(self._currentItem)
+    else
+        self._currentItem = item
+        if _item == nil then _item = self end
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, _item)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.Base.ParentColumn ~= nil then
+            local str = self:createListString()
+            local pSubT = self.Base.ParentColumn.Parent()
+            if pSubT == "LobbyMenu" then
+                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
+            end
+        end
+    end
+end
+
 function UIMenuDynamicListItem:createListString()
     local list = {}
     local value = self._currentItem
@@ -12434,7 +12310,7 @@ function UIMenuDynamicListItem:createListString()
         value = tostring(v)
     end
     if not self:Enabled() then
-        value.ReplaceRstarColorsWith("~c~")
+        value = ReplaceRstarColorsWith(value, "~c~")
     else
         if not value:StartsWith("~") then
             value = "~s~"..value
@@ -12478,8 +12354,8 @@ end
 ---@field _leftBadge number
 ---@field _mainColor SColor
 ---@field _highlightColor SColor
----@field _textColor SColor
----@field _highlightedTextColor SColor
+---@field _mainColor SColor
+---@field _mainColor SColor
 ---@field _itemData table
 ---@field ParentMenu UIMenu
 ---@field ParentColumn MissionListColumn|PlayerListColumn|SettingsListColumn|StoreListColumn
@@ -12494,9 +12370,7 @@ end
 ---@param description string
 ---@param color? SColor
 ---@param highlightColor? SColor
----@param textColor? SColor
----@param highlightedTextColor? SColor
-function UIMenuItem.New(text, description, color, highlightColor, textColor, highlightedTextColor)
+function UIMenuItem.New(text, description, color, highlightColor)
     local __formatLeftLabel = (tostring(text))
     if not __formatLeftLabel:StartsWith("~") then
         __formatLeftLabel = "~s~"..__formatLeftLabel
@@ -12518,8 +12392,6 @@ function UIMenuItem.New(text, description, color, highlightColor, textColor, hig
         _leftBadge = 0,
         _mainColor = color or SColor.HUD_Panel_light,
         _highlightColor = highlightColor or SColor.HUD_White,
-        _textColor = textColor or SColor.HUD_White,
-        _highlightedTextColor = highlightedTextColor or SColor.HUD_Black,
         _itemData = {},
         ParentMenu = nil,
         ParentColumn = nil,
@@ -12532,11 +12404,13 @@ function UIMenuItem.New(text, description, color, highlightColor, textColor, hig
         end,
         Highlighted = function(menu, item)
         end,
+        OnTabPressed = function(menu)
+        end
     }
     return setmetatable(_UIMenuItem, UIMenuItem)
 end
 
-function UIMenuItem:ItemData(data)
+function UIMenuItem:ItemData(data, item)
     if data == nil then
         return self._itemData
     else
@@ -12545,13 +12419,14 @@ function UIMenuItem:ItemData(data)
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuItem:LabelFont(itemFont)
+function UIMenuItem:LabelFont(itemFont, item)
     if itemFont == nil then
         return self._labelFont
     else
         self._labelFont = itemFont
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABEL_FONT", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self) - 1), self._labelFont.FontName, self._labelFont.FontID)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12565,13 +12440,15 @@ function UIMenuItem:LabelFont(itemFont)
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuItem:RightLabelFont(itemFont)
+function UIMenuItem:RightLabelFont(itemFont, item)
     if itemFont == nil then
         return self._rightLabelFont
     else
+        if item == nil then item = self end
         self._rightLabelFont = itemFont
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_RIGHT_LABEL_FONT", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self) - 1), self._rightLabelFont.FontName, self._rightLabelFont.FontID)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12620,8 +12497,9 @@ function UIMenuItem:Selected(bool, item)
                 self._formatRightLabel = self._formatRightLabel:gsub("~l~", "~s~")
             end
         end
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABELS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._formatLeftLabel, self._formatRightLabel)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12652,12 +12530,12 @@ function UIMenuItem:Enabled(bool, item)
             self._formatLeftLabel = ReplaceRstarColorsWith(self._formatLeftLabel, "~c~")
             self._formatRightLabel = ReplaceRstarColorsWith(self._formatRightLabel, "~c~")
         else
-            self:Label(self._label)
-            self:RightLabel(self._rightLabel)
+            self:Label(self._label, item)
+            self:RightLabel(self._rightLabel, item)
         end
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABELS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._formatLeftLabel, self._formatRightLabel)
-            ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_ITEM", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._Enabled)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12678,12 +12556,13 @@ function UIMenuItem:Description(str, item)
     if tostring(str) and str ~= nil then
         if item == nil then item = self end
         self._Description = tostring(str)
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            AddTextEntry("UIMenu_Current_Description", value);
-            self.ParentMenu:UpdateDescription();
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            AddTextEntry("UIMenu_Current_Description", str);
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            AddTextEntry("PAUSEMENU_Current_Description", value);
+            AddTextEntry("PAUSEMENU_Current_Description", str);
             self.ParentColumn:UpdateDescription();
         end
     else
@@ -12696,24 +12575,12 @@ function UIMenuItem:MainColor(color, item)
         assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._mainColor = color
-        if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._mainColor, self._highlightColor, self._textColor, self._highlightedTextColor)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self._mainColor
-    end
-end
-
-function UIMenuItem:TextColor(color, item)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        if item == nil then item = self end
-        self._textColor = color
-        if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._mainColor, self._highlightColor, self._textColor, self._highlightedTextColor)
-        end
-    else
-        return self._textColor
     end
 end
 
@@ -12722,24 +12589,12 @@ function UIMenuItem:HighlightColor(color, item)
         assert(color() == "SColor", "Color must be SColor type")
         if item == nil then item = self end
         self._highlightColor = color
-        if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._mainColor, self._highlightColor, self._textColor, self._highlightedTextColor)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self._highlightColor
-    end
-end
-
-function UIMenuItem:HighlightedTextColor(color, item)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        if item == nil then item = self end
-        self._highlightedTextColor = color
-        if (self.ParentMenu ~= nil and self.ParentMenu:Visible()) and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._mainColor, self._highlightColor, self._textColor, self._highlightedTextColor)
-        end
-    else
-        return self._highlightedTextColor
     end
 end
 
@@ -12751,17 +12606,12 @@ function UIMenuItem:Label(Text, item)
         if not self._formatLeftLabel:StartsWith("~") then
             self._formatLeftLabel = "~s~"..self._formatLeftLabel
         end
-        if self:Selected() then
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~s~", "~l~")
-        else
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~l~", "~s~")
-        end
         if not self:Enabled() then
             self._formatLeftLabel = ReplaceRstarColorsWith(self._formatLeftLabel, "~c~")
         end
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_LABEL", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._formatLeftLabel)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12776,8 +12626,9 @@ function UIMenuItem:Label(Text, item)
     end
 end
 
-function UIMenuItem:RightLabel(Text)
+function UIMenuItem:RightLabel(Text, item)
     if tostring(Text) and Text ~= nil then
+        if item == nil then item = self end
         self._rightLabel = tostring(Text)
         self._formatRightLabel = tostring(Text)
         if not self._formatRightLabel:StartsWith("~") then
@@ -12792,8 +12643,9 @@ function UIMenuItem:RightLabel(Text)
         if not self:Enabled() then
             self._formatRightLabel = ReplaceRstarColorsWith(self._formatRightLabel, "~c~")
         end
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_LABEL", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self)), self._formatRightLabel)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12812,8 +12664,9 @@ function UIMenuItem:RightBadge(Badge, item)
     if tonumber(Badge) then
         if item == nil then item = self end
         self._rightBadge = tonumber(Badge)
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._rightBadge)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12832,8 +12685,9 @@ function UIMenuItem:LeftBadge(Badge, item)
     if tonumber(Badge) then
         if item == nil then item = self end
         self._leftBadge = tonumber(Badge)
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self._leftBadge)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
             local pSubT = self.ParentColumn.Parent()
@@ -12852,8 +12706,9 @@ function UIMenuItem:CustomRightBadge(txd, txn, item)
     if item == nil then item = self end
     self._rightBadge = -1
     self.customRightIcon = {TXD = txd, TXN = txn}
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_RIGHT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, item)
+        self.ParentMenu:SendItemToScaleform(it, true)
     end
     if self.ParentColumn ~= nil then
         local pSubT = self.ParentColumn.Parent()
@@ -12869,8 +12724,9 @@ function UIMenuItem:CustomLeftBadge(txd, txn, item)
     if item == nil then item = self end
     self._leftBadge = -1
     self.customLeftIcon = {TXD = txd, TXN = txn}
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), txd, txn)
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, item)
+        self.ParentMenu:SendItemToScaleform(it, true)
     end
     if self.ParentColumn ~= nil then
         local pSubT = self.ParentColumn.Parent()
@@ -12890,25 +12746,19 @@ function UIMenuItem:AddPanel(Panel)
 end
 
 function UIMenuItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self) - 1), 0, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title, sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
-        end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self) - 1), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title, sidePanel.TitleColor)
-        end
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
     end
 end
 
 function UIMenuItem:RemoveSidePanel()
     self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, self) - 1) then
-        ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_SIDE_PANEL_TO_ITEM", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, self) - 1))
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
     end
 end
 
@@ -12916,7 +12766,8 @@ function UIMenuItem:RemovePanelAt(Index)
     if tonumber(Index) then
         if self.Panels[Index] then
             table.remove(self.Panels, tonumber(Index))
-            ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_PANEL", IndexOf(self.ParentMenu.Items, self) - 1, Index - 1)
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
         end
     end
 end
@@ -12945,8 +12796,9 @@ function UIMenuItem:BlinkDescription(bool, item)
     if bool ~= nil then
         if item == nil then item = self end
         self.blinkDescription = bool
-        if self.ParentMenu ~= nil and self.ParentMenu:Visible() and self.ParentMenu.Pagination:IsItemVisible(IndexOf(self.ParentMenu.Items, item)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_BLINK_DESC", self.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.ParentMenu.Items, item)), self.blinkDescription)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, item)
+            self.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self.blinkDescription
@@ -12967,11 +12819,11 @@ UIMenuListItem.__call = function() return "UIMenuItem", "UIMenuListItem" end
 ---@param Items table
 ---@param Index number
 ---@param Description string
-function UIMenuListItem.New(Text, Items, Index, Description, color, highlightColor, textColor, highlightedTextColor)
+function UIMenuListItem.New(Text, Items, Index, Description, color, highlightColor)
     if type(Items) ~= "table" then Items = {} end
     if Index == 0 then Index = 1 end
     local _UIMenuListItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         Items = Items,
         _Index = tonumber(Index) or 1,
         Panels = {},
@@ -12987,263 +12839,103 @@ end
 
 function UIMenuListItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
-    end
-end
-
----SetParentMenu
----@param Menu table
-function UIMenuListItem:SetParentMenu(Menu)
-    if Menu ~= nil and Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
-    end
-end
-
-function UIMenuListItem:LabelFont(fontTable)
-    if fontTable == nil then
-        return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
+        self.Base:ItemData()
     end
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuListItem:RightLabelFont(fontTable)
-    if fontTable == nil then
+function UIMenuListItem:LabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:LabelFont()
+    end
+    self.Base:LabelFont(itemFont, self)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuListItem:RightLabelFont(itemFont)
+    if itemFont == nil then
         return self.Base:RightLabelFont()
-    else
-        self.Base:RightLabelFont(fontTable)
     end
+    self.Base:RightLabelFont(itemFont, self)
 end
 
-function UIMenuListItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0,
-                sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
-        end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
-        end
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuListItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
     end
+    self.Base:SetParentMenu(menu)
 end
 
----Selected
----@param bool? boolean
 function UIMenuListItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-        local commaSep = self:createListString()
-
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), commaSep, self._Index - 1)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-            end
-        end
-    else
-        return self.Base._Selected
+    if bool == nil then
+        return self.Base:Selected()
     end
+    self.Base:Selected(bool, self)
 end
 
----Hovered
----@param bool boolean
 function UIMenuListItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
+    if bool == nil then
+        return self.Base:Hovered()
     end
+    self.Base:Hovered(bool)
 end
 
----Enabled
----@param bool? boolean
 function UIMenuListItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-        local commaSep = self:createListString()
-
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), commaSep, self._Index - 1)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-            end
-        end
-    else
-        return self.Base._Enabled
+    if bool == nil then
+        return self.Base:Enabled()
     end
+    self.Base:Hovered(bool, self)
 end
 
----Description
----@param str string
 function UIMenuListItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(str, self)
-    else
-        return self.Base._Description
+    if str == nil then
+        return self.Base:Description()
     end
-end
-
-function UIMenuListItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
-        return self.Base:BlinkDescription()
-    end
-end
-
----Text
----@param Text string
-function UIMenuListItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
+    self.Base:Description(str, self)
 end
 
 function UIMenuListItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._mainColor
+    if color == nil then
+        return self.Base:MainColor()
     end
-end
-
-function UIMenuListItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
+    self.Base:MainColor(color, self)
 end
 
 function UIMenuListItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
+    if color == nil then
+        return self.Base:HighlightColor()
     end
+    self.Base:HighlightColor(color, self)
 end
 
-function UIMenuListItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
+function UIMenuListItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
     end
+    self.Base:Label(Text, self)
 end
 
----Index
----@param Index number
-function UIMenuListItem:Index(Index)
-    if tonumber(Index) then
-        if Index > #self.Items then
-            self._Index = 1
-        elseif Index < 1 then
-            self._Index = #self.Items
-        else
-            self._Index = Index
-        end
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_VALUE",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self._Index - 1)
-        end
-    else
-        return self._Index
+function UIMenuListItem:BlinkDescription(bool)
+    if bool == nil then
+        return self.Base:BlinkDescription()
     end
+    self.Base:BlinkDescription(bool, self)
 end
 
----ItemToIndex
----@param Item table
-function UIMenuListItem:ItemToIndex(Item)
-    for i = 1, #self.Items do
-        if type(Item) == type(self.Items[i]) and Item == self.Items[i] then
-            return i
-        elseif type(self.Items[i]) == "table" and (type(Item) == type(self.Items[i].Name) or type(Item) == type(self.Items[i].Value)) and (Item == self.Items[i].Name or Item == self.Items[i].Value) then
-            return i
-        end
-    end
-end
-
----IndexToItem
----@param Index number
-function UIMenuListItem:IndexToItem(Index)
-    if tonumber(Index) then
-        if tonumber(Index) == 0 then Index = 1 end
-        if self.Items[tonumber(Index)] then
-            return self.Items[tonumber(Index)]
-        end
-    end
-end
-
----LeftBadge
 function UIMenuListItem:LeftBadge(Badge)
-    if tonumber(Badge) then
-        self.Base:LeftBadge(Badge, self)
-    else
+    if Badge == nil then
         return self.Base:LeftBadge()
     end
+    self.Base:LeftBadge(Badge, self)
 end
 
---- CustomLeftBadge
 function UIMenuListItem:CustomLeftBadge(txd, txn)
-    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd, txn, self)
-    else
-        return self.Base:LeftBadge()
-    end
+    self.Base:CustomLeftBadge(txd, txn, self)
 end
 
 ---RightBadge
@@ -13302,15 +12994,75 @@ function UIMenuListItem:FindPanelItem()
     return nil
 end
 
+function UIMenuListItem:AddSidePanel(sidePanel)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuListItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+---Index
+---@param Index number
+function UIMenuListItem:Index(Index)
+    if tonumber(Index) then
+        if Index > #self.Items then
+            self._Index = 1
+        elseif Index < 1 then
+            self._Index = #self.Items
+        else
+            self._Index = Index
+        end
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        end
+    else
+        return self._Index
+    end
+end
+
+---ItemToIndex
+---@param Item table
+function UIMenuListItem:ItemToIndex(Item)
+    for i = 1, #self.Items do
+        if type(Item) == type(self.Items[i]) and Item == self.Items[i] then
+            return i
+        elseif type(self.Items[i]) == "table" and (type(Item) == type(self.Items[i].Name) or type(Item) == type(self.Items[i].Value)) and (Item == self.Items[i].Name or Item == self.Items[i].Value) then
+            return i
+        end
+    end
+end
+
+---IndexToItem
+---@param Index number
+function UIMenuListItem:IndexToItem(Index)
+    if tonumber(Index) then
+        if tonumber(Index) == 0 then Index = 1 end
+        if self.Items[tonumber(Index)] then
+            return self.Items[tonumber(Index)]
+        end
+    end
+end
+
 function UIMenuListItem:ChangeList(list)
     if type(list) ~= "table" then return end
     self.Items = {}
     self.Items = list
     local commaSep = self:createListString()
 
-    if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-        ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_LISTITEM_LIST",
-            self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), commaSep, self._Index - 1)
+    if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+        local it = IndexOf(self.Base.ParentMenu.Items, self)
+        self.Base.ParentMenu:SendItemToScaleform(it, true)
     end
     if self.Base.ParentColumn ~= nil then
         local pSubT = self.Base.ParentColumn.Parent()
@@ -13323,28 +13075,24 @@ function UIMenuListItem:ChangeList(list)
 end
 
 function UIMenuListItem:createListString()
-    local list = {}
-    for k, v in ipairs(self.Items) do
-        local value = v
-        if type(value) ~= "string" then
-            value = tostring(v)
-        end
-        if not self:Enabled() then
-            value.ReplaceRstarColorsWith("~c~")
-        else
-            if not value:StartsWith("~") then
-                value = "~s~"..value
-            end
-            if self:Selected() then
-                value = value:gsub("~w~", "~l~")
-                value = value:gsub("~s~", "~l~")
-            else
-                value = value:gsub("~l~", "~s~")
-            end
-        end
-        table.insert(list, value)
+    local value = tostring(self.Items[self._Index])
+    if type(value) ~= "string" then
+        value = tostring(v)
     end
-    return table.concat(list, ",")
+    if not self:Enabled() then
+        value = ReplaceRstarColorsWith(value, "~c~")
+    else
+        if not value:StartsWith("~") then
+            value = "~s~"..value
+        end
+        if self:Selected() then
+            value = value:gsub("~w~", "~l~")
+            value = value:gsub("~s~", "~l~")
+        else
+            value = value:gsub("~l~", "~s~")
+        end
+    end
+    return value
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -13363,18 +13111,16 @@ UIMenuProgressItem.__call = function() return "UIMenuItem", "UIMenuProgressItem"
 ---@param sliderColor SColor
 ---@param color SColor
 ---@param highlightColor SColor
----@param textColor SColor
----@param highlightedTextColor SColor
 ---@param backgroundSliderColor SColor
-function UIMenuProgressItem.New(Text, Max, Index, Description, sliderColor, color, highlightColor, textColor, highlightedTextColor, backgroundSliderColor)
+function UIMenuProgressItem.New(Text, Max, Index, Description, sliderColor, color, highlightColor, backgroundSliderColor)
     local _UIMenuProgressItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         _Max = Max or 100,
         _Multiplier = 5,
         _Index = Index or 0,
         Panels = {},
         SidePanel = nil,
-        SliderColor = sliderColor or SColor.HUD_Freemode,
+        _sliderColor = sliderColor or SColor.HUD_Freemode,
         BackgroundSliderColor = backgroundSliderColor or SColor.HUD_Pause_bg,
         ItemId = 4,
         OnProgressChanged = function(menu, item, newindex)
@@ -13388,172 +13134,183 @@ end
 
 function UIMenuProgressItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
+        self.Base:ItemData()
     end
 end
 
----SetParentMenu
----@param Menu table
-function UIMenuProgressItem:SetParentMenu(Menu)
-    if Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
+-- not supported on Lobby and Pause menu yet
+function UIMenuProgressItem:LabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:LabelFont()
+    end
+    self.Base:LabelFont(itemFont, self)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuProgressItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:RightLabelFont()
+    end
+    self.Base:RightLabelFont(itemFont, self)
+end
+
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuProgressItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
+    end
+    self.Base:SetParentMenu(menu)
+end
+
+function UIMenuProgressItem:Selected(bool)
+    if bool == nil then
+        return self.Base:Selected()
+    end
+    self.Base:Selected(bool, self)
+end
+
+function UIMenuProgressItem:Hovered(bool)
+    if bool == nil then
+        return self.Base:Hovered()
+    end
+    self.Base:Hovered(bool)
+end
+
+function UIMenuProgressItem:Enabled(bool)
+    if bool == nil then
+        return self.Base:Enabled()
+    end
+    self.Base:Hovered(bool, self)
+end
+
+function UIMenuProgressItem:Description(str)
+    if str == nil then
+        return self.Base:Description()
+    end
+    self.Base:Description(str, self)
+end
+
+function UIMenuProgressItem:MainColor(color)
+    if color == nil then
+        return self.Base:MainColor()
+    end
+    self.Base:MainColor(color, self)
+end
+
+function UIMenuProgressItem:HighlightColor(color)
+    if color == nil then
+        return self.Base:HighlightColor()
+    end
+    self.Base:HighlightColor(color, self)
+end
+
+function UIMenuProgressItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
+    end
+    self.Base:Label(Text, self)
+end
+
+function UIMenuProgressItem:BlinkDescription(bool)
+    if bool == nil then
+        return self.Base:BlinkDescription()
+    end
+    self.Base:BlinkDescription(bool, self)
+end
+
+function UIMenuProgressItem:LeftBadge(Badge)
+    if Badge == nil then
+        return self.Base:LeftBadge()
+    end
+    self.Base:LeftBadge(Badge, self)
+end
+
+function UIMenuProgressItem:CustomLeftBadge(txd, txn)
+    self.Base:CustomLeftBadge(txd, txn, self)
+end
+
+---RightBadge
+function UIMenuProgressItem:RightBadge()
+    error("This item does not support right badges")
+end
+
+function UIMenuProgressItem:CustomRightBadge()
+    error("This item does not support right badges")
+end
+
+---RightLabel
+function UIMenuProgressItem:RightLabel()
+    error("This item does not support a right label")
+end
+
+function UIMenuProgressItem:AddPanel(Panel)
+    if Panel() == "UIMenuPanel" then
+        Panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = Panel
     end
 end
 
 function UIMenuProgressItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0, sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuProgressItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuProgressItem:RemovePanelAt(Index)
+    if tonumber(Index) then
+        if self.Panels[Index] then
+            table.remove(self.Panels, tonumber(Index))
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
         end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
+    end
+end
+
+function UIMenuProgressItem:FindPanelIndex(Panel)
+    if Panel() == "UIMenuPanel" then
+        for Index = 1, #self.Panels do
+            if self.Panels[Index] == Panel then
+                return Index
+            end
         end
     end
+    return nil
 end
 
----Selected
----@param bool number
-function UIMenuProgressItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-    else
-        return self.Base._Selected
-    end
-end
-
----Hovered
----@param bool boolean
-function UIMenuProgressItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
-    end
-end
-
----Enabled
----@param bool boolean
-function UIMenuProgressItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-    else
-        return self.Base._Enabled
-    end
-end
-
----Description
----@param str string
-function UIMenuProgressItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
-    end
-end
-
----Text
----@param Text string
-function UIMenuProgressItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
-end
-
-function UIMenuProgressItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
+function UIMenuProgressItem:FindPanelItem()
+    for Index = #self.Items, 1, -1 do
+        if self.Items[Index].Panel then
+            return Index
         end
-    else
-        return self.Base._mainColor
     end
-end
-
-function UIMenuProgressItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
-end
-
-function UIMenuProgressItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
-    end
-end
-
-function UIMenuProgressItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
-    end
+    return nil
 end
 
 function UIMenuProgressItem:SliderColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
-        self.SliderColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor,
-                self.SliderColor)
+        self._sliderColor = color
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
         end
     else
-        return self.SliderColor
-    end
-end
-
-function UIMenuProgressItem:LabelFont(fontTable)
-    if fontTable == nil then
-        return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
-    end
-end
-
-function UIMenuProgressItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
-        return self.Base:BlinkDescription()
+        return self._sliderColor
     end
 end
 
@@ -13569,53 +13326,13 @@ function UIMenuProgressItem:Index(Index)
             self._Index = Index
         end
         self.OnProgressChanged(self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_VALUE",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), self._Index)
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self._Index
     end
-end
-
----AddPanel
----@param panel UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel
-function UIMenuProgressItem:AddPanel(panel)
-    if panel() == "UIMenuPanel" then
-        panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = panel
-    end
-end
-
----LeftBadge
-function UIMenuProgressItem:LeftBadge(Badge)
-    if tonumber(Badge) then
-        self.Base:LeftBadge(Badge, self)
-    else
-        return self.Base:LeftBadge()
-    end
-end
-
-function UIMenuProgressItem:CustomLeftBadge(txd, txn)
-    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd, txn, self)
-    else
-        return self.Base:LeftBadge()
-    end
-end
-
----RightBadge
-function UIMenuProgressItem:RightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuProgressItem:CustomRightBadge()
-    error("This item does not support right badges")
-end
-
----RightLabel
-function UIMenuProgressItem:RightLabel()
-    error("This item does not support a right label")
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -13635,7 +13352,7 @@ UIMenuSeparatorItem.__call = function() return "UIMenuItem", "UIMenuSeparatorIte
 ---@param highlightedTextColor? SColor
 function UIMenuSeparatorItem.New(Text, jumpable, mainColor, highlightColor, textColor, highlightedTextColor)
     local _UIMenuSeparatorItem = {
-        Base = UIMenuItem.New(Text or "", "", mainColor or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", "", mainColor or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         Panels = {},
         SidePanel = nil,
         Jumpable = jumpable,
@@ -13646,139 +13363,146 @@ end
 
 function UIMenuSeparatorItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
-    end
-end
-
----SetParentMenu
----@param Menu table
-function UIMenuSeparatorItem:SetParentMenu(Menu)
-    if Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
-    end
-end
-
----Description
----@param str string
-function UIMenuSeparatorItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
-    end
-end
-
----Text
----@param Text string
-function UIMenuSeparatorItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
-end
-
-function UIMenuSeparatorItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._mainColor
-    end
-end
-
-function UIMenuSeparatorItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
-end
-
-function UIMenuSeparatorItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
-    end
-end
-
-function UIMenuSeparatorItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
+        self.Base:ItemData()
     end
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuSeparatorItem:LabelFont(fontTable)
-    if fontTable == nil then
+function UIMenuSeparatorItem:LabelFont(itemFont)
+    if itemFont == nil then
         return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
     end
+    self.Base:LabelFont(itemFont, self)
 end
 
----Selected
----@param bool number
+-- not supported on Lobby and Pause menu yet
+function UIMenuSeparatorItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:RightLabelFont()
+    end
+    self.Base:RightLabelFont(itemFont, self)
+end
+
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuSeparatorItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
+    end
+    self.Base:SetParentMenu(menu)
+end
+
 function UIMenuSeparatorItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-    else
-        return self.Base._Selected
+    if bool == nil then
+        return self.Base:Selected()
     end
+    self.Base:Selected(bool, self)
 end
 
----Hovered
----@param bool boolean
 function UIMenuSeparatorItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
+    if bool == nil then
+        return self.Base:Hovered()
     end
+    self.Base:Hovered(bool)
 end
 
----Enabled
----@param bool boolean
 function UIMenuSeparatorItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-    else
-        return self.Base._Enabled
+    if bool == nil then
+        return self.Base:Enabled()
     end
+    self.Base:Hovered(bool, self)
+end
+
+function UIMenuSeparatorItem:Description(str)
+    if str == nil then
+        return self.Base:Description()
+    end
+    self.Base:Description(str, self)
+end
+
+function UIMenuSeparatorItem:MainColor(color)
+    if color == nil then
+        return self.Base:MainColor()
+    end
+    self.Base:MainColor(color, self)
+end
+
+function UIMenuSeparatorItem:HighlightColor(color)
+    if color == nil then
+        return self.Base:HighlightColor()
+    end
+    self.Base:HighlightColor(color, self)
+end
+
+function UIMenuSeparatorItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
+    end
+    self.Base:Label(Text, self)
 end
 
 function UIMenuSeparatorItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
+    if bool == nil then
         return self.Base:BlinkDescription()
     end
+    self.Base:BlinkDescription(bool, self)
+end
+
+function UIMenuSeparatorItem:AddPanel(Panel)
+    if Panel() == "UIMenuPanel" then
+        Panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = Panel
+    end
+end
+
+function UIMenuSeparatorItem:AddSidePanel(sidePanel)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuSeparatorItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuSeparatorItem:RemovePanelAt(Index)
+    if tonumber(Index) then
+        if self.Panels[Index] then
+            table.remove(self.Panels, tonumber(Index))
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
+        end
+    end
+end
+
+function UIMenuSeparatorItem:FindPanelIndex(Panel)
+    if Panel() == "UIMenuPanel" then
+        for Index = 1, #self.Panels do
+            if self.Panels[Index] == Panel then
+                return Index
+            end
+        end
+    end
+    return nil
+end
+
+function UIMenuSeparatorItem:FindPanelItem()
+    for Index = #self.Items, 1, -1 do
+        if self.Items[Index].Panel then
+            return Index
+        end
+    end
+    return nil
 end
 
 ---LeftBadge
@@ -13823,18 +13547,16 @@ UIMenuSliderItem.__call = function() return "UIMenuItem", "UIMenuSliderItem" end
 ---@param sliderColor SColor
 ---@param color SColor
 ---@param highlightColor SColor
----@param textColor SColor
----@param highlightedTextColor SColor
-function UIMenuSliderItem.New(Text, Max, Multiplier, Index, Heritage, Description, sliderColor, color, highlightColor, textColor, highlightedTextColor)
+function UIMenuSliderItem.New(Text, Max, Multiplier, Index, Heritage, Description, sliderColor, color, highlightColor)
     local _UIMenuSliderItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         _Index = tonumber(Index) or 0,
         _Max = tonumber(Max) or 100,
         _Multiplier = Multiplier or 5,
         _heritage = Heritage or false,
         Panels = {},
         SidePanel = nil,
-        SliderColor = sliderColor or SColor.HUD_Freemode,
+        _sliderColor = sliderColor or SColor.HUD_Freemode,
         ItemId = 3,
         OnSliderChanged = function(menu, item, newindex)
         end,
@@ -13846,165 +13568,181 @@ end
 
 function UIMenuSliderItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
+        self.Base:ItemData()
     end
 end
 
----SetParentMenu
----@param Menu table
-function UIMenuSliderItem:SetParentMenu(Menu)
-    if Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
+-- not supported on Lobby and Pause menu yet
+function UIMenuSliderItem:LabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:LabelFont()
+    end
+    self.Base:LabelFont(itemFont, self)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuSliderItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:RightLabelFont()
+    end
+    self.Base:RightLabelFont(itemFont, self)
+end
+
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuSliderItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
+    end
+    self.Base:SetParentMenu(menu)
+end
+
+function UIMenuSliderItem:Selected(bool)
+    if bool == nil then
+        return self.Base:Selected()
+    end
+    self.Base:Selected(bool, self)
+end
+
+function UIMenuSliderItem:Hovered(bool)
+    if bool == nil then
+        return self.Base:Hovered()
+    end
+    self.Base:Hovered(bool)
+end
+
+function UIMenuSliderItem:Enabled(bool)
+    if bool == nil then
+        return self.Base:Enabled()
+    end
+    self.Base:Hovered(bool, self)
+end
+
+function UIMenuSliderItem:Description(str)
+    if str == nil then
+        return self.Base:Description()
+    end
+    self.Base:Description(str, self)
+end
+
+function UIMenuSliderItem:MainColor(color)
+    if color == nil then
+        return self.Base:MainColor()
+    end
+    self.Base:MainColor(color, self)
+end
+
+function UIMenuSliderItem:HighlightColor(color)
+    if color == nil then
+        return self.Base:HighlightColor()
+    end
+    self.Base:HighlightColor(color, self)
+end
+
+function UIMenuSliderItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
+    end
+    self.Base:Label(Text, self)
+end
+
+function UIMenuSliderItem:BlinkDescription(bool)
+    if bool == nil then
+        return self.Base:BlinkDescription()
+    end
+    self.Base:BlinkDescription(bool, self)
+end
+
+function UIMenuSliderItem:LeftBadge(Badge)
+    if Badge == nil then
+        return self.Base:LeftBadge()
+    end
+    self.Base:LeftBadge(Badge, self)
+end
+
+function UIMenuSliderItem:CustomLeftBadge(txd, txn)
+    self.Base:CustomLeftBadge(txd, txn, self)
+end
+
+function UIMenuSliderItem:RightBadge()
+    error("This item does not support right badges")
+end
+
+function UIMenuSliderItem:CustomRightBadge()
+    error("This item does not support right badges")
+end
+
+function UIMenuSliderItem:RightLabel()
+    error("This item does not support a right label")
+end
+
+function UIMenuSliderItem:AddPanel(Panel)
+    if Panel() == "UIMenuPanel" then
+        Panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = Panel
     end
 end
 
 function UIMenuSliderItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0, sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuSliderItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuSliderItem:RemovePanelAt(Index)
+    if tonumber(Index) then
+        if self.Panels[Index] then
+            table.remove(self.Panels, tonumber(Index))
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
         end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
+    end
+end
+
+function UIMenuSliderItem:FindPanelIndex(Panel)
+    if Panel() == "UIMenuPanel" then
+        for Index = 1, #self.Panels do
+            if self.Panels[Index] == Panel then
+                return Index
+            end
         end
     end
+    return nil
 end
 
----Selected
----@param bool table
-function UIMenuSliderItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-    else
-        return self.Base._Selected
-    end
-end
-
-function UIMenuSliderItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
-    end
-end
-
-function UIMenuSliderItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-    else
-        return self.Base._Enabled
-    end
-end
-
-function UIMenuSliderItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
-    end
-end
-
-function UIMenuSliderItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
-        return self.Base:BlinkDescription()
-    end
-end
-
-function UIMenuSliderItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
-end
-
-function UIMenuSliderItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
+function UIMenuSliderItem:FindPanelItem()
+    for Index = #self.Items, 1, -1 do
+        if self.Items[Index].Panel then
+            return Index
         end
-    else
-        return self.Base._mainColor
     end
-end
-
-function UIMenuSliderItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
-end
-
-function UIMenuSliderItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
-    end
-end
-
-function UIMenuSliderItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
-    end
+    return nil
 end
 
 function UIMenuSliderItem:SliderColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
-        self.SliderColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor,
-                self.SliderColor)
+        self._sliderColor = color
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
         end
     else
-        return self.SliderColor
-    end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuSliderItem:LabelFont(fontTable)
-    if fontTable == nil then
-        return self.Base:LabelFont()
-    else
-        self.Base:LabelFont(fontTable)
+        return self._sliderColor
     end
 end
 
@@ -14018,50 +13756,13 @@ function UIMenuSliderItem:Index(Index)
             self._Index = tonumber(Index)
         end
         self.OnSliderChanged(self.Base.ParentMenu, self, self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_VALUE",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), self._Index)
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
         end
     else
         return self._Index
     end
-end
-
----AddPanel
----@param panel UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel
-function UIMenuSliderItem:AddPanel(panel)
-    if panel() == "UIMenuPanel" then
-        panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = panel
-    end
-end
-
-function UIMenuSliderItem:LeftBadge(Badge)
-    if tonumber(Badge) then
-        self.Base:LeftBadge(Badge, self)
-    else
-        return self.Base:LeftBadge()
-    end
-end
-
-function UIMenuSliderItem:CustomLeftBadge(txd, txn)
-    if txd ~= nil and txd ~= "" and txn ~= nil and txn ~= "" then
-        self.Base:CustomLeftBadge(txd, txn, self)
-    else
-        return self.Base:LeftBadge()
-    end
-end
-
-function UIMenuSliderItem:RightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuSliderItem:CustomRightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuSliderItem:RightLabel()
-    error("This item does not support a right label")
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -14080,11 +13781,9 @@ UIMenuStatsItem.__call = function() return "UIMenuItem", "UIMenuStatsItem" end
 ---@param type number|0
 ---@param mainColor SColor
 ---@param highlightColor SColor
----@param textColor SColor
----@param highlightedTextColor SColor
-function UIMenuStatsItem.New(Text, Description, Index, barColor, type, mainColor, highlightColor, textColor, highlightedTextColor)
+function UIMenuStatsItem.New(Text, Description, Index, barColor, type, mainColor, highlightColor)
     local _UIMenuStatsItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", SColor.HUD_Panel_light, highlightColor or SColor.HUD_White, textColor or SColor.HUD_White, highlightedTextColor or SColor.HUD_Black),
+        Base = UIMenuItem.New(Text or "", Description or "", SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
         _Index = Index or 0,
         Panels = {},
         SidePanel = nil,
@@ -14101,186 +13800,92 @@ end
 
 function UIMenuStatsItem:ItemData(data)
     if data == nil then
-        return self.Base._itemData
+        return self.Base:ItemData(data)
     else
-        self.Base._itemData = data
+        self.Base:ItemData()
     end
 end
 
----SetParentMenu
----@param Menu table
-function UIMenuStatsItem:SetParentMenu(Menu)
-    if Menu() == "UIMenu" then
-        self.Base.ParentMenu = Menu
-    else
-        return self.Base.ParentMenu
+-- not supported on Lobby and Pause menu yet
+function UIMenuStatsItem:LabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:LabelFont()
     end
+    self.Base:LabelFont(itemFont, self)
 end
 
-function UIMenuStatsItem:AddSidePanel(sidePanel)
-    if sidePanel() == "UIMissionDetailsPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), 0, sidePanel.PanelSide, sidePanel.TitleType,
-                sidePanel.Title,
-                sidePanel.TitleColor, sidePanel.TextureDict, sidePanel.TextureName)
-        end
-    elseif sidePanel() == "UIVehicleColorPickerPanel" then
-        sidePanel:SetParentItem(self)
-        self.SidePanel = sidePanel
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM",
-                IndexOf(self.Base.ParentMenu.Items, self), 1, sidePanel.PanelSide, sidePanel.TitleType, sidePanel.Title,
-                sidePanel.TitleColor)
-        end
+-- not supported on Lobby and Pause menu yet
+function UIMenuStatsItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self.Base:RightLabelFont()
     end
+    self.Base:RightLabelFont(itemFont, self)
 end
 
----Selected
----@param bool number
+---Set the Parent Menu of the Item
+---@param menu UIMenu
+---@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
+function UIMenuStatsItem:SetParentMenu(menu)
+    if menu == nil then
+        return self.Base:SetParentMenu()
+    end
+    self.Base:SetParentMenu(menu)
+end
+
 function UIMenuStatsItem:Selected(bool)
-    if bool ~= nil then
-        self.Base:Selected(ToBool(bool), self)
-    else
-        return self.Base._Selected
+    if bool == nil then
+        return self.Base:Selected()
     end
+    self.Base:Selected(bool, self)
 end
 
----Hovered
----@param bool boolean
 function UIMenuStatsItem:Hovered(bool)
-    if bool ~= nil then
-        self.Base._Hovered = ToBool(bool)
-    else
-        return self.Base._Hovered
+    if bool == nil then
+        return self.Base:Hovered()
     end
+    self.Base:Hovered(bool)
 end
 
----Enabled
----@param bool boolean
 function UIMenuStatsItem:Enabled(bool)
-    if bool ~= nil then
-        self.Base:Enabled(bool, self)
-    else
-        return self.Base._Enabled
+    if bool == nil then
+        return self.Base:Enabled()
     end
+    self.Base:Hovered(bool, self)
 end
 
----Description
----@param str string
 function UIMenuStatsItem:Description(str)
-    if tostring(str) and str ~= nil then
-        self.Base:Description(tostring(str), self)
-    else
-        return self.Base._Description
+    if str == nil then
+        return self.Base:Description()
     end
-end
-
----Text
----@param Text string
-function UIMenuStatsItem:Label(Text)
-    if tostring(Text) and Text ~= nil then
-        self.Base:Label(tostring(Text), self)
-    else
-        return self.Base:Label()
-    end
+    self.Base:Description(str, self)
 end
 
 function UIMenuStatsItem:MainColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._mainColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._mainColor
+    if color == nil then
+        return self.Base:MainColor()
     end
-end
-
-function UIMenuStatsItem:TextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._textColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._textColor
-    end
+    self.Base:MainColor(color, self)
 end
 
 function UIMenuStatsItem:HighlightColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightColor
+    if color == nil then
+        return self.Base:HighlightColor()
     end
+    self.Base:HighlightColor(color, self)
 end
 
-function UIMenuStatsItem:HighlightedTextColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self.Base._highlightedTextColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor)
-        end
-    else
-        return self.Base._highlightedTextColor
+function UIMenuStatsItem:Label(Text)
+    if Text == nil then
+        return self.Base:Label()
     end
-end
-
-function UIMenuStatsItem:SliderColor(color)
-    if color then
-        assert(color() == "SColor", "Color must be SColor type")
-        self._Color = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_COLORS", self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)),
-                self.Base._mainColor, self.Base._highlightColor, self.Base._textColor, self.Base._highlightedTextColor,
-                self._Color)
-        end
-    else
-        return self._Color
-    end
+    self.Base:Label(Text, self)
 end
 
 function UIMenuStatsItem:BlinkDescription(bool)
-    if bool ~= nil then
-        self.Base:BlinkDescription(bool, self)
-    else
+    if bool == nil then
         return self.Base:BlinkDescription()
     end
-end
-
----Index
----@param Index table
-function UIMenuStatsItem:Index(Index)
-    if tonumber(Index) then
-        if Index > 100 then
-            self._Index = 100
-        elseif Index < 0 then
-            self._Index = 0
-        else
-            self._Index = Index
-        end
-        self.OnStatsChanged(self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() and self.Base.ParentMenu.Pagination:IsItemVisible(IndexOf(self.Base.ParentMenu.Items, self)) then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_VALUE",
-                self.Base.ParentMenu.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentMenu.Items, self)), self._Index)
-        end
-    else
-        return self._Index
-    end
+    self.Base:BlinkDescription(bool, self)
 end
 
 ---LeftBadge
@@ -14304,6 +13909,94 @@ end
 ---RightLabel
 function UIMenuStatsItem:RightLabel()
     error("This item does not support a right label")
+end
+
+function UIMenuStatsItem:AddPanel(Panel)
+    if Panel() == "UIMenuPanel" then
+        Panel.ParentItem = self
+        self.Panels[#self.Panels + 1] = Panel
+    end
+end
+
+function UIMenuStatsItem:AddSidePanel(sidePanel)
+    sidePanel:SetParentItem(self)
+    self.SidePanel = sidePanel
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuStatsItem:RemoveSidePanel()
+    self.SidePanel = nil
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
+function UIMenuStatsItem:RemovePanelAt(Index)
+    if tonumber(Index) then
+        if self.Panels[Index] then
+            table.remove(self.Panels, tonumber(Index))
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendPanelsToItemScaleform(it)
+        end
+    end
+end
+
+function UIMenuStatsItem:FindPanelIndex(Panel)
+    if Panel() == "UIMenuPanel" then
+        for Index = 1, #self.Panels do
+            if self.Panels[Index] == Panel then
+                return Index
+            end
+        end
+    end
+    return nil
+end
+
+function UIMenuStatsItem:FindPanelItem()
+    for Index = #self.Items, 1, -1 do
+        if self.Items[Index].Panel then
+            return Index
+        end
+    end
+    return nil
+end
+
+function UIMenuStatsItem:SliderColor(color)
+    if color then
+        assert(color() == "SColor", "Color must be SColor type")
+        self._Color = color
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        end
+    else
+        return self._Color
+    end
+end
+
+---Index
+---@param Index table
+function UIMenuStatsItem:Index(Index)
+    if tonumber(Index) then
+        if Index > 100 then
+            self._Index = 100
+        elseif Index < 0 then
+            self._Index = 0
+        else
+            self._Index = Index
+        end
+        self.OnStatsChanged(self._Index)
+        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
+            local it = IndexOf(self.Base.ParentMenu.Items, self)
+            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        end
+    else
+        return self._Index
+    end
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -14638,11 +14331,11 @@ end
 function UIMenuColorPanel:CurrentSelection(new_value)
     if new_value ~= nil then
         self.value = new_value
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
-            and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-            local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-            local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_COLOR_PANEL_VALUE", it, van - 1, new_value)
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+            local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+            self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
+            self.OnColorPanelChanged(self.ParentItem, self, self.value)
+            self.ParentItem:SetParentMenu().OnColorPanelChanged(self.ParentItem, self, self.value)
         end
     else
         return self.value
@@ -14699,12 +14392,11 @@ end
 function UIMenuGridPanel:CirclePosition(position)
     if position ~= nil then
         self._CirclePosition = position
-        if (self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil) and self.ParentItem:SetParentMenu():Visible()
-            and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-            local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-            local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_GRID_PANEL_VALUE_RETURN_VALUE", it, van - 1,
-                position.x, position.y)
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+            local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+            self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
+            self.OnGridPanelChanged(self.ParentItem, self, self._CirclePosition)
+            self.ParentItem:SetParentMenu().OnGridPanelChanged(self.ParentItem, self, self._CirclePosition)
         end
     else
         return self._CirclePosition
@@ -14746,11 +14438,11 @@ end
 function UIMenuPercentagePanel:Percentage(value)
     if value ~= nil then
         self._percentage = value
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
-            and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-            local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-            local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_PERCENT_PANEL_RETURN_VALUE", it, van - 1, value)
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+            local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+            self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
+            self.OnPercentagePanelChanged(self.ParentItem, self, self._percentage)
+            self.ParentItem:SetParentMenu().OnPercentagePanelChange(self.ParentItem, self, self._percentage)
         end
     else
         return self._percentage
@@ -14806,11 +14498,9 @@ function UIMenuStatisticsPanel:AddStatistic(name, value) -- required
             value = 0
         end
         table.insert(self.Items, {['name'] = name, ['value'] = value})
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
-            and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-            local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-            local van = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATISTIC_TO_PANEL", it, van - 1, name, value)
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+            local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+            self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
         end
     end
 end
@@ -14841,11 +14531,9 @@ function UIMenuStatisticsPanel:UpdateStatistic(index, value)
             value = 0
         end
         self.Items[index].value = value
-        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
-            and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-            local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-            local pan = IndexOf(self.ParentItem.Panels, self)
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_PANEL_STATS_ITEM_VALUE", it, pan - 1, index - 1, value)
+        if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+            local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+            self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
         end
     end
 end
@@ -14896,11 +14584,9 @@ function UIMenuVehicleColourPickerPanel:Value(val)
 end
 
 function UIMenuVehicleColourPickerPanel:_setValue(val)
-    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible()
-        and self.ParentItem:SetParentMenu().Pagination:IsItemVisible(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)) then
-        local it = self.ParentItem:SetParentMenu().Pagination:GetScaleformIndex(IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem))
-        local van = IndexOf(self.ParentItem.Panels, self)
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_COLOR_PICKER_PANEL_VALUE", it, van - 1, val)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
+        self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
     end
 end
 
@@ -14999,10 +14685,9 @@ end
 
 function UIMissionDetailsPanel:UpdatePanelTitle(title)
     self.Title = title
-
-    if self.ParentItem ~= nil then
-        local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
-        ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_SIDE_PANEL_TITLE", item, title)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
@@ -15010,27 +14695,25 @@ function UIMissionDetailsPanel:UpdatePanelPicture(txd, txn)
     self.TextureDict = txd
     self.TextureName = txn
 
-    if self.ParentItem ~= nil then
-        local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
-        ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_MISSION_DETAILS_PANEL_IMG", item, txd, txn)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
 function UIMissionDetailsPanel:AddItem(newitem)
     self.Items[#self.Items + 1] = newitem
-    if self.ParentItem ~= nil then
-        local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
-        ScaleformUI.Scaleforms._ui:CallFunction("ADD_MISSION_DETAILS_DESC_ITEM", item, newitem.Type,
-            newitem.TextLeft, newitem.TextRight, newitem.Icon, newitem.IconColor, newitem.Tick, newitem._labelFont.FontName, newitem._labelFont.FontID,
-            newitem._rightLabelFont.FontName, newitem._rightLabelFont.FontID)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
 function UIMissionDetailsPanel:RemoveItemAt(index)
     table.remove(self.Items, index)
-    if self.ParentItem ~= nil then
-        local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
-        ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_MISSION_DETAILS_DESC_ITEM", item, index - 1)
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
@@ -15064,7 +14747,7 @@ function UIVehicleColorPickerPanel.New(side, title, color)
 end
 
 function UIVehicleColorPickerPanel:SetParentItem(Item) -- required
-    if Item() ~= nil then
+    if Item ~= nil then
         self.ParentItem = Item
     else
         return self.ParentItem
@@ -15073,9 +14756,9 @@ end
 
 function UIVehicleColorPickerPanel:UpdatePanelTitle(title)
     self.Title = title
-    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
-        local item = IndexOf(self.ParentItem.Base.ParentMenu.Items, self.ParentItem) - 1
-        ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_SIDE_PANEL_TITLE", item, title)
+    if self.ParentItem ~= nil and self.ParentItem.ParentMenu ~= nil and self.ParentItem.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
@@ -15204,7 +14887,7 @@ end
 ---@param txtDictionary string|nil -- Custom texture dictionary for the menu banner background (default: commonmenu)
 ---@param txtName string|nil -- Custom texture name for the menu banner background (default: interaction_bgd)
 ---@param alternativeTitleStyle boolean|nil -- Use alternative title style (default: false)
-function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, alternativeTitleStyle, fadeTime, longdesc, align)
+function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, alternativeTitleStyle, longdesc, align)
     local X, Y = tonumber(x) or 0, tonumber(y) or 0
     if title ~= nil then
         title = tostring(title) or ""
@@ -15238,20 +14921,21 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         AlternativeTitle = alternativeTitleStyle,
         counterColor = SColor.HUD_Freemode,
         Position = vector2(X, Y),
-        Pagination = PaginationHandler.New(),
-        enableAnimation = true,
-        animationType = MenuAnimationType.LINEAR,
-        buildingAnimation = MenuBuildingAnimation.NONE,
-        scrollingType = MenuScrollingType.CLASSIC,
         descFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
         subtitleColor = HudColours.NONE,
         leftClickEnabled = false,
+        _maxItemsOnScreen = 7,
+        _currentSelection = 1,
+        _visibleItems = 1,
+        topEdge = 1,
         bannerColor = SColor.HUD_None,
         Extra = {},
         Description = {},
         Items = {},
         ParentItem = nil,
         _unfilteredMenuItems = {},
+        _unfilteredSelection = 1,
+        _unfilteredTopEdge = 1,
         mouseReset = false,
         Windows = {},
         TxtDictionary = txtDictionary,
@@ -15280,7 +14964,6 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         fSavedGlareDirection = 0,
         enabled3DAnimations = true,
         isFading = false,
-        fadingTime = fadeTime or 0.1,
         Controls = {
             Back = {
                 Enabled = true,
@@ -15359,7 +15042,6 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
             },
         }
     }
-    _UIMenu.Pagination.itemsPerPage = 7
     if subTitle ~= "" and subTitle ~= nil then
         _UIMenu._Subtitle = subTitle
     end
@@ -15368,26 +15050,18 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
     end
 
     _UIMenu.Position = vector2(X, Y)
-    local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005;
+    local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005
     local rightAlign = _UIMenu.menuAlignment == MenuAlignment.RIGHT
-    local glareX = 0.45
-    local glareW = 1.0
-    if not GetWideScreen() then
-        glareX = 0.585
-        glareW = 1.35
-    end
+    local glareX = 0.45 + safezone
 
     local pos1080 = ConvertScaleformCoordsToResolutionCoords(X, Y)
     local screenCoords = ConvertResolutionCoordsToScreenCoords(pos1080.x, pos1080.y)
-    _UIMenu._glarePos = vector2(screenCoords.x + glareX + safezone, screenCoords.y + 0.45 + safezone)
+    _UIMenu._glarePos = vector2(screenCoords.x + glareX, screenCoords.y + 0.45 + safezone)
     if rightAlign then
+        glareX = 1.225 - safezone
         local w, h = GetActualScreenResolution()
-        screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
-        glareX = 0.225
-        if not GetWideScreen() then
-            glareX = 0.36
-        end
-        _UIMenu._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
+        screenCoords = ConvertResolutionCoordsToScreenCoords(1920 - pos1080.x, pos1080.y)
+        _UIMenu._glarePos = vector2(screenCoords.x - 1 + glareX, screenCoords.y + 0.45 + safezone)
     end
 
     _UIMenu._glareSize = {w = glareW, h = 1.0}
@@ -15408,7 +15082,8 @@ function UIMenu:Title(title)
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
                     self.alternativeTitle)
             else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle,
+                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title,
+                    "~HC_"..self.subtitleColor.."~"..self._Subtitle,
                     self.alternativeTitle)
             end
         end
@@ -15424,7 +15099,7 @@ function UIMenu:DescriptionFont(fontTable)
     else
         self.descFont = fontTable
         if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_DESC_FONT", self.descFont.FontName, self.descFont.FontID)
+            self:SetMenuData(true)
         end
     end
 end
@@ -15438,13 +15113,7 @@ function UIMenu:Subtitle(sub)
     else
         self._Subtitle = sub
         if self:Visible() then
-            if self.subtitleColor == HudColours.NONE then
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle,
-                    self.alternativeTitle)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle,
-                    self.alternativeTitle)
-            end
+            self:SetMenuData(true)
         end
     end
 end
@@ -15458,7 +15127,7 @@ function UIMenu:CounterColor(color)
     else
         self.counterColor = color
         if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_COLOR", self.counterColor)
+            self:SetMenuData(true)
         end
     end
 end
@@ -15472,11 +15141,7 @@ function UIMenu:SubtitleColor(color)
     else
         self.subtitleColor = color
         if self:Visible() then
-            if color == HudColours.NONE then
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, self._Subtitle, self.alternativeTitle)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.alternativeTitle)
-            end
+            self:SetMenuData(true)
         end
     end
 end
@@ -15491,7 +15156,7 @@ function UIMenu:MenuAlignment(align)
         self.menuAlignment = align
         self:SetMenuOffset(self.Position.x, self.Position.y)
         if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_ORIENTATION", align)
+            self:SetMenuData(true)
         end
     end
 end
@@ -15573,53 +15238,10 @@ end
 function UIMenu:RefreshMenu(keepIndex)
     if keepIndex == nil then keepIndex = false end
     if (self:Visible()) then
-        local index = self:CurrentSelection()
-        self.BannerisBuilding = true
-        ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
-        for k, it in pairs(self.Items) do
-            it:Selected(false)
+        if not keepIndex then
+            self:CurrentSelection(0)
         end
-
-        -- we want to keep the rebuild as clean as possible.. we disable all anims for the moment
-        local enableScrollingAnim = self:AnimationEnabled()
-        local enable3DAnim = self:Enabled3DAnimations()
-        local scrollingAnimation = self:AnimationType()
-        local buildingAnimation = self:BuildingAnimation()
-
-        self:SetMenuAnimations(false, false, MenuAnimationType.LINEAR, MenuBuildingAnimation.NONE)
-
-        if (#self.Items > 0) then
-            self.isBuilding = true
-            local max = self.Pagination:ItemsPerPage()
-            if (#self.Items < max) then
-                max = #self.Items
-            end
-
-            self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-            if (self.Pagination.scrollType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1) then
-                local missingItems = self.Pagination:GetMissingItems()
-                if (missingItems > 0) then
-                    self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems)
-                    self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex() - missingItems)
-                end
-            end
-            self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-
-            for i = 1, max, 1 do
-                if (not self:Visible()) then return end
-                self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-            end
-            self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
-            self.isBuilding = false
-            if keepIndex then
-                self:CurrentSelection(index)
-            else
-                self:CurrentSelection(0)
-            end
-
-            self:SetMenuAnimations(enableScrollingAnim, enable3DAnim, scrollingAnimation, buildingAnimation)
-        end
+        ScaleformUI.Scaleforms._ui:CallFunction("REFRESH_MENU", self._currentSelection - 1, self.topEdge - 1)
     end
 end
 
@@ -15630,7 +15252,7 @@ function UIMenu:SetBannerSprite(txtDictionary, txtName)
     self.TxtDictionary = txtDictionary
     self.TxtName = txtName
     if self:Visible() then
-        ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_MENU_BANNER_TEXTURE", txtDictionary, txtName)
+        self:SetMenuData(true)
     end
 end
 
@@ -15639,165 +15261,75 @@ end
 function UIMenu:SetBannerColor(color)
     self.bannerColor = color
     if self:Visible() then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_BANNER_COLOR", color)
+        self:SetMenuData(true)
     end
 end
 
---- Handles all the menu animations in one place
----@param enableScrollingAnim boolean
----@param enable3DAnim boolean
----@param scrollingAnimation MenuAnimationType
----@param buildingAnimation MenuBuildingAnimation
----@param fadingTime number
+--- Legacy function to be removed
 function UIMenu:SetMenuAnimations(enableScrollingAnim, enable3DAnim, scrollingAnimation, buildingAnimation, fadingTime)
-    if scrollingAnimation == nil then
-        scrollingAnimation = MenuAnimationType.QUADRATIC_IN
-    end
-    if buildingAnimation == nil then
-        buildingAnimation = MenuBuildingAnimation.LEFT_RIGHT
-    end
-    if fadingTime == nil then
-        fadingTime = 0.1
-    end
-
-    self:AnimationEnabled(enableScrollingAnim)
-    self:Enabled3DAnimations(enable3DAnim)
-    self:AnimationType(scrollingAnimation)
-    self:BuildingAnimation(buildingAnimation)
-    self.fadingTime = fadingTime
 end
 
---- Enables or disabls the menu's animations while the menu is visible.
+--- Legacy function to be removed.
 ---@param enable boolean|nil
 ---@return boolean
 function UIMenu:AnimationEnabled(enable)
-    if enable ~= nil then
-        self.enableAnimation = enable
-        if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_SCROLLING_ANIMATION", enable)
-        end
-    end
-    return self.enableAnimation
+    return false
 end
 
 function UIMenu:Enabled3DAnimations(enable)
-    if enable ~= nil then
-        self.enabled3DAnimations = enable
-        if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_3D_ANIMATIONS", enable)
-        end
-    else
-        return self.enabled3DAnimations
-    end
+    return false
 end
 
---- Sets the menu's scrolling animationType while the menu is visible.
+--- Legacy function to be removed.
 ---@param menuAnimationType MenuAnimationType|nil
 ---@return number MenuAnimationType
 ---@see MenuAnimationType
 function UIMenu:AnimationType(menuAnimationType)
-    if menuAnimationType ~= nil then
-        self.animationType = menuAnimationType
-        if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("CHANGE_SCROLLING_ANIMATION_TYPE", menuAnimationType)
-        end
-    end
-
-    return self.animationType
+    return 0
 end
 
---- Enables or disables the menu's building animationType.
+--- Legacy function to be removed
 ---@param buildingAnimationType MenuBuildingAnimation|nil
 ---@return MenuBuildingAnimation
 ---@see MenuBuildingAnimation
 function UIMenu:BuildingAnimation(buildingAnimationType)
-    if buildingAnimationType ~= nil then
-        self.buildingAnimation = buildingAnimationType
-        if self:Visible() then
-            ScaleformUI.Scaleforms._ui:CallFunction("CHANGE_BUILDING_ANIMATION_TYPE", buildingAnimationType)
-        end
-    end
-    return self.buildingAnimation
+    return 0
 end
 
---- Decides how menu behaves on scrolling and overflowing.
+--- Legacy function to be removed
 ---@param scrollType MenuScrollingType|nil
 ---@return MenuScrollingType
 ---@see MenuScrollingType
 function UIMenu:ScrollingType(scrollType)
-    if scrollType ~= nil then
-        self.scrollingType = scrollType
-        self.Pagination.scrollType = scrollType
-    end
-    return self.scrollingType
-end
-
-function UIMenu:FadeOutMenu()
-    ScaleformUI.Scaleforms._ui:CallFunction("FADE_OUT_MENU")
-    while self.isFading do
-        Citizen.Wait(0)
-        self.isFading = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("GET_IS_FADING")
-    end
-end
-
-function UIMenu:FadeInMenu()
-    ScaleformUI.Scaleforms._ui:CallFunction("FADE_IN_MENU")
-
-    while self.isFading do
-        Citizen.Wait(0)
-        self.isFading = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("GET_IS_FADING")
-    end
-end
-
-function UIMenu:FadeOutItems()
-    ScaleformUI.Scaleforms._ui:CallFunction("FADE_OUT_ITEMS")
-
-    while self.isFading do
-        Citizen.Wait(0)
-        self.isFading = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("GET_IS_FADING")
-    end
-end
-
-function UIMenu:FadeInItems()
-    ScaleformUI.Scaleforms._ui:CallFunction("FADE_IN_ITEMS")
-
-    while self.isFading do
-        Citizen.Wait(0)
-        self.isFading = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("GET_IS_FADING")
-    end
+    return 0
 end
 
 ---CurrentSelection
 ---@param value number|nil
 function UIMenu:CurrentSelection(value)
     if value ~= nil then
-        if value < 1 then
-            self.Pagination:CurrentMenuIndex(1)
-            value = 1
-        elseif value > #self.Items then
-            self.Pagination:CurrentMenuIndex(#self.Items)
-            value = #self.Items
-        end
-        if self:CurrentSelection() < #self.Items then
-            self.Items[self:CurrentSelection()]:Selected(false)
-        end
-        self.Pagination:CurrentMenuIndex(value)
-        self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()))
-        self.Pagination:CurrentPageIndex(value)
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-        if (value > self.Pagination:MaxItem() or value < self.Pagination:MinItem()) then
-            self:RefreshMenu(true)
+        if #self.Items == 0 then return end
+        self:CurrentItem():Selected(false)
+        self._currentSelection = math.max(1, math.min(value, #self.Items))
+
+        if self._currentSelection >= self.topEdge + self._visibleItems then
+            self.topEdge = math.max(1, math.min(self._currentSelection, #self.Items - self._visibleItems))
+        elseif self._currentSelection < self.topEdge then
+            self.topEdge = self._currentSelection
         end
 
         if self:Visible() then
-            AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM",
-                self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-            ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
+            AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description())
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_SELECTION", self._currentSelection - 1, self.topEdge - 1)
+            self:SendPanelsToItemScaleform(self._currentSelection)
+            self:SendSidePanelToScaleform(self._currentSelection)
         end
-        self.Items[value]:Selected(true)
+        self.Items[self._currentSelection]:Selected(true)
     else
-        return self.Pagination:CurrentMenuIndex()
+        if #self.Items == 0 then
+            return 1
+        end
+        return self._currentSelection
     end
 end
 
@@ -15832,7 +15364,12 @@ function UIMenu:AddItem(item)
     end
     item:SetParentMenu(self)
     self.Items[#self.Items + 1] = item
-    self.Pagination:TotalItems(#self.Items)
+    if self:Visible() then
+        local idx = #self.Items
+        self:SendItemToScaleform(idx, false, false, #self.Items <= self:MaxItemsOnScreen())
+        self.Items[idx]:Selected(idx == 1)
+    end
+    -- add build new item (sent slot)
 end
 
 function UIMenu:AddItemAt(item, index)
@@ -15842,18 +15379,9 @@ function UIMenu:AddItemAt(item, index)
     end
     item:SetParentMenu(self)
     table.insert(self.Items, index, item)
-    self.Pagination:TotalItems(#self.Items)
     if self:Visible() then
-        if self.Pagination:IsItemVisible(index) then
-            self:RefreshMenu()
-        end
-        local it = self.Items[self:CurrentSelection()]
-        local t, subt = it()
-        if subt == "UIMenuSeparatorItem" then
-            if it.Jumpable then
-                self:GoDown();
-            end
-        end
+        self:SendItemToScaleform(index, false, true)
+        self:RefreshMenu(true)
     end
 end
 
@@ -15861,15 +15389,84 @@ end
 ---@param index number
 function UIMenu:RemoveItemAt(index)
     if tonumber(index) then
-        if self.Items[index] then
-            table.remove(self.Items, index)
-            self.Pagination:TotalItems(#self.Items)
-            if self:Visible() then
-                self:RefreshMenu(true);
+        local idx = self:CurrentSelection()
+        if #self.Items >= index then
+            if idx == index then
+                --[[
+                Failsafe workaround because Lua sucks shit so bad that is not even able
+                to handle the last index in a table without crashing the entire game...
+                I HATE YOU LUA!!! W C# FOR EVER!
+                And they say C# has bigger overhead and it's slow... at least C# handles arrays like it should!!!
+            ]]
+                self:CurrentSelection(1)
             end
-        else
-            print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..index..", Items: "..#self.Items..")")
+
+            table.remove(self.Items, index)
+            if self:Visible() then
+                ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_DATA_SLOT", index - 1)
+                self:RefreshMenu(true)
+            end
+            if #self.Items > 0 then
+                if #self.Items >= idx then
+                    self:CurrentSelection(idx)
+                else
+                    self:CurrentSelection(#self.Items)
+                end
+            else
+                print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..
+                    index..", Items: "..#self.Items..")")
+            end
         end
+    end
+end
+
+---RemoveItemsRange
+---@param startIndex number An integer that specifies the index of the element in the array where the deletion begins.
+---@param count number An integer that specifies the number of elements to be deleted. This number includes the element specified in the startIndex parameter. If no value is specified for the deleteCount parameter, the method deletes only 1 item. If the value is 0, no elements are deleted
+function UIMenu:RemoveItemsRange(startIndex, count)
+    local idx = self:CurrentSelection()
+    local n = #self.Items
+
+    if startIndex < 1 or startIndex > n then return end
+    count = count or 1
+    count = math.min(count, n - startIndex + 1)
+    if count == 0 then return end
+
+    if idx == startIndex then
+        --[[
+            Failsafe workaround because Lua sucks shit so bad that is not even able
+            to handle the last index in a table without crashing the entire game...
+            I HATE YOU LUA!!! W C# FOR EVER!
+            And they say C# has bigger overhead and it's slow... at least C# handles arrays like it should!!!
+        ]]
+        self:CurrentSelection(1)
+    end
+
+    local j = startIndex
+    for i = startIndex + count, n do
+        self.Items[j] = self.Items[i]
+        j = j + 1
+    end
+
+    for i = j, n do
+        self.Items[i] = nil
+    end
+
+    if self:Visible() then
+        self:BuildMenu(true)
+    end
+    while self._isBuilding do Wait(0) end
+    if #self.Items > 0 then
+        -- if menu has enough items to cover last selection
+        if #self.Items >= idx then
+            self:CurrentSelection(idx)
+        else
+            -- else we select last item possible
+            self:CurrentSelection(#self.Items)
+        end
+    else
+        print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..
+            index..", Items: "..#self.Items..")")
     end
 end
 
@@ -15880,6 +15477,7 @@ function UIMenu:RemoveItem(item)
     for k, v in pairs(self.Items) do
         if v:Label() == item:Label() then
             idx = k
+            break
         end
     end
     if idx > 0 then
@@ -15889,11 +15487,11 @@ end
 
 ---Clear
 function UIMenu:Clear()
-    self.Pagination:CurrentMenuIndex(1)
     self.Items = {}
-    self.Pagination:Reset()
+    self._currentSelection = 1
+    self.topEdge = 1
     if self:Visible() then
-        ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_DATA_SLOT_EMPTY")
     end
 end
 
@@ -15901,14 +15499,14 @@ end
 ---@param max number|nil
 function UIMenu:MaxItemsOnScreen(max)
     if max == nil then
-        return self.Pagination:ItemsPerPage()
+        return self._maxItemsOnScreen
     end
-    self.Pagination:ItemsPerPage(max)
+    self._maxItemsOnScreen = max
+    self:BuildMenu()
 end
 
 function UIMenu:SwitchTo(newMenu, newMenuCurrentSelection, inheritOldMenuParams)
-    assert(newMenu ~= nil, "ScaleformUI - cannot switch to a nil menu")
-    assert(not newMenu:Visible(), "The menu is already open!")
+    assert(newMenu ~= nil, "ScaleformUI - cannot switch to a null menu")
     if newMenuCurrentSelection == nil then newMenuCurrentSelection = 1 end
     if inheritOldMenuParams == nil then inheritOldMenuParams = true end
     MenuHandler:SwitchTo(self, newMenu, newMenuCurrentSelection, inheritOldMenuParams)
@@ -15933,61 +15531,91 @@ function UIMenu:Visible(bool)
             if self._Visible then
                 return
             end
-            self._Visible = bool;
+            self._Visible = bool
             if not self._itemless and #self.Items == 0 then
                 MenuHandler:CloseAndClearHistory()
-                assert(self._itemless or #self.Items == 0, "UIMenu "..self:Title().." menu is empty... Closing and clearing history.")
+                assert(self._itemless or #self.Items == 0,
+                    "UIMenu "..self:Title().." menu is empty... Closing and clearing history.")
             end
             ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
+            self:BuildMenu()
             MenuHandler._currentMenu = self
             MenuHandler.ableToDraw = true
-            self:BuildUpMenuAsync()
             self.OnMenuOpen(self)
             if BreadcrumbsHandler:Count() == 0 then
                 BreadcrumbsHandler:Forward(self)
             end
-        else
-            self._Visible = bool;
-            self:FadeOutMenu()
-            ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
-            if BreadcrumbsHandler.SwitchInProgress and not self._differentBanner then
-                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL")
+            if #self.Items > 0 then
+                AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description())
             end
+        else
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_DATA_SLOT_EMPTY")
+            self._Visible = bool
+            ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
             MenuHandler._currentMenu = nil
             MenuHandler.ableToDraw = false
+            if #self._unfilteredMenuItems > 0 then
+                self:Clear()
+                self.Items = self._unfilteredMenuItems
+                self._currentSelection = self._unfilteredSelection
+                self.topEdge = self._unfilteredTopEdge
+                self._unfilteredMenuItems = {}
+                self._unfilteredSelection = 1
+                self._unfilteredTopEdge = 1
+            end
             self.OnMenuClose(self)
-            self:clearLabels()
         end
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_VISIBLE", self._Visible, self:CurrentSelection() - 1,
+            self.topEdge - 1)
+        --hack to make sure the current item is selected
+        self:CurrentSelection(self._currentSelection)
         if self.Settings.ResetCursorOnOpen then
             SetCursorLocation(0.5, 0.5)
+            SetCursorSprite(1)
         end
     else
         return self._Visible
     end
 end
 
-function UIMenu:clearLabels()
-    for k, v in ipairs(self.Items) do
-        AddTextEntry("menu_"..(BreadcrumbsHandler:CurrentDepth() + 1).."_desc_"..k, "")
-    end
-end
-
 ---BuildUpMenu
-function UIMenu:BuildUpMenuAsync(itemsOnly)
-    local time = GetNetworkTime()
+function UIMenu:BuildMenu(itemsOnly)
     if itemsOnly == nil then itemsOnly = false end
     self._isBuilding = true
 
-    if self._itemless then
-        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "CREATE_MENU")
-        PushScaleformMovieMethodParameterString(self._Title)
-        if self.subtitleColor == HudColours.NONE then
-            PushScaleformMovieMethodParameterString(self._Subtitle)
-        else
-            PushScaleformMovieMethodParameterString("~HC_"..self.subtitleColor.."~"..self._Subtitle)
+    if (not itemsOnly) then
+        self:SetMenuData()
+        self:SetWindows()
+    end
+    if not self:Visible() then
+        return
+    end
+    if #self.Items > 0 then
+        self:SendItems()
+        self:SendPanelsToItemScaleform(self:CurrentSelection())
+        self:SendSidePanelToScaleform(self:CurrentSelection())
+        if self._Visible then
+            while self:CurrentItem().ItemId == 6 and self:CurrentItem().Jumpable do
+                Wait(0)
+                self:GoDown()
+            end
         end
+    end
+    ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_MOUSE", self.Settings.MouseControlsEnabled)
+    self._isBuilding = false
+end
+
+function UIMenu:SetMenuData(skipViewInitialization)
+    if skipViewInitialization == nil then skipViewInitialization = false end
+    local subtitle = self._Subtitle
+    if self.subtitleColor ~= HudColours.NONE then
+        subtitle = "~HC_"..self.subtitleColor.."~"..self._Subtitle
+    end
+
+    if self._itemless then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "SET_MENU_DATA")
+        PushScaleformMovieMethodParameterString(self._Title)
+        PushScaleformMovieMethodParameterString(subtitle)
         PushScaleformMovieMethodParameterFloat(self.Position.x)
         PushScaleformMovieMethodParameterFloat(self.Position.y)
         PushScaleformMovieMethodParameterBool(self.AlternativeTitle)
@@ -15995,328 +15623,282 @@ function UIMenu:BuildUpMenuAsync(itemsOnly)
         PushScaleformMovieMethodParameterString(self.TxtName)
         PushScaleformMovieFunctionParameterInt(self:MaxItemsOnScreen())
         PushScaleformMovieFunctionParameterInt(#self.Items)
-        PushScaleformMovieFunctionParameterBool(self:AnimationEnabled())
-        PushScaleformMovieFunctionParameterInt(self:AnimationType())
-        PushScaleformMovieFunctionParameterInt(self:BuildingAnimation())
         PushScaleformMovieFunctionParameterInt(self.counterColor:ToArgb())
         PushScaleformMovieMethodParameterString(self.descFont.FontName)
         PushScaleformMovieFunctionParameterInt(self.descFont.FontID)
-        PushScaleformMovieMethodParameterFloat(self.fadingTime)
         PushScaleformMovieFunctionParameterInt(self.bannerColor:ToArgb())
         PushScaleformMovieFunctionParameterBool(true)
         BeginTextCommandScaleformString("ScaleformUILongDesc")
         EndTextCommandScaleformString_2()
-        PushScaleformMovieFunctionParameterInt(self.menuAlignment);
+        PushScaleformMovieMethodParameterString("")
+        PushScaleformMovieMethodParameterString("")
+        PushScaleformMovieFunctionParameterInt(self.menuAlignment)
+        PushScaleformMovieFunctionParameterBool(true)
         EndScaleformMovieMethod()
-        self:FadeInMenu()
         self._isBuilding = false
         return
     end
 
-    if not itemsOnly then
-        while not ScaleformUI.Scaleforms._ui:IsLoaded() do Citizen.Wait(0) end
-        if not BreadcrumbsHandler.SwitchInProgress or self._differentBanner then
-            if self.subtitleColor == HudColours.NONE then
-                ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
-                    self.Position.y,
-                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
-                    self.Position.y,
-                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
-            end
-        else
-            if self.subtitleColor == HudColours.NONE then
-                ScaleformUI.Scaleforms._ui:CallFunction("RE_CREATE_MENU", self._Title, self._Subtitle, self.Position.x,
-                    self.Position.y,
-                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("RE_CREATE_MENU", self._Title, "~HC_"..self.subtitleColor.."~"..self._Subtitle, self.Position.x,
-                    self.Position.y,
-                    self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self:AnimationEnabled(),
-                    self:AnimationType(), self:BuildingAnimation(), self.counterColor, self.descFont.FontName,
-                    self.descFont.FontID, self.fadingTime, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment)
-            end
-        end
-        if #self.Windows > 0 then
-            for w_id, window in pairs(self.Windows) do
-                local Type, SubType = window()
-                if SubType == "UIMenuHeritageWindow" then
-                    ScaleformUI.Scaleforms._ui:CallFunction("ADD_WINDOW", window.id, window.Mom, window.Dad)
-                elseif SubType == "UIMenuDetailsWindow" then
-                    ScaleformUI.Scaleforms._ui:CallFunction("ADD_WINDOW", window.id, window.DetailBottom,
-                        window.DetailMid, window.DetailTop, window.DetailLeft.Txd, window.DetailLeft.Txn,
-                        window.DetailLeft.Pos.x, window.DetailLeft.Pos.y, window.DetailLeft.Size.x,
-                        window.DetailLeft.Size.y)
-                    if window.StatWheelEnabled then
-                        for key, value in pairs(window.DetailStats) do
-                            ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATS_DETAILS_WINDOW_STATWHEEL",
-                                w_id - 1, value.Percentage, value.HudColor)
-                        end
-                    end
-                end
-            end
-        end
-        local timer = GlobalGameTimer
-        if #self.Items == 0 then
-            while #self.Items == 0 do
-                Citizen.Wait(0)
-                if GlobalGameTimer - timer > 150 then
-                    ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM", 0)
-                    assert(#self.Items ~= 0, "ScaleformUI cannot build a menu with no items")
-                    return
-                end
-            end
-        end
-    end
 
-    local max = self.Pagination:ItemsPerPage()
-    if #self.Items < max then
-        max = #self.Items
-    end
-    self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-    if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-        local missingItems = self.Pagination:GetMissingItems()
-        if missingItems > 0 then
-            self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-            self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-        end
-    end
-
-    self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-
-    for i = 1, max, 1 do
-        if (not self:Visible()) then return end
-        self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-    end
-
-    self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
-    self.Items[self:CurrentSelection()]:Selected(true)
-
-    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM",
-        self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
-
-    local Item = self.Items[self:CurrentSelection()]
-    local _, subtype = Item()
-    if subtype == "UIMenuSeparatorItem" then
-        if (self.Items[self:CurrentSelection()].Jumpable) then
-            self:GoDown()
-        end
-    end
-    ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_MOUSE", self.Settings.MouseControlsEnabled)
-    ScaleformUI.Scaleforms._ui:CallFunction("ENABLE_3D_ANIMATIONS", self.enabled3DAnimations)
-    self:AnimationEnabled(self:AnimationEnabled())
-    self:FadeInMenu()
-    self._isBuilding = false
+    ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_DATA", self._Title, subtitle, self.Position.x, self.Position.y,
+        self.AlternativeTitle, self.TxtDictionary, self.TxtName, self:MaxItemsOnScreen(), #self.Items, self.counterColor,
+        self.descFont.FontName, self.descFont.FontID, self.bannerColor:ToArgb(), false, "", "", "", self.menuAlignment,
+        skipViewInitialization)
 end
 
-function UIMenu:_itemCreation(page, pageIndex, before, overflow)
-    local menuIndex = self.Pagination:GetMenuIndexFromPageIndex(page, pageIndex)
-    if not before then
-        if self.Pagination:GetPageItemsCount(page) < self.Pagination:ItemsPerPage() and self.Pagination:TotalPages() > 1 then
-            if self.scrollingType == MenuScrollingType.ENDLESS then
-                if menuIndex > #self.Items then
-                    menuIndex = menuIndex - #self.Items
-                    self.Pagination:MaxItem(menuIndex)
+function UIMenu:SetWindows(update)
+    if update == nil then update = false end
+    if #self.Windows == 0 then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_WINDOWS_SLOT_DATA_EMPTY")
+        return
+    end
+    local str = "UPDATE_WINDOWS_SLOT_DATA"
+    if not update then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_WINDOWS_SLOT_DATA_EMPTY")
+        str = "SET_WINDOWS_SLOT_DATA"
+    end
+
+    for w_id, window in pairs(self.Windows) do
+        local Type, SubType = window()
+        if SubType == "UIMenuHeritageWindow" then
+            ScaleformUI.Scaleforms._ui:CallFunction(str, w_id - 1, window.id, window.Mom, window.Dad)
+        elseif SubType == "UIMenuDetailsWindow" then
+            ScaleformUI.Scaleforms._ui:CallFunction(str, w_id - 1, window.id, window.DetailBottom,
+                window.DetailMid, window.DetailTop, window.DetailLeft.Txd, window.DetailLeft.Txn,
+                window.DetailLeft.Pos.x, window.DetailLeft.Pos.y, window.DetailLeft.Size.x,
+                window.DetailLeft.Size.y)
+            if window.StatWheelEnabled then
+                for key, value in pairs(window.DetailStats) do
+                    ScaleformUI.Scaleforms._ui:CallFunction("SET_WINDOWS_SLOT_EXTRA_DATA", w_id - 1, key - 1,
+                        value.Percentage, value.HudColor)
                 end
-            elseif self.scrollingType == MenuScrollingType.CLASSIC and overflow then
-                local missingItems = self.Pagination:ItemsPerPage() - self.Pagination:GetPageItemsCount(page)
-                menuIndex = menuIndex - missingItems
-            elseif self.scrollingType == MenuScrollingType.PAGINATED then
-                if menuIndex > #self.Items then return end
             end
         end
     end
+    if not update then
+        ScaleformUI.Scaleforms._ui:CallFunction("SHOW_WINDOWS")
+    end
+end
 
-    local scaleformIndex = self.Pagination:GetScaleformIndex(menuIndex)
+function UIMenu:SendItems()
+    ScaleformUI.Scaleforms._ui:CallFunction("SET_DATA_SLOT_EMPTY")
+    self._visibleItems = 0
+    for k, v in pairs(self.Items) do
+        if (#self.Items < k) then
+            break
+        end
+        self:SendItemToScaleform(k, false)
+        if self._visibleItems < self:MaxItemsOnScreen() then
+            self._visibleItems = self._visibleItems + 1
+        end
+    end
+end
 
-    local item = self.Items[menuIndex]
+function UIMenu:SendSidePanelToScaleform(i, update)
+    if update == nil then update = false end
+    local index = i - self.topEdge
+    if (#self.Items < i or self.Items[i].SidePanel == nil or not self.Items[i].Enabled or index < 0 or index > self:MaxItemsOnScreen()) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_SIDE_PANEL_DATA_SLOT_EMPTY")
+        return
+    end
+
+    local item = self.Items[i]
+
+    if not update then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_SIDE_PANEL_DATA_SLOT_EMPTY")
+    end
+    local str = "UPDATE_SIDE_PANEL_DATA_SLOT"
+    if not update then
+        str = "SET_SIDE_PANEL_DATA_SLOT"
+    end
+
+    if item.SidePanel() == "UIMissionDetailsPanel" then
+        ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, 0,
+            item.SidePanel.PanelSide, item.SidePanel.TitleType, item.SidePanel.Title,
+            item.SidePanel.TitleColor,
+            item.SidePanel.TextureDict, item.SidePanel.TextureName)
+        for key, value in pairs(item.SidePanel.Items) do
+            ScaleformUI.Scaleforms._ui:CallFunction("SET_SIDE_PANEL_SLOT", index - 1,
+                value.Type, value.TextLeft, value.TextRight, value.Icon, value.IconColor, value.Tick,
+                value._labelFont.FontName, value._labelFont.FontID,
+                value._rightLabelFont.FontName, value._rightLabelFont.FontID)
+        end
+    elseif item.SidePanel() == "UIVehicleColorPickerPanel" then
+        ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, 1,
+            item.SidePanel.PanelSide, item.SidePanel.TitleType, item.SidePanel.Title,
+            item.SidePanel.TitleColor)
+    end
+    if not update then
+        ScaleformUI.Scaleforms._ui:CallFunction("SHOW_SIDE_PANEL")
+    end
+end
+
+function UIMenu:SendPanelsToItemScaleform(i, update)
+    if update == nil then update = false end
+    local index = i - self.topEdge
+
+    if (#self.Items < i or self.Items[i].Panels.Count == 0 or not self.Items[i].Enabled or index < 0 or index > self:MaxItemsOnScreen()) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_PANEL_DATA_SLOT_EMPTY")
+        return
+    end
+
+    local item = self.Items[i]
+
+    local str = "UPDATE_PANEL_DATA_SLOT"
+    if (not update) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_PANEL_DATA_SLOT_EMPTY")
+        str = "SET_PANEL_DATA_SLOT"
+    end
+    for pan, panel in pairs(item.Panels) do
+        local pType, pSubType = panel()
+        if pSubType == "UIMenuColorPanel" then
+            if panel.CustomColors ~= nil then
+                local colors = {}
+                for l, m in pairs(panel.CustomColors) do
+                    table.insert(colors, m:ToArgb())
+                end
+                ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 0, panel.Title,
+                    panel.ColorPanelColorType, panel.value, table.concat(colors, ","))
+            else
+                ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 0, panel.Title,
+                    panel.ColorPanelColorType, panel.value)
+            end
+        elseif pSubType == "UIMenuPercentagePanel" then
+            ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 1, panel.Title, panel.Min,
+                panel.Max, panel._percentage)
+        elseif pSubType == "UIMenuGridPanel" then
+            ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 2, panel.TopLabel,
+                panel.RightLabel, panel.LeftLabel, panel.BottomLabel, panel._CirclePosition.x,
+                panel._CirclePosition.y, true, panel.GridType)
+        elseif pSubType == "UIMenuStatisticsPanel" then
+            local arr = {}
+            for k, v in pairs(panel.Items) do
+                table.insert(arr, v['name']..":"..v['value'])
+            end
+            ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 3, table.concat(arr, ","))
+        elseif pSubType == "UIMenuVehicleColourPickerPanel" then
+            ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 4)
+        end
+    end
+    if (not update) then
+        ScaleformUI.Scaleforms._ui:CallFunction("SHOW_PANELS")
+    end
+end
+
+function UIMenu:SendItemToScaleform(i, update, newItem, isSlot)
+    if update == nil then update = false end
+    if newItem == nil then newItem = false end
+    if isSlot == nil then isSlot = false end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then
+        str = "UPDATE_DATA_SLOT"
+    end
+    if newItem then
+        str = "SET_DATA_SLOT_SPLICE"
+    end
+    if isSlot then
+        str = "ADD_SLOT"
+    end
     local Type, SubType = item()
-    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, "ADD_ITEM")
-    PushScaleformMovieFunctionParameterBool(before)
-    PushScaleformMovieFunctionParameterInt(item.ItemId)
-    PushScaleformMovieFunctionParameterInt(menuIndex)
+    local it = item
     if SubType ~= "UIMenuItem" then
-        PushScaleformMovieMethodParameterString(item.Base._formatLeftLabel)
+        it = item.Base
+    end
+
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, str)
+    PushScaleformMovieFunctionParameterInt(i - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(item.ItemId)
+
+    if item.ItemId == 1 then
+        local lbl = item:createListString()
+        PushScaleformMovieMethodParameterString(lbl)
+    elseif item.ItemId == 2 then
+        PushScaleformMovieFunctionParameterBool(item:Checked())
+    elseif item.ItemId == 3 or item.ItemId == 4 or item.ItemId == 5 then
+        PushScaleformMovieFunctionParameterInt(item:Index())
     else
-        PushScaleformMovieMethodParameterString(item._formatLeftLabel)
+        PushScaleformMovieFunctionParameterInt(0)
     end
     PushScaleformMovieFunctionParameterBool(item:Enabled())
+    PushScaleformMovieMethodParameterString(it._formatLeftLabel)
     PushScaleformMovieFunctionParameterBool(item:BlinkDescription())
-
-    if SubType == "UIMenuDynamicListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
-        local str = item:createListString()
-        PushScaleformMovieMethodParameterString(str)
-        PushScaleformMovieFunctionParameterInt(0)
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
-    elseif SubType == "UIMenuListItem" then
-        AddTextEntry("listitem_"..menuIndex.."_list", item:createListString())
-        BeginTextCommandScaleformString("listitem_"..menuIndex.."_list")
-        EndTextCommandScaleformString()
-        PushScaleformMovieFunctionParameterInt(item:Index() - 1)
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
+    if SubType == "UIMenuDynamicListItem" or SubType == "UIMenuListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
+        PushScaleformMovieMethodParameterString(it._rightLabelFont.FontName)
     elseif SubType == "UIMenuCheckboxItem" then
         PushScaleformMovieFunctionParameterInt(item.CheckBoxStyle)
-        PushScaleformMovieFunctionParameterBool(item._Checked)
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
     elseif SubType == "UIMenuSliderItem" then
         PushScaleformMovieFunctionParameterInt(item._Max)
         PushScaleformMovieFunctionParameterInt(item._Multiplier)
-        PushScaleformMovieFunctionParameterInt(item:Index())
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.SliderColor:ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
         PushScaleformMovieFunctionParameterBool(item._heritage)
-        EndScaleformMovieMethod()
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
     elseif SubType == "UIMenuProgressItem" then
         PushScaleformMovieFunctionParameterInt(item._Max)
         PushScaleformMovieFunctionParameterInt(item._Multiplier)
-        PushScaleformMovieFunctionParameterInt(item:Index())
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.SliderColor:ToArgb())
-        EndScaleformMovieMethod()
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
     elseif SubType == "UIMenuStatsItem" then
-        PushScaleformMovieFunctionParameterInt(item:Index())
         PushScaleformMovieFunctionParameterInt(item._Type)
-        PushScaleformMovieFunctionParameterInt(item._Color)
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
     elseif SubType == "UIMenuSeparatorItem" then
         PushScaleformMovieFunctionParameterBool(item.Jumpable)
-        PushScaleformMovieFunctionParameterInt(item.Base._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item.Base._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
     else
-        PushScaleformMovieFunctionParameterInt(item._mainColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item._highlightColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item._textColor:ToArgb())
-        PushScaleformMovieFunctionParameterInt(item._highlightedTextColor:ToArgb())
-        EndScaleformMovieMethod()
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_LABEL", scaleformIndex, item._formatRightLabel)
-        if item._rightBadge ~= BadgeStyle.NONE then
-            if item._rightBadge == -1 then
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_RIGHT_BADGE", scaleformIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_RIGHT_BADGE", scaleformIndex, item._rightBadge)
-            end
-        end
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieMethodParameterString(it._formatRightLabel)
+        PushScaleformMovieFunctionParameterInt(it._leftBadge)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
+        PushScaleformMovieFunctionParameterInt(it._rightBadge)
+        PushScaleformMovieMethodParameterString(it.customRightIcon.TXD)
+        PushScaleformMovieMethodParameterString(it.customRightIcon.TXN)
+        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
+        PushScaleformMovieMethodParameterString(it._rightLabelFont.FontName)
     end
-
-    if SubType ~= "UIMenuItem" then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABEL_FONT", scaleformIndex,
-            item.Base._labelFont.FontName, item.Base._labelFont.FontID)
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_RIGHT_LABEL_FONT", scaleformIndex,
-            item.Base._rightLabelFont.FontName, item.Base._rightLabelFont.FontID)
-        if item.Base._leftBadge ~= BadgeStyle.NONE then
-            if item.Base._leftBadge == -1 then
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
-            end
-        end
-    else
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName,
-            item._labelFont.FontID)
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_ITEM_RIGHT_LABEL_FONT", scaleformIndex,
-            item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-        if item._leftBadge ~= BadgeStyle.NONE then
-            if item._leftBadge == -1 then
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
-            else
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_LEFT_BADGE", scaleformIndex, item._leftBadge)
-            end
-        end
-    end
-    if item.SidePanel ~= nil then
-        if item.SidePanel() == "UIMissionDetailsPanel" then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM", scaleformIndex, 0,
-                item.SidePanel.PanelSide, item.SidePanel.TitleType, item.SidePanel.Title,
-                item.SidePanel.TitleColor,
-                item.SidePanel.TextureDict, item.SidePanel.TextureName)
-            for key, value in pairs(item.SidePanel.Items) do
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_MISSION_DETAILS_DESC_ITEM", scaleformIndex,
-                    value.Type, value.TextLeft, value.TextRight, value.Icon, value.IconColor, value.Tick,
-                    value._labelFont.FontName, value._labelFont.FontID,
-                    value._rightLabelFont.FontName, value._rightLabelFont.FontID)
-            end
-        elseif item.SidePanel() == "UIVehicleColorPickerPanel" then
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_SIDE_PANEL_TO_ITEM", scaleformIndex, 1,
-                item.SidePanel.PanelSide, item.SidePanel.TitleType, item.SidePanel.Title,
-                item.SidePanel.TitleColor)
-        end
-    end
-    if #item.Panels > 0 then
-        for pan, panel in pairs(item.Panels) do
-            local pType, pSubType = panel()
-            if pSubType == "UIMenuColorPanel" then
-                if panel.CustomColors ~= nil then
-                    local colors = {}
-                    for l, m in pairs(panel.CustomColors) do
-                        table.insert(colors, m:ToArgb())
-                    end
-                    ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 0, panel.Title,
-                        panel.ColorPanelColorType, panel.value, table.concat(colors, ","))
-                else
-                    ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 0, panel.Title,
-                        panel.ColorPanelColorType, panel.value)
-                end
-            elseif pSubType == "UIMenuPercentagePanel" then
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 1, panel.Title, panel.Min,
-                    panel.Max, panel._percentage)
-            elseif pSubType == "UIMenuGridPanel" then
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 2, panel.TopLabel,
-                    panel.RightLabel, panel.LeftLabel, panel.BottomLabel, panel._CirclePosition.x,
-                    panel._CirclePosition.y, true, panel.GridType)
-            elseif pSubType == "UIMenuStatisticsPanel" then
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 3)
-                if #panel.Items then
-                    for key, stat in pairs(panel.Items) do
-                        ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATISTIC_TO_PANEL", scaleformIndex, pan - 1, stat['name'], stat['value'])
-                    end
-                end
-            elseif pSubType == "UIMenuVehicleColourPickerPanel" then
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_PANEL", scaleformIndex, 4)
-            end
-        end
-    end
+    EndScaleformMovieMethod()
 end
 
 function UIMenu:FilterMenuItems(predicate, fail)
     assert(not self._itemless, "ScaleformUI - You can't compare or sort an itemless menu")
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem():Selected(false)
     if self._unfilteredMenuItems == nil or #self._unfilteredMenuItems == 0 then
         self._unfilteredMenuItems = self.Items
+        self._unfilteredSelection = self._currentSelection
+        self._unfilteredTopEdge = self.topEdge
     end
     self:Clear()
     for i, item in ipairs(self._unfilteredMenuItems) do
@@ -16327,37 +15909,47 @@ function UIMenu:FilterMenuItems(predicate, fail)
     if #self.Items == 0 then
         self:Clear()
         self.Items = self._unfilteredMenuItems
-        self.Pagination:TotalItems(#self.Items)
-        self:BuildUpMenuAsync(true)
+        self:CurrentSelection(self._unfilteredSelection)
+        self.topEdge = self._unfilteredTopEdge
+        self:SendItems()
+        self:RefreshMenu()
         fail()
         return
     end
-    self.Pagination:TotalItems(#self.Items)
-    self:BuildUpMenuAsync(true)
+    self:CurrentSelection(1)
+    self.topEdge = 1
+    self:SendItems()
+    self:RefreshMenu()
 end
 
 function UIMenu:SortMenuItems(compare)
     assert(not self._itemless, "ScaleformUI - You can't compare or sort an itemless menu")
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem():Selected(false)
     if self._unfilteredMenuItems == nil or #self._unfilteredMenuItems == 0 then
         self._unfilteredMenuItems = self.Items
+        self._unfilteredSelection = self._currentSelection
+        self._unfilteredTopEdge = self.topEdge
     end
     self:Clear()
     local list = self._unfilteredMenuItems
     table.sort(list, compare)
     self.Items = list
-    self.Pagination:TotalItems(#self.Items)
-    self:BuildUpMenuAsync(true)
+    self:CurrentSelection(1)
+    self.topEdge = 1
+    self:SendItems()
+    self:RefreshMenu()
 end
 
 function UIMenu:ResetFilter()
     assert(not self._itemless, "ScaleformUI - You can't compare or sort an itemless menu")
     if self._unfilteredMenuItems ~= nil and #self._unfilteredMenuItems > 0 then
-        self.Items[self:CurrentSelection()]:Selected(false)
+        self:CurrentItem():Selected(false)
         self:Clear()
         self.Items = self._unfilteredMenuItems
-        self.Pagination:TotalItems(#self.Items)
-        self:BuildUpMenuAsync(true)
+        self:CurrentSelection(self._unfilteredSelection)
+        self.topEdge = self._unfilteredTopEdge
+        self:SendItems()
+        self:RefreshMenu()
     end
 end
 
@@ -16372,7 +15964,7 @@ function UIMenu:ProcessControl()
         return
     end
 
-    if UpdateOnscreenKeyboard() == 0 or IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing() or BreadcrumbsHandler.SwitchInProgress or self.isFading then return end
+    if UpdateOnscreenKeyboard() == 0 or IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing() or BreadcrumbsHandler.SwitchInProgress then return end
 
     if self.Controls.Back.Enabled then
         if IsDisabledControlJustReleased(0, 177) or IsDisabledControlJustReleased(1, 177) or IsDisabledControlJustReleased(2, 177) or IsDisabledControlJustReleased(0, 199) or IsDisabledControlJustReleased(1, 199) or IsDisabledControlJustReleased(2, 199) then
@@ -16385,6 +15977,10 @@ function UIMenu:ProcessControl()
     end
 
     if #self.Items == 0 or self._isBuilding then return end
+
+    if (IsDisabledControlJustPressed(0, 37)) then
+        self.Items[self:CurrentSelection()].OnTabPressed(this);
+    end
 
     if self.Controls.Up.Enabled then
         if IsDisabledControlJustPressed(0, 172) or IsDisabledControlJustPressed(1, 172) or IsDisabledControlJustPressed(2, 172) or (self.Settings.MouseWheelEnabled and (IsDisabledControlJustPressed(0, 241) or IsDisabledControlJustPressed(1, 241) or IsDisabledControlJustPressed(2, 241) or IsDisabledControlJustPressed(2, 241))) then
@@ -16462,32 +16058,32 @@ function UIMenu:ProcessControl()
         end
     end
 
-    if IsDisabledControlJustPressed(0, 10) then
-        local index = self:CurrentSelection() - self.Pagination:ItemsPerPage()
-        if index < 0 then
-            local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
-            local newPage = self.Pagination:TotalPages()
-            index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pageIndex)
-            local menuMaxItem = #self.Items
-            if index > menuMaxItem then
-                index = menuMaxItem
-            end
-        end
-        self:CurrentSelection(index)
-        self.OnIndexChange(self, self:CurrentSelection())
-    end
-    if IsDisabledControlJustPressed(0, 11) then
-        local index = self:CurrentSelection() + self.Pagination:ItemsPerPage()
-        if index >= #self.Items and self.Pagination:CurrentPage() < self.Pagination:TotalPages() then
-            index = #self.Items
-        elseif index >= #self.Items and self.Pagination:CurrentPage() == self.Pagination:TotalPages() then
-            local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
-            local newPage = 0
-            index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pagIndex)
-        end
-        self:CurrentSelection(index)
-        self.OnIndexChange(self, self:CurrentSelection())
-    end
+    -- if IsDisabledControlJustPressed(0, 10) then
+    --     local index = self:CurrentSelection() - self.Pagination:ItemsPerPage()
+    --     if index < 0 then
+    --         local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
+    --         local newPage = self.Pagination:TotalPages()
+    --         index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pageIndex)
+    --         local menuMaxItem = #self.Items
+    --         if index > menuMaxItem then
+    --             index = menuMaxItem
+    --         end
+    --     end
+    --     self:CurrentSelection(index)
+    --     self.OnIndexChange(self, self:CurrentSelection())
+    -- end
+    -- if IsDisabledControlJustPressed(0, 11) then
+    --     local index = self:CurrentSelection() + self.Pagination:ItemsPerPage()
+    --     if index >= #self.Items and self.Pagination:CurrentPage() < self.Pagination:TotalPages() then
+    --         index = #self.Items
+    --     elseif index >= #self.Items and self.Pagination:CurrentPage() == self.Pagination:TotalPages() then
+    --         local pagIndex = self.Pagination:GetPageIndexFromMenuIndex(self:CurrentSelection())
+    --         local newPage = 0
+    --         index = self.Pagination:GetMenuIndexFromPageIndex(newPage, pagIndex)
+    --     end
+    --     self:CurrentSelection(index)
+    --     self.OnIndexChange(self, self:CurrentSelection())
+    -- end
 
     if self.Controls.Select.Enabled and ((IsDisabledControlJustPressed(0, 201) or IsDisabledControlJustPressed(1, 201) or IsDisabledControlJustPressed(2, 201)) or (self.leftClickEnabled and IsDisabledControlJustPressed(0, 24))) then
         Citizen.CreateThread(function()
@@ -16519,84 +16115,62 @@ function UIMenu:ButtonDelay()
 end
 
 function UIMenu:CurrentItem()
+    if self:CurrentSelection() > #self.Items then
+        self:CurrentSelection(1)
+        self.topEdge = 1
+    end
     return self.Items[self:CurrentSelection()]
 end
 
 ---GoUp
 function UIMenu:GoUp()
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem():Selected(false)
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == 1 and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoUp() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(),
-                    true, false)
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                self._isBuilding = true
-                self:FadeOutItems()
-                self.isFading = true
-                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if (not self:Visible()) then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-                self._isBuilding = false
-            end
+        self._currentSelection = self._currentSelection - 1
+        if self._currentSelection < self.topEdge then
+            self.topEdge = self.topEdge - 1
         end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
+        if self._currentSelection < 1 then
+            self._currentSelection = #self.Items
+            self.topEdge = #self.Items - self._visibleItems + 1
+        end
+    until self:CurrentItem().ItemId ~= 6 or (self:CurrentItem().ItemId == 6 and not self:CurrentItem().Jumpable)
+    ScaleformUI.Scaleforms._ui:CallFunction("SET_INPUT_EVENT", 8)
     PlaySoundFrontend(-1, self.Settings.Audio.UpDown, self.Settings.Audio.Library, true)
-    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM", self.Pagination:ScaleformIndex())
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
-    self.Items[self:CurrentSelection()]:Selected(true)
-    if self.isFading then
-        self:FadeInItems()
-    end
+    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description())
+    self:SendPanelsToItemScaleform(self._currentSelection)
+    self:SendSidePanelToScaleform(self._currentSelection)
+    self:CurrentItem():Selected(true)
     self.OnIndexChange(self, self:CurrentSelection())
 end
 
 ---GoDown
 function UIMenu:GoDown()
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem():Selected(false)
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == #self.Items and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoDown() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(),
-                    false, overflow)
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                self._isBuilding = true
-                self:FadeOutItems()
-                self.isFading = true
-                ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ITEMS")
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if (not self:Visible()) then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-                self._isBuilding = false
-            end
+        self._currentSelection = self._currentSelection + 1
+        if self._currentSelection >= self.topEdge + self._visibleItems then
+            self.topEdge = self.topEdge + 1
         end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
+        if self._currentSelection > #self.Items then
+            self._currentSelection = 1
+            self.topEdge = 1
+        end
+    until self:CurrentItem().ItemId ~= 6 or (self:CurrentItem().ItemId == 6 and not self:CurrentItem().Jumpable)
+    ScaleformUI.Scaleforms._ui:CallFunction("SET_INPUT_EVENT", 9)
     PlaySoundFrontend(-1, self.Settings.Audio.UpDown, self.Settings.Audio.Library, true)
-    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description());
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_ITEM", self.Pagination:ScaleformIndex())
-    ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
-    self.Items[self:CurrentSelection()]:Selected(true)
-    if self.isFading then
-        self:FadeInItems()
-    end
+    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description())
+    self:SendPanelsToItemScaleform(self._currentSelection)
+    self:SendSidePanelToScaleform(self._currentSelection)
+    self:CurrentItem():Selected(true)
     self.OnIndexChange(self, self:CurrentSelection())
 end
 
 ---GoLeft
 function UIMenu:GoLeft()
-    local Item = self.Items[self:CurrentSelection()]
+    local Item = self:CurrentItem()
     local type, subtype = Item()
     if subtype ~= "UIMenuListItem" and subtype ~= "UIMenuDynamicListItem" and subtype ~= "UIMenuSliderItem" and subtype ~= "UIMenuProgressItem" and subtype ~= "UIMenuStatsItem" then
         return
@@ -16606,38 +16180,32 @@ function UIMenu:GoLeft()
         PlaySoundFrontend(-1, self.Settings.Audio.Error, self.Settings.Audio.Library, true)
         return
     end
-
-    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 10)
-
     if subtype == "UIMenuListItem" then
-        Item:Index(res + 1)
+        Item:Index(Item:Index() - 1)
         self.OnListChange(self, Item, Item._Index)
         Item.OnListChanged(self, Item, Item._Index)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif (subtype == "UIMenuDynamicListItem") then
         local result = tostring(Item.Callback(Item, "left"))
         Item:CurrentListItem(result)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuSliderItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() - 1)
         self.OnSliderChange(self, Item, Item:Index())
         Item.OnSliderChanged(self, Item, Item._Index)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuProgressItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() - 1)
         self.OnProgressChange(self, Item, Item:Index())
         Item.OnProgressChanged(self, Item, Item:Index())
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuStatsItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() - 1)
         self.OnStatsChanged(self, Item, Item:Index())
         Item.OnStatsChanged(self, Item, Item._Index)
     end
+    PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
 end
 
 ---GoRight
 function UIMenu:GoRight()
-    local Item = self.Items[self:CurrentSelection()]
+    local Item = self:CurrentItem()
     local type, subtype = Item()
     if subtype ~= "UIMenuListItem" and subtype ~= "UIMenuDynamicListItem" and subtype ~= "UIMenuSliderItem" and subtype ~= "UIMenuProgressItem" and subtype ~= "UIMenuStatsItem" then
         return
@@ -16646,39 +16214,33 @@ function UIMenu:GoRight()
         PlaySoundFrontend(-1, self.Settings.Audio.Error, self.Settings.Audio.Library, true)
         return
     end
-
-    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 11)
-
     if subtype == "UIMenuListItem" then
-        Item:Index(res + 1)
+        Item:Index(Item:Index() + 1)
         self.OnListChange(self, Item, Item._Index)
         Item.OnListChanged(self, Item, Item._Index)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif (subtype == "UIMenuDynamicListItem") then
         local result = tostring(Item.Callback(Item, "right"))
         Item:CurrentListItem(result)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuSliderItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() + 1)
         self.OnSliderChange(self, Item, Item:Index())
         Item.OnSliderChanged(self, Item, Item._Index)
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuProgressItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() + 1)
         self.OnProgressChange(self, Item, Item:Index())
         Item.OnProgressChanged(self, Item, Item:Index())
-        PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
     elseif subtype == "UIMenuStatsItem" then
-        Item:Index(res)
+        Item:Index(Item:Index() + 1)
         self.OnStatsChanged(self, Item, Item:Index())
         Item.OnStatsChanged(self, Item, Item._Index)
     end
+    PlaySoundFrontend(-1, self.Settings.Audio.LeftRight, self.Settings.Audio.Library, true)
 end
 
 ---SelectItem
 ---@param play boolean|nil
 function UIMenu:SelectItem(play)
-    if not self.Items[self:CurrentSelection()]:Enabled() then
+    if not self:CurrentItem():Enabled() then
         PlaySoundFrontend(-1, self.Settings.Audio.Error, self.Settings.Audio.Library, true)
         return
     end
@@ -16686,36 +16248,37 @@ function UIMenu:SelectItem(play)
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
     end
 
-    local Item = self.Items[self:CurrentSelection()]
+    local Item = self:CurrentItem()
     local type, subtype = Item()
     if subtype == "UIMenuCheckboxItem" then
         Item:Checked(not Item:Checked())
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnCheckboxChange(self, Item, Item:Checked())
         Item.OnCheckboxChanged(self, Item, Item:Checked())
+        self.OnCheckboxChange(self, Item, Item:Checked())
     elseif subtype == "UIMenuListItem" then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnListSelect(self, Item, Item._Index)
         Item.OnListSelected(self, Item, Item._Index)
+        self.OnListSelect(self, Item, Item._Index)
     elseif subtype == "UIMenuDynamicListItem" then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnListSelect(self, Item, Item._currentItem)
         Item.OnListSelected(self, Item, Item._currentItem)
+        self.OnListSelect(self, Item, Item._currentItem)
     elseif subtype == "UIMenuSliderItem" then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnSliderSelect(self, Item, Item._Index)
         Item.OnSliderSelected(self, Item, Item._Index)
+        self.OnSliderSelect(self, Item, Item._Index)
     elseif subtype == "UIMenuProgressItem" then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnProgressSelect(self, Item, Item._Index)
         Item.OnProgressSelected(self, Item, Item._Index)
+        self.OnProgressSelect(self, Item, Item._Index)
     elseif subtype == "UIMenuStatsItem" then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        self.OnStatsSelect(self, Item, Item._Index)
         Item.OnStatsSelected(self, Item, Item._Index)
-    else
-        self.OnItemSelect(self, Item, self:CurrentSelection())
+        self.OnStatsSelect(self, Item, Item._Index)
+    end
+    if subtype ~= "UIMenuCheckboxItem" then
         Item.Activated(self, Item)
+        self.OnItemSelect(self, Item, self:CurrentSelection())
     end
 end
 
@@ -16742,12 +16305,7 @@ function UIMenu:GoBack(boolean, bypass)
             BreadcrumbsHandler:Backwards()
             self:Visible(false)
             if prevMenu ~= nil then
-                if prevMenu.menu() == "UIMenu" then
-                    prevMenu.menu.differentBanner = self.TxtDictionary ~= prevMenu.menu.TxtDictionary and self.TxtName ~= prevMenu.menu.TxtName;
-                    prevMenu.menu:Visible(true)
-                else
-                    prevMenu.menu:Visible(true)
-                end
+                prevMenu.menu:Visible(true)
             end
             BreadcrumbsHandler.SwitchInProgress = false
         end
@@ -16801,10 +16359,11 @@ function UIMenu:Draw()
         local dir = GetFinalRenderedCamRot(2)
         local fvar = Wrap(dir.z, 0, 360)
         if self.fSavedGlareDirection == 0 or (self.fSavedGlareDirection - fvar) > fRotationTolerance or (self.fSavedGlareDirection - fvar) < -fRotationTolerance then
-            self.fSavedGlareDirection = fvar;
+            self.fSavedGlareDirection = fvar
             self._menuGlare:CallFunction("SET_DATA_SLOT", self.fSavedGlareDirection)
         end
-        DrawScaleformMovie(self._menuGlare.handle, self._glarePos.x, self._glarePos.y, self._glareSize.w, self._glareSize.h, 255, 255, 255, 255, 0)
+        DrawScaleformMovie(self._menuGlare.handle, self._glarePos.x, self._glarePos.y, self._glareSize.w,
+            self._glareSize.h, 255, 255, 255, 255, 0)
     end
 
     if not IsUsingKeyboard(2) then
@@ -16832,14 +16391,18 @@ function UIMenu:CallExtensionMethod()
 end
 
 function UIMenu:mouseCheck()
-    self._mouseOnMenu = self:MouseControlsEnabled() and ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("IS_MOUSE_ON_MENU");
+    self._mouseOnMenu = self:MouseControlsEnabled() and
+        ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnBool("IS_MOUSE_ON_MENU")
 end
 
 function UIMenu:IsMouseOverTheMenu()
     return self._mouseOnMenu
 end
 
+local pressedInsidePanel = false
 local cursor_pressed = false
+local pressedInsideItem = false
+local cursorPressedItem = false
 local menuSound = -1
 local success, event_type, context, item_id
 
@@ -16872,8 +16435,14 @@ function UIMenu:ProcessMouse()
 
     if success == 1 then
         if event_type == 5 then --ON CLICK
-            if context == 0 then -- normal menu items
-                local item = self.Items[item_id]
+            if context == -1 then
+                if itemId == 2 then
+                    self:GoUp()
+                elseif itemId == 2 then
+                    self:GoDown()
+                end
+            elseif context == 0 then -- normal menu items
+                local item = self.Items[item_id + 1]
                 if (item == nil) then return end
                 if item:Selected() then
                     if item.ItemId == 0 or item.ItemId == 2 then
@@ -16882,15 +16451,17 @@ function UIMenu:ProcessMouse()
                         Citizen.CreateThread(function()
                             local value = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_ITEM", item_id) --[[@as number]]
 
-                            local curr_select_item = self.Items[self:CurrentSelection()]
+                            local curr_select_item = self:CurrentItem()
                             local item_type_curr, item_subtype_curr = curr_select_item()
                             if item.ItemId == 1 then
-                                if curr_select_item:Index() ~= value then
-                                    curr_select_item:Index(value)
-                                    self.OnListChange(self, curr_select_item, curr_select_item:Index())
-                                    curr_select_item.OnListChanged(self, curr_select_item, curr_select_item:Index())
-                                else
-                                    self:SelectItem(false)
+                                if item_subtype_curr == "UIMenuListItem" then
+                                    if curr_select_item:Index() ~= value then
+                                        curr_select_item:Index(value)
+                                        self.OnListChange(self, curr_select_item, curr_select_item:Index())
+                                        curr_select_item.OnListChanged(self, curr_select_item, curr_select_item:Index())
+                                    else
+                                        self:SelectItem(false)
+                                    end
                                 end
                             elseif item.ItemId == 3 then
                                 if (value ~= curr_select_item:Index()) then
@@ -16917,80 +16488,129 @@ function UIMenu:ProcessMouse()
                     PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
                     return
                 end
-                self:CurrentSelection(item_id)
-                ScaleformUI.Scaleforms._ui:CallFunction("SET_COUNTER_QTTY", self:CurrentSelection(), #self.Items)
+                self:CurrentSelection(item_id + 1)
                 PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+            elseif context == 1 then
+                local item = self.Items[item_id + 1]
+                if (item == nil) then return end
+                if (item.ItemId == 6 and item.Jumpable == true) or not item:Enabled() then
+                    PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+                    return
+                end
+                if item:Selected() then
+                    if item.ItemId == 1 or item.ItemId == 3 or item.ItemId == 4 then
+                        cursorPressedItem = true
+                        pressedInsideItem = true
+                    end
+                end
+            elseif context == 2 then
+                local item = self.Items[item_id + 1]
+                if (item == nil) then return end
+                if (item.ItemId == 6 and item.Jumpable == true) or not item:Enabled() then
+                    PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+                    return
+                end
+                if item:Selected() then
+                    if item.ItemId == 1 or item.ItemId == 3 or item.ItemId == 4 then
+                        self:GoLeft()
+                    end
+                end
+            elseif context == 3 then
+                local item = self.Items[item_id + 1]
+                if (item == nil) then return end
+                if (item.ItemId == 6 and item.Jumpable == true) or not item:Enabled() then
+                    PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+                    return
+                end
+                if item:Selected() then
+                    if item.ItemId == 1 or item.ItemId == 3 or item.ItemId == 4 then
+                        self:GoRight()
+                    end
+                end
             elseif context == 10 then -- panels (10 => context 1, panel_type 0) // ColorPanel
                 Citizen.CreateThread(function()
-                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("SELECT_PANEL", self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex())) --[[@as number]]
-
+                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("SELECT_PANEL",
+                        self._currentSelection - 1) --[[@as number]]
                     local split = Split(res, ",")
-                    local panel = self.Items[self:CurrentSelection()].Panels[tonumber(split[1]) + 1]
+                    local panel = self:CurrentItem().Panels[tonumber(split[1]) + 1]
                     panel.value = tonumber(split[2]) + 1
                     self.OnColorPanelChanged(panel.ParentItem, panel, panel:CurrentSelection())
                     panel.OnColorPanelChanged(panel.ParentItem, panel, panel:CurrentSelection())
                 end)
             elseif context == 14 then
                 Citizen.CreateThread(function()
-                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
-                    local picker = self.Items[self:CurrentSelection()].Panels[res]
+                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL",
+                        self:CurrentSelection() - 1)
+                    local picker = self:CurrentItem().Panels[res]
                     if item_id ~= -1 then
-                        local colString = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("GET_PICKER_COLOR", item_id)
+                        local colString = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("GET_PICKER_COLOR",
+                            item_id)
                         local split = Split(colString, ",")
                         picker._value = item_id
                         picker:_pickerSelect(SColor.FromArgb(tonumber(split[1]), tonumber(split[2]), tonumber(split[3])))
                     end
                 end)
             elseif context == 11 then -- panels (11 => context 1, panel_type 1) // PercentagePanel
+                pressedInsidePanel = true
                 cursor_pressed = true
             elseif context == 12 then -- panels (12 => context 1, panel_type 2) // GridPanel
+                pressedInsidePanel = true
                 cursor_pressed = true
-            elseif context == 2 then -- sidepanel
-                local panel = self.Items[self:CurrentSelection()].SidePanel
+            elseif context == 20 then -- sidepanel
+                local panel = self:CurrentItem().SidePanel
                 if item_id ~= -1 then
                     panel.Value = item_id - 1
                     panel.PickerSelect(panel.ParentItem, panel, panel.Value)
                 end
             end
         elseif event_type == 6 then -- ON CLICK RELEASED
+            pressedInsidePanel = false
             cursor_pressed = false
+            pressedInsideItem = false
+            cursorPressedItem = false
         elseif event_type == 7 then -- ON CLICK RELEASED OUTSIDE
+            pressedInsidePanel = false
             cursor_pressed = false
+            pressedInsideItem = false
+            cursorPressedItem = false
             SetMouseCursorSprite(1)
             if (self.mouseReset) then
-                self.mouseReset = false;
+                self.mouseReset = false
             end
         elseif event_type == 8 then -- ON NOT HOVER
             cursor_pressed = false
+            cursorPressedItem = false
             if context == 0 then
-                self.Items[item_id]:Hovered(false)
-            elseif context == 2 then
-                local panel = self.Items[self:CurrentSelection()].SidePanel
+                self.Items[item_id + 1]:Hovered(false)
+            elseif context == 20 then
+                local panel = self:CurrentItem().SidePanel
                 panel:_PickerRollout()
             elseif context == 14 then
-                local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
-                local picker = self.Items[self:CurrentSelection()].Panels[res]
-                picker:_PickerRollout();
+                local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL",
+                    self:CurrentSelection() - 1)
+                local picker = self:CurrentItem().Panels[res]
+                picker:_PickerRollout()
             end
             if not self:IsMouseOverTheMenu() then
                 return
             end
             SetMouseCursorSprite(1)
             if (self.mouseReset) then
-                self.mouseReset = false;
+                self.mouseReset = false
             end
         elseif event_type == 9 then -- ON HOVERED
             if context == 0 then
-                self.Items[item_id]:Hovered(true)
+                self.Items[item_id + 1]:Hovered(true)
             elseif context == 2 then
-                local panel = self.Items[self:CurrentSelection()].SidePanel
+                local panel = self:CurrentItem().SidePanel
                 if item_id ~= -1 then
                     panel:_PickerHovered(item_id, VehicleColors:GetColorById(item_id))
                 end
             elseif context == 14 then
                 if item_id ~= -1 then
-                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL", CurrentSelection);
-                    local picker = self.Items[self:CurrentSelection()].Panels[res]
+                    local res = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_PANEL",
+                        self:CurrentSelection() - 1)
+                    local picker = self:CurrentItem().Panels[res]
                     picker:_PickerHovered(item_id, VehicleColors:GetColorById(item_id))
                 end
             end
@@ -17000,10 +16620,42 @@ function UIMenu:ProcessMouse()
             SetMouseCursorSprite(5)
         elseif event_type == 0 then -- DRAGGED OUTSIDE
             cursor_pressed = false
+            cursorPressedItem = false
         elseif event_type == 1 then -- DRAGGED INSIDE
-            cursor_pressed = true
+            if pressedInsidePanel then
+                cursor_pressed = true
+            end
+            if pressedInsideItem then
+                cursorPressedItem = true
+            end
         end
     end
+
+    if cursorPressedItem == true then
+        if HasSoundFinished(menuSound) then
+            menuSound = GetSoundId()
+            PlaySoundFrontend(menuSound, "CONTINUOUS_SLIDER", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+        end
+        Citizen.CreateThread(function()
+            local value = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_ITEM", item_id) --[[@as number]]
+            local item = self:CurrentItem()
+            if item.ItemId == 3 then
+                item._Index = value
+                item.OnSliderChanged(self, item, value)
+                self.OnSliderChange(self, item, value)
+            elseif item.ItemId == 4 then
+                item._Index = value
+                item.OnProgressChanged(self, item, value)
+                self.OnProgressChange(self, item, value)
+            end
+        end)
+    else
+        if not HasSoundFinished(menuSound) then
+            StopSound(menuSound)
+            ReleaseSoundId(menuSound)
+        end
+    end
+
 
     if cursor_pressed == true then
         if HasSoundFinished(menuSound) then
@@ -17015,7 +16667,7 @@ function UIMenu:ProcessMouse()
             local value = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnString("SET_INPUT_MOUSE_EVENT_CONTINUE") --[[@as number]]
 
             local split = Split(value, ",")
-            local panel = self.Items[self:CurrentSelection()].Panels[tonumber(split[1]) + 1]
+            local panel = self:CurrentItem().Panels[tonumber(split[1]) + 1]
             local panel_type, panel_subtype = panel()
 
             if panel_subtype == "UIMenuGridPanel" then
@@ -17024,7 +16676,7 @@ function UIMenu:ProcessMouse()
                 panel.OnGridPanelChanged(panel.ParentItem, panel, panel._CirclePosition)
             elseif panel_subtype == "UIMenuPercentagePanel" then
                 panel._percentage = tonumber(split[2])
-                self:OnPercentagePanelChanged(panel.ParentItem, panel, panel._percentage)
+                self.OnPercentagePanelChanged(panel.ParentItem, panel, panel._percentage)
                 panel.OnPercentagePanelChange(panel.ParentItem, panel, panel._percentage)
             end
         end)
@@ -17137,32 +16789,22 @@ end
 
 function UIMenu:SetMenuOffset(x, y)
     self.Position = vector2(x, y)
-    local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005;
-    local rightAlign = self.menuAlignment == MenuAlignment.RIGHT
-    local glareX = 0.585
-    local glareW = 1.35
-    if not GetWideScreen() then
-        glareX = 0.45
-        glareW = 1.0
-    end
-
-    local pos1080 = ConvertScaleformCoordsToResolutionCoords(x, y)
-    local screenCoords = ConvertResolutionCoordsToScreenCoords(pos1080.x, pos1080.y)
-    self._glarePos = vector2(screenCoords.x + glareX + safezone, screenCoords.y + 0.45 + safezone)
-    if rightAlign then
-        local w, h = GetActualScreenResolution()
-        screenCoords = ConvertResolutionCoordsToScreenCoords(w - pos1080.x, pos1080.y)
-        glareX = 0.36
-        if not GetWideScreen() then
-            glareX = 0.225
-        end
-        self._glarePos = vector2(screenCoords.x + glareX - safezone, screenCoords.y + 0.45 + safezone)
-    end
-
-    self._glareSize = {w = glareW, h = 1.0}
-
     if self:Visible() then
-        ScaleformUI.Scaleforms._ui:CallFunction("SET_MENU_OFFSET", x, y)
+        local safezone = (1.0 - math.round(GetSafeZoneSize(), 2)) * 100 * 0.005
+        local rightAlign = self.menuAlignment == MenuAlignment.RIGHT
+        local glareX = 0.45 + safezone
+
+        local pos1080 = ConvertScaleformCoordsToResolutionCoords(x, y)
+        local screenCoords = ConvertResolutionCoordsToScreenCoords(pos1080.x, pos1080.y)
+        self._glarePos = vector2(screenCoords.x + glareX, screenCoords.y + 0.45 + safezone)
+        if rightAlign then
+            glareX = 1.225 - safezone
+            local w, h = GetActualScreenResolution()
+            screenCoords = ConvertResolutionCoordsToScreenCoords(1920 - pos1080.x, pos1080.y)
+            self._glarePos = vector2(screenCoords.x - 1 + glareX, screenCoords.y + 0.45 + safezone)
+        end
+        self._glareSize = {w = 1.0, h = 1.0}
+        self:SetMenuData(true)
     end
 end
 
@@ -17184,7 +16826,7 @@ function UIMenuDetailsWindow.New(...)
             DetailBottom = args[3],
             StatWheelEnabled = false,
             DetailLeft = args[4] or {
-                Txd = "",
+                Txd = "statWheel",
                 Txn = "",
                 Pos = vector2(0, 0),
                 Size = vector2(0, 0),
@@ -17226,33 +16868,21 @@ function UIMenuDetailsWindow:UpdateLabels(top, mid, bot, leftDetail)
     self.DetailMid = mid
     self.DetailBottom = bot
     self.DetailLeft = leftDetail or {
-        Txd = "",
+        Txd = "statWheel",
         Txn = "",
         Pos = vector2(0, 0),
         Size = vector2(0, 0),
     }
-
-    if self.ParentMenu ~= nil then
-        local wid = IndexOf(self.ParentMenu.Windows, self) - 1
-        if self.StatWheelEnabled then
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_DETAILS_WINDOW_VALUES", wid, self.DetailBottom,
-                self.DetailMid, self.DetailTop, "statWheel")
-        else
-            ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_DETAILS_WINDOW_VALUES", wid, self.DetailBottom,
-                self.DetailMid, self.DetailTop, self.DetailLeft.Txd, self.DetailLeft.Txn, self.DetailLeft.Pos.x,
-                self.DetailLeft.Pos.y, self.DetailLeft.Size.x, self.DetailLeft.Size.y)
-        end
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        self.ParentMenu:SetWindows(true)
     end
 end
 
 function UIMenuDetailsWindow:AddStatsListToWheel(stats)
     if self.StatWheelEnabled then
         self.DetailStats = stats
-        if self.ParentMenu ~= nil then
-            local wid = IndexOf(self.ParentMenu.Windows, self) - 1
-            for key, value in pairs(self.DetailStats) do
-                ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATS_DETAILS_WINDOW_STATWHEEL", wid, value.Percentage, value.HudColor)
-            end
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            self.ParentMenu:SetWindows(true)
         end
     end
 end
@@ -17260,20 +16890,16 @@ end
 function UIMenuDetailsWindow:AddStatSingleToWheel(stat)
     if self.StatWheelEnabled then
         self.DetailStats[#self.DetailStats + 1] = stat
-        if self.ParentMenu ~= nil then
-            local wid = IndexOf(self.ParentMenu.Windows, self) - 1
-            ScaleformUI.Scaleforms._ui:CallFunction("ADD_STATS_DETAILS_WINDOW_STATWHEEL", wid, stat.Percentage, stat.HudColor)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            self.ParentMenu:SetWindows(true)
         end
     end
 end
 
 function UIMenuDetailsWindow:UpdateStatsToWheel()
     if self.StatWheelEnabled then
-        if self.ParentMenu ~= nil then
-            local wid = IndexOf(self.ParentMenu.Windows, self) - 1
-            for key, value in pairs(self.DetailStats) do
-                ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_STATS_DETAILS_WINDOW_STATWHEEL", wid, key - 1, value.Percentage, value.HudColor)
-            end
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            self.ParentMenu:SetWindows(true)
         end
     end
 end
@@ -17323,8 +16949,9 @@ function UIMenuHeritageWindow:Index(Mom, Dad)
     self.Mom = Mom - 1
     self.Dad = Dad - 1
 
-    local wid = IndexOf(self.ParentMenu.Windows, self) - 1
-    ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_HERITAGE_WINDOW", wid, self.Mom, self.Dad)
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        self.ParentMenu:SetWindows(true)
+    end
 end
 
 --///////////////////////////////////////////////////////////////////--
@@ -18504,16 +18131,24 @@ MinimapOverlay.__call = function()
     return "MinimapOverlay"
 end
 
----@class SColor
----@field private Handle number
----@field private Txd string
----@field private Txn string
----@field private Color SColor
----@field private Position vector2
----@field private Rotation number
----@field private Size table
----@field private Alpha number
----@field private Centered boolean
+---@class MinimapOverlay
+---@field public Handle number
+---@field public Txd string
+---@field public Txn string
+---@field public Color SColor
+---@field public Position vector2
+---@field public Rotation number
+---@field public Visible boolean
+---@field public Size table
+---@field public Alpha number
+---@field public Centered boolean
+---@field public SetOverlayColor fun(self:MinimapOverlay, color:SColor)
+---@field public HideOverlay fun(self:MinimapOverlay, hide:boolean)
+---@field public SetOverlayAlpha fun(self:MinimapOverlay, alpha:number)
+---@field public SetOverlayRotation fun(self:MinimapOverlay, rotation:number)
+---@field public SetOverlayPosition fun(self:MinimapOverlay, position:vector2|vector3)
+---@field public SetOverlaySizeOrScale fun(self:MinimapOverlay, width:number, height:number)
+---@field public RemoveOverlayFromMinimap fun(self:MinimapOverlay)
 
 function MinimapOverlay.New(handle, textureDict, textureName, x, y, rotation, width, height, alpha, centered)
     local _data = {
@@ -18526,25 +18161,111 @@ function MinimapOverlay.New(handle, textureDict, textureName, x, y, rotation, wi
         Size = {width or 0, height or 0},
         Alpha = alpha or 0,
         Centered = centered or false,
+        Visible = true,
+        isArea = false,
+        OnMouseEvent = function(eventType)
+        end
     }
     return setmetatable(_data, MinimapOverlay)
+end
+
+function MinimapOverlay:SetOverlayColor(color)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayColor(self.Handle, color)
+end
+
+function MinimapOverlay:HideOverlay(hide)
+    ScaleformUI.Scaleforms.MinimapOverlays:HideOverlay(self.Handle, hide)
+end
+
+function MinimapOverlay:SetOverlayAlpha(alpha)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayAlpha(self.Handle, alpha)
+end
+
+function MinimapOverlay:SetOverlayPosition(position)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayPosition(self.Handle, position)
+end
+
+function MinimapOverlay:SetOverlaySizeOrScale(width, height)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlaySizeOrScale(self.Handle, width, height)
+end
+
+function MinimapOverlay:RemoveOverlayFromMinimap()
+    ScaleformUI.Scaleforms.MinimapOverlays:RemoveOverlayFromMinimap(self.Handle)
+end
+
+function MinimapOverlay:SetOverlayRotation(rotation)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayRotation(self.Handle, rotation)
 end
 
 --///////////////////////////////////////////////////////////////////--
 MinimapOverlays = setmetatable({
     overlay = 0,
     minimaps = {},
+    minimapHandle = 0,
+    isLoaded = false
 }, MinimapOverlays)
 MinimapOverlays.__index = MinimapOverlays
-MinimapOverlays.__call = function()
-    return "MinimapOverlays"
-end
+MinimapOverlays.__call = function() return "MinimapOverlays" end
+
+---@class MinimapOverlays
+---@field private overlay number
+---@field private minimaps table
+---@field private minimapHandle number
+---@field public isLoaded boolean
+---@field private Load fun(self:MinimapOverlays)
+---@field public AddSizedOverlayToMap fun(self:MinimapOverlays, textureDict:string, textureName:string, x:number, y:number, rotation:number, width:number, height:number, alpha:number, centered:boolean)
+---@field public AddScaledOverlayToMap fun(self:MinimapOverlays, textureDict:string, textureName:string, x:number, y:number, rotation:number, xScale:number, yScale:number, alpha:number, centered:boolean)
+---@field public AddAreaOverlay fun(self:MinimapOverlays, coords:table, outline:boolean, color:SColor)
+---@field public SetOverlayColor fun(self:MinimapOverlays, overlayId:number, color:SColor)
+---@field public HideOverlay fun(self:MinimapOverlays, overlayId:number, hide:boolean)
+---@field public SetOverlayAlpha fun(self:MinimapOverlays, overlayId:number, alpha:number)
+---@field public SetOverlayRotation fun(self:MinimapOverlays, overlayId:number, rotation:number)
+---@field public SetOverlayPosition fun(self:MinimapOverlays, overlayId:number, position:vector2|vector3)
+---@field public SetOverlaySizeOrScale fun(self:MinimapOverlays, overlayId:number, width:number, height:number)
+---@field public RemoveOverlayFromMinimap fun(self:MinimapOverlays, overlayId:number)
+---@field public ClearAll fun(self:MinimapOverlays)
+
 
 function MinimapOverlays:Load()
-    self.overlay = AddMinimapOverlay("files/MINIMAP_LOADER.gfx")
-    while not HasMinimapOverlayLoaded(self.overlay) do Citizen.Wait(0) end
-    SetMinimapOverlayDisplay(self.overlay, 0.0, 0.0, 100.0, 100.0, 100.0)
+    TriggerEvent("ScUI:getMinimapHandle", function(handle)
+        self.minimapHandle = handle
+    end)
+    if self.minimapHandle == 0 then
+        local sc = _Scaleform.RequestWidescreen("minimap")
+        while not HasScaleformMovieLoaded(sc.handle) do
+            Wait(0)
+        end
+        self.minimapHandle = sc.handle
+        SetBigmapActive(true, false)
+        Wait(0)
+        SetBigmapActive(false, false)
+    end
+    -- TODO: ADD CHECKS IN FUNCTIONS TO PREVENT USING WITH AREA OVERLAY (COORDS FOR EXAMPLE)
+    TriggerEvent("ScUI:AddMinimapOverlay", function(handle)
+        self.overlay = handle
+        while not HasMinimapOverlayLoaded(self.overlay) do Citizen.Wait(0) end
+        SetMinimapOverlayDisplay(self.overlay, 0.0, 0.0, 100.0, 100.0, 100.0)
+        self.isLoaded = HasMinimapOverlayLoaded(self.overlay) and HasScaleformMovieLoaded(self.minimapHandle)
+    end)
 end
+
+Citizen.CreateThread(function()
+    while true do
+        Wait(0)
+        if ScaleformUI.Scaleforms.MinimapOverlays.isLoaded then
+            local success, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms.MinimapOverlays.minimapHandle)
+            if success then
+                if context == 1000 then
+                    if ScaleformUI.Scaleforms.MinimapOverlays.minimaps[item_id + 1] ~= nil then
+                        ScaleformUI.Scaleforms.MinimapOverlays.minimaps[item_id + 1].OnMouseEvent(event_type)
+                    end
+                end
+            end
+        else
+            ScaleformUI.Scaleforms.MinimapOverlays:Load()
+        end
+    end
+end)
 
 ---Adds a new overlay with variable size to the minimap
 ---@param textureDict string the texture dict
@@ -18584,7 +18305,8 @@ function MinimapOverlays:AddSizedOverlayToMap(textureDict, textureName, x, y, ro
 
     SetStreamedTextureDictAsNoLongerNeeded(textureDict)
 
-    local overlay = MinimapOverlay.New(#self.minimaps + 1, textureDict, textureName, x, y, rotation, width, height, alpha, centered)
+    local overlay = MinimapOverlay.New(#self.minimaps + 1, textureDict, textureName, x, y, rotation, width, height, alpha,
+        centered)
     table.insert(self.minimaps, overlay)
     return overlay
 end
@@ -18629,7 +18351,32 @@ function MinimapOverlays:AddScaledOverlayToMap(textureDict, textureName, x, y, r
 
     SetStreamedTextureDictAsNoLongerNeeded(textureDict)
 
-    local overlay = MinimapOverlay.New(#self.minimaps + 1, textureDict, textureName, x, y, rotation, xScale, yScale, alpha, centered)
+    local overlay = MinimapOverlay.New(#self.minimaps + 1, textureDict, textureName, x, y, rotation, xScale, yScale,
+        alpha, centered)
+    table.insert(self.minimaps, overlay)
+    return overlay
+end
+
+function MinimapOverlays:AddAreaOverlay(coords, outline, color)
+    if self.overlay == 0 then self:Load() end
+    local points = {}
+    for _, coord in ipairs(coords) do
+        table.insert(points, string.format("%.2f:%.2f", coord.x, coord.y))
+    end
+    local tobeparsed = table.concat(points, ",")
+
+    CallMinimapScaleformFunction(self.overlay, "ADD_AREA_OVERLAY")
+    ScaleformMovieMethodAddParamTextureNameString(tobeparsed)
+    ScaleformMovieMethodAddParamBool(outline)
+    ScaleformMovieMethodAddParamInt(color.R)
+    ScaleformMovieMethodAddParamInt(color.G)
+    ScaleformMovieMethodAddParamInt(color.B)
+    ScaleformMovieMethodAddParamInt(color.A)
+    EndScaleformMovieMethod()
+
+    local overlay = MinimapOverlay.New(#self.minimaps + 1, "", "", 0, 0, 0, 0, 0, color.A, true)
+    overlay.Color = color
+    overlay.isArea = true
     table.insert(self.minimaps, overlay)
     return overlay
 end
@@ -18646,7 +18393,7 @@ function MinimapOverlays:SetOverlayColor(overlayId, color)
     ScaleformMovieMethodAddParamInt(color.G);
     ScaleformMovieMethodAddParamInt(color.B);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].color = color;
+    self.minimaps[overlayId].Color = color;
 end
 
 ---Hides overlay in minimap
@@ -18658,7 +18405,7 @@ function MinimapOverlays:HideOverlay(overlayId, hide)
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamBool(hide);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].visible = not hide;
+    self.minimaps[overlayId].Visible = not hide;
 end
 
 ---Sets the desired Alpha to the overlay
@@ -18670,7 +18417,20 @@ function MinimapOverlays:SetOverlayAlpha(overlayId, alpha)
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(alpha);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].alpha = alpha;
+    self.minimaps[overlayId].Alpha = alpha;
+end
+
+function MinimapOverlays:SetOverlayRotation(overlayId, rotation)
+    if self.overlay == 0 then return end
+    if self.minimaps[overlayId].isArea then
+        print("ScaleformUI - MinimapOverlays - method \"SetOverlayRotation\" is not supported on Areas due to their vector boundaries")
+        return
+    end
+    CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_ROTATION");
+    ScaleformMovieMethodAddParamInt(overlayId - 1);
+    ScaleformMovieMethodAddParamFloat(rotation);
+    EndScaleformMovieMethod();
+    self.minimaps[overlayId].Rotation = rotation;
 end
 
 ---Changes position of the overlay
@@ -18678,12 +18438,16 @@ end
 ---@param position vector2 the new overlay position
 function MinimapOverlays:SetOverlayPosition(overlayId, position)
     if self.overlay == 0 then return end
+    if self.minimaps[overlayId].isArea then
+        print("ScaleformUI - MinimapOverlays - method \"SetOverlayPosition\" is not supported on Areas due to their vector boundaries")
+        return
+    end
     CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_POSITION");
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(position.x);
     ScaleformMovieMethodAddParamFloat(position.y);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].position = position;
+    self.minimaps[overlayId].position = position;
 end
 
 ---Changes size of the overlay
@@ -18692,18 +18456,22 @@ end
 ---@param height number the new size, if the overlay is scaled, value must be in percentage (0 to 100)
 function MinimapOverlays:SetOverlaySizeOrScale(overlayId, width, height)
     if self.overlay == 0 then return end
+    if self.minimaps[overlayId].isArea then
+        print("ScaleformUI - MinimapOverlays - method \"SetOverlaySizeOrScale\" is not supported on Areas due to their vector boundaries")
+        return
+    end
     CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_SIZE_OR_SCALE");
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(width);
     ScaleformMovieMethodAddParamFloat(height);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId - 1].size = {width, height};
+    self.minimaps[overlayId].size = {width, height};
 end
 
 ---Removes the desired overlay from the minimap
 ---@param overlayId number the overlay handle
 function MinimapOverlays:RemoveOverlayFromMinimap(overlayId)
-    if overlayId == nil then return end
+    if overlayId == nil or overlayId <= 0 then return end
     if self.overlay == 0 then self:Load() end
     CallMinimapScaleformFunction(self.overlay, "REM_OVERLAY");
     ScaleformMovieMethodAddParamInt(overlayId - 1)
@@ -20585,7 +20353,7 @@ function WarningInstance:Load()
         return p
     end
 
-    self._sc = _Scaleform.Request("POPUP_WARNING")
+    self._sc = _Scaleform.RequestWidescreen("POPUP_WARNING")
 
     if self._sc == nil then
         p:reject("Error requesting warning scaleform.")
@@ -20730,6 +20498,8 @@ AddEventHandler("onResourceStop", function(resName)
             AnimpostfxStop("PauseMenuIn");
             AnimpostfxPlay("PauseMenuOut", 800, false);
         end
+        -- DO NOT REMOVE THIS.. THIS IS NEEDED!
+        ScaleformUI.Scaleforms.MinimapOverlays:ClearAll()
         ScaleformUI.Scaleforms._pauseMenu:Dispose()
         ScaleformUI.Scaleforms._ui:CallFunction("CLEAR_ALL")
         ScaleformUI.Scaleforms._ui:Dispose()
@@ -20743,62 +20513,78 @@ AddEventHandler("onResourceStop", function(resName)
     end
 end)
 
-Citizen.CreateThread(function()
+local function initializeScaleforms()
     ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
     ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
     ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
     ScaleformUI.Scaleforms._pauseMenu = PauseMenu.New()
     ScaleformUI.Scaleforms._pauseMenu:Load()
     ScaleformUI.Scaleforms.MinimapOverlays:Load()
+end
+
+Citizen.CreateThread(function()
+    initializeScaleforms()
 
     while true do
+        -- Check if any menu is active
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
-                if GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
+                -- Cache frontend menu version check
+                local currentMenuVersion = GetCurrentFrontendMenuVersion()
+
+                if currentMenuVersion == `FE_MENU_VERSION_CORONA` then
                     SetScriptGfxDrawBehindPausemenu(true)
-                    BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS");
-                    ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY");
+
+                    BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS")
+                    ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY")
                     EndScaleformMovieMethod()
-                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_MENU");
-                    ScaleformMovieMethodAddParamBool(false);
-                    EndScaleformMovieMethod();
-                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_HEADING_DETAILS");
-                    ScaleformMovieMethodAddParamBool(false);
-                    EndScaleformMovieMethod();
+
+                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_MENU")
+                    ScaleformMovieMethodAddParamBool(false)
+                    EndScaleformMovieMethod()
+
+                    BeginScaleformMovieMethodOnFrontendHeader("SHOW_HEADING_DETAILS")
+                    ScaleformMovieMethodAddParamBool(false)
+                    EndScaleformMovieMethod()
                 end
+
                 MenuHandler:ProcessMenus()
             end
-            ScaleformUI.Scaleforms.Warning:Update()
-            if ScaleformUI.Scaleforms.SplashText ~= nil then
-                ScaleformUI.Scaleforms.SplashText:Draw()
+        end
+
+        -- Update scaleforms outside menu checks
+        ScaleformUI.Scaleforms.Warning:Update()
+
+        if ScaleformUI.Scaleforms.SplashText ~= nil then
+            ScaleformUI.Scaleforms.SplashText:Draw()
+        end
+
+        ScaleformUI.Scaleforms.InstructionalButtons:Update()
+
+        if not IsPauseMenuActive() then
+            ScaleformUI.Scaleforms.BigMessageInstance:Update()
+            ScaleformUI.Scaleforms.MidMessageInstance:Update()
+            ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
+            ScaleformUI.Scaleforms.JobMissionSelector:Update()
+            ScaleformUI.Scaleforms.BigFeed:Update()
+
+            -- Check for null references once per iteration
+            if ScaleformUI.Scaleforms._ui == nil then
+                ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
             end
-            ScaleformUI.Scaleforms.InstructionalButtons:Update()
-            if not IsPauseMenuActive() then
-                ScaleformUI.Scaleforms.BigMessageInstance:Update()
-                ScaleformUI.Scaleforms.MidMessageInstance:Update()
-                ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
-                ScaleformUI.Scaleforms.JobMissionSelector:Update()
-                ScaleformUI.Scaleforms.BigFeed:Update()
-                if ScaleformUI.Scaleforms._ui == nil then
-                    ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
-                end
-                if ScaleformUI.Scaleforms._radialMenu == nil then
-                    ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
-                end
-                if ScaleformUI.Scaleforms._radioMenu == nil then
-                    ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
-                end
-                if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
-                    ScaleformUI.Scaleforms._pauseMenu:Load()
-                end
+            if ScaleformUI.Scaleforms._radialMenu == nil then
+                ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
             end
-        else
-            Citizen.Wait(500)
+            if ScaleformUI.Scaleforms._radioMenu == nil then
+                ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
+            end
+            if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
+                ScaleformUI.Scaleforms._pauseMenu:Load()
+            end
         end
         Citizen.Wait(0)
     end
 end)
-
 
 
 --///////////////////////////////////////////////////////////////////--
@@ -21741,6 +21527,65 @@ Citizen.CreateThread(function()
     end
 end)
 
+function Delegate(klass, methodName, memberName)
+    -- Validate inputs
+    assert(type(klass) == 'table', "klass must be a table")
+    assert(type(methodName) == 'string', "methodName must be a string")
+    assert(type(memberName) == 'string', "memberName must be a string")
+
+    -- Cache the member access for better performance
+    local function getMember(self)
+        local member = self[memberName]
+        if not member then
+            error(string.format("Member '%s' not found in object", memberName))
+        end
+        if type(member) == 'function' then
+            member = member(self)
+            if not member then
+                error(string.format("Member '%s' returned nil", memberName))
+            end
+        end
+        return member
+    end
+
+    -- Create the delegate method with error handling
+    klass[methodName] = function(self, ...)
+        local member = getMember(self)
+        local method = member[methodName]
+
+        if not method then
+            error(string.format("Method '%s' not found in member '%s'",
+                methodName, memberName))
+        end
+
+        if type(method) ~= 'function' then
+            error(string.format("'%s' is not a function in member '%s'",
+                methodName, memberName))
+        end
+
+        return method(member, ...)
+    end
+end
+
+--- Enhanced delegate many function with batch validation
+function DelegateMany(klass, methodNames, memberName)
+    -- Validate inputs
+    assert(type(klass) == 'table', "klass must be a table")
+    assert(type(methodNames) == 'table', "methodNames must be a table")
+    assert(type(memberName) == 'string', "memberName must be a string")
+
+    -- Validate method names array
+    for i, name in ipairs(methodNames) do
+        assert(type(name) == 'string',
+            string.format("Method name at index %d must be a string", i))
+    end
+
+    -- Delegate each method
+    for _, methodName in ipairs(methodNames) do
+        Delegate(klass, methodName, memberName)
+    end
+end
+
 ---starts
 ---@param Str string
 ---@param Start string
@@ -21975,7 +21820,7 @@ end
 function ConvertScaleformCoordsToScreenCoords(scaleformX, scaleformY)
     -- Normalize coordinates to 0.0 - 1.0 range
     local w, h = GetActualScreenResolution()
-    return vector2((scaleformX / w) * 2.0 - 1.0, (scaleformY / h) * 2.0 - 1.0)
+    return vector2((scaleformX / w), (scaleformY / h))
 end
 
 function ConvertResolutionCoordsToScreenCoords(x, y)
@@ -22018,7 +21863,7 @@ end
 function ConvertScaleformSizeToScreenSize(scaleformWidth, scaleformHeight)
     -- Normalize size to 0.0 - 1.0 range
     local w, h = GetActualScreenResolution()
-    return vector2((scaleformWidth / w) * 2.0 - 1.0, (scaleformHeight / h) * 2.0 - 1.0)
+    return vector2((scaleformWidth / w), (scaleformHeight / h))
 end
 
 function ConvertResolutionSizeToScreenSize(width, height)
