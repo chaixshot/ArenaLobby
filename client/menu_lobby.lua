@@ -24,11 +24,11 @@ local DataSet = {
 
 local function CreateLobbyMenu()
 	if not LobbyMenu then
+		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
+
 		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 20)
 		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 18)
 		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 20)
-
-		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 
 		LobbyMenu:SetupLeftColumn(settingsPanel)
 		LobbyMenu:SetupCenterColumn(playersPanel)
@@ -47,8 +47,7 @@ local function CreateLobbyMenu()
 		UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform..
 		]]
 
-		LobbyMenu:CanPlayerCloseMenu(true)
-		-- this is just an example..CanPlayerCloseMenu is always defaulted to true.. if you set this to false.. be sure to give the players a way out of your menu!!!
+		LobbyMenu:CanPlayerCloseMenu(true) -- this is just an example..CanPlayerCloseMenu is always defaulted to true.. if you set this to false.. be sure to give the players a way out of your menu!!!
 
 		local item = UIMenuItem.New("UIMenuItem", "UIMenuItem description")
 		item:BlinkDescription(true)
@@ -131,6 +130,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		Citizen.Wait(0)
 	end
 
+	-- Check if some row has changed before apply: optimization
 	local isChange = false
 	if #data ~= #DataSet.HeaderMenu then
 		isChange = true
@@ -230,14 +230,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	if isChange then
 		playersPanel:Clear()
 
-		local HostSource = -1
+		local hostSource = -1
 		if ArenaAPI:IsPlayerInAnyArena() then
-			HostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
+			hostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
 		end
 
+		-- Sort player row
 		for k, v in pairs(data) do
 			if not v.sortScore then
-				if HostSource == v.source then
+				if hostSource == v.source then
 					v.sortScore = 1
 				elseif v.LobbyBadgeIcon == ScoreRightIconType.SPECTATOR then -- JoinAsSpectatorMode
 					v.sortScore = 3
@@ -252,6 +253,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			return a.sortScore < b.sortScore
 		end)
 
+		-- Add player row
 		for k, v in pairs(data) do
 			if GetPlayerFromServerId(v.source) ~= -1 then
 				v.MP0_STAMINA = DecorGetInt(v.ped, "AL_MP0_STAMINA")
@@ -279,12 +281,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			v.HasBoat = IsPedInAnyBoat(v.ped)
 			v.HasVehicle = IsPedInAnyVehicle(v.ped, false)
 
-			local LobbyBadge = LobbyBadgeIcon.IS_PC_PLAYER
+			local lobbyBadge = LobbyBadgeIcon.IS_PC_PLAYER
 			if v.LobbyBadgeIcon then
-				LobbyBadge = v.LobbyBadgeIcon
+				lobbyBadge = v.LobbyBadgeIcon
 			elseif GetPlayerFromServerId(v.source) ~= -1 then
 				if not DecorGetBool(v.ped, "IsUsingKeyboard") then
-					LobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
+					lobbyBadge = LobbyBadgeIcon.IS_CONSOLE_PLAYER
 				end
 			end
 
@@ -313,7 +315,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			if v.ped then
 				friend:Enabled(true)
 				panel:Description("My name is "..tostring(v.name))
-				friend:SetLeftIcon(LobbyBadge, false)
+				friend:SetLeftIcon(lobbyBadge, false)
 				friend:SetRightIcon(BadgeStyle.INV_MISSION, false)
 			else
 				friend:Enabled(false)
@@ -325,9 +327,6 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			playersPanel:AddPlayer(friend)
 		end
 
-		-- if LobbyMenu:Visible() then
-		-- 	playersPanel:refreshColumn()
-		-- end
 		DataSet.PlayerList = table.clone(data)
 	end
 end)
@@ -340,6 +339,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 		Citizen.Wait(300)
 	end
 
+	-- Check if some row has changed before apply: optimization
 	local isChange = false
 	if #data ~= #DataSet.Info then
 		isChange = true
@@ -384,6 +384,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 		Citizen.Wait(300)
 	end
 
+	-- Check if some row has changed before apply: optimization
 	local isChange = false
 	if #data ~= #DataSet.InfoTitle then
 		isChange = true
@@ -421,6 +422,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 		Citizen.Wait(300)
 	end
 
+	-- Check if some row has changed before apply: optimization
 	local isChange = false
 	if #data ~= #DataSet.SettingsColumn then
 		isChange = true
