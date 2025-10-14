@@ -170,16 +170,16 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 			LobbyMenu.SideBot = data.SideBot
 		end ]]
 
-		if data.Col1 then
-			settingsPanel.Label = data.Col1
+		if data.settingsPanel then
+			settingsPanel.Label = data.settingsPanel
 		end
 
-		if data.Col2 then
-			playersPanel.Label = data.Col2
+		if data.playersPanel then
+			playersPanel.Label = data.playersPanel
 		end
 
-		if data.Col3 then
-			missionsPanel.Label = data.Col3
+		if data.missionsPanel then
+			missionsPanel.Label = data.missionsPanel
 		end
 
 		if data.ColColor1 then
