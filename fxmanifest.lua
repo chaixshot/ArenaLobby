@@ -30,8 +30,6 @@ files {
 	'client/ui/img/games/*.*',
 	'client/ui/img/games/map/*.*',
 	'client/ui/sounds/*.*',
-
-	'files/MINIMAP_LOADER.gfx',
 }
 
 ui_page 'client/ui/ui.html'
