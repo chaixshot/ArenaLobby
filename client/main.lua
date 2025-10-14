@@ -3,7 +3,7 @@ local Object
 ArenaAPI = exports.ArenaAPI
 
 local timeUI = {}
-local function CheckUiTime(type, time)
+local function checkUiTime(type, time)
 	if not timeUI[type] then
 		timeUI[type] = GetGameTimer()
 		return true
@@ -17,8 +17,12 @@ local function CheckUiTime(type, time)
 	return false
 end
 
+local function checkAllowSetPassword()
+	return true
+end
+
 function OpenGameMenu(withXbox)
-	if isMenuOpen or not InPoint or IsPlayerDead(PlayerId()) or not CheckUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
+	if isMenuOpen or not InPoint or IsPlayerDead(PlayerId()) or not checkUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
 		return
 	end
 
@@ -64,11 +68,12 @@ function OpenGameMenu(withXbox)
 	end
 
 	SendNUIMessage({
-		message = "show",
+		message = "open",
+		allowsetPassword = checkAllowSetPassword(),
 		withXbox = withXbox,
 	})
 
-	CheckUiTime("ArenaLobby_Menu_Xbox_Right", 100)
+	checkUiTime("ArenaLobby_Menu_Xbox_Right", 100)
 	isMenuOpen = true
 	if withXbox then
 		SetCursorLocation(0.1, 0.1)
@@ -110,7 +115,7 @@ AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 				label = v.ArenaLabel,
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-				password = tostring(v.Password),
+				password = checkAllowSetPassword() and tostring(v.Password) or "",
 				PlayerAvatar = v.PlayerAvatar,
 			})
 		end
@@ -248,7 +253,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Open', 'ArenaLobby Xbox Open', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_A", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_A", 100) then
 		SendNUIMessage({message = "control_a"})
 	end
 end, false)
@@ -257,7 +262,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_A', 'ArenaLobby Xbox A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_B', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_B", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_B", 100) then
 		SendNUIMessage({message = "control_b"})
 	end
 end, false)
@@ -266,7 +271,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby Xbox B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Right', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_Right", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Right", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)
@@ -275,7 +280,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby Xbox Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Left', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_Left", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Left", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
@@ -284,7 +289,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby Xbox Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Up', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_Up", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Up", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
@@ -293,7 +298,7 @@ end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby Xbox Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Down', function()
-	if isMenuOpen and CheckUiTime("ArenaLobby_Menu_Xbox_Down", 100) then
+	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Down", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)

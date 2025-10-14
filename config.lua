@@ -10,14 +10,16 @@ Config.Color = {
     alpha = 200,
 }
 
+-- Arena lobby postion in game
 Config.Location = {
     x = 200.236,
     y = -994.613,
     z = 29.092,
 }
 
+-- Prevent get kick from session owner
 Config.Admin = {
-	["steam:11000010971396e"] = true,
+    ["steam:11000010971396e"] = true,
 }
 
 -- https://docs.fivem.net/docs/game-references/blips/

@@ -138,11 +138,17 @@ window.addEventListener('message', function (event) {
 	var item = event.data;
 
 	//?? Open main window
-	if (item.message == "show") {
+	if (item.message == "open") {
 		isXbox = item.withXbox
 
 		soundOpen = new Howl({ src: ["./sounds/open.ogg"], volume: 1.0 });
 		soundOpen.play();
+
+		if (item.allowsetPassword) {
+			$("#password").show();
+		} else {
+			$("#password").hide();
+		}
 
 		$(".GameLobby").fadeIn(200);
 
