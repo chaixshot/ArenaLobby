@@ -8410,6 +8410,7 @@ function TabLeftItem:Label(label)
         self.label = label
         if self.ParentTab ~= nil and self.ParentTab.Visible then
             local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            print(leftItem)
             self.ParentTab.LeftColumn:UpdateSlot(leftItem)
         end
     else
@@ -10361,25 +10362,45 @@ function TabView:ProcessControl()
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_DOWN, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
         self:CurrentTab():GoDown()
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LEFT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
-        if (self:FocusLevel() == 0 and not IsCorona) then
+        if (self:FocusLevel() == 0 and not self.IsCorona) then
             self:Index(self.index - 1)
         else
             self:CurrentTab():GoLeft()
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RIGHT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
-        if (self:FocusLevel() == 0 and not IsCorona) then
+        if (self:FocusLevel() == 0 and not self.IsCorona) then
             self:Index(self.index + 1)
         else
             self:CurrentTab():GoRight()
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsControlPressed(2, 21) and IsUsingKeyboard(2))) then
-        if (self.coronaTab.CurrentColumnIndex > 0) then
-            self:SwitchColumn(self.coronaTab.CurrentColumnIndex - 1)
+        if self.coronaTab then
+            if (self.coronaTab.CurrentColumnIndex > 0) then
+                self:SwitchColumn(self.coronaTab.CurrentColumnIndex - 1)
+            end
+        else
+            if (#self.Tabs == 1) then return end
+
+            if (self:FocusLevel() > 0) then
+                self:FocusLevel(0)
+            end
+
+            self:Index(self.index - 1)
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
+        if self.coronaTab then
             self:SwitchColumn(self.coronaTab.CurrentColumnIndex + 1)
+        else
+            if (#self.Tabs == 1) then return end
+
+            if (self:FocusLevel() > 0) then
+                self:FocusLevel(0)
+            end
+
+            self:Index(self.index + 1)
+        end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) or (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) and self.focusLevel == 0)) then
         if (self.focusLevel == 0) then
             self:CurrentTab():Focus()
