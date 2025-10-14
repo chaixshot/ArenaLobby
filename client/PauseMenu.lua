@@ -63,8 +63,8 @@ function UpdateDetails()
 					TriggerEvent("ArenaLobby:lobbymenu:Hide")
 					ExecuteCommand("minigame leave")
 				end,
-				mainColor = HudColours.HUD_COLOUR_RED,
-				highlightColor = HudColours.HUD_COLOUR_REDDARK,
+				mainColor = HudColours.HUD_COLOUR_REDDARK,
+				highlightColor = HudColours.HUD_COLOUR_RED,
 				Blink = true,
 			},
 		}

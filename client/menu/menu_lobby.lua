@@ -94,7 +94,9 @@ local function CreateLobbyMenu()
 							callbackFunction = function()
 								PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
 								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
-								TriggerEvent("ArenaLobby:lobbymenu:Hide")
+
+								UpdateDetails()
+								UpdatePlayerList()
 							end,
 						})
 					end
