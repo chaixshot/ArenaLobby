@@ -4741,7 +4741,7 @@ function PlayerListColumn:AddPlayer(item)
     if self:visible() and #self.Items < self.VisibleItems then
         local idx = #self.Items
         self:AddSlot(idx)
-        self.Items[idx]:Selected(idx == self.index)
+        -- self.Items[idx]:Selected(idx == self.index)
     end
 end
 
@@ -10374,18 +10374,12 @@ function TabView:ProcessControl()
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsControlPressed(2, 21) and IsUsingKeyboard(2))) then
-        if (IsCorona or #self.Tabs == 1) then return end
-        if (self:FocusLevel() > 0) then
-            self:FocusLevel(0)
+        if (self.coronaTab.CurrentColumnIndex > 0) then
+            self:SwitchColumn(self.coronaTab.CurrentColumnIndex - 1)
         end
-        self:Index(self.index - 1)
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
-        if (IsCorona or #self.Tabs == 1) then return end
-        if (self:FocusLevel() > 0) then
-            self:FocusLevel(0)
-        end
-        self:Index(self.index + 1)
+            self:SwitchColumn(self.coronaTab.CurrentColumnIndex + 1)
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) or (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) and self.focusLevel == 0)) then
         if (self.focusLevel == 0) then
             self:CurrentTab():Focus()
