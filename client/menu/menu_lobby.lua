@@ -7,14 +7,10 @@
 -- end)
 
 local LobbyMenu
+local settingsPanel = {}
+local playersPanel = {}
+local missionsPanel = {}
 local defaultSubtitle = "Template by H@mer"
-
-local selectColumnID = 1
-local selectRowID = 1
-
-local ColumnCallbackFunction = {}
-ColumnCallbackFunction[1] = {}
-ColumnCallbackFunction[2] = {}
 
 local minimapLobbyEnabled = false
 local firstLoad = true
@@ -28,15 +24,16 @@ local DataSet = {
 
 local function CreateLobbyMenu()
 	if not LobbyMenu then
-		local columns = {
-			SettingsListColumn.New("COLUMN SETTINGS", SColor.HUD_Red),
-			PlayerListColumn.New("COLUMN PLAYERS", SColor.HUD_Orange),
-			MissionDetailsPanel.New("COLUMN INFO PANEL", SColor.HUD_Green),
-		}
+		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 20)
+		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 19)
+		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 20)
+
 		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 		-- LobbyMenu:ShowStoreBackground(true)
 		-- LobbyMenu:StoreBackgroundAnimationSpeed(50)
-		LobbyMenu:SetupColumns(columns)
+		LobbyMenu:SetupLeftColumn(settingsPanel)
+		LobbyMenu:SetupCenterColumn(playersPanel)
+		LobbyMenu:SetupRightColumn(missionsPanel)
 
 		--[[
 		RequestStreamedTextureDictC("ArenaLobby")
@@ -56,39 +53,88 @@ local function CreateLobbyMenu()
 
 		local item = UIMenuItem.New("UIMenuItem", "UIMenuItem description")
 		item:BlinkDescription(true)
-		LobbyMenu.SettingsColumn:AddSettings(item)
+		settingsPanel:AddSettings(item)
 
 		local crew = CrewTag.New("", true, false, CrewHierarchy.Leader, SColor.HUD_Green)
 		local friend = FriendItem.New("Name", SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE), true, HudColours.HUD_COLOUR_FREEMODE, "BLANK", crew)
-		LobbyMenu.PlayersColumn:AddPlayer(friend)
+		playersPanel:AddPlayer(friend)
 
-		LobbyMenu.MissionPanel:UpdatePanelPicture("scaleformui", "lobby_panelbackground")
-		LobbyMenu.MissionPanel:Title("ScaleformUI - Title")
+		missionsPanel:UpdatePanelPicture("scaleformui", "lobby_panelbackground")
+		missionsPanel:Title("ScaleformUI - Title")
 
 		local detailItem = UIMenuFreemodeDetailsItem.New("Left Label", "Right Label", false, BadgeStyle.BRIEFCASE, SColor.HUD_Freemode)
-		LobbyMenu.MissionPanel:AddItem(detailItem)
+		missionsPanel:AddItem(detailItem)
 
-		LobbyMenu.SettingsColumn.OnIndexChanged = function(idx)
-			selectRowID = idx
-			selectColumnID = 1
-		end
+		playersPanel.OnPlayerItemActivated = function(index)
+			-- Host select player row
+			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource == GetPlayerServerId(PlayerId()) then
+				if DataSet.PlayerList[index] and DataSet.PlayerList[index].ped then
+					local targetSource = DataSet.PlayerList[index].source
+					local settingList = {}
 
-		LobbyMenu.PlayersColumn.OnIndexChanged = function(idx)
-			selectRowID = idx
-			selectColumnID = 2
+					table.insert(settingList, {
+						label = "Back",
+						dec = "",
+						callbackFunction = function()
+							TriggerEvent("ArenaLobby:playermenu:Hide")
+						end,
+					})
+
+					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource ~= targetSource then
+						table.insert(settingList, {
+							label = "<font color='#c8423b'>Kick</font",
+							dec = "Kick player from current lobby.",
+							HudColours.HUD_COLOUR_RED,
+							highlightColor = HudColours.HUD_COLOUR_REDDARK,
+							textColor = HudColours.HUD_COLOUR_PURE_WHITE,
+							highlightedTextColor = HudColours.HUD_COLOUR_PURE_WHITE,
+							Blink = true,
+							callbackFunction = function()
+								PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
+								TriggerEvent("ArenaLobby:playermenu:Hide")
+							end,
+						})
+					end
+
+					TriggerEvent("ArenaLobby:playermenu:SettingsColumn", settingList)
+					TriggerEvent("ArenaLobby:playermenu:SetInfo", DataSet.Info)
+					TriggerEvent("ArenaLobby:playermenu:SetInfoTitle", {
+						Title = missionsPanel._title,
+						tex = missionsPanel.TextureDict,
+						txd = missionsPanel.TextureName,
+					})
+
+					TriggerEvent("ArenaLobby:playermenu:SetHeaderMenu", {
+						SideTop = LobbyMenu.SideTop,
+						SideMid = LobbyMenu.SideMid,
+						SideBot = LobbyMenu.SideBot,
+						ColColor1 = settingsPanel._color,
+						ColColor2 = playersPanel._color,
+						ColColor3 = missionsPanel._color,
+					})
+
+					TriggerEvent("ArenaLobby:playermenu:SetPlayerList", DataSet.PlayerList[index])
+
+					LobbyMenu:Visible(false)
+					TriggerEvent("ArenaLobby:playermenu:Show", function()
+						TriggerEvent("ArenaLobby:lobbymenu:Show", 0, true)
+					end)
+				end
+			end
 		end
 
 		--[[ -- EXAMPLE OF FILTERING, SORTING AND RESET TO ORIGINAL
 		Citizen.Wait(3000)
-		lobbyMenu.SettingsColumn:SortSettings(function(a, b)
+		settings:SortSettings(function(a, b)
 			return a:Label() < b:Label()
 		end)
 		Citizen.Wait(3000)
-		lobbyMenu.SettingsColumn:FilterSettings(function(x)
+		settings:FilterSettings(function(x)
 			return x:Label() == "UIMenuItem"
 		end)
 		Citizen.Wait(3000)
-		lobbyMenu.SettingsColumn:ResetFilter()
+		settings:ResetFilter()
 		]]
 		Citizen.Wait(100)
 		firstLoad = false
@@ -142,27 +188,27 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		]]
 
 		if data.Col1 then
-			LobbyMenu.listCol[1]._label = data.Col1
+			settingsPanel.Label = data.Col1
 		end
 
 		if data.Col2 then
-			LobbyMenu.listCol[2]._label = data.Col2
+			playersPanel.Label = data.Col2
 		end
 
 		if data.Col3 then
-			LobbyMenu.listCol[3]._label = data.Col3
+			missionsPanel.Label = data.Col3
 		end
 
 		if data.ColColor1 then
-			LobbyMenu.listCol[1]._color = SColor.FromHudColor(data.ColColor1)
+			settingsPanel._color = SColor.FromHudColor(data.ColColor1)
 		end
 
 		if data.ColColor2 then
-			LobbyMenu.listCol[2]._color = SColor.FromHudColor(data.ColColor2)
+			playersPanel._color = SColor.FromHudColor(data.ColColor2)
 		end
 
 		if data.ColColor3 then
-			LobbyMenu.listCol[3]._color = SColor.FromHudColor(data.ColColor3)
+			missionsPanel._color = SColor.FromHudColor(data.ColColor3)
 		end
 
 		DataSet.HeaderMenu = data
@@ -200,8 +246,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	end
 
 	if isChange then
-		ColumnCallbackFunction[2] = {}
-		LobbyMenu.PlayersColumn:Clear()
+		playersPanel:Clear()
 
 		local HostSource = -1
 		if ArenaAPI:IsPlayerInAnyArena() then
@@ -295,16 +340,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 				friend:SetRightIcon(BadgeStyle.NONE, false)
 			end
 
-			LobbyMenu.PlayersColumn:AddPlayer(friend)
-
-			if v.callbackFunction then
-				ColumnCallbackFunction[2][#LobbyMenu.PlayersColumn.Items] = v.callbackFunction
-			end
+			playersPanel:AddPlayer(friend)
 		end
 
-		if LobbyMenu:Visible() then
-			LobbyMenu.PlayersColumn:refreshColumn()
-		end
+		-- if LobbyMenu:Visible() then
+		-- 	playersPanel:refreshColumn()
+		-- end
 		DataSet.PlayerList = table.clone(data)
 	end
 end)
@@ -340,13 +381,13 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	end
 
 	if isChange then
-		for i = 1, #LobbyMenu.MissionPanel.Items do
-			LobbyMenu.MissionPanel:RemoveItem(#LobbyMenu.MissionPanel.Items)
+		for i = 1, #missionsPanel.Items do
+			missionsPanel:RemoveItem(#missionsPanel.Items)
 		end
 
 		for k, v in pairs(data) do
 			local detailItem = UIMenuFreemodeDetailsItem.New(v.LeftLabel, v.RightLabel, false, v.BadgeStyle, v.Colours)
-			LobbyMenu.MissionPanel:AddItem(detailItem)
+			missionsPanel:AddItem(detailItem)
 		end
 
 		DataSet.Info = table.clone(data)
@@ -380,11 +421,11 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 
 	if isChange then
 		if data.Title then
-			LobbyMenu.MissionPanel:Title(data.Title)
+			missionsPanel:Title(data.Title)
 		end
 
 		if data.tex and data.txd then
-			LobbyMenu.MissionPanel:UpdatePanelPicture(data.tex, data.txd)
+			missionsPanel:UpdatePanelPicture(data.tex, data.txd)
 		end
 		DataSet.InfoTitle = data
 	end
@@ -421,8 +462,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	end
 
 	if isChange then
-		ColumnCallbackFunction[1] = {}
-		LobbyMenu.SettingsColumn:Clear()
+		settingsPanel:Clear()
 
 		for k, v in pairs(data) do
 			local item
@@ -435,21 +475,22 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			elseif v.type == "Progress" then
 				item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 			else
-				item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
+				item = UIMenuItem.New(v.label, v.dec)
 				if v.rightLabel then
 					item:RightLabel(v.rightLabel)
 				end
 			end
 			item:BlinkDescription(v.Blink)
-			LobbyMenu.SettingsColumn:AddSettings(item)
-
-			if v.callbackFunction then
-				ColumnCallbackFunction[1][k] = v.callbackFunction
+			item.Activated = function(menu, item)
+				if v.callbackFunction then
+					v.callbackFunction()
+				end
 			end
+			settingsPanel:AddSettings(item)
 		end
 
 		if LobbyMenu:Visible() then
-			LobbyMenu.SettingsColumn:refreshColumn()
+			settingsPanel:UpdateDescription()
 		end
 		DataSet.SettingsColumn = table.clone(data)
 	end
@@ -459,7 +500,7 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	
+
 	LobbyMenu.MinimapButton = nil
 	LobbyMenu.hasMapPanel = true
 
@@ -531,93 +572,26 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 		table.insert(LobbyMenu.InstructionalButtons, LobbyMenu.MinimapButton)
 	end
 
-	selectRowID = 1
-	selectColumnID = 1
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
-	LobbyMenu:updateFocus(focusColume, false)
-	Citizen.SetTimeout(50, function()
-		ClearPedInPauseMenu()
-	end)
+	LobbyMenu:SelectColumn(focusColume)
+	-- Citizen.SetTimeout(50, function()
+	-- 	ClearPedInPauseMenu()
+	-- end)
 
 	while LobbyMenu:Visible() do
-		if IsDisabledControlJustPressed(2, 201) then
-			-- Select setting row
-			if ColumnCallbackFunction[selectColumnID][selectRowID] then
-				ColumnCallbackFunction[selectColumnID][selectRowID]()
-			end
-
-			-- Host select player row
-			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource == GetPlayerServerId(PlayerId()) then
-				if selectColumnID == 2 and DataSet.PlayerList[selectRowID] and DataSet.PlayerList[selectRowID].ped then
-					local targetSource = DataSet.PlayerList[selectRowID].source
-					local settingList = {}
-
-					table.insert(settingList, {
-						label = "Back",
-						dec = "",
-						callbackFunction = function()
-							TriggerEvent("ArenaLobby:playermenu:Hide")
-						end,
-					})
-
-					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource ~= targetSource then
-						table.insert(settingList, {
-							label = "<font color='#c8423b'>Kick</font",
-							dec = "Kick player from current lobby.",
-							HudColours.HUD_COLOUR_RED,
-							highlightColor = HudColours.HUD_COLOUR_REDDARK,
-							textColor = HudColours.HUD_COLOUR_PURE_WHITE,
-							highlightedTextColor = HudColours.HUD_COLOUR_PURE_WHITE,
-							Blink = true,
-							callbackFunction = function()
-								PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
-								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
-								TriggerEvent("ArenaLobby:playermenu:Hide")
-							end,
-						})
-					end
-
-					TriggerEvent("ArenaLobby:playermenu:SettingsColumn", settingList)
-					TriggerEvent("ArenaLobby:playermenu:SetInfo", DataSet.Info)
-					TriggerEvent("ArenaLobby:playermenu:SetInfoTitle", {
-						Title = LobbyMenu.MissionPanel._title,
-						tex = LobbyMenu.MissionPanel.TextureDict,
-						txd = LobbyMenu.MissionPanel.TextureName,
-					})
-
-					TriggerEvent("ArenaLobby:playermenu:SetHeaderMenu", {
-						SideTop = LobbyMenu.SideTop,
-						SideMid = LobbyMenu.SideMid,
-						SideBot = LobbyMenu.SideBot,
-						ColColor1 = LobbyMenu.listCol[1]._color,
-						ColColor2 = LobbyMenu.listCol[2]._color,
-						ColColor3 = LobbyMenu.listCol[3]._color,
-					})
-
-					TriggerEvent("ArenaLobby:playermenu:SetPlayerList", DataSet.PlayerList[selectRowID])
-
-					LobbyMenu:Visible(false)
-					TriggerEvent("ArenaLobby:playermenu:Show", function()
-						TriggerEvent("ArenaLobby:lobbymenu:Show", 2, true)
-					end)
-				end
-			end
-		end
-
 		Citizen.Wait(0)
 	end
 
 	-- onClose
-
-	LobbyMenu.hasMapPanel = false
-
 	if onClose then
 		while IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 			Citizen.Wait(0)
 		end
 		onClose()
 	end
+
+	LobbyMenu.hasMapPanel = false
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()

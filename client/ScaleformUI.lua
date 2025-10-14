@@ -1,3 +1,4 @@
+
 --///////////////////////////////////////////////////////////////////--
 ---@enum MenuAnimationType
 MenuAnimationType = {
@@ -216,17 +217,17 @@ BadgeStyle = {
     BRAND_WILLARD = 177,
     BRAND_ZIRCONIUM = 178,
     INFO = 179,
-    MISSION_YELLOW = 180,
-    MISSION_BLUE = 181,
-    MISSION_GREEN = 182,
-    MISSION_PURPLE = 183,
-    MISSION_ORANGE = 184,
-    MISSION_RED = 185,
-    MISSION_AQUA = 186,
-    MISSION_LIGHTRED = 187,
-    PLUS = 188,
-    ARROW_LEFT = 189,
-    ARROW_RIGHT = 190
+	MISSION_YELLOW = 180,
+	MISSION_BLUE = 181,
+	MISSION_GREEN = 182,
+	MISSION_PURPLE = 183,
+	MISSION_ORANGE = 184,
+	MISSION_RED = 185,
+	MISSION_AQUA = 186,
+	MISSION_LIGHTRED = 187,
+	PLUS = 188,
+	ARROW_LEFT = 189,
+	ARROW_RIGHT = 190
 }
 
 function GetSpriteDictionary(icon)
@@ -607,6 +608,8 @@ function GetSpriteName(icon, selected)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ---@enum HudColours
 HudColours = {
@@ -933,6 +936,8 @@ function ReplaceRstarColorsWith(label, color)
     return tmp
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 Controls = setmetatable({
     NecessaryControlsKeyboard = {
@@ -951,20 +956,20 @@ Controls = setmetatable({
         240, -- CursorY
         237, -- CursorAccept
         238, -- CursorCancel
-        31, -- MoveUpDown
-        30, -- MoveLeftRight
-        21, -- Sprint
-        22, -- Jump
-        23, -- Enter
-        75, -- VehicleExit
-        71, -- VehicleAccelerate
-        72, -- VehicleBrake
-        59, -- VehicleMoveLeftRight
-        89, -- VehicleFlyYawLeft
-        9, -- FlyLeftRight
-        8, -- FlyUpDown
-        90, -- VehicleFlyYawRight
-        76 -- VehicleHandbrake
+        31,  -- MoveUpDown
+        30,  -- MoveLeftRight
+        21,  -- Sprint
+        22,  -- Jump
+        23,  -- Enter
+        75,  -- VehicleExit
+        71,  -- VehicleAccelerate
+        72,  -- VehicleBrake
+        59,  -- VehicleMoveLeftRight
+        89,  -- VehicleFlyYawLeft
+        9,   -- FlyLeftRight
+        8,   -- FlyUpDown
+        90,  -- VehicleFlyYawRight
+        76   -- VehicleHandbrake
     },
 
     NecessaryControlsGamePad = {
@@ -983,30 +988,30 @@ Controls = setmetatable({
         240, -- CursorY
         237, -- CursorAccept
         238, -- CursorCancel
-        31, -- MoveUpDown
-        30, -- MoveLeftRight
-        21, -- Sprint
-        22, -- Jump
-        23, -- Enter
-        75, -- VehicleExit
-        71, -- VehicleAccelerate
-        72, -- VehicleBrake
-        59, -- VehicleMoveLeftRight
-        89, -- VehicleFlyYawLeft
-        9, -- FlyLeftRight
-        8, -- FlyUpDown
-        90, -- VehicleFlyYawRight
-        76, -- VehicleHandbrake
-        2, -- LookUpDown
-        1, -- LookLeftRight
-        25, -- Aim
-        24, -- Attack
-        71, -- VehicleAccelerate
-        72, -- VehicleBrake
-        59, -- VehicleMoveLeftRight
-        31, -- MoveUpDown
-        30, -- MoveLeftRight
-        75, -- VehicleExit
+        31,  -- MoveUpDown
+        30,  -- MoveLeftRight
+        21,  -- Sprint
+        22,  -- Jump
+        23,  -- Enter
+        75,  -- VehicleExit
+        71,  -- VehicleAccelerate
+        72,  -- VehicleBrake
+        59,  -- VehicleMoveLeftRight
+        89,  -- VehicleFlyYawLeft
+        9,   -- FlyLeftRight
+        8,   -- FlyUpDown
+        90,  -- VehicleFlyYawRight
+        76,  -- VehicleHandbrake
+        2,   -- LookUpDown
+        1,   -- LookLeftRight
+        25,  -- Aim
+        24,  -- Attack
+        71,  -- VehicleAccelerate
+        72,  -- VehicleBrake
+        59,  -- VehicleMoveLeftRight
+        31,  -- MoveUpDown
+        30,  -- MoveLeftRight
+        75,  -- VehicleExit
     }
 }, Controls)
 
@@ -1032,6 +1037,8 @@ function Controls:ToggleAll(toggle)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ---@enum CrewHierarchy
 CrewHierarchy = {
@@ -1048,12 +1055,62 @@ CrewHierarchy = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum Font
 Font = {
-    CHALET_LONDON = 0,
-    HOUSE_SCRIPT = 1,
-    MONOSPACE = 2,
-    CHALET_COMPRIME_COLOGNE = 4,
-    PRICEDOWN = 7
+  CHALET_LONDON = 0,
+  HOUSE_SCRIPT = 1,
+  MONOSPACE = 2,
+  CHALET_COMPRIME_COLOGNE = 4,
+  PRICEDOWN = 7
 }
+
+
+
+--///////////////////////////////////////////////////////////////////--
+---@enum eFRONTEND_INPUT
+eFRONTEND_INPUT =
+{
+    FRONTEND_INPUT_UP = 0,
+    FRONTEND_INPUT_DOWN = 1,
+    FRONTEND_INPUT_LEFT = 2,
+    FRONTEND_INPUT_RIGHT = 3,
+    FRONTEND_INPUT_RDOWN = 4,
+    FRONTEND_INPUT_RLEFT = 5,
+    FRONTEND_INPUT_RRIGHT = 6,
+    FRONTEND_INPUT_RUP = 7,
+    FRONTEND_INPUT_ACCEPT = 8,
+    FRONTEND_INPUT_X = 9,
+    FRONTEND_INPUT_Y = 10,
+    FRONTEND_INPUT_BACK = 11,
+    FRONTEND_INPUT_START = 12,
+    FRONTEND_INPUT_SPECIAL_UP = 13,
+    FRONTEND_INPUT_SPECIAL_DOWN = 14,
+    FRONTEND_INPUT_RSTICK_LEFT = 15,
+    FRONTEND_INPUT_RSTICK_RIGHT = 16,
+    FRONTEND_INPUT_LT = 17,
+    FRONTEND_INPUT_RT = 18,
+    FRONTEND_INPUT_LB = 19,
+    FRONTEND_INPUT_RB = 20,
+    FRONTEND_INPUT_LT_SPECIAL = 21,
+    FRONTEND_INPUT_RT_SPECIAL = 22,
+    FRONTEND_INPUT_SELECT = 23,
+    FRONTEND_INPUT_R3 = 24,
+    -- Used for pointing devices (mouse button, touch pad etc).
+    FRONTEND_INPUT_CURSOR_ACCEPT = 25,
+    FRONTEND_INPUT_CURSOR_BACK = 26,
+    FRONTEND_INPUT_L3 = 27,
+    FRONTEND_INPUT_MAX = 28
+}
+
+---@enum CHECK_INPUT_OVERRIDE_FLAG
+CHECK_INPUT_OVERRIDE_FLAG =
+{
+    CHECK_INPUT_OVERRIDE_FLAG_NONE = 0,
+    CHECK_INPUT_OVERRIDE_FLAG_WARNING_MESSAGE = (1 << 0),
+    CHECK_INPUT_OVERRIDE_FLAG_STORAGE_DEVICE = (1 << 1),
+    CHECK_INPUT_OVERRIDE_FLAG_RESTART_SAVED_GAME_STATE = (1 << 2),
+    CHECK_INPUT_OVERRIDE_FLAG_IGNORE_ANALOGUE_STICKS = (1 << 3),
+    CHECK_INPUT_OVERRIDE_FLAG_IGNORE_D_PAD = (1 << 4)
+}
+
 
 
 
@@ -1091,26 +1148,28 @@ function ItemFont.RegisterFont(gfxName, fontName)
     return setmetatable(font, ItemFont)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ---@enum JobIcon
 JobIcon = {
-    NONE = -1,
-    GTAOMission = 0,
-    Deathmatch = 1,
-    RaceFinish = 2,
-    GTAOSurvival = 3,
-    TeamDeathmatch = 4,
-    Castle = 6,
-    Parachute = 8,
-    VehicleDeathmatch = 9,
-    RaceCar = 10,
-    RaceFoot = 11,
-    RaceSea = 12,
-    RaceBike = 13,
-    RaceAir = 14,
-    LastTeamStanding = 15,
-    Briefcase = 16,
-    RaceStunt = 18
+  NONE = -1,
+  GTAOMission = 0,
+  Deathmatch = 1,
+  RaceFinish = 2,
+  GTAOSurvival = 3,
+  TeamDeathmatch = 4,
+  Castle = 6,
+  Parachute = 8,
+  VehicleDeathmatch = 9,
+  RaceCar = 10,
+  RaceFoot = 11,
+  RaceSea = 12,
+  RaceBike = 13,
+  RaceAir = 14,
+  LastTeamStanding = 15,
+  Briefcase = 16,
+  RaceStunt = 18
 }
 
 
@@ -1118,25 +1177,43 @@ JobIcon = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum JobSelectionCardIcon
 JobSelectionCardIcon = {
-    NONE = -1,
-    CUSTOM_MISSION = 0,
-    DEATHMATCH = 1,
-    RACE = 2,
-    SURVIVAL = 3,
-    TEAM_DEATHMATCH = 4,
-    GANG_ATTACK = 6,
-    BASE_JUMPING = 8,
-    VEHICLE_DEATHMATCH = 9,
-    RACE_LAND = 10,
-    RACE_FOOT = 11,
-    RACE_BICYCLE = 12,
-    RACE_WATER = 13,
-    RACE_AIR = 14,
-    LAST_TEAM_STANDING = 15,
-    CAPTURE_THE_FLAG = 16,
-    HEIST_PREPARATION = 17,
-    HEIST = 18,
-    RACE_STUNT = 19,
+  NONE = -1,
+  CUSTOM_MISSION = 0,
+  DEATHMATCH = 1,
+  RACE = 2,
+  SURVIVAL = 3,
+  TEAM_DEATHMATCH = 4,
+  GANG_ATTACK = 6,
+  BASE_JUMPING = 8,
+  VEHICLE_DEATHMATCH = 9,
+  RACE_LAND = 10,
+  RACE_FOOT = 11,
+  RACE_BICYCLE = 12,
+  RACE_WATER = 13,
+  RACE_AIR = 14,
+  LAST_TEAM_STANDING = 15,
+  CAPTURE_THE_FLAG = 16,
+  HEIST_PREPARATION = 17,
+  HEIST = 18,
+  RACE_STUNT = 19,
+}
+
+
+
+--///////////////////////////////////////////////////////////////////--
+---@enum LobbyBadgeIcon
+LobbyBadgeIcon = {
+    NONE = 0,
+    ACTIVE_HEADSET = 47,
+    INACTIVE_HEADSET = 48,
+    MUTED_HEADSET = 49,
+    GTAV = 54,
+    WORLD = 63,
+    KICK = 64,
+    RANK_FREEMODE = 65,
+    SPECTATOR = 66,
+    IS_CONSOLE_PLAYER = 119,
+    IS_PC_PLAYER = 120
 }
 
 
@@ -1205,173 +1282,173 @@ MenuAlignment = {
 
 ---@class NotificationCharacters @Enum for notification characters (used in ShowAdvancedNotification)
 NotificationCharacters = {
-    Abigail = "CHAR_ABIGAIL",
-    AllPlayersConf = "CHAR_ALL_PLAYERS_CONF",
-    Amanda = "CHAR_AMANDA",
-    Ammunation = "CHAR_AMMUNATION",
-    Andreas = "CHAR_ANDREAS",
-    Antonia = "CHAR_ANTONIA",
-    Arthur = "CHAR_ARTHUR",
-    Ashley = "CHAR_ASHLEY",
-    BankOfLiberty = "CHAR_BANK_BOL",
-    BankFleeca = "CHAR_BANK_FLEECA",
-    BankMaze = "CHAR_BANK_MAZE",
-    Barry = "CHAR_BARRY",
-    Beverly = "CHAR_BEVERLY",
-    BikeSite = "CHAR_BIKESITE",
-    BlankEntry = "CHAR_BLANK_ENTRY",
-    Blimp = "CHAR_BLIMP",
-    Blocked = "CHAR_BLOCKED",
-    BoatSite = "CHAR_BOATSITE",
-    BrokenDownGirl = "CHAR_BROKEN_DOWN_GIRL",
-    BugStars = "CHAR_BUGSTARS",
-    Call911 = "CHAR_CALL911",
-    LegendaryMotorsport = "CHAR_CARSITE",
-    SSASuperAutos = "CHAR_CARSITE2",
-    Castro = "CHAR_CASTRO",
-    ChatCall = "CHAR_CHAT_CALL",
-    Chef = "CHAR_CHEF",
-    Cheng = "CHAR_CHENG",
-    ChengSenior = "CHAR_CHENGSR",
-    Chop = "CHAR_CHOP",
-    Cris = "CHAR_CRIS",
-    Dave = "CHAR_DAVE",
-    Default = "CHAR_DEFAULT",
-    Denise = "CHAR_DENISE",
-    DetonateBomb = "CHAR_DETONATEBOMB",
-    DetonatePhone = "CHAR_DETONATEPHONE",
-    Devin = "CHAR_DEVIN",
-    SubMarine = "CHAR_DIAL_A_SUB",
-    Dom = "CHAR_DOM",
-    DomesticGirl = "CHAR_DOMESTIC_GIRL",
-    Dreyfuss = "CHAR_DREYFUSS",
-    DrFriedlander = "CHAR_DR_FRIEDLANDER",
-    Epsilon = "CHAR_EPSILON",
-    EstateAgent = "CHAR_ESTATE_AGENT",
-    Facebook = "CHAR_FACEBOOK",
-    FilmNoir = "CHAR_FILMNOIR",
-    Floyd = "CHAR_FLOYD",
-    Franklin = "CHAR_FRANKLIN",
-    FranklinTrevor = "CHAR_FRANK_TREV_CONF",
-    GayMilitary = "CHAR_GAYMILITARY",
-    Hao = "CHAR_HAO",
-    HitcherGirl = "CHAR_HITCHER_GIRL",
-    HumanDefault = "CHAR_HUMANDEFAULT",
-    Hunter = "CHAR_HUNTER",
-    Jimmy = "CHAR_JIMMY",
-    JimmyBoston = "CHAR_JIMMY_BOSTON",
-    Joe = "CHAR_JOE",
-    Josef = "CHAR_JOSEF",
-    Josh = "CHAR_JOSH",
-    LamarDog = "CHAR_LAMAR",
-    Lazlow = "CHAR_LAZLOW",
-    Lester = "CHAR_LESTER",
-    Skull = "CHAR_LESTER_DEATHWISH",
-    LesterFranklin = "CHAR_LEST_FRANK_CONF",
-    LesterMichael = "CHAR_LEST_MIKE_CONF",
-    LifeInvader = "CHAR_LIFEINVADER",
-    LSCustoms = "CHAR_LS_CUSTOMS",
-    LSTI = "CHAR_LS_TOURIST_BOARD",
-    Manuel = "CHAR_MANUEL",
-    Marnie = "CHAR_MARNIE",
-    Martin = "CHAR_MARTIN",
-    MaryAnn = "CHAR_MARY_ANN",
-    Maude = "CHAR_MAUDE",
-    Mechanic = "CHAR_MECHANIC",
-    Michael = "CHAR_MICHAEL",
-    MichaelFranklin = "CHAR_MIKE_FRANK_CONF",
-    MichaelTrevor = "CHAR_MIKE_TREV_CONF",
-    WarStock = "CHAR_MILSITE",
-    Minotaur = "CHAR_MINOTAUR",
-    Molly = "CHAR_MOLLY",
-    MPArmyContact = "CHAR_MP_ARMY_CONTACT",
-    MPBikerBoss = "CHAR_MP_BIKER_BOSS",
-    MPBikerMechanic = "CHAR_MP_BIKER_MECHANIC",
-    MPBrucie = "CHAR_MP_BRUCIE",
-    MPDetonatePhone = "CHAR_MP_DETONATEPHONE",
-    MPFamBoss = "CHAR_MP_FAM_BOSS",
-    MPFIBContact = "CHAR_MP_FIB_CONTACT",
-    MPFMContact = "CHAR_MP_FM_CONTACT",
-    MPGerald = "CHAR_MP_GERALD",
-    MPJulio = "CHAR_MP_JULIO",
-    MPMechanic = "CHAR_MP_MECHANIC",
-    MPMerryweather = "CHAR_MP_MERRYWEATHER",
-    MPMexBoss = "CHAR_MP_MEX_BOSS",
-    MPMexDocks = "CHAR_MP_MEX_DOCKS",
-    MPMexLT = "CHAR_MP_MEX_LT",
-    MPMorsMutual = "CHAR_MP_MORS_MUTUAL",
-    MPProfBoss = "CHAR_MP_PROF_BOSS",
-    MPRayLavoy = "CHAR_MP_RAY_LAVOY",
-    MPRoberto = "CHAR_MP_ROBERTO",
-    MPSnitch = "CHAR_MP_SNITCH",
-    MPStretch = "CHAR_MP_STRETCH",
-    MPStripClubPR = "CHAR_MP_STRIPCLUB_PR",
-    MrsThornhill = "CHAR_MRS_THORNHILL",
-    Multiplayer = "CHAR_MULTIPLAYER",
-    Nigel = "CHAR_NIGEL",
-    Omega = "CHAR_OMEGA",
-    ONeil = "CHAR_ONEIL",
-    Ortega = "CHAR_ORTEGA",
-    Oscar = "CHAR_OSCAR",
-    Patricia = "CHAR_PATRICIA",
-    PegasusDelivery = "CHAR_PEGASUS_DELIVERY",
-    ElitasTravel = "CHAR_PLANESITE",
-    PropertyArmsTrafficking = "CHAR_PROPERTY_ARMS_TRAFFICKING",
-    PropertyBarAirport = "CHAR_PROPERTY_BAR_AIRPORT",
-    PropertyBarBayview = "CHAR_PROPERTY_BAR_BAYVIEW",
-    PropertyBarCafeRojo = "CHAR_PROPERTY_BAR_CAFE_ROJO",
-    PropertyBarCockotoos = "CHAR_PROPERTY_BAR_COCKOTOOS",
-    PropertyBarEclipse = "CHAR_PROPERTY_BAR_ECLIPSE",
-    PropertyBarFes = "CHAR_PROPERTY_BAR_FES",
-    PropertyBarHenHouse = "CHAR_PROPERTY_BAR_HEN_HOUSE",
-    PropertyBarHiMen = "CHAR_PROPERTY_BAR_HI_MEN",
-    PropertyBarHookies = "CHAR_PROPERTY_BAR_HOOKIES",
-    PropertyBarIrish = "CHAR_PROPERTY_BAR_IRISH",
-    PropertyBarLesBianco = "CHAR_PROPERTY_BAR_LES_BIANCO",
-    PropertyBarMirrorPark = "CHAR_PROPERTY_BAR_MIRROR_PARK",
-    PropertyBarPitchers = "CHAR_PROPERTY_BAR_PITCHERS",
-    PropertyBarSingletons = "CHAR_PROPERTY_BAR_SINGLETONS",
-    PropertyBarTequilala = "CHAR_PROPERTY_BAR_TEQUILALA",
-    PropertyBarUnbranded = "CHAR_PROPERTY_BAR_UNBRANDED",
-    PropertyCarModShop = "CHAR_PROPERTY_CAR_MOD_SHOP",
-    PropertyCarScrapYard = "CHAR_PROPERTY_CAR_SCRAP_YARD",
-    PropertyCinemaDowntown = "CHAR_PROPERTY_CINEMA_DOWNTOWN",
-    PropertyCinemaMorningwood = "CHAR_PROPERTY_CINEMA_MORNINGWOOD",
-    PropertyCinemaVinewood = "CHAR_PROPERTY_CINEMA_VINEWOOD",
-    PropertyGolfClub = "CHAR_PROPERTY_GOLF_CLUB",
-    PropertyPlaneScrapYard = "CHAR_PROPERTY_PLANE_SCRAP_YARD",
-    PropertySonarCollections = "CHAR_PROPERTY_SONAR_COLLECTIONS",
-    PropertyTaxiLot = "CHAR_PROPERTY_TAXI_LOT",
-    PropertyTowingImpound = "CHAR_PROPERTY_TOWING_IMPOUND",
-    PropertyWeedShop = "CHAR_PROPERTY_WEED_SHOP",
-    Ron = "CHAR_RON",
-    Saeeda = "CHAR_SAEEDA",
-    Sasquatch = "CHAR_SASQUATCH",
-    Simeon = "CHAR_SIMEON",
-    SocialClub = "CHAR_SOCIAL_CLUB",
-    Solomon = "CHAR_SOLOMON",
-    Steve = "CHAR_STEVE",
-    SteveMikeConf = "CHAR_STEVE_MIKE_CONF",
-    SteveTrevConf = "CHAR_STEVE_TREV_CONF",
-    Stretch = "CHAR_STRETCH",
-    StripperChastity = "CHAR_STRIPPER_CHASTITY",
-    StripperCheetah = "CHAR_STRIPPER_CHEETAH",
-    StripperFufu = "CHAR_STRIPPER_FUFU",
-    StripperInfernus = "CHAR_STRIPPER_INFERNUS",
-    StripperJuliet = "CHAR_STRIPPER_JULIET",
-    StripperNikki = "CHAR_STRIPPER_NIKKI",
-    StripperPeach = "CHAR_STRIPPER_PEACH",
-    StripperSapphire = "CHAR_STRIPPER_SAPPHIRE",
-    Tanisha = "CHAR_TANISHA",
-    Taxi = "CHAR_TAXI",
-    TaxiLiz = "CHAR_TAXI_LIZ",
-    TennisCoach = "CHAR_TENNIS_COACH",
-    TowTonya = "CHAR_TOW_TONYA",
-    Tracey = "CHAR_TRACEY",
-    Trevor = "CHAR_TREVOR",
-    Wade = "CHAR_WADE",
-    YouTube = "CHAR_YOUTUBE",
-    CreatorPortraits = "CHAR_CREATOR_PORTRAITS",
+  Abigail = "CHAR_ABIGAIL",
+  AllPlayersConf = "CHAR_ALL_PLAYERS_CONF",
+  Amanda = "CHAR_AMANDA",
+  Ammunation = "CHAR_AMMUNATION",
+  Andreas = "CHAR_ANDREAS",
+  Antonia = "CHAR_ANTONIA",
+  Arthur = "CHAR_ARTHUR",
+  Ashley = "CHAR_ASHLEY",
+  BankOfLiberty = "CHAR_BANK_BOL",
+  BankFleeca = "CHAR_BANK_FLEECA",
+  BankMaze = "CHAR_BANK_MAZE",
+  Barry = "CHAR_BARRY",
+  Beverly = "CHAR_BEVERLY",
+  BikeSite = "CHAR_BIKESITE",
+  BlankEntry = "CHAR_BLANK_ENTRY",
+  Blimp = "CHAR_BLIMP",
+  Blocked = "CHAR_BLOCKED",
+  BoatSite = "CHAR_BOATSITE",
+  BrokenDownGirl = "CHAR_BROKEN_DOWN_GIRL",
+  BugStars = "CHAR_BUGSTARS",
+  Call911 = "CHAR_CALL911",
+  LegendaryMotorsport = "CHAR_CARSITE",
+  SSASuperAutos = "CHAR_CARSITE2",
+  Castro = "CHAR_CASTRO",
+  ChatCall = "CHAR_CHAT_CALL",
+  Chef = "CHAR_CHEF",
+  Cheng = "CHAR_CHENG",
+  ChengSenior = "CHAR_CHENGSR",
+  Chop = "CHAR_CHOP",
+  Cris = "CHAR_CRIS",
+  Dave = "CHAR_DAVE",
+  Default = "CHAR_DEFAULT",
+  Denise = "CHAR_DENISE",
+  DetonateBomb = "CHAR_DETONATEBOMB",
+  DetonatePhone = "CHAR_DETONATEPHONE",
+  Devin = "CHAR_DEVIN",
+  SubMarine = "CHAR_DIAL_A_SUB",
+  Dom = "CHAR_DOM",
+  DomesticGirl = "CHAR_DOMESTIC_GIRL",
+  Dreyfuss = "CHAR_DREYFUSS",
+  DrFriedlander = "CHAR_DR_FRIEDLANDER",
+  Epsilon = "CHAR_EPSILON",
+  EstateAgent = "CHAR_ESTATE_AGENT",
+  Facebook = "CHAR_FACEBOOK",
+  FilmNoir = "CHAR_FILMNOIR",
+  Floyd = "CHAR_FLOYD",
+  Franklin = "CHAR_FRANKLIN",
+  FranklinTrevor = "CHAR_FRANK_TREV_CONF",
+  GayMilitary = "CHAR_GAYMILITARY",
+  Hao = "CHAR_HAO",
+  HitcherGirl = "CHAR_HITCHER_GIRL",
+  HumanDefault = "CHAR_HUMANDEFAULT",
+  Hunter = "CHAR_HUNTER",
+  Jimmy = "CHAR_JIMMY",
+  JimmyBoston = "CHAR_JIMMY_BOSTON",
+  Joe = "CHAR_JOE",
+  Josef = "CHAR_JOSEF",
+  Josh = "CHAR_JOSH",
+  LamarDog = "CHAR_LAMAR",
+  Lazlow = "CHAR_LAZLOW",
+  Lester = "CHAR_LESTER",
+  Skull = "CHAR_LESTER_DEATHWISH",
+  LesterFranklin = "CHAR_LEST_FRANK_CONF",
+  LesterMichael = "CHAR_LEST_MIKE_CONF",
+  LifeInvader = "CHAR_LIFEINVADER",
+  LSCustoms = "CHAR_LS_CUSTOMS",
+  LSTI = "CHAR_LS_TOURIST_BOARD",
+  Manuel = "CHAR_MANUEL",
+  Marnie = "CHAR_MARNIE",
+  Martin = "CHAR_MARTIN",
+  MaryAnn = "CHAR_MARY_ANN",
+  Maude = "CHAR_MAUDE",
+  Mechanic = "CHAR_MECHANIC",
+  Michael = "CHAR_MICHAEL",
+  MichaelFranklin = "CHAR_MIKE_FRANK_CONF",
+  MichaelTrevor = "CHAR_MIKE_TREV_CONF",
+  WarStock = "CHAR_MILSITE",
+  Minotaur = "CHAR_MINOTAUR",
+  Molly = "CHAR_MOLLY",
+  MPArmyContact = "CHAR_MP_ARMY_CONTACT",
+  MPBikerBoss = "CHAR_MP_BIKER_BOSS",
+  MPBikerMechanic = "CHAR_MP_BIKER_MECHANIC",
+  MPBrucie = "CHAR_MP_BRUCIE",
+  MPDetonatePhone = "CHAR_MP_DETONATEPHONE",
+  MPFamBoss = "CHAR_MP_FAM_BOSS",
+  MPFIBContact = "CHAR_MP_FIB_CONTACT",
+  MPFMContact = "CHAR_MP_FM_CONTACT",
+  MPGerald = "CHAR_MP_GERALD",
+  MPJulio = "CHAR_MP_JULIO",
+  MPMechanic = "CHAR_MP_MECHANIC",
+  MPMerryweather = "CHAR_MP_MERRYWEATHER",
+  MPMexBoss = "CHAR_MP_MEX_BOSS",
+  MPMexDocks = "CHAR_MP_MEX_DOCKS",
+  MPMexLT = "CHAR_MP_MEX_LT",
+  MPMorsMutual = "CHAR_MP_MORS_MUTUAL",
+  MPProfBoss = "CHAR_MP_PROF_BOSS",
+  MPRayLavoy = "CHAR_MP_RAY_LAVOY",
+  MPRoberto = "CHAR_MP_ROBERTO",
+  MPSnitch = "CHAR_MP_SNITCH",
+  MPStretch = "CHAR_MP_STRETCH",
+  MPStripClubPR = "CHAR_MP_STRIPCLUB_PR",
+  MrsThornhill = "CHAR_MRS_THORNHILL",
+  Multiplayer = "CHAR_MULTIPLAYER",
+  Nigel = "CHAR_NIGEL",
+  Omega = "CHAR_OMEGA",
+  ONeil = "CHAR_ONEIL",
+  Ortega = "CHAR_ORTEGA",
+  Oscar = "CHAR_OSCAR",
+  Patricia = "CHAR_PATRICIA",
+  PegasusDelivery = "CHAR_PEGASUS_DELIVERY",
+  ElitasTravel = "CHAR_PLANESITE",
+  PropertyArmsTrafficking = "CHAR_PROPERTY_ARMS_TRAFFICKING",
+  PropertyBarAirport = "CHAR_PROPERTY_BAR_AIRPORT",
+  PropertyBarBayview = "CHAR_PROPERTY_BAR_BAYVIEW",
+  PropertyBarCafeRojo = "CHAR_PROPERTY_BAR_CAFE_ROJO",
+  PropertyBarCockotoos = "CHAR_PROPERTY_BAR_COCKOTOOS",
+  PropertyBarEclipse = "CHAR_PROPERTY_BAR_ECLIPSE",
+  PropertyBarFes = "CHAR_PROPERTY_BAR_FES",
+  PropertyBarHenHouse = "CHAR_PROPERTY_BAR_HEN_HOUSE",
+  PropertyBarHiMen = "CHAR_PROPERTY_BAR_HI_MEN",
+  PropertyBarHookies = "CHAR_PROPERTY_BAR_HOOKIES",
+  PropertyBarIrish = "CHAR_PROPERTY_BAR_IRISH",
+  PropertyBarLesBianco = "CHAR_PROPERTY_BAR_LES_BIANCO",
+  PropertyBarMirrorPark = "CHAR_PROPERTY_BAR_MIRROR_PARK",
+  PropertyBarPitchers = "CHAR_PROPERTY_BAR_PITCHERS",
+  PropertyBarSingletons = "CHAR_PROPERTY_BAR_SINGLETONS",
+  PropertyBarTequilala = "CHAR_PROPERTY_BAR_TEQUILALA",
+  PropertyBarUnbranded = "CHAR_PROPERTY_BAR_UNBRANDED",
+  PropertyCarModShop = "CHAR_PROPERTY_CAR_MOD_SHOP",
+  PropertyCarScrapYard = "CHAR_PROPERTY_CAR_SCRAP_YARD",
+  PropertyCinemaDowntown = "CHAR_PROPERTY_CINEMA_DOWNTOWN",
+  PropertyCinemaMorningwood = "CHAR_PROPERTY_CINEMA_MORNINGWOOD",
+  PropertyCinemaVinewood = "CHAR_PROPERTY_CINEMA_VINEWOOD",
+  PropertyGolfClub = "CHAR_PROPERTY_GOLF_CLUB",
+  PropertyPlaneScrapYard = "CHAR_PROPERTY_PLANE_SCRAP_YARD",
+  PropertySonarCollections = "CHAR_PROPERTY_SONAR_COLLECTIONS",
+  PropertyTaxiLot = "CHAR_PROPERTY_TAXI_LOT",
+  PropertyTowingImpound = "CHAR_PROPERTY_TOWING_IMPOUND",
+  PropertyWeedShop = "CHAR_PROPERTY_WEED_SHOP",
+  Ron = "CHAR_RON",
+  Saeeda = "CHAR_SAEEDA",
+  Sasquatch = "CHAR_SASQUATCH",
+  Simeon = "CHAR_SIMEON",
+  SocialClub = "CHAR_SOCIAL_CLUB",
+  Solomon = "CHAR_SOLOMON",
+  Steve = "CHAR_STEVE",
+  SteveMikeConf = "CHAR_STEVE_MIKE_CONF",
+  SteveTrevConf = "CHAR_STEVE_TREV_CONF",
+  Stretch = "CHAR_STRETCH",
+  StripperChastity = "CHAR_STRIPPER_CHASTITY",
+  StripperCheetah = "CHAR_STRIPPER_CHEETAH",
+  StripperFufu = "CHAR_STRIPPER_FUFU",
+  StripperInfernus = "CHAR_STRIPPER_INFERNUS",
+  StripperJuliet = "CHAR_STRIPPER_JULIET",
+  StripperNikki = "CHAR_STRIPPER_NIKKI",
+  StripperPeach = "CHAR_STRIPPER_PEACH",
+  StripperSapphire = "CHAR_STRIPPER_SAPPHIRE",
+  Tanisha = "CHAR_TANISHA",
+  Taxi = "CHAR_TAXI",
+  TaxiLiz = "CHAR_TAXI_LIZ",
+  TennisCoach = "CHAR_TENNIS_COACH",
+  TowTonya = "CHAR_TOW_TONYA",
+  Tracey = "CHAR_TRACEY",
+  Trevor = "CHAR_TREVOR",
+  Wade = "CHAR_WADE",
+  YouTube = "CHAR_YOUTUBE",
+  CreatorPortraits = "CHAR_CREATOR_PORTRAITS",
 }
 
 
@@ -1379,12 +1456,12 @@ NotificationCharacters = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum NotificationIcon
 NotificationIcon = {
-    ChatBox = 1,
-    Email = 2,
-    AdDFriendRequest = 3,
-    RightJumpingArrow = 7,
-    RPIcon = 8,
-    DollarIcon = 9
+  ChatBox = 1,
+  Email = 2,
+  AdDFriendRequest = 3,
+  RightJumpingArrow = 7,
+  RPIcon = 8,
+  DollarIcon = 9
 }
 
 
@@ -1392,14 +1469,14 @@ NotificationIcon = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum NotificationType
 NotificationType = {
-    Default = 0,
-    Bubble = 1,
-    Mail = 2,
-    FriendRequest = 3,
-    Default2 = 4,
-    Reply = 7,
-    ReputationPoints = 8,
-    Money = 9
+  Default = 0,
+  Bubble = 1,
+  Mail = 2,
+  FriendRequest = 3,
+  Default2 = 4,
+  Reply = 7,
+  ReputationPoints = 8,
+  Money = 9
 }
 
 
@@ -1451,7 +1528,7 @@ ScaleformFonts = {
 
 
 --///////////////////////////////////////////////////////////////////--
-SColor = setmetatable({A = 0, R = 0, G = 0, B = 0}, SColor)
+SColor = setmetatable({ A = 0, R = 0, G = 0, B = 0 }, SColor)
 SColor.__index = SColor
 SColor.__call = function()
     return "SColor"
@@ -1851,13 +1928,13 @@ end
 ---@return table
 function SColor.FromHex(hexColor)
     assert(hexColor:sub(1, 1) == "#", "Invalid Hex value")
-    local color = {A = 0, R = 0, G = 0, B = 0}
+    local color = { A = 0, R = 0, G = 0, B = 0 }
     if hexColor:sub(1, 1) == "#" then
-        local hex = hexColor:gsub("#", "") -- Remove "#" symbol if present
-        local a = tonumber("0x"..hex:sub(1, 2)) -- Convert first two characters to decimal (alpha channel)
-        local r = tonumber("0x"..hex:sub(3, 4)) -- Convert next two characters to decimal (red channel)
-        local g = tonumber("0x"..hex:sub(5, 6)) -- Convert next two characters to decimal (green channel)
-        local b = tonumber("0x"..hex:sub(7, 8)) -- Convert last two characters to decimal (blue channel)
+        local hex = hexColor:gsub("#", "")       -- Remove "#" symbol if present
+        local a = tonumber("0x" .. hex:sub(1, 2)) -- Convert first two characters to decimal (alpha channel)
+        local r = tonumber("0x" .. hex:sub(3, 4)) -- Convert next two characters to decimal (red channel)
+        local g = tonumber("0x" .. hex:sub(5, 6)) -- Convert next two characters to decimal (green channel)
+        local b = tonumber("0x" .. hex:sub(7, 8)) -- Convert last two characters to decimal (blue channel)
 
         color = {
             A = a,
@@ -1873,7 +1950,7 @@ end
 ---@return table
 function SColor.FromHudColor(color)
     assert(color ~= nil, "Invalid HUD color value")
-    local _color = {A = 0, R = 0, G = 0, B = 0}
+    local _color = { A = 0, R = 0, G = 0, B = 0 }
     local r, g, b, a = GetHudColour(color)
     _color = {
         A = a,
@@ -1898,7 +1975,7 @@ end
 ---@param ... number
 ---@return table|unknown
 function SColor.FromArgb(...)
-    local args = {...}
+    local args = { ... }
     local color = {}
     assert(args ~= nil, "nil values are not accepted")
     assert(#args == 1 or #args == 4, "accepted args are ARGB Int value or Alpha, Red, Green, Blue values")
@@ -1922,14 +1999,14 @@ function SColor.FromArgb(...)
             b = 255 - b
         end
 
-        color = {A = a, R = r, G = g, B = b}
+        color = { A = a, R = r, G = g, B = b }
     elseif #args == 4 then
         local alpha, red, green, blue = table.unpack(args)
         assert(alpha ~= nil, "alpha cannot be nil")
         assert(red ~= nil, "red cannot be nil")
         assert(green ~= nil, "green cannot be nil")
         assert(blue ~= nil, "blue cannot be nil")
-        color = {A = alpha, R = red, G = green, B = blue}
+        color = { A = alpha, R = red, G = green, B = blue }
     end
     return setmetatable(color, SColor)
 end
@@ -1940,7 +2017,7 @@ end
 ---@param blue number
 ---@return table
 function SColor.FromRgb(red, green, blue)
-    local color = {A = 255, R = red, G = green, B = blue}
+    local color = { A = 255, R = red, G = green, B = blue }
     return setmetatable(color, SColor)
 end
 
@@ -2030,7 +2107,7 @@ end
 ---@comment Returns this color information as string
 ---@return string
 function SColor:ToString()
-    return "Color [A="..self.A..", R=:"..self.R..", G="..self.G..", B="..self.B.."] - INT="..self:ToArgb().." - HEX="..self:ToHex()
+    return "Color [A=" .. self.A .. ", R=:" .. self.R .. ", G=" .. self.G .. ", B=" .. self.B .. "] - INT=" .. self:ToArgb() .. " - HEX=" .. self:ToHex()
 end
 
 function SColor:__eq(other)
@@ -2421,9 +2498,9 @@ SColor.HUD_Tech_green_very_dark = SColor.FromHudColor(223)
 --///////////////////////////////////////////////////////////////////--
 ---@enum ScoreDisplayType
 ScoreDisplayType = {
-    NUMBER_ONLY = 0,
-    ICON = 1,
-    NONE = 2
+  NUMBER_ONLY = 0,
+  ICON = 1,
+  NONE = 2
 }
 
 
@@ -2431,20 +2508,20 @@ ScoreDisplayType = {
 --///////////////////////////////////////////////////////////////////--
 ---@enum ScoreRightIconType
 ScoreRightIconType = {
-    NONE = 0,
-    INACTIVE_HEADSET = 48,
-    MUTED_HEADSET = 49,
-    ACTIVE_HEADSET = 47,
-    RANK_FREEMODE = 65,
-    KICK = 64,
-    LOBBY_DRIVER = 79,
-    LOBBY_CODRIVER = 80,
-    SPECTATOR = 66,
-    BOUNTY = 115,
-    DEAD = 116,
-    DPAD_GANG_CEO = 121,
-    DPAD_GANG_BIKER = 122,
-    DPAD_DOWN_TARGET = 123
+  NONE = 0,
+  INACTIVE_HEADSET = 48,
+  MUTED_HEADSET = 49,
+  ACTIVE_HEADSET = 47,
+  RANK_FREEMODE = 65,
+  KICK = 64,
+  LOBBY_DRIVER = 79,
+  LOBBY_CODRIVER = 80,
+  SPECTATOR = 66,
+  BOUNTY = 115,
+  DEAD = 116,
+  DPAD_GANG_CEO = 121,
+  DPAD_GANG_BIKER = 122,
+  DPAD_DOWN_TARGET = 123
 }
 
 
@@ -2632,166 +2709,166 @@ end
 ---@field public Pure_Gold SColor
 ---@field public Brushed_Gold SColor
 
-Metallic_Black = SColor.FromArgb(255, 13, 17, 22); --i: 0
-Metallic_Graphite_Black = SColor.FromArgb(255, 28, 29, 33); --i: 1
-Metallic_Black_Steal = SColor.FromArgb(255, 50, 56, 61); --i: 2
-Metallic_Dark_Silver = SColor.FromArgb(255, 69, 75, 79); --i: 3
-Metallic_Silver = SColor.FromArgb(255, 153, 157, 160); --i: 4
-Metallic_Blue_Silver = SColor.FromArgb(255, 194, 196, 198); --i: 5
-Metallic_Steel_Gray = SColor.FromArgb(255, 151, 154, 151); --i: 6
-Metallic_Shadow_Silver = SColor.FromArgb(255, 99, 115, 128); --i: 7
-Metallic_Stone_Silver = SColor.FromArgb(255, 99, 98, 92); --i: 8
-Metallic_Midnight_Silver = SColor.FromArgb(255, 60, 63, 71); --i: 9
-Metallic_Gun_Metal = SColor.FromArgb(255, 68, 78, 84); --i: 10
-Metallic_Anthracite_Grey = SColor.FromArgb(255, 29, 33, 41); --i: 11
-Matte_Black = SColor.FromArgb(255, 19, 24, 31); --i: 12
-Matte_Gray = SColor.FromArgb(255, 38, 40, 42); --i: 13
-Matte_Light_Grey = SColor.FromArgb(255, 81, 85, 84); --i: 14
-Util_Black = SColor.FromArgb(255, 21, 25, 33); --i: 15
-Util_Black_Poly = SColor.FromArgb(255, 30, 36, 41); --i: 16
-Util_Dark_silver = SColor.FromArgb(255, 51, 58, 60); --i: 17
-Util_Silver = SColor.FromArgb(255, 140, 144, 149); --i: 18
-Util_Gun_Metal = SColor.FromArgb(255, 57, 67, 77); --i: 19
-Util_Shadow_Silver = SColor.FromArgb(255, 80, 98, 114); --i: 20
-Worn_Black = SColor.FromArgb(255, 30, 35, 47); --i: 21
-Worn_Graphite = SColor.FromArgb(255, 54, 58, 63); --i: 22
-Worn_Silver_Grey = SColor.FromArgb(255, 160, 161, 153); --i: 23
-Worn_Silver = SColor.FromArgb(255, 211, 211, 211); --i: 24
-Worn_Blue_Silver = SColor.FromArgb(255, 183, 191, 202); --i: 25
-Worn_Shadow_Silver = SColor.FromArgb(255, 119, 135, 148); --i: 26
-Metallic_Red = SColor.FromArgb(255, 192, 14, 26); --i: 27
-Metallic_Torino_Red = SColor.FromArgb(255, 218, 25, 24); --i: 28
-Metallic_Formula_Red = SColor.FromArgb(255, 182, 17, 27); --i: 29
-Metallic_Blaze_Red = SColor.FromArgb(255, 165, 30, 35); --i: 30
-Metallic_Graceful_Red = SColor.FromArgb(255, 123, 26, 34); --i: 31
-Metallic_Garnet_Red = SColor.FromArgb(255, 142, 27, 31); --i: 32
-Metallic_Desert_Red = SColor.FromArgb(255, 111, 24, 24); --i: 33
-Metallic_Cabernet_Red = SColor.FromArgb(255, 73, 17, 29); --i: 34
-Metallic_Candy_Red = SColor.FromArgb(255, 182, 15, 37); --i: 35
-Metallic_Sunrise_Orange = SColor.FromArgb(255, 212, 74, 23); --i: 36
-Metallic_Classic_Gold = SColor.FromArgb(255, 194, 148, 79); --i: 37
-Metallic_Orange = SColor.FromArgb(255, 247, 134, 22); --i: 38
-Matte_Red = SColor.FromArgb(255, 207, 31, 33); --i: 39
-Matte_Dark_Red = SColor.FromArgb(255, 115, 32, 33); --i: 40
-Matte_Orange = SColor.FromArgb(255, 242, 125, 32); --i: 41
-Matte_Yellow = SColor.FromArgb(255, 255, 201, 31); --i: 42
-Util_Red = SColor.FromArgb(255, 156, 16, 22); --i: 43
-Util_Bright_Red = SColor.FromArgb(255, 222, 15, 24); --i: 44
-Util_Garnet_Red = SColor.FromArgb(255, 143, 30, 23); --i: 45
-Worn_Red = SColor.FromArgb(255, 169, 71, 68); --i: 46
-Worn_Golden_Red = SColor.FromArgb(255, 177, 108, 81); --i: 47
-Worn_Dark_Red = SColor.FromArgb(255, 55, 28, 37); --i: 48
-Metallic_Dark_Green = SColor.FromArgb(255, 19, 36, 40); --i: 49
-Metallic_Racing_Green = SColor.FromArgb(255, 18, 46, 43); --i: 50
-Metallic_Sea_Green = SColor.FromArgb(255, 18, 56, 60); --i: 51
-Metallic_Olive_Green = SColor.FromArgb(255, 49, 66, 63); --i: 52
-Metallic_Green = SColor.FromArgb(255, 21, 92, 45); --i: 53
+Metallic_Black = SColor.FromArgb(255, 13, 17, 22);                 --i: 0
+Metallic_Graphite_Black = SColor.FromArgb(255, 28, 29, 33);        --i: 1
+Metallic_Black_Steal = SColor.FromArgb(255, 50, 56, 61);           --i: 2
+Metallic_Dark_Silver = SColor.FromArgb(255, 69, 75, 79);           --i: 3
+Metallic_Silver = SColor.FromArgb(255, 153, 157, 160);             --i: 4
+Metallic_Blue_Silver = SColor.FromArgb(255, 194, 196, 198);        --i: 5
+Metallic_Steel_Gray = SColor.FromArgb(255, 151, 154, 151);         --i: 6
+Metallic_Shadow_Silver = SColor.FromArgb(255, 99, 115, 128);       --i: 7
+Metallic_Stone_Silver = SColor.FromArgb(255, 99, 98, 92);          --i: 8
+Metallic_Midnight_Silver = SColor.FromArgb(255, 60, 63, 71);       --i: 9
+Metallic_Gun_Metal = SColor.FromArgb(255, 68, 78, 84);             --i: 10
+Metallic_Anthracite_Grey = SColor.FromArgb(255, 29, 33, 41);       --i: 11
+Matte_Black = SColor.FromArgb(255, 19, 24, 31);                    --i: 12
+Matte_Gray = SColor.FromArgb(255, 38, 40, 42);                     --i: 13
+Matte_Light_Grey = SColor.FromArgb(255, 81, 85, 84);               --i: 14
+Util_Black = SColor.FromArgb(255, 21, 25, 33);                     --i: 15
+Util_Black_Poly = SColor.FromArgb(255, 30, 36, 41);                --i: 16
+Util_Dark_silver = SColor.FromArgb(255, 51, 58, 60);               --i: 17
+Util_Silver = SColor.FromArgb(255, 140, 144, 149);                 --i: 18
+Util_Gun_Metal = SColor.FromArgb(255, 57, 67, 77);                 --i: 19
+Util_Shadow_Silver = SColor.FromArgb(255, 80, 98, 114);            --i: 20
+Worn_Black = SColor.FromArgb(255, 30, 35, 47);                     --i: 21
+Worn_Graphite = SColor.FromArgb(255, 54, 58, 63);                  --i: 22
+Worn_Silver_Grey = SColor.FromArgb(255, 160, 161, 153);            --i: 23
+Worn_Silver = SColor.FromArgb(255, 211, 211, 211);                 --i: 24
+Worn_Blue_Silver = SColor.FromArgb(255, 183, 191, 202);            --i: 25
+Worn_Shadow_Silver = SColor.FromArgb(255, 119, 135, 148);          --i: 26
+Metallic_Red = SColor.FromArgb(255, 192, 14, 26);                  --i: 27
+Metallic_Torino_Red = SColor.FromArgb(255, 218, 25, 24);           --i: 28
+Metallic_Formula_Red = SColor.FromArgb(255, 182, 17, 27);          --i: 29
+Metallic_Blaze_Red = SColor.FromArgb(255, 165, 30, 35);            --i: 30
+Metallic_Graceful_Red = SColor.FromArgb(255, 123, 26, 34);         --i: 31
+Metallic_Garnet_Red = SColor.FromArgb(255, 142, 27, 31);           --i: 32
+Metallic_Desert_Red = SColor.FromArgb(255, 111, 24, 24);           --i: 33
+Metallic_Cabernet_Red = SColor.FromArgb(255, 73, 17, 29);          --i: 34
+Metallic_Candy_Red = SColor.FromArgb(255, 182, 15, 37);            --i: 35
+Metallic_Sunrise_Orange = SColor.FromArgb(255, 212, 74, 23);       --i: 36
+Metallic_Classic_Gold = SColor.FromArgb(255, 194, 148, 79);        --i: 37
+Metallic_Orange = SColor.FromArgb(255, 247, 134, 22);              --i: 38
+Matte_Red = SColor.FromArgb(255, 207, 31, 33);                     --i: 39
+Matte_Dark_Red = SColor.FromArgb(255, 115, 32, 33);                --i: 40
+Matte_Orange = SColor.FromArgb(255, 242, 125, 32);                 --i: 41
+Matte_Yellow = SColor.FromArgb(255, 255, 201, 31);                 --i: 42
+Util_Red = SColor.FromArgb(255, 156, 16, 22);                      --i: 43
+Util_Bright_Red = SColor.FromArgb(255, 222, 15, 24);               --i: 44
+Util_Garnet_Red = SColor.FromArgb(255, 143, 30, 23);               --i: 45
+Worn_Red = SColor.FromArgb(255, 169, 71, 68);                      --i: 46
+Worn_Golden_Red = SColor.FromArgb(255, 177, 108, 81);              --i: 47
+Worn_Dark_Red = SColor.FromArgb(255, 55, 28, 37);                  --i: 48
+Metallic_Dark_Green = SColor.FromArgb(255, 19, 36, 40);            --i: 49
+Metallic_Racing_Green = SColor.FromArgb(255, 18, 46, 43);          --i: 50
+Metallic_Sea_Green = SColor.FromArgb(255, 18, 56, 60);             --i: 51
+Metallic_Olive_Green = SColor.FromArgb(255, 49, 66, 63);           --i: 52
+Metallic_Green = SColor.FromArgb(255, 21, 92, 45);                 --i: 53
 Metallic_Gasoline_Blue_Green = SColor.FromArgb(255, 27, 103, 112); --i: 54
-Matte_Lime_Green = SColor.FromArgb(255, 102, 184, 31); --i: 55
-Util_Dark_Green = SColor.FromArgb(255, 34, 56, 62); --i: 56
-Util_Green = SColor.FromArgb(255, 29, 90, 63); --i: 57
-Worn_Dark_Green = SColor.FromArgb(255, 45, 66, 63); --i: 58
-Worn_Green = SColor.FromArgb(255, 69, 89, 75); --i: 59
-Worn_Sea_Wash = SColor.FromArgb(255, 101, 134, 127); --i: 60
-Metallic_Midnight_Blue = SColor.FromArgb(255, 34, 46, 70); --i: 61
-Metallic_Dark_Blue = SColor.FromArgb(255, 35, 49, 85); --i: 62
-Metallic_Saxony_Blue = SColor.FromArgb(255, 48, 76, 126); --i: 63
-Metallic_Blue = SColor.FromArgb(255, 71, 87, 143); --i: 64
-Metallic_Mariner_Blue = SColor.FromArgb(255, 99, 123, 167); --i: 65
-Metallic_Harbor_Blue = SColor.FromArgb(255, 57, 71, 98); --i: 66
-Metallic_Diamond_Blue = SColor.FromArgb(255, 214, 231, 241); --i: 67
-Metallic_Surf_Blue = SColor.FromArgb(255, 118, 175, 190); --i: 68
-Metallic_Nautical_Blue = SColor.FromArgb(255, 52, 94, 114); --i: 69
-Metallic_Bright_Blue = SColor.FromArgb(255, 11, 156, 241); --i: 70
-Metallic_Purple_Blue = SColor.FromArgb(255, 47, 45, 82); --i: 71
-Metallic_Spinnaker_Blue = SColor.FromArgb(255, 40, 44, 77); --i: 72
-Metallic_Ultra_Blue = SColor.FromArgb(255, 35, 84, 161); --i: 73
-Dark_Pastel_Blue = SColor.FromArgb(255, 110, 163, 198); --i: 74
-Util_Dark_Blue = SColor.FromArgb(255, 17, 37, 82); --i: 75
-Util_Midnight_Blue = SColor.FromArgb(255, 27, 32, 62); --i: 76
-Util_Blue = SColor.FromArgb(255, 39, 81, 144); --i: 77
-Util_Sea_Foam_Blue = SColor.FromArgb(255, 96, 133, 146); --i: 78
-Util_Lightning_blue = SColor.FromArgb(255, 36, 70, 168); --i: 79
-Util_Maui_Blue_Poly = SColor.FromArgb(255, 66, 113, 225); --i: 80
-Util_Bright_Blue = SColor.FromArgb(255, 59, 57, 224); --i: 81
-Matte_Dark_Blue = SColor.FromArgb(255, 31, 40, 82); --i: 82
-Matte_Blue = SColor.FromArgb(255, 37, 58, 167); --i: 83
-Matte_Midnight_Blue = SColor.FromArgb(255, 28, 53, 81); --i: 84
-Worn_Dark_blue = SColor.FromArgb(255, 76, 95, 129); --i: 85
-Worn_Blue = SColor.FromArgb(255, 88, 104, 142); --i: 86
-Worn_Light_blue = SColor.FromArgb(255, 116, 181, 216); --i: 87
-Metallic_Taxi_Yellow = SColor.FromArgb(255, 255, 207, 32); --i: 88
-Metallic_Race_Yellow = SColor.FromArgb(255, 251, 226, 18); --i: 89
-Metallic_Bronze = SColor.FromArgb(255, 145, 101, 50); --i: 90
-Metallic_Yellow_Bird = SColor.FromArgb(255, 224, 225, 61); --i: 91
-Metallic_Lime = SColor.FromArgb(255, 152, 210, 35); --i: 92
-Metallic_Champagne = SColor.FromArgb(255, 155, 140, 120); --i: 93
-Metallic_Pueblo_Beige = SColor.FromArgb(255, 80, 50, 24); --i: 94
-Metallic_Dark_Ivory = SColor.FromArgb(255, 71, 63, 43); --i: 95
-Metallic_Choco_Brown = SColor.FromArgb(255, 34, 27, 25); --i: 96
-Metallic_Golden_Brown = SColor.FromArgb(255, 101, 63, 35); --i: 97
-Metallic_Light_Brown = SColor.FromArgb(255, 119, 92, 62); --i: 98
-Metallic_Straw_Beige = SColor.FromArgb(255, 172, 153, 117); --i: 99
-Metallic_Moss_Brown = SColor.FromArgb(255, 108, 107, 75); --i: 100
-Metallic_Biston_Brown = SColor.FromArgb(255, 64, 46, 43); --i: 101
-Metallic_Beechwood = SColor.FromArgb(255, 164, 150, 95); --i: 102
-Metallic_Dark_Beechwood = SColor.FromArgb(255, 70, 35, 26); --i: 103
-Metallic_Choco_Orange = SColor.FromArgb(255, 117, 43, 25); --i: 104
-Metallic_Beach_Sand = SColor.FromArgb(255, 191, 174, 123); --i: 105
-Metallic_Sun_Bleeched_Sand = SColor.FromArgb(255, 223, 213, 178); --i: 106
-Metallic_Cream = SColor.FromArgb(255, 247, 237, 213); --i: 107
-Util_Brown = SColor.FromArgb(255, 58, 42, 27); --i: 108
-Util_Medium_Brown = SColor.FromArgb(255, 120, 95, 51); --i: 109
-Util_Light_Brown = SColor.FromArgb(255, 181, 160, 121); --i: 110
-Metallic_White = SColor.FromArgb(255, 255, 255, 246); --i: 111
-Metallic_Frost_White = SColor.FromArgb(255, 234, 234, 234); --i: 112
-Worn_Honey_Beige = SColor.FromArgb(255, 176, 171, 148); --i: 113
-Worn_Brown = SColor.FromArgb(255, 69, 56, 49); --i: 114
-Worn_Dark_Brown = SColor.FromArgb(255, 42, 40, 43); --i: 115
-Worn_straw_beige = SColor.FromArgb(255, 114, 108, 87); --i: 116
-Brushed_Steel = SColor.FromArgb(255, 106, 116, 124); --i: 117
-Brushed_Black_steel = SColor.FromArgb(255, 53, 65, 88); --i: 118
-Brushed_Aluminium = SColor.FromArgb(255, 155, 160, 168); --i: 119
-Chrome = SColor.FromArgb(255, 88, 112, 161); --i: 120
-Worn_Off_White = SColor.FromArgb(255, 234, 230, 222); --i: 121
-Util_Off_White = SColor.FromArgb(255, 223, 221, 208); --i: 122
-Worn_Orange = SColor.FromArgb(255, 242, 173, 46); --i: 123
-Worn_Light_Orange = SColor.FromArgb(255, 249, 164, 88); --i: 124
-Metallic_Securicor_Green = SColor.FromArgb(255, 131, 197, 102); --i: 125
-Worn_Taxi_Yellow = SColor.FromArgb(255, 241, 204, 64); --i: 126
-Police_Car_Blue = SColor.FromArgb(255, 76, 195, 218); --i: 127
-Matte_Green = SColor.FromArgb(255, 78, 100, 67); --i: 128
-Matte_Brown = SColor.FromArgb(255, 188, 172, 143); --i: 129
-Texas_Rose = SColor.FromArgb(255, 248, 182, 88); --i: 130
-Matte_White = SColor.FromArgb(255, 252, 249, 241); --i: 131
-Worn_White = SColor.FromArgb(255, 255, 255, 251); --i: 132
-Worn_Olive_Army_Green = SColor.FromArgb(255, 129, 132, 76); --i: 133
-Pure_White = SColor.FromArgb(255, 255, 255, 255); --i: 134
-Hot_Pink = SColor.FromArgb(255, 242, 31, 153); --i: 135
-Salmon_pink = SColor.FromArgb(255, 253, 214, 205); --i: 136
-Metallic_Vermillion_Pink = SColor.FromArgb(255, 223, 88, 145); --i: 137
-Orange_ = SColor.FromArgb(255, 246, 174, 32); --i: 138
-Green_ = SColor.FromArgb(255, 176, 238, 110); --i: 139
-Blue_ = SColor.FromArgb(255, 8, 233, 250); --i: 140
-Mettalic_Black_Blue = SColor.FromArgb(255, 10, 12, 23); --i: 141
-Metallic_Black_Purple = SColor.FromArgb(255, 12, 13, 24); --i: 142
-Metallic_Black_Red = SColor.FromArgb(255, 14, 13, 20); --i: 143
-Hunter_green = SColor.FromArgb(255, 159, 158, 138); --i: 144
-Metallic_Purple = SColor.FromArgb(255, 98, 18, 118); --i: 145
-Metaillic_V_Dark_Blue = SColor.FromArgb(255, 11, 20, 33); --i: 146
-MODSHOP_BLACK1 = SColor.FromArgb(255, 17, 20, 26); --i: 147
-Matte_Purple = SColor.FromArgb(255, 107, 31, 123); --i: 148
-Matte_Dark_Purple = SColor.FromArgb(255, 30, 29, 34); --i: 149
-Metallic_Lava_Red = SColor.FromArgb(255, 188, 25, 23); --i: 150
-Matte_Forest_Green = SColor.FromArgb(255, 45, 54, 42); --i: 151
-Matte_Olive_Drab = SColor.FromArgb(255, 105, 103, 72); --i: 152
-Matte_Desert_Brown = SColor.FromArgb(255, 122, 108, 85); --i: 153
-Matte_Desert_Tan = SColor.FromArgb(255, 195, 180, 146); --i: 154
-Matte_Foilage_Green = SColor.FromArgb(255, 90, 99, 82); --i: 155
-DEFAULT_ALLOY_COLOR = SColor.FromArgb(255, 129, 130, 127); --i: 156
-Epsilon_Blue = SColor.FromArgb(255, 175, 214, 228); --i: 157
-Pure_Gold = SColor.FromArgb(255, 122, 100, 64); --i: 158
-Brushed_Gold = SColor.FromArgb(255, 127, 106, 72); --i: 159
+Matte_Lime_Green = SColor.FromArgb(255, 102, 184, 31);             --i: 55
+Util_Dark_Green = SColor.FromArgb(255, 34, 56, 62);                --i: 56
+Util_Green = SColor.FromArgb(255, 29, 90, 63);                     --i: 57
+Worn_Dark_Green = SColor.FromArgb(255, 45, 66, 63);                --i: 58
+Worn_Green = SColor.FromArgb(255, 69, 89, 75);                     --i: 59
+Worn_Sea_Wash = SColor.FromArgb(255, 101, 134, 127);               --i: 60
+Metallic_Midnight_Blue = SColor.FromArgb(255, 34, 46, 70);         --i: 61
+Metallic_Dark_Blue = SColor.FromArgb(255, 35, 49, 85);             --i: 62
+Metallic_Saxony_Blue = SColor.FromArgb(255, 48, 76, 126);          --i: 63
+Metallic_Blue = SColor.FromArgb(255, 71, 87, 143);                 --i: 64
+Metallic_Mariner_Blue = SColor.FromArgb(255, 99, 123, 167);        --i: 65
+Metallic_Harbor_Blue = SColor.FromArgb(255, 57, 71, 98);           --i: 66
+Metallic_Diamond_Blue = SColor.FromArgb(255, 214, 231, 241);       --i: 67
+Metallic_Surf_Blue = SColor.FromArgb(255, 118, 175, 190);          --i: 68
+Metallic_Nautical_Blue = SColor.FromArgb(255, 52, 94, 114);        --i: 69
+Metallic_Bright_Blue = SColor.FromArgb(255, 11, 156, 241);         --i: 70
+Metallic_Purple_Blue = SColor.FromArgb(255, 47, 45, 82);           --i: 71
+Metallic_Spinnaker_Blue = SColor.FromArgb(255, 40, 44, 77);        --i: 72
+Metallic_Ultra_Blue = SColor.FromArgb(255, 35, 84, 161);           --i: 73
+Dark_Pastel_Blue = SColor.FromArgb(255, 110, 163, 198);            --i: 74
+Util_Dark_Blue = SColor.FromArgb(255, 17, 37, 82);                 --i: 75
+Util_Midnight_Blue = SColor.FromArgb(255, 27, 32, 62);             --i: 76
+Util_Blue = SColor.FromArgb(255, 39, 81, 144);                     --i: 77
+Util_Sea_Foam_Blue = SColor.FromArgb(255, 96, 133, 146);           --i: 78
+Util_Lightning_blue = SColor.FromArgb(255, 36, 70, 168);           --i: 79
+Util_Maui_Blue_Poly = SColor.FromArgb(255, 66, 113, 225);          --i: 80
+Util_Bright_Blue = SColor.FromArgb(255, 59, 57, 224);              --i: 81
+Matte_Dark_Blue = SColor.FromArgb(255, 31, 40, 82);                --i: 82
+Matte_Blue = SColor.FromArgb(255, 37, 58, 167);                    --i: 83
+Matte_Midnight_Blue = SColor.FromArgb(255, 28, 53, 81);            --i: 84
+Worn_Dark_blue = SColor.FromArgb(255, 76, 95, 129);                --i: 85
+Worn_Blue = SColor.FromArgb(255, 88, 104, 142);                    --i: 86
+Worn_Light_blue = SColor.FromArgb(255, 116, 181, 216);             --i: 87
+Metallic_Taxi_Yellow = SColor.FromArgb(255, 255, 207, 32);         --i: 88
+Metallic_Race_Yellow = SColor.FromArgb(255, 251, 226, 18);         --i: 89
+Metallic_Bronze = SColor.FromArgb(255, 145, 101, 50);              --i: 90
+Metallic_Yellow_Bird = SColor.FromArgb(255, 224, 225, 61);         --i: 91
+Metallic_Lime = SColor.FromArgb(255, 152, 210, 35);                --i: 92
+Metallic_Champagne = SColor.FromArgb(255, 155, 140, 120);          --i: 93
+Metallic_Pueblo_Beige = SColor.FromArgb(255, 80, 50, 24);          --i: 94
+Metallic_Dark_Ivory = SColor.FromArgb(255, 71, 63, 43);            --i: 95
+Metallic_Choco_Brown = SColor.FromArgb(255, 34, 27, 25);           --i: 96
+Metallic_Golden_Brown = SColor.FromArgb(255, 101, 63, 35);         --i: 97
+Metallic_Light_Brown = SColor.FromArgb(255, 119, 92, 62);          --i: 98
+Metallic_Straw_Beige = SColor.FromArgb(255, 172, 153, 117);        --i: 99
+Metallic_Moss_Brown = SColor.FromArgb(255, 108, 107, 75);          --i: 100
+Metallic_Biston_Brown = SColor.FromArgb(255, 64, 46, 43);          --i: 101
+Metallic_Beechwood = SColor.FromArgb(255, 164, 150, 95);           --i: 102
+Metallic_Dark_Beechwood = SColor.FromArgb(255, 70, 35, 26);        --i: 103
+Metallic_Choco_Orange = SColor.FromArgb(255, 117, 43, 25);         --i: 104
+Metallic_Beach_Sand = SColor.FromArgb(255, 191, 174, 123);         --i: 105
+Metallic_Sun_Bleeched_Sand = SColor.FromArgb(255, 223, 213, 178);  --i: 106
+Metallic_Cream = SColor.FromArgb(255, 247, 237, 213);              --i: 107
+Util_Brown = SColor.FromArgb(255, 58, 42, 27);                     --i: 108
+Util_Medium_Brown = SColor.FromArgb(255, 120, 95, 51);             --i: 109
+Util_Light_Brown = SColor.FromArgb(255, 181, 160, 121);            --i: 110
+Metallic_White = SColor.FromArgb(255, 255, 255, 246);              --i: 111
+Metallic_Frost_White = SColor.FromArgb(255, 234, 234, 234);        --i: 112
+Worn_Honey_Beige = SColor.FromArgb(255, 176, 171, 148);            --i: 113
+Worn_Brown = SColor.FromArgb(255, 69, 56, 49);                     --i: 114
+Worn_Dark_Brown = SColor.FromArgb(255, 42, 40, 43);                --i: 115
+Worn_straw_beige = SColor.FromArgb(255, 114, 108, 87);             --i: 116
+Brushed_Steel = SColor.FromArgb(255, 106, 116, 124);               --i: 117
+Brushed_Black_steel = SColor.FromArgb(255, 53, 65, 88);            --i: 118
+Brushed_Aluminium = SColor.FromArgb(255, 155, 160, 168);           --i: 119
+Chrome = SColor.FromArgb(255, 88, 112, 161);                       --i: 120
+Worn_Off_White = SColor.FromArgb(255, 234, 230, 222);              --i: 121
+Util_Off_White = SColor.FromArgb(255, 223, 221, 208);              --i: 122
+Worn_Orange = SColor.FromArgb(255, 242, 173, 46);                  --i: 123
+Worn_Light_Orange = SColor.FromArgb(255, 249, 164, 88);            --i: 124
+Metallic_Securicor_Green = SColor.FromArgb(255, 131, 197, 102);    --i: 125
+Worn_Taxi_Yellow = SColor.FromArgb(255, 241, 204, 64);             --i: 126
+Police_Car_Blue = SColor.FromArgb(255, 76, 195, 218);              --i: 127
+Matte_Green = SColor.FromArgb(255, 78, 100, 67);                   --i: 128
+Matte_Brown = SColor.FromArgb(255, 188, 172, 143);                 --i: 129
+Texas_Rose = SColor.FromArgb(255, 248, 182, 88);                   --i: 130
+Matte_White = SColor.FromArgb(255, 252, 249, 241);                 --i: 131
+Worn_White = SColor.FromArgb(255, 255, 255, 251);                  --i: 132
+Worn_Olive_Army_Green = SColor.FromArgb(255, 129, 132, 76);        --i: 133
+Pure_White = SColor.FromArgb(255, 255, 255, 255);                  --i: 134
+Hot_Pink = SColor.FromArgb(255, 242, 31, 153);                     --i: 135
+Salmon_pink = SColor.FromArgb(255, 253, 214, 205);                 --i: 136
+Metallic_Vermillion_Pink = SColor.FromArgb(255, 223, 88, 145);     --i: 137
+Orange_ = SColor.FromArgb(255, 246, 174, 32);                      --i: 138
+Green_ = SColor.FromArgb(255, 176, 238, 110);                      --i: 139
+Blue_ = SColor.FromArgb(255, 8, 233, 250);                         --i: 140
+Mettalic_Black_Blue = SColor.FromArgb(255, 10, 12, 23);            --i: 141
+Metallic_Black_Purple = SColor.FromArgb(255, 12, 13, 24);          --i: 142
+Metallic_Black_Red = SColor.FromArgb(255, 14, 13, 20);             --i: 143
+Hunter_green = SColor.FromArgb(255, 159, 158, 138);                --i: 144
+Metallic_Purple = SColor.FromArgb(255, 98, 18, 118);               --i: 145
+Metaillic_V_Dark_Blue = SColor.FromArgb(255, 11, 20, 33);          --i: 146
+MODSHOP_BLACK1 = SColor.FromArgb(255, 17, 20, 26);                 --i: 147
+Matte_Purple = SColor.FromArgb(255, 107, 31, 123);                 --i: 148
+Matte_Dark_Purple = SColor.FromArgb(255, 30, 29, 34);              --i: 149
+Metallic_Lava_Red = SColor.FromArgb(255, 188, 25, 23);             --i: 150
+Matte_Forest_Green = SColor.FromArgb(255, 45, 54, 42);             --i: 151
+Matte_Olive_Drab = SColor.FromArgb(255, 105, 103, 72);             --i: 152
+Matte_Desert_Brown = SColor.FromArgb(255, 122, 108, 85);           --i: 153
+Matte_Desert_Tan = SColor.FromArgb(255, 195, 180, 146);            --i: 154
+Matte_Foilage_Green = SColor.FromArgb(255, 90, 99, 82);            --i: 155
+DEFAULT_ALLOY_COLOR = SColor.FromArgb(255, 129, 130, 127);         --i: 156
+Epsilon_Blue = SColor.FromArgb(255, 175, 214, 228);                --i: 157
+Pure_Gold = SColor.FromArgb(255, 122, 100, 64);                    --i: 158
+Brushed_Gold = SColor.FromArgb(255, 127, 106, 72);                 --i: 159
 
 local vehColors = {
     [0] = SColor.FromArgb(255, 13, 17, 22),
@@ -2991,6 +3068,7 @@ function VehicleColors:GetColorBySColor(color)
     end
 end
 
+
 --///////////////////////////////////////////////////////////////////--
 Marker = setmetatable({}, Marker)
 Marker.__index = Marker
@@ -3086,7 +3164,7 @@ function Marker:IsInRange()
     local pos = GetEntityCoords(PlayerPedId(), true)
     local dist = vector3(0, 0, 0)
     if (self.CheckZ) then
-        dist = #(pos - self.Position) --[[@as vector3]] -- Use Z
+        dist = #(pos - self.Position) --[[@as vector3]]       -- Use Z
     else
         dist = #(pos.xy - self.Position.xy) --[[@as vector3]] -- Do not use Z
     end
@@ -3097,6 +3175,8 @@ end
 function Marker:SetColor(color)
     self.Color = color
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 Notifications = setmetatable({
@@ -3473,6 +3553,8 @@ function Notifications:ShowSubtitle(msg, duration)
     EndTextCommandPrint(duration, true)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 BreadcrumbsHandler = setmetatable({
     breadcrumbs = {},
@@ -3492,7 +3574,7 @@ function BreadcrumbsHandler:PreviousMenu()
 end
 
 function BreadcrumbsHandler:Forward(menu, data)
-    table.insert(self.breadcrumbs, {menu = menu, data = data})
+    table.insert(self.breadcrumbs, { menu = menu, data = data })
 end
 
 function BreadcrumbsHandler:Clear()
@@ -3502,6 +3584,8 @@ end
 function BreadcrumbsHandler:Backwards()
     table.remove(self.breadcrumbs, #self.breadcrumbs)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 MenuHandler = setmetatable({
@@ -3540,7 +3624,7 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
             end
             newMenu:MenuAlignment(currentMenu:MenuAlignment())
             newMenu:SetMenuOffset(currentMenu.Position.x, currentMenu.Position.y)
-
+            
             if currentMenu.Logo ~= nil then
                 newMenu.Logo = currentMenu.Logo
             else
@@ -3560,6 +3644,7 @@ function MenuHandler:SwitchTo(currentMenu, newMenu, newMenuCurrentSelection, inh
         end
     end
     if newMenuCurrentSelection > 1 then
+
         local max = #newer.Items;
 
         if max >= newer._maxItemsOnScreen then
@@ -3598,13 +3683,13 @@ end
 ---ProcessControl
 function MenuHandler:ProcessControl()
     if self._currentMenu ~= nil then
-        self._currentMenu:ProcessControl()
         self._currentMenu:ProcessMouse()
+        self._currentMenu:ProcessControl()
     end
 
     if self._currentPauseMenu ~= nil then
-        self._currentPauseMenu:ProcessControl()
         self._currentPauseMenu:ProcessMouse()
+        self._currentPauseMenu:ProcessControl()
     end
 end
 
@@ -3638,6 +3723,8 @@ function MenuHandler:IsAnyPauseMenuOpen()
     return self._currentPauseMenu ~= nil and self._currentPauseMenu:Visible()
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 CrewTag = setmetatable({}, CrewTag)
 CrewTag.__index = CrewTag
@@ -3661,11 +3748,11 @@ function CrewTag.New(tag, crewTypeIsPrivate, crewTagContainsRockstar, level, cre
 
     local result = "";
     if tag ~= nil and tag ~= "" then
-        if crewTypeIsPrivate then result = result.."(" else result = result.." " end
-        if crewTagContainsRockstar then result = result.."*" else result = result.." " end
-        result = result..level
-        result = result..string.upper(tag)
-        result = result..hexColor
+        if crewTypeIsPrivate then result = result .. "(" else result = result .. " " end
+        if crewTagContainsRockstar then result = result .. "*" else result = result .. " " end
+        result = result .. level
+        result = result .. string.upper(tag)
+        result = result .. hexColor
     end
     local data = {
         TAG = result
@@ -3673,12 +3760,628 @@ function CrewTag.New(tag, crewTypeIsPrivate, crewTagContainsRockstar, level, cre
     return setmetatable(data, CrewTag)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-MissionListColumn = setmetatable({}, MissionListColumn)
-MissionListColumn.__index = MissionListColumn
-MissionListColumn.__call = function()
-    return "Column", "MissionListColumn"
+PM_Column = {}
+
+function PM_Column.New(pos)
+    local data = {
+        position = pos or -1,
+        index = 1,
+        type = -1, -- used in PlayerListTab :3
+        columnVisible = true,
+        Items = {},
+        VisibleItems = 16, -- defaults
+        Focused = false,
+        CaptionLeft = "",
+        CaptionRight = "",
+        Label = "",
+        Color = SColor.HUD_Freemode,
+        Parent = nil -- BaseTab inherited tabs
+    }
+    return setmetatable(data, PM_Column)
 end
+
+function PM_Column:visible()
+    return self.Parent ~= nil and self.Parent.Visible and self.Parent.Parent ~= nil and self.Parent.Parent:Visible()
+end
+
+function PM_Column:CurrentItem()
+    return self.Items[self.index]
+end
+
+function PM_Column:Index(idx)
+    if idx == nil then
+        return self.index
+    else
+        if #self.Items == 0 then return end
+        self.Items[self.index]:Selected(false)
+        if idx > #self.Items then
+            idx = 1
+        elseif idx < 1 then
+            idx = #self.Items
+        end
+        self.index = idx
+        self.Items[self.index]:Selected(true)
+        if self:visible() and self.Parent.CurrentColumnIndex == self.position then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, false, false)
+        end
+    end
+end
+
+function PM_Column:ColumnVisible(bool)
+    if bool == nil then
+        return self.columnVisible
+    else
+        self.columnVisible = bool
+        if self:visible() then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SHOW_COLUMN", self.position, self.columnVisible)
+        end
+    end
+end
+
+function PM_Column:AddItem(item)
+    table.insert(self.Items, item)
+end
+
+function PM_Column:Clear()
+    self:ClearColumn()
+end
+
+function PM_Column:ClearColumn()
+    self.Items = {}
+    self.index = 1
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    end
+end
+
+function PM_Column:Populate() end
+
+function PM_Column:SetDataSlot(index) end
+
+function PM_Column:UpdateSlot(index) end
+
+function PM_Column:AddSlot(index) end
+
+function PM_Column:RemoveSlot(idx)
+    if idx > #self.Items then return end
+    self.Items[idx]:Selected(false)
+    local curItem = self.index
+    table.remove(self.Items, idx)
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_SLOT", self.position, idx - 1)
+    end
+    if #self.Items > 0 then
+        if idx == self.index then
+            if idx > #self.Items then
+                self.index = #self.Items
+            elseif idx > 1 and idx <= #self.Items then
+                self.index = idx
+            else
+                self.index = 1
+            end
+        else
+            if curItem <= #self.Items then
+                self.index = curItem
+            else
+                self.index = #self.Items
+            end
+        end
+        self.Items[self.index]:Selected(true)
+        if self:visible() and self.Parent.CurrentColumnIndex == self.position then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.index - 1, false, false)
+        end
+    end
+end
+
+function PM_Column:GoUp() end
+
+function PM_Column:GoDown() end
+
+function PM_Column:GoLeft() end
+
+function PM_Column:GoRight() end
+
+function PM_Column:Select() end
+
+function PM_Column:GoBack() end
+
+function PM_Column:MouseScroll(dir) end
+
+function PM_Column:HighlightColumn(highlighted, moveFocus, prevHighlight)
+    if highlighted == nil then highlighted = false end
+    if moveFocus == nil then moveFocus = false end
+    if prevHighlight == nil then prevHighlight = false end
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, highlighted, moveFocus,
+            prevHighlight)
+    end
+end
+
+function PM_Column:ShowColumn()
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("DISPLAY_DATA_SLOT", self.position)
+    end
+end
+
+function PM_Column:InitColumnScroll(visible, columns, scrollType, arrowPosition, override, xColOffset)
+    if override == nil then override = false end
+    if xColOffset == nil then xColOffset = 0.0 end
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("INIT_COLUMN_SCROLL", self.position, visible, columns,
+            scrollType, arrowPosition, override, xColOffset)
+    end
+end
+
+function PM_Column:SetColumnScroll(...)
+    if not self:visible() then return end
+    if select(1, ...) ~= nil and select(2, ...) ~= nil and select(3, ...) ~= nil and select(4, ...) ~= nil and select(5, ...) ~= nil then
+        local currentPosition, maxPosition, maxVisible, caption, forceInvisible, captionR = ...
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_SCROLL", self.position, currentPosition,
+            maxPosition, maxVisible, caption, forceInvisible, captionR or "")
+            return
+    elseif select(1, ...) ~= nil and type(select(1, ...)) == "number" and select(2, ...) ~= nil and type(select(2, ...)) == "number" and select(3, ...) ~= nil and type(select(3, ...)) == "number" then
+        local currentPosition, maxPosition, maxVisible = ...
+        maxVisible = maxVisible or -1
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_SCROLL", self.position, currentPosition, maxPosition, maxVisible)
+        return
+    elseif select(1, ...) ~= nil and type(select(1, ...)) == "string" and select(2, ...) ~= nil and type(select(2, ...)) == "string" then
+        local caption, rightC = select(1, ...), select(2, ...)
+        BeginScaleformMovieMethod(Main.PauseMenu._pause.Handle, "SET_COLUMN_SCROLL")
+        ScaleformMovieMethodAddParamInt(position)
+        ScaleformMovieMethodAddParamInt(0)
+        ScaleformMovieMethodAddParamInt(0)
+        ScaleformMovieMethodAddParamInt(0)
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+        AddTextComponentSubstringPlayerName(caption)
+        EndTextCommandScaleformString_2()
+        ScaleformMovieMethodAddParamBool(false)
+        ScaleformMovieMethodAddParamPlayerNameString(rightC)
+        EndScaleformMovieMethod()
+        return
+    else
+        local caption = select(1, ...)
+        if type(caption) == "string" then
+            BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_SCROLL")
+            ScaleformMovieMethodAddParamInt(position)
+            ScaleformMovieMethodAddParamInt(0)
+            ScaleformMovieMethodAddParamInt(0)
+            ScaleformMovieMethodAddParamInt(0)
+            BeginTextCommandScaleformString(caption)
+            
+            -- Process remaining arguments
+            local args = {...}
+            for i = 2, #args do
+                local arg = args[i]
+                local argType = type(arg)
+                if argType == "number" then
+                    if math.type(arg) == "integer" then
+                        AddTextComponentInteger(arg)
+                    else
+                        AddTextComponentFloat(arg, 2)
+                    end
+                elseif argType == "string" then
+                    AddTextComponentSubstringPlayerName(arg)
+                end
+            end
+            
+            EndTextCommandScaleformString_2()
+            EndScaleformMovieMethod()
+        end
+    end
+end
+
+
+--///////////////////////////////////////////////////////////////////--
+GalleryColumn = {}
+GalleryColumn.__index = GalleryColumn
+setmetatable(GalleryColumn, { __index = PM_Column })
+GalleryColumn.__call = function() return "GalleryColumn" end
+
+function GalleryColumn.New()
+    local base = PM_Column.New(0)
+    base.VisibleItems = 12
+    base.txd = ""
+    base.txn = ""
+    base.state = 0
+    base.titleLabel = ""
+    base.dateLabel = ""
+    base.locationLabel = ""
+    base.trackLabel = ""
+    base.labelsVisible = false
+    base.CurPage = 1
+    base.currentPageIndex = 1
+    return setmetatable(base, GalleryColumn)
+end
+
+function GalleryColumn:MaxPages()
+    return math.ceil(#self.Items / self.VisibleItems)
+end
+
+function GalleryColumn:GridIndexFromItemIndex(index)
+    return index % 12
+end
+
+function GalleryColumn:ShouldNavigateToNewPage(index)
+    if #self.Items <= 12 or self:MaxPages() <= 1 then
+        return false
+    end
+
+    return (self.currentPageIndex == 1 and index == 1) or
+        (self.currentPageIndex == 5 and index == 5) or
+        (self.currentPageIndex == 9 and index == 9) or
+        (self.currentPageIndex == 4 and index == 4) or
+        (self.currentPageIndex == 8 and index == 8) or
+        (self.currentPageIndex == 12 and index == 12)
+end
+
+function GalleryColumn:ShowColumn()
+    PM_Column.ShowColumn(self)
+    self:InitColumnScroll(true, 2, ScrollType.ALL, ScrollArrowsPosition.RIGHT)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+    self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+        self.labelsVisible)
+    self:UpdatePage()
+end
+
+function GalleryColumn:AddItem(item)
+    table.insert(self.Items, item)
+end
+
+function GalleryColumn:Populate()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    for i = 1, 12 do
+        local index = i + ((self.CurPage - 1) * self.VisibleItems)
+        if index < #self.Items then
+            local item = self.Items[index]
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT", self.position, i - 1, i - 1, 33, 4, 0,
+                1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item
+                .Label4)
+            if item.Blip ~= nil then
+                table.insert(self.Parent.Minimap.MinimapBlips, item.Blip)
+            end
+        else
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT", self.position, i - 1, i - 1, 33, 0, 0,
+                1, "", "", "", "", 1, false, "", "")
+        end
+    end
+    self:ShowColumn()
+end
+
+function GalleryColumn:GoUp()
+    if self.Parent.Parent:FocusLevel() == 1 then
+        local iPotentialIndex = self:Index()
+        local iPotentialIndexPerPage = self.currentPageIndex
+
+        if (iPotentialIndexPerPage > 4) then
+            iPotentialIndex = iPotentialIndex - 4
+            iPotentialIndexPerPage = iPotentialIndexPerPage - 4
+        else
+            iPotentialIndex = iPotentialIndex + 8
+            iPotentialIndexPerPage = iPotentialIndexPerPage + 8
+        end
+
+        if (iPotentialIndex > #self.Items) then return end
+
+        self.index = iPotentialIndex
+        self.currentPageIndex = iPotentialIndexPerPage
+
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+        self.Parent.OnGalleryIndexChanged(self.Parent, self.Items[self.index], self.index, self.currentPageIndex)
+    end
+end
+
+function GalleryColumn:GoDown()
+    if self.Parent.Parent:FocusLevel() == 1 then
+        local iPotentialIndex = self:Index()
+        local iPotentialIndexPerPage = self.currentPageIndex
+
+        if (iPotentialIndexPerPage < 9) then
+            iPotentialIndex = iPotentialIndex + 4
+            iPotentialIndexPerPage = iPotentialIndexPerPage + 4
+        else
+            iPotentialIndex = iPotentialIndex - 8
+            iPotentialIndexPerPage = iPotentialIndexPerPage - 8
+        end
+
+        if (iPotentialIndex > #self.Items) then return end
+
+        self.index = iPotentialIndex
+        self.currentPageIndex = iPotentialIndexPerPage
+
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+        self.Parent.OnGalleryIndexChanged(self.Parent, self.Items[self.index], self.index, self.currentPageIndex)
+    end
+end
+
+function GalleryColumn:GoLeft()
+    local iPotentialIndex = self:Index()
+    local iPotentialIndexPerPage = self.currentPageIndex
+    if iPotentialIndex == 1 then
+        self.index = #self.Items
+        self.currentPageIndex = self.index % 12 - 1
+        self.CurPage = self:MaxPages()
+        if self:MaxPages() > 1 then
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+        end
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+    else
+        if (self.currentPageIndex - 1) % 4 > 0 or self:MaxPages() <= 1 or (self.Parent.bigPic and self.index > 0) then
+            iPotentialIndex = iPotentialIndex - 1
+            iPotentialIndexPerPage = iPotentialIndexPerPage - 1
+        end
+
+        if self:ShouldNavigateToNewPage(iPotentialIndexPerPage) then
+            if self.CurPage > 1 then
+                self.CurPage = self.CurPage - 1
+            else
+                self.CurPage = self:MaxPages()
+            end
+
+            self.index = (((self.CurPage - 1) * self.VisibleItems) + 1) + 3
+            self.currentPageIndex = iPotentialIndexPerPage + 3
+            if self.index >= #self.Items or self.CurPage == self:MaxPages() then
+                self.index = #self.Items
+                self.currentPageIndex = self.index % 12 - 1
+            end
+
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                self.currentPageIndex - 1, true,
+                true)
+        else
+            self.index = iPotentialIndex
+            self.currentPageIndex = iPotentialIndexPerPage
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                self.currentPageIndex - 1, true,
+                true)
+        end
+    end
+end
+
+function GalleryColumn:GoRight()
+    local iPotentialIndex = self:Index()
+    local iPotentialIndexPerPage = self.currentPageIndex
+    if iPotentialIndex == #self.Items then
+        self.index = 1
+        self.currentPageIndex = 1
+        self.CurPage = 1
+        if self:MaxPages() > 1 then
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+        end
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+    else
+        if (self.currentPageIndex - 1) % 4 < 3 or self:MaxPages() <= 1 or (self.Parent.bigPic and self.index < 12) then
+            iPotentialIndex = iPotentialIndex + 1
+            iPotentialIndexPerPage = iPotentialIndexPerPage + 1
+        end
+
+        if self:ShouldNavigateToNewPage(iPotentialIndexPerPage) then
+            if self.CurPage == self:MaxPages() then
+                self.CurPage = 1
+            else
+                self.CurPage = self.CurPage + 1
+            end
+
+            self.index = (((self.CurPage - 1) * self.VisibleItems) + 1) + iPotentialIndexPerPage - 3
+            self.currentPageIndex = iPotentialIndexPerPage - 3
+
+            if self.index > #self.Items then
+                self.index = #self.Items
+                self.currentPageIndex = ((self.index - 1) % 12)
+            end
+
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                self.currentPageIndex - 1, true,
+                true)
+        else
+            self.index = iPotentialIndex
+            self.currentPageIndex = iPotentialIndexPerPage
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                self.currentPageIndex - 1, true,
+                true)
+        end
+    end
+end
+
+function GalleryColumn:Select()
+    if not self.Parent.bigPic then
+        local it = self.Items[self.index]
+        self:SetTitle(it.TextureDictionary, it.TextureName, 4)
+        self.Parent.bigPic = true
+        if it.Blip ~= nil then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.position, "", false)
+            self.Parent.Minimap:Enabled(true)
+            self.Parent.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+        elseif not it.RightPanelDescription:IsNullOrEmpty() then
+            self.Parent.Minimap:Enabled(false)
+            local labels = it.RightPanelDescription:SplitLabel()
+            BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE")
+            ScaleformMovieMethodAddParamInt(self.position)
+            BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+            for i = 1, #labels, 1 do
+                AddTextComponentScaleform(labels[i])
+            end
+            EndTextCommandScaleformString_2()
+            ScaleformMovieMethodAddParamBool(true)
+            EndScaleformMovieMethod()
+        else
+            self.Parent.Minimap:Enabled(false)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.position, "", true)
+        end
+        self.Parent.OnGalleryModeChanged(self.Parent, it, self.Parent.bigPic)
+    else
+        item.Activated(self.Parent, it, self.index, self.currentPageIndex)
+        self.Parent.OnGalleryItemSelected(self.Parent, self.Items[self.index], self.index, self.currentPageIndex)
+    end
+end
+
+function GalleryColumn:GoBack()
+    if self.Parent.bigPic then
+        self:SetTitle("", "", 0)
+        self.Parent.bigPic = false
+        local it = self.Items[self.index]
+        if it.Blip ~= nil then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.position, "", false)
+            self.Parent.Minimap:Enabled(true)
+            self.Parent.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+        elseif not it.RightPanelDescription:IsNullOrEmpty() then
+            self.Parent.Minimap:Enabled(false)
+            local labels = it.RightPanelDescription:SplitLabel()
+            BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE")
+            ScaleformMovieMethodAddParamInt(self.position)
+            BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+            for i = 1, #labels, 1 do
+                AddTextComponentScaleform(labels[i])
+            end
+            EndTextCommandScaleformString_2()
+            ScaleformMovieMethodAddParamBool(true)
+            EndScaleformMovieMethod()
+        else
+            self.Parent.Minimap:Enabled(false)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.position, "", true)
+        end
+        self.Parent.OnGalleryModeChanged(self.Parent, it, self.Parent.bigPic)
+    else
+        self.Parent.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.position, "", true)
+    end
+end
+
+function GalleryColumn:MouseScroll(dir)
+    if self.Parent.bigPic or self.Parent.CurrentColumnIndex == 1 then
+        if dir == 1 then
+            self:GoRight()
+        else
+            self:GoLeft()
+        end
+        return
+    end
+
+    local iPotentialIndex = self:Index()
+    local iPotentialIndexPerPage = self.currentPageIndex
+    if iPotentialIndex == 1 and dir == -1 then
+        self.index = #self.Items
+        self.currentPageIndex = self.index % 12 - 1
+        self.CurPage = self:MaxPages()
+        if self:MaxPages() > 1 then
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+        end
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+    elseif iPotentialIndex == #self.Items and dir == 1 then
+        self.index = 1
+        self.currentPageIndex = 1
+        self.CurPage = 1
+        if self:MaxPages() > 1 then
+            self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                self.labelsVisible)
+            self:Populate()
+        end
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+            self.currentPageIndex - 1, true,
+            true)
+    else
+        if dir == -1 then
+            if self.currentPageIndex ~= 1 or self:MaxPages() <= 1 then
+                iPotentialIndex = iPotentialIndex - 1
+                iPotentialIndexPerPage = iPotentialIndexPerPage - 1
+            end
+            if self:ShouldNavigateToNewPage(iPotentialIndexPerPage) then
+                if self.CurPage > 1 then
+                    self.CurPage = self.CurPage - 1
+                else
+                    self.CurPage = self:MaxPages()
+                end
+
+                self.index = self.CurPage * self.VisibleItems
+                self.currentPageIndex = 1
+                self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                    self.labelsVisible)
+                self:Populate()
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                    self.currentPageIndex - 1,
+                    true, true)
+            else
+                self.index = iPotentialIndex
+                self.currentPageIndex = iPotentialIndexPerPage
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                    self.currentPageIndex - 1,
+                    true, true)
+            end
+        elseif dir == 1 then
+            if self.currentPageIndex < 12 or self:MaxPages() <= 1 then
+                iPotentialIndex = iPotentialIndex + 1
+                iPotentialIndexPerPage = iPotentialIndexPerPage + 1
+            end
+            if self:ShouldNavigateToNewPage(iPotentialIndexPerPage) then
+                if self.CurPage == self:MaxPages() then
+                    self.CurPage = 1
+                else
+                    self.CurPage = self.CurPage + 1
+                end
+                self.index = self.CurPage * self.VisibleItems
+                self.currentPageIndex = 1
+                self.Parent:SetDescriptionLabels(self.titleLabel, self.dateLabel, self.locationLabel, self.trackLabel,
+                    self.labelsVisible)
+                self:Populate()
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                    self.currentPageIndex - 1,
+                    true, true)
+            else
+                self.index = iPotentialIndex
+                self.currentPageIndex = iPotentialIndexPerPage
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position,
+                    self.currentPageIndex - 1,
+                    true, true)
+            end
+        end
+    end
+end
+
+function GalleryColumn:UpdatePage()
+    if not self.Parent.bigPic then
+        self:SetColumnScroll("GAL_NUM_PAGES", self.CurPage, self:MaxPages())
+    else
+        self:SetColumnScroll(self.index, #self.Items, self.VisibleItems)
+    end
+end
+
+function GalleryColumn:SetTitle(txd, txn, state)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, txd, txn, state)
+    self.Parent.bigPic = state ~= 0
+    self:UpdatePage()
+end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+MissionListColumn = {}
+MissionListColumn.__index = MissionListColumn
+setmetatable(MissionListColumn, { __index = PM_Column })
+MissionListColumn.__call = function() return "MissionListColumn" end
 
 ---@class MissionListColumn
 ---@field private _label string
@@ -3691,42 +4394,60 @@ end
 ---@field public ParentTab number
 ---@field public Items table<FriendItem>
 ---@field public OnIndexChanged fun(index: number)
----@field public AddPlayer fun(self: MissionListColumn, item: FriendItem)
+---@field public AddMissionItem fun(self: MissionListColumn, item: MissionItem)
 
 ---Creates a new MissionListColumn.
----@param label string
----@param color SColor
+---@param label string the label of the column (used only on Corona/Lobby mode)
+---@param _maxItems number the max number of visible items in this column.
 ---@return table
-function MissionListColumn.New(label, color, scrollType, _maxItems)
-    local handler = PaginationHandler.New()
-    handler:ItemsPerPage(_maxItems or 16)
-    handler.scrollType = scrollType or MenuScrollingType.CLASSIC
-    local _data = {
-        _isBuilding = false,
-        Type = "missions",
-        _label = label or "",
-        _color = color or SColor.HUD_Freemode,
-        _currentSelection = 0,
-        scrollingType = scrollType or MenuScrollingType.CLASSIC,
-        Pagination = handler,
-        Order = 0,
-        Parent = nil,
-        ParentTab = nil,
-        Items = {} --[[@type table<number, FriendItem>]],
-        _unfilteredItems = {} --[[@type table<number, FriendItem>]],
-        OnIndexChanged = function(index)
-        end,
-        OnMissionItemActivated = function(index)
-        end
-    }
-    return setmetatable(_data, MissionListColumn)
+function MissionListColumn.New(label, _maxItems)
+    local base = PM_Column.New(-1)
+    base.Label = label
+    base.type = PLT_COLUMNS.MISSION
+    base.VisibleItems = _maxItems
+    base._unfilteredItems = {} --[[@type table<number, MissionItem>]]
+    base._unfilteredSelection = 1
+    base.OnIndexChanged = function(index)
+    end
+    base.OnMissionItemActivated = function(index)
+    end
+    return setmetatable(base, MissionListColumn)
 end
 
-function MissionListColumn:ScrollingType(type)
-    if type == nil then
-        return self.scrollingType
-    else
-        self.scrollingType = type
+function MissionListColumn:SetVisibleItems(maxItems)
+    self.VisibleItems = maxItems
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
+    end
+end
+
+function MissionListColumn:AddItem(item)
+    self:AddMissionItem(item)
+end
+
+function MissionListColumn:ShowColumn()
+    if not self:visible() then return end
+    PM_Column.ShowColumn(self)
+    self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
+    self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+    if #self.Items > 0 and self:CurrentItem().type == 1 and self:CurrentItem().Jumpable then
+        self:CurrentItem():Selected(false)
+        self.index = self.index + 1
+        if self.index > #self.Items then
+            self.index = 1
+        end
+        self:CurrentItem():Selected(true)
+    end
+end
+
+function MissionListColumn:Populate()
+    if not self:visible() then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_MAX_ITEMS", self.position, self.VisibleItems)
+    for i=1, #self.Items, 1 do
+        self:SetDataSlot(i)
     end
 end
 
@@ -3735,122 +4456,73 @@ end
 ---@return number | nil
 function MissionListColumn:CurrentSelection(value)
     if value == nil then
-        return self.Pagination:CurrentMenuIndex()
+        return self.index
     else
-        if value == self.Pagination:CurrentMenuIndex() then
-            return
+        self:CurrentItem():Selected(false)
+        self.index = value
+        if self.index < 1 then
+            self.index = #self.Items
+        elseif self.index > #self.Items then
+            self.index = 1
         end
-        if value < 1 then
-            self.Pagination:CurrentMenuIndex(1)
-        elseif value > #self.Items then
-            self.Pagination:CurrentMenuIndex(#self.Items)
+        self:CurrentItem():Selected(true)
+        if self:visible() and self.Focused then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
         end
-
-        self.Items[self:CurrentSelection()]:Selected(false)
-        self.Pagination:CurrentMenuIndex(value)
-        self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()))
-        self.Pagination:CurrentPageIndex(value)
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-        if value > self.Pagination:MaxItem() or value < self.Pagination:MinItem() then
-            self:refreshColumn()
-        end
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                self.Items[self:CurrentSelection()]:Selected(true)
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
-                    self.Items[self:CurrentSelection()]:Selected(true)
-                end
-            end
-        end
+        self.OnIndexChanged(self.index)
     end
 end
+
 
 ---Adds a new player to the column.
 ---@param item MissionItem
 function MissionListColumn:AddMissionItem(item)
     item.ParentColumn = self
-    item.Handle = #self.Items + 1
-    self.Items[item.Handle] = item
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        if self.Pagination:TotalItems() < self.Pagination:ItemsPerPage() then
-            local sel = self:CurrentSelection()
-            self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-            if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-                local missingItems = self.Pagination:GetMissingItems()
-                if missingItems > 0 then
-                    self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                    self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-                end
-            end
-
-            self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-            self:_itemCreation(self.Pagination:CurrentPage(), #self.Items, false)
-            local pSubT = self.Parent()
-            if pSubT == "PauseMenu" and self.ParentTab.Visible then
-                if self.ParentTab.listCol[self.ParentTab:Focus()] == self then
-                    self:CurrentSelection(sel)
-                end
-            end
-        end
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
+    table.insert(self.Items, item)
+    if self:visible() and #self.Items < self.VisibleItems then
+        local idx = #self.Items
+        self:AddSlot(idx)
+        self.Items[idx]:Selected(idx == self.index)
     end
 end
 
-function MissionListColumn:_itemCreation(page, pageIndex, before, overflow)
-    local menuIndex = self.Pagination:GetMenuIndexFromPageIndex(page, pageIndex)
-    if not before then
-        if self.Pagination:GetPageItemsCount(page) < self.Pagination:ItemsPerPage() and self.Pagination:TotalPages() > 1 then
-            if self.scrollingType == MenuScrollingType.ENDLESS then
-                if menuIndex > #self.Items then
-                    menuIndex = menuIndex - #self.Items
-                    self.Pagination:MaxItem(menuIndex)
-                end
-            elseif self.scrollingType == MenuScrollingType.CLASSIC and overflow then
-                local missingItems = self.Pagination:ItemsPerPage() - self.Pagination:GetPageItemsCount(page)
-                menuIndex = menuIndex - missingItems
-            elseif self.scrollingType == MenuScrollingType.PAGINATED then
-                if menuIndex > #self.Items then return end
-            end
-        end
+function MissionListColumn:SetDataSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index)
     end
-
-    local item = self.Items[menuIndex]
-    local scIndex = self.Pagination:GetScaleformIndex(menuIndex)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSIONS_ITEM", before, menuIndex, item.type, item.Label, item.MainColor, item.HighlightColor, item.LeftIcon, item.LeftIconColor, item.RightIcon, item.RightIconColor, item.RightIconChecked, item.enabled)
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSIONS_ITEM", before, menuIndex, item.type, item.Label, item.MainColor, item.HighlightColor, item.LeftIcon, item.LeftIconColor, item.RightIcon, item.RightIconColor, item.RightIconChecked, item.enabled)
+end
+function MissionListColumn:UpdateSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, true)
     end
-
-    if item.LeftIcon == BadgeStyle.CUSTOM then
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_LEFT_ICON", scIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_LEFT_ICON", scIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
-        end
+end
+function MissionListColumn:AddSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, false, false, true)
     end
+end
 
-    if item.RightIcon == BadgeStyle.CUSTOM then
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_RIGHT_ICON", scIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_RIGHT_ICON", scIndex, item.customRightIcon.TXD, item.customRightIcon.TXN)
+function MissionListColumn:AddItemAt(item, index)
+    table.insert(self.Items, index, item)
+    if not self:visible() then return end
+    self:AddSlot(index)
+    item:Selected(idx == self.index)
+end
+
+function MissionListColumn:SendItemToScaleform(i, update, newItem, isSlot)
+    if i > #self.Items then return end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then str = "UPDATE_SLOT" end
+    if newItem then str = "SET_DATA_SLOT_SPLICE" end
+    if isSlot then str = "ADD_SLOT" end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction(str, self.position, i, 0,i, item.type, 0, item.Enabled, item.label, item.MainColor, item.HighlightColor, item.LeftIcon, item.RightIcon, item.LeftIconColor, item.RightIconColor, item.customLeftIcon.TXD, item.customLeftIcon.TXN, item.customRightIcon.TXD, item.customRightIcon.TXN, item.RightIconChecked, item.Jumpable)
+    if self.position == 0 and i == self.index then
+        if item.Panel ~= nil then
+            item.Panel:UpdatePanel()
         end
     end
 end
@@ -3862,56 +4534,28 @@ function MissionListColumn:RemoveItem(item)
         print("^1[ERROR] MissionListColumn:RemovePlayer() - item is nil")
         return
     end
-
-    local id = item.Handle
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("REMOVE_MISSIONS_ITEM", id - 1)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_PLAYERS_TAB_MISSIONS_ITEM", id - 1)
+    for k,v in pairs(self.Items) do
+        if v:Label () == item:Label() then
+            self:RemoveSlot(k)
         end
     end
-    table.remove(self.Items, id)
+end
+
+function MissionListColumn:RemoveItemAt(index)
+    if index >#self.Items or index < 1 then return end
+    self:RemoveSlot(index)
 end
 
 function MissionListColumn:GoUp()
     self.Items[self:CurrentSelection()]:Selected(false)
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == 1 and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoUp() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), true, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_MISSIONS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_MISSIONS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
+        self.index = self.index - 1
+        if self.index < 1 then
+            self.index = #self.Items
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 1 or (self.Items[self:CurrentSelection()].ItemId == 1 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 8)
     self.Items[self:CurrentSelection()]:Selected(true)
     self.OnIndexChanged(self:CurrentSelection())
 end
@@ -3920,75 +4564,41 @@ function MissionListColumn:GoDown()
     self.Items[self:CurrentSelection()]:Selected(false)
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == #self.Items and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoDown() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), false, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_MISSIONS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_MISSIONS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
+        self.index = self.index + 1
+        if self.index > #self.Items then
+            self.index = 1
         end
     until self.Items[self:CurrentSelection()].ItemId ~= 1 or (self.Items[self:CurrentSelection()].ItemId == 1 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 9)
     self.Items[self:CurrentSelection()]:Selected(true)
     self.OnIndexChanged(self:CurrentSelection())
 end
 
+function MissionListColumn:Select()
+    self:CurrentItem().Activated(self:CurrentItem())
+    self:OnMissionItemActivated(self:CurrentSelection())
+end
+
 function MissionListColumn:Clear()
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_MISSIONS_COLUMN")
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_MISSIONS_COLUMN")
-        end
-    end
-    self.Items = {}
-    self.Pagination:Reset()
+    self:ClearColumn()
 end
 
 function MissionListColumn:SortMissions(compare)
+    if not self:visible() then return end
     self.Items[self:CurrentSelection()]:Selected(false)
     if self._unfilteredItems == nil or #self._unfilteredItems == 0 then
         for i, item in ipairs(self.Items) do
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local list = self._unfilteredItems
     table.sort(list, compare)
     self.Items = list
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildMissions()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildMissions(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -3999,6 +4609,7 @@ function MissionListColumn:FilterMissions(predicate)
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local filteredItems = {}
     for i, item in ipairs(self._unfilteredItems) do
@@ -4007,14 +4618,9 @@ function MissionListColumn:FilterMissions(predicate)
         end
     end
     self.Items = filteredItems
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildMissions()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildMissions(self.ParentTab)
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -4023,65 +4629,23 @@ function MissionListColumn:ResetFilter()
         self.Items[self:CurrentSelection()]:Selected(false)
         self:Clear()
         self.Items = self._unfilteredItems
-        self.Pagination:TotalItems(#self.Items)
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                self.Parent:buildMissions()
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                self.Parent:buildMissions(self.Parent.Tabs[self.ParentTab])
-            end
+        self:Index(self._unfilteredSelection)
+        self._unfilteredItems = {}
+        self._unfilteredSelection = 1
+        if self:visible() then
+            self:Populate()
+            self:ShowColumn()
         end
     end
 end
 
-function MissionListColumn:refreshColumn()
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_MISSIONS_COLUMN")
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_MISSIONS_COLUMN")
-    end
-    if #self.Items > 0 then
-        self._isBuilding = true
-        local max = self.Pagination:ItemsPerPage()
-        if #self.Items < max then
-            max = #self.Items
-        end
-        self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-        if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-            local missingItems = self.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-
-        for i = 1, max, 1 do
-            if not self.Parent:Visible() then return end
-            self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-        end
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
-        self._isBuilding = false
-    end
-end
 
 --///////////////////////////////////////////////////////////////////--
-PlayerListColumn = setmetatable({}, PlayerListColumn)
+PlayerListColumn = {}
 PlayerListColumn.__index = PlayerListColumn
-PlayerListColumn.__call = function()
-    return "Column", "PlayerListColumn"
-end
+setmetatable(PlayerListColumn, { __index = PM_Column })
+PlayerListColumn.__call = function() return "PlayerListColumn" end
+
 
 ---@class PlayerListColumn
 ---@field private _label string
@@ -4098,38 +4662,48 @@ end
 
 ---Creates a new PlayerListColumn.
 ---@param label string
----@param color number|SColor
 ---@return table
-function PlayerListColumn.New(label, color, scrollType, _maxItems)
-    local handler = PaginationHandler.New()
-    handler:ItemsPerPage(_maxItems or 16)
-    handler.scrollType = scrollType or MenuScrollingType.CLASSIC
-    local _data = {
-        _isBuilding = false,
-        Type = "players",
-        _label = label or "",
-        _color = color or SColor.HUD_Freemode,
-        _currentSelection = 0,
-        scrollingType = scrollType or MenuScrollingType.CLASSIC,
-        Pagination = handler,
-        Order = 0,
-        Parent = nil,
-        ParentTab = nil,
-        Items = {} --[[@type table<number, FriendItem>]],
-        _unfilteredItems = {} --[[@type table<number, FriendItem>]],
-        OnIndexChanged = function(index)
-        end,
-        OnPlayerItemActivated = function(index)
-        end
-    }
-    return setmetatable(_data, PlayerListColumn)
+function PlayerListColumn.New(label, _maxItems)
+    local base = PM_Column.New(-1)
+    base.Label = label
+    base.type = PLT_COLUMNS.PLAYERS
+    base.VisibleItems = _maxItems
+    base._unfilteredItems = {} --[[@type table<number, FriendItem>]]
+    base._unfilteredSelection = 1
+    base.OnIndexChanged = function(index)
+    end
+    base.OnPlayerItemActivated = function(index)
+    end
+    local meta = setmetatable(base, PlayerListColumn)
+    return meta
 end
 
-function PlayerListColumn:ScrollingType(type)
-    if type == nil then
-        return self.scrollingType
-    else
-        self.scrollingType = type
+function PlayerListColumn:SetVisibleItems(maxItems)
+    self.VisibleItems = maxItems
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
+    end
+end
+
+function PlayerListColumn:AddItem(item)
+    self:AddPlayer(item)
+end
+
+function PlayerListColumn:ShowColumn()
+    if not self:visible() then return end
+    PM_Column.ShowColumn(self)
+    self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
+    self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+end
+
+function PlayerListColumn:Populate()
+    if not self:visible() then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_MAX_ITEMS", self.position, self.VisibleItems)
+    for i=1, #self.Items, 1 do
+        self:SetDataSlot(i)
     end
 end
 
@@ -4138,61 +4712,24 @@ end
 ---@return number | nil
 function PlayerListColumn:CurrentSelection(value)
     if value == nil then
-        return self.Pagination:CurrentMenuIndex()
+        return self.index
     else
-        if value == self.Pagination:CurrentMenuIndex() then
-            if self.Parent ~= nil and self.Parent:Visible() then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    self.Items[self:CurrentSelection()]:Selected(true)
-                    if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-                        self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-                    end
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
-                        self.Items[self:CurrentSelection()]:Selected(true)
-                        if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-                            self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-                        end
-                    end
-                end
-            end
-            return
+        self:CurrentItem():Selected(false)
+        self.index = value
+        if self.index < 1 then
+            self.index = #self.Items
+        elseif self.index > #self.Items then
+            self.index = 1
         end
-        ClearPedInPauseMenu()
-        if value < 1 then
-            self.Pagination:CurrentMenuIndex(1)
-        elseif value > #self.Items then
-            self.Pagination:CurrentMenuIndex(#self.Items)
+        self:CurrentItem():Selected(true)
+        self:CurrentItem():AddPedToPauseMenu()
+        if self:CurrentItem().Panel ~= nil then
+            self:CurrentItem().Panel:UpdatePanel()
         end
-        self.Items[self:CurrentSelection()]:Selected(false)
-        self.Pagination:CurrentMenuIndex(value)
-        self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()))
-        self.Pagination:CurrentPageIndex(value)
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()))
-        if value > self.Pagination:MaxItem() or value < self.Pagination:MinItem() then
-            self:refreshColumn()
+        if self:visible() and self.Focused then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
         end
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                self.Items[self:CurrentSelection()]:Selected(true)
-                if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-                    self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-                end
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
-                    self.Items[self:CurrentSelection()]:Selected(true)
-                    if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-                        self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-                    end
-                end
-            end
-        end
+        self.OnIndexChanged(self.index)
     end
 end
 
@@ -4200,73 +4737,54 @@ end
 ---@param item FriendItem
 function PlayerListColumn:AddPlayer(item)
     item.ParentColumn = self
-    item.Handle = #self.Items + 1
-    self.Items[item.Handle] = item
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        if self.Pagination:TotalItems() < self.Pagination:ItemsPerPage() then
-            local sel = self:CurrentSelection()
-            self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-            if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-                local missingItems = self.Pagination:GetMissingItems()
-                if missingItems > 0 then
-                    self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                    self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-                end
-            end
-
-            self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-            self:_itemCreation(self.Pagination:CurrentPage(), #self.Items, false)
-            local pSubT = self.Parent()
-            if pSubT == "PauseMenu" and self.ParentTab.Visible then
-                if self.ParentTab.listCol[self.ParentTab:Focus()] == self then
-                    self:CurrentSelection(sel)
-                end
-            end
-        end
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
+    table.insert(self.Items, item)
+    if self:visible() and #self.Items < self.VisibleItems then
+        local idx = #self.Items
+        self:AddSlot(idx)
+        self.Items[idx]:Selected(idx == self.index)
     end
 end
 
-function PlayerListColumn:_itemCreation(page, pageIndex, before, overflow)
-    local menuIndex = self.Pagination:GetMenuIndexFromPageIndex(page, pageIndex)
-    if not before then
-        if self.Pagination:GetPageItemsCount(page) < self.Pagination:ItemsPerPage() and self.Pagination:TotalPages() > 1 then
-            if self.scrollingType == MenuScrollingType.ENDLESS then
-                if menuIndex > #self.Items then
-                    menuIndex = menuIndex - #self.Items
-                    self.Pagination:MaxItem(menuIndex)
-                end
-            elseif self.scrollingType == MenuScrollingType.CLASSIC and overflow then
-                local missingItems = self.Pagination:ItemsPerPage() - self.Pagination:GetPageItemsCount(page)
-                menuIndex = menuIndex - missingItems
-            elseif self.scrollingType == MenuScrollingType.PAGINATED then
-                if menuIndex > #self.Items then return end
-            end
-        end
+function PlayerListColumn:SetDataSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index)
     end
+end
+function PlayerListColumn:UpdateSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, true)
+    end
+end
+function PlayerListColumn:AddSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, false, false, true)
+    end
+end
 
-    local scaleformIndex = self.Pagination:GetScaleformIndex(menuIndex)
-    local item = self.Items[menuIndex]
-    local Type, SubType = item()
-    if SubType == "FriendItem" then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_PLAYER_ITEM", before, menuIndex, 1, 1, item:Label(), item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag().TAG, item:KeepPanelVisible())
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_PLAYER_ITEM", before, menuIndex, 1, 1, item:Label(), item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag().TAG, item:KeepPanelVisible())
+function PlayerListColumn:AddItemAt(item, index)
+    table.insert(self.Items, index, item)
+    if not self:visible() then return end
+    self:AddSlot(index)
+    item:Selected(idx == self.index)
+end
+
+function PlayerListColumn:SendItemToScaleform(i, update, newItem, isSlot)
+    if i > #self.Items then return end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then str = "UPDATE_SLOT" end
+    if newItem then str = "SET_DATA_SLOT_SPLICE" end
+    if isSlot then str = "ADD_SLOT" end
+
+-- item:Label(), item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:Rank(), item:CrewTag().TAG, item:KeepPanelVisible()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction(str, self.position, i - 1, 0, i - 1, 2, item:Rank(), true, item.label, item:ItemColor(), item:ColoredTag(), item._iconL, item._boolL, item._iconR, item._boolR, item:Status(), item:StatusColor(), item:CrewTag().TAG)
+    if self.position == 0 and i == self.index then
+        if item.Panel ~= nil then
+            item.Panel:UpdatePanel()
         end
-    end
-    if item.Panel ~= nil then
-        item.Panel:UpdatePanel(true)
     end
 end
 
@@ -4277,148 +4795,68 @@ function PlayerListColumn:RemovePlayer(item)
         print("^1[ERROR] PlayerListColumn:RemovePlayer() - item is nil")
         return
     end
-
-    local id = item.Handle
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local item = self.Items[id]
-        local Type, SubType = item()
-        if SubType == "FriendItem" then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("REMOVE_PLAYER_ITEM", id - 1)
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_PLAYERS_TAB_PLAYER_ITEM", id - 1)
-            end
-        end
-        if item.Panel ~= nil then
-            item.Panel:UpdatePanel(true)
+    for k,v in pairs(self.Items) do
+        if v:Label () == item:Label() then
+            self:RemoveSlot(k)
         end
     end
-    table.remove(self.Items, id)
+end
+
+function PlayerListColumn:RemoveItemAt(index)
+    if index >#self.Items or index < 1 then return end
+    self:RemoveSlot(index)
+end
+
+function PlayerListColumn:RemoveSlot(idx)
+    self:CurrentItem():Dispose()
+    PM_Column.RemoveSlot(self, idx)
 end
 
 function PlayerListColumn:GoUp()
     ClearPedInPauseMenu()
     self.Items[self:CurrentSelection()]:Selected(false)
-    repeat
-        Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == 1 and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoUp() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), true, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_PLAYERS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_PLAYERS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
-        end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+    self.index = self.index - 1
+    if self.index < 1 then
+        self.index = #self.Items
     end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 8)
     self.Items[self:CurrentSelection()]:Selected(true)
-    if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-        self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-    end
     self.OnIndexChanged(self:CurrentSelection())
 end
 
 function PlayerListColumn:GoDown()
     ClearPedInPauseMenu()
     self.Items[self:CurrentSelection()]:Selected(false)
-    repeat
-        Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == #self.Items and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoDown() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), false, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_PLAYERS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_PLAYERS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
-        end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+    self.index = self.index + 1
+    if self.index > #self.Items then
+        self.index = 1
     end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 9)
     self.Items[self:CurrentSelection()]:Selected(true)
-    if self.Items[self:CurrentSelection()].ClonePed ~= nil and self.Items[self:CurrentSelection()].ClonePed ~= 0 then
-        self.Items[self:CurrentSelection()]:AddPedToPauseMenu()
-    end
     self.OnIndexChanged(self:CurrentSelection())
 end
 
-function PlayerListColumn:Clear()
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_PLAYERS_COLUMN")
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_PLAYERS_COLUMN")
-        end
-    end
-    self.Items = {}
-    self.Pagination:Reset()
+function PlayerListColumn:Select()
+    if not self:visible() then return end
+    self.OnPlayerItemActivated(self:Index())
 end
 
 function PlayerListColumn:SortPlayers(compare)
+    if not self:visible() then return end
     self.Items[self:CurrentSelection()]:Selected(false)
     if self._unfilteredItems == nil or #self._unfilteredItems == 0 then
         for i, item in ipairs(self.Items) do
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local list = self._unfilteredItems
     table.sort(list, compare)
     self.Items = list
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildPlayers()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildPlayers(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -4429,6 +4867,7 @@ function PlayerListColumn:FilterPlayers(predicate)
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local filteredItems = {}
     for i, item in ipairs(self._unfilteredItems) do
@@ -4437,14 +4876,9 @@ function PlayerListColumn:FilterPlayers(predicate)
         end
     end
     self.Items = filteredItems
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildPlayers()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildPlayers(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -4453,65 +4887,33 @@ function PlayerListColumn:ResetFilter()
         self.Items[self:CurrentSelection()]:Selected(false)
         self:Clear()
         self.Items = self._unfilteredItems
-        self.Pagination:TotalItems(#self.Items)
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                self.Parent:buildPlayers()
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                self.Parent:buildPlayers(self.Parent.Tabs[self.ParentTab])
-            end
+        self:Index(self._unfilteredSelection)
+        self._unfilteredItems = {}
+        self._unfilteredSelection = 1
+        if self:visible() then
+            self:Populate()
+            self:ShowColumn()
         end
     end
 end
 
-function PlayerListColumn:refreshColumn()
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_PLAYERS_COLUMN")
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_PLAYERS_COLUMN")
-    end
-    if #self.Items > 0 then
-        self._isBuilding = true
-        local max = self.Pagination:ItemsPerPage()
-        if #self.Items < max then
-            max = #self.Items
-        end
-        self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-        if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-            local missingItems = self.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-
-        for i = 1, max, 1 do
-            if not self.Parent:Visible() then return end
-            self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-        end
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
-        self._isBuilding = false
-    end
+function PlayerListColumn:Clear()
+    self:ClearColumn()
 end
+
+function PlayerListColumn:ClearColumn()
+    PM_Column.ClearColumn(self)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", 3)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", 4)
+end
+
 
 --///////////////////////////////////////////////////////////////////--
-SettingsListColumn = setmetatable({}, SettingsListColumn)
+SettingsListColumn = {}
 SettingsListColumn.__index = SettingsListColumn
-SettingsListColumn.__call = function()
-    return "Column", "SettingsListColumn"
-end
+setmetatable(SettingsListColumn, { __index = PM_Column })
+SettingsListColumn.__call = function() return "SettingsListColumn" end
+
 
 ---@class SettingsListColumn
 ---@field private _label string
@@ -4520,506 +4922,444 @@ end
 ---@field private _currentSelection number
 ---@field private _unfilteredItems table
 ---@field private _rightLabel string
----@field public Order number
 ---@field public Parent function
 ---@field public ParentTab number
 ---@field public Items table<number, UIMenuItem|UIMenuListItem|UIMenuCheckboxItem|UIMenuSliderItem|UIMenuProgressItem>
 ---@field public OnIndexChanged fun(index: number)
 ---@field public AddSettings fun(self: SettingsListColumn, item: SettingsListItem)
 
-function SettingsListColumn.New(label, color, scrollType, _maxItems)
-    local handler = PaginationHandler.New()
-    handler:ItemsPerPage(_maxItems or 16)
-    handler.scrollType = scrollType or MenuScrollingType.CLASSIC
-    local _data = {
-        _isBuilding = false,
-        Type = "settings",
-        _label = label or "",
-        _color = color or SColor.HUD_Freemode,
-        _currentSelection = 0,
-        _rightLabel = "",
-        scrollingType = scrollType or MenuScrollingType.CLASSIC,
-        Pagination = handler,
-        Order = 0,
-        Parent = nil,
-        ParentTab = nil,
-        Items = {} --[[@type table<number, UIMenuItem|UIMenuListItem|UIMenuCheckboxItem|UIMenuSliderItem|UIMenuProgressItem>]],
-        _unfilteredItems = {} --[[@type table<number, UIMenuItem|UIMenuListItem|UIMenuCheckboxItem|UIMenuSliderItem|UIMenuProgressItem>]],
-        OnIndexChanged = function(index)
-        end,
-        OnSettingItemActivated = function(index)
-        end
-    }
-    return setmetatable(_data, SettingsListColumn)
+function SettingsListColumn.New(label, _maxItems)
+    local base = PM_Column.New(-1)
+    base.Label = label
+    base.type = PLT_COLUMNS.SETTINGS
+    base.VisibleItems = _maxItems
+    base._unfilteredItems = {} --[[@type table<number, UIMenuItem|UIMenuListItem|UIMenuCheckboxItem|UIMenuSliderItem|UIMenuProgressItem>]]
+    base._unfilteredSelection = 1
+    base.OnIndexChanged = function(index)
+    end
+    base.OnSettingItemActivated = function(index)
+    end
+    return setmetatable(base, SettingsListColumn)
 end
 
-function SettingsListColumn:ScrollingType(type)
-    if type == nil then
-        return self.scrollingType
-    else
-        self.scrollingType = type
+function SettingsListColumn:SetVisibleItems(maxItems)
+    self.VisibleItems = maxItems
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
-function SettingsListColumn:CurrentSelection(value)
-    if value == nil then
-        return self.Pagination:CurrentMenuIndex()
-    else
-        if value == self.Pagination:CurrentMenuIndex() then
-            return
-        end
-        if value < 1 then
-            self.Pagination:CurrentMenuIndex(1)
-        elseif value > #self.Items then
-            self.Pagination:CurrentMenuIndex(#self.Items)
-        end
-        self.Items[self:CurrentSelection()]:Selected(false)
-        self.Pagination:CurrentMenuIndex(value);
-        self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()));
-        self.Pagination:CurrentPageIndex(value);
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()));
-        if value > self.Pagination:MaxItem() or value < self.Pagination:MinItem() then
-            self:refreshColumn()
-        end
-        if self.Parent ~= nil and self.Parent:Visible() then
-            AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                self.Items[self:CurrentSelection()]:Selected(true)
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
-                    self.Items[self:CurrentSelection()]:Selected(true)
-                end
-            end
-        end
-    end
+function SettingsListColumn:AddItem(item)
+    self:AddSettings(item)
 end
 
 ---Add a new item to the column.
 ---@param item UIMenuItem|UIMenuListItem|UIMenuCheckboxItem|UIMenuSliderItem|UIMenuProgressItem
 function SettingsListColumn:AddSettings(item)
-    local a, b = item()
-    if b == "UIMenuItem" then
-        item.ParentColumn = self
+    if item:MainColor() == SColor.HUD_Panel_light then
+        item:MainColor(SColor.HUD_Pause_bg)
+    end
+    item.ParentColumn = self
+    table.insert(self.Items, item)
+    if self:visible() and #self.Items < self.VisibleItems then
+        local idx = #self.Items
+        self:AddSlot(idx)
+        self.Items[idx]:Selected(idx == self.index)
+    end
+end
+
+function SettingsListColumn:ShowColumn()
+    if not self:visible() then return end
+    PM_Column.ShowColumn(self)
+    self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
+    self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+    if #self.Items > 0 and self:CurrentItem().ItemId == 6 and self:CurrentItem().Jumpable then
+        self:CurrentItem():Selected(false)
+        self.index = self.index + 1
+        if self.index > #self.Items then
+            self.index = 1
+        end
+        self:CurrentItem():Selected(true)
+    end
+end
+
+function SettingsListColumn:Populate()
+    if not self:visible() then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_MAX_ITEMS", self.position, self.VisibleItems)
+    for i=1, #self.Items, 1 do
+        self:SetDataSlot(i)
+    end
+end
+
+function SettingsListColumn:CurrentSelection(value)
+    if value == nil then
+        return self.index
     else
-        item.Base.ParentColumn = self
-    end
-    self.Items[#self.Items + 1] = item
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        if self.Pagination:TotalItems() < self.Pagination:ItemsPerPage() then
-            local sel = self:CurrentSelection()
-            self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-            if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-                local missingItems = self.Pagination:GetMissingItems()
-                if missingItems > 0 then
-                    self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                    self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-                end
-            end
-
-            self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-            self:_itemCreation(self.Pagination:CurrentPage(), #self.Items, false)
-            local pSubT = self.Parent()
-            if pSubT == "PauseMenu" and self.ParentTab.Visible then
-                if self.ParentTab.listCol[self.ParentTab:Focus()] == self then
-                    self:CurrentSelection(sel)
-                end
-            end
+        self:CurrentItem():Selected(false)
+        self.index = value
+        if self.index < 1 then
+            self.index = #self.Items
+        elseif self.index > #self.Items then
+            self.index = 1
         end
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+        self:CurrentItem():Selected(true)
+        if self:visible() and self.Focused then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
+        end
+        self.OnIndexChanged(self.index)
+    end
+end
+
+
+function SettingsListColumn:SetDataSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index)
+    end
+end
+function SettingsListColumn:UpdateSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, true)
+    end
+end
+function SettingsListColumn:AddSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, false, false, true)
+    end
+end
+
+function SettingsListColumn:AddItemAt(item, index)
+    table.insert(self.Items, index, item)
+    if not self:visible() then return end
+    self:AddSlot(index)
+    item:Selected(idx == self.index)
+end
+
+function SettingsListColumn:SendItemToScaleform(i, update, newItem, isSlot)
+    if i > #self.Items then return end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then str = "UPDATE_SLOT" end
+    if newItem then str = "SET_DATA_SLOT_SPLICE" end
+    if isSlot then str = "ADD_SLOT" end
+
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, str)
+    PushScaleformMovieFunctionParameterInt(self.position)
+    PushScaleformMovieFunctionParameterInt(i - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(item.ItemId)
+
+    if item.ItemId == 1 then
+        local rlabel = "SCUI_SETTCOL_RLBL"
+        AddTextEntry(rlabel, item:CurrentListItem())
+        BeginTextCommandScaleformString(rlabel)
+        EndTextCommandScaleformString_2()
+    elseif item.ItemId == 2 then
+        PushScaleformMovieFunctionParameterBool(item:Checked())
+    elseif item.ItemId == 3 or item.ItemId == 4 or item.ItemId == 5 then
+        PushScaleformMovieFunctionParameterInt(item:Index())
+    else
+        PushScaleformMovieFunctionParameterInt(0)
+    end
+    PushScaleformMovieFunctionParameterBool(item:Enabled())
+    local label = "SCUI_SETTCOL_LBL"
+    AddTextEntry(label, item:Label())
+    BeginTextCommandScaleformString(label)
+    EndTextCommandScaleformString_2()
+    PushScaleformMovieFunctionParameterBool(item:BlinkDescription())
+    if item.ItemId == 1 then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+        PushScaleformMovieMethodParameterString(item._rightLabelFont.FontName)
+    elseif item.ItemId == 2 then
+        PushScaleformMovieFunctionParameterInt(item.CheckBoxStyle)
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 3 then
+        PushScaleformMovieFunctionParameterInt(item._Max)
+        PushScaleformMovieFunctionParameterInt(item._Multiplier)
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
+        PushScaleformMovieFunctionParameterBool(item._heritage)
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 4 then
+        PushScaleformMovieFunctionParameterInt(item._Max)
+        PushScaleformMovieFunctionParameterInt(item._Multiplier)
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 5 then
+        PushScaleformMovieFunctionParameterInt(item._Type)
+        PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 6 then
+        PushScaleformMovieFunctionParameterBool(item.Jumpable)
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    else
+        PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
+        PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+        AddTextComponentScaleform(item:RightLabel())
+        EndTextCommandScaleformString_2()
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieFunctionParameterInt(item._rightBadge)
+        PushScaleformMovieMethodParameterString(item.customRightIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customRightIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+        PushScaleformMovieMethodParameterString(item._rightLabelFont.FontName)
+    end
+    PushScaleformMovieMethodParameterBool(item:KeepTextColorWhite())
+    EndScaleformMovieMethod()
+end
+
+---Removes an item from the column.
+---@param item UIMenuItem 
+function SettingsListColumn:RemoveSetting(item)
+    if item == nil then
+        print("^1[ERROR] SettingsListColumn:RemoveSetting() - item is nil")
+        return
+    end
+    for k,v in pairs(self.Items) do
+        if v:Label () == item:Label() then
+            self:RemoveSlot(k)
         end
     end
 end
 
-function SettingsListColumn:_itemCreation(page, pageIndex, before, overflow)
-    local menuIndex = self.Pagination:GetMenuIndexFromPageIndex(page, pageIndex)
-    if not before then
-        if self.Pagination:GetPageItemsCount(page) < self.Pagination:ItemsPerPage() and self.Pagination:TotalPages() > 1 then
-            if self.scrollingType == MenuScrollingType.ENDLESS then
-                if menuIndex > #self.Items then
-                    menuIndex = menuIndex - #self.Items
-                    self.Pagination:MaxItem(menuIndex)
-                end
-            elseif self.scrollingType == MenuScrollingType.CLASSIC and overflow then
-                local missingItems = self.Pagination:ItemsPerPage() - self.Pagination:GetPageItemsCount(page)
-                menuIndex = menuIndex - missingItems
-            elseif self.scrollingType == MenuScrollingType.PAGINATED then
-                if menuIndex > #self.Items then return end
-            end
-        end
-    end
-
-    local scaleformIndex = self.Pagination:GetScaleformIndex(menuIndex)
-    local item = self.Items[menuIndex]
-    local pSubT = self.Parent()
-
-    item:MainColor(SColor.HUD_Pause_bg)
-
-    if pSubT == "LobbyMenu" then
-        local Type, SubType = item()
-        if SubType == "UIMenuListItem" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 1, item.Base._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(),
-                item:createListString(),
-                item:Index() - 1, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.Base._mainColor:ToArgb())
-        elseif SubType == "UIMenuCheckboxItem" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 2, item.Base._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(), item.CheckBoxStyle,
-                item._Checked, item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.Base._mainColor:ToArgb())
-        elseif SubType == "UIMenuSliderItem" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 3, item.Base._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(), item._Max,
-                item._Multiplier,
-                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.Base._mainColor:ToArgb(), item.SliderColor:ToArgb(), item._heritage)
-        elseif SubType == "UIMenuProgressItem" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 4, item.Base._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(), item._Max,
-                item._Multiplier,
-                item:Index(), item.Base._mainColor:ToArgb(), item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.Base._mainColor:ToArgb(), item.SliderColor:ToArgb())
-        elseif SubType == "UIMenuSeparatorItem" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 6, item.Base._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(),
-                item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
-        else
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_LEFT_ITEM", before, menuIndex, 0, item._formatLeftLabel,
-                item:Enabled(), item:BlinkDescription(), item._mainColor:ToArgb(),
-                item._highlightColor:ToArgb(), item._mainColor:ToArgb(), item._mainColor:ToArgb())
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex,
-                item._formatRightLabel)
-            if item._rightBadge ~= BadgeStyle.NONE then
-                if item._rightBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
-                        item.customRightIcon.TXD, item.customRightIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex,
-                        item._rightBadge)
-                end
-            end
-        end
-
-        if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
-            if SubType ~= "UIMenuItem" then
-                if item.Base._leftBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
-                end
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._rightLabelFont.FontName, item.Base._rightLabelFont.FontID)
-            else
-                if item.Base._leftBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
-                end
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-            end
-        end
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        local Type, SubType = item()
-        if SubType == "UIMenuListItem" then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 1, item.Base._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item:createListString(), item:Index() - 1,
-                item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
-        elseif SubType == "UIMenuCheckboxItem" then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 2, item.Base._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item.CheckBoxStyle, item._Checked, item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb())
-        elseif SubType == "UIMenuSliderItem" then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 3, item.Base._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.SliderColor:ToArgb(), item._heritage)
-        elseif SubType == "UIMenuProgressItem" then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 4, item.Base._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item._Max, item._Multiplier, item:Index(), item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.SliderColor:ToArgb())
-        elseif SubType == "UIMenuSeparatorItem" then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 6, item.Base._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item.Jumpable, item.Base._mainColor:ToArgb(),
-                item.Base._highlightColor:ToArgb(), item.Base._mainColor:ToArgb(), item.Base._mainColor:ToArgb(),
-                item.SliderColor:ToArgb())
-        else
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_SETTINGS_ITEM",
-                before, menuIndex, 0, item._formatLeftLabel, item:Enabled(),
-                item:BlinkDescription(), item._mainColor:ToArgb(), item._highlightColor:ToArgb(), item._mainColor:ToArgb(),
-                item._mainColor:ToArgb())
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", scaleformIndex, item._formatRightLabel)
-            if item._rightBadge ~= BadgeStyle.NONE then
-                if item._rightBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", scaleformIndex,
-                        item.customRightIcon.TXD, item.customRightIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", scaleformIndex, item._rightBadge)
-                end
-            end
-        end
-        if (SubType == "UIMenuItem" and item._leftBadge ~= BadgeStyle.NONE) or (SubType ~= "UIMenuItem" and item.Base._leftBadge ~= BadgeStyle.NONE) then
-            if SubType ~= "UIMenuItem" then
-                if item.Base._leftBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.Base.customLeftIcon.TXD, item.Base.customLeftIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item.Base._leftBadge)
-                end
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_LABEL_FONT", scaleformIndex, item.Base._labelFont.FontName, item.Base._labelFont.FontID)
-            else
-                if item.Base._leftBadge == BadgeStyle.CUSTOM then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", scaleformIndex, item.customLeftIcon.TXD, item.customLeftIcon.TXN)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", scaleformIndex, item._leftBadge)
-                end
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_LABEL_FONT", scaleformIndex, item._labelFont.FontName, item._labelFont.FontID)
-            end
-        end
-    end
+function SettingsListColumn:RemoveItemAt(index)
+    if index >#self.Items or index < 1 then return end
+    self:RemoveSlot(index)
 end
+
+function SettingsListColumn:RemoveSlot(idx)
+    PM_Column.RemoveSlot(self, idx)
+    AddTextEntry("PAUSEMENU_Current_Description", self:CurrentItem():Description());
+end
+
 
 ---Refreshes the menu description
 function SettingsListColumn:UpdateDescription()
     local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_DESCRIPTION")
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_DESCRIPTION")
-    end
+    AddTextEntry("PAUSEMENU_Current_Description", self:CurrentItem():Description())
+    self:SendItemToScaleform(self:Index(), true)
+    -- legacy and definitely wrong to use it..
 end
 
 function SettingsListColumn:GoUp()
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem().selected = false
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == 1 and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoUp() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), true, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_SETTINGS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_SETTINGS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
+        self.index = self.index - 1
+        if self.index < 1 then
+            self.index = #self.Items
         end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    end
-    self.Items[self:CurrentSelection()]:Selected(true)
+    until self:CurrentItem().ItemId ~= 6 or (self:CurrentItem().ItemId == 6 and not self:CurrentItem().Jumpable)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 8)
+    AddTextEntry("PAUSEMENU_Current_Description", self:CurrentItem():Description());
+    self:CurrentItem().selected = true
     self.OnIndexChanged(self:CurrentSelection())
 end
 
 function SettingsListColumn:GoDown()
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem().selected = false
     repeat
         Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == #self.Items and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoDown() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), false, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_SETTINGS_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_SETTINGS_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
+        self.index = self.index + 1
+        if self.index > #self.Items then
+            self.index = 1
         end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+    until self:CurrentItem().ItemId ~= 6 or (self:CurrentItem().ItemId == 6 and not self:CurrentItem().Jumpable)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 9)
+    AddTextEntry("PAUSEMENU_Current_Description", self:CurrentItem():Description());
+    self:CurrentItem().selected = true
+    self.OnIndexChanged(self:CurrentSelection())
+end
+
+function SettingsListColumn:GoLeft()
+    if not self:visible() then return end
+    if not self:CurrentItem():Enabled() then
+        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+        return
     end
-    self.Items[self:CurrentSelection()]:Selected(true)
+
+    if self:CurrentItem().ItemId == 1 then
+        self:CurrentItem():Index(self:CurrentItem():Index() - 1)
+        self:CurrentItem().OnListChanged(nil, self:CurrentItem(), self:CurrentItem():Index())
+    elseif self:CurrentItem().ItemId == 3 then
+        self:CurrentItem():Index(self:CurrentItem():Index() - 1)
+    elseif self:CurrentItem().ItemId == 4 then
+        self:CurrentItem():Index(self:CurrentItem():Index() - 1)
+    elseif self:CurrentItem().ItemId == 5 then
+        self:CurrentItem():Index(self:CurrentItem():Index() - 1)
+    end
+    PlaySoundFrontend(-1, "NAV_LEFT_RIGHT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+end
+function SettingsListColumn:GoRight()
+    if not self:visible() then return end
+    if not self:CurrentItem():Enabled() then
+        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+        return
+    end
+    if self:CurrentItem().ItemId == 1 then
+        self:CurrentItem():Index(self:CurrentItem():Index() + 1)
+        self:CurrentItem().OnListChanged(nil, self:CurrentItem(), self:CurrentItem():Index())
+    elseif self:CurrentItem().ItemId == 3 then
+        self:CurrentItem():Index(self:CurrentItem():Index() + 1)
+    elseif self:CurrentItem().ItemId == 4 then
+        self:CurrentItem():Index(self:CurrentItem():Index() + 1)
+    elseif self:CurrentItem().ItemId == 5 then
+        self:CurrentItem():Index(self:CurrentItem():Index() + 1)
+    end
+    PlaySoundFrontend(-1, "NAV_LEFT_RIGHT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+end
+
+function SettingsListColumn:Select()
+    if not self:visible() then return end
+    if not self:CurrentItem():Enabled() then
+        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+        return
+    end
+    if self:CurrentItem().ItemId == 1 then
+        self:CurrentItem().OnListSelected(nil, self:CurrentItem(), self:CurrentItem():Index())
+        self.OnSettingItemActivated(self:Index())
+    elseif self:CurrentItem().ItemId == 2 then
+        self:CurrentItem():Checked(not self:CurrentItem():Checked())
+        self:CurrentItem().OnCheckboxChanged(nil, self:CurrentItem(), self:CurrentItem():Checked())
+    else
+        self.OnSettingItemActivated(self:Index())
+        if self:CurrentItem().Activated ~= nil then
+            self:CurrentItem().Activated(nil, self:CurrentItem())
+        end
+    end
+end
+
+function SettingsListColumn:MouseScroll(dir)
+    self:CurrentItem().selected = false
+    repeat
+        Citizen.Wait(0)
+        self.index = self.index + dir
+        if self.index < 1 then
+            self.index = #self.Items
+        elseif self.index > #self.Items then
+            self.index = 1
+        end
+    until self:CurrentItem().ItemId ~= 6 or (self:CurrentItem().ItemId == 6 and not self:CurrentItem().Jumpable)
+    AddTextEntry("PAUSEMENU_Current_Description", self:CurrentItem():Description());
+    self:CurrentItem().selected = true
     self.OnIndexChanged(self:CurrentSelection())
 end
 
 function SettingsListColumn:UpdateItemLabels(index, leftLabel, rightLabel)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._label = leftLabel;
-        self._rightLabel = rightLabel;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABELS", self.Pagination:GetScaleformIndex(index), leftLabel, rightLabel)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABELS", self.Pagination:GetScaleformIndex(index), self._label, self._rightLabel)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:Label(leftLabel)
+    item:RightLabel(rightLabel)
 end
 
 function SettingsListColumn:UpdateItemBlinkDescription(index, blink)
+    if not self:visible() or index > #self.Items then return end
     if blink == 1 then blink = true elseif blink == 0 then blink = false end
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_BLINK_DESC", self.Pagination:GetScaleformIndex(index), blink)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_BLINK_DESC", self.Pagination:GetScaleformIndex(index), self._label, self._rightLabel)
-        end
-    end
+    local item = self.Items[index]
+    item:BlinkDescription(blink)
 end
 
 function SettingsListColumn:UpdateItemLabel(index, label)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._label = label;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL", self.Pagination:GetScaleformIndex(index), label)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL", self.Pagination:GetScaleformIndex(index), self._label)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:Label(label)
 end
 
 function SettingsListColumn:UpdateItemRightLabel(index, label)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._rightLabel = label;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", self.Pagination:GetScaleformIndex(index), label)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", self.Pagination:GetScaleformIndex(index), self._rightLabel)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:RightLabel(label)
 end
 
 function SettingsListColumn:UpdateItemLeftBadge(index, badge)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:LeftBadge(badge)
 end
 
 function SettingsListColumn:UpdateItemRightBadge(index, badge)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", self.Pagination:GetScaleformIndex(index),
-                badge)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:RightBadge(badge)
 end
 
 function SettingsListColumn:EnableItem(index, enable)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ENABLE_SETTINGS_ITEM", self.Pagination:GetScaleformIndex(index), enable)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_PLAYERS_TAB_SETTINGS_ITEM", self.Pagination:GetScaleformIndex(index), enable)
-        end
-    end
+    if not self:visible() or index > #self.Items then return end
+    local item = self.Items[index]
+    item:Enabled(enable)
 end
 
 function SettingsListColumn:Clear()
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_SETTINGS_COLUMN")
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_SETTINGS_COLUMN")
-        end
-    end
-    self.Items = {}
-    self.Pagination:Reset()
+    self:ClearColumn()
+end
+
+function SettingsListColumn:ClearColumn()
+    PM_Column.ClearColumn(self)
+    AddTextEntry("PAUSEMENU_Current_Description", "")
 end
 
 function SettingsListColumn:SortSettings(compare)
-    self.Items[self:CurrentSelection()]:Selected(false)
+    if not self:visible() then return end
+    self:CurrentItem():Selected(false)
     if self._unfilteredItems == nil or #self._unfilteredItems == 0 then
         for i, item in ipairs(self.Items) do
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local list = self._unfilteredItems
     table.sort(list, compare)
     self.Items = list
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildSettings()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildSettings(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
 function SettingsListColumn:FilterSettings(predicate)
-    self.Items[self:CurrentSelection()]:Selected(false)
+    self:CurrentItem():Selected(false)
     if self._unfilteredItems == nil or #self._unfilteredItems == 0 then
         for i, item in ipairs(self.Items) do
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local filteredItems = {}
     for i, item in ipairs(self._unfilteredItems) do
@@ -5028,82 +5368,33 @@ function SettingsListColumn:FilterSettings(predicate)
         end
     end
     self.Items = filteredItems
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildSettings()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildSettings(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
 function SettingsListColumn:ResetFilter()
     if self._unfilteredItems ~= nil and #self._unfilteredItems > 0 then
-        self.Items[self:CurrentSelection()]:Selected(false)
+        self:CurrentItem():Selected(false)
         self:Clear()
         self.Items = self._unfilteredItems
-        self.Pagination:TotalItems(#self.Items)
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                self.Parent:buildSettings()
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                self.Parent:buildSettings(self.Parent.Tabs[self.ParentTab])
-            end
+        self:Index(self._unfilteredSelection)
+        self._unfilteredItems = {}
+        self._unfilteredSelection = 1
+        if self:visible() then
+            self:Populate()
+            self:ShowColumn()
         end
     end
 end
 
-function SettingsListColumn:refreshColumn()
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_SETTINGS_COLUMN")
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_SETTINGS_COLUMN")
-    end
-    if #self.Items > 0 then
-        self._isBuilding = true
-        local max = self.Pagination:ItemsPerPage()
-        if #self.Items < max then
-            max = #self.Items
-        end
-        self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-        if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-            local missingItems = self.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-
-        for i = 1, max, 1 do
-            if not self.Parent:Visible() then return end
-            self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-        end
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
-        AddTextEntry("PAUSEMENU_Current_Description", self.Items[self:CurrentSelection()]:Description());
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
-        self._isBuilding = false
-    end
-end
 
 --///////////////////////////////////////////////////////////////////--
-StoreListColumn = setmetatable({}, StoreListColumn)
+StoreListColumn = {}
 StoreListColumn.__index = StoreListColumn
-StoreListColumn.__call = function()
-    return "Column", "StoreColumn"
-end
+setmetatable(StoreListColumn, { __index = PM_Column })
+StoreListColumn.__call = function() return "StoreListColumn" end
 
 ---@class StoreListColumn
 ---@field private _label string
@@ -5119,343 +5410,189 @@ end
 ---@field public OnIndexChanged fun(index: number)
 ---@field public AddStoreItemItem fun(self: StoreListColumn, item: StoreItem)
 
-function StoreListColumn.New(label, color, scrollType)
-    local handler = PaginationHandler.New()
-    handler:ItemsPerPage(4)
-    handler.scrollType = scrollType or MenuScrollingType.CLASSIC
-    local _data = {
-        _isBuilding = false,
-        Type = "store",
-        _label = label or "",
-        _color = color or SColor.HUD_Freemode,
-        _currentSelection = 0,
-        _rightLabel = "",
-        scrollingType = scrollType or MenuScrollingType.CLASSIC,
-        Pagination = handler,
-        Order = 0,
-        Parent = nil,
-        ParentTab = nil,
-        Items = {} --[[@type table<number, StoreItem>]],
-        _unfilteredItems = {} --[[@type table<number, StoreItem>]],
-        OnIndexChanged = function(index)
-        end,
-        OnStoreItemActivated = function(index)
-        end
-    }
-    return setmetatable(_data, StoreListColumn)
+function StoreListColumn.New(label)
+    local base = PM_Column.New(-1)
+    base.Label = label
+    base.type = PLT_COLUMNS.MISSION
+    base.VisibleItems = 4
+    base._unfilteredItems = {} --[[@type table<number, StoreItem>]]
+    base._unfilteredSelection = 1
+    base.OnIndexChanged = function(index)
+    end
+    base.OnStoreItemActivated = function(index)
+    end
+    return setmetatable(base, StoreListColumn)
 end
 
-function StoreListColumn:ScrollingType(type)
-    if type == nil then
-        return self.scrollingType
-    else
-        self.scrollingType = type
+function StoreListColumn:visible()
+    return PM_Column.visible(self)
+end
+
+function StoreListColumn:SetVisibleItems(maxItems)
+    self.VisibleItems = maxItems
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
+function StoreListColumn:ShowColumn()
+    if not self:visible() then return end
+    PM_Column.ShowColumn(self)
+    self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
+    self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+end
+
+function StoreListColumn:Populate()
+    if not self:visible() then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_MAX_ITEMS", self.position, self.VisibleItems)
+    for i=1, #self.Items, 1 do
+        self:SetDataSlot(i)
+    end
+end
+
+---Sets or gets the current selection.
+---@param value? number
+---@return number | nil
 function StoreListColumn:CurrentSelection(value)
     if value == nil then
-        return self.Pagination:CurrentMenuIndex()
+        return self.index
     else
-        if value == self.Pagination:CurrentMenuIndex() then
-            return
+        self:CurrentItem():Selected(false)
+        self.index = value
+        if self.index < 1 then
+            self.index = #self.Items
+        elseif self.index > #self.Items then
+            self.index = 1
         end
-        if value < 1 then
-            self.Pagination:CurrentMenuIndex(1)
-        elseif value > #self.Items then
-            self.Pagination:CurrentMenuIndex(#self.Items)
+        self:CurrentItem():Selected(true)
+        if self:visible() and self.Focused then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
         end
-        self.Items[self:CurrentSelection()]:Selected(false)
-        self.Pagination:CurrentMenuIndex(value);
-        self.Pagination:CurrentPage(self.Pagination:GetPage(self.Pagination:CurrentMenuIndex()));
-        self.Pagination:CurrentPageIndex(value);
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self.Pagination:CurrentMenuIndex()));
-        if value > self.Pagination:MaxItem() or value < self.Pagination:MinItem() then
-            self:refreshColumn()
-        end
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                self.Items[self:CurrentSelection()]:Selected(true)
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-                if self.Parent:Index() == IndexOf(self.Parent.Tabs, self.ParentTab) and self.Parent:FocusLevel() == 1 then
-                    self.Items[self:CurrentSelection()]:Selected(true)
-                end
-            end
+        self.OnIndexChanged(self.index)
+    end
+end
+
+function StoreListColumn:AddItem(item)
+    self:AddStoreItem(item)
+end
+
+---Removes an item from the column.
+---@param item StoreItem 
+function StoreListColumn:RemoveSetting(item)
+    if item == nil then
+        print("^1[ERROR] SettingsListColumn:RemoveSetting() - item is nil")
+        return
+    end
+    for k,v in pairs(self.Items) do
+        if v:Label () == item:Label() then
+            self:RemoveSlot(k)
         end
     end
+end
+
+function StoreListColumn:RemoveItemAt(index)
+    if index >#self.Items or index < 1 then return end
+    self:RemoveSlot(index)
 end
 
 ---Add a new item to the column.
 ---@param item StoreItem
 function StoreListColumn:AddStoreItem(item)
     item.ParentColumn = self
-    item.Handle = #self.Items + 1
-    self.Items[#self.Items + 1] = item
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        if self.Pagination:TotalItems() < self.Pagination:ItemsPerPage() then
-            local sel = self:CurrentSelection()
-            self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
-
-            if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-                local missingItems = self.Pagination:GetMissingItems()
-                if missingItems > 0 then
-                    self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                    self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-                end
-            end
-
-            self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
-            self:_itemCreation(self.Pagination:CurrentPage(), #self.Items, false)
-            local pSubT = self.Parent()
-            if pSubT == "PauseMenu" and self.ParentTab.Visible then
-                if self.ParentTab.listCol[self.ParentTab:Focus()] == self then
-                    self:CurrentSelection(sel)
-                end
-            end
-        end
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
+    table.insert(self.Items, item)
+    if self:visible() and #self.Items < self.VisibleItems then
+        local idx = #self.Items
+        self:AddSlot(idx)
+        self.Items[idx]:Selected(idx == self.index)
     end
 end
 
-function StoreListColumn:_itemCreation(page, pageIndex, before, overflow)
-    local menuIndex = self.Pagination:GetMenuIndexFromPageIndex(page, pageIndex)
-    if not before then
-        if self.Pagination:GetPageItemsCount(page) < self.Pagination:ItemsPerPage() and self.Pagination:TotalPages() > 1 then
-            if self.scrollingType == MenuScrollingType.ENDLESS then
-                if menuIndex > #self.Items then
-                    menuIndex = menuIndex - #self.Items
-                    self.Pagination:MaxItem(menuIndex)
-                end
-            elseif self.scrollingType == MenuScrollingType.CLASSIC and overflow then
-                local missingItems = self.Pagination:ItemsPerPage() - self.Pagination:GetPageItemsCount(page)
-                menuIndex = menuIndex - missingItems
-            elseif self.scrollingType == MenuScrollingType.PAGINATED then
-                if menuIndex > #self.Items then return end
-            end
-        end
+function StoreListColumn:SetDataSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index)
     end
+end
+function StoreListColumn:UpdateSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, true)
+    end
+end
+function StoreListColumn:AddSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, false, false, true)
+    end
+end
 
-    local scaleformIndex = self.Pagination:GetScaleformIndex(menuIndex)
-    local item = self.Items[menuIndex]
-    local pSubT = self.Parent()
+function StoreListColumn:AddItemAt(item, index)
+    table.insert(self.Items, index, item)
+    if not self:visible() then return end
+    self:AddSlot(index)
+    item:Selected(idx == self.index)
+end
 
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_STORE_ITEM", before, menuIndex, 0, item.TextureDictionary, item.TextureName, item.Description, item:Enabled())
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_STORE_ITEM", before, menuIndex, 0, item.TextureDictionary, item.TextureName, item.Description, item:Enabled())
+function StoreListColumn:SendItemToScaleform(i, update, newItem, isSlot)
+    if i > #self.Items then return end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then str = "UPDATE_SLOT" end
+    if newItem then str = "SET_DATA_SLOT_SPLICE" end
+    if isSlot then str = "ADD_SLOT" end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction(str, self.position, i, 0,0, i, 0, item:Enabled(), item.textureDictionary, item.textureName, item.Description)
+    if self.position == 0 and i == self.index then
+        if item.Panel ~= nil then
+            item.Panel:UpdatePanel()
+        end
     end
 end
 
 function StoreListColumn:GoUp()
     self.Items[self:CurrentSelection()]:Selected(false)
-    repeat
-        Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == 1 and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoUp() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), true, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 8, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_STORE_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_STORE_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
-        end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+    self.index = self.index - 1
+    if self.index < 1 then
+        self.index = #self.Items
     end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 8)
     self.Items[self:CurrentSelection()]:Selected(true)
     self.OnIndexChanged(self:CurrentSelection())
 end
 
 function StoreListColumn:GoDown()
     self.Items[self:CurrentSelection()]:Selected(false)
-    repeat
-        Citizen.Wait(0)
-        local overflow = self:CurrentSelection() == #self.Items and self.Pagination:TotalPages() > 1
-        if self.Pagination:GoDown() then
-            if self.scrollingType == MenuScrollingType.ENDLESS or (self.scrollingType == MenuScrollingType.CLASSIC and not overflow) then
-                self:_itemCreation(self.Pagination:GetPage(self:CurrentSelection()), self.Pagination:CurrentPageIndex(), false, false)
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 9, self._delay) --[[@as number]]
-                end
-            elseif self.scrollingType == MenuScrollingType.PAGINATED or (self.scrollingType == MenuScrollingType.CLASSIC and overflow) then
-                local pSubT = self.Parent()
-                if pSubT == "LobbyMenu" then
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_STORE_COLUMN") --[[@as number]]
-                elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_STORE_COLUMN") --[[@as number]]
-                end
-                local max = self.Pagination:ItemsPerPage()
-                for i = 1, max, 1 do
-                    if not self.Parent:Visible() then return end
-                    self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-                end
-            end
-        end
-    until self.Items[self:CurrentSelection()].ItemId ~= 6 or (self.Items[self:CurrentSelection()].ItemId == 6 and not self.Items[self:CurrentSelection()].Jumpable)
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
+    self.index = self.index - 1
+    if self.index < 1 then
+        self.index = #self.Items
     end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.position, 9)
     self.Items[self:CurrentSelection()]:Selected(true)
     self.OnIndexChanged(self:CurrentSelection())
 end
 
-function StoreListColumn:UpdateItemLabels(index, leftLabel, rightLabel)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._label = leftLabel;
-        self._rightLabel = rightLabel;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_STORE_ITEM_LABELS", self.Pagination:GetScaleformIndex(index), leftLabel, rightLabel)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_STORE_ITEM_LABELS", self.Pagination:GetScaleformIndex(index), self._label, self._rightLabel)
-        end
-    end
-end
-
-function StoreListColumn:UpdateItemBlinkDescription(index, blink)
-    if blink == 1 then blink = true elseif blink == 0 then blink = false end
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_STORE_ITEM_BLINK_DESC", self.Pagination:GetScaleformIndex(index), blink)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_STORE_ITEM_BLINK_DESC", self.Pagination:GetScaleformIndex(index), self._label, self._rightLabel)
-        end
-    end
-end
-
-function StoreListColumn:UpdateItemLabel(index, label)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._label = label;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_STORE_ITEM_LABEL", self.Pagination:GetScaleformIndex(index), label)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_STORE_ITEM_LABEL", self.Pagination:GetScaleformIndex(index), self._label)
-        end
-    end
-end
-
-function StoreListColumn:UpdateItemRightLabel(index, label)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        self._rightLabel = label;
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_STORE_ITEM_LABEL_RIGHT", self.Pagination:GetScaleformIndex(index), label)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_STORE_ITEM_LABEL_RIGHT", self.Pagination:GetScaleformIndex(index), self._rightLabel)
-        end
-    end
-end
-
-function StoreListColumn:UpdateItemLeftBadge(index, badge)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_ITEM_LEFT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_ITEM_LEFT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        end
-    end
-end
-
-function StoreListColumn:UpdateItemRightBadge(index, badge)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_ITEM_RIGHT_BADGE", self.Pagination:GetScaleformIndex(index),
-                badge)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_ITEM_RIGHT_BADGE", self.Pagination:GetScaleformIndex(index), badge)
-        end
-    end
-end
-
-function StoreListColumn:EnableItem(index, enable)
-    if self.Parent ~= nil then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ENABLE_STORE_ITEM", self.Pagination:GetScaleformIndex(index), enable)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_PLAYERS_TAB_STORE_ITEM", self.Pagination:GetScaleformIndex(index), enable)
-        end
-    end
-end
-
 function StoreListColumn:Clear()
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_STORE_COLUMN")
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_STORE_COLUMN")
-        end
-    end
-    self.Items = {}
-    self.Pagination:Reset()
+    self:ClearColumn()
 end
 
 function StoreListColumn:SortStore(compare)
+    if not self:visible() then return end
     self.Items[self:CurrentSelection()]:Selected(false)
     if self._unfilteredItems == nil or #self._unfilteredItems == 0 then
         for i, item in ipairs(self.Items) do
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local list = self._unfilteredItems
     table.sort(list, compare)
     self.Items = list
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildStore()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildStore(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -5466,6 +5603,7 @@ function StoreListColumn:FilterStore(predicate)
             table.insert(self._unfilteredItems, item)
         end
     end
+    self._unfilteredSelection = self:Index()
     self:Clear()
     local filteredItems = {}
     for i, item in ipairs(self._unfilteredItems) do
@@ -5474,14 +5612,9 @@ function StoreListColumn:FilterStore(predicate)
         end
     end
     self.Items = filteredItems
-    self.Pagination:TotalItems(#self.Items)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            self.Parent:buildStore()
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            self.Parent:buildStore(self.Parent.Tabs[self.ParentTab])
-        end
+    if self:visible() then
+        self:Populate()
+        self:ShowColumn()
     end
 end
 
@@ -5490,58 +5623,497 @@ function StoreListColumn:ResetFilter()
         self.Items[self:CurrentSelection()]:Selected(false)
         self:Clear()
         self.Items = self._unfilteredItems
-        self.Pagination:TotalItems(#self.Items)
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                self.Parent:buildStore()
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                self.Parent:buildStore(self.Parent.Tabs[self.ParentTab])
-            end
+        self:Index(self._unfilteredSelection)
+        self._unfilteredItems = {}
+        self._unfilteredSelection = 1
+        if self:visible() then
+            self:Populate()
+            self:ShowColumn()
         end
     end
 end
 
-function StoreListColumn:refreshColumn()
-    local pSubT = self.Parent()
-    if pSubT == "LobbyMenu" then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_STORE_COLUMN")
-    elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_STORE_COLUMN")
-    end
-    if #self.Items > 0 then
-        self._isBuilding = true
-        local max = self.Pagination:ItemsPerPage()
-        if #self.Items < max then
-            max = #self.Items
-        end
-        self.Pagination:MinItem(self.Pagination:CurrentPageStartIndex())
 
-        if self.scrollingType == MenuScrollingType.CLASSIC and self.Pagination:TotalPages() > 1 then
-            local missingItems = self.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.Pagination:ScaleformIndex(self.Pagination:GetPageIndexFromMenuIndex(self.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.Pagination.minItem = self.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
+--///////////////////////////////////////////////////////////////////--
+SubmenuCentralColumn = {}
+SubmenuCentralColumn.__index = SubmenuCentralColumn
+setmetatable(SubmenuCentralColumn, { __index = PM_Column })
+SubmenuCentralColumn.__call = function() return "SubmenuCentralColumn" end
 
-        self.Pagination:MaxItem(self.Pagination:CurrentPageEndIndex())
+function SubmenuCentralColumn.New(pos)
+    local col = PM_Column.New(pos)
+    col._type = 0
+    return setmetatable(col, SubmenuCentralColumn)
+end
 
-        for i = 1, max, 1 do
-            if not self.Parent:Visible() then return end
-            self:_itemCreation(self.Pagination:CurrentPage(), i, false, true)
-        end
-        self.Pagination:ScaleformIndex(self.Pagination:GetScaleformIndex(self:CurrentSelection()))
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", self.Pagination:ScaleformIndex()) --[[@as number]]
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", self:CurrentSelection(), #self.Items) --[[@as number]]
-        end
-        self._isBuilding = false
+function SubmenuCentralColumn:currentColumnType(t)
+    if t == nil then
+        return self._type
+    else
+        self._type = t
     end
 end
+
+function SubmenuCentralColumn:SetDataSlot(index)
+    local curItem = self.Parent.LeftColumn.Items[self.Parent.LeftColumn:Index()]
+    local _item = self.Items[index]
+    if curItem.ItemType == LeftItemType.Info then
+        local label = "SUBMN_CCOL_LBL"
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        AddTextEntry(label, _item.label)
+        BeginTextCommandScaleformString(label)
+        EndTextCommandScaleformString_2()
+        EndScaleformMovieMethod()
+    elseif curItem.ItemType == LeftItemType.Statistics then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(_item.Type)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        PushScaleformMovieFunctionParameterString(_item.label)
+        if _item.Type == StatItemType.Basic then
+            PushScaleformMovieFunctionParameterString(_item._rightLabel)
+        elseif _item.Type == StatItemType.ColoredBar then
+            PushScaleformMovieMethodParameterInt(_item._value)
+            PushScaleformMovieMethodParameterInt(_item._coloredBarColor:ToArgb())
+        end
+        EndScaleformMovieMethod()
+    elseif curItem.ItemType == LeftItemType.Settings then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(_item.ItemType)
+        if _item.ItemType == SettingsItemType.ListItem then
+            PushScaleformMovieFunctionParameterInt(_item._itemIndex)
+        elseif _item.ItemType == SettingsItemType.SliderBar or _item.ItemType == SettingsItemType.MaskedProgressBar or _item.ItemType == SettingsItemType.ProgressBar then
+            PushScaleformMovieFunctionParameterInt(_item._value)
+        else
+            PushScaleformMovieFunctionParameterInt(0)
+        end
+        PushScaleformMovieFunctionParameterBool(true)
+        if (_item.ItemType == SettingsItemType.BlipType) then
+            BeginTextCommandScaleformString("STRING")
+            AddTextComponentScaleform(_item.label)
+            EndTextCommandScaleformString_2()
+        else
+            PushScaleformMovieFunctionParameterString(_item.label)
+        end
+        if _item.ItemType == SettingsItemType.Basic then
+            PushScaleformMovieFunctionParameterString(_item._rightLabel)
+        elseif _item.ItemType == SettingsItemType.ListItem then
+            PushScaleformMovieFunctionParameterString(Join(",", _item.ListItems))
+        elseif _item.ItemType == SettingsItemType.CheckBox then
+            PushScaleformMovieFunctionParameterInt(_item.CheckBoxStyle)
+            PushScaleformMovieFunctionParameterBool(_item._isChecked)
+        elseif _item.ItemType == SettingsItemType.MaskedProgressBar or _item.ItemType == SettingsItemType.ProgressBar or _item.ItemType == SettingsItemType.SliderBar then
+            PushScaleformMovieMethodParameterInt(_item.MaxValue)
+            PushScaleformMovieMethodParameterInt(_item._coloredBarColor:ToArgb())
+        elseif _item.ItemType == SettingsItemType.BlipType then
+            PushScaleformMovieFunctionParameterString(_item._rightLabel)
+        end
+        EndScaleformMovieMethod()
+        self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    elseif curItem.ItemType == LeftItemType.Keymap then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        BeginTextCommandScaleformString("STRING")
+        AddTextComponentScaleform(_item.label)
+        EndTextCommandScaleformString_2()
+        BeginTextCommandScaleformString("STRING")
+        if IsUsingKeyboard(2) then
+            AddTextComponentScaleform(_item.PrimaryKeyboard)
+        else
+            AddTextComponentScaleform(_item.PrimaryGamepad)
+        end
+        EndTextCommandScaleformString_2()
+        BeginTextCommandScaleformString("STRING")
+        if IsUsingKeyboard(2) then
+            AddTextComponentScaleform(_item.SecondaryKeyboard)
+        else
+            AddTextComponentScaleform(_item.SecondaryGamepad)
+        end
+        EndTextCommandScaleformString_2()
+        EndScaleformMovieMethod()
+    end
+end
+
+function SubmenuCentralColumn:UpdateSlot(index)
+    local _item = self.Items[index]
+    if self:currentColumnType() == LeftItemType.Info then
+        local label = "SUBMN_CCOL_LBL"
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        AddTextEntry(label, _item.label)
+        BeginTextCommandScaleformString(label)
+        EndTextCommandScaleformString_2()
+        EndScaleformMovieMethod()
+    elseif self:currentColumnType() == LeftItemType.Statistics then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(_item.Type)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        PushScaleformMovieFunctionParameterString(_item.label)
+        if _item.Type == StatItemType.Basic then
+            PushScaleformMovieFunctionParameterString(_item._rightLabel)
+        elseif _item.Type == StatItemType.ColoredBar then
+            PushScaleformMovieMethodParameterInt(_item._value)
+            PushScaleformMovieMethodParameterInt(_item._coloredBarColor:ToArgb())
+        end
+        EndScaleformMovieMethod()
+    elseif self:currentColumnType() == LeftItemType.Settings then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(_item.ItemType)
+        if _item.ItemType == SettingsItemType.ListItem then
+            PushScaleformMovieFunctionParameterInt(_item.ItemIndex)
+        elseif _item.ItemType == SettingsItemType.SliderBar or _item.ItemType == SettingsItemType.MaskedProgressBar or _item.ItemType == SettingsItemType.ProgressBar then
+            PushScaleformMovieFunctionParameterInt(_item.Value)
+        else
+            PushScaleformMovieFunctionParameterInt(0)
+        end
+        PushScaleformMovieFunctionParameterBool(true)
+        if (_item.ItemType == SettingsItemType.BlipType) then
+            BeginTextCommandScaleformString("STRING")
+            AddTextComponentScaleform(_item.label)
+            EndTextCommandScaleformString_2()
+        else
+            PushScaleformMovieFunctionParameterString(_item.label)
+        end
+        if _item.ItemType == SettingsItemType.Basic then
+            PushScaleformMovieFunctionParameterString(_item.RightLabel)
+        elseif _item.ItemType == SettingsItemType.ListItem then
+            PushScaleformMovieFunctionParameterString(Join(",", _item.ListItems))
+        elseif _item.ItemType == SettingsItemType.CheckBox then
+            PushScaleformMovieFunctionParameterInt(_item.CheckBoxStyle)
+            PushScaleformMovieFunctionParameterBool(_item.IsChecked)
+        elseif _item.ItemType == SettingsItemType.MaskedProgressBar or _item.ItemType == SettingsItemType.ProgressBar or  _item.ItemType == SettingsItemType.SliderBar then
+            PushScaleformMovieMethodParameterInt(_item.MaxValue)
+            PushScaleformMovieMethodParameterInt(_item.ColoredBarColor:ToArgb())
+        elseif _item.ItemType == SettingsItemType.BlipType then
+            PushScaleformMovieFunctionParameterString(_item.RightLabel)
+        end
+        EndScaleformMovieMethod()
+        self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+    elseif self:currentColumnType() == LeftItemType.Keymap then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(index - 1)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterBool(true)
+        BeginTextCommandScaleformString("STRING")
+        AddTextComponentScaleform(_item.label)
+        EndTextCommandScaleformString_2()
+        BeginTextCommandScaleformString("STRING")
+        if IsUsingKeyboard(2) then
+            AddTextComponentScaleform(_item.PrimaryKeyboard)
+        else
+            AddTextComponentScaleform(_item.PrimaryGamepad)
+        end
+        EndTextCommandScaleformString_2()
+        BeginTextCommandScaleformString("STRING")
+        if IsUsingKeyboard(2) then
+            AddTextComponentScaleform(_item.SecondaryKeyboard)
+        else
+            AddTextComponentScaleform(_item.SecondaryGamepad)
+        end
+        EndTextCommandScaleformString_2()
+        EndScaleformMovieMethod()
+    end
+end
+
+function SubmenuCentralColumn:GoUp()
+    if self:currentColumnType() == LeftItemType.Settings then
+        Citizen.CreateThread(function()
+            self.Items[self.index]:Selected(false)
+            repeat
+                self.index = self.index - 1
+                if self.index < 1 then
+                    self.index = #self.Items
+                end
+                Wait(0)
+            until self.Items[self.index].ItemType ~= SettingsItemType.Separator and self.Items[self.index].ItemType ~= SettingsItemType.Empty
+            self.Items[self.index]:Selected(true)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1,
+                true, true)
+            self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+        end)
+    end
+end
+
+function SubmenuCentralColumn:GoDown()
+    if self:currentColumnType() == LeftItemType.Settings then
+        Citizen.CreateThread(function()
+            self.Items[self.index]:Selected(false)
+            repeat
+                self.index = self.index + 1
+                if self.index > #self.Items then
+                    self.index = 1
+                end
+                Wait(0)
+            until self.Items[self.index].ItemType ~= SettingsItemType.Separator and self.Items[self.index].ItemType ~= SettingsItemType.Empty
+            self.Items[self.index]:Selected(true)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1,
+                true, true)
+            self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
+        end)
+    end
+end
+
+function SubmenuCentralColumn:GoLeft()
+    if self:currentColumnType() == LeftItemType.Settings then
+        local item = self.Items[self.index]
+        if item.ItemType == SettingsItemType.ListItem then
+            item._itemIndex = item._itemIndex - 1
+            item.OnListChanged(item, item:ItemIndex(), tostring(item.ListItems[item:ItemIndex()]))
+        elseif item.ItemType == SettingsItemType.SliderBar or item.ItemType == SettingsItemType.ProgressBar or item.ItemType == SettingsItemType.MaskedProgressBar then
+            item._value = item._value - 1
+            item.OnBarChanged(item, item._value)
+        end
+    end
+end
+
+function SubmenuCentralColumn:GoRight()
+    if self:currentColumnType() == LeftItemType.Settings then
+        local item = self.Items[self.index]
+        if item.ItemType == SettingsItemType.ListItem then
+            item._itemIndex = item._itemIndex + 1
+            item.OnListChanged(item, item:ItemIndex(), tostring(item.ListItems[item:ItemIndex()]))
+        elseif item.ItemType == SettingsItemType.SliderBar or item.ItemType == SettingsItemType.ProgressBar or item.ItemType == SettingsItemType.MaskedProgressBar then
+            item._value = item._value + 1
+            item.OnBarChanged(item, item._value)
+        end
+    end
+end
+
+function SubmenuCentralColumn:Select()
+    if self:currentColumnType() == LeftItemType.Settings then
+        local item = self.Items[self.index]
+        if not item:Enabled() then
+            PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+            return
+        end
+        if item.ItemType == SettingsItemType.ListItem then
+            item.OnListSelected(item, item:ItemIndex(), tostring(item.ListItems[item:ItemIndex()]))
+        elseif item.ItemType == SettingsItemType.CheckBox then
+            item:Checked(not item:Checked())
+        elseif item.ItemType == SettingsItemType.SliderBar then
+            item.OnSliderSelected(item, item._value)
+        elseif item.ItemType == SettingsItemType.ProgressBar or item.ItemType == SettingsItemType.MaskedProgressBar then
+            item.OnProgressSelected(item, item._value)
+        end
+        if item.ItemType ~= SettingsItemType.CheckBox then
+            item.OnActivated()
+        end
+    end
+end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+SubmenuLeftColumn = {}
+SubmenuLeftColumn.__index = SubmenuLeftColumn
+setmetatable(SubmenuLeftColumn, { __index = PM_Column })
+SubmenuLeftColumn.__call = function() return "SubmenuLeftColumn" end
+
+function SubmenuLeftColumn.New(pos)
+    local col = PM_Column.New(pos)
+    col.VisibleItems = 10
+    return setmetatable(col, SubmenuLeftColumn)
+end
+
+function SubmenuLeftColumn:currentItemType()
+    return self.Items[self:Index()].ItemType
+end
+
+function SubmenuLeftColumn:CurrentItem()
+    return self.Items[self:Index()]
+end
+
+function SubmenuLeftColumn:AddItem(item)
+    item.ParentColumn = self
+    table.insert(self.Items, item)
+end
+
+function SubmenuLeftColumn:SetDataSlot(index)
+    if index > #self.Items then return end
+    local item = self.Items[index]
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+    PushScaleformMovieFunctionParameterInt(self.position)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterBool(item:Enabled())
+    BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+    AddTextComponentScaleform(item:Label())
+    EndTextCommandScaleformString_2()
+    PushScaleformMovieFunctionParameterBool(false)
+    PushScaleformMovieFunctionParameterInt(item.MainColor:ToArgb())
+    PushScaleformMovieFunctionParameterInt(item.HighlightColor:ToArgb())
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString(ScaleformFonts.CHALET_LONDON_NINETEENSIXTY.FontName)
+    PushScaleformMovieMethodParameterString(ScaleformFonts.CHALET_LONDON_NINETEENSIXTY.FontName)
+    EndScaleformMovieMethod()
+end
+
+function SubmenuLeftColumn:UpdateSlot(index)
+    if index > #self.Items then return end
+    local item = self.Items[index]
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+    PushScaleformMovieFunctionParameterInt(self.position)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterBool(item:Enabled())
+    BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+    AddTextComponentScaleform(item:Label())
+    EndTextCommandScaleformString_2()
+    PushScaleformMovieFunctionParameterBool(false)
+    PushScaleformMovieFunctionParameterInt(item.MainColor:ToArgb())
+    PushScaleformMovieFunctionParameterInt(item.HighlightColor:ToArgb())
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString("")
+    PushScaleformMovieMethodParameterString(ScaleformFonts.CHALET_LONDON_NINETEENSIXTY.FontName)
+    PushScaleformMovieMethodParameterString(ScaleformFonts.CHALET_LONDON_NINETEENSIXTY.FontName)
+    EndScaleformMovieMethod()
+end
+
+function SubmenuLeftColumn:GoUp()
+    self.Items[self:Index()]:Selected(false)
+    self.index = self.index-1
+    if self.index < 1 then
+        self.index = #self.Items
+    end
+    self.Items[self:Index()]:Selected(true)
+    self.Parent.CenterColumn:Clear()
+    if self:currentItemType() ~= LeftItemType.Empty then
+        for k,v in ipairs(self.Items[self:Index()].ItemList) do
+            self.Parent.CenterColumn:AddItem(v)
+        end
+    end
+    if self.Parent ~= null and self.Parent.Visible and self.Parent.Parent ~= null and self.Parent.Parent:Visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_STATE", currentItemType);
+    end
+end
+
+function SubmenuLeftColumn:GoDown()
+    self.Items[self:Index()]:Selected(false)
+    self.index = self.index+1
+    if self.index > #self.Items then
+        self.index = 1
+    end
+    self.Items[self:Index()]:Selected(true)
+    self.Parent.CenterColumn:Clear()
+    if self:currentItemType() ~= LeftItemType.Empty then
+        for k,v in ipairs(self.Items[self:Index()].ItemList) do
+            self.Parent.CenterColumn:AddItem(v)
+        end
+    end
+    if self.Parent ~= null and self.Parent.Visible and self.Parent.Parent ~= null and self.Parent.Parent:Visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_STATE", currentItemType);
+    end
+end
+
+
+--///////////////////////////////////////////////////////////////////--
+TextColumn = {}
+TextColumn.__index = TextColumn
+setmetatable(TextColumn, { __index = PM_Column })
+TextColumn.__call = function() return "TextColumn" end
+
+function TextColumn.New(pos)
+    local col = PM_Column.New(pos)
+    return setmetatable(col, TextColumn)
+end
+
+-- function TextColumn:AddItem(item)
+--     PM_Column.AddItem(self, item)
+-- end
+
+function TextColumn:SetDataSlot(index)
+    if index > #self.Items then return end
+    local item = self.Items[index]
+    local label = "TXT_COL_LBL"
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterBool(true)
+    AddTextEntry(label, item.label)
+    BeginTextCommandScaleformString(label)
+    EndTextCommandScaleformString_2()
+    EndScaleformMovieMethod()
+end
+
+function TextColumn:UpdateSlot(index)
+    if index > #self.Items then return end
+    local item = self.Items[index]
+    local label = "TXT_COL_LBL"
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "UPDATE_SLOT")
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(index - 1)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterInt(0)
+    PushScaleformMovieFunctionParameterBool(true)
+    BeginTextCommandScaleformString(label)
+    EndTextCommandScaleformString_2()
+    EndScaleformMovieMethod()
+end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 FakeBlip = setmetatable({}, FakeBlip)
@@ -5565,12 +6137,13 @@ function FakeBlip.New(sprite, position, color, scale)
     return setmetatable(_data, FakeBlip)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-FriendItem = setmetatable({}, FriendItem)
+FriendItem = {}
 FriendItem.__index = FriendItem
-FriendItem.__call = function()
-    return "LobbyItem", "FriendItem"
-end
+setmetatable(FriendItem, { __index = PauseMenuItem })
+FriendItem.__call = function() return "FriendItem" end
 
 ---@class FriendItem
 ---@field public Label string
@@ -5604,29 +6177,23 @@ end
 ---@return FriendItem
 function FriendItem.New(label, itemColor, coloredTag, rank, status, crewTag)
     if itemColor == nil then itemColor = SColor.HUD_Freemode end
-    local _data = {
-        _type = 1,
-        keepPanelVisible = false,
-        _Enabled = true,
-        _Selected = false,
-        _Hovered = false,
-        _label = label or "",
-        _itemColor = itemColor or SColor.HUD_Freemode,
-        _rank = rank or 0,
-        _status = status or "",
-        _statusColor = itemColor or SColor.HUD_Freemode,
-        _crewTag = crewTag or CrewTag.New(),
-        _iconL = 0,
-        _iconR = 65,
-        _boolL = false,
-        _boolR = false,
-        _coloredTag = coloredTag or true,
-        ParentColumn = nil,
-        ClonePed = 0,
-        Panel = nil,
-        Handle = nil,
-    }
-    return setmetatable(_data, FriendItem)
+    local base = PauseMenuItem.New(label)
+    base.keepPanelVisible = false
+    base._itemColor = itemColor or SColor.HUD_Freemode
+    base._rank = rank or 0
+    base._status = status or ""
+    base._statusColor = itemColor or SColor.HUD_Freemode
+    base._crewTag = crewTag or CrewTag.New()
+    base._iconL = 0
+    base._iconR = 65
+    base._boolL = false
+    base._boolR = false
+    base._coloredTag = coloredTag or true
+    base.ClonePed = 0
+    base._clonePedEntity = 0
+    base.Panel = nil
+    base.Handle = nil
+    return setmetatable(base, FriendItem)
 end
 
 --
@@ -5636,19 +6203,12 @@ end
 ---@return string
 function FriendItem:Label(label)
     if label ~= nil then
-        self._label = label
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_LABEL", idx, self._label)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_LABEL",
-                    idx, self._label)
-            end
+        self.label = label
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
-    return self._label
+    return self.label
 end
 
 function FriendItem:KeepPanelVisible(bool)
@@ -5658,19 +6218,10 @@ function FriendItem:KeepPanelVisible(bool)
             self.Panel:UpdatePanel()
         end
         if self.ParentColumn.CurrentSelection() == IndexOf(self.ParentColumn.Items, self) then
-            if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-                local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-                local pSubT = self.ParentColumn.Parent()
-                if pSubT == "LobbyMenu" then
-                    self:AddPedToPauseMenu()
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_STAT_PANEL_PERMANENT", idx, self.keepPanelVisible)
-                elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                    self:AddPedToPauseMenu()
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_STAT_PANEL_PERMANENT",
-                        idx, self.keepPanelVisible)
-                end
+            if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+                self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
             end
-        end
+       end
     else
         return self.keepPanelVisible
     end
@@ -5692,37 +6243,45 @@ function FriendItem:AddPedToPauseMenu()
         ClearPedInPauseMenu()
         return -1
     end
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
+    -- delete the old ped if it exists
+    if self._clonePedEntity ~= 0 then
+        if DoesEntityExist(self._clonePedEntity) then
+            SetEntityAsMissionEntity(self._clonePedEntity, true, true)
+            DeleteEntity(self._clonePedEntity)
+            self._clonePedEntity = 0
+        end
+    end
+    if self.ParentColumn:visible() then
         if self.Panel ~= nil then
             self.Panel:UpdatePanel()
+            self.Panel:ShowColumn()
+            self.Panel:ColumnVisible(true)
         end
-        local pSubT = self.ParentColumn.Parent()
         Citizen.CreateThread(function()
             Wait(100)
-            if pSubT == "LobbyMenu" then
-                if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                    local ped = ClonePed(self.ClonePed, false, false, true)
-                    self:HidePed(ped)
-                    FinalizeHeadBlend(ped)
-                    GivePedToPauseMenu(ped, 2);
-                    SetPauseMenuPedSleepState(true)
-                    SetPauseMenuPedLighting(true)
-                end
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                local tab = self.ParentColumn.Parent.Tabs[self.ParentColumn.Parent.index]
-                local _, subT = tab()
-                if subT == "PlayerListTab" then
-                    if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
-                        local ped = ClonePed(self.ClonePed, false, false, true)
-                        self:HidePed(ped)
-                        FinalizeHeadBlend(ped)
-                        GivePedToPauseMenu(ped, 2);
-                        SetPauseMenuPedSleepState(true)
-                        SetPauseMenuPedLighting(self.ParentColumn.Parent:FocusLevel() ~= 0);
-                    end
-                end
+            if self.ParentColumn.Items[self.ParentColumn:CurrentSelection()] == self then
+                self._clonePedEntity = ClonePed(self.ClonePed, false, false, true)
+                self:HidePed(self._clonePedEntity)
+                FinalizeHeadBlend(self._clonePedEntity)
+                GivePedToPauseMenu(self._clonePedEntity, 2)
+                SetPauseMenuPedSleepState(true)
+                SetPauseMenuPedLighting(true)
             end
         end)
+    end
+end
+
+function FriendItem:Dispose()
+    ClearPedInPauseMenu()
+    if self._clonePedEntity ~= 0 then
+        if DoesEntityExist(self._clonePedEntity) then
+            SetEntityAsMissionEntity(self._clonePedEntity, true, true)
+            DeleteEntity(self._clonePedEntity)
+            self._clonePedEntity = 0
+        end
+    end
+    if self.Panel ~= nil then
+        self.Panel:ColumnVisible(false)
     end
 end
 
@@ -5730,16 +6289,8 @@ end
 function FriendItem:ItemColor(color)
     if color ~= nil then
         self._itemColor = color
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_COLOUR", idx,
-                    self._itemColor, self._coloredTag)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_COLOUR",
-                    idx, self._itemColor, self._coloredTag)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._itemColor
@@ -5751,16 +6302,8 @@ end
 function FriendItem:ColoredTag(enableColorTag)
     if enableColorTag ~= nil then
         self._coloredTag = enableColorTag
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_COLOUR", idx,
-                    self._itemColor, self._coloredTag)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_COLOUR",
-                    idx, self._itemColor, self._coloredTag)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._coloredTag
@@ -5772,15 +6315,8 @@ end
 function FriendItem:Rank(rank)
     if rank ~= nil then
         self._rank = rank
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_RANK", idx, self._rank)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_RANK",
-                    idx, self._rank)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._rank
@@ -5792,16 +6328,8 @@ end
 function FriendItem:Status(status)
     if status ~= nil then
         self._status = status
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_STATUS", idx, self._status,
-                    self._statusColor)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_STATUS",
-                    idx, self._status, self._statusColor)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._status
@@ -5813,16 +6341,8 @@ end
 function FriendItem:StatusColor(color)
     if color ~= nil then
         self._statusColor = color
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_STATUS", idx, self._status,
-                    self._statusColor)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_STATUS",
-                    idx, self._status, self._statusColor)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._statusColor
@@ -5834,15 +6354,8 @@ end
 function FriendItem:CrewTag(tag)
     if tag then
         self._crewTag = tag
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_CREW", idx, self._crewTag.TAG)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_CREW",
-                    idx, self._crewTag.TAG)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     else
         return self._crewTag
@@ -5855,16 +6368,8 @@ end
 function FriendItem:SetLeftIcon(icon, isBadge)
     self._iconL = icon;
     self._boolL = isBadge or false;
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_ICON_LEFT", idx, self._iconL,
-                self._boolL)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ICON_LEFT",
-                idx, self._iconL, self._boolL)
-        end
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
 
@@ -5874,16 +6379,8 @@ end
 function FriendItem:SetRightIcon(icon, isBadge)
     self._iconR = icon;
     self._boolR = isBadge or false;
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_ICON_RIGHT", idx, self._iconR,
-                self._boolR)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ICON_RIGHT",
-                idx, self._iconR, self._boolR)
-        end
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
 
@@ -5893,6 +6390,12 @@ end
 function FriendItem:Selected(bool)
     if bool ~= nil then
         self._Selected = ToBool(bool)
+        ClearPedInPauseMenu()
+        if self._Selected then
+            self:AddPedToPauseMenu()
+        else
+            self:Dispose()
+        end
     end
     return self._Selected
 end
@@ -5921,12 +6424,96 @@ function FriendItem:AddPanel(panel)
     self.Panel:UpdatePanel()
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-PlayerStatsPanel = setmetatable({}, PlayerStatsPanel)
-PlayerStatsPanel.__index = PlayerStatsPanel
-PlayerStatsPanel.__call = function()
-    return "ItemPanel", "PlayerStatsPanel"
+BottomInformation = setmetatable({}, BottomInformation)
+BottomInformation.__index = BottomInformation
+BottomInformation.__call = function()
+    return "ItemPanel_Info", "BottomInformation"
 end
+
+---@class BottomInformation
+---@field private _parent BottomInformation
+---@field private _rankLevel number
+---@field private _upLabel string
+---@field private _lowLabel string
+---@field private _midLabel string
+---@field public RankLevel fun(self: BottomInformation, rank: number?): number
+---@field public UpLabel fun(self: BottomInformation, label: string?): string
+---@field public MidLabel fun(self: BottomInformation, label: string?): string
+---@field public LowLabel fun(self: BottomInformation, label: string?): string
+
+---Creates a new BottomInformation.
+---@param parent BottomInformation
+---@return BottomInformation
+function BottomInformation.New(parent)
+    local _data = {
+        _parent = parent,
+        crewName = "",
+        rankName = "",
+        crewDict = "",
+        crewTxtr = "",
+        crewtag = "",
+        crewColor = SColor.HUD_Pure_white
+    }
+    return setmetatable(_data, BottomInformation)
+end
+
+function BottomInformation:IsFilled()
+    return not self:CrewName():IsNullOrEmpty() and not self:RankName():IsNullOrEmpty() and not self:CrewDict():IsNullOrEmpty() and not self:CrewTxtr():IsNullOrEmpty() and not self:CrewTag():IsNullOrEmpty()
+end
+
+function BottomInformation:CrewName(val)
+    if val == nil then return self.crewName end
+    self.crewName = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+function BottomInformation:RankName(val)
+    if val == nil then return self.rankName end
+    self.rankName = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+function BottomInformation:CrewDict(val)
+    if val == nil then return self.crewDict end
+    self.crewDict = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+function BottomInformation:CrewTxtr(val)
+    if val == nil then return self.crewTxtr end
+    self.crewTxtr = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+function BottomInformation:CrewColor(val)
+    if val == nil then return self.crewColor end
+    self.crewColor = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+function BottomInformation:CrewTag(val)
+    if val == nil then return self.crewTag end
+    self.crewTag = val
+    if self.Parent ~= nil and self.Parent:visible() then
+        self.Parent:UpdatePanel()
+    end
+end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+PlayerStatsPanel = {}
+PlayerStatsPanel.__index = PlayerStatsPanel
+setmetatable(PlayerStatsPanel, { __index = PM_Column })
+PlayerStatsPanel.__call = function() return "PlayerStatsPanel" end
 
 ---@class PlayerStatsPanel
 ---@field private _title string
@@ -5955,23 +6542,27 @@ end
 ---@param titleColor number
 ---@return PlayerStatsPanel
 function PlayerStatsPanel.New(title, titleColor)
-    local _data = {
-        ParentItem = nil,
-        _hardwareVisible = true,
-        _title = title or "",
-        _description = "",
-        _titleColor = titleColor or SColor.HUD_Freemode,
-        _hasPlane = false,
-        _hasVehicle = false,
-        _hasBoat = false,
-        _hasHeli = false,
-        RankInfo = nil,
-        DetailsItems = {},
-        Items = {}
-    }
-    local retVal = setmetatable(_data, PlayerStatsPanel)
+    local base = PM_Column.New(3)
+    base.VisibleItems = 10
+    base.ParentItem = nil
+    base._hardwareVisible = true
+    base._title = title or ""
+    base._description = ""
+    base._titleColor = titleColor or SColor.HUD_Freemode
+    base._hasPlane = false
+    base._hasVehicle = false
+    base._hasBoat = false
+    base._hasHeli = false
+    base.RankInfo = nil
+    base.DetailsItems = {}
+    local retVal = setmetatable(base, PlayerStatsPanel)
     retVal.RankInfo = UpperInformation.New(retVal)
+    retVal.CrewInfo = BottomInformation.New(retVal)
     return retVal
+end
+
+function PlayerStatsPanel:visible()
+    return PM_Column.visible(self)
 end
 
 function PlayerStatsPanel:HardwareVisible(v)
@@ -6065,48 +6656,116 @@ function PlayerStatsPanel:AddStat(statItem)
     statItem.Parent = self
     statItem._idx = #self.Items
     table.insert(self.Items, statItem)
-    self:UpdatePanel()
+    if self:visible() then
+        self:UpdatePanel()
+    end
 end
 
 function PlayerStatsPanel:AddDescriptionStatItem(item)
     table.insert(self.DetailsItems, item)
-    self:UpdatePanel()
+    if self:visible() then
+        self:UpdatePanel()
+    end
 end
 
 ---Triggers the panel to update.
 ---@param override boolean? If true, the panel will update regardless of the parent's visibility.
 function PlayerStatsPanel:UpdatePanel(override)
-    if override == nil then override = false end
-    if ((self.ParentItem ~= nil and self.ParentItem.ParentColumn ~= nil and self.ParentItem.ParentColumn.Parent ~= nil and self.ParentItem.ParentColumn.Parent:Visible()) or override) then
-        local idx = self.ParentItem.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentItem.ParentColumn.Items, self.ParentItem))
-        local pSubT = self.ParentItem.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL", idx, 0, (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0), self:Title(), self:Description(), self:TitleColor(), self.RankInfo:RankLevel(), self:HasPlane(), self:HasHeli(), self:HasBoat(), self:HasVehicle(), 0, self.RankInfo:LowLabel(), 0, 0, self.RankInfo:MidLabel(), 0, 0, self.RankInfo:UpLabel(), 0, 0, self._hardwareVisible)
-            for k, stat in pairs(self.Items) do
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_STAT", idx, stat._idx, 0, stat:Label(), stat:Description(), stat:Value())
-            end
-            if not self:Description():IsNullOrEmpty() then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_DESCRIPTION", idx, self:Description(), 0, "", (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0))
-            else
-                for k, item in pairs(self.DetailsItems) do
-                    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYER_ITEM_PANEL_DETAIL", idx, item.Type, item.TextLeft, item.TextRight, item.Icon, item.IconColor, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-                end
-            end
-        elseif pSubT == "PauseMenu" and self.ParentItem.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL", idx, 0, (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0), self:Title(), self:Description(), self:TitleColor(), self.RankInfo:RankLevel(), self:HasPlane(), self:HasHeli(), self:HasBoat(), self:HasVehicle(), 0, self.RankInfo:LowLabel(), 0, 0, self.RankInfo:MidLabel(), 0, 0, self.RankInfo:UpLabel(), 0, 0, self._hardwareVisible)
-            for k, stat in pairs(self.Items) do
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_STAT", idx, stat._idx, 0, stat:Label(), stat:Description(), stat:Value())
-            end
-            if not self:Description():IsNullOrEmpty() then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_DESCRIPTION", idx, self:Description(), 0, "", (self.ParentItem.ClonePed ~= nil and self.ParentItem.ClonePed ~= 0))
-            else
-                for k, item in pairs(self.DetailsItems) do
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYER_ITEM_PANEL_DETAIL", idx, item.Type, item.TextLeft, item.TextRight, item.Icon, item.IconColor, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-                end
-            end
+    if ((self.ParentItem ~= nil and self.ParentItem.ParentColumn ~= nil and self.ParentItem.ParentColumn:visible()) or override) then
+        if self.ParentItem.ClonePed == 0 then
+            self.position = 3
+        else
+            self.position = 4
         end
+        self.Parent = self.ParentItem.ParentColumn.Parent
+        self:Populate()
+        self:ShowColumn()
     end
 end
+
+function PlayerStatsPanel:Populate()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    if self.CrewInfo:IsFilled() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, self._title,
+            self.CrewInfo:CrewName(), self:TitleColor(), "", self.CrewInfo:RankName(), ParentItem.CrewTag,
+            self.CrewInfo:CrewDict(), self.CrewInfo:CrewTxtr(), self.CrewInfo:CrewTag().TAG, self.CrewInfo:CrewColor().R,
+            self.CrewInfo:CrewColor().G, self.CrewInfo:CrewColor().B, 0, "")
+    else
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, self._title, "",
+            self:TitleColor(), "", "", self.ParentItem:CrewTag().TAG, "", "", "", 0, 0, 0, 0, "")
+    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT", self.position, 0, 0, 0, 0, self:HasPlane(),
+        self:HasHeli(), self:HasBoat(), self:HasVehicle(), 0, self.RankInfo:RankLevel(), self.RankInfo:LowLabel(), 0, 0,
+        self.RankInfo:MidLabel(), 0, 0, self.RankInfo:UpLabel(), 0, 0, self:HardwareVisible())
+    for i = 1, #self.Items, 1 do
+        local stat = self.Items[i]
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT", self.position, 1, i - 1, 0, stat:Label(),
+            stat:Description(), stat:Value())
+    end
+    if #self.DetailsItems > 0 and self.position == 3 then
+        for i = 1, #self.DetailsItems, 1 do
+            local item = self.DetailsItems[i]
+            BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DATA_SLOT")
+            PushScaleformMovieFunctionParameterInt(self.position)
+            PushScaleformMovieFunctionParameterInt(2)
+            PushScaleformMovieFunctionParameterInt(i - 1)
+            PushScaleformMovieFunctionParameterInt(0)
+            PushScaleformMovieFunctionParameterInt(0)
+            PushScaleformMovieFunctionParameterInt(item.Type)
+            PushScaleformMovieFunctionParameterInt(0)
+            PushScaleformMovieFunctionParameterBool(true)
+            local labels = item.label:SplitLabel()
+            BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+            for j = 1, #labels, 1 do
+                AddTextComponentScaleform(labels[j])
+            end
+            EndTextCommandScaleformString_2()
+            PushScaleformMovieFunctionParameterString(item.TextRight)
+            if item.Type == 2 then
+                PushScaleformMovieFunctionParameterInt(item.Icon)
+                PushScaleformMovieFunctionParameterInt(item.IconColor:ToArgb())
+                PushScaleformMovieFunctionParameterBool(item.Tick)
+            elseif item.Type == 3 then
+                PushScaleformMovieFunctionParameterString(item.CrewTag.TAG)
+                PushScaleformMovieFunctionParameterBool(false)
+            end
+            PushScaleformMovieFunctionParameterString(item.LabelFont.FontName)
+            PushScaleformMovieFunctionParameterString(item._rightLabelFont.FontName)
+            EndScaleformMovieMethod()
+        end
+    elseif not self:Description():IsNullOrEmpty() and not self.CrewInfo:IsFilled() then
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_DESCRIPTION")
+        PushScaleformMovieFunctionParameterInt(self.position)
+        local labels = self:Description():SplitLabel()
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+        for j = 1, #labels, 1 do
+            AddTextComponentScaleform(labels[j])
+        end
+        EndTextCommandScaleformString_2()
+        PushScaleformMovieFunctionParameterInt(0)
+        PushScaleformMovieFunctionParameterString(self.ParentItem:CrewTag().TAG)
+        PushScaleformMovieFunctionParameterBool(ToBool(self.ParentItem.ClonePed ~= 0))
+        EndScaleformMovieMethod()
+    end
+end
+
+function PlayerStatsPanel:SetDataSlot(index)
+    self:Populate()
+end
+
+function PlayerStatsPanel:UpdateSlot(index)
+    if index > #self.Items then return end
+    if self:visible() then
+        self:Populate()
+    end
+end
+function PlayerStatsPanel:AddSlot(index)
+    if index > #self.Items then return end
+    if self:visible() then
+        self:Populate()
+    end
+end
+
 
 --///////////////////////////////////////////////////////////////////--
 PlayerStatsPanelStatItem = setmetatable({}, PlayerStatsPanelStatItem)
@@ -6173,6 +6832,8 @@ function PlayerStatsPanelStatItem:Value(value)
     end
     return self._value
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UpperInformation = setmetatable({}, UpperInformation)
@@ -6250,6 +6911,8 @@ function UpperInformation:LowLabel(label)
     return self._lowLabel
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MinimapRaceCheckpoint = setmetatable({}, MinimapRaceCheckpoint)
 MinimapRaceCheckpoint.__index = MinimapRaceCheckpoint
@@ -6272,6 +6935,8 @@ function MinimapRaceCheckpoint.New(sprite, position, color, scale, number)
     }
     return setmetatable(_data, MinimapRaceCheckpoint)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 MinimapRoute = setmetatable({}, MinimapRoute)
@@ -6360,16 +7025,16 @@ function MinimapRoute:SetupCustomRoute()
     SetGpsCustomRouteRender(true, 18, self.MapThickness)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-MissionItem = setmetatable({}, MissionItem)
+MissionItem = {}
 MissionItem.__index = MissionItem
-MissionItem.__call = function()
-    return "LobbyItem", "MissionItem"
-end
+setmetatable(MissionItem, { __index = PauseMenuItem })
+MissionItem.__call = function() return "MissionItem" end
 
 ---@class MissionItem
 ---@field Label string
----@field Handle number
 ---@field ParentColumn MissionListColumn
 ---@field enabled boolean
 ---@field MainColor SColor
@@ -6389,31 +7054,27 @@ end
 
 
 ---@param label string
----@param mainColor SColor
----@param highlightColor SColor
+---@param mainColor SColor | nil
+---@param highlightColor SColor | nil
 ---@return table
 function MissionItem.New(label, mainColor, highlightColor)
-    local _data = {
-        type = 0,
-        Label = label,
-        Handle = nil,
-        ParentColumn = nil,
-        enabled = true,
-        MainColor = mainColor or SColor.HUD_Pause_bg,
-        HighlightColor = highlightColor or SColor.HUD_White,
-        LeftIcon = BadgeStyle.NONE,
-        LeftIconColor = SColor.HUD_White,
-        RightIcon = BadgeStyle.NONE,
-        RightIconColor = SColor.HUD_White,
-        RightIconChecked = false,
-        _Selected = false,
-        hovered = false,
-        customLeftIcon = {TXD = "", TXN = ""},
-        customRightIcon = {TXD = "", TXN = ""},
-        Activated = function(item)
-        end
-    }
-    return setmetatable(_data, MissionItem)
+    local base = PauseMenuItem.New(label)
+    base.type = 0
+    base.enabled = true
+    base.MainColor = mainColor or SColor.HUD_Pause_bg
+    base.HighlightColor = highlightColor or SColor.HUD_White
+    base.LeftIcon = BadgeStyle.NONE
+    base.LeftIconColor = SColor.HUD_White
+    base.RightIcon = BadgeStyle.NONE
+    base.RightIconColor = SColor.HUD_White
+    base.RightIconChecked = false
+    base._Selected = false
+    base.hovered = false
+    base.customLeftIcon = {TXD="",TXN=""}
+    base.customRightIcon = {TXD="",TXN=""}
+    base.Activated = function(item)
+    end
+    return setmetatable(base, MissionItem)
 end
 
 function MissionItem:Hovered(val)
@@ -6429,14 +7090,8 @@ function MissionItem:Enabled(bool)
         return self.enabled
     else
         self.enabled = bool
-        if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-            local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_ENABLED", idx, bool)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_ENABLED", idx, bool)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
 end
@@ -6444,14 +7099,8 @@ end
 function MissionItem:SetLeftIcon(icon, color)
     self.LeftIcon = icon
     self.LeftIconColor = color
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_LEFT_ICON", idx, icon, color)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_LEFT_ICON", idx, icon, color)
-        end
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
 
@@ -6459,43 +7108,24 @@ function MissionItem:SetRightIcon(icon, color, checked)
     self.RightIcon = icon
     self.RightIconColor = color
     self.RightIconChecked = checked or false
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_RIGHT_ICON", idx, icon, checked, color)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_RIGHT_ICON", idx, icon, checked or false, color)
-        end
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
 
 function MissionItem:SetCustomLeftIcon(txd, txn)
     self.LeftIcon = BadgeStyle.CUSTOM
-    self.customLeftIcon = {TXD = txd, TXN = txn}
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_LEFT_ICON", idx, txd, txn)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_LEFT_ICON", idx, txd, txn)
-        end
+    self.customLeftIcon = {TXD=txd, TXN=txn}
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
-
 function MissionItem:SetCustomRightIcon(txd, txn, checked)
     self.RightIcon = BadgeStyle.CUSTOM
     self.RightIconChecked = checked or false
-    self.customRightIcon = {TXD = txd, TXN = txn}
-    if self.ParentColumn ~= nil and self.ParentColumn.Parent ~= nil and self.ParentColumn.Parent:Visible() then
-        local idx = self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self))
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_ITEM_CUSTOM_RIGHT_ICON", idx, txd, txn, checked)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_ITEM_CUSTOM_RIGHT_ICON", idx, txd, txn, checked or false)
-        end
+    self.customRightIcon = {TXD=txd, TXN=txn}
+    if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+        self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
     end
 end
 
@@ -6506,6 +7136,8 @@ function MissionItem:Selected(bool)
         self._Selected = bool
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 MissionSeparatorItem = setmetatable({}, MissionSeparatorItem)
@@ -6624,6 +7256,8 @@ function MissionSeparatorItem:Selected(bool)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 StoreItem = setmetatable({}, StoreItem)
 StoreItem.__index = StoreItem
@@ -6698,921 +7332,7 @@ function StoreItem:Selected(bool)
     end
 end
 
---///////////////////////////////////////////////////////////////////--
----@enum LobbyBadgeIcon
-LobbyBadgeIcon = {
-    NONE = 0,
-    ACTIVE_HEADSET = 47,
-    INACTIVE_HEADSET = 48,
-    MUTED_HEADSET = 49,
-    GTAV = 54,
-    WORLD = 63,
-    KICK = 64,
-    RANK_FREEMODE = 65,
-    SPECTATOR = 66,
-    IS_CONSOLE_PLAYER = 119,
-    IS_PC_PLAYER = 120
-}
 
-
-
---///////////////////////////////////////////////////////////////////--
-MainView = setmetatable({}, MainView)
-MainView.__index = MainView
-MainView.__call = function()
-    return "LobbyMenu"
-end
-MainView.SoundId = GetSoundId()
-
----@class MainView
----@field public Title string
----@field public Subtitle string
----@field public SideTop string
----@field public SideMid string
----@field public SideBot string
----@field public SettingsColumn SettingsListColumn
----@field public PlayersColumn PlayerListColumn
----@field public MissionPanel MissionDetailsPanel
----@field public InstructionalButtons InstructionalButton[]
----@field public OnLobbyMenuOpen fun(menu: MainView)
----@field public OnLobbyMenuClose fun(menu: MainView)
----@field public TemporarilyHidden boolean
----@field public controller boolean
----@field public _focus number
-
-function MainView.New(title, subtitle, sideTop, sideMid, sideBot, newStyle)
-    local _data = {
-        Title = title or "",
-        Subtitle = subtitle or "",
-        SideTop = sideTop or "",
-        SideMid = sideMid or "",
-        SideBot = sideBot or "",
-        ParentPool = nil,
-        _headerPicture = {},
-        _newStyle = newStyle or true,
-        _crewPicture = {},
-        _visible = false,
-        SettingsColumn = nil --[[@type SettingsListColumn]],
-        PlayersColumn = nil --[[@type PlayerListColumn]],
-        MissionsColumn = nil --[[@type MissionListColumn]],
-        StoreColumn = nil --[[@type StoreListColumn]],
-        MissionPanel = nil --[[@type MissionDetailsPanel]],
-        Minimap = MinimapPanel.New(nil), --[[@type MinimapPanel]]
-        timer = 100,
-        _showStoreBG = false,
-        _storeBGSpeed = 240,
-        _focus = 1,
-        TemporarilyHidden = false,
-        controller = false,
-        _loaded = false,
-        _timer = 0,
-        _time = 0,
-        _times = 0,
-        _delay = 150,
-        listCol = {},
-        _firstTick = true,
-        _canHe = true,
-        _isBuilding = false,
-        InstructionalButtons = {
-            InstructionalButton.New(GetLabelText("HUD_INPUT2"), -1, 176, 176, -1),
-            InstructionalButton.New(GetLabelText("HUD_INPUT3"), -1, 177, 177, -1),
-        },
-        OnLobbyMenuOpen = function(menu)
-        end,
-        OnLobbyMenuClose = function(menu)
-        end
-        --[[
-        OnLeftItemChange = function(menu, leftItem, index)
-        end,
-        OnRightItemChange = function(menu, rightItem, index)
-        end,
-        OnLeftItemSelect = function(menu, leftItem, index)
-        end,
-        OnRightItemSelect = function(menu, rightItem, index)
-        end
-        ]]
-    }
-    local meta = setmetatable(_data, MainView)
-    meta.Minimap.Parent = meta
-    return meta
-end
-
-function MainView:Focus()
-    return self._focus
-end
-
-function MainView:ShowStoreBackground(bool)
-    if bool == nil then
-        return self._showStoreBG
-    else
-        self._showStoreBG = bool
-    end
-end
-
-function MainView:StoreBackgroundAnimationSpeed(speed)
-    if speed == nil then
-        return self._storeBGSpeed
-    else
-        self._storeBGSpeed = speed
-    end
-end
-
-function MainView:CanPlayerCloseMenu(canHe)
-    if canHe == nil then
-        return self._canHe
-    else
-        self._canHe = canHe
-    end
-end
-
-function MainView:Visible(visible)
-    if visible ~= nil then
-        self._visible = visible
-        ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
-        if visible == true then
-            if not IsPauseMenuActive() then
-                self._focus = 1
-                PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
-                self:BuildPauseMenu()
-                self.OnLobbyMenuOpen(self)
-                AnimpostfxPlay("PauseMenuIn", 800, true)
-                ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
-                SetPlayerControl(PlayerId(), false, 0)
-                self._firstTick = true
-                MenuHandler._currentPauseMenu = self
-                MenuHandler.ableToDraw = true
-            end
-        else
-            self.Minimap:Dispose()
-            MenuHandler.ableToDraw = false
-            MenuHandler._currentPauseMenu = nil
-            ScaleformUI.Scaleforms._pauseMenu:Dispose()
-            ScaleformUI.Scaleforms.InstructionalButtons:ClearButtonList()
-            AnimpostfxStop("PauseMenuIn")
-            AnimpostfxPlay("PauseMenuOut", 800, false)
-            self.OnLobbyMenuClose(self)
-            SetPlayerControl(PlayerId(), true, 0)
-            PlaySoundFrontend(self.SoundId, "Hit_Out", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-            SetFrontendActive(false)
-        end
-    else
-        return self._visible
-    end
-end
-
-function MainView:HeaderPicture(Txd, Txn)
-    if (Txd ~= nil and Txn ~= nil) then
-        self._headerPicture = {txd = Txd, txn = Txn}
-    else
-        return self._headerPicture
-    end
-end
-
-function MainView:CrewPicture(Txd, Txn)
-    if (Txd ~= nil and Txn ~= nil) then
-        self._crewPicture = {txd = Txd, txn = Txn}
-    else
-        return self._crewPicture
-    end
-end
-
-function MainView:SelectColumn(column)
-    local val = 0
-    if type(column) == "table" then
-        val = column.Order
-    elseif type(column) == "number" then
-        val = column
-    end
-    if val > #self.listCol then
-        val = 1
-    elseif val < 1 then
-        val = #self.listCol
-    end
-    self:updateFocus(val)
-end
-
-function MainView:updateFocus(value, isMouse)
-    if isMouse == nil then isMouse = false end
-    local goingLeft = value < self._focus
-
-    local val = value
-
-    if val > #self.listCol then
-        val = 1
-    elseif val < 1 then
-        val = #self.listCol
-    end
-
-    if self.listCol[val].Type ~= "players" then
-        if (self.PlayersColumn ~= nil and #self.PlayersColumn.Items > 0) and not self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-            ClearPedInPauseMenu()
-        end
-    end
-    self._focus = val
-
-    if self.listCol[self._focus].Type == "panel" then
-        if goingLeft then
-            self:updateFocus(self._focus - 1)
-        else
-            self:updateFocus(self._focus + 1)
-        end
-        return
-    end
-
-    if self:Visible() then
-        local idx = ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunctionAsyncReturnInt("SET_FOCUS", self._focus - 1)
-        if not isMouse then
-            local _id = self.listCol[self._focus].Pagination:GetMenuIndexFromScaleformIndex(idx)
-            if not goingLeft or self._newStyle then
-                self.listCol[self._focus]:CurrentSelection(_id)
-                self.listCol[self._focus].OnIndexChanged(_id)
-            end
-        end
-    end
-end
-
-function MainView:SetupColumns(columns)
-    assert(type(columns) == "table", "^1ScaleformUI [ERROR]: SetupColumns, Table expected^7")
-    assert(#columns <= 3, "^1ScaleformUI [ERROR]: SetupColumns, You must have max 3 columns^7")
-    assert(not (#columns == 3 and columns[3].Type == "players"), "For panel designs reasons, you can't have Players list in 3rd column!")
-
-    self.listCol = columns
-    for k, v in ipairs(columns) do
-        if v.Type == "settings" then
-            self.SettingsColumn = v
-            self.SettingsColumn.Parent = self
-            self.SettingsColumn.Order = k
-        elseif v.Type == "missions" then
-            self.MissionsColumn = v
-            self.MissionsColumn.Parent = self
-            self.MissionsColumn.Order = k
-        elseif v.Type == "players" then
-            self.PlayersColumn = v
-            self.PlayersColumn.Parent = self
-            self.PlayersColumn.Order = k
-        elseif v.Type == "store" then
-            self.StoreColumn = v
-            self.StoreColumn.Parent = self
-            self.StoreColumn.Order = k
-        elseif v.Type == "panel" then
-            self.MissionPanel = v
-            self.MissionPanel.Parent = self
-            self.MissionPanel.Order = k
-        end
-    end
-end
-
-function MainView:ShowHeader()
-    if self.Subtitle:IsNullOrEmpty() then
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title)
-    else
-        ScaleformUI.Scaleforms._pauseMenu:ShiftCoronaDescription(true, false)
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title, self.Subtitle.."\n\n\n\n\n\n\n\n\n\n\n")
-    end
-    if (self:HeaderPicture() ~= nil) then
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderCharImg(self:HeaderPicture().txd, self:HeaderPicture().txn, true)
-    end
-    if (self:CrewPicture() ~= nil) then
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderSecondaryImg(self:CrewPicture().txd, self:CrewPicture().txn, true)
-    end
-    ScaleformUI.Scaleforms._pauseMenu:SetHeaderDetails(self.SideTop, self.SideMid, self.SideBot)
-    ScaleformUI.Scaleforms._pauseMenu:AddLobbyMenuTab(self.listCol[1]._label, 2, self.listCol[1]._color)
-    ScaleformUI.Scaleforms._pauseMenu:AddLobbyMenuTab(self.listCol[2]._label, 2, self.listCol[2]._color)
-    ScaleformUI.Scaleforms._pauseMenu:AddLobbyMenuTab(self.listCol[3]._label, 2, self.listCol[3]._color)
-    ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("SET_ALL_HIGHLIGHTS", true, 117)
-    ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("ENABLE_DYNAMIC_WIDTH", false)
-    self._loaded = true
-end
-
-function MainView:BuildPauseMenu()
-    self._isBuilding = true
-    self:ShowHeader()
-    ScaleformUI.Scaleforms._pauseMenu.BGEnabled = self:ShowStoreBackground()
-    ScaleformUI.Scaleforms._pauseMenu._pauseBG:CallFunction("ANIMATE_BACKGROUND", self:StoreBackgroundAnimationSpeed())
-    if #self.listCol == 1 then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CREATE_MENU", self.listCol[1].Type)
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 0, self.listCol[1].Pagination:ItemsPerPage())
-    elseif #self.listCol == 2 then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CREATE_MENU", self.listCol[1].Type, self.listCol[2].Type)
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 0, self.listCol[1].Pagination:ItemsPerPage())
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 1, self.listCol[2].Pagination:ItemsPerPage())
-    elseif #self.listCol == 3 then
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CREATE_MENU", self.listCol[1].Type, self.listCol[2].Type, self.listCol[3].Type)
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 0, self.listCol[1].Pagination:ItemsPerPage())
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 1, self.listCol[2].Pagination:ItemsPerPage())
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_COLUMN_MAXITEMS", 2, self.listCol[3].Pagination:ItemsPerPage())
-    end
-    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_NEWSTYLE", self._newStyle)
-
-    for i, col in pairs(self.listCol) do
-        col.Parent = self
-        if col.Type == "settings" then
-            self:buildSettings()
-        elseif col.Type == "players" then
-            self:buildPlayers()
-        elseif col.Type == "missions" then
-            self:buildMissions()
-        elseif col.Type == "store" then
-            self:buildStore()
-        elseif col.Type == "panel" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSION_PANEL_PICTURE", self.MissionPanel.TextureDict, self.MissionPanel.TextureName)
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_PANEL_TITLE", self.MissionPanel:Title())
-            for k, item in pairs(self.MissionPanel.Items) do
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSION_PANEL_ITEM", item.Type, item.TextLeft,
-                    item.TextRight, item.Icon or 0, item.IconColor or SColor.HUD_Pure_white, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-            end
-        end
-    end
-
-    while self.SettingsColumn ~= nil and self.SettingsColumn._isBuilding or self.PlayerColumn ~= nil and self.PlayerColumn._isBuilding or self.MissionsColumn ~= nil and self.MissionsColumn._isBuilding do
-        Citizen.Wait(0)
-    end
-
-    ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("LOAD_MENU")
-    Citizen.Wait(250)
-    self:updateFocus(1)
-    local containsPlayers = false
-
-    for i, col in pairs(self.listCol) do
-        if col.Type == "players" then
-            containsPlayers = true
-            break
-        end
-    end
-    if self.listCol[1].Type == "players" or (containsPlayers and self.PlayersColumn.Items[1]:KeepPanelVisible()) then
-        if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-            self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-        end
-    end
-    self._isBuilding = false
-end
-
-function MainView:buildSettings(tab, tabIndex)
-    Citizen.CreateThread(function()
-        self.SettingsColumn._isBuilding = true
-        local i = 1
-        local max = self.SettingsColumn.Pagination:ItemsPerPage()
-        if #self.SettingsColumn.Items < max then
-            max = #self.SettingsColumn.Items
-        end
-        self.SettingsColumn.Pagination:MinItem(self.SettingsColumn.Pagination:CurrentPageStartIndex())
-
-        if self.SettingsColumn.scrollingType == MenuScrollingType.CLASSIC and self.SettingsColumn.Pagination:TotalPages() > 1 then
-            local missingItems = self.SettingsColumn.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.SettingsColumn.Pagination:ScaleformIndex(self.SettingsColumn.Pagination:GetPageIndexFromMenuIndex(self.SettingsColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.SettingsColumn.Pagination.minItem = self.SettingsColumn.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.SettingsColumn.Pagination:MaxItem(self.SettingsColumn.Pagination:CurrentPageEndIndex())
-
-        while i <= max do
-            Citizen.Wait(0)
-            if not self:Visible() then return end
-            self.SettingsColumn:_itemCreation(self.SettingsColumn.Pagination:CurrentPage(), i, false, true)
-            i = i + 1
-        end
-
-        self.SettingsColumn:CurrentSelection(1)
-        self.SettingsColumn.Pagination:ScaleformIndex(self.SettingsColumn.Pagination:GetScaleformIndex(self.SettingsColumn:CurrentSelection()))
-        self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(true)
-
-        AddTextEntry("PAUSEMENU_Current_Description", self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Description());
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_SELECTION", self.SettingsColumn.Pagination:GetScaleformIndex(self.SettingsColumn.Pagination:CurrentMenuIndex()))
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_QTTY", self.SettingsColumn:CurrentSelection(), #self.SettingsColumn.Items)
-
-        local Item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-        local _, subtype = Item()
-        if subtype == "UIMenuSeparatorItem" then
-            if (self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()].Jumpable) then
-                self.SettingsColumn:GoDown()
-            end
-        end
-
-        self.SettingsColumn._isBuilding = false
-    end)
-end
-
-function MainView:buildPlayers(tab, tabIndex)
-    Citizen.CreateThread(function()
-        self.PlayersColumn._isBuilding = true
-        local i = 1
-        local max = self.PlayersColumn.Pagination:ItemsPerPage()
-        if #self.PlayersColumn.Items < max then
-            max = #self.PlayersColumn.Items
-        end
-        self.PlayersColumn.Pagination:MinItem(self.PlayersColumn.Pagination:CurrentPageStartIndex())
-
-        if self.PlayersColumn.scrollingType == MenuScrollingType.CLASSIC and self.PlayersColumn.Pagination:TotalPages() > 1 then
-            local missingItems = self.PlayersColumn.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.PlayersColumn.Pagination:ScaleformIndex(self.PlayersColumn.Pagination:GetPageIndexFromMenuIndex(self.PlayersColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.PlayersColumn.Pagination.minItem = self.PlayersColumn.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.PlayersColumn.Pagination:MaxItem(self.PlayersColumn.Pagination:CurrentPageEndIndex())
-
-        while i <= max do
-            Citizen.Wait(0)
-            if not self:Visible() then return end
-            self.PlayersColumn:_itemCreation(self.PlayersColumn.Pagination:CurrentPage(), i, false, true)
-            i = i + 1
-        end
-
-        self.PlayersColumn:CurrentSelection(1)
-        self.PlayersColumn.Pagination:ScaleformIndex(self.PlayersColumn.Pagination:GetScaleformIndex(self.PlayersColumn:CurrentSelection()))
-        self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:Selected(true)
-
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_SELECTION", self.PlayersColumn.Pagination:GetScaleformIndex(self.PlayersColumn.Pagination:CurrentMenuIndex()))
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_PLAYERS_QTTY", self.PlayersColumn:CurrentSelection(), #self.PlayersColumn.Items)
-
-        self.PlayersColumn._isBuilding = false
-    end)
-end
-
-function MainView:buildMissions(tab, tabIndex)
-    Citizen.CreateThread(function()
-        self.MissionsColumn._isBuilding = true
-        local i = 1
-        local max = self.MissionsColumn.Pagination:ItemsPerPage()
-        if #self.MissionsColumn.Items < max then
-            max = #self.MissionsColumn.Items
-        end
-        self.MissionsColumn.Pagination:MinItem(self.MissionsColumn.Pagination:CurrentPageStartIndex())
-
-        if self.MissionsColumn.scrollingType == MenuScrollingType.CLASSIC and self.MissionsColumn.Pagination:TotalPages() > 1 then
-            local missingItems = self.MissionsColumn.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.MissionsColumn.Pagination:ScaleformIndex(self.MissionsColumn.Pagination:GetPageIndexFromMenuIndex(self.MissionsColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.MissionsColumn.Pagination.minItem = self.MissionsColumn.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.MissionsColumn.Pagination:MaxItem(self.MissionsColumn.Pagination:CurrentPageEndIndex())
-
-        while i <= max do
-            Citizen.Wait(0)
-            if not self:Visible() then return end
-            self.MissionsColumn:_itemCreation(self.MissionsColumn.Pagination:CurrentPage(), i, false, true)
-            i = i + 1
-        end
-
-        self.MissionsColumn:CurrentSelection(1)
-        self.MissionsColumn.Pagination:ScaleformIndex(self.MissionsColumn.Pagination:GetScaleformIndex(self.MissionsColumn:CurrentSelection()))
-        self.MissionsColumn.Items[self.MissionsColumn:CurrentSelection()]:Selected(true)
-
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_SELECTION", self.MissionsColumn.Pagination:GetScaleformIndex(self.MissionsColumn.Pagination:CurrentMenuIndex()))
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSIONS_QTTY", self.MissionsColumn:CurrentSelection(), #self.MissionsColumn.Items)
-
-        self.MissionsColumn._isBuilding = false
-    end)
-end
-
-function MainView:buildStore(tab, tabIndex)
-    Citizen.CreateThread(function()
-        self.StoreColumn._isBuilding = true
-        local i = 1
-        local max = self.StoreColumn.Pagination:ItemsPerPage()
-        if #self.StoreColumn.Items < max then
-            max = #self.StoreColumn.Items
-        end
-        self.StoreColumn.Pagination:MinItem(self.StoreColumn.Pagination:CurrentPageStartIndex())
-
-        if self.StoreColumn.scrollingType == MenuScrollingType.CLASSIC and self.StoreColumn.Pagination:TotalPages() > 1 then
-            local missingItems = self.StoreColumn.Pagination:GetMissingItems()
-            if missingItems > 0 then
-                self.StoreColumn.Pagination:ScaleformIndex(self.StoreColumn.Pagination:GetPageIndexFromMenuIndex(self.StoreColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-                self.StoreColumn.Pagination.minItem = self.StoreColumn.Pagination:CurrentPageStartIndex() - missingItems
-            end
-        end
-
-        self.StoreColumn.Pagination:MaxItem(self.StoreColumn.Pagination:CurrentPageEndIndex())
-
-        while i <= max do
-            Citizen.Wait(0)
-            if not self:Visible() then return end
-            self.StoreColumn:_itemCreation(self.StoreColumn.Pagination:CurrentPage(), i, false, true)
-            i = i + 1
-        end
-
-        self.StoreColumn:CurrentSelection(1)
-        self.StoreColumn.Pagination:ScaleformIndex(self.StoreColumn.Pagination:GetScaleformIndex(self.StoreColumn:CurrentSelection()))
-        self.StoreColumn.Items[self.StoreColumn:CurrentSelection()]:Selected(true)
-
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_SELECTION", self.StoreColumn.Pagination:GetScaleformIndex(self.StoreColumn.Pagination:CurrentMenuIndex()))
-        ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_STORE_QTTY", self.StoreColumn:CurrentSelection(), #self.StoreColumn.Items)
-
-        self.StoreColumn._isBuilding = false
-    end)
-end
-
-function MainView:Draw()
-    if not self:Visible() or self.TemporarilyHidden or self._isBuilding then
-        return
-    end
-    self.Minimap:MaintainMap();
-    DisableControlAction(0, 199, true)
-    DisableControlAction(0, 200, true)
-    DisableControlAction(1, 199, true)
-    DisableControlAction(1, 200, true)
-    DisableControlAction(2, 199, true)
-    DisableControlAction(2, 200, true)
-    ScaleformUI.Scaleforms._pauseMenu:Draw(true)
-end
-
-local success, event_type, context, item_id
-
-function MainView:ProcessMouse()
-    if not IsUsingKeyboard(2) then
-        return
-    end
-    SetMouseCursorActiveThisFrame()
-    SetInputExclusive(2, 239)
-    SetInputExclusive(2, 240)
-    SetInputExclusive(2, 237)
-    SetInputExclusive(2, 238)
-
-    success, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms._pauseMenu._lobby.handle)
-    if success then
-        if event_type == 5 then
-            local foc = self:Focus()
-            local curSel = 1
-            if self._newStyle then
-                curSel = self.listCol[foc]:CurrentSelection()
-            end
-            for k, v in pairs(self.listCol) do
-                if v.Type == "settings" then
-                    curSel = self.SettingsColumn:CurrentSelection()
-                elseif v.Type == "missions" then
-                    curSel = self.MissionsColumn:CurrentSelection()
-                elseif v.Type == "players" then
-                    curSel = self.PlayersColumn:CurrentSelection()
-                elseif v.Type == "store" then
-                    curSel = self.StoreColumn:CurrentSelection()
-                end
-            end
-            if context + 1 ~= foc then
-                self.listCol[foc].Items[self.listCol[foc]:CurrentSelection()]:Selected(false)
-                self:updateFocus(context + 1, true)
-                self.listCol[context + 1]:CurrentSelection(self.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1))
-                self.listCol[context + 1].OnIndexChanged(self.listCol[context + 1]:CurrentSelection())
-                if curSel ~= self.listCol[context + 1]:CurrentSelection() then
-                    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                end
-            else
-                self.listCol[foc]:CurrentSelection(self.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1))
-            end
-            if foc == self:Focus() and curSel == self.listCol[context + 1]:CurrentSelection() then
-                self:Select()
-            end
-            return
-        elseif event_type == 8 then
-            self.listCol[context + 1].Items[item_id]:Hovered(false)
-        elseif event_type == 9 then
-            self.listCol[context + 1].Items[item_id]:Hovered(true)
-        end
-    end
-end
-
-function MainView:ProcessControl()
-    if not self:Visible() or self.TemporarilyHidden then
-        return
-    end
-
-    if (IsDisabledControlJustPressed(2, 172)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoUp()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 172) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoUp()
-                    end
-                    Citizen.Wait(50)
-                end
-                return
-            end)
-        end
-    end
-    if (IsDisabledControlJustPressed(2, 173)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoDown()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 173) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoDown()
-                    end
-                    Citizen.Wait(50)
-                end
-                return
-            end)
-        end
-    end
-    if (IsDisabledControlJustPressed(2, 174)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoLeft()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 174) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoLeft()
-                    end
-                    Citizen.Wait(50)
-                end
-                return
-            end)
-        end
-    end
-    if (IsDisabledControlJustPressed(2, 175)) then
-        if GlobalGameTimer - self._time > self._delay then
-            Citizen.CreateThread(function()
-                self:GoRight()
-                local timer = GetGameTimer()
-                while IsDisabledControlPressed(2, 175) do
-                    if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                        self:GoRight()
-                    end
-                    Citizen.Wait(50)
-                end
-                return
-            end)
-        end
-    end
-
-    if (IsControlJustPressed(2, 201)) then
-        Citizen.CreateThread(function()
-            self:Select()
-        end)
-    end
-    if (IsDisabledControlJustReleased(2, 177)) then
-        Citizen.CreateThread(function()
-            self:GoBack()
-        end)
-    end
-
-    if (IsControlJustPressed(1, 241)) then
-        Citizen.CreateThread(function()
-            ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(-1)
-        end)
-    end
-    if (IsControlJustPressed(1, 242)) then
-        Citizen.CreateThread(function()
-            ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(1)
-        end)
-    end
-
-    if (IsControlJustReleased(0, 172) or IsControlJustReleased(1, 172) or IsControlJustReleased(2, 172)) or
-        (IsControlJustReleased(0, 173) or IsControlJustReleased(1, 173) or IsControlJustReleased(2, 173)) or
-        (IsControlJustReleased(0, 174) or IsControlJustReleased(1, 174) or IsControlJustReleased(2, 174)) or
-        (IsControlJustReleased(0, 175) or IsControlJustReleased(1, 175) or IsControlJustReleased(2, 175))
-    then
-        self._times = 0
-        self._delay = 150
-    end
-end
-
-function MainView:Select()
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunctionAsyncReturnString("SET_INPUT_EVENT", 16)
-
-    local selection = self._focus
-    if self._newStyle then
-        selection = 1
-    end
-    local splitted = Split(retVal, ",")
-    if self.listCol[selection].Type == "settings" then
-        local item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-        local type, subtype = item()
-        if not item:Enabled() then
-            PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            return
-        end
-        if subtype == "UIMenuCheckboxItem" then
-            item:Checked(not item:Checked())
-            item.OnCheckboxChanged(nil, item, item:Checked())
-        elseif subtype == "UIMenuListItem" then
-            item.OnListSelected(nil, item, item._Index)
-            self.SettingsColumn.OnSettingItemActivated(self.SettingsColumn:CurrentSelection())
-        elseif subtype == "UIMenuSliderItem" then
-            item.OnSliderSelected(nil, item, item._Index)
-            self.SettingsColumn.OnSettingItemActivated(self.SettingsColumn:CurrentSelection())
-        elseif subtype == "UIMenuProgressItem" then
-            item.OnProgressSelected(nil, item, item._Index)
-            self.SettingsColumn.OnSettingItemActivated(self.SettingsColumn:CurrentSelection())
-        else
-            item.Activated(nil, item)
-            self.SettingsColumn.OnSettingItemActivated(self.SettingsColumn:CurrentSelection())
-        end
-    elseif self.listCol[selection].Type == "players" then
-        self.PlayersColumn.OnPlayerItemActivated(self.PlayersColumn:CurrentSelection())
-    elseif self.listCol[selection].Type == "missions" then
-        self.MissionsColumn.OnMissionItemActivated(self.MissionsColumn:CurrentSelection())
-    elseif self.listCol[selection].Type == "store" then
-        self.StoreColumn.OnStoreItemActivated(self.StoreColumn:CurrentSelection())
-    end
-end
-
-function MainView:GoBack()
-    if self._newStyle then
-        if self:CanPlayerCloseMenu() then
-            self:Visible(false)
-        end
-    else
-        self.listCol[self._focus].Items[self.listCol[self._focus]:CurrentSelection()]:Selected(false)
-        if self._focus > 1 then
-            if self:CanPlayerCloseMenu() then
-                self:Visible(false)
-            end
-            return
-        end
-        self:updateFocus(self._focus - 1)
-    end
-end
-
-function MainView:GoUp()
-    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-    self.listCol[self._focus]:GoUp()
-end
-
-function MainView:GoDown()
-    PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-    self.listCol[self._focus]:GoDown()
-end
-
-function MainView:GoLeft()
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunctionAsyncReturnString("SET_INPUT_EVENT", 10, self._delay)
-
-    local splitted = Split(retVal, ",")
-
-    if self._newStyle then
-        for k, v in pairs(self.listCol) do
-            if v.Type == "settings" then
-                local item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-                local type, subType = item()
-                if subType ~= "UIMenuListItem" and subType ~= "UIMenuSliderItem" and subType ~= "UIMenuProgressItem" then
-                    self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(false)
-                end
-            elseif v.Type == "missions" then
-                self.MissionsColumn.Items[self.MissionsColumn:CurrentSelection()]:Selected(false)
-            elseif v.Type == "store" then
-                self.StoreColumn.Items[self.StoreColumn:CurrentSelection()]:Selected(false)
-            elseif v.Type == "players" then
-                self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:Selected(false)
-                if k == 1 or self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-                    if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                        self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                    else
-                        ClearPedInPauseMenu()
-                    end
-                else
-                    ClearPedInPauseMenu()
-                end
-            else
-                ClearPedInPauseMenu()
-            end
-        end
-    end
-
-    if self.listCol[self._focus].Type == "settings" then
-        ClearPedInPauseMenu()
-        local item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-        if not item:Enabled() then
-            if self._newStyle then
-                item:Selected(false)
-                self:updateFocus(self._focus - 1)
-            else
-                PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            end
-            return
-        end
-        local type, subtype = item()
-        if subtype == "UIMenuListItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnListChanged(self, item, item._Index)
-        elseif subtype == "UIMenuSliderItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnSliderChanged(self, item, item._Index)
-        elseif subtype == "UIMenuProgressItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnProgressChanged(self, item, item:Index())
-        else
-            if self._newStyle then
-                item:Selected(false)
-                self:updateFocus(self._focus - 1)
-            end
-        end
-    elseif self.listCol[self._focus].Type == "players" then
-        if self._newStyle then
-            self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus - 1)
-        else
-            if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-            end
-        end
-    elseif self.listCol[self._focus].Type == "missions" then
-        if self._newStyle then
-            self.MissionsColumn.Items[self.MissionsColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus - 1)
-        end
-    elseif self.listCol[self._focus].Type == "store" then
-        if self._newStyle then
-            self.StoreColumn.Items[self.StoreColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus - 1)
-        end
-    elseif self.listCol[self._focus].Type == "panel" then
-        self:updateFocus(self._focus - 1)
-    end
-end
-
-function MainView:GoRight()
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunctionAsyncReturnString("SET_INPUT_EVENT", 11, self._delay)
-
-    local splitted = Split(retVal, ",")
-
-    if self._newStyle then
-        for k, v in pairs(self.listCol) do
-            if v.Type == "settings" then
-                local item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-                local type, subType = item()
-                if subType ~= "UIMenuListItem" and subType ~= "UIMenuSliderItem" and subType ~= "UIMenuProgressItem" then
-                    self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(false)
-                end
-            elseif v.Type == "missions" then
-                self.MissionsColumn.Items[self.MissionsColumn:CurrentSelection()]:Selected(false)
-            elseif v.Type == "store" then
-                self.StoreColumn.Items[self.StoreColumn:CurrentSelection()]:Selected(false)
-            elseif v.Type == "players" then
-                self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:Selected(false)
-                if k == 1 or self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-                    if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                        self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                    else
-                        ClearPedInPauseMenu()
-                    end
-                else
-                    ClearPedInPauseMenu()
-                end
-            else
-                ClearPedInPauseMenu()
-            end
-        end
-    end
-
-    if self.listCol[self._focus].Type == "settings" then
-        ClearPedInPauseMenu()
-        local item = self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]
-        if not item:Enabled() then
-            if self._newStyle then
-                item:Selected(false)
-                self:updateFocus(self._focus + 1)
-            else
-                PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            end
-            return
-        end
-        local type, subtype = item()
-        if subtype == "UIMenuListItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnListChanged(self, item, item._Index)
-        elseif subtype == "UIMenuSliderItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnSliderChanged(self, item, item._Index)
-        elseif subtype == "UIMenuProgressItem" then
-            item:Index(tonumber(splitted[3]))
-            item.OnProgressChanged(self, item, item:Index())
-        else
-            if self._newStyle then
-                item:Selected(false)
-                self:updateFocus(self._focus + 1)
-            end
-        end
-    elseif self.listCol[self._focus].Type == "players" then
-        if self._newStyle then
-            self.SettingsColumn.Items[self.SettingsColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus + 1)
-        else
-            if self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= nil and self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-            end
-        end
-    elseif self.listCol[self._focus].Type == "missions" then
-        if self._newStyle then
-            self.MissionsColumn.Items[self.MissionsColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus + 1)
-        end
-    elseif self.listCol[self._focus].Type == "store" then
-        if self._newStyle then
-            self.StoreColumn.Items[self.StoreColumn:CurrentSelection()]:Selected(false)
-            self:updateFocus(self._focus + 1)
-        end
-    elseif self.listCol[self._focus].Type == "panel" then
-        self:updateFocus(self._focus + 1)
-    end
-end
 
 --///////////////////////////////////////////////////////////////////--
 MinimapPanel = setmetatable({}, MinimapPanel)
@@ -7642,17 +7362,18 @@ end
 ---@field private Dispose fun()
 ---@field public ClearMinimap fun()
 
-function MinimapPanel.New(parent, parentTab)
+function MinimapPanel.New(parentTab)
     local _data = {
-        Parent = parent,
+        Parent = nil,
         ParentTab = parentTab,
         MinimapBlips = {},
         MinimapRoute = MinimapRoute.New(),
         mapPosition = vector2(0, 0),
         enabled = false,
         turnedOn = false,
-        localMapStage = 0,
-        IsRadarVisible = IsMinimapRendering(),
+        localMapStage = -1,
+        HidePedBlip = false,
+        IsRadarVisible = not IsRadarHidden(),
     }
     return setmetatable(_data, MinimapPanel)
 end
@@ -7662,29 +7383,10 @@ function MinimapPanel:Enabled(_e)
         return self.enabled
     else
         if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT
-            if self.ParentTab ~= nil then
-                pSubT = self.ParentTab.Base.Parent()
-            else
-                pSubT = self.Parent()
-            end
-            if pSubT == "LobbyMenu" then
-                if self.Parent.listCol[self.Parent._focus].Type == "players" then
-                    if self.Parent.PlayersColumn.Items[self.Parent.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-                        self:Dispose()
-                        return
-                    end
-                end
-            elseif pSubT == "PauseMenu" then
-                local tab = self.ParentTab
-                local cur_tab, cur_sub_tab = tab()
-                if cur_sub_tab == "PlayerListTab" then
-                    if tab.listCol[tab._focus].Type == "players" then
-                        if tab.PlayerListColumn.Items[tab.PlayerListColumn:CurrentSelection()]:KeepPanelVisible() then
-                            self:Dispose()
-                            return
-                        end
-                    end
+            if self.ParentTab() == "PlayerListTab" and self.ParentTab:CurrentColumn().type == PLT_COLUMNS.PLAYERS then
+                if self.ParentTab:CurrentColumn():CurrentItem():KeepPanelVisible() then
+                    self:Dispose()
+                    return
                 end
             end
         end
@@ -7697,22 +7399,26 @@ function MinimapPanel:Enabled(_e)
             self.localMapStage = -1
             if self.turnedOn then
                 self.IsRadarVisible = IsMinimapRendering()
-                DisplayRadar(false);
-                RaceGalleryFullscreen(false);
-                self.turnedOn = false;
+                DisplayRadar(false)
+                RaceGalleryFullscreen(false)
+                self.turnedOn = false
             end
         end
         if self.Parent ~= nil and self.Parent:Visible() then
-            local show = not self.enabled
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("HIDE_MISSION_PANEL", show)
-            elseif pSubT == "PauseMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("HIDE_PLAYERS_TAB_MISSION_PANEL", show)
+            if self.ParentTab() == "PlayerListTab" then
+                if self.ParentTab:CurrentColumn().type == PLT_COLUMNS.PLAYERS then
+                    if ToBool(_e) then
+                        self.ParentTab:CurrentColumn():CurrentItem():Dispose()
+                    else
+                        self.ParentTab:CurrentColumn():CurrentItem():AddPedToPauseMenu()
+                    end
+                end
+                if self.ParentTab.RightColumn ~= nil and self.ParentTab.RightColumn.type == PLT_COLUMNS.MISSION_DETAILS then
+                    self.ParentTab.RightColumn:ColumnVisible(not ToBool(_e) and
+                    self.ParentTab:CurrentColumn().type ~= PLT_COLUMNS.PLAYERS)
+                end
             end
         end
-
-        PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     end
 end
 
@@ -7750,7 +7456,7 @@ function MinimapPanel:InitializeMapSize()
     local DistanceY = math.abs(top - bottom)
     local Diagonal = math.sqrt(DistanceX ^ 2 + DistanceY ^ 2)
 
-    if DistanceX == DistanceY then -- Square
+    if DistanceX == DistanceY then      -- Square
         self.zoomDistance = Diagonal / 2.4
     elseif (DistanceX > DistanceY) then -- Horizontal
         local mul = 1.7
@@ -7775,16 +7481,14 @@ function MinimapPanel:InitializeMapSize()
 end
 
 function MinimapPanel:RefreshMapPosition(position)
+    if position == vec(0,0) then return end
     self.mapPosition = position
     LockMinimapPosition(self.mapPosition.x, self.mapPosition.y)
-    if self.ParentTab ~= nil then
-        local cur_tab, cur_sub_tab = self.ParentTab()
-        if cur_sub_tab == "GalleryTab" then
-            if self.ParentTab.bigPic then
-                self.zoomDistance = 600.0
-            else
-                self.zoomDistance = 1200.0
-            end
+    if self.ParentTab() == "GalleryTab" then
+        if self.ParentTab.bigPic then
+            self.zoomDistance = 600.0
+        else
+            self.zoomDistance = 1200.0
         end
     end
 end
@@ -7794,7 +7498,7 @@ function MinimapPanel:SetupBlips()
         RaceGalleryNextBlipSprite(blip.Sprite)
         local b = RaceGalleryAddBlip(blip.Position.x, blip.Position.y, blip.Position.z)
         if blip.Scale > 0 then
-            SetBlipScale(b, blip.Scale)
+            SetBlipScale(b, blip.Scale) 
         end
         SetBlipColour(b, blip.Color)
     end
@@ -7817,85 +7521,90 @@ function MinimapPanel:ProcessMap()
         end
     else
         if self.turnedOn then
-            self.IsRadarVisible = IsMinimapRendering()
+            self.IsRadarVisible = not IsRadarHidden()
             DisplayRadar(false)
             RaceGalleryFullscreen(false)
             self.turnedOn = false
             self:Dispose()
         end
     end
-    SetPlayerBlipPositionThisFrame(-5000.0, -5000.0)
+    if self.HidePedBlip then
+        SetPlayerBlipPositionThisFrame(-5000.0, -5000.0)
+    end
     self:RefreshZoom()
 end
 
 function MinimapPanel:InitializeMapDisplay()
-    DeleteWaypoint();
-    SetWaypointOff();
-    ClearGpsCustomRoute();
-    ClearGpsMultiRoute();
-    SetPoliceRadarBlips(false);
+    DeleteWaypoint()
+    SetWaypointOff()
+    ClearGpsCustomRoute()
+    ClearGpsMultiRoute()
+    SetPoliceRadarBlips(false)
 
-    self.MinimapRoute:SetupCustomRoute();
-    self:SetupBlips();
+    self.MinimapRoute:SetupCustomRoute()
+    self:SetupBlips()
 end
 
 function MinimapPanel:InitializeMap()
     -- Use the data to set up our map.
-    self:InitializeMapSize();
+    self:InitializeMapSize()
     -- Initialise all our blips from data
-    self:InitializeMapDisplay();
+    self:InitializeMapDisplay()
     -- Set the zoom now
-    self:RefreshZoom();
-    self.localMapStage = 1;
+    self:RefreshZoom()
+    self.localMapStage = 1
 end
 
 function MinimapPanel:RefreshZoom()
     if self.zoomDistance ~= 0 then
-        SetRadarZoomToDistance(self.zoomDistance);
+        SetRadarZoomToDistance(self.zoomDistance)
     end
-    LockMinimapPosition(self.mapPosition.x, self.mapPosition.y);
+    LockMinimapPosition(self.mapPosition.x, self.mapPosition.y)
 end
 
 function MinimapPanel:Dispose()
-    self.localMapStage = -1;
-    self.enabled = false;
-    SetPoliceRadarBlips(true);
-    PauseToggleFullscreenMap(false);
-    DisplayRadar(self.IsRadarVisible);
-    RaceGalleryFullscreen(false);
-    ClearRaceGalleryBlips();
-    self.zoomDistance = 0;
-    SetRadarZoom(0);
-    SetGpsCustomRouteRender(false, 18, 30);
-    SetGpsMultiRouteRender(false);
-    UnlockMinimapPosition();
-    UnlockMinimapAngle();
-    DeleteWaypoint();
-    ClearGpsCustomRoute();
-    ClearGpsFlags();
+    self.localMapStage = 0
+    self.enabled = false
+    SetPoliceRadarBlips(true)
+    PauseToggleFullscreenMap(false)
+    DisplayRadar(self.IsRadarVisible)
+    RaceGalleryFullscreen(false)
+    ClearRaceGalleryBlips()
+    self.zoomDistance = 0
+    SetRadarZoom(0)
+    SetGpsCustomRouteRender(false, 18, 30)
+    SetGpsMultiRouteRender(false)
+    UnlockMinimapPosition()
+    UnlockMinimapAngle()
+    DeleteWaypoint()
+    ClearGpsCustomRoute()
+    ClearGpsFlags()
+    SetBigmapActive(false, false)
     self.MinimapBlips = {}
     self.MinimapRoute = MinimapRoute.New()
 end
 
 function MinimapPanel:ClearMinimap()
     self.MinimapBlips = {}
-    self.MinimapRoute = MinimapRoute.New();
-    self.localMapStage = -1;
-    self.zoomDistance = 0;
-    ClearRaceGalleryBlips();
-    SetRadarZoom(0);
-    SetGpsCustomRouteRender(false, 18, 30);
-    DeleteWaypoint();
-    ClearGpsCustomRoute();
-    ClearGpsFlags();
+    self.MinimapRoute = MinimapRoute.New()
+    self.localMapStage = 0
+    self.zoomDistance = 0
+    ClearRaceGalleryBlips()
+    SetRadarZoom(0)
+    SetGpsCustomRouteRender(false, 18, 30)
+    DeleteWaypoint()
+    ClearGpsCustomRoute()
+    ClearGpsFlags()
+    SetBigmapActive(false, false)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-MissionDetailsPanel = setmetatable({}, MissionDetailsPanel)
+MissionDetailsPanel = {}
 MissionDetailsPanel.__index = MissionDetailsPanel
-MissionDetailsPanel.__call = function()
-    return "Panel", "MissionDetailsPanel"
-end
+setmetatable(MissionDetailsPanel, { __index = PM_Column })
+MissionDetailsPanel.__call = function() return "MissionDetailsPanel" end
 
 ---@class MissionDetailsPanel
 ---@field private _title string
@@ -7911,23 +7620,13 @@ end
 ---@field public OnIndexChanged fun(index: number)
 
 function MissionDetailsPanel.New(label, color)
-    local handler = PaginationHandler.New()
-    handler:ItemsPerPage(0)
-    local _data = {
-        Type = "panel",
-        ParentTab = nil,
-        _title = "",
-        _label = label or "",
-        _color = color or SColor.HUD_Freemode,
-        Parent = nil,
-        Items = {} --[[@type table<MissionDetailsItem>]],
-        Pagination = handler,
-        TextureDict = "",
-        TextureName = "",
-        OnIndexChanged = function(index)
-        end
-    }
-    return setmetatable(_data, MissionDetailsPanel)
+    local base = PM_Column.New(2)
+    base.Label = label
+    base.type = PLT_COLUMNS.MISSION_DETAILS
+    base._title = ""
+    base.TextureDict = ""
+    base.TextureName = ""
+    return setmetatable(base, MissionDetailsPanel)
 end
 
 function MissionDetailsPanel:Title(label)
@@ -7935,13 +7634,9 @@ function MissionDetailsPanel:Title(label)
         return self._title
     else
         self._title = label
-        if self.Parent ~= nil and self.Parent:Visible() then
-            local pSubT = self.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_MISSION_PANEL_TITLE", self._title)
-            elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MISSION_PANEL_TITLE", self._title)
-            end
+        if self:visible() then
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, self._title,
+                self.TextureDict, self.TextureName)
         end
     end
 end
@@ -7949,81 +7644,143 @@ end
 function MissionDetailsPanel:UpdatePanelPicture(txd, txn)
     self.TextureDict = txd
     self.TextureName = txn
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSION_PANEL_PICTURE", self.TextureDict, self.TextureName)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSION_PANEL_PICTURE", self.TextureDict, self.TextureName)
-        end
+    if self:visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, self._title,
+            self.TextureDict, self.TextureName)
+    end
+end
+
+function MissionDetailsPanel:Populate()
+    if not self:visible() then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", self.position)
+    for i = 1, #self.Items, 1 do
+        self:SetDataSlot(i)
+    end
+end
+
+function MissionDetailsPanel:ShowColumn()
+    if not self:visible() then return end
+    PM_Column.ShowColumn(self)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", self.position, self._title,
+        self.TextureDict, self.TextureName)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+end
+
+function MissionDetailsPanel:SetDataSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index)
+    end
+end
+
+function MissionDetailsPanel:UpdateSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, true)
+    end
+end
+
+function MissionDetailsPanel:AddSlot(index)
+    if self.index > #self.Items then return end
+    if self:visible() then
+        self:SendItemToScaleform(index, false, false, true)
     end
 end
 
 function MissionDetailsPanel:AddItem(item)
     self.Items[#self.Items + 1] = item
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ADD_MISSION_PANEL_ITEM", item.Type, item.TextLeft, item.TextRight, item.Icon, item.IconColor, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSION_PANEL_ITEM", item.Type, item.TextLeft, item.TextRight, item.Icon, item.IconColor, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-        end
+    if self:visible() and #self.Items < self.VisibleItems then
+        local idx = #self.Items
+        self:AddSlot(idx)
     end
+end
+
+function MissionDetailsPanel:SendItemToScaleform(i, update, newItem, isSlot)
+    if i > #self.Items then return end
+    local item = self.Items[i]
+    local str = "SET_DATA_SLOT"
+    if update then str = "UPDATE_SLOT" end
+    if newItem then str = "SET_DATA_SLOT_SPLICE" end
+    if isSlot then str = "ADD_SLOT" end
+    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, str);
+    PushScaleformMovieFunctionParameterInt(self.position);
+    PushScaleformMovieFunctionParameterInt(i);
+    PushScaleformMovieFunctionParameterInt(0);
+    PushScaleformMovieFunctionParameterInt(0);
+    PushScaleformMovieFunctionParameterInt(item.Type);
+    PushScaleformMovieFunctionParameterInt(0);
+    PushScaleformMovieFunctionParameterBool(false);
+    local labels = item.label:SplitLabel()
+    BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+    for k, v in pairs(labels) do
+        AddTextComponentScaleform(v)
+    end
+    EndTextCommandScaleformString_2();
+    PushScaleformMovieFunctionParameterString(item.TextRight);
+    if item.Type == 2 then
+        PushScaleformMovieFunctionParameterInt(item.Icon);
+        PushScaleformMovieFunctionParameterInt(item.IconColor:ToArgb());
+        PushScaleformMovieFunctionParameterBool(item.Tick);
+    elseif item.Type == 3 then
+        PushScaleformMovieFunctionParameterString(item.CrewTag.TAG);
+        PushScaleformMovieFunctionParameterBool(false);
+    end
+    PushScaleformMovieFunctionParameterString(item.LabelFont.FontName);
+    PushScaleformMovieFunctionParameterString(item._rightLabelFont.FontName);
+    EndScaleformMovieMethod();
 end
 
 function MissionDetailsPanel:RemoveItem(idx)
     table.remove(self.Items, idx)
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("REMOVE_MISSION_PANEL_ITEM", idx - 1)
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("REMOVE_PLAYERS_TAB_MISSION_PANEL_ITEM", idx - 1)
-        end
+    if self:visible() then
+        -- TODO: HANDLE
     end
 end
 
-function MissionDetailsPanel:Clear()
-    if self.Parent ~= nil and self.Parent:Visible() then
-        local pSubT = self.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("CLEAR_MISSION_PANEL_ITEMS")
-        elseif pSubT == "PauseMenu" and self.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_PLAYERS_TAB_MISSION_PANEL_ITEMS")
-        end
-    end
-    self.Items = {}
-end
+
 
 --///////////////////////////////////////////////////////////////////--
-BasicTabItem = setmetatable({}, BasicTabItem)
-BasicTabItem.__index = BasicTabItem
-BasicTabItem.__call = function()
-    return "BasicTabItem", "BasicTabItem"
+PauseMenuItem = setmetatable({}, PauseMenuItem)
+PauseMenuItem.__index = PauseMenuItem
+PauseMenuItem.__call = function()
+    return "PauseMenuItem", "PauseMenuItem"
 end
 
----@class BasicTabItem
+---@class PauseMenuItem
 ---@field Label string
----@field Parent BasicTabItem
+---@field Parent PauseMenuItem
 
----Creates a new BasicTabItem.
+---Creates a new PauseMenuItem.
 ---@param label string
----@return BasicTabItem
-function BasicTabItem.New(label, labelFont)
+---@return PauseMenuItem
+function PauseMenuItem.New(label, labelFont)
     local data = {
-        Label = label or "",
+        label = label or "",
         LabelFont = labelFont or ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        Parent = nil
+        labelFont = labelFont or ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
+        selected = false,
+        ParentTab = nil,
+        PrentColumn = nil,
     }
-    return setmetatable(data, BasicTabItem)
+    return setmetatable(data, PauseMenuItem)
 end
+
+function PauseMenuItem:Selected(bool)
+    if bool == nil then
+        return self.selected
+    else
+        self.selected = bool
+    end
+end
+
+
 
 --///////////////////////////////////////////////////////////////////--
-GalleryItem = setmetatable({}, GalleryItem)
+GalleryItem = {}
 GalleryItem.__index = GalleryItem
-GalleryItem.__call = function()
-    return "BasicTabItem", "GalleryItem"
-end
+setmetatable(GalleryItem, { __index = PauseMenuItem })
+GalleryItem.__call = function() return "GalleryItem" end
+
 
 ---@class GalleryItem
 ---@field public TextureDictionary string
@@ -8036,20 +7793,18 @@ end
 ---@field public Parent GalleryTab
 ---@field public Blip FakeBlip
 function GalleryItem.New(txd, txn, label1, label2, label3, label4)
-    local data = {
-        TextureDictionary = txd or "",
-        TextureName = txn or "",
-        Label1 = label1 or "",
-        Label2 = label2 or "",
-        Label3 = label3 or "",
-        Label4 = label4 or "",
-        RightPanelDescription = "",
-        Parent = nil,
-        Blip = nil,
-        Activated = function(tab, item, totalIndex, gridIndex)
-        end
-    }
-    return setmetatable(data, GalleryItem)
+    local base = PauseMenuItem.New("")
+    base.TextureDictionary = txd or ""
+    base.TextureName = txn or ""
+    base.Label1 = label1 or ""
+    base.Label2 = label2 or ""
+    base.Label3 = label3 or ""
+    base.Label4 = label4 or ""
+    base.RightPanelDescription = ""
+    base.Blip = nil
+    base.Activated = function(tab, item, totalIndex, gridIndex)
+    end
+    return setmetatable(base, GalleryItem)
 end
 
 ---Sets item description labels.
@@ -8087,55 +7842,52 @@ function GalleryItem:SetRightDescription(description)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-KeymapItem = setmetatable({}, KeymapItem)
+KeymapItem = {}
 KeymapItem.__index = KeymapItem
-KeymapItem.__call = function()
-    return "BasicTabItem", "KeymapItem"
-end
+setmetatable(KeymapItem, { __index = PauseMenuItem })
+KeymapItem.__call = function() return "KeymapItem" end
 
 ---@class KeymapItem
 ---@field public Label string
 ---@field public PrimaryKeyboard string
 ---@field public PrimaryGamepad string
----@field public SecondaryKeyboard string
----@field public SecondaryGamepad string
+---@field public SecondaryKeyboard string?
+---@field public SecondaryGamepad string?
 
 ---Creates a new KeymapItem.
 ---@param title string
----@param primaryKeyboard string?
----@param primaryGamepad string?
+---@param primaryKeyboard string
+---@param primaryGamepad string
 ---@param secondaryKeyboard string?
 ---@param secondaryGamepad string?
 ---@return table
 function KeymapItem.New(title, primaryKeyboard, primaryGamepad, secondaryKeyboard, secondaryGamepad)
-    local data = {}
-    if secondaryKeyboard == nil and secondaryGamepad == nil then
-        data = {
-            Label = title,
-            PrimaryKeyboard = primaryKeyboard,
-            PrimaryGamepad = primaryGamepad,
-            SecondaryKeyboard = "",
-            SecondaryGamepad = "",
-        }
-    else
-        data = {
-            Label = title,
-            PrimaryKeyboard = primaryKeyboard or "",
-            PrimaryGamepad = primaryGamepad or "",
-            SecondaryKeyboard = secondaryKeyboard or "",
-            SecondaryGamepad = secondaryGamepad or "",
-        }
-    end
-    return setmetatable(data, KeymapItem)
+    local base = PauseMenuItem.New(title, ScaleformFonts.CHALET_LONDON_NINETEENSIXTY)
+    base.PrimaryKeyboard = primaryKeyboard or ""
+    base.PrimaryGamepad = primaryGamepad or ""
+    base.SecondaryKeyboard = secondaryKeyboard or ""
+    base.SecondaryGamepad = secondaryGamepad or ""
+    return setmetatable(base, KeymapItem)
 end
 
---///////////////////////////////////////////////////////////////////--
-SettingsCheckboxItem = setmetatable({}, SettingsCheckboxItem)
-SettingsCheckboxItem.__index = SettingsCheckboxItem
-SettingsCheckboxItem.__call = function()
-    return "SettingsItem", "SettingsItem"
+function KeymapItem:Selected(bool)
+    if bool == nil then
+        return self.selected
+    else
+        self.selected = bool
+    end
 end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+SettingsCheckboxItem = {}
+SettingsCheckboxItem.__index = SettingsCheckboxItem
+setmetatable(SettingsCheckboxItem, { __index = SettingsItem })
+SettingsCheckboxItem.__call = function() return "SettingsCheckboxItem" end
 
 ---@class SettingsCheckboxItem
 ---@field public Base SettingsItem
@@ -8151,20 +7903,13 @@ end
 ---@param checked boolean
 ---@return table
 function SettingsCheckboxItem.New(label, style, checked)
-    local data = {
-        Base = SettingsItem.New(label),
-        ItemType = SettingsItemType.CheckBox,
-        Label = label or "",
-        CheckBoxStyle = style or 0,
-        _isChecked = checked,
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        Parent = nil,
-        OnCheckboxChanged = function(item, _checked)
-        end
-    }
-    return setmetatable(data, SettingsCheckboxItem)
+    local base = SettingsItem.New(label, "")
+    base.ItemType = SettingsItemType.CheckBox
+    base.CheckBoxStyle = style or 0
+    base._isChecked = checked
+    base.OnCheckboxChanged = function(item, _checked)
+    end
+    return setmetatable(base, SettingsCheckboxItem)
 end
 
 ---Toggle the enabled state of the item.
@@ -8211,20 +7956,22 @@ end
 function SettingsCheckboxItem:Checked(checked)
     if checked ~= nil then
         self._isChecked = checked
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:SetRightSettingsItemBool(leftItem, rightIndex, checked)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
         self.OnCheckboxChanged(self, checked)
     end
     return self._isChecked
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-SettingsItem = setmetatable({}, SettingsItem)
+SettingsItem = {}
 SettingsItem.__index = SettingsItem
-SettingsItem.__call = function()
-    return "SettingsItem", "SettingsItem"
-end
+setmetatable(SettingsItem, { __index = PauseMenuItem })
+SettingsItem.__call = function() return "SettingsItem" end
+
 
 ---@class SettingsItem
 ---@field ItemType SettingsItemType
@@ -8237,41 +7984,31 @@ end
 ---@param rightLabel string?
 ---@return SettingsItem
 function SettingsItem.New(label, rightLabel)
-    local data = {
-        ItemType = SettingsItemType.Basic,
-        Label = label or "",
-        _rightLabel = rightLabel or "",
-        Parent = nil,
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        OnActivated = function(item, index)
-        end
-    }
-    return setmetatable(data, SettingsItem)
+    local base = PauseMenuItem.New(label, ScaleformFonts.CHALET_LONDON_NINETEENSIXTY)
+    base.ItemType = SettingsItemType.Basic
+    base._rightLabel = rightLabel or ""
+    base.enabled = true
+    base.OnActivated = function()
+    end
+    return setmetatable(base, SettingsItem)
 end
 
 ---Toggle the enabled state of the item.
----@param enabled any
----@return any
+---@param enabled boolean
+---@return boolean
 function SettingsItem:Enabled(enabled)
     if enabled ~= nil then
         self._enabled = enabled
-        if self.Parent ~= nil and self.Parent.Parent ~= nil and self.Parent.Parent.Base.Parent ~= nil and self.Parent.Parent.Base.Parent:Visible() then
-            if self.Parent:Selected() then
-                local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-                local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_RIGHT_ITEM", leftItem,
-                    rightIndex, self._enabled)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._enabled
 end
 
 ---Toggle the hovered state of the item.
----@param hover any
----@return any
+---@param hover boolean
+---@return boolean
 function SettingsItem:Hovered(hover)
     if hover ~= nil then
         self._hovered = hover
@@ -8280,8 +8017,8 @@ function SettingsItem:Hovered(hover)
 end
 
 ---Toggle the selected state of the item.
----@param selected any
----@return any
+---@param selected boolean
+---@return boolean
 function SettingsItem:Selected(selected)
     if selected ~= nil then
         self._selected = selected
@@ -8295,23 +8032,21 @@ end
 function SettingsItem:RightLabel(label)
     if label ~= nil then
         self._rightLabel = label
-        if self.Parent ~= nil and self.Parent.Parent ~= nil and self.Parent.Parent.Base.Parent ~= nil and self.Parent.Parent.Base.Parent:Visible() then
-            if self.Parent:Selected() then
-                local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-                local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-                ScaleformUI.Scaleforms._pauseMenu:UpdateItemRightLabel(leftItem, rightIndex, self._rightLabel)
-            end
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
         end
     end
     return self._rightLabel
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-SettingsListItem = setmetatable({}, SettingsListItem)
+SettingsListItem = {}
 SettingsListItem.__index = SettingsListItem
-SettingsListItem.__call = function()
-    return "SettingsItem", "SettingsItem"
-end
+setmetatable(SettingsListItem, { __index = SettingsItem })
+SettingsListItem.__call = function() return "SettingsListItem" end
+
 
 ---@class SettingsListItem
 ---@field public Base SettingsItem
@@ -8328,60 +8063,15 @@ end
 ---@param index number
 ---@return table
 function SettingsListItem.New(label, items, index)
-    local data = {
-        Base = SettingsItem.New(label, ""),
-        ItemType = SettingsItemType.ListItem,
-        Label = label or "",
-        ListItems = items or {},
-        _itemIndex = index or 0,
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        Parent = nil,
-        OnListChanged = function(item, value, listItem)
-        end,
-        OnListSelected = function(item, value, listItem)
-        end
-    }
-    return setmetatable(data, SettingsListItem)
-end
-
----Toggle the enabled state of the item.
----@param enabled boolean
----@return boolean
-function SettingsListItem:Enabled(enabled)
-    if enabled ~= nil then
-        self._enabled = enabled
-        if self.Parent ~= nil and self.Parent.Parent ~= nil and self.Parent.Parent.Base.Parent ~= nil and self.Parent.Parent.Base.Parent:Visible() then
-            if self.Parent:Selected() then
-                local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-                local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_RIGHT_ITEM", leftItem,
-                    rightIndex, self._enabled)
-            end
-        end
+    local base = SettingsItem.New(label, "")
+    base.ItemType = SettingsItemType.ListItem
+    base.ListItems = items or {}
+    base._itemIndex = index or 1
+    base.OnListChanged = function(item, value, listItem)
     end
-    return self._enabled
-end
-
----Toggle the hovered state of the item.
----@param hover boolean
----@return boolean
-function SettingsListItem:Hovered(hover)
-    if hover ~= nil then
-        self._hovered = hover
+    base.OnListSelected = function(item, value, listItem)
     end
-    return self._hovered
-end
-
----Toggle the selected state of the item.
----@param selected boolean
----@return boolean
-function SettingsListItem:Selected(selected)
-    if selected ~= nil then
-        self._selected = selected
-    end
-    return self._selected
+    return setmetatable(base, SettingsListItem)
 end
 
 ---Set the index of the selected item.
@@ -8390,28 +8080,31 @@ end
 function SettingsListItem:ItemIndex(index)
     if index ~= nil then
         self._itemIndex = index
-        local tab = IndexOf(self.Parent.Parent.Base.Parent.Tabs, self.Parent.Parent) - 1
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:SetRightSettingsItemIndex(leftItem, rightIndex, index)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
         self.OnListChanged(self, self._itemIndex, tostring(self.ListItems[index]))
     end
     return self._itemIndex
 end
 
---///////////////////////////////////////////////////////////////////--
-SettingsProgressItem = setmetatable({}, SettingsProgressItem)
-SettingsProgressItem.__index = SettingsProgressItem
-SettingsProgressItem.__call = function()
-    return "SettingsItem", "SettingsItem"
+function SettingsListItem:CurrentItem()
+    return tostring(self.ListItems[self._itemIndex])
 end
 
+
+--///////////////////////////////////////////////////////////////////--
+SettingsProgressItem = {}
+SettingsProgressItem.__index = SettingsProgressItem
+setmetatable(SettingsProgressItem, { __index = SettingsItem })
+SettingsProgressItem.__call = function() return "SettingsProgressItem" end
+
 ---@class SettingsProgressItem
----@field public Base BasicTabItem
+---@field public Base PauseMenuItem
 ---@field public ItemType SettingsItemType
 ---@field public Label string
 ---@field public MaxValue number
----@field public Parent BasicTabItem
+---@field public Parent PauseMenuItem
 ---@field public OnBarChanged fun(item: SettingsProgressItem, value: number)
 ---@field public OnProgressSelected fun(item: SettingsProgressItem, value: number)
 
@@ -8427,61 +8120,16 @@ function SettingsProgressItem.New(label, max, startIndex, masked, barColor)
     if (masked) then
         _type = SettingsItemType.MaskedProgressBar
     end
-    local data = {
-        Base = BasicTabItem.New(label or ""),
-        ItemType = _type,
-        Label = label or "",
-        MaxValue = max,
-        _value = startIndex,
-        _coloredBarColor = barColor or SColor.HUD_Freemode,
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        Parent = nil,
-        OnBarChanged = function(item, value)
-        end,
-        OnProgressSelected = function(item, value)
-        end
-    }
-    return setmetatable(data, SettingsProgressItem)
-end
-
----Toggle the enabled state of the item.
----@param enabled boolean
----@return boolean
-function SettingsProgressItem:Enabled(enabled)
-    if enabled ~= nil then
-        self._enabled = enabled
-        if self.Parent ~= nil and self.Parent.Parent ~= nil and self.Parent.Parent.Base.Parent ~= nil and self.Parent.Parent.Base.Parent:Visible() then
-            if self.Parent:Selected() then
-                local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-                local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_RIGHT_ITEM", leftItem,
-                    rightIndex, self._enabled)
-            end
-        end
+    local base = SettingsItem.New(label,  "")
+    base.ItemType = _type
+    base.MaxValue = max
+    base._value = startIndex
+    base._coloredBarColor = barColor or SColor.HUD_Freemode
+    base.OnBarChanged = function(item, value)
     end
-    return self._enabled
-end
-
----Toggle the hovered state of the item.
----@param hover boolean
----@return boolean
-function SettingsProgressItem:Hovered(hover)
-    if hover ~= nil then
-        self._hovered = hover
+    base.OnProgressSelected = function(item, value)
     end
-    return self._hovered
-end
-
----Toggle the selected state of the item.
----@param selected boolean
----@return boolean
-function SettingsProgressItem:Selected(selected)
-    if selected ~= nil then
-        self._selected = selected
-    end
-    return self._selected
+    return setmetatable(base, SettingsProgressItem)
 end
 
 ---Set the value of the item.
@@ -8490,10 +8138,9 @@ end
 function SettingsProgressItem:Value(value)
     if value ~= nil then
         self._value = value
-        local tab = IndexOf(self.Parent.Parent.Base.Parent.Tabs, self.Parent.Parent) - 1
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:SetRightSettingsItemValue(leftItem, rightIndex, value)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
         self.OnBarChanged(self, value)
     end
     return self._value
@@ -8505,27 +8152,44 @@ end
 function SettingsProgressItem:ColoredBarColor(color)
     if color ~= nil then
         self._coloredBarColor = color
-        local tab = IndexOf(self.Parent.Parent.Base.Parent.Tabs, self.Parent.Parent) - 1
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:UpdateItemColoredBar(leftItem, rightIndex, color)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
     end
     return self._coloredBarColor
 end
 
+
 --///////////////////////////////////////////////////////////////////--
-SettingsSliderItem = setmetatable({}, SettingsSliderItem)
-SettingsSliderItem.__index = SettingsSliderItem
-SettingsSliderItem.__call = function()
-    return "SettingsItem", "SettingsItem"
+SettingsSeparatorItem = {}
+SettingsSeparatorItem.__index = SettingsSeparatorItem
+setmetatable(SettingsSeparatorItem, { __index = SettingsItem })
+SettingsSeparatorItem.__call = function() return "SettingsSeparatorItem" end
+
+function SettingsSeparatorItem.New(label)
+    local base = SettingsItem.New(label, "")
+    if label:IsNullOrEmpty() then
+        base.ItemType = SettingsItemType.Empty
+    else
+        base.ItemType = SettingsItemType.Separator
+    end
+    base.IsJumpable = false
+    return setmetatable(base, SettingsSeparatorItem)
 end
 
+
+--///////////////////////////////////////////////////////////////////--
+SettingsSliderItem = {}
+SettingsSliderItem.__index = SettingsSliderItem
+setmetatable(SettingsSliderItem, { __index = SettingsItem })
+SettingsSliderItem.__call = function() return "SettingsSliderItem" end
+
 ---@class SettingsSliderItem
----@field public Base BasicTabItem
+---@field public Base PauseMenuItem
 ---@field public ItemType SettingsItemType
 ---@field public Label string
 ---@field public MaxValue number
----@field public Parent BasicTabItem
+---@field public Parent PauseMenuItem
 ---@field public OnBarChanged fun(item: SettingsSliderItem, value: number)
 ---@field public OnSliderSelected fun(item: SettingsSliderItem, value: number)
 
@@ -8536,60 +8200,16 @@ end
 ---@param barColor SColor
 ---@return table
 function SettingsSliderItem.New(label, max, startIndex, barColor)
-    local data = {
-        Base = BasicTabItem.New(label or ""),
-        ItemType = SettingsItemType.SliderBar,
-        Label = label or "",
-        MaxValue = max,
-        _value = startIndex,
-        _coloredBarColor = barColor or SColor.HUD_Freemode,
-        Parent = nil,
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        OnBarChanged = function(item, value)
-        end,
-        OnSliderSelected = function(item, value)
-        end
-    }
-    return setmetatable(data, SettingsSliderItem)
-end
-
----Toggle the enabled state of the item.
----@param enabled boolean
----@return boolean
-function SettingsSliderItem:Enabled(enabled)
-    if enabled ~= nil then
-        self._enabled = enabled
-        if self.Parent ~= nil and self.Parent.Parent ~= nil and self.Parent.Parent.Base.Parent ~= nil and self.Parent.Parent.Base.Parent:Visible() then
-            if self.Parent:Selected() then
-                local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-                local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_RIGHT_ITEM", leftItem, rightIndex, self._enabled)
-            end
-        end
+    local base = SettingsItem.New(label, "")
+    base.ItemType = SettingsItemType.SliderBar
+    base.MaxValue = max
+    base._value = startIndex
+    base._coloredBarColor = barColor or SColor.HUD_Freemode
+    base.OnBarChanged = function(item, value)
     end
-    return self._enabled
-end
-
----Toggle the hovered state of the item.
----@param hover boolean
----@return boolean
-function SettingsSliderItem:Hovered(hover)
-    if hover ~= nil then
-        self._hovered = hover
+    base.OnSliderSelected = function(item, value)
     end
-    return self._hovered
-end
-
----Toggle the selected state of the item.
----@param selected boolean
----@return boolean
-function SettingsSliderItem:Selected(selected)
-    if selected ~= nil then
-        self._selected = selected
-    end
-    return self._selected
+    return setmetatable(base, SettingsSliderItem)
 end
 
 ---Set the value of the item.
@@ -8598,9 +8218,9 @@ end
 function SettingsSliderItem:Value(value)
     if value ~= nil then
         self._value = value
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:SetRightSettingsItemValue(leftItem, rightIndex, value)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
         self.OnBarChanged(self, value)
     end
     return self._value
@@ -8612,25 +8232,27 @@ end
 function SettingsSliderItem:ColoredBarColor(color)
     if color ~= nil then
         self._coloredBarColor = color
-        local leftItem = IndexOf(self.Parent.Parent.LeftItemList, self.Parent) - 1
-        local rightIndex = IndexOf(self.Parent.ItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu:UpdateItemColoredBar(leftItem, rightIndex, color)
+        if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+            self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+        end
     end
     return self._coloredBarColor
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-StatsTabItem = setmetatable({}, StatsTabItem)
+StatsTabItem = {}
 StatsTabItem.__index = StatsTabItem
-StatsTabItem.__call = function()
-    return "BasicTabItem", "StatsTabItem"
-end
+setmetatable(StatsTabItem, { __index = PauseMenuItem })
+StatsTabItem.__call = function() return "StatsTabItem" end
+
 
 ---@class StatsTabItem
----@field public Base BasicTabItem
+---@field public Base PauseMenuItem
 ---@field public Type StatItemType
 ---@field public Label string
----@field public Parent BasicTabItem
+---@field public Parent PauseMenuItem
 ---@field public OnBarChanged fun(item: StatsTabItem, value: number)
 ---@field public OnSliderSelected fun(item: StatsTabItem, value: number)
 
@@ -8639,15 +8261,11 @@ end
 ---@param rightLabel string?
 ---@return table
 function StatsTabItem.NewBasic(label, rightLabel)
-    local data = {
-        Base = BasicTabItem.New(label or ""),
-        Type = StatItemType.Basic,
-        Label = label or "",
-        _rightLabel = rightLabel or "",
-        LabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        RightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
-    }
-    return setmetatable(data, StatsTabItem)
+    local base = PauseMenuItem.New(label, ScaleformFonts.CHALET_LONDON_NINETEENSIXTY)
+    base.Type = StatItemType.Basic
+    base._rightLabel = rightLabel or ""
+    base.RightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
+    return setmetatable(base, StatsTabItem)
 end
 
 ---Adds a new bar to the StatsTabItem.
@@ -8656,15 +8274,11 @@ end
 ---@param color SColor?
 ---@return table
 function StatsTabItem.NewBar(label, value, color)
-    local data = {
-        Base = BasicTabItem.New(label or ""),
-        Type = StatItemType.ColoredBar,
-        Label = label or "",
-        _value = value,
-        _coloredBarColor = color or SColor.HUD_Freemode,
-        LabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
-    }
-    return setmetatable(data, StatsTabItem)
+    local base = PauseMenuItem.New(label, ScaleformFonts.CHALET_LONDON_NINETEENSIXTY)
+    base.Type = StatItemType.ColoredBar
+    base._value = value
+    base._coloredBarColor = color or SColor.HUD_Freemode
+    return setmetatable(base, StatsTabItem)
 end
 
 ---Sets the right label of the item.
@@ -8674,20 +8288,15 @@ function StatsTabItem:RightLabel(label)
     if self.Type == StatItemType.Basic then
         if label ~= nil then
             self._rightLabel = label
-            local leftItem = IndexOf(self.Base.Parent.Parent.LeftItemList, self.Base.Parent) - 1
-            local rightIndex = IndexOf(self.Base.Parent.ItemList, self) - 1
-            self.Base.Parent.Parent.Parent._pause:UpdateStatsItemBasic(leftItem, rightIndex, self.Label,
-                self._rightLabel)
+            if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+                self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+            end
         else
             return self._rightLabel
         end
     else
-        local _type = ""
-        for k, v in pairs(StatItemType) do
-            if v == self.Type then _type = tostring(k) end
-        end
-        print("SCALEFORMUI - WARNING: RightLabel function can only be called by Basic items.. your item is of type: "..
-            _type)
+        print("SCALEFORMUI - WARNING: RightLabel function can only be called by Basic items.. your item is of type: " ..
+        _type)
     end
     return self._rightLabel
 end
@@ -8699,20 +8308,16 @@ function StatsTabItem:Value(value)
     if self.Type == StatItemType.ColoredBar then
         if value ~= nil then
             self._value = value
-            local leftItem = IndexOf(self.Base.Parent.Parent.LeftItemList, self.Base.Parent) - 1
-            local rightIndex = IndexOf(self.Base.Parent.ItemList, self) - 1
-            self.Base.Parent.Parent.Parent._pause:UpdateStatsItemBar(leftItem, rightIndex, self._value)
+            if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+                self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+            end
             self.OnBarChanged(self, value)
         else
             return self._value
         end
     else
-        local _type = ""
-        for k, v in pairs(StatItemType) do
-            if v == self.Type then _type = tostring(k) end
-        end
-        print("SCALEFORMUI - WARNING: Value function can only be called by colored bar items.. your item is of type: "..
-            _type)
+        print("SCALEFORMUI - WARNING: Value function can only be called by colored bar items.. your item is of type: " ..
+        _type)
     end
     return self._value
 end
@@ -8724,42 +8329,198 @@ function StatsTabItem:ColoredBarColor(color)
     if self.Type == StatItemType.ColoredBar then
         if color ~= nil then
             self._coloredBarColor = color
-            local leftItem = IndexOf(self.Base.Parent.Parent.LeftItemList, self.Base.Parent) - 1
-            local rightIndex = IndexOf(self.Base.Parent.ItemList, self) - 1
-            self.Base.Parent.Parent.Parent._pause:UpdateStatsItemBar(leftItem, rightIndex, color)
+            if self.ParentColumn ~= nil and self.ParentColumn:visible() then
+                self.ParentColumn:UpdateSlot(IndexOf(self.ParentColumn.Items, self))
+            end
         else
             return self._coloredBarColor
         end
     else
-        local _type = ""
-        for k, v in pairs(StatItemType) do
-            if v == self.Type then _type = tostring(k) end
-        end
         print(
-            "SCALEFORMUI - WARNING: ColoredBarColor function can only be called by colored bar items.. your item is of type: "..
-            _type)
+        "SCALEFORMUI - WARNING: ColoredBarColor function can only be called by colored bar items.. your item is of type: " ..
+        _type)
     end
     return self._coloredBarColor
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
----@class StatItemType
+TabLeftItem = {}
+TabLeftItem.__index = TabLeftItem
+setmetatable(TabLeftItem, { __index = PauseMenuItem })
+TabLeftItem.__call = function()
+    return "TabLeftItem"
+end
+
+---@class TabLeftItem
+---@field public ItemType number
+---@field public Focused boolean
+---@field public MainColor SColor
+---@field public HighlightColor SColor
+---@field public Highlighted boolean
+---@field public ItemIndex number
+---@field public ItemList table<SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem>
+---@field public RightTitle string
+---@field private _enabled boolean
+---@field private _hovered boolean
+---@field private _selected boolean
+---@field public KeymapRightLabel_1 string
+---@field public KeymapRightLabel_2 string
+---@field public Index number
+---@field public AddItem fun(self:TabLeftItem, item:SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|PauseMenuItem)
+---@field public Enabled fun(self:TabLeftItem, enabled:boolean):boolean
+---@field public Hovered fun(self:TabLeftItem, hover:boolean):boolean
+---@field public Selected fun(self:TabLeftItem, selected:boolean):boolean
+---@field public OnIndexChanged fun(item:TabLeftItem, index:number)
+---@field public OnActivated fun(item:TabLeftItem, index:number)
+
+function TabLeftItem.New(label, _type, mainColor, highlightColor, labelFont)
+    local base = PauseMenuItem.New(label, labelFont)
+    base.ItemType = _type
+    base.Focused = false
+    base.MainColor = mainColor or SColor.HUD_Pause_bg
+    base.HighlightColor = highlightColor or SColor.HUD_White
+    base.Highlighted = false
+    base.ItemList = {} --[[@type table<SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|PauseMenuItem>]]
+    base._enabled = true
+    base._hovered = false
+    base._formatLeftLabel = __formatLeftLabel or ""
+    base.KeymapRightLabel_1 = ""
+    base.KeymapRightLabel_2 = ""
+    base.TextureDict = ""
+    base.TextureName = ""
+    base.TextTitle = ""
+    base.LeftItemBGType = 0
+    base.OnActivated = function(item, index)
+    end
+    return setmetatable(base, TabLeftItem)
+end
+
+---Add item to the tab list
+---@param item SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|PauseMenuItem
+function TabLeftItem:AddItem(item)
+    item.ParentLeftItem = self
+    item.ParentTab = self.ParentTab
+    self.ItemList[#self.ItemList + 1] = item
+end
+
+function TabLeftItem:Label(label)
+    if label ~= nil then
+        self.label = label
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self.label
+    end
+end
+
+function TabLeftItem:Enabled(enabled)
+    if enabled ~= nil then
+        self._enabled = enabled
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self._enabled
+    end
+end
+
+function TabLeftItem:Hovered(hover)
+    if hover ~= nil then
+        self._hovered = hover
+    else
+        return self._hovered
+    end
+end
+
+function TabLeftItem:Selected(selected)
+    if selected ~= nil then
+        self._selected = selected
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self._selected
+    end
+end
+
+function TabLeftItem:RightTitle(rtit)
+    if rtit ~= nil then
+        self.TextTitle = rtit
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self.TextTitle
+    end
+end
+
+function TabLeftItem:KeymapRightLabel_1(rtit)
+    if rtit ~= nil then
+        self.KeymapRightLabel_1 = rtit
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self.KeymapRightLabel_1
+    end
+end
+
+function TabLeftItem:KeymapRightLabel_2(rtit)
+    if rtit ~= nil then
+        self.KeymapRightLabel_2 = rtit
+        if self.ParentTab ~= nil and self.ParentTab.Visible then
+            local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+            self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+        end
+    else
+        return self.KeymapRightLabel_2
+    end
+end
+
+-- legacy and not supported anymore
+-- function TabLeftItem:UpdateBackground(txd, txn, resizeType)
+--     self.TextureDict = txd
+--     self.TextureName = txn
+--     self.LeftItemBGType = resizeType
+--     if self.ParentTab ~= nil and self.ParentTab.Visible then
+--         local leftItem = IndexOf(self.ParentTab.LeftColumn.Items, self)
+--         self.ParentTab.LeftColumn:UpdateSlot(leftItem)
+--     end
+-- end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+---@enum StatItemType
 StatItemType = {
     Basic = 0,
     ColoredBar = 1,
 }
 
----@class SettingsItemType
+---@enum SettingsItemType
 SettingsItemType = {
     Basic = 0,
     ListItem = 1,
     ProgressBar = 2,
-    MaskedProgressBar = 3,
-    CheckBox = 4,
-    SliderBar = 5
+    CheckBox = 3,
+    MaskedProgressBar = 4,
+    BlipType = 5,
+    Separator = 6,
+    SliderBar = 7,
+    Empty = 8,
+    Basic_tabbed = 10,
+    Progress_tabbed = 20
 }
 
----@class LeftItemType
+---@enum LeftItemType
 LeftItemType = {
     Empty = 0,
     Info = 1,
@@ -8768,13 +8529,28 @@ LeftItemType = {
     Keymap = 4
 }
 
+---@enum ScrollType
+ScrollType = {
+    ALL = 0,
+    UP_DOWN = 1,
+    LEFT_RIGHT = 2,
+    NONE = 3,
+}
+
+---@enum ScrollArrowsPosition
+ScrollArrowsPosition = {
+    LEFT = 0,
+    CENTER = 1,
+    RIGHT = 2,
+}
+
 
 
 --///////////////////////////////////////////////////////////////////--
 BaseTab = setmetatable({}, BaseTab)
 BaseTab.__index = BaseTab
 BaseTab.__call = function()
-    return "BaseTab", "BaseTab"
+    return "BaseTab"
 end
 
 ---@class BaseTab
@@ -8784,40 +8560,88 @@ end
 ---@field public Focused boolean
 ---@field public Active boolean
 ---@field public Parent BaseTab
----@field public LeftItemList BasicTabItem[]
+---@field public LeftItemList PauseMenuItem[]
 ---@field public Activated fun(item: BaseTab)
+---@field public _identifier string
+---@field public LeftColumn PM_Column 
+---@field public CenterColumn PM_Column 
+---@field public RightColumn PM_Column 
+---@field public CurrentColumnIndex integer
+
 
 ---Creates a new BaseTab.
 ---@param title string
----@param type number
 ---@param color SColor
 ---@return BaseTab
-function BaseTab.New(title, type, color)
+function BaseTab.New(title, color)
     local data = {
         Title = title or "",
         Type = type or 0,
         Visible = false,
         Focused = false,
         Active = false,
-        _color = color or SColor.HUD_Freemode,
+        TabColor = color or SColor.HUD_Freemode,
         Parent = nil,
-        LeftItemList = {},
+        _identifier = "",
+        LeftColumn = nil,
+        CenterColumn = nil,
+        RightColumn = nil,
+        Minimap = nil,
+        CurrentColumnIndex = 0,
         Activated = function(item)
         end
     }
     return setmetatable(data, BaseTab)
 end
 
---///////////////////////////////////////////////////////////////////--
-GalleryTab = setmetatable({}, GalleryTab)
-GalleryTab.__index = GalleryTab
-GalleryTab.__call = function()
-    return "BaseTab", "GalleryTab"
+function BaseTab:Populate() end
+function BaseTab:Refresh(highlightOldIndex) end
+function BaseTab:ShowColumns() end
+function BaseTab:SetDataSlot(slot, index) end
+function BaseTab:UpdateSlot(slot, index) end
+function BaseTab:AddSlot(slot, index) end
+function BaseTab:Focus() self.Focused = true end
+function BaseTab:UnFocus() self.Focused = false end
+function BaseTab:GoUp() end
+function BaseTab:GoDown() end
+function BaseTab:GoLeft() end
+function BaseTab:GoRight() end
+function BaseTab:Select() end
+function BaseTab:GoBack() end
+function BaseTab:Selected() end
+function BaseTab:MouseEvent(eventType, context, index) end
+function BaseTab:StateChange(state) end
+
+function BaseTab:CurrentColumn()
+    if self.CurrentColumnIndex == 0 then
+        return self.LeftColumn
+    elseif self.CurrentColumnIndex == 1 then
+        return self.CenterColumn
+    elseif self.CurrentColumnIndex == 2 then
+        return self.RightColumn
+    end
 end
+
+function BaseTab:GetColumnAtPosition(pos)
+    if pos == 0 then
+        return self.LeftColumn
+    elseif pos == 1 then
+        return self.CenterColumn
+    elseif pos == 2 then
+        return self.RightColumn
+    end
+end
+
+
+--///////////////////////////////////////////////////////////////////--
+GalleryTab = {}
+GalleryTab.__index = GalleryTab
+setmetatable(GalleryTab, { __index = BaseTab })
+GalleryTab.__call = function() return "GalleryTab" end
 
 ---@class GalleryTab
 ---@field public Base BaseTab
----@field public LeftItemList BasicTabItem[]
+---@field public LeftItemList PauseMenuItem[]
 ---@field public Label string
 ---@field public TextTitle string
 ---@field public SettingsColumn SettingsListColumn
@@ -8847,155 +8671,267 @@ end
 ---@param newStyle boolean
 ---@return GalleryTab
 function GalleryTab.New(name, color)
-    local data = {
-        Base = BaseTab.New(name or "", 3, color),
-        LeftItemList = {},
-        Label = name or "",
-        TextTitle = "",
-        GalleryItems = {},
-        Minimap = nil,
-        Index = 0,
-        Focused = false,
-        _focus = 0,
-        Visible = false,
-        txd = "",
-        txn = "",
-        maxItemsPerPage = 12,
-        titleLabel = "",
-        dateLabel = "",
-        locationLabel = "",
-        trackLabel = "",
-        labelsVisible = "",
-        state = 0,
-        bigPic = false,
-        CurPage = 1,
-        currentSelection = 1,
-        currentIndex = 1,
-        OnFocusChanged = function(focus)
-        end,
-        OnGalleryModeChanged = function(tab, item, bigPicture)
-        end,
-        OnGalleryIndexChanged = function(tab, item, totalIndex, gridIndex)
-        end,
-        OnGalleryItemSelected = function(tab, item, totalIndex, gridIndex)
+    local base = BaseTab.New(name, color)
+    base._identifier = "Page_Gallery"
+    base.LeftColumn = GalleryColumn.New()
+    base.bigPic = false
+    base.OnFocusChanged = function(focus)
+    end
+    base.OnGalleryModeChanged = function(tab, item, bigPicture)
+    end
+    base.OnGalleryIndexChanged = function(tab, item, totalIndex, gridIndex)
+    end
+    base.OnGalleryItemSelected = function(tab, item, totalIndex, gridIndex)
+    end
+local meta = setmetatable(base, GalleryTab)
+    meta.LeftColumn.Parent = meta
+    meta.Minimap = MinimapPanel.New(meta)
+    return meta
+end
+
+function GalleryTab:Populate()
+    self.LeftColumn:Index(1)
+    self.LeftColumn.currentPageIndex = 1
+    self.LeftColumn:Populate()
+end
+
+function GalleryTab:GoUp()
+    if not self.Focused then return end
+    self.LeftColumn:GoUp()
+    self.LeftColumn:UpdatePage()
+    local it = self.LeftColumn.Items[self.LeftColumn.currentPageIndex]
+    if self.bigPic then
+        self:SetTitle(it.TextureDictionary, it.TextureName, 4)
+    end
+
+    if it.Blip ~= nil then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", false)
+        self.Minimap:Enabled(true)
+        self.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+    elseif not it.RightPanelDescription:IsNullOrEmpty() then
+        self.Minimap:Enabled(false)
+        local labels = it.RightPanelDescription:SplitLabel()
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE");
+        ScaleformMovieMethodAddParamInt(self.LeftColumn.position);
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+        for i=1, #labels, 1 do
+            AddTextComponentScaleform(labels[i]);
         end
-    }
-    return setmetatable(data, GalleryTab)
-end
-
----Returns the max pages available.
----@return number
-function GalleryTab:MaxPages()
-    return math.ceil(#self.GalleryItems / 12)
-end
-
-function GalleryTab:shouldNavigateToNewPage(index)
-    if #self.GalleryItems <= 12 or self:MaxPages() <= 1 then
-        return false
-    end
-
-    return (self.currentSelection == 1 and index == 1) or (self.currentSelection == 5 and index == 5) or (self.currentSelection == 9 and index == 9) or
-        (self.currentSelection == 4 and index == 4) or (self.currentSelection == 8 and index == 8) or (self.currentSelection == 12 and index == 12)
-end
-
-function GalleryTab:isItemVisible(index)
-    local initial = (self.CurPage - 1) * self.maxItemsPerPage + 1
-    return index > initial and index < initial + 11
-end
-
-function GalleryTab:gridIndexFromItemIndex(index)
-    return index % 12
-end
-
-function GalleryTab:setTitle(txd, txn, state)
-    self.txd = txd
-    self.txn = txn
-    self.state = state
-    if self.Base.Parent ~= nil and self.Base.Parent:Visible() and self.Visible then
-        self.bigPic = not (state == 0)
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_TITLE", txd, txn, state)
+        EndTextCommandScaleformString_2();
+        ScaleformMovieMethodAddParamBool(true);
+        EndScaleformMovieMethod();
+    else
+        self.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
     end
 end
 
----Sets the title labels for all the items.
----@param maxItems number
----@param title string
----@param date string
----@param location string
----@param track string
----@param visible boolean
-function GalleryTab:SetDescriptionLabels(maxItems, title, date, location, track, visible)
-    self.maxItemsPerPage = maxItems
-    self.titleLabel = title
-    self.dateLabel = date
-    self.locationLabel = location
-    self.trackLabel = track
-    self.labelsVisible = visible
-    if self.Base.Parent ~= nil and self.Base.Parent:Visible() and self.Visible then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_DESCRIPTION_LABELS", maxItems, title, date, location, track, visible)
+function GalleryTab:GoDown()
+    if not self.Focused then return end
+    self.LeftColumn:GoDown()
+    self.LeftColumn:UpdatePage()
+    local it = self.LeftColumn.Items[self.LeftColumn.currentPageIndex]
+    if self.bigPic then
+        self:SetTitle(it.TextureDictionary, it.TextureName, 4)
+    end
+
+    if it.Blip ~= nil then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", false)
+        self.Minimap:Enabled(true)
+        self.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+    elseif not it.RightPanelDescription:IsNullOrEmpty() then
+        self.Minimap:Enabled(false)
+        local labels = it.RightPanelDescription:SplitLabel()
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE");
+        ScaleformMovieMethodAddParamInt(self.LeftColumn.position);
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+        for i=1, #labels, 1 do
+            AddTextComponentScaleform(labels[i]);
+        end
+        EndTextCommandScaleformString_2();
+        ScaleformMovieMethodAddParamBool(true);
+        EndScaleformMovieMethod();
+    else
+        self.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
     end
 end
 
----Adds a GalleryItem to the gallery.
----@param item GalleryItem
+function GalleryTab:GoLeft()
+    if not self.Focused then return end
+    self.LeftColumn:GoLeft()
+    self.LeftColumn:UpdatePage()
+    local it = self.LeftColumn.Items[self.LeftColumn.currentPageIndex]
+    if self.bigPic then
+        self:SetTitle(it.TextureDictionary, it.TextureName, 4)
+    end
+
+    if it.Blip ~= nil then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", false)
+        self.Minimap:Enabled(true)
+        self.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+    elseif not it.RightPanelDescription:IsNullOrEmpty() then
+        self.Minimap:Enabled(false)
+        local labels = it.RightPanelDescription:SplitLabel()
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE");
+        ScaleformMovieMethodAddParamInt(self.LeftColumn.position);
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+        for i=1, #labels, 1 do
+            AddTextComponentScaleform(labels[i]);
+        end
+        EndTextCommandScaleformString_2();
+        ScaleformMovieMethodAddParamBool(true);
+        EndScaleformMovieMethod();
+    else
+        self.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
+    end
+end
+
+function GalleryTab:GoRight()
+    if not self.Focused then return end
+    self.LeftColumn:GoRight()
+    self.LeftColumn:UpdatePage()
+    local it = self.LeftColumn.Items[self.LeftColumn.currentPageIndex]
+    if self.bigPic then
+        self:SetTitle(it.TextureDictionary, it.TextureName, 4)
+    end
+
+    if it.Blip ~= nil then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", false)
+        self.Minimap:Enabled(true)
+        self.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+    elseif not it.RightPanelDescription:IsNullOrEmpty() then
+        self.Minimap:Enabled(false)
+        local labels = it.RightPanelDescription:SplitLabel()
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE");
+        ScaleformMovieMethodAddParamInt(self.LeftColumn.position);
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+        for i=1, #labels, 1 do
+            AddTextComponentScaleform(labels[i]);
+        end
+        EndTextCommandScaleformString_2();
+        ScaleformMovieMethodAddParamBool(true);
+        EndScaleformMovieMethod();
+    else
+        self.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
+    end
+end
+
+function GalleryTab:Select()
+    if not self.Focused then return end
+    self.CurrentColumnIndex = 1
+    self.LeftColumn:Select()
+end
+
+function GalleryTab:GoBack()
+    if not self.Focused then return end
+    self.LeftColumn:GoBack()
+    self.CurrentColumnIndex = 0
+end
+
+function GalleryTab:ShowColumns()
+    self.LeftColumn:ShowColumn()
+end
+
+function GalleryTab:Focus()
+    BaseTab.Focus(self)
+    self.LeftColumn:UpdatePage()
+    local it = self.LeftColumn.Items[self.LeftColumn:Index()]
+    if it.Blip ~= nil then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", false)
+        self.Minimap:Enabled(true)
+        self.Minimap:RefreshMapPosition(vector2(it.Blip.Position.x, it.Blip.Position.y))
+    elseif not it.RightPanelDescription:IsNullOrEmpty() then
+        self.Minimap:Enabled(false)
+        local labels = it.RightPanelDescription:SplitLabel()
+        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_COLUMN_STATE");
+        ScaleformMovieMethodAddParamInt(self.LeftColumn.position);
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON");
+        for i=1, #labels, 1 do
+            AddTextComponentScaleform(labels[i]);
+        end
+        EndTextCommandScaleformString_2();
+        ScaleformMovieMethodAddParamBool(true);
+        EndScaleformMovieMethod();
+    else
+        self.Minimap:Enabled(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
+    end
+end
+
+function GalleryTab:UnFocus()
+    BaseTab.UnFocus(self)
+    self.Minimap:Enabled(false)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", self.LeftColumn.position, "", true)
+end
+
+function GalleryTab:SetTitle(txd, txn, state)
+    self.LeftColumn:SetTitle(txd, txn, state)
+end
+
+function GalleryTab:SetDescriptionLabels(title, date, location, track, visible)
+    self.LeftColumn.titleLabel = title;
+    self.LeftColumn.dateLabel = date;
+    self.LeftColumn.locationLabel = location;
+    self.LeftColumn.trackLabel = track;
+    self.LeftColumn.labelsVisible = visible;
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DESCRIPTION", self.LeftColumn.position, title, date, location, track, visible)
+end
+
 function GalleryTab:AddItem(item)
-    item.Parent = self
-    table.insert(self.GalleryItems, item)
+    self.LeftColumn:AddItem(item)
     if item.Blip ~= nil then
         table.insert(self.Minimap.MinimapBlips, item.Blip)
     end
-    if self.Base.Parent ~= nil and self.Base.Parent:Visible() and self.Visible then
-        if #self.GalleryItems < 12 then
-            local idx = IndexOf(self.GalleryItem, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_GALLERY_ITEM", idx, idx, 33, 0, 0, 1, "", item.TextureDictionary, item.TextureName, "", 1, false, item.Label1, item.Label2, item.Label3, item.Label4)
+    if self.Parent ~= nil and self.Parent:Visible() and self.Visible then
+        if #self.LeftColumn.Items < 12 then
+            self.LeftColumn:Populate()
         end
     end
 end
 
----Gets the current grid selection (1 -> 12)
----@return number | nil
-function GalleryTab:CurrentSelection(index)
-    if index == nil then
-        return self.currentSelection
-    else
-        self.currentSelection = index
+function GalleryTab:MouseEvent(eventType, context, index)
+    if not self.Focused then return end
+    if eventType == 5 then
+        if index + 1 ~= self.LeftColumn:Index() then
+            self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(false)
+            self.LeftColumn:Index(index)
+            self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(true)
+            return
+        end
+        self.LeftColumn:Select()
+        self.CurrentColumnIndex = 1
+    elseif eventType == 10 or eventType == 11 then
+        local dir = -1
+        if eventType == 11 then
+            dir = 1
+        end
+        self.LeftColumn:MouseScroll(dir)
     end
 end
 
-function GalleryTab:updateHighLight()
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_HIGHLIGHT", self.currentSelection - 1, true)
-end
-
-function GalleryTab:updatePage()
-    if not self.bigPic then
-        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_SCROLL_LABEL")
-        ScaleformMovieMethodAddParamInt(0)
-        ScaleformMovieMethodAddParamInt(0)
-        ScaleformMovieMethodAddParamInt(0)
-        BeginTextCommandScaleformString("GAL_NUM_PAGES")
-        AddTextComponentInteger(self.CurPage)
-        AddTextComponentInteger(self:MaxPages())
-        EndTextCommandScaleformString()
-        EndScaleformMovieMethod()
-    else
-        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_SCROLL_LABEL")
-        ScaleformMovieMethodAddParamInt(self.currentIndex - 1)
-        ScaleformMovieMethodAddParamInt(#self.GalleryItems)
-        ScaleformMovieMethodAddParamInt(self.maxItemsPerPage)
-        EndScaleformMovieMethod()
-    end
-end
 
 --///////////////////////////////////////////////////////////////////--
-PlayerListTab = setmetatable({}, PlayerListTab)
+PlayerListTab = {}
 PlayerListTab.__index = PlayerListTab
-PlayerListTab.__call = function()
-    return "BaseTab", "PlayerListTab"
-end
+setmetatable(PlayerListTab, { __index = BaseTab })
+PlayerListTab.__call = function() return "PlayerListTab" end
+
+---@enum PLT_COLUMNS
+PLT_COLUMNS =
+{
+    SETTINGS = 0,
+    PLAYERS = 1,
+    MISSION = 2,
+    STORE = 3,
+    MISSION_DETAILS = 4,
+}
 
 ---@class PlayerListTab
 ---@field public Base BaseTab
----@field public LeftItemList BasicTabItem[]
+---@field public LeftItemList PauseMenuItem[]
 ---@field public Label string
 ---@field public TextTitle string
 ---@field public SettingsColumn SettingsListColumn
@@ -9008,358 +8944,637 @@ end
 ---Creates a new PlayerListTab.
 ---@param name string
 ---@param color SColor
----@param newStyle boolean
 ---@return PlayerListTab
-function PlayerListTab.New(name, color, newStyle)
-    if newStyle == nil then newStyle = true end
-    local data = {
-        Base = BaseTab.New(name or "", 2, color),
-        LeftItemList = {},
-        Label = name or "",
-        TextTitle = "",
-        listCol = {},
-        _newStyle = newStyle,
-        SettingsColumn = nil,
-        PlayersColumn = nil,
-        MissionsColumn = nil,
-        StoreColumn = nil,
-        MissionPanel = nil,
-        Minimap = nil,
-        Index = 0,
-        Focused = false,
-        _focus = 0,
-        Visible = false,
-        OnFocusChanged = function(focus)
-        end
-    }
-    return setmetatable(data, PlayerListTab)
+function PlayerListTab.New(name, color)
+    local base = BaseTab.New(name, color)
+    base._identifier = "Page_Multi"
+    base.OnFocusChanged = function(focus)
+    end
+    base.order = { 0, 0, 0 }
+    local meta = setmetatable(base, PlayerListTab)
+    meta.Minimap = MinimapPanel.New(meta)
+    meta.Minimap.HidePedBlip = true
+    return meta
 end
 
----@param columns table
-function PlayerListTab:SetUpColumns(columns)
-    assert(#columns <= 3, "You must have 3 columns!")
-    assert(not (#columns == 3 and columns[3].Type == "players"), "For panel designs reasons, you can't have Players list in 3rd column!")
-    for k, v in pairs(columns) do
-        if self.Base.Parent ~= nil then
-            v.Parent = self.Base.Parent
-        end
-
-        v.ParentTab = self
-        v.Order = k
-
-        if v.Type == "settings" then
-            self.SettingsColumn = v
-        elseif v.Type == "players" then
-            self.PlayersColumn = v
-        elseif v.Type == "missions" then
-            self.MissionsColumn = v
-        elseif v.Type == "store" then
-            self.StoreColumn = v
-        elseif v.Type == "panel" then
-            self.MissionPanel = v
-        end
-    end
-    self.listCol = columns
+function PlayerListTab:SetupLeftColumn(column)
+    column.position = 0
+    self.LeftColumn = column
+    self.LeftColumn.Parent = self
+    self.order[1] = column.type
 end
 
-function PlayerListTab:SelectColumn(column)
-    local val = 0
-    if type(column) == "table" then
-        val = column.Order
-    elseif type(column) == "number" then
-        val = column
-    end
-    if val > #self.listCol then
-        val = 1
-    elseif val < 1 then
-        val = #self.listCol
-    end
-    self:updateFocus(val)
+function PlayerListTab:SetupCenterColumn(column)
+    column.position = 1
+    self.CenterColumn = column
+    self.CenterColumn.Parent = self
+    self.order[2] = column.type
 end
 
-function PlayerListTab:updateFocus(_f, isMouse)
-    if isMouse == nil then isMouse = false end
-    local goingLeft = _f < self._focus
-    local val = _f
+function PlayerListTab:SetupRightColumn(column)
+    column.position = 2
+    self.RightColumn = column
+    self.RightColumn.Parent = self
+    self.order[3] = column.type
+end
 
-    if val > #self.listCol then
-        val = 1
-    elseif val < 1 then
-        val = #self.listCol
-    end
+function PlayerListTab:SelectColumn(index)
+    self:SwitchColumn(index - 1)
+end
 
-    if self.listCol[val].Type ~= "players" then
-        if (self.PlayersColumn ~= nil and #self.PlayersColumn.Items > 0) and not self.PlayersColumn.Items[self.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-            ClearPedInPauseMenu()
-        end
-    end
-
-    self._focus = val
-    if self.listCol[self._focus].Type == "panel" then
-        if goingLeft then
-            self:updateFocus(self._focus - 1)
-        else
-            self:updateFocus(self._focus + 1)
+function PlayerListTab:SwitchColumn(index)
+    if index > 2 or self.order[index + 1] == PLT_COLUMNS.MISSION_DETAILS then return end
+    local canHideShow = true
+    local col = self:GetColumnAtPosition(index)
+    if col == nil then
+        if index < 2 then
+            if index < self.CurrentColumnIndex then
+                self:SwitchColumn(index - 1)
+            else
+                self:SwitchColumn(index + 1)
+            end
         end
         return
     end
 
-    if self.Base.Parent ~= nil and self.Base.Parent:Visible() and self.Visible then
-        local idx = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_PLAYERS_TAB_FOCUS", self._focus - 1)
-        if not isMouse then
-            local _id = self.listCol[self._focus].Pagination:GetMenuIndexFromScaleformIndex(idx)
-            self.listCol[self._focus]:CurrentSelection(_id)
-            if not goingLeft or self._newStyle then
-                self.listCol[self._focus].OnIndexChanged(_id)
+
+    -- we don't check for right column because
+    -- if right column is players then it means there's no player panel to be shown
+    if self.LeftColumn.type == PLT_COLUMNS.PLAYERS then
+        if self.LeftColumn:CurrentItem():KeepPanelVisible() then
+            canHideShow = false
+        end
+    elseif self.CenterColumn.type == PLT_COLUMNS.PLAYERS then
+        if self.CenterColumn:CurrentItem():KeepPanelVisible() then
+            canHideShow = false
+        end
+    end
+
+    if canHideShow then
+        if self.Parent ~= nil and self.Parent:Visible() then
+            if col.type == PLT_COLUMNS.PLAYERS then
+                if col:CurrentItem().Panel ~= nil then
+                    self.RightColumn:ColumnVisible(false)
+                end
+            else
+                -- we check that the columns before and after selected index are players columns
+                -- and that its current item has KeepPanelVisible true.. 
+                -- if KeepPanelVisible is true, we keep hidden the right column, else we show it.
+                local show = true
+                local befCol = self:GetColumnAtPosition(index - 1)
+                local afterCol = self:GetColumnAtPosition(index + 1)
+                if befCol ~= nil and befCol.type == PLT_COLUMNS.PLAYERS and not befCol:CurrentItem():KeepPanelVisible() then
+                    befCol:CurrentItem():Dispose()
+                    show = false
+                end
+                if afterCol ~= nil and afterCol.type == PLT_COLUMNS.PLAYERS and not afterCol:CurrentItem():KeepPanelVisible() then
+                    afterCol:CurrentItem():Dispose()
+                    show = false
+                end
+                if self.RightColumn ~= nil then
+                    self.RightColumn:ColumnVisible(not show)
+                end
+            end
+        end
+    else
+        if self.RightColumn ~= nil then
+            self.RightColumn:ColumnVisible(true)
+        end
+    end
+
+    if index == 2 and not canHideShow then return end
+    self.CurrentColumnIndex = index
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", self.CurrentColumnIndex + 1)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_SHIFT_DEPTH", 0, true, true)
+    self.Parent.focusLevel = self.CurrentColumnIndex + 1
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", col.position, col.index - 1, true, true)
+    col.Items[col.index]:Selected(true)
+end
+
+function PlayerListTab:StateChange()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_STATE", Join("", self.order))
+end
+
+function PlayerListTab:GoUp()
+    if not self.Focused then return end
+    local col = self:CurrentColumn()
+    Citizen.CreateThread(function()
+        col:GoUp()
+    end)
+    col:SetColumnScroll(col.index, #col.Items, col.VisibleItems, "", #col.Items < col.VisibleItems)
+end
+
+function PlayerListTab:GoDown()
+    if not self.Focused then return end
+    local col = self:CurrentColumn()
+    Citizen.CreateThread(function()
+        col:GoDown()
+    end)
+    col:SetColumnScroll(col.index, #col.Items, col.VisibleItems, "", #col.Items < col.VisibleItems)
+end
+
+function PlayerListTab:GoLeft()
+    if not self.Focused then return end
+    self:CurrentColumn():GoLeft()
+end
+
+function PlayerListTab:GoRight()
+    if not self.Focused then return end
+    self:CurrentColumn():GoRight()
+end
+
+function PlayerListTab:Select()
+    if not self.Focused then return end
+    self:CurrentColumn():Select()
+end
+
+function PlayerListTab:GoBack()
+    if not self.Focused then return end
+    if self.CurrentColumnIndex > 0 then
+        self:CurrentColumn():CurrentItem():Selected(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.CurrentColumnIndex, false, false,
+            false)
+        self:SwitchColumn(self.CurrentColumnIndex - 1)
+        if self:CurrentColumn() == nil and self.CurrentColumnIndex > 0 then
+            self:GoBack()
+            return
+        end
+        self:CurrentColumn():CurrentItem():Selected(true)
+        if self:CurrentColumn().type == PLT_COLUMNS.PLAYERS then
+            if self:CurrentColumn():CurrentItem().Panel ~= nil then
+                local rr = self:GetColumnAtPosition(2)
+                if rr ~= nil then
+                    rr:ColumnVisible(false)
+                end
+            else
+                local rr = self:GetColumnAtPosition(2)
+                if rr ~= nil then
+                    rr:ColumnVisible(true)
+                end
             end
         end
     end
-    self.OnFocusChanged(self:Focus())
 end
 
----returns the focus of the tab.
----@return number
-function PlayerListTab:Focus()
-    return self._focus
+function PlayerListTab:MouseEvent(eventType, context, index)
+    if not self.Focused then return end
+    if eventType == 5 then
+        if context > 999 then
+            local colidx = context - 1000
+            local col = self:GetColumnAtPosition(colidx)
+            if index == 0 then
+                col:GoLeft()
+            elseif index == 1 then
+                col:GoRight()
+            elseif index == 2 then
+                col:GoUp()
+            elseif index == 3 then
+                col:GoDown()
+            end
+            return
+        end
+
+        if self.CurrentColumnIndex == context then
+            if index == self:CurrentColumn():Index() then
+                self:CurrentColumn():Select()
+                return
+            end
+            self:CurrentColumn():CurrentItem():Selected(false)
+            self:CurrentColumn():Index(index)
+            self:CurrentColumn():CurrentItem():Selected(true)
+            if self:CurrentColumn().type == PLT_COLUMNS.SETTINGS then
+                AddTextEntry("PAUSEMENU_Current_Description", self:CurrentColumn():CurrentItem():Description())
+            end
+        else
+            local selectedCol = self:GetColumnAtPosition(context)
+            self:SwitchColumn(context)
+            selectedCol:CurrentItem():Selected(false)
+            selectedCol:Index(index)
+            selectedCol:CurrentItem():Selected(true)
+            if selectedCol.type == PLT_COLUMNS.SETTINGS then
+                AddTextEntry("PAUSEMENU_Current_Description", selectedCol:CurrentItem():Description())
+            end
+        end
+    elseif eventType == 10 or eventType == 11 then
+        local dir = -1
+        if eventType == 11 then
+            dir = 1
+        end
+        self:CurrentColumn():MouseScroll(dir)
+    end
 end
+
+function PlayerListTab:Populate()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", 1)
+    self:StateChange()
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", 0)
+    if self.LeftColumn ~= nil then
+        self.LeftColumn:Populate()
+    end
+    if self.CenterColumn ~= nil then
+        self.CenterColumn:Populate()
+    end
+    if self.RightColumn ~= nil then
+        self.RightColumn:Populate()
+    end
+end
+
+function PlayerListTab:ShowColumns()
+    if self.LeftColumn ~= nil then
+        self.LeftColumn:ShowColumn()
+    end
+    if self.CenterColumn ~= nil then
+        self.CenterColumn:ShowColumn()
+    end
+    if self.RightColumn ~= nil then
+        self.RightColumn:ShowColumn()
+    end
+end
+
+function PlayerListTab:Focus()
+    BaseTab.Focus(self)
+    self:CurrentColumn().Focused = true
+    self:CurrentColumn():CurrentItem():Selected(true)
+    if self:CurrentColumn().type == PLT_COLUMNS.SETTINGS then
+        AddTextEntry("PAUSEMENU_Current_Description", self:CurrentColumn():CurrentItem():Description())
+    elseif self:CurrentColumn().type == PLT_COLUMNS.PLAYERS then
+        ClearPedInPauseMenu()
+        if self:CurrentColumn().Panel ~= nil then
+            self:CurrentColumn().Panel:UpdatePanel()
+            if self.RightColumn ~= nil then
+                self.RightColumn:ColumnVisible(false)
+            end
+        elseif self.RightColumn ~= nil then
+            self.RightColumn:ColumnVisible(true)
+        end
+    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self:CurrentColumn().position,
+        self:CurrentColumn():Index() - 1, true, false)
+end
+
+function PlayerListTab:UnFocus()
+    if self.CurrentColumnIndex > 0 then
+        self:SelectColumn(1)
+    end
+    BaseTab.UnFocus(self)
+    if self.LeftColumn then
+        self.LeftColumn:CurrentItem():Selected(false)
+        self.LeftColumn.Focused = false
+    end
+    if self.CenterColumn then
+        self.CenterColumn:CurrentItem():Selected(false)
+        self.CenterColumn.Focused = false
+    end
+    if self.RightColumn then
+        self.RightColumn:CurrentItem():Selected(false)
+        if not self.RightColumn:ColumnVisible() then
+            self.RightColumn:ColumnVisible(true)
+        end
+        self.RightColumn.Focused = false
+    end
+    AddTextEntry("PAUSEMENU_Current_Description", "")
+end
+
+
 
 --///////////////////////////////////////////////////////////////////--
-SubmenuTab = setmetatable({}, SubmenuTab)
+SubmenuTab = {}
 SubmenuTab.__index = SubmenuTab
-SubmenuTab.__call = function()
-    return "BaseTab", "SubmenuTab"
-end
+setmetatable(SubmenuTab, { __index = BaseTab })
+SubmenuTab.__call = function() return "SubmenuTab" end
 
 ---@class SubmenuTab
-
 function SubmenuTab.New(name, color)
-    local data = {
-        Base = BaseTab.New(name or "", 1, color),
-        Label = name or "",
-        TextTitle = "",
-        LeftItemList = {},
-        Index = 0,
-        Focused = false,
-        Parent = nil,
-    }
-    return setmetatable(data, SubmenuTab)
+    local data = BaseTab.New(name, color)
+    data._identifier = "Page_Info"
+    data.LeftColumn = SubmenuLeftColumn.New(0)
+    data.CenterColumn = SubmenuCentralColumn.New(1)
+    local meta = setmetatable(data, SubmenuTab)
+    meta.LeftColumn.Parent = meta
+    meta.CenterColumn.Parent = meta
+    return meta
+end
+
+function SubmenuTab:currentItemType()
+    return self.LeftColumn:currentItemType()
+end
+
+function SubmenuTab:SwitchColumn(index)
+    local col = self:GetColumnAtPosition(index)
+    self.CurrentColumnIndex = index
+    if self.Parent ~= nil and self.Parent:Visible() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", self.CurrentColumnIndex + 1)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_SHIFT_DEPTH", 0, true, true)
+        self.Parent.focusLevel = self.CurrentColumnIndex + 1
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", col.position, col:Index(), true, true)
+        col.Items[col:Index()]:Selected(true)
+    end
 end
 
 function SubmenuTab:AddLeftItem(item)
-    item.Parent = self
-    self.LeftItemList[#self.LeftItemList + 1] = item
+    item.ParentTab = self
+    self.LeftColumn:AddItem(item)
 end
+
+function SubmenuTab:StateChange(state)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_STATE", self:currentItemType())
+    self.CenterColumn:Clear()
+    if state ~= 0 then
+        for k,v in ipairs(self.LeftColumn.Items[self.LeftColumn:Index()].ItemList) do
+            self.CenterColumn:AddItem(v)
+        end
+    end
+    for k,v in pairs(self.CenterColumn.Items) do
+        v.ParentColumn = self.CenterColumn
+    end
+    if self:currentItemType() == LeftItemType.Statistics then
+        self.CenterColumn.VisibleItems = 16
+        self.CenterColumn:InitColumnScroll(true, 2, ScrollType.UP_DOWN, ScrollArrowsPosition.CENTER)
+        self.CenterColumn:SetColumnScroll(-1,-1,-1,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+    elseif self:currentItemType() == LeftItemType.Settings then
+        self.CenterColumn.VisibleItems = 16
+        self.CenterColumn:InitColumnScroll(true, 2, ScrollType.ALL, ScrollArrowsPosition.CENTER)
+        self.CenterColumn:SetColumnScroll(self.CenterColumn:Index(),#self.CenterColumn.Items,self.CenterColumn.VisibleItems,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+    elseif self:currentItemType() == LeftItemType.Info then
+        self.CenterColumn.VisibleItems = 10
+        self.CenterColumn:InitColumnScroll(true, 2, ScrollType.UP_DOWN, ScrollArrowsPosition.CENTER)
+        self.CenterColumn:SetColumnScroll(-1,-1,-1,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+    elseif self:currentItemType() == LeftItemType.Keymap then
+        self.CenterColumn.VisibleItems = 15
+        self.CenterColumn:InitColumnScroll(true, 2, ScrollType.UP_DOWN, ScrollArrowsPosition.CENTER)
+        self.CenterColumn:SetColumnScroll(-1,-1,-1,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+    else
+        self.CenterColumn.VisibleItems = 0
+    end
+end
+
+function SubmenuTab:GoUp()
+    if not self.Focused then return end
+    if self.CurrentColumnIndex == 0 then
+        self.LeftColumn:GoUp()
+        self.CenterColumn:currentColumnType(self:currentItemType())
+        self:StateChange()
+        self:Refresh(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.CurrentColumnIndex, 8)
+    elseif self.CurrentColumnIndex == 1 then
+        self.CenterColumn:GoUp()
+        if self.CenterColumn:currentColumnType() == LeftItemType.Settings then
+            self.CenterColumn:SetColumnScroll(self.CenterColumn:Index(),#self.CenterColumn.Items,self.CenterColumn.VisibleItems,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+        end
+    end
+end
+
+function SubmenuTab:GoDown()
+    if not self.Focused then return end
+    if self.CurrentColumnIndex == 0 then
+        self.LeftColumn:GoDown()
+        self.CenterColumn:currentColumnType(self:currentItemType())
+        self:StateChange()
+        self:Refresh(false)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.CurrentColumnIndex, 9)
+    elseif self.CurrentColumnIndex == 1 then
+        self.CenterColumn:GoDown()
+        if self.CenterColumn:currentColumnType() == LeftItemType.Settings then
+            self.CenterColumn:SetColumnScroll(self.CenterColumn:Index(),#self.CenterColumn.Items,self.CenterColumn.VisibleItems,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+        end
+    end
+end
+
+function SubmenuTab:GoLeft()
+    if not self.Focused then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.CurrentColumnIndex, 10)
+    if self.CurrentColumnIndex == 1 then
+        self.CenterColumn:GoLeft()
+    end
+end
+
+function SubmenuTab:GoRight()
+    if not self.Focused then return end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", self.CurrentColumnIndex, 11)
+    if self.CurrentColumnIndex == 1 then
+        self.CenterColumn:GoRight()
+    end
+end
+
+function SubmenuTab:Select()
+    if not self.Focused then return end
+    if self.CurrentColumnIndex == 0 then
+        if self:currentItemType() ~= LeftItemType.Settings then return end
+        local lI = self.LeftColumn.Items[self.LeftColumn:Index()]
+        if not lI:Enabled() then
+            PlaySoundFrontend(-1, "ERROR","HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+            return
+        end
+        self.CurrentColumnIndex = self.CurrentColumnIndex + 1
+        local ret = true
+        local idx = 1
+        for k,v in pairs(lI.ItemList) do
+            if v.Enabled then
+                ret = false
+                idx = k
+                break
+            end
+        end
+        if ret then return end
+        self.CenterColumn:Index(idx)
+        self.Parent:FocusLevel(self.Parent.focusLevel + 1)
+        self.Parent.OnColumnItemSelect(self.Parent, self, self.LeftColumn, self.LeftColumn:Index())
+    elseif self.CurrentColumnIndex == 1 then
+        self.CenterColumn:Select()
+        self.Parent.OnColumnItemSelect(self.Parent, self, self.CenterColumn, self.CenterColumn:Index())
+    end
+end
+
+function SubmenuTab:GoBack()
+    if not self.Focused then return end
+    if self.CurrentColumnIndex == 1 then
+        self.CurrentColumnIndex = self.CurrentColumnIndex - 1
+        self.Parent:FocusLevel(self.Parent.focusLevel - 1)
+    end
+end
+
+function SubmenuTab:MouseEvent(eventType, context, index)
+    if not self.Focused then return end
+    if eventType == 5 then
+        if self.CurrentColumnIndex == context then
+            if self:CurrentColumn():Index() ~= index then
+                if self.CurrentColumnIndex == 0 then
+                    self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(false)
+                    self.LeftColumn:Index(index)
+                    self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(true)
+                    self:StateChange(self:currentItemType())
+                    self:Refresh(false)
+                elseif self.CurrentColumnIndex == 1 then
+                    self.CenterColumn.Items[self.CenterColumn:Index()]:Selected(false)
+                    self.CenterColumn:Index(index)
+                    self.CenterColumn.Items[self.CenterColumn:Index()]:Selected(true)
+                end
+                return
+            end
+            self:Select()
+        else
+            if context > self.CurrentColumnIndex then
+                self.Parent:FocusLevel(self.Parent:FocusLevel() + 1)
+                self.CurrentColumnIndex = self.CurrentColumnIndex + 1
+            elseif context < self.CurrentColumnIndex then
+                self.Parent:FocusLevel(self.Parent:FocusLevel() - 1)
+                self.CurrentColumnIndex = self.CurrentColumnIndex - 1
+            end
+            if self.CurrentColumnIndex == 0 then
+                self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(false)
+                self.LeftColumn:Index(index)
+                self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(true)
+                self:StateChange(self:currentItemType())
+                self:Refresh(false)
+            elseif self.CurrentColumnIndex == 1 then
+                self.CenterColumn.Items[self.CenterColumn:Index()]:Selected(false)
+                self.CenterColumn:Index(index)
+                self.CenterColumn.Items[self.CenterColumn:Index()]:Selected(true)
+            end
+        end
+    elseif eventType == 10 or eventType == 11 then
+        local dir = -1
+        if eventType == 11 then
+            dir = 1
+        end
+        self:MouseScroll(dir)
+    end
+end
+
+function SubmenuTab:MouseScroll(dir)
+    local col = self.Parent.hoveredColumn
+    if self.CurrentColumnIndex == 0 then
+        if col == 1 then
+            if self:currentItemType() == LeftItemType.Info or self:currentItemType() == LeftItemType.Statistics then
+                PlaySoundFrontend(-1, "NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+                return
+            end
+        end
+        if dir == -1 then
+            self.LeftColumn:GoUp()
+        else
+            self.LeftColumn:GoDown()
+        end
+        self.CenterColumn:currentColumnType(self:currentItemType())
+        self:StateChange(self:currentItemType())
+        self:Refresh(false)
+    elseif self.CurrentColumnIndex == 1 then
+        if self:currentItemType() == LeftItemType.Settings then
+            if dir == -1 then
+                self.CenterColumn:GoUp()
+            else
+                self.CenterColumn:GoDown()
+            end
+            if self.CenterColumn:currentColumnType() == LeftItemType.Settings then
+                self.CenterColumn:SetColumnScroll(self.CenterColumn:Index(),#self.CenterColumn.Items,self.CenterColumn.VisibleItems,"", #self.CenterColumn.Items<self.CenterColumn.VisibleItems)
+            end
+            PlaySoundFrontend(-1, "NAV_UP_DOWN","HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+        end
+    end
+end
+
+function SubmenuTab:Focus()
+    BaseTab.Focus(self)
+    self.LeftColumn:Index(self.LeftColumn.index)
+    self.LeftColumn:HighlightColumn(true, false, true)
+    self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(true)
+    self:Refresh(true)
+end
+
+function SubmenuTab:UnFocus()
+    if self.CurrentColumnIndex > 0 then
+        self.Parent:FocusLevel(self.Parent:FocusLevel() - 1)
+        self.CurrentColumnIndex = self.CurrentColumnIndex - 1
+    end
+    self.LeftColumn.Items[self.LeftColumn:Index()]:Selected(false)
+    BaseTab.UnFocus(self)
+end
+
+function SubmenuTab:Refresh(highlightOldIndex)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ALLOW_CLICK_FROM_COLUMN", 0, true)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_DATA_SLOT_EMPTY", 1)
+    self.CenterColumn:Index(1)
+    for i=1, #self.CenterColumn.Items, 1 do
+        self:SetDataSlot(1, i)
+    end
+    if self:currentItemType() == LeftItemType.Keymap then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_TITLE", 1, self.LeftColumn.Items[self.LeftColumn:Index()].TextTitle, self.LeftColumn.Items[self.LeftColumn:Index()].KeymapRightLabel_1, self.LeftColumn.Items[self.LeftColumn:Index()].KeymapRightLabel_2)
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", 1, false, false, false)
+    elseif self:currentItemType() == LeftItemType.Settings then
+        ScaleformUI.Scaleforms._pauseMenu._pause("SET_COLUMN_HIGHLIGHT", 1, self.CenterColumn:Index() - 1, true, true)
+    end
+    self.CenterColumn:ShowColumn()
+end
+
+function SubmenuTab:Populate()
+    local item = self.LeftColumn.Items[self.LeftColumn:Index()]
+    item:Selected(true)
+    self.CenterColumn:Clear()
+    if self:currentItemType() ~= LeftItemType.Empty then
+        for k,v in ipairs(self.LeftColumn.Items[self.LeftColumn:Index()].ItemList) do
+            v.ParentColumn = self.CenterColumn
+            self.CenterColumn:AddItem(v)
+        end
+    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", 1)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("MENU_STATE", self:currentItemType())
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_MENU_LEVEL", 0)
+    for i=1, #self.LeftColumn.Items, 1 do
+        self:SetDataSlot(0, i)
+    end
+    for i=1, #self.CenterColumn.Items, 1 do
+        self:SetDataSlot(1, i)
+    end
+end
+
+function SubmenuTab:ShowColumns()
+    self.LeftColumn:ShowColumn()
+    self.CenterColumn:ShowColumn()
+    if self:currentItemType() == LeftItemType.Settings then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_STATE", 0)
+    end
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", 0, false, false, false)
+    self.LeftColumn:InitColumnScroll(true, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
+    self.LeftColumn:SetColumnScroll(self.LeftColumn:Index(), #self.LeftColumn.Items, 16, "", #self.LeftColumn.Items < 16)
+end
+
+function SubmenuTab:SetDataSlot(slot, index)
+    if slot == 0 then
+        self.LeftColumn:SetDataSlot(index)
+    elseif slot == 1 then
+        self.CenterColumn:SetDataSlot(index)
+    end
+end
+
+function SubmenuTab:UpdateSlot(slot, index)
+    if slot == 0 then
+        self.LeftColumn:UpdateSlot(index)
+    elseif slot == 1 then
+        self.CenterColumn:UpdateSlot(index)
+    end
+end
+
 
 --///////////////////////////////////////////////////////////////////--
-TabLeftItem = setmetatable({}, TabLeftItem)
-TabLeftItem.__index = TabLeftItem
-TabLeftItem.__call = function()
-    return "TabLeftItem", "TabLeftItem"
-end
-
----@class TabLeftItem
----@field public Label string
----@field public ItemType number
----@field public Focused boolean
----@field public MainColor SColor
----@field public HighlightColor SColor
----@field public Highlighted boolean
----@field public ItemIndex number
----@field public ItemList table<SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem>
----@field public RightTitle string
----@field private _enabled boolean
----@field private _hovered boolean
----@field private _selected boolean
----@field public KeymapRightLabel_1 string
----@field public KeymapRightLabel_2 string
----@field public Index number
----@field public AddItem fun(self:TabLeftItem, item:SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|BasicTabItem)
----@field public Enabled fun(self:TabLeftItem, enabled:boolean):boolean
----@field public Hovered fun(self:TabLeftItem, hover:boolean):boolean
----@field public Selected fun(self:TabLeftItem, selected:boolean):boolean
----@field public OnIndexChanged fun(item:TabLeftItem, index:number)
----@field public OnActivated fun(item:TabLeftItem, index:number)
-
-function TabLeftItem.New(label, _type, mainColor, highlightColor, labelFont)
-    local __formatLeftLabel = (tostring(label))
-    if not __formatLeftLabel:StartsWith("~") then
-        __formatLeftLabel = "~s~"..__formatLeftLabel
-    end
-    local data = {
-        Label = label or "",
-        ItemType = _type,
-        Focused = false,
-        MainColor = mainColor or SColor.HUD_Pause_bg,
-        HighlightColor = highlightColor or SColor.HUD_White,
-        Highlighted = false,
-        ItemIndex = 0,
-        ItemList = {} --[[@type table<SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|BasicTabItem>]],
-        RightTitle = "",
-        _enabled = true,
-        _hovered = false,
-        _selected = false,
-        _formatLeftLabel = __formatLeftLabel or "",
-        KeymapRightLabel_1 = "",
-        KeymapRightLabel_2 = "",
-        TextureDict = "",
-        TextureName = "",
-        LeftItemBGType = 0,
-        _labelFont = labelFont or ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        --_rightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        OnIndexChanged = function(item, index)
-        end,
-        OnActivated = function(item, index)
-        end,
-        Index = 0,
-        Parent = nil
-    }
-    return setmetatable(data, TabLeftItem)
-end
-
----Add item to the tab list
----@param item SettingsItem|SettingsListItem|SettingsProgressItem|SettingsCheckboxItem|SettingsSliderItem|KeymapItem|BasicTabItem
-function TabLeftItem:AddItem(item)
-    item.Parent = self
-    self.ItemList[#self.ItemList + 1] = item
-end
-
-function TabLeftItem:Label(label)
-    if label ~= nil then
-        self.Label = label
-        self._formatLeftLabel = tostring(label)
-        if not self._formatLeftLabel:StartsWith("~") then
-            self._formatLeftLabel = "~s~"..self._formatLeftLabel
-        end
-        if self:Selected() then
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~s~", "~l~")
-        else
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~l~", "~s~")
-        end
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_LEFT_ITEM_LABEL", leftItem, self._formatLeftLabel)
-        end
-    else
-        return self.Label
-    end
-end
-
-function TabLeftItem:Enabled(enabled)
-    if enabled ~= nil then
-        self._enabled = enabled
-        if not self._Enabled then
-            self._formatLeftLabel = ReplaceRstarColorsWith(self._formatLeftLabel, "~c~")
-        else
-            self:Label(self._label)
-        end
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_LEFT_ITEM", leftItem, self._enabled)
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_LEFT_ITEM_LABEL", leftItem, self._formatLeftLabel)
-        end
-    else
-        return self._enabled
-    end
-end
-
-function TabLeftItem:Hovered(hover)
-    if hover ~= nil then
-        self._hovered = hover
-    else
-        return self._hovered
-    end
-end
-
-function TabLeftItem:Selected(selected)
-    if selected ~= nil then
-        self._selected = selected
-        if self._selected then
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~s~", "~l~")
-        else
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~l~", "~s~")
-        end
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_LEFT_ITEM_LABEL", leftItem, self._formatLeftLabel)
-        end
-    else
-        return self._selected
-    end
-end
-
-function TabLeftItem:RightTitle(rtit)
-    if rtit ~= nil then
-        self.RightTitle = rtit
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_RIGHT_TITLE", leftItem, self.RightTitle, self.keymapRightLabel_1, self.KeymapRightLabel_2)
-        end
-    else
-        return self.RightLabel
-    end
-end
-
-function TabLeftItem:KeymapRightLabel_1(rtit)
-    if rtit ~= nil then
-        self.KeymapRightLabel_1 = rtit
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_RIGHT_TITLE", leftItem, self.RightTitle, self.keymapRightLabel_1, self.KeymapRightLabel_2)
-        end
-    else
-        return self.KeymapRightLabel_1
-    end
-end
-
-function TabLeftItem:KeymapRightLabel_2(rtit)
-    if rtit ~= nil then
-        self.KeymapRightLabel_2 = rtit
-        if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-            local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_RIGHT_TITLE", leftItem, self.RightTitle, self.keymapRightLabel_1, self.KeymapRightLabel_2)
-        end
-    else
-        return self.KeymapRightLabel_2
-    end
-end
-
-function TabLeftItem:UpdateBackground(txd, txn, resizeType)
-    self.TextureDict = txd
-    self.TextureName = txn
-    self.LeftItemBGType = resizeType
-    if self.Parent ~= nil and self.Parent.Base.Parent ~= nil and self.Parent.Base.Parent:Visible() then
-        local leftItem = IndexOf(self.Parent.LeftItemList, self) - 1
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_LEFT_ITEM_RIGHT_BACKGROUND", leftItem, txd, txn, resizeType)
-    end
-end
-
---///////////////////////////////////////////////////////////////////--
-TextTab = setmetatable({}, TextTab)
+TextTab = {}
 TextTab.__index = TextTab
-TextTab.__call = function()
-    return "BaseTab", "TextTab"
-end
+setmetatable(TextTab, { __index = BaseTab })
+TextTab.__call = function() return "TextTab" end
 
 ---@class TextTab
 
 function TextTab.New(name, _title, color)
-    local data = {
-        Base = BaseTab.New(name or "", 0, color),
-        Label = name,
-        TextTitle = _title or "",
-        LabelsList = {},
-        LeftItemList = {},
-        Index = 0,
-        Focused = false,
-        BGTextureDict = "",
-        BGTextureName = "",
-        RightTextureDict = "",
-        RightTextureName = "",
-        Parent = nil
-    }
-    return setmetatable(data, TextTab)
+    local base = BaseTab.New(name, color)
+    base._identifier = "Page_Simple"
+    base.TextTitle = _title or "" -- unused atm because of new pause implementation
+    base.BGTextureDict = ""
+    base.BGTextureName = ""
+    base.RightTextureDict = ""
+    base.RightTextureName = ""
+    base.LeftColumn = TextColumn.New(0)
+    local meta = setmetatable(base, TextTab)
+    meta.LeftColumn.Parent = meta
+    return meta
 end
 
 function TextTab:AddTitle(title)
@@ -9369,26 +9584,57 @@ function TextTab:AddTitle(title)
 end
 
 function TextTab:AddItem(item)
-    self.LabelsList[#self.LabelsList + 1] = item
+    self.LeftColumn:AddItem(item)
+end
+
+function TextTab:Populate()
+    for i = 1, #self.LeftColumn.Items, 1 do
+        self:SetDataSlot(self.LeftColumn.position, i)
+    end
+    if not self.BGTextureDict:IsNullOrEmpty() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CALL_CUSTOM_COLUMN_FUNCTION", self.LeftColumn.position,
+            "SET_BACKGROUND", self.BGTextureDict, self.BGTextureName)
+    end
+    if not self.RightTextureDict:IsNullOrEmpty() then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CALL_CUSTOM_COLUMN_FUNCTION", self.LeftColumn.position,
+            "SET_RIGHT_PICTURE", self.RightTextureDict, self.RightTextureName)
+    end
+end
+
+function TextTab:ShowColumns()
+    self.LeftColumn:ShowColumn()
+    self.LeftColumn:InitColumnScroll(true, 3, ScrollType.UP_DOWN, ScrollArrowsPosition.CENTER)
+    self.LeftColumn:SetColumnScroll(-1, -1, -1, "", #self.LeftColumn.Items < self.LeftColumn.VisibleItems)
+    self.LeftColumn:HighlightColumn(true, false, true)
+end
+
+function TextTab:Focus()
+    BaseTab.Focus(self)
+    self.LeftColumn:HighlightColumn(true, false, true)
 end
 
 function TextTab:UpdateBackground(txd, txn)
     self.BGTextureDict = txd
     self.BGTextureName = txn
-    if self.Parent ~= nil and self.Base.Parent ~= nil and self.Base.Parent:Visible() then
-        local tab = IndexOf(self.Base.Parent.Tabs, self.Parent) - 1
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_BASE_TAB_BACKGROUND", tab, txd, txn)
+    if self.Parent ~= nil and self.Parent:Visible() and self.Parent:CurrentTab() == self then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CALL_CUSTOM_COLUMN_FUNCTION", self.LeftColumn.position,
+            "SET_BACKGROUND", txd, txn)
     end
+end
+
+function TextTab:SetDataSlot(slot, index)
+    self.LeftColumn:SetDataSlot(index)
 end
 
 function TextTab:AddPicture(txd, txn)
     self.RightTextureDict = txd
     self.RightTextureName = txn
-    if self.Parent ~= nil and self.Base.Parent ~= nil and self.Base.Parent:Visible() then
-        local tab = IndexOf(self.Base.Parent.Tabs, self.Parent) - 1
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_BASE_TAB_RIGHT_PICTURE", tab, txd, txn)
+    if self.Parent ~= nil and self.Parent:Visible() and self.Parent:CurrentTab() == self then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CALL_CUSTOM_COLUMN_FUNCTION", self.LeftColumn.position,
+            "SET_RIGHT_PICTURE", txd, txn)
     end
 end
+
 
 --///////////////////////////////////////////////////////////////////--
 TabView = setmetatable({}, TabView)
@@ -9413,8 +9659,9 @@ function TabView.New(title, subtitle, sideTop, sideMiddle, sideBottom)
         SideTop = sideTop or "",
         SideMid = sideMiddle or "",
         SideBot = sideBottom or "",
-        _headerPicture = {},
-        _crewPicture = {},
+        TabsColor = 117,
+        _headerPicture = {txd = "", txn = ""},
+        _crewPicture = {txd = "", txn = ""},
         Tabs = {},
         index = 1,
         ParentPool = nil,
@@ -9431,7 +9678,27 @@ function TabView.New(title, subtitle, sideTop, sideMiddle, sideBottom)
         setHeaderDynamicWidth = false,
         _firstDrawTick = false,
         timer = 100,
+        changed = false,
         ShowBlur = true,
+        IsCorona = false,
+        _showStoreBackground = false,
+        _storeBackgroundAnimationSpeed = 240, -- milliseconds
+        coronaTab = nil,
+        hoveredColumn = 0,
+        tabArrowsHovered = false,
+        sm_uDisableInputDuration = 250,   -- milliseconds.
+        FRONTEND_ANALOGUE_THRESHOLD = 80, -- out of 128
+        BUTTON_PRESSED_DOWN_INTERVAL = 250,
+        BUTTON_PRESSED_REFIRE_ATTRITION = 45,
+        BUTTON_PRESSED_REFIRE_MINIMUM = 100,
+        s_iLastRefireTimeUp = 250,
+        s_iLastRefireTimeDn = 250,
+        s_pressedDownTimer = GetGameTimer(),
+        s_lastGameFrame = 0,
+        iPreviousXAxis = 0.0,
+        iPreviousYAxis = 0.0,
+        iPreviousXAxisR = 0.0,
+        iPreviousYAxisR = 0.0,
         InstructionalButtons = {
             InstructionalButton.New(GetLabelText("HUD_INPUT2"), -1, 176, 176, -1),
             InstructionalButton.New(GetLabelText("HUD_INPUT3"), -1, 177, 177, -1),
@@ -9445,27 +9712,12 @@ function TabView.New(title, subtitle, sideTop, sideMiddle, sideBottom)
         end,
         OnPauseMenuFocusChanged = function(menu, tab, focusLevel)
         end,
-        OnLeftItemChange = function(menu, leftItem, index)
+        OnColumnItemChange = function(menu, tab, column, index)
         end,
-        OnRightItemChange = function(menu, rightItem, index)
-        end,
-        OnLeftItemSelect = function(menu, leftItem, index)
-        end,
-        OnRightItemSelect = function(menu, rightItem, index)
+        OnColumnItemSelect = function(menu, tab, column, index)
         end
     }
     return setmetatable(_data, TabView)
-end
-
-function TabView:LeftItemIndex(index)
-    if index ~= nil then
-        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(false)
-        self.leftItemIndex = index
-        self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Selected(true)
-        self.OnLeftItemChange(self, self.Tabs[self.index].LeftItemList[self.leftItemIndex], self.leftItemIndex)
-    else
-        return self.leftItemIndex
-    end
 end
 
 function TabView:SetHeaderDynamicWidth(value)
@@ -9476,20 +9728,23 @@ function TabView:SetHeaderDynamicWidth(value)
     end
 end
 
-function TabView:RightItemIndex(index)
-    if index ~= nil then
-        self.rightItemIndex = index
-        self.OnRightItemChange(self, self.Tabs[self.index].LeftItemList[self.leftItemIndex].ItemList
-            [self.rightItemIndex], self.rightItemIndex)
-    else
-        return self.rightItemIndex
-    end
-end
-
 function TabView:FocusLevel(index)
     if index ~= nil then
-        self.focusLevel = index
-        ScaleformUI.Scaleforms._pauseMenu:SetFocus(index)
+        local dir = 0
+        if index < self.focusLevel then
+            dir = -1
+        elseif index > self.focusLevel then
+            dir = 1
+        else
+            dir = 0
+        end
+        self.focusLevel = self.focusLevel + dir
+        ScaleformUI.Scaleforms._pauseMenu:SetFocus(dir)
+        if dir > 0 and #self.Tabs > 0 and self.focusLevel == 1 then
+            self.Tabs[self.index]:Focus()
+        elseif (dir < 0 and #self.Tabs > 0 and self.focusLevel == 0) then
+            self.Tabs[self.index]:UnFocus()
+        end
         self.OnPauseMenuFocusChanged(self, self.Tabs[self.index], index)
     else
         return self.focusLevel
@@ -9498,8 +9753,6 @@ end
 
 function TabView:Index(idx)
     if idx ~= nil then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_ALL")
-        --ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("FADE_OUT")
         self.Tabs[self.index].Visible = false
         self.index = idx
         if self.index > #self.Tabs then
@@ -9508,8 +9761,8 @@ function TabView:Index(idx)
         if self.index < 1 then
             self.index = #self.Tabs
         end
+        self.Tabs[self.index].Visible = true
         if self:Visible() then
-            self.Tabs[self.index].Visible = true
             self:BuildPauseMenu()
             ScaleformUI.Scaleforms._pauseMenu:SelectTab(self.index - 1)
         end
@@ -9519,18 +9772,36 @@ function TabView:Index(idx)
     end
 end
 
+function TabView:ShowStoreBackground(bool)
+    if bool == nil then
+        return self._showStoreBackground
+    else
+        self._showStoreBackground = bool
+        ScaleformUI.Scaleforms._pauseMenu.BGEnabled = self._showStoreBackground
+    end
+end
+
+function TabView:StoreBackgroundAnimationSpeed(speed)
+    if speed == nil then
+        return self._storeBackgroundAnimationSpeed
+    else
+        self._storeBackgroundAnimationSpeed = speed
+        if self:Visible() then
+            ScaleformUI.Scaleforms._pauseMenu._pauseBG:CallFunction("ANIMATE_BACKGROUND", speed)
+        end
+    end
+end
+
 function TabView:Visible(visible)
     if visible ~= nil then
         self._visible = visible
         ScaleformUI.Scaleforms._pauseMenu:Visible(visible)
         if visible == true then
-            while (not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
             if not IsPauseMenuActive() then
                 PlaySoundFrontend(self.SoundId, "Hit_In", "PLAYER_SWITCH_CUSTOM_SOUNDSET", true)
-                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, 0)
-                self.OnPauseMenuOpen(self)
+                ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, true, -1)
                 if self.ShowBlur then
-                    AnimpostfxPlay("PauseMenuIn", 0, true)
+                    self:doScreenBlur()
                 end
                 self._firstDrawTick = true
                 ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
@@ -9538,16 +9809,18 @@ function TabView:Visible(visible)
                 MenuHandler._currentPauseMenu = self
                 MenuHandler.ableToDraw = true
                 self._isBuilding = true
+                self.Tabs[self.index].Visible = true
                 self:ShowHeader()
-                for k, tab in pairs(self.Tabs) do
-                    ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(tab.Base.Title, 1, tab.Base.Type, tab.Base._color)
-                end
-                self.Tabs[1].Visible = true
                 self:BuildPauseMenu()
+                self.OnPauseMenuOpen(self)
+                if self.IsCorona then
+                    ScaleformUI.Scaleforms._pauseMenu.BGEnabled = self._showStoreBackground
+                    ScaleformUI.Scaleforms._pauseMenu._pauseBG:CallFunction("ANIMATE_BACKGROUND", self._storeBackgroundAnimationSpeed)
+                    self:FocusLevel(1)
+                end
             end
         else
-            local type, subtype = self.Tabs[self.index]()
-            if subtype == "PlayerListTab" or subtype == "GalleryTab" then
+            if self.Tabs[self.index].Minimap ~= nil then
                 self.Tabs[self.index].Minimap:Dispose()
             end
             MenuHandler.ableToDraw = false
@@ -9568,18 +9841,25 @@ function TabView:Visible(visible)
     end
 end
 
-function TabView:AddTab(item)
-    item.Base.Parent = self
-    local type, subtype = item()
-    if subtype == "PlayerListTab" or subtype == "GalleryTab" then
-        item.Minimap = MinimapPanel.New(self, item)
+function TabView:doScreenBlur()
+    while (AnimpostfxIsRunning("PauseMenuOut")) do
+        Wait(0)
+        AnimpostfxStop("PauseMenuOut")
     end
-    self.Tabs[#self.Tabs + 1] = item
+    AnimpostfxPlay("PauseMenuIn", 0, true)
+end
+
+function TabView:AddTab(tab)
+    tab.Parent = self
+    if tab.Minimap ~= nil then
+        tab.Minimap.Parent = self
+    end
+    self.Tabs[#self.Tabs + 1] = tab
 end
 
 function TabView:HeaderPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._headerPicture = {txd = Txd, txn = Txn}
+        self._headerPicture = { txd = Txd, txn = Txn }
     else
         return self._headerPicture
     end
@@ -9587,7 +9867,7 @@ end
 
 function TabView:CrewPicture(Txd, Txn)
     if (Txd ~= nil and Txn ~= nil) then
-        self._crewPicture = {txd = Txd, txn = Txn}
+        self._crewPicture = { txd = Txd, txn = Txn }
     else
         return self._crewPicture
     end
@@ -9606,13 +9886,34 @@ function TabView:ShowHeader()
         ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title)
     else
         ScaleformUI.Scaleforms._pauseMenu:ShiftCoronaDescription(true, false)
-        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title, self.Subtitle)
+        ScaleformUI.Scaleforms._pauseMenu:SetHeaderTitle(self.Title, self.Subtitle .. "\n\n\n\n\n\n\n\n\n\n\n")
     end
-    if (self:HeaderPicture() ~= nil) then
+    if (self:HeaderPicture() ~= nil and not self:HeaderPicture().txd:IsNullOrEmpty()) then
         ScaleformUI.Scaleforms._pauseMenu:SetHeaderCharImg(self:HeaderPicture().txd, self:HeaderPicture().txn, true)
     end
-    if (self:CrewPicture() ~= nil) then
+    if (self:CrewPicture() ~= nil and not self:CrewPicture().txd:IsNullOrEmpty()) then
         ScaleformUI.Scaleforms._pauseMenu:SetHeaderSecondaryImg(self:CrewPicture().txd, self:CrewPicture().txn, true)
+    end
+    if not self.IsCorona then
+        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_DYNAMIC_WIDTH", self:SetHeaderDynamicWidth())
+        for k, tab in pairs(self.Tabs) do
+            ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(tab.Title, 0, tab.TabColor)
+        end
+    else
+        if self.coronaTab == nil then return end
+        if self.coronaTab.LeftColumn ~= nil then
+            ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(self.coronaTab.LeftColumn.Label, 2, self.coronaTab.LeftColumn.Color)
+        end
+        if self.coronaTab.CenterColumn ~= nil then
+            ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(self.coronaTab.CenterColumn.Label, 2,
+                self.coronaTab.CenterColumn.Color)
+        end
+        if self.coronaTab.RightColumn ~= nil then
+            ScaleformUI.Scaleforms._pauseMenu:AddPauseMenuTab(self.coronaTab.RightColumn.Label, 2, self.coronaTab.RightColumn
+                .Color)
+        end
+        ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("SET_ALL_HIGHLIGHTS", true, self.TabsColor)
+        ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("ENABLE_DYNAMIC_WIDTH", false)
     end
     ScaleformUI.Scaleforms._pauseMenu:SetHeaderDetails(self.SideTop, self.SideMid, self.SideBot)
     ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_DYNAMIC_WIDTH", self:SetHeaderDynamicWidth())
@@ -9620,330 +9921,49 @@ function TabView:ShowHeader()
 end
 
 function TabView:BuildPauseMenu()
+    while (not ScaleformUI.Scaleforms._pauseMenu:IsLoaded()) do Wait(0) end
+    if not HasStreamedTextureDictLoaded("commonmenu") then
+        RequestStreamedTextureDict("commonmenu", true)
+        while not HasStreamedTextureDictLoaded("commonmenu") do Wait(0) end
+    end
     self._isBuilding = true
     ScaleformUI.Scaleforms._pauseMenu.BGEnabled = false
-
     local tab = self.Tabs[self.index]
-    local type, subtype = tab()
-    if subtype == "TextTab" then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_TAB", 0)
-        if not tostring(tab.TextTitle):IsNullOrEmpty() then
-            ScaleformUI.Scaleforms._pauseMenu:AddRightTitle(0, tab.TextTitle)
-        end
-        for j, item in pairs(tab.LabelsList) do
-            ScaleformUI.Scaleforms._pauseMenu:AddRightListLabel(0, item.Label, item.LabelFont.FontName, item.LabelFont.FontID)
-        end
-        if not (tab.BGTextureDict:IsNullOrEmpty() and tab.BGTextureName:IsNullOrEmpty()) then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_BASE_TAB_BACKGROUND", tab.BGTextureDict, tab.BGTextureName)
-        end
-        if not (tab.RightTextureDict:IsNullOrEmpty() and tab.RightTextureName:IsNullOrEmpty()) then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_BASE_TAB_RIGHT_PICTURE", tab.RightTextureDict, tab.RightTextureName)
-        end
-    elseif subtype == "SubmenuTab" then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_TAB", 1)
-        for j, item in pairs(tab.LeftItemList) do
-            local itemIndex = j - 1
-            ScaleformUI.Scaleforms._pauseMenu:AddLeftItem(item.ItemType, item._formatLeftLabel, item.MainColor,
-                item.HighlightColor, item:Enabled())
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_LEFT_ITEM_LABEL_FONT", itemIndex, item._labelFont.FontName, item._labelFont.FontID)
-
-            if item.RightTitle ~= nil and not item.RightTitle:IsNullOrEmpty() then
-                if (item.ItemType == LeftItemType.Keymap) then
-                    ScaleformUI.Scaleforms._pauseMenu:AddKeymapTitle(itemIndex, item.RightTitle,
-                        item.KeymapRightLabel_1, item.KeymapRightLabel_2)
-                else
-                    ScaleformUI.Scaleforms._pauseMenu:AddRightTitle(itemIndex, item.RightTitle)
-                end
-            end
-
-            for l, ii in pairs(item.ItemList) do
-                local __type, __subtype = ii()
-                if __subtype == "StatsTabItem" then
-                    if (ii.Type == StatItemType.Basic) then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightStatItemLabel(itemIndex, ii.Label,
-                            ii._rightLabel, ii.LabelFont, ii.RightLabelFont)
-                    elseif (ii.Type == StatItemType.ColoredBar) then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightStatItemColorBar(itemIndex, ii.Label,
-                            ii._value, ii._coloredBarColor, ii.LabelFont)
-                    end
-                elseif __subtype == "SettingsItem" then
-                    if ii.ItemType == SettingsItemType.Basic then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsBaseItem(itemIndex, ii.Label,
-                            ii._rightLabel, ii:Enabled())
-                    elseif ii.ItemType == SettingsItemType.ListItem then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsListItem(itemIndex, ii.Label,
-                            ii.ListItems, ii._itemIndex, ii:Enabled())
-                    elseif ii.ItemType == SettingsItemType.ProgressBar then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsProgressItem(itemIndex, ii.Label,
-                            ii.MaxValue, ii._coloredBarColor, ii._value, ii:Enabled())
-                    elseif ii.ItemType == SettingsItemType.MaskedProgressBar then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsProgressItemAlt(itemIndex,
-                            ii.Label, ii.MaxValue, ii._coloredBarColor, ii._value, ii:Enabled())
-                    elseif ii.ItemType == SettingsItemType.CheckBox then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsCheckboxItem(itemIndex, ii.Label,
-                            ii.CheckBoxStyle, ii._isChecked, ii:Enabled())
-                    elseif ii.ItemType == SettingsItemType.SliderBar then
-                        ScaleformUI.Scaleforms._pauseMenu:AddRightSettingsSliderItem(itemIndex, ii.Label,
-                            ii.MaxValue, ii._coloredBarColor, ii._value, ii:Enabled())
-                    end
-                elseif __subtype == "KeymapItem" then
-                    if IsUsingKeyboard(2) then
-                        ScaleformUI.Scaleforms._pauseMenu:AddKeymapItem(itemIndex, ii.Label,
-                            ii.PrimaryKeyboard, ii.SecondaryKeyboard)
-                    else
-                        ScaleformUI.Scaleforms._pauseMenu:AddKeymapItem(itemIndex, ii.Label,
-                            ii.PrimaryGamepad, ii.SecondaryGamepad)
-                    end
-                    self:UpdateKeymapItems()
-                else
-                    ScaleformUI.Scaleforms._pauseMenu:AddRightListLabel(itemIndex, ii.Label, ii.LabelFont.FontName, ii.LabelFont.FontID)
-                end
-            end
-            if item.ItemType == LeftItemType.Info or item.ItemType == LeftItemType.Statistics or item.ItemType == LeftItemType.Settings then
-                if not (item.TextureDict:IsNullOrEmpty() and item.TextureName:IsNullOrEmpty()) then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_LEFT_ITEM_RIGHT_BACKGROUND", itemIndex, item.TextureDict, item.TextureName, item.LeftItemBGType)
-                end
-            end
-        end
-    elseif subtype == "PlayerListTab" then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_TAB", 2)
-        local count = #tab.listCol
-        if count == 1 then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CREATE_PLAYERS_TAB_COLUMNS", tab.listCol[1].Type)
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 0, tab.listCol[1].Pagination:ItemsPerPage())
-        elseif count == 2 then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CREATE_PLAYERS_TAB_COLUMNS", tab.listCol[1].Type, tab.listCol[2].Type)
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 0, tab.listCol[1].Pagination:ItemsPerPage())
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 1, tab.listCol[2].Pagination:ItemsPerPage())
-        elseif count == 3 then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CREATE_PLAYERS_TAB_COLUMNS", tab.listCol[1].Type, tab.listCol[2].Type, tab.listCol[3].Type)
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 0, tab.listCol[1].Pagination:ItemsPerPage())
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 1, tab.listCol[2].Pagination:ItemsPerPage())
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_COLUMN_MAXITEMS", 2, tab.listCol[3].Pagination:ItemsPerPage())
-        end
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_NEWSTYLE", tab._newStyle)
-        for i, col in pairs(tab.listCol) do
-            col.Parent = self
-            col.ParentTab = tab
-            if col.Type == "settings" then
-                self:buildSettings(tab)
-            elseif col.Type == "players" then
-                self:buildPlayers(tab)
-            elseif col.Type == "missions" then
-                self:buildMissions(tab)
-            elseif col.Type == "store" then
-                self:buildStore(tab)
-            elseif col.Type == "panel" then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSION_PANEL_PICTURE", tab.MissionPanel.TextureDict, tab.MissionPanel.TextureName)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSION_PANEL_TITLE", tab.MissionPanel:Title())
-                if #tab.MissionPanel.Items > 0 then
-                    for j, item in pairs(tab.MissionPanel.Items) do
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_PLAYERS_TAB_MISSION_PANEL_ITEM", item.Type, item.TextLeft,
-                            item.TextRight, item.Icon or 0, item.IconColor or 0, item.Tick, item._labelFont.FontName, item._labelFont.FontID, item._rightLabelFont.FontName, item._rightLabelFont.FontID)
-                    end
-                end
-            end
-        end
-        tab:updateFocus(1)
-    elseif subtype == "GalleryTab" then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_TAB", 3)
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_DESCRIPTION_LABELS", tab.maxItemsPerPage, tab.titleLabel, tab.dateLabel, tab.locationLabel, tab.trackLabel, tab.labelsVisible)
-        for i = 1, 12, 1 do
-            if i < #tab.GalleryItems then
-                local item = tab.GalleryItems[i]
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_GALLERY_ITEM", i - 1, i - 1, 33, 4, 0, 1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item.Label4)
-                if item.Blip ~= nil then
-                    table.insert(tab.Minimap.MinimapBlips, item.Blip)
-                end
-            else
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ADD_GALLERY_ITEM", i - 1, i - 1, 33, 0, 0, 1, "", "", "", "", 1, false)
-            end
-        end
-        tab:updatePage()
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("DISPLAY_GALLERY")
-    end
-    --ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("FADE_IN")
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("LOAD_CHILD_PAGE", tab._identifier)
+    tab:Populate()
+    tab:ShowColumns()
     self._isBuilding = false
-end
-
-function TabView:buildSettings(tab)
-    tab.SettingsColumn._isBuilding = true
-    local max = tab.SettingsColumn.Pagination:ItemsPerPage()
-    if #tab.SettingsColumn.Items < max then
-        max = #tab.SettingsColumn.Items
-    end
-    tab.SettingsColumn.Pagination:MinItem(tab.SettingsColumn.Pagination:CurrentPageStartIndex())
-
-    if tab.SettingsColumn.scrollingType == MenuScrollingType.CLASSIC and tab.SettingsColumn.Pagination:TotalPages() > 1 then
-        local missingItems = tab.SettingsColumn.Pagination:GetMissingItems()
-        if missingItems > 0 then
-            tab.SettingsColumn.Pagination:ScaleformIndex(tab.SettingsColumn.Pagination:GetPageIndexFromMenuIndex(tab.SettingsColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-            tab.SettingsColumn.Pagination.minItem = tab.SettingsColumn.Pagination:CurrentPageStartIndex() - missingItems
-        end
-    end
-
-    tab.SettingsColumn.Pagination:MaxItem(tab.SettingsColumn.Pagination:CurrentPageEndIndex())
-
-    for i = 1, max, 1 do
-        tab.SettingsColumn:_itemCreation(tab.SettingsColumn.Pagination:CurrentPage(), i, false, true)
-    end
-
-    tab.SettingsColumn:CurrentSelection(1)
-    tab.SettingsColumn.Pagination:ScaleformIndex(tab.SettingsColumn.Pagination:GetScaleformIndex(tab.SettingsColumn:CurrentSelection()))
-    tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
-
-    AddTextEntry("PAUSEMENU_Current_Description", tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Description());
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_SELECTION", tab.SettingsColumn.Pagination:GetScaleformIndex(tab.SettingsColumn.Pagination:CurrentMenuIndex()))
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_QTTY", tab.SettingsColumn:CurrentSelection(), #tab.SettingsColumn.Items)
-
-    local Item = tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]
-    local _, subtype = Item()
-    if subtype == "UIMenuSeparatorItem" then
-        if (tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()].Jumpable) then
-            tab.SettingsColumn:GoDown()
-        end
-    end
-
-    tab.SettingsColumn._isBuilding = false
-end
-
-function TabView:buildPlayers(tab)
-    tab.PlayersColumn._isBuilding = true
-    local max = tab.PlayersColumn.Pagination:ItemsPerPage()
-    if #tab.PlayersColumn.Items < max then
-        max = #tab.PlayersColumn.Items
-    end
-    tab.PlayersColumn.Pagination:MinItem(tab.PlayersColumn.Pagination:CurrentPageStartIndex())
-
-    if tab.PlayersColumn.scrollingType == MenuScrollingType.CLASSIC and tab.PlayersColumn.Pagination:TotalPages() > 1 then
-        local missingItems = tab.PlayersColumn.Pagination:GetMissingItems()
-        if missingItems > 0 then
-            tab.PlayersColumn.Pagination:ScaleformIndex(tab.PlayersColumn.Pagination:GetPageIndexFromMenuIndex(tab.PlayersColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-            tab.PlayersColumn.Pagination.minItem = tab.PlayersColumn.Pagination:CurrentPageStartIndex() - missingItems
-        end
-    end
-
-    tab.PlayersColumn.Pagination:MaxItem(tab.PlayersColumn.Pagination:CurrentPageEndIndex())
-
-    for i = 1, max, 1 do
-        tab.PlayersColumn:_itemCreation(tab.PlayersColumn.Pagination:CurrentPage(), i, false, true)
-    end
-
-    tab.PlayersColumn:CurrentSelection(1)
-    tab.PlayersColumn.Pagination:ScaleformIndex(tab.PlayersColumn.Pagination:GetScaleformIndex(tab.PlayersColumn:CurrentSelection()))
-    tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:Selected(false)
-
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_SELECTION", tab.PlayersColumn.Pagination:GetScaleformIndex(tab.PlayersColumn.Pagination:CurrentMenuIndex()))
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_PLAYERS_QTTY", tab.PlayersColumn:CurrentSelection(), #tab.PlayersColumn.Items)
-
-    tab.PlayersColumn._isBuilding = false
-end
-
-function TabView:buildMissions(tab)
-    tab.MissionsColumn._isBuilding = true
-    local max = tab.MissionsColumn.Pagination:ItemsPerPage()
-    if #tab.MissionsColumn.Items < max then
-        max = #tab.MissionsColumn.Items
-    end
-    tab.MissionsColumn.Pagination:MinItem(tab.MissionsColumn.Pagination:CurrentPageStartIndex())
-
-    if tab.MissionsColumn.scrollingType == MenuScrollingType.CLASSIC and tab.MissionsColumn.Pagination:TotalPages() > 1 then
-        local missingItems = tab.MissionsColumn.Pagination:GetMissingItems()
-        if missingItems > 0 then
-            tab.MissionsColumn.Pagination:ScaleformIndex(tab.MissionsColumn.Pagination:GetPageIndexFromMenuIndex(tab.MissionsColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-            tab.MissionsColumn.Pagination.minItem = tab.MissionsColumn.Pagination:CurrentPageStartIndex() - missingItems
-        end
-    end
-
-    tab.MissionsColumn.Pagination:MaxItem(tab.MissionsColumn.Pagination:CurrentPageEndIndex())
-
-    for i = 1, max, 1 do
-        tab.MissionsColumn:_itemCreation(tab.MissionsColumn.Pagination:CurrentPage(), i, false, true)
-    end
-
-    tab.MissionsColumn:CurrentSelection(1)
-    tab.MissionsColumn.Pagination:ScaleformIndex(tab.MissionsColumn.Pagination:GetScaleformIndex(tab.MissionsColumn:CurrentSelection()))
-    tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(false)
-
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_SELECTION", tab.MissionsColumn.Pagination:GetScaleformIndex(tab.MissionsColumn.Pagination:CurrentMenuIndex()))
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_MISSIONS_QTTY", tab.MissionsColumn:CurrentSelection(), #tab.MissionsColumn.Items)
-
-    tab.MissionsColumn._isBuilding = false
-end
-
-function TabView:buildStore(tab)
-    tab.StoreColumn._isBuilding = true
-    local i = 1
-    local max = tab.StoreColumn.Pagination:ItemsPerPage()
-    if #tab.StoreColumn.Items < max then
-        max = #tab.StoreColumn.Items
-    end
-    tab.StoreColumn.Pagination:MinItem(tab.StoreColumn.Pagination:CurrentPageStartIndex())
-
-    if tab.StoreColumn.scrollingType == MenuScrollingType.CLASSIC and tab.StoreColumn.Pagination:TotalPages() > 1 then
-        local missingItems = tab.StoreColumn.Pagination:GetMissingItems()
-        if missingItems > 0 then
-            tab.StoreColumn.Pagination:ScaleformIndex(tab.StoreColumn.Pagination:GetPageIndexFromMenuIndex(tab.StoreColumn.Pagination:CurrentPageEndIndex()) + missingItems - 1)
-            tab.StoreColumn.Pagination.minItem = tab.StoreColumn.Pagination:CurrentPageStartIndex() - missingItems
-        end
-    end
-
-    tab.StoreColumn.Pagination:MaxItem(tab.StoreColumn.Pagination:CurrentPageEndIndex())
-
-    for i = 1, max, 1 do
-        tab.StoreColumn:_itemCreation(tab.StoreColumn.Pagination:CurrentPage(), i, false, true)
-    end
-
-    tab.StoreColumn:CurrentSelection(1)
-    tab.StoreColumn.Pagination:ScaleformIndex(tab.StoreColumn.Pagination:GetScaleformIndex(tab.StoreColumn:CurrentSelection()))
-    tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(false)
-
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_SELECTION", tab.StoreColumn.Pagination:GetScaleformIndex(tab.StoreColumn.Pagination:CurrentMenuIndex()))
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_STORE_QTTY", tab.StoreColumn:CurrentSelection(), #tab.StoreColumn.Items)
-
-    tab.StoreColumn._isBuilding = false
 end
 
 function TabView:UpdateKeymapItems()
     if not IsUsingKeyboard(2) then
         if not self.controller then
             self.controller = true
-            for j, tab in pairs(self.Tabs) do
-                local type, subtype = tab()
-                if subtype == "SubmenuTab" then
-                    for k, lItem in pairs(tab.LeftItemList) do
-                        local idx = k - 1
-                        if lItem.ItemType == LeftItemType.Keymap then
-                            for i = 1, #lItem.ItemList, 1 do
-                                local item = lItem.ItemList[i]
-                                ScaleformUI.Scaleforms._pauseMenu:UpdateKeymap(idx, i - 1, item.PrimaryGamepad,
-                                    item.SecondaryGamepad)
-                            end
-                        end
-                    end
-                end
-            end
+            self.changed = true
         end
     else
         if self.controller then
             self.controller = false
-            for j, tab in pairs(self.Tabs) do
-                local type, subtype = tab()
-                if subtype == "SubmenuTab" then
-                    for k, lItem in pairs(tab.LeftItemList) do
-                        local idx = k - 1
-                        if lItem.ItemType == LeftItemType.Keymap then
-                            for i = 1, #lItem.ItemList, 1 do
-                                local item = lItem.ItemList[i]
-                                ScaleformUI.Scaleforms._pauseMenu:UpdateKeymap(idx, i - 1, item.PrimaryKeyboard,
-                                    item.SecondaryKeyboard)
-                            end
-                        end
-                    end
+            self.changed = true
+        end
+    end
+
+    if self.changed then
+        local tab = self.Tabs[self.index]
+        local t, st = tab()
+        if st == "SubmenuTab" then
+            if tab.currentItemType == 4 then
+                for k, v in pairs(tab.CenterColumn.Items) do
+                    tab.CenterColumn:UpdateItem(k)
                 end
             end
         end
+        self.changed = false
     end
+end
+
+function TabView:CurrentTab()
+    return self.Tabs[self.index]
 end
 
 function TabView:Draw()
@@ -9951,8 +9971,7 @@ function TabView:Draw()
         return
     end
     local tab = self.Tabs[self.index]
-    local type, subtype = tab()
-    if subtype == "PlayerListTab" or subtype == "GalleryTab" then
+    if tab.Minimap ~= nil then
         tab.Minimap:MaintainMap()
     end
     DisableControlAction(0, 199, true)
@@ -9964,804 +9983,43 @@ function TabView:Draw()
     ScaleformUI.Scaleforms._pauseMenu:Draw(false)
     ScaleformUI.Scaleforms._pauseMenu._header:CallFunction("SHOW_ARROWS")
     self:UpdateKeymapItems()
+    Citizen.CreateThread(function()
+        self:GetHoveredColumn()
+    end)
 end
 
-function TabView:Select()
-    if self:FocusLevel() == 0 then
-        self:FocusLevel(self:FocusLevel() + 1)
-        local tab = self.Tabs[self.index]
-        local cur_tab, cur_sub_tab = tab()
-        if cur_sub_tab == "PlayerListTab" then
-            local selection = tab:Focus()
-            if tab._newStyle then
-                selection = 1
-            end
-            if tab.listCol[selection].Type == "settings" then
-                tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(true)
-            elseif tab.listCol[selection].Type == "players" then
-                local it = tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]
-                it:Selected(true)
-                if it:KeepPanelVisible() then
-                    it:AddPedToPauseMenu()
-                end
-            elseif tab.listCol[selection].Type == "missions" then
-                tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(true)
-            elseif tab.listCol[selection].Type == "store" then
-                tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(true)
-            end
-            for k, v in pairs(tab.listCol) do
-                if v.Type == "players" then
-                    SetPauseMenuPedLighting(self:FocusLevel() ~= 0)
-                end
-            end
-        elseif cur_sub_tab == "GalleryTab" then
-            if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                tab.Minimap:Enabled(true)
-                tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-            elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                BeginTextCommandScaleformString("gallerytab_desc")
-                EndTextCommandScaleformString_2()
-                EndScaleformMovieMethod()
-            else
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-            end
-            tab:updatePage()
-        elseif cur_sub_tab == "SubmenuTab" and tab.LeftItemList[self.leftItemIndex] then
-            tab.LeftItemList[self.leftItemIndex]:Selected(true)
-        end
-        --[[ check if all disabled ]]
-        local allDisabled = true
-        for _, v in ipairs(tab.LeftItemList) do
-            if v:Enabled() then
-                allDisabled = false
-                break
-            end
-        end
-        if allDisabled then return end
-        --[[ end check all disabled ]]
-        --
-        while (not tab.LeftItemList[self.leftItemIndex]:Enabled()) do
-            Citizen.Wait(0)
-            self:LeftItemIndex(self.leftItemIndex + 1)
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", self.leftItemIndex - 1)
-        end
-    elseif self:FocusLevel() == 1 then
-        local tab = self.Tabs[self.index]
-        local cur_tab, cur_sub_tab = tab()
-        if cur_sub_tab == "SubmenuTab" then
-            local leftItem = tab.LeftItemList[self.leftItemIndex]
-            if not leftItem:Enabled() then
-                PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                return
-            end
-            if leftItem.ItemType == LeftItemType.Settings then
-                self:FocusLevel(2)
-                --[[ check if all disabled ]]
-                local allDisabled = true
-                for _, v in ipairs(self.Tabs[self.index].LeftItemList) do
-                    if v:Enabled() then
-                        allDisabled = false
-                        break
-                    end
-                end
-                if allDisabled then return end
-                PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                --[[ end check all disabled ]]
-                --
-                while (not self.Tabs[self.index].LeftItemList[self.leftItemIndex]:Enabled()) do
-                    Citizen.Wait(0)
-                    self.rightItemIndex = self.rightItemIndex + 1
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_RIGHT_ITEM_INDEX",
-                        self.rightItemIndex - 1)
-                end
-            end
-        elseif cur_sub_tab == "PlayerListTab" then
-            if tab.listCol[tab:Focus()].Type == "settings" then
-                local _item = tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]
-                if not _item:Enabled() then
-                    PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    return
-                end
-                local _, subtype = _item()
-                if subtype == "UIMenuCheckboxItem" then
-                    _item:Checked(not _item:Checked())
-                    _item.OnCheckboxChanged(self, _item, _item:Checked())
-                elseif subtype == "UIMenuListItem" then
-                    _item.OnListSelected(self, _item, _item._Index)
-                elseif subtype == "UIMenuDynamicListItem" then
-                    _item.OnListSelected(self, _item, _item._currentItem)
-                elseif subtype == "UIMenuSliderItem" then
-                    _item.OnSliderSelected(self, _item, _item._Index)
-                elseif subtype == "UIMenuProgressItem" then
-                    _item.OnProgressSelected(self, _item, _item._Index)
-                elseif subtype == "UIMenuStatsItem" then
-                    _item.OnStatsSelected(self, _item, _item._Index)
-                else
-                    _item:Activated(self, _item)
-                end
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 16)
-            elseif tab.listCol[tab:Focus()].Type == "missions" then
-                tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()].Activated(tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()])
-            end
-        elseif cur_sub_tab == "GalleryTab" then
-            if not tab.bigPic then
-                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-                if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                    tab.Minimap:Enabled(true)
-                    tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-                elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                    tab.Minimap:Enabled(false)
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                    AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                    BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                    BeginTextCommandScaleformString("gallerytab_desc")
-                    EndTextCommandScaleformString_2()
-                    EndScaleformMovieMethod()
-                else
-                    tab.Minimap:Enabled(false)
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                end
-                tab.OnGalleryModeChanged(tab, tab.GalleryItems[tab.currentIndex], tab.bigPic)
-                tab:updatePage()
-            else
-                tab.OnGalleryItemSelected(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.currentSelection)
-                tab.GalleryItems[tab.currentIndex].Activated(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.currentSelection)
-            end
-        end
-    elseif self:FocusLevel() == 2 then
-        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_INPUT_EVENT", 16)
-        local leftItem = self.Tabs[self.index].LeftItemList[self.leftItemIndex]
-        if leftItem.ItemType == LeftItemType.Settings then
-            local rightItem = leftItem.ItemList[self.rightItemIndex]
-            if not rightItem:Enabled() then
-                PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                return
-            end
-            --[[ to add real functions ]]
-            --
-            if rightItem.ItemType == SettingsItemType.ListItem then
-                rightItem.OnListSelected(rightItem, rightItem:ItemIndex(),
-                    tostring(rightItem.ListItems[rightItem:ItemIndex()]))
-            elseif rightItem.ItemType == SettingsItemType.CheckBox then
-                rightItem:Checked(not rightItem:Checked())
-            elseif rightItem.ItemType == SettingsItemType.MaskedProgressBar or rightItem.ItemType == SettingsItemType.ProgressBar then
-                rightItem.OnProgressSelected(rightItem, rightItem:Value())
-            elseif rightItem.ItemType == SettingsItemType.SliderBar then
-                rightItem.OnSliderSelected(rightItem, rightItem:Value())
-            else
-                rightItem.OnActivated(rightItem, IndexOf(leftItem.ItemList, rightItem))
-            end
-            self.OnRightItemSelect(self, rightItem, self.rightItemIndex)
-        end
-    end
+
+function TabView:GetHoveredColumn()
+    self.hoveredColumn = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("GET_HOVERED_COLUMN")
 end
 
 function TabView:GoBack()
-    if self:FocusLevel() > 0 then
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT ~= "PlayerListTab" then
-            if subT == "GalleryTab" then
-                if tab.bigPic then
-                    tab:setTitle("", "", 0)
-                    if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                        tab.Minimap:Enabled(true)
-                        tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-                    elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                        tab.Minimap:Enabled(false)
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                        AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                        BeginTextCommandScaleformString("gallerytab_desc")
-                        EndTextCommandScaleformString_2()
-                        EndScaleformMovieMethod()
-                    else
-                        tab.Minimap:Enabled(false)
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                    end
-                    tab.OnGalleryModeChanged(tab, tab.GalleryItems[tab.currentIndex], tab.bigPic)
-                    tab:updatePage()
-                    return
-                else
-                    tab.currentIndex = 1
-                    tab:CurrentSelection(1)
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                    if tab.Minimap:Enabled() then
-                        tab.Minimap:Enabled(false)
-                    end
+    PlaySoundFrontend(-1, "BACK","HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+    if self.IsCorona then
+        if self:CurrentTab().CurrentColumnIndex > 0 then
+            self:CurrentTab():GoBack()
+        else
+            if self:CanPlayerCloseMenu() then
+                if self:CurrentTab()._identifier == "Page_Multi" then
+                    self:CurrentTab().Minimap:Enabled(false)
                 end
-            end
-            self:FocusLevel(self:FocusLevel() - 1)
-            if subT == "SubmenuTab" then
-                tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
-            end
-        elseif subT == "PlayerListTab" then
-            if tab._newStyle then
-                self:FocusLevel(self:FocusLevel() - 1)
-                SetPauseMenuPedLighting(self:FocusLevel() ~= 0)
-                tab.listCol[tab:Focus()].Items[tab.listCol[tab:Focus()]:CurrentSelection()]:Selected(false)
-            else
-                if self:FocusLevel() == 1 then
-                    tab.listCol[tab:Focus()].Items[tab.listCol[tab:Focus()]:CurrentSelection()]:Selected(false)
-                    if tab:Focus() == 1 then
-                        self:FocusLevel(self:FocusLevel() - 1)
-                        return
-                    end
-                    tab:updateFocus(tab:Focus() - 1)
-                end
+                self:Visible(false)
             end
         end
-        PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
     else
-        if self:CanPlayerCloseMenu() then
-            self:Visible(false)
-        end
-    end
-end
-
-function TabView:GoUp()
-    local tab = self.Tabs[self.index]
-    local _, subT = tab()
-    if subT == "PlayerListTab" and self:FocusLevel() == 1 then
-        tab.listCol[tab:Focus()]:GoUp()
-        return
-    end
-
-    if self:FocusLevel() == 1 then
-        if subT == "GalleryTab" then
-            local iPotentialIndex = tab.currentIndex
-            local iPotentialIndexPerPage = tab.currentSelection
-
-            if iPotentialIndexPerPage > 4 then
-                iPotentialIndex = iPotentialIndex - 4
-                iPotentialIndexPerPage = iPotentialIndexPerPage - 4
+        if self:FocusLevel() > 0 then
+            if self:FocusLevel() == 1 and self:CurrentTab().CurrentColumnIndex == 0 then
+                self:CurrentTab():UnFocus()
+                self:FocusLevel(0)
+                if self:CurrentTab()._identifier == "Page_Multi" then
+                    self:CurrentTab().Minimap:Enabled(false)
+                end
             else
-                iPotentialIndex = iPotentialIndex + 8
-                iPotentialIndexPerPage = iPotentialIndexPerPage + 8
+                self:CurrentTab():GoBack()
             end
-
-            if iPotentialIndex >= #tab.GalleryItems then return end
-            tab.currentIndex = iPotentialIndex
-            tab:CurrentSelection(iPotentialIndexPerPage)
-
-            tab:updateHighLight()
-            tab:updatePage()
-            tab.OnGalleryIndexChanged(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.CurrentSelection)
-
-            if tab.bigPic then
-                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-            end
-            if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                tab.Minimap:Enabled(true)
-                tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-            elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                BeginTextCommandScaleformString("gallerytab_desc")
-                EndTextCommandScaleformString_2()
-                EndScaleformMovieMethod()
-            else
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-            end
-            return
-        end
-    end
-
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 8)
-    if retVal ~= -1 then
-        if self:FocusLevel() == 1 then
-            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            self:LeftItemIndex(retVal + 1)
-        elseif self:FocusLevel() == 2 then
-            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            self:RightItemIndex(retVal + 1)
-        end
-    end
-end
-
-function TabView:GoDown()
-    local tab = self.Tabs[self.index]
-    local _, subT = tab()
-    if subT == "PlayerListTab" and self:FocusLevel() == 1 then
-        tab.listCol[tab:Focus()]:GoDown()
-        return
-    end
-
-    if self:FocusLevel() == 1 then
-        if subT == "GalleryTab" then
-            local iPotentialIndex = tab.currentIndex
-            local iPotentialIndexPerPage = tab.currentSelection
-
-            if iPotentialIndexPerPage < 9 then
-                iPotentialIndex = iPotentialIndex + 4
-                iPotentialIndexPerPage = iPotentialIndexPerPage + 4
-            else
-                iPotentialIndex = iPotentialIndex - 8
-                iPotentialIndexPerPage = iPotentialIndexPerPage - 8
-            end
-
-            if iPotentialIndex >= #tab.GalleryItems then return end
-            tab.currentIndex = iPotentialIndex
-            tab:CurrentSelection(iPotentialIndexPerPage)
-
-            tab:updateHighLight()
-            tab:updatePage()
-            tab.OnGalleryIndexChanged(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.CurrentSelection)
-
-            if tab.bigPic then
-                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-            end
-            if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                tab.Minimap:Enabled(true)
-                tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-            elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                BeginTextCommandScaleformString("gallerytab_desc")
-                EndTextCommandScaleformString_2()
-                EndScaleformMovieMethod()
-            else
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-            end
-            return
-        end
-    end
-
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 9)
-    if retVal ~= -1 then
-        if self:FocusLevel() == 1 then
-            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            self:LeftItemIndex(retVal + 1)
-        elseif self:FocusLevel() == 2 then
-            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-            self:RightItemIndex(retVal + 1)
-        end
-    end
-end
-
-function TabView:GoLeft()
-    if self:FocusLevel() == 1 then
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "GalleryTab" then
-            local iPotentialIndex = tab.currentIndex
-            local iPotentialIndexPerPage = tab.currentSelection
-            if tab.currentIndex == 1 then
-                tab.currentIndex = #tab.GalleryItems
-                tab:CurrentSelection(tab.currentIndex % 12)
-                tab.CurPage = tab:MaxPages()
-
-                if tab:MaxPages() > 1 then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_GALLERY")
-                    tab:SetDescriptionLabels(tab.maxItemsPerPage, tab.titleLabel, tab.dateLabel, tab.locationLabel, tab.trackLabel, tab.labelsVisible)
-                    for i = 1, 12 do
-                        local idx = i + ((tab.CurPage - 1) * 12)
-                        if idx <= #tab.GalleryItems then
-                            local item = tab.GalleryItems[idx]
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 4, 0, 1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item.Label4)
-                        else
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 0, 0, 1, "", "", "", "", 1, false)
-                        end
-                    end
-                end
-                tab:updateHighLight()
-                tab:updatePage()
-            else
-                if (tab.currentSelection - 1) % 4 > 0 or tab:MaxPages() <= 1 or (tab.bigPic and tab.currentSelection > 0) then
-                    iPotentialIndex = iPotentialIndex - 1
-                    iPotentialIndexPerPage = iPotentialIndexPerPage - 1
-                end
-
-                if tab:shouldNavigateToNewPage(iPotentialIndexPerPage) then
-                    if tab.CurPage > 1 then
-                        tab.CurPage = tab.CurPage - 1
-                    else
-                        tab.CurPage = tab:MaxPages()
-                    end
-                    tab.currentIndex = (((tab.CurPage - 1) * tab.maxItemsPerPage) + 1) + 3
-                    tab:CurrentSelection(iPotentialIndexPerPage + 3)
-                    if tab.currentIndex >= #tab.GalleryItems or tab.CurPage == tab:MaxPages() then
-                        tab.currentIndex = #tab.GalleryItems
-                        tab:CurrentSelection(tab.currentIndex % 12)
-                    end
-
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_GALLERY")
-                    tab:SetDescriptionLabels(tab.maxItemsPerPage, tab.titleLabel, tab.dateLabel, tab.locationLabel, tab.trackLabel, tab.labelsVisible)
-                    for i = 1, 12 do
-                        local idx = i + ((tab.CurPage - 1) * 12)
-                        if idx <= #tab.GalleryItems then
-                            local item = tab.GalleryItems[idx]
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 4, 0, 1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item.Label4)
-                        else
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 0, 0, 1, "", "", "", "", 1, false)
-                        end
-                    end
-                    tab:updateHighLight()
-                    tab:updatePage()
-                else
-                    tab.currentIndex = iPotentialIndex
-                    tab:CurrentSelection(iPotentialIndexPerPage)
-                    tab:updateHighLight()
-                end
-            end
-
-            if tab.bigPic then
-                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-            end
-            if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                tab.Minimap:Enabled(true)
-                tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-            elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                BeginTextCommandScaleformString("gallerytab_desc")
-                EndTextCommandScaleformString_2()
-                EndScaleformMovieMethod()
-            else
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-            end
-            tab.OnGalleryIndexChanged(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.CurrentSelection)
-            return
-        end
-    end
-
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 10)
-
-    if self:FocusLevel() == 0 then
-        ClearPedInPauseMenu()
-        --ScaleformUI.Scaleforms._pauseMenu:HeaderGoLeft()
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "SubmenuTab" then
-            tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
-        end
-        self:Index(self.index - 1)
-        tab = self.Tabs[self.index]
-        _, subT = tab()
-        if subT == "PlayerListTab" then
-            for k, v in pairs(tab.listCol) do
-                if v.Type == "settings" then
-                    tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "missions" then
-                    tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "store" then
-                    tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "players" then
-                    tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:Selected(false)
-                    if k == 1 or tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-                        if tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                            tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                        else
-                            ClearPedInPauseMenu()
-                        end
-                    else
-                        ClearPedInPauseMenu()
-                    end
-                else
-                    ClearPedInPauseMenu()
-                end
-            end
-        end
-        self.OnPauseMenuTabChanged(self, tab, self.index)
-    elseif self:FocusLevel() == 1 then
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "PlayerListTab" then
-            if tab.listCol[tab:Focus()].Type == "settings" then
-                local Item = tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]
-                if not Item:Enabled() then
-                    if tab._newStyle then
-                        Item:Selected(false)
-                        tab:updateFocus(tab:Focus() - 1)
-                    else
-                        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    end
-                    return
-                end
-                local type, subtype = Item()
-                if subtype == "UIMenuListItem" then
-                    Item:Index(retVal)
-                    Item.OnListChanged(self, Item, Item._Index)
-                elseif subtype == "UIMenuSliderItem" then
-                    Item:Index(retVal)
-                    Item.OnSliderChanged(self, Item, Item._Index)
-                elseif subtype == "UIMenuProgressItem" then
-                    Item:Index(retVal)
-                    Item.OnProgressChanged(self, Item, Item:Index())
-                elseif subtype == "UIMenuStatsItem" then
-                    Item:Index(retVal)
-                    Item.OnStatsChanged(self, Item, Item._Index)
-                else
-                    if tab._newStyle then
-                        tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
-                        tab:updateFocus(tab:Focus() - 1)
-                    end
-                end
-            elseif tab.listCol[tab:Focus()].Type == "missions" then
-                if tab._newStyle then
-                    tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() - 1)
-                end
-            elseif tab.listCol[tab:Focus()].Type == "store" then
-                if tab._newStyle then
-                    tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() - 1)
-                end
-            elseif tab.listCol[tab:Focus()].Type == "players" then
-                if tab._newStyle then
-                    tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() - 1)
-                else
-                    if tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                        tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                    end
-                end
-            elseif tab.listCol[tab:Focus()].Type == "panel" then
-                if tab._newStyle then
-                    tab:updateFocus(tab:Focus() - 1)
-                end
-            end
-        end
-    elseif self:FocusLevel() == 2 then
-        local rightItem = self.Tabs[self.index].LeftItemList[self.leftItemIndex].ItemList[self.rightItemIndex]
-        local sub_item, sub_item_type = rightItem()
-
-        if sub_item_type == "SettingsItem" then
-            if rightItem.ItemType == SettingsItemType.ListItem then
-                rightItem:ItemIndex(retVal)
-                rightItem.OnListChanged(rightItem, rightItem:ItemIndex(),
-                    tostring(rightItem.ListItems[rightItem:ItemIndex()]))
-            elseif rightItem.ItemType == SettingsItemType.SliderBar then
-                rightItem:Value(retVal)
-                rightItem.OnBarChanged(rightItem, rightItem:Value())
-            elseif rightItem.ItemType == SettingsItemType.ProgressBar or rightItem.ItemType == SettingsItemType.MaskedProgressBar then
-                rightItem:Value(retVal)
-                rightItem.OnBarChanged(rightItem, rightItem:Value())
-            end
-        end
-    end
-end
-
-function TabView:GoRight()
-    if self:FocusLevel() == 1 then
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "GalleryTab" then
-            local iPotentialIndex = tab.currentIndex
-            local iPotentialIndexPerPage = tab.currentSelection
-            if tab.currentIndex == #tab.GalleryItems then
-                tab.currentIndex = 1
-                tab:CurrentSelection(1)
-                tab.CurPage = 1
-
-                if tab:MaxPages() > 1 then
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_GALLERY")
-                    tab:SetDescriptionLabels(tab.maxItemsPerPage, tab.titleLabel, tab.dateLabel, tab.locationLabel, tab.trackLabel, tab.labelsVisible)
-                    for i = 1, 12 do
-                        local idx = i + ((tab.CurPage - 1) * 12)
-                        if idx <= #tab.GalleryItems then
-                            local item = tab.GalleryItems[idx]
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 4, 0, 1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item.Label4)
-                        else
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 0, 0, 1, "", "", "", "", 1, false)
-                        end
-                    end
-                end
-                tab:updateHighLight()
-                tab:updatePage()
-            else
-                if (tab.currentSelection - 1) % 4 < 3 or tab:MaxPages() <= 1 or (tab.bigPic and tab.currentSelection < 12) then
-                    iPotentialIndex = iPotentialIndex + 1
-                    iPotentialIndexPerPage = iPotentialIndexPerPage + 1
-                end
-
-                if tab:shouldNavigateToNewPage(iPotentialIndexPerPage) then
-                    if tab.CurPage < tab:MaxPages() then
-                        tab.CurPage = tab.CurPage + 1
-                    else
-                        tab.CurPage = 1
-                    end
-                    if tab.bigPic then
-                        tab.currentIndex = ((tab.CurPage - 1) * tab.maxItemsPerPage) + 1
-                        tab:CurrentSelection(1)
-                    else
-                        tab.currentIndex = (((tab.CurPage - 1) * tab.maxItemsPerPage) + 1) + iPotentialIndexPerPage - 3
-                        tab:CurrentSelection(iPotentialIndexPerPage - 4)
-                    end
-                    if tab.currentIndex >= #tab.GalleryItems or tab.CurPage == 1 then
-                        tab.currentIndex = ((tab.CurPage - 1) * tab.maxItemsPerPage) + 1
-                        tab:CurrentSelection(1)
-                    end
-
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("CLEAR_GALLERY")
-                    tab:SetDescriptionLabels(tab.maxItemsPerPage, tab.titleLabel, tab.dateLabel, tab.locationLabel, tab.trackLabel, tab.labelsVisible)
-                    for i = 1, 12 do
-                        local idx = i + ((tab.CurPage - 1) * 12)
-                        if idx <= #tab.GalleryItems then
-                            local item = tab.GalleryItems[idx]
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 4, 0, 1, item.Label1, item.Label2, item.TextureDictionary, item.TextureName, 1, false, item.Label3, item.Label4)
-                        else
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_GALLERY_ITEM", i - 1, i - 1, 33, 0, 0, 1, "", "", "", "", 1, false)
-                        end
-                    end
-                    tab:updateHighLight()
-                    tab:updatePage()
-                else
-                    tab.currentIndex = iPotentialIndex
-                    tab:CurrentSelection(iPotentialIndexPerPage)
-                    tab:updateHighLight()
-                end
-            end
-
-            if tab.bigPic then
-                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-            end
-            if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                tab.Minimap:Enabled(true)
-                tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-            elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                BeginTextCommandScaleformString("gallerytab_desc")
-                EndTextCommandScaleformString_2()
-                EndScaleformMovieMethod()
-            else
-                tab.Minimap:Enabled(false)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-            end
-            tab.OnGalleryIndexChanged(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.CurrentSelection)
-            return
-        end
-    end
-
-    local retVal = ScaleformUI.Scaleforms._pauseMenu._pause:CallFunctionAsyncReturnInt("SET_INPUT_EVENT", 11)
-
-    if self:FocusLevel() == 0 then
-        ClearPedInPauseMenu()
-        --ScaleformUI.Scaleforms._pauseMenu:HeaderGoRight()
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "SubmenuTab" then
-            tab.LeftItemList[self.leftItemIndex]:Selected(self:FocusLevel() == 1)
-        end
-        self:Index(self.index + 1)
-        tab = self.Tabs[self.index]
-        _, subT = tab()
-        if subT == "PlayerListTab" then
-            for k, v in pairs(tab.listCol) do
-                if v.Type == "settings" then
-                    tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "missions" then
-                    tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "store" then
-                    tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(false)
-                elseif v.Type == "players" then
-                    tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:Selected(false)
-                    if k == 1 or tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:KeepPanelVisible() then
-                        if tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                            tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                        else
-                            ClearPedInPauseMenu()
-                        end
-                    else
-                        ClearPedInPauseMenu()
-                    end
-                else
-                    ClearPedInPauseMenu()
-                end
-            end
-        end
-        self.OnPauseMenuTabChanged(self, tab, self.index)
-    elseif self:FocusLevel() == 1 then
-        local tab = self.Tabs[self.index]
-        local _, subT = tab()
-        if subT == "PlayerListTab" then
-            if tab.listCol[tab:Focus()].Type == "settings" then
-                local Item = tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]
-                if not Item:Enabled() then
-                    if tab._newStyle then
-                        Item:Selected(false)
-                        tab:updateFocus(tab:Focus() + 1)
-                    else
-                        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    end
-                    return
-                end
-                local type, subtype = Item()
-                if subtype == "UIMenuListItem" then
-                    Item:Index(retVal)
-                    Item.OnListChanged(self, Item, Item._Index)
-                elseif subtype == "UIMenuSliderItem" then
-                    Item:Index(retVal)
-                    Item.OnSliderChanged(self, Item, Item._Index)
-                elseif subtype == "UIMenuProgressItem" then
-                    Item:Index(retVal)
-                    Item.OnProgressChanged(self, Item, Item:Index())
-                elseif subtype == "UIMenuStatsItem" then
-                    Item:Index(retVal)
-                    Item.OnStatsChanged(self, Item, Item._Index)
-                else
-                    if tab._newStyle then
-                        tab.SettingsColumn.Items[tab.SettingsColumn:CurrentSelection()]:Selected(false)
-                        tab:updateFocus(tab:Focus() + 1)
-                    end
-                end
-            elseif tab.listCol[tab:Focus()].Type == "missions" then
-                if tab._newStyle then
-                    tab.MissionsColumn.Items[tab.MissionsColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() + 1)
-                end
-            elseif tab.listCol[tab:Focus()].Type == "store" then
-                if tab._newStyle then
-                    tab.StoreColumn.Items[tab.StoreColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() + 1)
-                end
-            elseif tab.listCol[tab:Focus()].Type == "players" then
-                if tab._newStyle then
-                    tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:Selected(false)
-                    tab:updateFocus(tab:Focus() + 1)
-                else
-                    if tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                        tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                    end
-                end
-            elseif tab.listCol[tab:Focus()].Type == "panel" then
-                if tab._newStyle then
-                    tab:updateFocus(tab:Focus() + 1)
-                end
-            end
-        end
-    elseif self:FocusLevel() == 2 then
-        local rightItem = self.Tabs[self.index].LeftItemList[self.leftItemIndex].ItemList[self.rightItemIndex]
-        local sub_item, sub_item_type = rightItem()
-        if sub_item_type == "SettingsItem" then
-            if rightItem.ItemType == SettingsItemType.ListItem then
-                rightItem:ItemIndex(retVal)
-                rightItem.OnListChanged(rightItem, rightItem:ItemIndex(),
-                    tostring(rightItem.ListItems[rightItem:ItemIndex()]))
-            elseif rightItem.ItemType == SettingsItemType.SliderBar then
-                rightItem:Value(retVal)
-                rightItem.OnBarChanged(rightItem, rightItem:Value())
-            elseif rightItem.ItemType == SettingsItemType.ProgressBar or rightItem.ItemType == SettingsItemType.MaskedProgressBar then
-                rightItem:Value(retVal)
-                rightItem.OnBarChanged(rightItem, rightItem:Value())
+        else
+            if self:CanPlayerCloseMenu() then
+                self:Visible(false)
             end
         end
     end
@@ -10781,362 +10039,447 @@ function TabView:ProcessMouse()
         local successHeader, event_type_h, context_h, item_id_h
         local successPause, event_type, context, item_id
 
-        successHeader, event_type_h, context_h, item_id_h = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms._pauseMenu._header.handle)
+        successHeader, event_type_h, context_h, item_id_h = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms
+            ._pauseMenu._header.handle)
         if successHeader then
             if event_type_h == 5 then
                 if context_h == -1 then
+                    self:CurrentTab():UnFocus()
+                    self:FocusLevel(0)
+                    ScaleformUI.Scaleforms._pauseMenu:SelectTab(item_id_h)
                     self:Index(item_id_h + 1)
+                    self:CurrentTab():Focus()
                     self:FocusLevel(1)
-                    PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    local tab = self.Tabs[self.index]
-                    local _, subT = tab()
-                    if subT == "PlayerListTab" then
-                        tab:updateFocus(tab._focus)
-                        if tab.PlayersColumn ~= nil then
-                            if tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= nil and tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()].ClonePed ~= 0 then
-                                tab.PlayersColumn.Items[tab.PlayersColumn:CurrentSelection()]:AddPedToPauseMenu()
-                            else
-                                ClearPedInPauseMenu()
-                            end
-                        end
-                    else
-                        ClearPedInPauseMenu()
-                    end
-                    if subT == "GalleryTab" then
-                        if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                            tab.Minimap:Enabled(true)
-                            tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-                        elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                            tab.Minimap:Enabled(false)
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                            AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                            BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                            BeginTextCommandScaleformString("gallerytab_desc")
-                            EndTextCommandScaleformString_2()
-                            EndScaleformMovieMethod()
-                        else
-                            tab.Minimap:Enabled(false)
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                        end
-                        tab:updateHighLight()
-                        tab:updatePage()
-                    end
-                    local allDisabled = true
-                    for k, v in pairs(tab.LeftItemList) do
-                        if v:Enabled() then
-                            allDisabled = false
-                            break
-                        end
-                    end
-                    if not allDisabled then
-                        while not tab.LeftItemList[self.leftItemIndex]:Enabled() do
-                            Citizen.Wait(0)
-                            self:LeftItemIndex(self:LeftItemIndex() + 1)
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", self.leftItemIndex - 1)
-                        end
-                    end
+                    PlaySoundFrontend(-1, "SELECT","HUD_FRONTEND_DEFAULT_SOUNDSET", false)
                 end
             elseif event_type_h == 6 then
                 if context_h == 1000 then
+                    self:FocusLevel(0)
+                    self:CurrentTab():UnFocus()
                     if item_id == -1 then
                         self:Index(self:Index() - 1)
                     elseif item_id == 1 then
                         self:Index(self:Index() + 1)
                     end
+                    self:CurrentTab():Focus()
+                    self:FocusLevel(1)
                 end
+            elseif event_type_h == 8 then
+                self.tabArrowsHovered = false
+            elseif event_type_h == 9 then
+                self.tabArrowsHovered = true
             end
         end
 
-        successPause, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms._pauseMenu._pause.handle)
-        if successPause then
-            local tab = self.Tabs[self.index]
-            local _, subT = tab()
-            if event_type == 5 then
-                if subT == "GalleryTab" then
-                    if self:FocusLevel() == 0 then
-                        self:FocusLevel(1)
-                    elseif self:FocusLevel() == 1 then
-                        if (tab:CurrentSelection() ~= item_id + 1) then
-                            tab:CurrentSelection(item_id + 1)
-                            tab.currentIndex = ((tab.CurPage - 1) * tab.maxItemsPerPage) + 1 + (item_id)
-                            tab.OnGalleryIndexChanged(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.CurrentSelection)
-                        else
-                            if not tab.bigPic then
-                                tab:setTitle(tab.GalleryItems[tab.currentIndex].TextureDictionary, tab.GalleryItems[tab.currentIndex].TextureName, 4)
-                                tab.OnGalleryModeChanged(tab, tab.GalleryItems[tab.currentIndex], tab.bigPic)
-                            else
-                                tab.OnGalleryItemSelected(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.currentSelection)
-                                tab.GalleryItems[tab.currentIndex].Activated(tab, tab.GalleryItems[tab.currentIndex], tab.currentIndex, tab.currentSelection)
-                            end
-                        end
-                    end
-                    if tab.GalleryItems[tab.currentIndex].Blip ~= nil then
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                        tab.Minimap:Enabled(true)
-                        tab.Minimap:RefreshMapPosition(vector2(tab.GalleryItems[tab.currentIndex].Blip.Position.x, tab.GalleryItems[tab.currentIndex].Blip.Position.y))
-                    elseif tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= nil and tab.GalleryItems[tab.currentIndex].RightPanelDescription ~= "" then
-                        tab.Minimap:Enabled(false)
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", false)
-                        AddTextEntry("gallerytab_desc", tab.GalleryItems[tab.currentIndex].RightPanelDescription)
-                        BeginScaleformMovieMethod(ScaleformUI.Scaleforms._pauseMenu._pause.handle, "SET_GALLERY_PANEL_DESCRIPTION")
-                        BeginTextCommandScaleformString("gallerytab_desc")
-                        EndTextCommandScaleformString_2()
-                        EndScaleformMovieMethod()
-                    else
-                        tab.Minimap:Enabled(false)
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_DESCRIPTION", "")
-                        ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_GALLERY_PANEL_HIDDEN", true)
-                    end
-                    tab:updateHighLight()
-                    tab:updatePage()
-                    return
-                elseif self:FocusLevel() == 1 and subT == "PlayerListTab" then
-                    local foc = tab:Focus()
-                    local curSel = 1
-                    if tab._newStyle then
-                        curSel = tab.listCol[foc]:CurrentSelection()
-                    end
-                    if context + 1 ~= foc then
-                        tab.listCol[foc].Items[tab.listCol[foc]:CurrentSelection()]:Selected(false)
-                        tab:updateFocus(context + 1, true)
-                        tab.listCol[context + 1]:CurrentSelection(tab.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1))
-                        tab.listCol[context + 1].OnIndexChanged(tab.listCol[context + 1]:CurrentSelection())
-                        if curSel ~= tab.listCol[context + 1]:CurrentSelection() then
-                            PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                        end
-                    else
-                        tab.listCol[foc]:CurrentSelection(tab.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1))
-                    end
-                    if foc == tab:Focus() and curSel == tab.listCol[context + 1]:CurrentSelection() then
-                        self:Select()
-                    end
-                    return
-                end
-                if context == 0 then
-                    self:FocusLevel(1)
-                    if subT ~= "PlayerListTab" then
-                        if #tab.LeftItemList == 0 then return end
-                        if not tab.LeftItemList[self.leftItemList] then return end
-                        local allDisabled = true
-                        for k, v in pairs(tab.LeftItemList) do
-                            if v:Enabled() then
-                                allDisabled = false
-                                break
-                            end
-                        end
-                        if not allDisabled then
-                            while not tab.LeftItemList[self.leftItemList]:Enabled() do
-                                Citizen.Wait(0)
-                                self:LeftItemIndex(self.leftItemIndex + 1)
-                                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", self.leftItemIndex - 1)
-                            end
-                        end
-                    end
-                elseif context == 1 then
-                    if self:FocusLevel() ~= 1 then
-                        if not tab.LeftItemList[item_id + 1]:Enabled() then
-                            PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                            return
-                        end
-                        tab.LeftItemList[self.leftItemIndex]:Selected(false)
-                        self:LeftItemIndex(item_id + 1)
-                        tab.LeftItemList[self.leftItemIndex]:Selected(true)
-                        self:FocusLevel(1)
-                        PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    elseif self:FocusLevel() == 1 then
-                        if not tab.LeftItemList[item_id + 1]:Enabled() then
-                            PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                            return
-                        end
-                        if tab.LeftItemList[self.leftItemIndex].ItemType == LeftItemType.Settings then
-                            self:FocusLevel(2)
-                            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_RIGHT_ITEM_INDEX", 0)
-                            self:RightItemIndex(1)
-                        end
-                        tab.LeftItemList[self.leftItemIndex]:Selected(false)
-                        self:LeftItemIndex(item_id + 1)
-                        tab.LeftItemList[self.leftItemIndex]:Selected(true)
-                        PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                    end
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_LEFT_ITEM_INDEX", item_id)
-                    tab.LeftItemList[self.leftItemIndex].OnActivated(tab.LeftItemList[self.leftItemIndex],
-                        self.leftItemIndex)
-                    self.OnLeftItemSelect(self, tab.LeftItemList[self.leftItemIndex], self.leftItemIndex)
-                    PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                elseif context == 2 then
-                    local rightItem = tab.LeftItemList[self.leftItemIndex].ItemList[item_id + 1]
-                    if not rightItem:Enabled() then
-                        PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                        return
-                    end
-                    if self:FocusLevel() ~= 2 then
-                        self:FocusLevel(2)
-                    end
-                    if rightItem:Selected() then
-                        if rightItem.ItemType == SettingsItemType.ListItem then
-                            rightItem.OnListSelected(rightItem, rightItem:ItemIndex(),
-                                tostring(rightItem.ListItems[rightItem:ItemIndex()]))
-                        elseif rightItem.ItemType == SettingsItemType.CheckBox then
-                            rightItem:Checked(not rightItem:Checked())
-                        elseif rightItem.ItemType == SettingsItemType.MaskedProgressBar or rightItem.ItemType == SettingsItemType.ProgressBar then
-                            rightItem.OnProgressSelected(rightItem, rightItem:Value())
-                        elseif rightItem.ItemType == SettingsItemType.SliderBar then
-                            rightItem.OnSliderSelected(rightItem, rightItem:Value())
-                        else
-                            rightItem.OnActivated(rightItem,
-                                IndexOf(tab.LeftItemList[self.leftItemIndex].ItemList, rightItem))
-                        end
-                        self.OnRightItemSelect(self, rightItem, self.rightItemIndex)
-                        return
-                    end
-                    tab.LeftItemList[self.leftItemIndex].ItemList[self.rightItemIndex]:Selected(false)
-                    self:RightItemIndex(item_id + 1)
-                    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SELECT_RIGHT_ITEM_INDEX", item_id)
-                    tab.LeftItemList[self.leftItemIndex].ItemList[self.rightItemIndex]:Selected(true)
-                    PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
-                end
-            elseif event_type == 9 then
-                if subT == "PlayerListTab" then
-                    local idx = tab.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1)
-                    tab.listCol[context + 1].Items[idx]:Hovered(true)
-                else
-                    if context == 1 then
-                        for i, item in ipairs(tab.LeftItemList or {}) do
-                            item:Hovered(item:Enabled() and i == item_id + 1)
-                        end
-                    elseif context == 2 then
-                        for i, item in ipairs(tab.LeftItemList[self.leftItemIndex].ItemList or {}) do
-                            item:Hovered(item:Enabled() and i == item_id + 1)
-                        end
-                    end
-                end
-            elseif event_type == 8 or event_type == 0 then
-                if subT == "PlayerListTab" then
-                    local idx = tab.listCol[context + 1].Pagination:GetMenuIndexFromScaleformIndex(item_id - 1)
-                    tab.listCol[context + 1].Items[idx]:Hovered(false)
-                end
+        successPause, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms._pauseMenu
+            ._pause.handle)
+        if successPause and not self.tabArrowsHovered then
+            if event_type == 5 and self:FocusLevel() == 0 and not self.tabArrowsHovered then
+                self:FocusLevel(1)
+                return
             end
+            self:CurrentTab():MouseEvent(event_type, context, item_id + 1)
+        end
+        if not successPause and not successHeader and self:FocusLevel() == 0 and event_type == 5 then
+            self:FocusLevel(1)
         end
     end)
 end
 
-function TabView:ProcessControl()
-    if not self:Visible() or self.TemporarilyHidden then
-        return
-    end
-    EnableControlAction(2, 177, true)
-    if (IsDisabledControlJustPressed(2, 172)) then
-        Citizen.CreateThread(function()
-            self:GoUp()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 172) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoUp()
-                end
-                Citizen.Wait(50)
-            end
-            return
-        end)
-    end
-    if (IsDisabledControlJustPressed(2, 173)) then
-        Citizen.CreateThread(function()
-            self:GoDown()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 173) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoDown()
-                end
-                Citizen.Wait(50)
-            end
-            return
-        end)
-    end
-    if (IsDisabledControlJustPressed(2, 174)) then
-        Citizen.CreateThread(function()
-            self:GoLeft()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 174) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoLeft()
-                end
-                Citizen.Wait(50)
-            end
-            return
-        end)
-    end
-    if (IsDisabledControlJustPressed(2, 175)) then
-        Citizen.CreateThread(function()
-            self:GoRight()
-            local timer = GetGameTimer()
-            while IsDisabledControlPressed(2, 175) do
-                if GetTimeDifference(GetGameTimer(), timer) > 300 then
-                    self:GoRight()
-                end
-                Citizen.Wait(50)
-            end
-            return
-        end)
-    end
-    if (IsControlJustPressed(2, 205) or (IsUsingKeyboard(2) and IsControlJustPressed(2, 192) and IsControlPressed(2, 21))) then
-        Citizen.CreateThread(function()
-            if (self:FocusLevel() ~= 0) then
-                self:GoBack()
-            end
-            self:GoLeft()
-        end)
-    end
-    if (IsControlJustPressed(2, 206) or (IsUsingKeyboard(2) and IsControlJustPressed(2, 192))) then
-        Citizen.CreateThread(function()
-            if (self:FocusLevel() ~= 0) then
-                self:GoBack()
-            end
-            self:GoRight()
-        end)
-    end
-    if (IsControlJustPressed(2, 201)) then
-        Citizen.CreateThread(function()
-            self:Select()
-        end)
-    end
-    if (IsControlJustReleased(2, 177)) then
-        Citizen.CreateThread(function()
-            self:GoBack()
-        end)
+function TabView:CheckInput(input, bPlaySound, OverrideFlags, bCheckForButtonJustPressed)
+    local bOnlyCheckForDown = false
+    local interval = 0
+
+    if input == eFRONTEND_INPUT.FRONTEND_INPUT_UP then
+        interval = self.s_iLastRefireTimeUp
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_DOWN then
+        interval = self.s_iLastRefireTimeDn
+    else
+        interval = self.BUTTON_PRESSED_DOWN_INTERVAL
     end
 
-    if (IsControlJustPressed(2, 241) or IsDisabledControlJustPressed(2, 241)) then
-        Citizen.CreateThread(function()
-            ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(-1)
-        end)
-    end
-    if (IsControlJustPressed(2, 242) or IsDisabledControlJustPressed(2, 242)) then
-        Citizen.CreateThread(function()
-            ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(1)
-        end)
+    if self.s_lastGameFrame ~= GetFrameCount() and GetGameTimer() > (self.s_pressedDownTimer + interval) then
+        bOnlyCheckForDown = true
     end
 
+    local bInputTriggered = false
+    local iXAxis = 0
+    local iYAxis = 0
+    local iYAxisR = 0
+    local iXAxisR = 0
 
-    if (IsControlPressed(2, 3) and not IsUsingKeyboard(2)) then
-        if (GlobalGameTimer - self._timer > 175) then
-            Citizen.CreateThread(function()
-                ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(-1)
-            end)
-            self._timer = GlobalGameTimer
+    local c_ignoreDpad = OverrideFlags & CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_IGNORE_D_PAD ~= 0
+
+    if OverrideFlags & CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_IGNORE_ANALOGUE_STICKS == 0 then
+        iXAxis = GetDisabledControlNormal(2, 195) * 128.0
+        iYAxis = GetDisabledControlNormal(2, 196) * 128.0
+        iYAxisR = GetDisabledControlNormal(2, 198) * 128.0
+        iXAxisR = GetDisabledControlNormal(2, 197) * 128.0
+    end
+
+    -- Input-specific logic
+    if input == eFRONTEND_INPUT.FRONTEND_INPUT_UP then
+        if iXAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iXAxis < self.FRONTEND_ANALOGUE_THRESHOLD then
+            if bOnlyCheckForDown then
+                if iYAxis < -self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 188) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            else
+                if (self.iPreviousYAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iYAxis < -self.FRONTEND_ANALOGUE_THRESHOLD)
+                    or (IsDisabledControlJustPressed(2, 188) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            end
+        end
+
+        if self.s_lastGameFrame ~= GetFrameCount() then
+            if iYAxis < -self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 188) and not c_ignoreDpad) then
+                if bInputTriggered then
+                    self.s_iLastRefireTimeUp = math.max(self.s_iLastRefireTimeUp - self.BUTTON_PRESSED_REFIRE_ATTRITION,
+                        self.BUTTON_PRESSED_REFIRE_MINIMUM)
+                end
+            else
+                self.s_iLastRefireTimeUp = self.BUTTON_PRESSED_DOWN_INTERVAL
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_DOWN then
+        if (iXAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iXAxis < self.FRONTEND_ANALOGUE_THRESHOLD) then
+            if (bOnlyCheckForDown) then
+                if (iYAxis > self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 187) and not c_ignoreDpad)) then
+                    bInputTriggered = true
+                end
+            else
+                if ((self.iPreviousYAxis < self.FRONTEND_ANALOGUE_THRESHOLD and iYAxis > self.FRONTEND_ANALOGUE_THRESHOLD) or (IsDisabledControlJustPressed(2, 187) and not c_ignoreDpad)) then
+                    bInputTriggered = true
+                end
+            end
+            if self.s_lastGameFrame ~= GetFrameCount() then
+                -- can't just do bInputTriggered because we may be waiting for an up
+                if (iYAxis > self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 187) and not c_ignoreDpad)) then
+                    if (bInputTriggered) then
+                        self.s_iLastRefireTimeDn = math.max(
+                            self.s_iLastRefireTimeDn - self.BUTTON_PRESSED_REFIRE_ATTRITION,
+                            self.BUTTON_PRESSED_REFIRE_MINIMUM)
+                    end
+                else
+                    self.s_iLastRefireTimeDn = self.BUTTON_PRESSED_DOWN_INTERVAL
+                end
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_LEFT then
+        if iYAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iYAxis < self.FRONTEND_ANALOGUE_THRESHOLD then
+            if bOnlyCheckForDown then
+                if iXAxis < -self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 189) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            else
+                if (self.iPreviousXAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iXAxis < -self.FRONTEND_ANALOGUE_THRESHOLD)
+                    or (IsDisabledControlJustPressed(2, 189) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RIGHT then
+        if iYAxis > -self.FRONTEND_ANALOGUE_THRESHOLD and iYAxis < self.FRONTEND_ANALOGUE_THRESHOLD then
+            if bOnlyCheckForDown then
+                if iXAxis > self.FRONTEND_ANALOGUE_THRESHOLD or (IsDisabledControlPressed(2, 190) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            else
+                if (self.iPreviousXAxis < self.FRONTEND_ANALOGUE_THRESHOLD and iXAxis > self.FRONTEND_ANALOGUE_THRESHOLD)
+                    or (IsDisabledControlJustPressed(2, 190) and not c_ignoreDpad) then
+                    bInputTriggered = true
+                end
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RUP then
+        if bOnlyCheckForDown then
+            if iYAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        else
+            if self.iPreviousYAxisR > -self.FRONTEND_ANALOGUE_THRESHOLD and iYAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RDOWN then
+        if bOnlyCheckForDown then
+            if iYAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        else
+            if self.iPreviousYAxisR < self.FRONTEND_ANALOGUE_THRESHOLD and iYAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RLEFT then
+        if bOnlyCheckForDown then
+            if iXAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        else
+            if self.iPreviousXAxisR > -self.FRONTEND_ANALOGUE_THRESHOLD and iXAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RRIGHT then
+        if bOnlyCheckForDown then
+            if iXAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        else
+            if self.iPreviousXAxisR < self.FRONTEND_ANALOGUE_THRESHOLD and iXAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_ACCEPT then
+        local bAcceptHasBeenPressed = false
+
+        if bCheckForButtonJustPressed then
+            if IsDisabledControlJustPressed(2, 201) then
+                bAcceptHasBeenPressed = true
+            end
+        else
+            if IsDisabledControlJustReleased(2, 201) then
+                bAcceptHasBeenPressed = true
+            end
+        end
+
+        if bAcceptHasBeenPressed then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_X then
+        if IsDisabledControlJustReleased(2, 203) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_Y then
+        if IsDisabledControlJustReleased(2, 204) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_BACK then
+        if bCheckForButtonJustPressed then
+            if IsDisabledControlJustPressed(2, 202) then
+                bInputTriggered = true
+            end
+        else
+            if IsDisabledControlJustReleased(2, 202) then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_BACK then
+        if bCheckForButtonJustPressed then
+            if IsDisabledControlJustPressed(0, 238) then
+                bInputTriggered = true
+            end
+        else
+            if IsDisabledControlJustReleased(0, 238) then
+                bInputTriggered = true
+            end
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_START then
+        if IsDisabledControlJustReleased(0, 199) then
+            bInputTriggered = true
+        elseif IsDisabledControlJustReleased(0, 200) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_SPECIAL_UP then
+        if iYAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_SPECIAL_DOWN then
+        if iYAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RT_SPECIAL or input == eFRONTEND_INPUT.FRONTEND_INPUT_RT then
+        if IsDisabledControlJustPressed(2, 208) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_LT_SPECIAL or input == eFRONTEND_INPUT.FRONTEND_INPUT_LT then
+        if IsDisabledControlJustPressed(2, 207) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_LB then
+        if IsDisabledControlJustPressed(2, 205) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RB then
+        if IsDisabledControlJustPressed(2, 206) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RSTICK_LEFT then
+        if iXAxisR > self.FRONTEND_ANALOGUE_THRESHOLD then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_RSTICK_RIGHT then
+        if iXAxisR < -self.FRONTEND_ANALOGUE_THRESHOLD then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_SELECT then
+        if IsDisabledControlJustReleased(2, 217) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_R3 then
+        if IsDisabledControlJustReleased(2, 231) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_L3 then
+        if IsDisabledControlJustReleased(2, 230) then
+            bInputTriggered = true
+        end
+    elseif input == eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_ACCEPT then
+        if IsDisabledControlJustReleased(2, 237) then
+            bInputTriggered = true
         end
     end
-    if (IsControlPressed(2, 4) and not IsUsingKeyboard(2)) then
-        if (GlobalGameTimer - self._timer > 175) then
-            Citizen.CreateThread(function()
-                ScaleformUI.Scaleforms._pauseMenu:SendScrollEvent(1)
-            end)
-            self._timer = GlobalGameTimer
+
+    if bInputTriggered then
+        if self.s_lastGameFrame ~= GetFrameCount() then
+            self.s_pressedDownTimer = GetGameTimer()
+            self.s_lastGameFrame = GetFrameCount()
+            self.iPreviousXAxis = iXAxis
+            self.iPreviousYAxis = iYAxis
+            self.iPreviousXAxisR = iXAxisR
+            self.iPreviousYAxisR = iYAxisR
+        end
+
+        -- Sound playing logic commented out
+        -- if bPlaySound then
+        --     PlayInputSound(input)
+        -- end
+    end
+
+    return bInputTriggered
+end
+
+function TabView:ProcessControl()
+    if not self:Visible() or self.TemporarilyHidden or self._isBuilding then
+        return
+    end
+
+    if (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_UP, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
+        self:CurrentTab():GoUp()
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_DOWN, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
+        self:CurrentTab():GoDown()
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LEFT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
+        if (self:FocusLevel() == 0 and not IsCorona) then
+            self:Index(self.index - 1)
+        else
+            self:CurrentTab():GoLeft()
+        end
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RIGHT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
+        if (self:FocusLevel() == 0 and not IsCorona) then
+            self:Index(self.index + 1)
+        else
+            self:CurrentTab():GoRight()
+        end
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
+            or (IsDisabledControlJustPressed(2, 192) and IsControlPressed(2, 21) and IsUsingKeyboard(2))) then
+        if (IsCorona or #self.Tabs == 1) then return end
+        if (self:FocusLevel() > 0) then
+            self:FocusLevel(0)
+        end
+        self:Index(self.index - 1)
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
+            or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
+        if (IsCorona or #self.Tabs == 1) then return end
+        if (self:FocusLevel() > 0) then
+            self:FocusLevel(0)
+        end
+        self:Index(self.index + 1)
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) or (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_ACCEPT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) and self.focusLevel == 0)) then
+        if (self.focusLevel == 0) then
+            self:CurrentTab():Focus()
+            self:FocusLevel(1)
+        else
+            self:CurrentTab():Select()
+        end
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_BACK, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false) or self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_CURSOR_BACK, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
+        self:GoBack()
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RUP, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, true)) then
+        if (not self:CurrentTab().Focused) then return end
+        if (self:CurrentTab()._identifier == "Page_Simple") then
+            self:CurrentTab():MouseEvent(10, 0, -1)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", 0, 8)
+        elseif (self:CurrentTab()._identifier == "Page_Info") then
+            if (self:CurrentTab().currentItemType == 1 or self:CurrentTab().currentItemType == 2) then
+                PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", 1, 8)
+            end
+        end
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RDOWN, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, true)) then
+        if (not self:CurrentTab().Focused) then return end
+        if (self:CurrentTab()._identifier == "Page_Simple") then
+            self:CurrentTab().MouseEvent(11, 0, -1)
+            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", 0, 9)
+        elseif (self:CurrentTab()._identifier == "Page_Info") then
+            if (self:CurrentTab().currentItemType == 1 or self:CurrentTab().currentItemType == 2) then
+                PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_INPUT_EVENT", 1, 9)
+            end
         end
     end
 end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+MainView = {}
+MainView.__index = MainView
+setmetatable(MainView, { __index = TabView })
+MainView.__call = function() return "MainView" end
+
+
+---@class MainView
+---@field public Title string
+---@field public Subtitle string
+---@field public SideTop string
+---@field public SideMid string
+---@field public SideBot string
+---@field public SettingsColumn SettingsListColumn
+---@field public PlayersColumn PlayerListColumn
+---@field public MissionPanel MissionDetailsPanel
+---@field public InstructionalButtons InstructionalButton[]
+---@field public OnLobbyMenuOpen fun(menu: MainView)
+---@field public OnLobbyMenuClose fun(menu: MainView)
+---@field public TemporarilyHidden boolean
+---@field public controller boolean
+---@field public _focus number
+
+function MainView.New(title, subtitle, sideTop, sideMid, sideBot)
+    local base = TabView.New(title, subtitle, sideTop, sideMid, sideBot)
+    base.IsCorona = true
+    base.coronaTab = PlayerListTab.New("corona for mainview", SColor.HUD_None)
+    base.OnLobbyMenuOpen = function(menu)
+    end
+    base.OnLobbyMenuClose = function(menu)
+    end
+    local meta = setmetatable(base, MainView)
+    meta:AddTab(meta.coronaTab)
+    meta.Minimap = meta.coronaTab.Minimap
+    meta.Minimap.Parent = meta
+    return meta
+end
+
+function MainView:SelectColumn(column)
+    self.coronaTab:SwitchColumn(column)
+end
+
+function MainView:SwitchColumn(column)
+    self.coronaTab:SwitchColumn(column)
+end
+
+function MainView:SetupLeftColumn(column)
+    self.coronaTab:SetupLeftColumn(column)
+end
+
+function MainView:SetupCenterColumn(column)
+    self.coronaTab:SetupCenterColumn(column)
+end
+
+function MainView:SetupRightColumn(column)
+    self.coronaTab:SetupRightColumn(column)
+end
+
 
 --///////////////////////////////////////////////////////////////////--
 RadialMenu = setmetatable({}, RadialMenu)
@@ -11145,7 +10488,7 @@ RadialMenu.__call = function()
     return "RadialMenu"
 end
 
----@class RadialMenu: _Scaleform
+---@class RadialMenu: __Scaleform
 ---@field public Segments table
 ---@field public InstructionalButtons table
 ---@field public OnMenuOpen fun(menu:RadialMenu, data:any)
@@ -11184,7 +10527,7 @@ function RadialMenu.New(x, y)
         oldAngle = 0,
         changed = false,
         enable3D = true,
-        offset = {x = X, y = Y},
+        offset = { x = X, y = Y },
         Segments = {
             RadialSegment.New(1),
             RadialSegment.New(2),
@@ -11411,6 +10754,8 @@ function RadialMenu:Draw()
     ScaleformUI.Scaleforms._radialMenu:Render2D()
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 RadialSegment = setmetatable({}, RadialSegment)
 RadialSegment.__index = RadialSegment
@@ -11461,6 +10806,8 @@ function RadialSegment:CycleItems(dir)
     self.OnIndexChanged(self.currentSelection)
     return self:CurrentSelection()
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 SegmentItem = setmetatable({}, SegmentItem)
@@ -11591,6 +10938,8 @@ function SegmentItem:SetQuantity(qtty, max)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 RadioItem = setmetatable({}, RadioItem)
 RadioItem.__index = RadioItem
@@ -11610,6 +10959,8 @@ function RadioItem.New(_station, _artist, _track, _txd, _txn)
     return setmetatable(data, RadioItem)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 UIRadioMenu = setmetatable({}, UIRadioMenu)
 UIRadioMenu.__index = UIRadioMenu
@@ -11617,7 +10968,7 @@ UIRadioMenu.__call = function()
     return "UIRadioMenu"
 end
 
----@class UIRadioMenu: _Scaleform
+---@class UIRadioMenu: __Scaleform
 ---@field public visible boolean
 ---@field public isAnimating boolean
 ---@field public currentSelection number
@@ -11882,455 +11233,13 @@ function UIRadioMenu:animateOut()
     until not self.isAnimating
 end
 
---///////////////////////////////////////////////////////////////////--
-UIMenuCheckboxItem = setmetatable({}, UIMenuCheckboxItem)
-UIMenuCheckboxItem.__index = UIMenuCheckboxItem
-UIMenuCheckboxItem.__call = function() return "UIMenuItem", "UIMenuCheckboxItem" end
-
----@class UIMenuCheckboxItem : UIMenuItem
----@field public Base UIMenuItem
-
----New
----@param Text string
----@param Check boolean
----@param Description string
-function UIMenuCheckboxItem.New(Text, Check, checkStyle, Description, color, highlightColor)
-    local _UIMenuCheckboxItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        _Checked = ToBool(Check),
-        Panels = {},
-        SidePanel = nil,
-        CheckBoxStyle = checkStyle or 0,
-        ItemId = 2,
-        OnCheckboxChanged = function(menu, item, checked)
-        end,
-    }
-    return setmetatable(_UIMenuCheckboxItem, UIMenuCheckboxItem)
-end
-
-function UIMenuCheckboxItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
-    end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuCheckboxItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
-    end
-    self.Base:LabelFont(itemFont, self)
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuCheckboxItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuCheckboxItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuCheckboxItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuCheckboxItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuCheckboxItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuCheckboxItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuCheckboxItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuCheckboxItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuCheckboxItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuCheckboxItem:LeftBadge(Badge)
-    if Badge == nil then
-        return self.Base:LeftBadge()
-    end
-    self.Base:LeftBadge(Badge, self)
-end
-
-function UIMenuCheckboxItem:CustomLeftBadge(txd, txn)
-    self.Base:CustomLeftBadge(txd, txn, self)
-end
-
-function UIMenuCheckboxItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        Panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = Panel
-    end
-end
-
-function UIMenuCheckboxItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuCheckboxItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuCheckboxItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-            local it = IndexOf(self.ParentMenu.Items, self)
-            self.ParentMenu:SendPanelsToItemScaleform(it)
-        end
-    end
-end
-
-function UIMenuCheckboxItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
-function UIMenuCheckboxItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
-end
-
-function UIMenuCheckboxItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
----RightBadge
-function UIMenuCheckboxItem:RightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuCheckboxItem:CustomRightBadge()
-    error("This item does not support right badges")
-end
-
----RightLabel
-function UIMenuCheckboxItem:RightLabel()
-    error("This item does not support a right label")
-end
-
-function UIMenuCheckboxItem:Checked(bool)
-    if bool ~= nil then
-        self._Checked = ToBool(bool)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
-        end
-    else
-        return self._Checked
-    end
-end
 
 --///////////////////////////////////////////////////////////////////--
-UIMenuDynamicListItem = setmetatable({}, UIMenuDynamicListItem)
-UIMenuDynamicListItem.__index = UIMenuDynamicListItem
-UIMenuDynamicListItem.__call = function() return "UIMenuItem", "UIMenuDynamicListItem" end
-
----@class UIMenuDynamicListItem : UIMenuItem
----@field Base UIMenuItem
----@field Panels table
----@field SidePanel table
----@field _currentItem string
----@field Callback function
----@field ItemId number
----@field OnListSelected function
-
----New
----@param Text string
----@param Description string
----@param StartingItem string
----@param callback function
----@param color SColor
----@param highlightColor SColor
-function UIMenuDynamicListItem.New(Text, Description, StartingItem, callback, color, highlightColor)
-    local _UIMenuDynamicListItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        Panels = {},
-        SidePanel = nil,
-        _currentItem = StartingItem,
-        Callback = callback,
-        ItemId = 1,
-        OnListSelected = function(menu, item, newindex)
-        end,
-    }
-    return setmetatable(_UIMenuDynamicListItem, UIMenuDynamicListItem)
-end
-
-function UIMenuDynamicListItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
-    end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuDynamicListItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
-    end
-    self.Base:LabelFont(itemFont, self)
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuDynamicListItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuDynamicListItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuDynamicListItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuDynamicListItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuDynamicListItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuDynamicListItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuDynamicListItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuDynamicListItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuDynamicListItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuDynamicListItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
-function UIMenuDynamicListItem:LeftBadge(Badge)
-    if Badge == nil then
-        return self.Base:LeftBadge()
-    end
-    self.Base:LeftBadge(Badge, self)
-end
-
-function UIMenuDynamicListItem:CustomLeftBadge(txd, txn)
-    self.Base:CustomLeftBadge(txd, txn, self)
-end
-
----RightBadge
-function UIMenuDynamicListItem:RightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuDynamicListItem:CustomRightBadge()
-    error("This item does not support right badges")
-end
-
----RightLabel
-function UIMenuDynamicListItem:RightLabel()
-    error("This item does not support a right label")
-end
-
----AddPanel
----@param Panel table
-function UIMenuDynamicListItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        self.Panels[#self.Panels + 1] = Panel
-        Panel:SetParentItem(self)
-    end
-end
-
----RemovePanelAt
----@param Index number
-function UIMenuDynamicListItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-        end
-    end
-end
-
----FindPanelIndex
----@param Panel table
-function UIMenuDynamicListItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
----FindPanelItem
-function UIMenuDynamicListItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
-end
-
-function UIMenuDynamicListItem:CurrentListItem(item, _item)
-    if item == nil then
-        return tostring(self._currentItem)
-    else
-        self._currentItem = item
-        if _item == nil then _item = self end
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, _item)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
-        end
-        if self.Base.ParentColumn ~= nil then
-            local str = self:createListString()
-            local pSubT = self.Base.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), str, self._Index - 1)
-            end
-        end
-    end
-end
-
-function UIMenuDynamicListItem:createListString()
-    local list = {}
-    local value = self._currentItem
-    if type(value) ~= "string" then
-        value = tostring(v)
-    end
-    if not self:Enabled() then
-        value = ReplaceRstarColorsWith(value, "~c~")
-    else
-        if not value:StartsWith("~") then
-            value = "~s~"..value
-        end
-        if self:Selected() then
-            value = value:gsub("~w~", "~l~")
-            value = value:gsub("~s~", "~l~")
-        else
-            value = value:gsub("~l~", "~s~")
-        end
-    end
-    return value
-end
-
---///////////////////////////////////////////////////////////////////--
-UIMenuItem = setmetatable({}, UIMenuItem)
+UIMenuItem = {}
 UIMenuItem.__index = UIMenuItem
-UIMenuItem.__call = function()
-    return "UIMenuItem", "UIMenuItem"
-end
+setmetatable(UIMenuItem, { __index = PauseMenuItem })
+UIMenuItem.__call = function() return "UIMenuItem" end
+
 
 ---@alias UIMenuPanel
 ---| '"UIMenuGridPanel"' # Add a UIMenuGridPanel to the item
@@ -12343,19 +11252,17 @@ end
 ---@field _Description string
 ---@field _labelFont ScaleformFonts
 ---@field _rightLabelFont ScaleformFonts
----@field _Selected boolean
+---@field Selected boolean
 ---@field _Hovered boolean
 ---@field _Enabled boolean
 ---@field blinkDescription boolean
----@field _formatLeftLabel string
 ---@field _rightLabel string
----@field _formatRightLabel string
 ---@field _rightBadge number
 ---@field _leftBadge number
 ---@field _mainColor SColor
 ---@field _highlightColor SColor
----@field _mainColor SColor
----@field _mainColor SColor
+---@field _textColor SColor
+---@field _highlightedTextColor SColor
 ---@field _itemData table
 ---@field ParentMenu UIMenu
 ---@field ParentColumn MissionListColumn|PlayerListColumn|SettingsListColumn|StoreListColumn
@@ -12371,46 +11278,37 @@ end
 ---@param color? SColor
 ---@param highlightColor? SColor
 function UIMenuItem.New(text, description, color, highlightColor)
-    local __formatLeftLabel = (tostring(text))
-    if not __formatLeftLabel:StartsWith("~") then
-        __formatLeftLabel = "~s~"..__formatLeftLabel
+    local base = PauseMenuItem.New(text)
+    base._Description = tostring(description) or ""
+    base._rightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
+    base._Hovered = false
+    base._Enabled = true
+    base.blinkDescription = false
+    base._rightLabel = ""
+    base._rightBadge = 0
+    base._leftBadge = 0
+    base.keepWhite = false
+    base._mainColor = color or SColor.HUD_Panel_light
+    base._highlightColor = highlightColor or SColor.HUD_White
+    base._itemData = {}
+    base.ParentMenu = nil
+    base.ParentColumn = nil
+    base.Panels = {}
+    base.SidePanel = nil
+    base.ItemId = 0
+    base.customLeftIcon = { TXD = "", TXN = "" }
+    base.customRightIcon = { TXD = "", TXN = "" }
+    base.Activated = function(menu, item)
+    end
+    base.Highlighted = function(menu, item)
+    end
+    base.OnTabPressed = function(menu)
     end
 
-    _UIMenuItem = {
-        _label = tostring(text) or "",
-        _Description = tostring(description) or "",
-        _labelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        _rightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        _Selected = false,
-        _Hovered = false,
-        _Enabled = true,
-        blinkDescription = false,
-        _formatLeftLabel = __formatLeftLabel or "",
-        _rightLabel = "",
-        _formatRightLabel = "",
-        _rightBadge = 0,
-        _leftBadge = 0,
-        _mainColor = color or SColor.HUD_Panel_light,
-        _highlightColor = highlightColor or SColor.HUD_White,
-        _itemData = {},
-        ParentMenu = nil,
-        ParentColumn = nil,
-        Panels = {},
-        SidePanel = nil,
-        ItemId = 0,
-        customLeftIcon = {TXD = "", TXN = ""},
-        customRightIcon = {TXD = "", TXN = ""},
-        Activated = function(menu, item)
-        end,
-        Highlighted = function(menu, item)
-        end,
-        OnTabPressed = function(menu)
-        end
-    }
-    return setmetatable(_UIMenuItem, UIMenuItem)
+    return setmetatable(base, UIMenuItem)
 end
 
-function UIMenuItem:ItemData(data, item)
+function UIMenuItem:ItemData(data)
     if data == nil then
         return self._itemData
     else
@@ -12418,45 +11316,52 @@ function UIMenuItem:ItemData(data, item)
     end
 end
 
--- not supported on Lobby and Pause menu yet
-function UIMenuItem:LabelFont(itemFont, item)
-    if itemFont == nil then
-        return self._labelFont
+function UIMenuItem:KeepTextColorWhite(keep)
+    if keep == nil then
+        return self.keepWhite
     else
-        self._labelFont = itemFont
+        self.keepWhite = ToBool(bool)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
             local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LABEL_FONT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._labelFont.FontName, self._labelFont.FontID)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LABEL_FONT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._labelFont.FontName, self._labelFont.FontID)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     end
 end
 
 -- not supported on Lobby and Pause menu yet
-function UIMenuItem:RightLabelFont(itemFont, item)
+function UIMenuItem:LeftLabelFont(itemFont)
     if itemFont == nil then
-        return self._rightLabelFont
+        return self.LabelFont
     else
-        if item == nil then item = self end
-        self._rightLabelFont = itemFont
+        self.LabelFont = itemFont
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_LABEL_FONT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._rightLabelFont.FontName, self._rightLabelFont.FontID)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_LABEL_FONT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._rightLabelFont.FontName, self._rightLabelFont.FontID)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
+        end
+    end
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuItem:RightLabelFont(itemFont)
+    if itemFont == nil then
+        return self._rightLabelFont
+    else
+        self._rightLabelFont = itemFont
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     end
 end
@@ -12478,39 +11383,19 @@ function UIMenuItem:SetParentMenu(menu)
     end
 end
 
-function UIMenuItem:Selected(bool, item)
+function UIMenuItem:Selected(bool)
     if bool ~= nil then
-        if item == nil then item = self end
-
-        self._Selected = ToBool(bool)
-        if self._Selected then
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~w~", "~l~")
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~s~", "~l~")
-            if not string.IsNullOrEmpty(self._formatRightLabel) then
-                self._formatRightLabel = self._formatRightLabel:gsub("~w~", "~l~")
-                self._formatRightLabel = self._formatRightLabel:gsub("~s~", "~l~")
-            end
-            self.Highlighted(self.ParentMenu, item)
-        else
-            self._formatLeftLabel = self._formatLeftLabel:gsub("~l~", "~s~")
-            if not string.IsNullOrEmpty(self._formatRightLabel) then
-                self._formatRightLabel = self._formatRightLabel:gsub("~l~", "~s~")
-            end
-        end
+        self.selected = ToBool(bool)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABELS", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel, self._formatRightLabel)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABELS", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel, self._formatRightLabel)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
-        return self._Selected
+        return self.selected
     end
 end
 
@@ -12522,43 +11407,28 @@ function UIMenuItem:Hovered(bool)
     end
 end
 
-function UIMenuItem:Enabled(bool, item)
+function UIMenuItem:Enabled(bool)
     if bool ~= nil then
-        if item == nil then item = self end
         self._Enabled = ToBool(bool)
-        if not self._Enabled then
-            self._formatLeftLabel = ReplaceRstarColorsWith(self._formatLeftLabel, "~c~")
-            self._formatRightLabel = ReplaceRstarColorsWith(self._formatRightLabel, "~c~")
-        else
-            self:Label(self._label, item)
-            self:RightLabel(self._rightLabel, item)
-        end
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABELS", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel, self._formatRightLabel)
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("ENABLE_SETTINGS_ITEM", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._enabled)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABELS", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel, self._formatRightLabel)
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("ENABLE_PLAYERS_TAB_SETTINGS_ITEM", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._enabled)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._Enabled
     end
 end
 
-function UIMenuItem:Description(str, item)
+function UIMenuItem:Description(str)
     if tostring(str) and str ~= nil then
-        if item == nil then item = self end
         self._Description = tostring(str)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
             AddTextEntry("UIMenu_Current_Description", str);
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
@@ -12570,171 +11440,129 @@ function UIMenuItem:Description(str, item)
     end
 end
 
-function UIMenuItem:MainColor(color, item)
+function UIMenuItem:MainColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
-        if item == nil then item = self end
         self._mainColor = color
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._mainColor
     end
 end
 
-function UIMenuItem:HighlightColor(color, item)
+function UIMenuItem:HighlightColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
-        if item == nil then item = self end
         self._highlightColor = color
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._highlightColor
     end
 end
 
-function UIMenuItem:Label(Text, item)
+function UIMenuItem:Label(Text)
     if tostring(Text) and Text ~= nil then
-        if item == nil then item = self end
-        self._label = tostring(Text)
-        self._formatLeftLabel = tostring(Text)
-        if not self._formatLeftLabel:StartsWith("~") then
-            self._formatLeftLabel = "~s~"..self._formatLeftLabel
-        end
-        if not self:Enabled() then
-            self._formatLeftLabel = ReplaceRstarColorsWith(self._formatLeftLabel, "~c~")
-        end
+        self.label = tostring(Text)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._formatLeftLabel)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
-        return self._label
+        return self.label
     end
 end
 
-function UIMenuItem:RightLabel(Text, item)
+function UIMenuItem:RightLabel(Text)
     if tostring(Text) and Text ~= nil then
-        if item == nil then item = self end
         self._rightLabel = tostring(Text)
-        self._formatRightLabel = tostring(Text)
-        if not self._formatRightLabel:StartsWith("~") then
-            self._formatRightLabel = "~s~"..self._formatRightLabel
-        end
-        if self:Selected() then
-            self._formatRightLabel = self._formatRightLabel:gsub("~w~", "~l~")
-            self._formatRightLabel = self._formatRightLabel:gsub("~s~", "~l~")
-        else
-            self._formatRightLabel = self._formatRightLabel:gsub("~l~", "~s~")
-        end
-        if not self:Enabled() then
-            self._formatRightLabel = ReplaceRstarColorsWith(self._formatRightLabel, "~c~")
-        end
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_ITEM_LABEL_RIGHT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._formatRightLabel)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_ITEM_LABEL_RIGHT", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, self)), self._formatRightLabel)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._rightLabel
     end
 end
 
-function UIMenuItem:RightBadge(Badge, item)
+function UIMenuItem:RightBadge(Badge)
     if tonumber(Badge) then
-        if item == nil then item = self end
         self._rightBadge = tonumber(Badge)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._rightBadge)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._rightBadge)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._rightBadge
     end
 end
 
-function UIMenuItem:LeftBadge(Badge, item)
+function UIMenuItem:LeftBadge(Badge)
     if tonumber(Badge) then
-        if item == nil then item = self end
         self._leftBadge = tonumber(Badge)
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
         end
         if self.ParentColumn ~= nil then
-            local pSubT = self.ParentColumn.Parent()
-            if pSubT == "LobbyMenu" then
-                ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._leftBadge)
-            elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), self._leftBadge)
-            end
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._leftBadge
     end
 end
 
-function UIMenuItem:CustomRightBadge(txd, txn, item)
+function UIMenuItem:CustomRightBadge(txd, txn)
     if item == nil then item = self end
     self._rightBadge = -1
-    self.customRightIcon = {TXD = txd, TXN = txn}
+    self.customRightIcon = { TXD = txd, TXN = txn }
     if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, item)
+        local it = IndexOf(self.ParentMenu.Items, self)
         self.ParentMenu:SendItemToScaleform(it, true)
     end
     if self.ParentColumn ~= nil then
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_RIGHT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
-        end
+        local it = IndexOf(self.ParentColumn.Items, self)
+        self.ParentColumn:SendItemToScaleform(it, true)
     end
 end
 
-function UIMenuItem:CustomLeftBadge(txd, txn, item)
+function UIMenuItem:CustomLeftBadge(txd, txn)
     if item == nil then item = self end
     self._leftBadge = -1
-    self.customLeftIcon = {TXD = txd, TXN = txn}
+    self.customLeftIcon = { TXD = txd, TXN = txn }
     if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, item)
+        local it = IndexOf(self.ParentMenu.Items, self)
         self.ParentMenu:SendItemToScaleform(it, true)
     end
     if self.ParentColumn ~= nil then
-        local pSubT = self.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("SET_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
-        elseif pSubT == "PauseMenu" and self.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_PLAYERS_TAB_SETTINGS_ITEM_CUSTOM_LEFT_BADGE", self.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.ParentColumn.Items, item)), txd, txn)
-        end
+        local it = IndexOf(self.ParentColumn.Items, self)
+        self.ParentColumn:SendItemToScaleform(it, true)
     end
 end
 
@@ -12792,26 +11620,182 @@ function UIMenuItem:FindPanelItem()
     return nil
 end
 
-function UIMenuItem:BlinkDescription(bool, item)
+function UIMenuItem:BlinkDescription(bool)
     if bool ~= nil then
-        if item == nil then item = self end
         self.blinkDescription = bool
         if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-            local it = IndexOf(self.ParentMenu.Items, item)
+            local it = IndexOf(self.ParentMenu.Items, self)
             self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self.blinkDescription
     end
 end
 
---///////////////////////////////////////////////////////////////////--
-UIMenuListItem = setmetatable({}, UIMenuListItem)
-UIMenuListItem.__index = UIMenuListItem
-UIMenuListItem.__call = function() return "UIMenuItem", "UIMenuListItem" end
 
----@class UIMenuListItem : UIMenuItem
+
+--///////////////////////////////////////////////////////////////////--
+UIMenuCheckboxItem = {}
+UIMenuCheckboxItem.__index = UIMenuCheckboxItem
+setmetatable(UIMenuCheckboxItem, { __index = UIMenuItem })
+UIMenuCheckboxItem.__call = function() return "UIMenuCheckboxItem" end
+
+---@class UIMenuCheckboxItem : UIMenuItem
 ---@field public Base UIMenuItem
+
+---New
+---@param Text string
+---@param Check boolean
+---@param Description string
+function UIMenuCheckboxItem.New(Text, Check, checkStyle, Description, color, highlightColor)
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light,
+    highlightColor or SColor.HUD_White)
+    base._Checked = ToBool(Check)
+    base.CheckBoxStyle = checkStyle or 0
+    base.ItemId = 2
+    base.OnCheckboxChanged = function(menu, item, checked)
+    end
+    return setmetatable(base, UIMenuCheckboxItem)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuCheckboxItem:RightLabelFont(itemFont)
+    error("UIMenuCheckboxItem does not support a right label")
+end
+
+---RightBadge
+function UIMenuCheckboxItem:RightBadge()
+    error("UIMenuCheckboxItem does not support right badges")
+end
+
+function UIMenuCheckboxItem:CustomRightBadge()
+    error("UIMenuCheckboxItem does not support right badges")
+end
+
+---RightLabel
+function UIMenuCheckboxItem:RightLabel()
+    error("UIMenuCheckboxItem does not support a right label")
+end
+
+function UIMenuCheckboxItem:Checked(bool)
+    if bool ~= nil then
+        self._Checked = ToBool(bool)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
+        end
+    else
+        return self._Checked
+    end
+end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+UIMenuDynamicListItem = {}
+UIMenuDynamicListItem.__index = UIMenuDynamicListItem
+setmetatable(UIMenuDynamicListItem, { __index = UIMenuItem })
+UIMenuDynamicListItem.__call = function() return "UIMenuDynamicListItem" end
+
+---@class UIMenuDynamicListItem : UIMenuItem
+---@field Base UIMenuItem
+---@field Panels table
+---@field SidePanel table
+---@field _currentItem string
+---@field Callback function
+---@field ItemId number
+---@field OnListSelected function
+
+---New
+---@param Text string
+---@param Description string
+---@param StartingItem string
+---@param callback function
+---@param color SColor
+---@param highlightColor SColor
+function UIMenuDynamicListItem.New(Text, Description, StartingItem, callback, color, highlightColor)
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light,
+        highlightColor or SColor.HUD_White)
+    base._currentItem = StartingItem
+    base.Callback = callback
+    base.ItemId = 1
+    base.OnListSelected = function(menu, item, newindex)
+    end
+    return setmetatable(base, UIMenuDynamicListItem)
+end
+
+-- not supported on Lobby and Pause menu yet
+function UIMenuDynamicListItem:RightLabelFont(itemFont)
+    error("UIMenuDynamicListItem does not support a right label")
+end
+
+---RightBadge
+function UIMenuDynamicListItem:RightBadge()
+    error("UIMenuDynamicListItem does not support right badges")
+end
+
+function UIMenuDynamicListItem:CustomRightBadge()
+    error("UIMenuDynamicListItem does not support right badges")
+end
+
+---RightLabel
+function UIMenuDynamicListItem:RightLabel()
+    error("UIMenuDynamicListItem does not support a right label")
+end
+
+function UIMenuDynamicListItem:CurrentListItem(item)
+    if item == nil then
+        return tostring(self._currentItem)
+    else
+        self._currentItem = item
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
+        end
+    end
+end
+
+function UIMenuDynamicListItem:createListString()
+    local value = self._currentItem
+    if type(value) ~= "string" then
+        value = tostring(v)
+    end
+    if not value:StartsWith("~") then
+        value = "~s~" .. value
+    end
+    if self:Selected() then
+        value = value:gsub("~w~", "~l~")
+        value = value:gsub("~s~", "~l~")
+    else
+        value = value:gsub("~l~", "~s~")
+    end
+    if not self:Enabled() then
+        value = ReplaceRstarColorsWith(value, "~c~")
+    end
+    return value
+end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+UIMenuListItem = {}
+UIMenuListItem.__index = UIMenuListItem
+setmetatable(UIMenuListItem, { __index = UIMenuDynamicListItem })
+UIMenuListItem.__call = function() return "UIMenuListItem" end
+
+---@class UIMenuListItem : UIMenuDynamicListItem
 ---@field public AddPanel fun(self:UIMenuListItem, item:UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel):nil
 
 ---New
@@ -12822,193 +11806,35 @@ UIMenuListItem.__call = function() return "UIMenuItem", "UIMenuListItem" end
 function UIMenuListItem.New(Text, Items, Index, Description, color, highlightColor)
     if type(Items) ~= "table" then Items = {} end
     if Index == 0 then Index = 1 end
-    local _UIMenuListItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        Items = Items,
-        _Index = tonumber(Index) or 1,
-        Panels = {},
-        SidePanel = nil,
-        ItemId = 1,
-        OnListChanged = function(menu, item, newindex)
-        end,
-        OnListSelected = function(menu, item, newindex)
-        end,
-    }
-    return setmetatable(_UIMenuListItem, UIMenuListItem)
-end
 
-function UIMenuListItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
-    end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuListItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
-    end
-    self.Base:LabelFont(itemFont, self)
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuListItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuListItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuListItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuListItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuListItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuListItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuListItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuListItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuListItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuListItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
-function UIMenuListItem:LeftBadge(Badge)
-    if Badge == nil then
-        return self.Base:LeftBadge()
-    end
-    self.Base:LeftBadge(Badge, self)
-end
-
-function UIMenuListItem:CustomLeftBadge(txd, txn)
-    self.Base:CustomLeftBadge(txd, txn, self)
-end
-
----RightBadge
-function UIMenuListItem:RightBadge()
-    error("This item does not support right badges")
-end
-
-function UIMenuListItem:CustomRightBadge()
-    error("This item does not support right badges")
-end
-
----RightLabel
-function UIMenuListItem:RightLabel()
-    error("This item does not support a right label")
-end
-
----AddPanel
----@param panel UIMenuStatisticsPanel|UIMenuPercentagePanel|UIMenuColorPanel|UIMenuGridPanel
-function UIMenuListItem:AddPanel(panel)
-    if panel() == "UIMenuPanel" then
-        panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = panel
-    end
-end
-
----RemovePanelAt
----@param Index table
-function UIMenuListItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-        end
-    end
-end
-
----FindPanelIndex
----@param Panel table
-function UIMenuListItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
+    local cb = function(sender, dir)
+        if dir == "left" then
+            self._Index = self._Index - 1
+            if self._Index < 1 then
+                self._Index = #self.Items
+            end
+        elseif dir == "right" then
+            self._Index = self._Index + 1
+            if self._Index > #self.Items then
+                self._Index = 1
             end
         end
+        return tostring(self.Items[self._Index])
     end
-    return nil
-end
 
----FindPanelItem
-function UIMenuListItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
+    local base = UIMenuDynamicListItem.New(Text or "", Description or "", "", cb, color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White)
+    base.Items = Items
+    base._Index = tonumber(Index) or 1
+    base.OnListChanged = function(menu, item, newindex)
     end
-    return nil
-end
-
-function UIMenuListItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
+    base.OnListSelected = function(menu, item, newindex)
     end
-end
-
-function UIMenuListItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
+    if #base.Items > 0 then
+        base:CurrentListItem(tostring(base.Items[base._Index]))
+    else
+        base:CurrentListItem("")
     end
+    return setmetatable(base, UIMenuListItem)
 end
 
 ---Index
@@ -13022,9 +11848,10 @@ function UIMenuListItem:Index(Index)
         else
             self._Index = Index
         end
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if #self.Items > 0 then
+            self:CurrentListItem(tostring(self.Items[self._Index]))
+        else
+            self:CurrentListItem("")
         end
     else
         return self._Index
@@ -13054,51 +11881,29 @@ function UIMenuListItem:IndexToItem(Index)
     end
 end
 
-function UIMenuListItem:ChangeList(list)
+function UIMenuListItem:ChangeList(list, index)
+    if index == nil or index < 1 or index > #list or self._Index > #list then index = 1 end
     if type(list) ~= "table" then return end
     self.Items = {}
     self.Items = list
-    local commaSep = self:createListString()
+    self:Index(index)
 
-    if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-        local it = IndexOf(self.Base.ParentMenu.Items, self)
-        self.Base.ParentMenu:SendItemToScaleform(it, true)
+    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+        local it = IndexOf(self.ParentMenu.Items, self)
+        self.ParentMenu:SendItemToScaleform(it, true)
     end
-    if self.Base.ParentColumn ~= nil then
-        local pSubT = self.Base.ParentColumn.Parent()
-        if pSubT == "LobbyMenu" then
-            ScaleformUI.Scaleforms._pauseMenu._lobby:CallFunction("UPDATE_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-        elseif pSubT == "PauseMenu" and self.Base.ParentColumn.ParentTab.Visible then
-            ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("UPDATE_PLAYERS_TAB_SETTINGS_LISTITEM_LIST", self.Base.ParentColumn.Pagination:GetScaleformIndex(IndexOf(self.Base.ParentColumn.Items, self)), commaSep, self._Index - 1)
-        end
+    if self.ParentColumn ~= nil then
+        local it = IndexOf(self.ParentColumn.Items, self)
+        self.ParentColumn:SendItemToScaleform(it, true)
     end
 end
 
-function UIMenuListItem:createListString()
-    local value = tostring(self.Items[self._Index])
-    if type(value) ~= "string" then
-        value = tostring(v)
-    end
-    if not self:Enabled() then
-        value = ReplaceRstarColorsWith(value, "~c~")
-    else
-        if not value:StartsWith("~") then
-            value = "~s~"..value
-        end
-        if self:Selected() then
-            value = value:gsub("~w~", "~l~")
-            value = value:gsub("~s~", "~l~")
-        else
-            value = value:gsub("~l~", "~s~")
-        end
-    end
-    return value
-end
 
 --///////////////////////////////////////////////////////////////////--
-UIMenuProgressItem = setmetatable({}, UIMenuProgressItem)
+UIMenuProgressItem = {}
 UIMenuProgressItem.__index = UIMenuProgressItem
-UIMenuProgressItem.__call = function() return "UIMenuItem", "UIMenuProgressItem" end
+setmetatable(UIMenuProgressItem, { __index = UIMenuItem })
+UIMenuProgressItem.__call = function() return "UIMenuProgressItem" end
 
 ---@class UIMenuProgressItem : UIMenuItem
 ---@field public Base UIMenuItem
@@ -13113,201 +11918,51 @@ UIMenuProgressItem.__call = function() return "UIMenuItem", "UIMenuProgressItem"
 ---@param highlightColor SColor
 ---@param backgroundSliderColor SColor
 function UIMenuProgressItem.New(Text, Max, Index, Description, sliderColor, color, highlightColor, backgroundSliderColor)
-    local _UIMenuProgressItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        _Max = Max or 100,
-        _Multiplier = 5,
-        _Index = Index or 0,
-        Panels = {},
-        SidePanel = nil,
-        _sliderColor = sliderColor or SColor.HUD_Freemode,
-        BackgroundSliderColor = backgroundSliderColor or SColor.HUD_Pause_bg,
-        ItemId = 4,
-        OnProgressChanged = function(menu, item, newindex)
-        end,
-        OnProgressSelected = function(menu, item, newindex)
-        end,
-    }
-
-    return setmetatable(_UIMenuProgressItem, UIMenuProgressItem)
-end
-
-function UIMenuProgressItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light,
+        highlightColor or SColor.HUD_White)
+    base._Max = Max or 100
+    base._Multiplier = 5
+    base._Index = Index or 0
+    base._sliderColor = sliderColor or SColor.HUD_Freemode
+    base.BackgroundSliderColor = backgroundSliderColor or SColor.HUD_Pause_bg
+    base.ItemId = 4
+    base.OnProgressChanged = function(menu, item, newindex)
     end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuProgressItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
+    base.OnProgressSelected = function(menu, item, newindex)
     end
-    self.Base:LabelFont(itemFont, self)
+    return setmetatable(base, UIMenuProgressItem)
 end
 
 -- not supported on Lobby and Pause menu yet
 function UIMenuProgressItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuProgressItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuProgressItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuProgressItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuProgressItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuProgressItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuProgressItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuProgressItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuProgressItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuProgressItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
-function UIMenuProgressItem:LeftBadge(Badge)
-    if Badge == nil then
-        return self.Base:LeftBadge()
-    end
-    self.Base:LeftBadge(Badge, self)
-end
-
-function UIMenuProgressItem:CustomLeftBadge(txd, txn)
-    self.Base:CustomLeftBadge(txd, txn, self)
+    error("UIMenuProgressItem does not support a right label")
 end
 
 ---RightBadge
 function UIMenuProgressItem:RightBadge()
-    error("This item does not support right badges")
+    error("UIMenuProgressItem does not support right badges")
 end
 
 function UIMenuProgressItem:CustomRightBadge()
-    error("This item does not support right badges")
+    error("UIMenuProgressItem does not support right badges")
 end
 
 ---RightLabel
 function UIMenuProgressItem:RightLabel()
-    error("This item does not support a right label")
-end
-
-function UIMenuProgressItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        Panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = Panel
-    end
-end
-
-function UIMenuProgressItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuProgressItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuProgressItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-            local it = IndexOf(self.ParentMenu.Items, self)
-            self.ParentMenu:SendPanelsToItemScaleform(it)
-        end
-    end
-end
-
-function UIMenuProgressItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
-function UIMenuProgressItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
+    error("UIMenuProgressItem does not support a right label")
 end
 
 function UIMenuProgressItem:SliderColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
         self._sliderColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._sliderColor
@@ -13326,19 +11981,30 @@ function UIMenuProgressItem:Index(Index)
             self._Index = Index
         end
         self.OnProgressChanged(self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._Index
     end
 end
 
+function UIMenuProgressItem:Value(index)
+    return self:Index(value)
+end
+
+
+
 --///////////////////////////////////////////////////////////////////--
-UIMenuSeparatorItem = setmetatable({}, UIMenuSeparatorItem)
+UIMenuSeparatorItem = {}
 UIMenuSeparatorItem.__index = UIMenuSeparatorItem
-UIMenuSeparatorItem.__call = function() return "UIMenuItem", "UIMenuSeparatorItem" end
+setmetatable(UIMenuSeparatorItem, { __index = UIMenuItem })
+UIMenuSeparatorItem.__call = function() return "UIMenuSeparatorItem" end
 
 ---@class UIMenuSeparatorItem : UIMenuItem
 ---@field public Base UIMenuItem
@@ -13351,188 +12017,46 @@ UIMenuSeparatorItem.__call = function() return "UIMenuItem", "UIMenuSeparatorIte
 ---@param textColor? SColor
 ---@param highlightedTextColor? SColor
 function UIMenuSeparatorItem.New(Text, jumpable, mainColor, highlightColor, textColor, highlightedTextColor)
-    local _UIMenuSeparatorItem = {
-        Base = UIMenuItem.New(Text or "", "", mainColor or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        Panels = {},
-        SidePanel = nil,
-        Jumpable = jumpable,
-        ItemId = 6
-    }
-    return setmetatable(_UIMenuSeparatorItem, UIMenuSeparatorItem)
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White)
+    base.Jumpable = jumpable
+    base.ItemId = 6
+    return setmetatable(base, UIMenuSeparatorItem)
 end
 
-function UIMenuSeparatorItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
-    end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuSeparatorItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
-    end
-    self.Base:LabelFont(itemFont, self)
-end
-
--- not supported on Lobby and Pause menu yet
 function UIMenuSeparatorItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
+    error("UIMenuSeparatorItem does not support a right label")
 end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuSeparatorItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuSeparatorItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuSeparatorItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuSeparatorItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuSeparatorItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuSeparatorItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuSeparatorItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuSeparatorItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuSeparatorItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
-function UIMenuSeparatorItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        Panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = Panel
-    end
-end
-
-function UIMenuSeparatorItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuSeparatorItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuSeparatorItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-            local it = IndexOf(self.ParentMenu.Items, self)
-            self.ParentMenu:SendPanelsToItemScaleform(it)
-        end
-    end
-end
-
-function UIMenuSeparatorItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
-function UIMenuSeparatorItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
-end
-
 ---LeftBadge
 function UIMenuSeparatorItem:LeftBadge()
-    error("This item does not support badges")
+    error("UIMenuSeparatorItem does not support badges")
 end
 
 ---RightBadge
 function UIMenuSeparatorItem:RightBadge()
-    error("This item does not support badges")
+    error("UIMenuSeparatorItem does not support badges")
 end
 
 function UIMenuSeparatorItem:CustomLeftBadge()
-    error("This item does not support badges")
+    error("UIMenuSeparatorItem does not support badges")
 end
 
 ---RightBadge
 function UIMenuSeparatorItem:CustomRightBadge()
-    error("This item does not support badges")
+    error("UIMenuSeparatorItem does not support badges")
 end
 
 ---RightLabel
 function UIMenuSeparatorItem:RightLabel()
-    error("This item does not support a right label")
+    error("UIMenuSeparatorItem does not support a right label")
 end
 
+
 --///////////////////////////////////////////////////////////////////--
-UIMenuSliderItem = setmetatable({}, UIMenuSliderItem)
+UIMenuSliderItem = {}
 UIMenuSliderItem.__index = UIMenuSliderItem
-UIMenuSliderItem.__call = function() return "UIMenuItem", "UIMenuSliderItem" end
+setmetatable(UIMenuSliderItem, { __index = UIMenuItem })
+UIMenuSliderItem.__call = function() return "UIMenuSliderItem" end
+
 
 ---@class UIMenuSliderItem : UIMenuItem
 ---@field public Base UIMenuItem
@@ -13548,198 +12072,47 @@ UIMenuSliderItem.__call = function() return "UIMenuItem", "UIMenuSliderItem" end
 ---@param color SColor
 ---@param highlightColor SColor
 function UIMenuSliderItem.New(Text, Max, Multiplier, Index, Heritage, Description, sliderColor, color, highlightColor)
-    local _UIMenuSliderItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        _Index = tonumber(Index) or 0,
-        _Max = tonumber(Max) or 100,
-        _Multiplier = Multiplier or 5,
-        _heritage = Heritage or false,
-        Panels = {},
-        SidePanel = nil,
-        _sliderColor = sliderColor or SColor.HUD_Freemode,
-        ItemId = 3,
-        OnSliderChanged = function(menu, item, newindex)
-        end,
-        OnSliderSelected = function(menu, item, newindex)
-        end,
-    }
-    return setmetatable(_UIMenuSliderItem, UIMenuSliderItem)
-end
-
-function UIMenuSliderItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White)
+    base._Index = tonumber(Index) or 0
+    base._Max = tonumber(Max) or 100
+    base._Multiplier = Multiplier or 5
+    base._heritage = Heritage or false
+    base._sliderColor = sliderColor or SColor.HUD_Freemode
+    base.ItemId = 3
+    base.OnSliderChanged = function(menu, item, newindex)
     end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuSliderItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
+    base.OnSliderSelected = function(menu, item, newindex)
     end
-    self.Base:LabelFont(itemFont, self)
+    return setmetatable(base, UIMenuSliderItem)
 end
 
--- not supported on Lobby and Pause menu yet
 function UIMenuSliderItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuSliderItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuSliderItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuSliderItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuSliderItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuSliderItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuSliderItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuSliderItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuSliderItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuSliderItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
-end
-
-function UIMenuSliderItem:LeftBadge(Badge)
-    if Badge == nil then
-        return self.Base:LeftBadge()
-    end
-    self.Base:LeftBadge(Badge, self)
-end
-
-function UIMenuSliderItem:CustomLeftBadge(txd, txn)
-    self.Base:CustomLeftBadge(txd, txn, self)
+    error("UIMenuSliderItem does not support a right label")
 end
 
 function UIMenuSliderItem:RightBadge()
-    error("This item does not support right badges")
+    error("UIMenuSliderItem does not support right badges")
 end
 
 function UIMenuSliderItem:CustomRightBadge()
-    error("This item does not support right badges")
+    error("UIMenuSliderItem does not support right badges")
 end
 
 function UIMenuSliderItem:RightLabel()
-    error("This item does not support a right label")
-end
-
-function UIMenuSliderItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        Panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = Panel
-    end
-end
-
-function UIMenuSliderItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuSliderItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuSliderItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-            local it = IndexOf(self.ParentMenu.Items, self)
-            self.ParentMenu:SendPanelsToItemScaleform(it)
-        end
-    end
-end
-
-function UIMenuSliderItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
-function UIMenuSliderItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
+    error("UIMenuSliderItem does not support a right label")
 end
 
 function UIMenuSliderItem:SliderColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
         self._sliderColor = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._sliderColor
@@ -13755,20 +12128,27 @@ function UIMenuSliderItem:Index(Index)
         else
             self._Index = tonumber(Index)
         end
-        self.OnSliderChanged(self.Base.ParentMenu, self, self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        self.OnSliderChanged(self.ParentMenu, self, self._Index)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._Index
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
-UIMenuStatsItem = setmetatable({}, UIMenuStatsItem)
+UIMenuStatsItem = {}
 UIMenuStatsItem.__index = UIMenuStatsItem
-UIMenuStatsItem.__call = function() return "UIMenuItem", "UIMenuStatsItem" end
+setmetatable(UIMenuStatsItem, { __index = UIMenuItem })
+UIMenuStatsItem.__call = function() return "UIMenuStatsItem" end
 
 ---@class UIMenuStatsItem : UIMenuItem
 ---@field public Base UIMenuItem
@@ -13782,110 +12162,20 @@ UIMenuStatsItem.__call = function() return "UIMenuItem", "UIMenuStatsItem" end
 ---@param mainColor SColor
 ---@param highlightColor SColor
 function UIMenuStatsItem.New(Text, Description, Index, barColor, type, mainColor, highlightColor)
-    local _UIMenuStatsItem = {
-        Base = UIMenuItem.New(Text or "", Description or "", SColor.HUD_Panel_light, highlightColor or SColor.HUD_White),
-        _Index = Index or 0,
-        Panels = {},
-        SidePanel = nil,
-        _Color = barColor or SColor.HUD_Freemode,
-        _Type = type or 0,
-        ItemId = 5,
-        OnStatsChanged = function(menu, item, newindex)
-        end,
-        OnStatsSelected = function(menu, item, newindex)
-        end,
-    }
-    return setmetatable(_UIMenuStatsItem, UIMenuStatsItem)
-end
-
-function UIMenuStatsItem:ItemData(data)
-    if data == nil then
-        return self.Base:ItemData(data)
-    else
-        self.Base:ItemData()
+    local base = UIMenuItem.New(Text or "", Description or "", color or SColor.HUD_Panel_light, highlightColor or SColor.HUD_White)
+    base._Index = Index or 0
+    base._Color = barColor or SColor.HUD_Freemode
+    base._Type = type or 0
+    base.ItemId = 5
+    base.OnStatsChanged = function(menu, item, newindex)
     end
-end
-
--- not supported on Lobby and Pause menu yet
-function UIMenuStatsItem:LabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:LabelFont()
+    base.OnStatsSelected = function(menu, item, newindex)
     end
-    self.Base:LabelFont(itemFont, self)
+    return setmetatable(base, UIMenuStatsItem)
 end
 
--- not supported on Lobby and Pause menu yet
 function UIMenuStatsItem:RightLabelFont(itemFont)
-    if itemFont == nil then
-        return self.Base:RightLabelFont()
-    end
-    self.Base:RightLabelFont(itemFont, self)
-end
-
----Set the Parent Menu of the Item
----@param menu UIMenu
----@return UIMenu? -- returns the parent menu if no menu is passed, if a menu is passed it returns the menu if it was set successfully
-function UIMenuStatsItem:SetParentMenu(menu)
-    if menu == nil then
-        return self.Base:SetParentMenu()
-    end
-    self.Base:SetParentMenu(menu)
-end
-
-function UIMenuStatsItem:Selected(bool)
-    if bool == nil then
-        return self.Base:Selected()
-    end
-    self.Base:Selected(bool, self)
-end
-
-function UIMenuStatsItem:Hovered(bool)
-    if bool == nil then
-        return self.Base:Hovered()
-    end
-    self.Base:Hovered(bool)
-end
-
-function UIMenuStatsItem:Enabled(bool)
-    if bool == nil then
-        return self.Base:Enabled()
-    end
-    self.Base:Hovered(bool, self)
-end
-
-function UIMenuStatsItem:Description(str)
-    if str == nil then
-        return self.Base:Description()
-    end
-    self.Base:Description(str, self)
-end
-
-function UIMenuStatsItem:MainColor(color)
-    if color == nil then
-        return self.Base:MainColor()
-    end
-    self.Base:MainColor(color, self)
-end
-
-function UIMenuStatsItem:HighlightColor(color)
-    if color == nil then
-        return self.Base:HighlightColor()
-    end
-    self.Base:HighlightColor(color, self)
-end
-
-function UIMenuStatsItem:Label(Text)
-    if Text == nil then
-        return self.Base:Label()
-    end
-    self.Base:Label(Text, self)
-end
-
-function UIMenuStatsItem:BlinkDescription(bool)
-    if bool == nil then
-        return self.Base:BlinkDescription()
-    end
-    self.Base:BlinkDescription(bool, self)
+    error("UIMenuStatsItem does not support a right label")
 end
 
 ---LeftBadge
@@ -13911,67 +12201,17 @@ function UIMenuStatsItem:RightLabel()
     error("This item does not support a right label")
 end
 
-function UIMenuStatsItem:AddPanel(Panel)
-    if Panel() == "UIMenuPanel" then
-        Panel.ParentItem = self
-        self.Panels[#self.Panels + 1] = Panel
-    end
-end
-
-function UIMenuStatsItem:AddSidePanel(sidePanel)
-    sidePanel:SetParentItem(self)
-    self.SidePanel = sidePanel
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuStatsItem:RemoveSidePanel()
-    self.SidePanel = nil
-    if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it)
-    end
-end
-
-function UIMenuStatsItem:RemovePanelAt(Index)
-    if tonumber(Index) then
-        if self.Panels[Index] then
-            table.remove(self.Panels, tonumber(Index))
-            local it = IndexOf(self.ParentMenu.Items, self)
-            self.ParentMenu:SendPanelsToItemScaleform(it)
-        end
-    end
-end
-
-function UIMenuStatsItem:FindPanelIndex(Panel)
-    if Panel() == "UIMenuPanel" then
-        for Index = 1, #self.Panels do
-            if self.Panels[Index] == Panel then
-                return Index
-            end
-        end
-    end
-    return nil
-end
-
-function UIMenuStatsItem:FindPanelItem()
-    for Index = #self.Items, 1, -1 do
-        if self.Items[Index].Panel then
-            return Index
-        end
-    end
-    return nil
-end
-
 function UIMenuStatsItem:SliderColor(color)
     if color then
         assert(color() == "SColor", "Color must be SColor type")
         self._Color = color
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._Color
@@ -13990,14 +12230,19 @@ function UIMenuStatsItem:Index(Index)
             self._Index = Index
         end
         self.OnStatsChanged(self._Index)
-        if self.Base.ParentMenu ~= nil and self.Base.ParentMenu:Visible() then
-            local it = IndexOf(self.Base.ParentMenu.Items, self)
-            self.Base.ParentMenu:SendItemToScaleform(it, true)
+        if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
+            local it = IndexOf(self.ParentMenu.Items, self)
+            self.ParentMenu:SendItemToScaleform(it, true)
+        end
+        if self.ParentColumn ~= nil then
+            local it = IndexOf(self.ParentColumn.Items, self)
+            self.ParentColumn:SendItemToScaleform(it, true)
         end
     else
         return self._Index
     end
 end
+
 
 --///////////////////////////////////////////////////////////////////--
 PaginationHandler = setmetatable({}, PaginationHandler)
@@ -14271,17 +12516,19 @@ end
 
 function PaginationHandler:ToString()
     local str = ""
-    str = str.."self._currentMenuIndex: "..self._currentMenuIndex..", "
-    str = str.."self._currentPageIndex: "..self._currentPageIndex..", "
-    str = str.."CurrentPageStartIndex: " + self:CurrentPageStartIndex() + ", ";
-    str = str.."CurrentPageEndIndex: " + self:CurrentPageEndIndex() + ", ";
-    str = str.."self.currentPage: "..self.currentPage..", "
-    str = str.."self.itemsPerPage: "..self.itemsPerPage..", "
-    str = str.."self.minItem: "..self.minItem..", "
-    str = str.."self.maxItem: "..self.maxItem..", "
-    str = str.."self.totalItems: "..self.totalItems..", "
-    str = str.."self.scaleformIndex: "..self.scaleformIndex..", "
+    str = str .. "self._currentMenuIndex: " .. self._currentMenuIndex .. ", "
+    str = str .. "self._currentPageIndex: " .. self._currentPageIndex .. ", "
+    str = str .. "CurrentPageStartIndex: " + self:CurrentPageStartIndex() + ", ";
+    str = str .. "CurrentPageEndIndex: " + self:CurrentPageEndIndex() + ", ";
+    str = str .. "self.currentPage: " .. self.currentPage .. ", "
+    str = str .. "self.itemsPerPage: " .. self.itemsPerPage .. ", "
+    str = str .. "self.minItem: " .. self.minItem .. ", "
+    str = str .. "self.maxItem: " .. self.maxItem .. ", "
+    str = str .. "self.totalItems: " .. self.totalItems .. ", "
+    str = str .. "self.scaleformIndex: " .. self.scaleformIndex .. ", "
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuColorPanel = setmetatable({}, UIMenuColorPanel)
@@ -14341,6 +12588,8 @@ function UIMenuColorPanel:CurrentSelection(new_value)
         return self.value
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuGridPanel = setmetatable({}, UIMenuGridPanel)
@@ -14403,6 +12652,8 @@ function UIMenuGridPanel:CirclePosition(position)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 UIMenuPercentagePanel = setmetatable({}, UIMenuPercentagePanel)
 UIMenuPercentagePanel.__index = UIMenuPercentagePanel
@@ -14459,6 +12710,8 @@ function UIMenuPercentagePanel:SetParentItem(Item) -- required
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 UIMenuStatisticsPanel = setmetatable({}, UIMenuStatisticsPanel)
 UIMenuStatisticsPanel.__index = UIMenuStatisticsPanel
@@ -14497,7 +12750,7 @@ function UIMenuStatisticsPanel:AddStatistic(name, value) -- required
         elseif value < 0 then
             value = 0
         end
-        table.insert(self.Items, {['name'] = name, ['value'] = value})
+        table.insert(self.Items, { ['name'] = name, ['value'] = value })
         if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
             local it = IndexOf(self.ParentItem:SetParentMenu().Items, self.ParentItem)
             self.ParentItem:SetParentMenu():SendPanelsToItemScaleform(it, true)
@@ -14537,6 +12790,8 @@ function UIMenuStatisticsPanel:UpdateStatistic(index, value)
         end
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuVehicleColourPickerPanel = setmetatable({}, UIMenuVehicleColourPickerPanel)
@@ -14603,43 +12858,49 @@ function UIMenuVehicleColourPickerPanel:_PickerRollout()
     self.PickerRollOut(self.ParentItem.ParentMenu, self.ParentItem, self.Value, self.Color)
 end
 
---///////////////////////////////////////////////////////////////////--
-UIMenuFreemodeDetailsItem = setmetatable({}, UIMenuFreemodeDetailsItem)
-UIMenuFreemodeDetailsItem.__index = UIMenuFreemodeDetailsItem
-UIMenuFreemodeDetailsItem.__call = function() return "UIMenuFreemodeDetailsItem", "UIMenuFreemodeDetailsItem" end
 
-function UIMenuFreemodeDetailsItem.New(textLeft, textRight, seperator, icon, iconColor, tick)
+--///////////////////////////////////////////////////////////////////--
+UIMenuFreemodeDetailsItem = {}
+UIMenuFreemodeDetailsItem.__index = UIMenuFreemodeDetailsItem
+setmetatable(UIMenuFreemodeDetailsItem, { __index = PauseMenuItem })
+UIMenuFreemodeDetailsItem.__call = function() return "UIMenuFreemodeDetailsItem" end
+
+function UIMenuFreemodeDetailsItem.New(textLeft, textRight, seperator, icon, iconColor, tick, crewTag)
     local _type
     if seperator then
-        _type = 3
+        _type = 4
     elseif icon ~= nil and iconColor ~= nil then
         _type = 2
+    elseif crewTag ~= nil then
+        _type = 3
     elseif textRight == nil and seperator == nil and icon == nil and iconColor == nil and tick == nil then
-        _type = 4
+        _type = 5
     else
         _type = 0
     end
-    _UIMenuFreemodeDetailsItem = {
-        Type = _type,
-        TextLeft = textLeft,
-        TextRight = textRight or "",
-        Icon = icon or BadgeStyle.NONE,
-        IconColor = iconColor or SColor.HUD_White,
-        Tick = tick or false,
-        _labelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY,
-        _rightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
-    }
-    return setmetatable(_UIMenuFreemodeDetailsItem, UIMenuFreemodeDetailsItem)
+   
+    local base = PauseMenuItem.New(textLeft)
+    base.Type = _type
+    base.TextRight = textRight or ""
+    base.Icon = icon or BadgeStyle.NONE
+    base.IconColor = iconColor or SColor.HUD_White
+    base.Tick = tick or false
+    base.CrewTag = crewTag
+    base._rightLabelFont = ScaleformFonts.CHALET_LONDON_NINETEENSIXTY
+
+    return setmetatable(base, UIMenuFreemodeDetailsItem)
 end
 
 function UIMenuFreemodeDetailsItem:SetLabelsFonts(leftFont, rightFont)
     if leftFont then
-        self._labelFont = leftFont
+        self.LabelFont = leftFont
     end
     if rightFont then
         self._rightLabelFont = rightFont
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMissionDetailsPanel = setmetatable({}, UIMissionDetailsPanel)
@@ -14683,11 +12944,28 @@ function UIMissionDetailsPanel:SetParentItem(Item) -- required
     end
 end
 
+function UIMissionDetailsPanel:Clear()
+    self.Title = ""
+    self.TextureDict  = ""
+    self.TextureName  = ""
+    self.Items  = {}
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        ScaleformUI.Scaleforms._ui:CallFunction("SET_SIDE_PANEL_DATA_SLOT_EMPTY")
+    end
+end
+
+function UIMissionDetailsPanel:Refresh()
+    if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self.ParentItem)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it)
+    end
+end
+
 function UIMissionDetailsPanel:UpdatePanelTitle(title)
     self.Title = title
     if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it, true)
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self.ParentItem)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
@@ -14696,26 +12974,28 @@ function UIMissionDetailsPanel:UpdatePanelPicture(txd, txn)
     self.TextureName = txn
 
     if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it, true)
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self.ParentItem)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
 function UIMissionDetailsPanel:AddItem(newitem)
     self.Items[#self.Items + 1] = newitem
     if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it, true)
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self.ParentItem)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
 function UIMissionDetailsPanel:RemoveItemAt(index)
     table.remove(self.Items, index)
     if self.ParentItem ~= nil and self.ParentItem:SetParentMenu() ~= nil and self.ParentItem:SetParentMenu():Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it, true)
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self.ParentItem)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIVehicleColorPickerPanel = setmetatable({}, UIVehicleColorPickerPanel)
@@ -14757,8 +13037,8 @@ end
 function UIVehicleColorPickerPanel:UpdatePanelTitle(title)
     self.Title = title
     if self.ParentItem ~= nil and self.ParentItem.ParentMenu ~= nil and self.ParentItem.ParentMenu:Visible() then
-        local it = IndexOf(self.ParentMenu.Items, self)
-        self.ParentMenu:SendSidePanelToScaleform(it, true)
+        local it = IndexOf(self.ParentItem.ParentMenu.Items, self)
+        self.ParentItem.ParentMenu:SendSidePanelToScaleform(it, true)
     end
 end
 
@@ -14768,12 +13048,15 @@ function UIVehicleColorPickerPanel:_PickerSelect(color)
 end
 
 function UIVehicleColorPickerPanel:_PickerHovered(colorId, color)
-    self.PickerHovered(self:SetParentItem():SetParentMenu(), colorId, color)
+
+    self.PickerHovered(self.ParentItem.ParentMenu, colorId, color)
 end
 
 function UIVehicleColorPickerPanel:_PickerRollout()
-    self.PickerHovered(self:SetParentItem():SetParentMenu(), self.ParentItem, self.Value, self.Color)
+    self.PickerHovered(self.ParentItem.ParentMenu, self.ParentItem, self.Value, self.Color)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenu = setmetatable({}, UIMenu)
@@ -14957,8 +13240,8 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _differentBanner = false,
         _canHe = true,
         _scaledWidth = (720 * GetAspectRatio(false)),
-        _glarePos = {x = 0, y = 0},
-        _glareSize = {w = 1.0, h = 1.0},
+        _glarePos = { x = 0, y = 0 },
+        _glareSize = { w = 1.0, h = 1.0 },
         menuAlignment = align or 0,
         _mouseOnMenu = false,
         fSavedGlareDirection = 0,
@@ -15046,7 +13329,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _UIMenu._Subtitle = subTitle
     end
     if (_UIMenu._menuGlare == 0) then
-        _UIMenu._menuGlare = _Scaleform.Request("mp_menu_glare")
+        _UIMenu._menuGlare = __Scaleform.Request("mp_menu_glare")
     end
 
     _UIMenu.Position = vector2(X, Y)
@@ -15064,7 +13347,7 @@ function UIMenu.New(title, subTitle, x, y, glare, txtDictionary, txtName, altern
         _UIMenu._glarePos = vector2(screenCoords.x - 1 + glareX, screenCoords.y + 0.45 + safezone)
     end
 
-    _UIMenu._glareSize = {w = glareW, h = 1.0}
+    _UIMenu._glareSize = { w = glareW, h = 1.0 }
 
     return setmetatable(_UIMenu, UIMenu)
 end
@@ -15083,7 +13366,7 @@ function UIMenu:Title(title)
                     self.alternativeTitle)
             else
                 ScaleformUI.Scaleforms._ui:CallFunction("UPDATE_TITLE_SUBTITLE", self._Title,
-                    "~HC_"..self.subtitleColor.."~"..self._Subtitle,
+                    "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle,
                     self.alternativeTitle)
             end
         end
@@ -15359,9 +13642,6 @@ end
 ---@see UIMenuItem
 function UIMenu:AddItem(item)
     assert(not self._itemless, "ScaleformUI - You cannot add items to an itemless menu, only a long description")
-    if item() ~= "UIMenuItem" then
-        return
-    end
     item:SetParentMenu(self)
     self.Items[#self.Items + 1] = item
     if self:Visible() then
@@ -15369,14 +13649,10 @@ function UIMenu:AddItem(item)
         self:SendItemToScaleform(idx, false, false, #self.Items <= self:MaxItemsOnScreen())
         self.Items[idx]:Selected(idx == 1)
     end
-    -- add build new item (sent slot)
 end
 
 function UIMenu:AddItemAt(item, index)
     assert(not self._itemless, "ScaleformUI - You cannot add items to an itemless menu, only a long description")
-    if item() ~= "UIMenuItem" then
-        return
-    end
     item:SetParentMenu(self)
     table.insert(self.Items, index, item)
     if self:Visible() then
@@ -15387,34 +13663,38 @@ end
 
 ---RemoveItemAt
 ---@param index number
-function UIMenu:RemoveItemAt(index)
-    if tonumber(index) then
-        local idx = self:CurrentSelection()
-        if #self.Items >= index then
-            if idx == index then
-                --[[
-                Failsafe workaround because Lua sucks shit so bad that is not even able
-                to handle the last index in a table without crashing the entire game...
-                I HATE YOU LUA!!! W C# FOR EVER!
-                And they say C# has bigger overhead and it's slow... at least C# handles arrays like it should!!!
-            ]]
-                self:CurrentSelection(1)
-            end
-
-            table.remove(self.Items, index)
+function UIMenu:RemoveItemAt(idx)
+    if tonumber(idx) then
+        if #self.Items >= idx then
+            self.Items[idx]:Selected(false)
+            local curItem = self._currentSelection
+            table.remove(self.Items, idx)
             if self:Visible() then
-                ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_DATA_SLOT", index - 1)
-                self:RefreshMenu(true)
+                ScaleformUI.Scaleforms._ui:CallFunction("REMOVE_DATA_SLOT", idx - 1)
             end
             if #self.Items > 0 then
-                if #self.Items >= idx then
-                    self:CurrentSelection(idx)
+                if idx == self._currentSelection then
+                    if idx > #self.Items then
+                        self._currentSelection = #self.Items
+                    elseif idx > 1 and idx <= #self.Items then
+                        self._currentSelection = idx
+                    else
+                        self._currentSelection = 1
+                    end
                 else
-                    self:CurrentSelection(#self.Items)
+                    if curItem <= #self.Items then
+                        self._currentSelection = curItem
+                    else
+                        self._currentSelection = #self.Items
+                    end
                 end
-            else
-                print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..
-                    index..", Items: "..#self.Items..")")
+                self.Items[self._currentSelection]:Selected(true)
+                if self:Visible() then
+                    AddTextEntry("UIMenu_Current_Description", self:CurrentItem():Description())
+                    ScaleformUI.Scaleforms._ui:CallFunction("SET_CURRENT_SELECTION", self._currentSelection - 1, self.topEdge - 1)
+                    self:SendPanelsToItemScaleform(self._currentSelection)
+                    self:SendSidePanelToScaleform(self._currentSelection)
+                end
             end
         end
     end
@@ -15465,8 +13745,8 @@ function UIMenu:RemoveItemsRange(startIndex, count)
             self:CurrentSelection(#self.Items)
         end
     else
-        print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: "..
-            index..", Items: "..#self.Items..")")
+        print("ScaleformUI - UIMenu:RemoveItemAt - Index out of range (Index: " ..
+            index .. ", Items: " .. #self.Items .. ")")
     end
 end
 
@@ -15475,7 +13755,7 @@ end
 function UIMenu:RemoveItem(item)
     local idx = 0
     for k, v in pairs(self.Items) do
-        if v:Label() == item:Label() then
+        if v:Label () == item:Label() then
             idx = k
             break
         end
@@ -15535,7 +13815,7 @@ function UIMenu:Visible(bool)
             if not self._itemless and #self.Items == 0 then
                 MenuHandler:CloseAndClearHistory()
                 assert(self._itemless or #self.Items == 0,
-                    "UIMenu "..self:Title().." menu is empty... Closing and clearing history.")
+                    "UIMenu " .. self:Title() .. " menu is empty... Closing and clearing history.")
             end
             ScaleformUI.Scaleforms.InstructionalButtons:SetInstructionalButtons(self.InstructionalButtons)
             self:BuildMenu()
@@ -15609,7 +13889,7 @@ function UIMenu:SetMenuData(skipViewInitialization)
     if skipViewInitialization == nil then skipViewInitialization = false end
     local subtitle = self._Subtitle
     if self.subtitleColor ~= HudColours.NONE then
-        subtitle = "~HC_"..self.subtitleColor.."~"..self._Subtitle
+        subtitle = "~HC_" .. self.subtitleColor .. "~" .. self._Subtitle
     end
 
     if self._itemless then
@@ -15659,7 +13939,7 @@ function UIMenu:SetWindows(update)
     end
 
     for w_id, window in pairs(self.Windows) do
-        local Type, SubType = window()
+        local _, SubType = window()
         if SubType == "UIMenuHeritageWindow" then
             ScaleformUI.Scaleforms._ui:CallFunction(str, w_id - 1, window.id, window.Mom, window.Dad)
         elseif SubType == "UIMenuDetailsWindow" then
@@ -15719,8 +13999,8 @@ function UIMenu:SendSidePanelToScaleform(i, update)
             item.SidePanel.TextureDict, item.SidePanel.TextureName)
         for key, value in pairs(item.SidePanel.Items) do
             ScaleformUI.Scaleforms._ui:CallFunction("SET_SIDE_PANEL_SLOT", index - 1,
-                value.Type, value.TextLeft, value.TextRight, value.Icon, value.IconColor, value.Tick,
-                value._labelFont.FontName, value._labelFont.FontID,
+                value.Type, value.label, value.TextRight, value.Icon, value.IconColor, value.Tick,
+                value.LabelFont.FontName, value.LabelFont.FontID,
                 value._rightLabelFont.FontName, value._rightLabelFont.FontID)
         end
     elseif item.SidePanel() == "UIVehicleColorPickerPanel" then
@@ -15768,12 +14048,12 @@ function UIMenu:SendPanelsToItemScaleform(i, update)
                 panel.Max, panel._percentage)
         elseif pSubType == "UIMenuGridPanel" then
             ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 2, panel.TopLabel,
-                panel.RightLabel, panel.LeftLabel, panel.BottomLabel, panel._CirclePosition.x,
-                panel._CirclePosition.y, true, panel.GridType)
-        elseif pSubType == "UIMenuStatisticsPanel" then
+            panel.LeftLabel, panel.RightLabel, panel.BottomLabel, panel._CirclePosition.x,
+            panel._CirclePosition.y, true, panel.GridType)
+    elseif pSubType == "UIMenuStatisticsPanel" then
             local arr = {}
             for k, v in pairs(panel.Items) do
-                table.insert(arr, v['name']..":"..v['value'])
+                table.insert(arr, v['name'] .. ":" .. v['value'])
             end
             ScaleformUI.Scaleforms._ui:CallFunction(str, index - 1, pan - 1, 3, table.concat(arr, ","))
         elseif pSubType == "UIMenuVehicleColourPickerPanel" then
@@ -15789,6 +14069,11 @@ function UIMenu:SendItemToScaleform(i, update, newItem, isSlot)
     if update == nil then update = false end
     if newItem == nil then newItem = false end
     if isSlot == nil then isSlot = false end
+    if i < 1 then 
+        i = 1
+    elseif i > #self.Items then
+        i = #sef.Items
+    end
     local item = self.Items[i]
     local str = "SET_DATA_SLOT"
     if update then
@@ -15800,11 +14085,6 @@ function UIMenu:SendItemToScaleform(i, update, newItem, isSlot)
     if isSlot then
         str = "ADD_SLOT"
     end
-    local Type, SubType = item()
-    local it = item
-    if SubType ~= "UIMenuItem" then
-        it = item.Base
-    end
 
     BeginScaleformMovieMethod(ScaleformUI.Scaleforms._ui.handle, str)
     PushScaleformMovieFunctionParameterInt(i - 1)
@@ -15813,8 +14093,10 @@ function UIMenu:SendItemToScaleform(i, update, newItem, isSlot)
     PushScaleformMovieFunctionParameterInt(item.ItemId)
 
     if item.ItemId == 1 then
-        local lbl = item:createListString()
-        PushScaleformMovieMethodParameterString(lbl)
+        local rlabel = "SCUI_UIMENU_RLBL"
+        AddTextEntry(rlabel, item:CurrentListItem())
+        BeginTextCommandScaleformString(rlabel)
+        EndTextCommandScaleformString_2()
     elseif item.ItemId == 2 then
         PushScaleformMovieFunctionParameterBool(item:Checked())
     elseif item.ItemId == 3 or item.ItemId == 4 or item.ItemId == 5 then
@@ -15823,72 +14105,78 @@ function UIMenu:SendItemToScaleform(i, update, newItem, isSlot)
         PushScaleformMovieFunctionParameterInt(0)
     end
     PushScaleformMovieFunctionParameterBool(item:Enabled())
-    PushScaleformMovieMethodParameterString(it._formatLeftLabel)
+    local label = "SCUI_UIMENU_LBL"
+    AddTextEntry(label, item:Label())
+    BeginTextCommandScaleformString(label)
+    EndTextCommandScaleformString_2()
     PushScaleformMovieFunctionParameterBool(item:BlinkDescription())
-    if SubType == "UIMenuDynamicListItem" or SubType == "UIMenuListItem" then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
+    if item.ItemId == 1 then -- dynamic list item are handled like list items in the scaleform.. so the type remains 1
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-        PushScaleformMovieMethodParameterString(it._rightLabelFont.FontName)
-    elseif SubType == "UIMenuCheckboxItem" then
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+        PushScaleformMovieMethodParameterString(item._rightLabelFont.FontName)
+    elseif item.ItemId == 2 then
         PushScaleformMovieFunctionParameterInt(item.CheckBoxStyle)
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-    elseif SubType == "UIMenuSliderItem" then
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 3 then
         PushScaleformMovieFunctionParameterInt(item._Max)
         PushScaleformMovieFunctionParameterInt(item._Multiplier)
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
         PushScaleformMovieFunctionParameterBool(item._heritage)
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-    elseif SubType == "UIMenuProgressItem" then
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 4 then
         PushScaleformMovieFunctionParameterInt(item._Max)
         PushScaleformMovieFunctionParameterInt(item._Multiplier)
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-    elseif SubType == "UIMenuStatsItem" then
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 5 then
         PushScaleformMovieFunctionParameterInt(item._Type)
         PushScaleformMovieFunctionParameterInt(item:SliderColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-    elseif SubType == "UIMenuSeparatorItem" then
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+    elseif item.ItemId == 6 then
         PushScaleformMovieFunctionParameterBool(item.Jumpable)
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
     else
         PushScaleformMovieFunctionParameterInt(item:MainColor():ToArgb())
         PushScaleformMovieFunctionParameterInt(item:HighlightColor():ToArgb())
-        PushScaleformMovieMethodParameterString(it._formatRightLabel)
-        PushScaleformMovieFunctionParameterInt(it._leftBadge)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customLeftIcon.TXN)
-        PushScaleformMovieFunctionParameterInt(it._rightBadge)
-        PushScaleformMovieMethodParameterString(it.customRightIcon.TXD)
-        PushScaleformMovieMethodParameterString(it.customRightIcon.TXN)
-        PushScaleformMovieMethodParameterString(it._labelFont.FontName)
-        PushScaleformMovieMethodParameterString(it._rightLabelFont.FontName)
+        BeginTextCommandScaleformString("CELL_EMAIL_BCON")
+        AddTextComponentScaleform(item:RightLabel())
+        EndTextCommandScaleformString_2()
+        PushScaleformMovieFunctionParameterInt(item._leftBadge)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customLeftIcon.TXN)
+        PushScaleformMovieFunctionParameterInt(item._rightBadge)
+        PushScaleformMovieMethodParameterString(item.customRightIcon.TXD)
+        PushScaleformMovieMethodParameterString(item.customRightIcon.TXN)
+        PushScaleformMovieMethodParameterString(item.LabelFont.FontName)
+        PushScaleformMovieMethodParameterString(item._rightLabelFont.FontName)
     end
+    PushScaleformMovieMethodParameterBool(item:KeepTextColorWhite())
     EndScaleformMovieMethod()
 end
 
@@ -16171,31 +14459,28 @@ end
 ---GoLeft
 function UIMenu:GoLeft()
     local Item = self:CurrentItem()
-    local type, subtype = Item()
-    if subtype ~= "UIMenuListItem" and subtype ~= "UIMenuDynamicListItem" and subtype ~= "UIMenuSliderItem" and subtype ~= "UIMenuProgressItem" and subtype ~= "UIMenuStatsItem" then
-        return
-    end
-
-    if not Item:Enabled() then
+    if Item.ItemId == 0 or Item.ItemId == 2 or Item.ItemId == 6 or not Item:Enabled() then
         PlaySoundFrontend(-1, self.Settings.Audio.Error, self.Settings.Audio.Library, true)
         return
     end
-    if subtype == "UIMenuListItem" then
-        Item:Index(Item:Index() - 1)
-        self.OnListChange(self, Item, Item._Index)
-        Item.OnListChanged(self, Item, Item._Index)
-    elseif (subtype == "UIMenuDynamicListItem") then
-        local result = tostring(Item.Callback(Item, "left"))
-        Item:CurrentListItem(result)
-    elseif subtype == "UIMenuSliderItem" then
+    if Item.ItemId == 1 then
+        if Item() == "UIMenuListItem" then
+            Item:Index(Item:Index() - 1)
+            self.OnListChange(self, Item, Item._Index)
+            Item.OnListChanged(self, Item, Item._Index)
+        else
+            local result = tostring(Item.Callback(Item, "left"))
+            Item:CurrentListItem(result)
+        end
+    elseif Item.ItemId == 3 then
         Item:Index(Item:Index() - 1)
         self.OnSliderChange(self, Item, Item:Index())
         Item.OnSliderChanged(self, Item, Item._Index)
-    elseif subtype == "UIMenuProgressItem" then
+    elseif Item.ItemId == 4 then
         Item:Index(Item:Index() - 1)
         self.OnProgressChange(self, Item, Item:Index())
         Item.OnProgressChanged(self, Item, Item:Index())
-    elseif subtype == "UIMenuStatsItem" then
+    elseif Item.ItemId == 5 then
         Item:Index(Item:Index() - 1)
         self.OnStatsChanged(self, Item, Item:Index())
         Item.OnStatsChanged(self, Item, Item._Index)
@@ -16206,30 +14491,28 @@ end
 ---GoRight
 function UIMenu:GoRight()
     local Item = self:CurrentItem()
-    local type, subtype = Item()
-    if subtype ~= "UIMenuListItem" and subtype ~= "UIMenuDynamicListItem" and subtype ~= "UIMenuSliderItem" and subtype ~= "UIMenuProgressItem" and subtype ~= "UIMenuStatsItem" then
-        return
-    end
-    if not Item:Enabled() then
+    if Item.ItemId == 0 or Item.ItemId == 2 or Item.ItemId == 6 or not Item:Enabled() then
         PlaySoundFrontend(-1, self.Settings.Audio.Error, self.Settings.Audio.Library, true)
         return
     end
-    if subtype == "UIMenuListItem" then
-        Item:Index(Item:Index() + 1)
-        self.OnListChange(self, Item, Item._Index)
-        Item.OnListChanged(self, Item, Item._Index)
-    elseif (subtype == "UIMenuDynamicListItem") then
-        local result = tostring(Item.Callback(Item, "right"))
-        Item:CurrentListItem(result)
-    elseif subtype == "UIMenuSliderItem" then
+    if Item.ItemId == 1 then
+        if Item() == "UIMenuListItem" then
+            Item:Index(Item:Index() + 1)
+            self.OnListChange(self, Item, Item._Index)
+            Item.OnListChanged(self, Item, Item._Index)
+        else
+            local result = tostring(Item.Callback(Item, "right"))
+            Item:CurrentListItem(result)
+        end
+    elseif Item.ItemId == 3 then
         Item:Index(Item:Index() + 1)
         self.OnSliderChange(self, Item, Item:Index())
         Item.OnSliderChanged(self, Item, Item._Index)
-    elseif subtype == "UIMenuProgressItem" then
+    elseif Item.ItemId == 4 then
         Item:Index(Item:Index() + 1)
         self.OnProgressChange(self, Item, Item:Index())
         Item.OnProgressChanged(self, Item, Item:Index())
-    elseif subtype == "UIMenuStatsItem" then
+    elseif Item.ItemId == 5 then
         Item:Index(Item:Index() + 1)
         self.OnStatsChanged(self, Item, Item:Index())
         Item.OnStatsChanged(self, Item, Item._Index)
@@ -16249,34 +14532,35 @@ function UIMenu:SelectItem(play)
     end
 
     local Item = self:CurrentItem()
-    local type, subtype = Item()
-    if subtype == "UIMenuCheckboxItem" then
+    if Item.ItemId == 2 then
         Item:Checked(not Item:Checked())
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
         Item.OnCheckboxChanged(self, Item, Item:Checked())
         self.OnCheckboxChange(self, Item, Item:Checked())
-    elseif subtype == "UIMenuListItem" then
-        PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        Item.OnListSelected(self, Item, Item._Index)
-        self.OnListSelect(self, Item, Item._Index)
-    elseif subtype == "UIMenuDynamicListItem" then
-        PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
-        Item.OnListSelected(self, Item, Item._currentItem)
-        self.OnListSelect(self, Item, Item._currentItem)
-    elseif subtype == "UIMenuSliderItem" then
+    elseif Item.ItemId == 1 then
+        if Item() == "UIMenuListItem" then
+            PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
+            Item.OnListSelected(self, Item, Item._Index)
+            self.OnListSelect(self, Item, Item._Index)
+        else
+            PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
+            Item.OnListSelected(self, Item, Item._currentItem)
+            self.OnListSelect(self, Item, Item._currentItem)
+        end
+    elseif Item.ItemId == 3 then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
         Item.OnSliderSelected(self, Item, Item._Index)
         self.OnSliderSelect(self, Item, Item._Index)
-    elseif subtype == "UIMenuProgressItem" then
+    elseif Item.ItemId == 4 then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
         Item.OnProgressSelected(self, Item, Item._Index)
         self.OnProgressSelect(self, Item, Item._Index)
-    elseif subtype == "UIMenuStatsItem" then
+    elseif Item.ItemId == 5 then
         PlaySoundFrontend(-1, self.Settings.Audio.Select, self.Settings.Audio.Library, true)
         Item.OnStatsSelected(self, Item, Item._Index)
         self.OnStatsSelect(self, Item, Item._Index)
     end
-    if subtype ~= "UIMenuCheckboxItem" then
+    if Item.ItemId ~= 2 then
         Item.Activated(self, Item)
         self.OnItemSelect(self, Item, self:CurrentSelection())
     end
@@ -16452,7 +14736,7 @@ function UIMenu:ProcessMouse()
                             local value = ScaleformUI.Scaleforms._ui:CallFunctionAsyncReturnInt("SELECT_ITEM", item_id) --[[@as number]]
 
                             local curr_select_item = self:CurrentItem()
-                            local item_type_curr, item_subtype_curr = curr_select_item()
+                            local item_subtype_curr = curr_select_item()
                             if item.ItemId == 1 then
                                 if item_subtype_curr == "UIMenuListItem" then
                                     if curr_select_item:Index() ~= value then
@@ -16769,7 +15053,7 @@ end
 ---@param Controller table
 function UIMenu:AddEnabledControl(Inputgroup, Control, Controller)
     if tonumber(Inputgroup) and tonumber(Control) then
-        table.insert(self.Settings.EnabledControls[(Controller and "Controller" or "Keyboard")], {Inputgroup, Control})
+        table.insert(self.Settings.EnabledControls[(Controller and "Controller" or "Keyboard")], { Inputgroup, Control })
     end
 end
 
@@ -16803,10 +15087,12 @@ function UIMenu:SetMenuOffset(x, y)
             screenCoords = ConvertResolutionCoordsToScreenCoords(1920 - pos1080.x, pos1080.y)
             self._glarePos = vector2(screenCoords.x - 1 + glareX, screenCoords.y + 0.45 + safezone)
         end
-        self._glareSize = {w = 1.0, h = 1.0}
+        self._glareSize = { w = 1.0, h = 1.0 }
         self:SetMenuData(true)
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuDetailsWindow = setmetatable({}, UIMenuDetailsWindow)
@@ -16816,7 +15102,7 @@ UIMenuDetailsWindow.__call = function() return "UIMenuWindow", "UIMenuDetailsWin
 --- TODO: Refactor method arguments so they can be documented better
 ---New
 function UIMenuDetailsWindow.New(...)
-    local args = {...}
+    local args = { ... }
 
     if #args == 3 or #args == 4 then
         _UIMenuDetailsWindow = {
@@ -16872,7 +15158,7 @@ function UIMenuDetailsWindow:UpdateLabels(top, mid, bot, leftDetail)
         Txn = "",
         Pos = vector2(0, 0),
         Size = vector2(0, 0),
-    }
+}
     if self.ParentMenu ~= nil and self.ParentMenu:Visible() then
         self.ParentMenu:SetWindows(true)
     end
@@ -16903,6 +15189,7 @@ function UIMenuDetailsWindow:UpdateStatsToWheel()
         end
     end
 end
+
 
 --///////////////////////////////////////////////////////////////////--
 UIMenuHeritageWindow = setmetatable({}, UIMenuHeritageWindow)
@@ -16954,9 +15241,11 @@ function UIMenuHeritageWindow:Index(Mom, Dad)
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 BigFeedInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type __Scaleform]],
     _title = "",
     _subtitle = "",
     _bodyText = "",
@@ -16972,7 +15261,7 @@ BigFeedInstance.__call = function()
 end
 
 ---@class BigFeedInstance
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field private _title string
 ---@field private _subtitle string
 ---@field private _bodyText string
@@ -17047,14 +15336,14 @@ end
 ---@param textureDictionary? string
 ---@return table<string, string>
 function BigFeedInstance:Texture(textureName, textureDictionary)
-    if textureName == nil and textureDictionary == nil then return {txd = self._txd, txn = self._txn} end
+    if textureName == nil and textureDictionary == nil then return { txd = self._txd, txn = self._txn } end
     self._txn = textureName
     self._txd = textureDictionary
     if self._enabled then
         self._sc:CallFunction("SET_BIGFEED_IMAGE", textureDictionary, textureName)
         self:UpdateInfo()
     end
-    return {txd = self._txd, txn = self._txn}
+    return { txd = self._txd, txn = self._txn }
 end
 
 ---Toggles the BigFeedInstance on or off, if a state is not provided it will return the current enabled state
@@ -17120,7 +15409,7 @@ end
 ---@return nil
 function BigFeedInstance:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("GTAV_ONLINE")
+    self._sc = __Scaleform.Request("GTAV_ONLINE")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -17133,9 +15422,11 @@ function BigFeedInstance:Dispose()
     self._sc = nil
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 BigMessageInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type __Scaleform]],
     _start = 0,
     _duration = 0,
     _transition = "TRANSITION_OUT", -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -17150,7 +15441,7 @@ BigMessageInstance.__call = function()
 end
 
 ---@class BigMessageInstance
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field private _start number
 ---@field private _duration number
 ---@field private _transition string -- TRANSITION_UP, TRANSITION_OUT, TRANSITION_DOWN supported
@@ -17186,7 +15477,7 @@ end
 ---@return nil
 function BigMessageInstance:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("MP_BIG_MESSAGE_FREEMODE")
+    self._sc = __Scaleform.Request("MP_BIG_MESSAGE_FREEMODE")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -17379,12 +15670,14 @@ function BigMessageInstance:Update()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 CountdownHandler = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type __Scaleform]],
     _start = 0,
     _timer = 0,
-    _colour = {r = 255, g = 255, b = 255, a = 255}
+    _colour = { r = 255, g = 255, b = 255, a = 255 }
 }, CountdownHandler)
 CountdownHandler.__index = CountdownHandler
 CountdownHandler.__call = function()
@@ -17395,7 +15688,7 @@ end
 local renderCountdown = false
 
 ---@class CountdownHandler
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field private _start number
 ---@field private _timer number
 ---@field private _colour {r:number, g:number, b:number, a:number}
@@ -17418,7 +15711,7 @@ function CountdownHandler:Load()
 
     RequestScriptAudioBank("HUD_321_GO", false);
 
-    self._sc = _Scaleform.Request("COUNTDOWN")
+    self._sc = __Scaleform.Request("COUNTDOWN")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -17520,15 +15813,17 @@ function CountdownHandler:Start(number, hudColour, countdownAudioName, countdown
     return p
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 DrillingInstance = setmetatable({}, DrillingInstance)
 DrillingInstance.__index = DrillingInstance
 DrillingInstance.__call = function()
-    return "DrillingInstance"
+  return "DrillingInstance"
 end
 
 ---@class DrillingInstance
----@field private _scaleform _Scaleform
+---@field private _scaleform __Scaleform
 ---@field private _drillSound number
 ---@field private active boolean
 ---@field private success boolean
@@ -17555,7 +15850,7 @@ function DrillingInstance.New()
         _drillSound = nil,
         active = false,
         success = false,
-        pinsData = {0.325, 0.475, 0.625, 0.775},
+        pinsData = { 0.325, 0.475, 0.625, 0.775 },
         drillPosition = 0.0,
         currentDepth = 0.0,
         drillSpeed = 0.0,
@@ -17593,7 +15888,7 @@ function DrillingInstance:Process()
     if IsControlJustPressed(0, 172) then
         self.drillPosition = math.min(1.0, self.drillPosition + 0.01)
     elseif IsControlPressed(0, 172) then
-        self.drillPosition = math.min(1.0, self.drillPosition + (0.1 * GetFrameTime() / (math.max(0.1, self.temperature) * 10)))
+        self.drillPosition = math.min(1.0, self.drillPosition + (0.1 * GetFrameTime() / (math.max(0.1,self.temperature) * 10)))
     elseif IsControlJustPressed(0, 173) then
         self.drillPosition = math.max(0.0, self.drillPosition - 0.01)
     elseif IsControlPressed(0, 173) then
@@ -17602,14 +15897,14 @@ function DrillingInstance:Process()
 
     local cachedSpeed = self.drillSpeed
 
-    if IsControlJustPressed(0, 175) then
-        self.drillSpeed = math.min(1.0, self.drillSpeed + 0.05)
-    elseif IsControlPressed(0, 175) then
-        self.drillSpeed = math.min(1.0, self.drillSpeed + (0.5 * GetFrameTime()))
-    elseif IsControlJustPressed(0, 174) then
-        self.drillSpeed = math.max(0.0, self.drillSpeed - 0.05)
-    elseif IsControlPressed(0, 174) then
-        self.drillSpeed = math.max(0.0, self.drillSpeed - (0.5 * GetFrameTime()))
+    if IsControlJustPressed(0,175) then
+        self.drillSpeed = math.min(1.0,self.drillSpeed + 0.05)
+    elseif IsControlPressed(0,175) then
+        self.drillSpeed = math.min(1.0,self.drillSpeed + (0.5 * GetFrameTime()))
+    elseif IsControlJustPressed(0,174) then
+        self.drillSpeed = math.max(0.0,self.drillSpeed - 0.05)
+    elseif IsControlPressed(0,174) then
+        self.drillSpeed = math.max(0.0,self.drillSpeed - (0.5 * GetFrameTime()))
     end
 
     if cachedSpeed ~= self.drillSpeed then
@@ -17627,7 +15922,7 @@ function DrillingInstance:Process()
 
             for i = 1, #self.pinsData do
                 if self.currentDepth < self.pinsData[i] and self.drillPosition >= self.pinsData[i] then
-                    PlaySoundFrontend(-1, "Drill_Pin_Break", "DLC_HEIST_FLEECA_SOUNDSET", true)
+                    PlaySoundFrontend(-1 , "Drill_Pin_Break", "DLC_HEIST_FLEECA_SOUNDSET", true)
                     break
                 end
             end
@@ -17698,6 +15993,7 @@ function DrillingInstance:Cancel()
     self.active = false
 end
 
+
 function DrillingInstance:Draw()
     if not self._scaleform then return end
 
@@ -17710,10 +16006,10 @@ function DrillingInstance:Load()
     RequestScriptAudioBank("DLC_HEIST_FLEECA_SOUNDSET", 0)
     RequestScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL", 0)
     RequestScriptAudioBank("DLC_MPHEIST\\HEIST_FLEECA_DRILL_2", 0)
-    self._scaleform = _Scaleform.RequestWidescreen("DRILLING")
+    self._scaleform = __Scaleform.RequestWidescreen("DRILLING")
 
     while not self._scaleform:IsLoaded() do
-        Citizen.Wait(0)
+      Citizen.Wait(0)
     end
 
     prom:resolve()
@@ -17727,9 +16023,11 @@ function DrillingInstance:Dispose()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ButtonsHandler = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type __Scaleform]],
     UseMouseButtons = false,
     IsUsingKeyboard = false,
     _changed = true,
@@ -17743,7 +16041,7 @@ ButtonsHandler.__call = function()
 end
 
 ---@class ButtonsHandler
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field public UseMouseButtons boolean
 ---@field public _enabled boolean
 ---@field public IsUsingKeyboard boolean
@@ -17769,7 +16067,7 @@ end
 ---Loads the instructional buttons
 function ButtonsHandler:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("INSTRUCTIONAL_BUTTONS")
+    self._sc = __Scaleform.Request("INSTRUCTIONAL_BUTTONS")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -17951,6 +16249,8 @@ function ButtonsHandler:Update()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 InstructionalButton = setmetatable({}, InstructionalButton)
 InstructionalButton.__index = InstructionalButton
@@ -18025,9 +16325,9 @@ function InstructionalButton:GetButtonId()
             if self.GamepadButtons ~= nil then
                 for i = #self.GamepadButtons, 1, -1 do
                     if i == 1 then
-                        retVal = retVal..GetControlInstructionalButton(2, self.GamepadButtons[i], true)
+                        retVal = retVal .. GetControlInstructionalButton(2, self.GamepadButtons[i], true)
                     else
-                        retVal = retVal..GetControlInstructionalButton(2, self.GamepadButtons[i], true).."%"
+                        retVal = retVal .. GetControlInstructionalButton(2, self.GamepadButtons[i], true) .. "%"
                     end
                 end
             end
@@ -18035,16 +16335,16 @@ function InstructionalButton:GetButtonId()
             if self.KeyboardButtons ~= nil then
                 for i = #self.KeyboardButtons, 1, -1 do
                     if i == 1 then
-                        retVal = retVal..GetControlInstructionalButton(2, self.KeyboardButtons[i], true)
+                        retVal = retVal .. GetControlInstructionalButton(2, self.KeyboardButtons[i], true)
                     else
-                        retVal = retVal..GetControlInstructionalButton(2, self.KeyboardButtons[i], true).."%"
+                        retVal = retVal .. GetControlInstructionalButton(2, self.KeyboardButtons[i], true) .. "%"
                     end
                 end
             end
         end
         return retVal
     elseif self.InputGroupButton ~= -1 then
-        return "~"..self.InputGroupButton.."~"
+        return "~" .. self.InputGroupButton .. "~"
     end
     if self:IsUsingController() then
         return GetControlInstructionalButton(2, self.GamepadButton, true)
@@ -18053,9 +16353,11 @@ function InstructionalButton:GetButtonId()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MidMessageInstance = setmetatable({
-    _sc = nil, --[[@type _Scaleform]]
+    _sc = nil, --[[@type __Scaleform]]
     _start = 0,
     _timer = 0,
     _hasAnimatedOut = false,
@@ -18066,7 +16368,7 @@ MidMessageInstance.__call = function()
 end
 
 ---@class MidMessageInstance
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public _hasAnimatedOut boolean
@@ -18078,7 +16380,7 @@ end
 ---Loads the MIDSIZED_MESSAGE scaleform
 function MidMessageInstance:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("MIDSIZED_MESSAGE")
+    self._sc = __Scaleform.Request("MIDSIZED_MESSAGE")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -18124,6 +16426,8 @@ function MidMessageInstance:Update()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MinimapOverlay = setmetatable({}, MinimapOverlay)
 MinimapOverlay.__index = MinimapOverlay
@@ -18158,7 +16462,7 @@ function MinimapOverlay.New(handle, textureDict, textureName, x, y, rotation, wi
         Color = SColor.HUD_None,
         Position = vector2(x or 0, y or 0),
         Rotation = rotation or 0,
-        Size = {width or 0, height or 0},
+        Size = { width or 0, height or 0 },
         Alpha = alpha or 0,
         Centered = centered or false,
         Visible = true,
@@ -18170,23 +16474,23 @@ function MinimapOverlay.New(handle, textureDict, textureName, x, y, rotation, wi
 end
 
 function MinimapOverlay:SetOverlayColor(color)
-    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayColor(self.Handle, color)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayColor(self.Handle,color)
 end
 
 function MinimapOverlay:HideOverlay(hide)
-    ScaleformUI.Scaleforms.MinimapOverlays:HideOverlay(self.Handle, hide)
+    ScaleformUI.Scaleforms.MinimapOverlays:HideOverlay(self.Handle,hide)
 end
 
 function MinimapOverlay:SetOverlayAlpha(alpha)
-    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayAlpha(self.Handle, alpha)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayAlpha(self.Handle,alpha)
 end
 
 function MinimapOverlay:SetOverlayPosition(position)
-    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayPosition(self.Handle, position)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayPosition(self.Handle,position)
 end
 
 function MinimapOverlay:SetOverlaySizeOrScale(width, height)
-    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlaySizeOrScale(self.Handle, width, height)
+    ScaleformUI.Scaleforms.MinimapOverlays:SetOverlaySizeOrScale(self.Handle,width, height)
 end
 
 function MinimapOverlay:RemoveOverlayFromMinimap()
@@ -18196,6 +16500,8 @@ end
 function MinimapOverlay:SetOverlayRotation(rotation)
     ScaleformUI.Scaleforms.MinimapOverlays:SetOverlayRotation(self.Handle, rotation)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 MinimapOverlays = setmetatable({
@@ -18227,19 +16533,19 @@ MinimapOverlays.__call = function() return "MinimapOverlays" end
 
 
 function MinimapOverlays:Load()
-    TriggerEvent("ScUI:getMinimapHandle", function(handle)
-        self.minimapHandle = handle
-    end)
-    if self.minimapHandle == 0 then
-        local sc = _Scaleform.RequestWidescreen("minimap")
-        while not HasScaleformMovieLoaded(sc.handle) do
-            Wait(0)
-        end
-        self.minimapHandle = sc.handle
-        SetBigmapActive(true, false)
-        Wait(0)
-        SetBigmapActive(false, false)
-    end
+    -- TriggerEvent("ScUI:getMinimapHandle", function(handle)
+    --     self.minimapHandle = handle
+    -- end)
+    -- if self.minimapHandle == 0 then
+    --     local sc = __Scaleform.RequestWidescreen("minimap")
+    --     while not HasScaleformMovieLoaded(sc.handle) do
+    --         Wait(0)
+    --     end
+    --     self.minimapHandle = sc.handle
+    --     SetBigmapActive(true, false)
+    --     Wait(0)
+    --     SetBigmapActive(false, false)
+    -- end
     -- TODO: ADD CHECKS IN FUNCTIONS TO PREVENT USING WITH AREA OVERLAY (COORDS FOR EXAMPLE)
     TriggerEvent("ScUI:AddMinimapOverlay", function(handle)
         self.overlay = handle
@@ -18381,6 +16687,67 @@ function MinimapOverlays:AddAreaOverlay(coords, outline, color)
     return overlay
 end
 
+---Creates a new Textfield object in the scaleform and returns its handle
+---@param label string the texture
+---@param x number the x coordinate in screen format (0.0 to 1.0)
+---@param y number the y coordinate in screen format (0.0 to 1.0)
+---@param fontSize number FontSize (default is 13)
+---@param alignment number the text alignment (0 = left, 1 = center, 2 = right)
+---@param font string the font to be used (default $Font2, check https://forum.cfx.re/t/using-html-images-and-blips-in-scaleform-texts/553298/2 for all ingame fonts)
+---@param outline boolean toggle the text outline
+---@param shadow boolean toggle the text shadow
+---@return MinimapOverlay
+function MinimapOverlays:AddTextOverlay(label, x,y, fontSize, alignment, font, outline, shadow)
+    if fontSize == nil then fontSize = 13 end
+    if alignment == nil then alignment = 0 end
+    if font == nil then font = "$Font2" end
+    if outline == nil then outline = true end
+    if shadow == nil then shadow = false end
+
+    CallMinimapScaleformFunction(self.overlay, "ADD_TEXT_OVERLAY")
+    AddTextEntry("MinimapOverlays_" .. #self.minimaps, label)
+    BeginTextCommandScaleformString("MinimapOverlays_" .. #self.minimaps)
+    EndTextCommandScaleformString_2()
+    ScaleformMovieMethodAddParamFloat(x)
+    ScaleformMovieMethodAddParamFloat(y)
+    ScaleformMovieMethodAddParamInt(fontSize)
+    ScaleformMovieMethodAddParamInt(alignment)
+    ScaleformMovieMethodAddParamTextureNameString(font)
+    ScaleformMovieMethodAddParamBool(outline)
+    ScaleformMovieMethodAddParamBool(shadow)
+    EndScaleformMovieMethod()
+
+    local overlay = TextOverlay.New(#self.minimaps + 1, label, x,y, fontSize, alignment, font, outline, shadow)
+    table.insert(self.minimaps, overlay)
+    return overlay
+end
+
+function MinimapOverlays:UpdateTextOverlay(overlayId, label, x,y, fontSize, alignment, font, outline, shadow)
+    if self.overlay == 0 then return end
+    if fontSize == nil then fontSize = 13 end
+    if alignment == nil then alignment = 0 end
+    if font == nil then font = "$Font2" end
+    if outline == nil then outline = true end
+    if shadow == nil then shadow = false end
+
+    CallMinimapScaleformFunction(self.overlay, "UPDATE_TEXT")
+    ScaleformMovieMethodAddParamInt(overlayId - 1)
+    AddTextEntry("MinimapOverlays_" .. #self.minimaps, label)
+    BeginTextCommandScaleformString("MinimapOverlays_" .. #self.minimaps)
+    EndTextCommandScaleformString_2()
+    ScaleformMovieMethodAddParamFloat(x)
+    ScaleformMovieMethodAddParamFloat(y)
+    ScaleformMovieMethodAddParamInt(fontSize)
+    ScaleformMovieMethodAddParamInt(alignment)
+    ScaleformMovieMethodAddParamTextureNameString(font)
+    ScaleformMovieMethodAddParamBool(outline)
+    ScaleformMovieMethodAddParamBool(shadow)
+    EndScaleformMovieMethod()
+
+    self.minimaps[overlayId] = TextOverlay.New(overlayId, label, x,y, fontSize, alignment, font, outline, shadow)
+end
+
+
 ---Changes color to the desired overlay
 ---@param overlayId number the overlay handle
 ---@param color SColor the color for the overlay
@@ -18422,10 +16789,7 @@ end
 
 function MinimapOverlays:SetOverlayRotation(overlayId, rotation)
     if self.overlay == 0 then return end
-    if self.minimaps[overlayId].isArea then
-        print("ScaleformUI - MinimapOverlays - method \"SetOverlayRotation\" is not supported on Areas due to their vector boundaries")
-        return
-    end
+    if self.minimaps[overlayId].isArea then print("ScaleformUI - MinimapOverlays - method \"SetOverlayRotation\" is not supported on Areas due to their vector boundaries") return end
     CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_ROTATION");
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(rotation);
@@ -18438,10 +16802,7 @@ end
 ---@param position vector2 the new overlay position
 function MinimapOverlays:SetOverlayPosition(overlayId, position)
     if self.overlay == 0 then return end
-    if self.minimaps[overlayId].isArea then
-        print("ScaleformUI - MinimapOverlays - method \"SetOverlayPosition\" is not supported on Areas due to their vector boundaries")
-        return
-    end
+    if self.minimaps[overlayId].isArea then print("ScaleformUI - MinimapOverlays - method \"SetOverlayPosition\" is not supported on Areas due to their vector boundaries") return end
     CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_POSITION");
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(position.x);
@@ -18456,16 +16817,13 @@ end
 ---@param height number the new size, if the overlay is scaled, value must be in percentage (0 to 100)
 function MinimapOverlays:SetOverlaySizeOrScale(overlayId, width, height)
     if self.overlay == 0 then return end
-    if self.minimaps[overlayId].isArea then
-        print("ScaleformUI - MinimapOverlays - method \"SetOverlaySizeOrScale\" is not supported on Areas due to their vector boundaries")
-        return
-    end
+    if self.minimaps[overlayId].isArea then print("ScaleformUI - MinimapOverlays - method \"SetOverlaySizeOrScale\" is not supported on Areas due to their vector boundaries") return end
     CallMinimapScaleformFunction(self.overlay, "UPDATE_OVERLAY_SIZE_OR_SCALE");
     ScaleformMovieMethodAddParamInt(overlayId - 1);
     ScaleformMovieMethodAddParamFloat(width);
     ScaleformMovieMethodAddParamFloat(height);
     EndScaleformMovieMethod();
-    self.minimaps[overlayId].size = {width, height};
+    self.minimaps[overlayId].size = { width, height };
 end
 
 ---Removes the desired overlay from the minimap
@@ -18490,6 +16848,28 @@ function MinimapOverlays:ClearAll()
     EndScaleformMovieMethod();
     self.minimaps = {}
 end
+
+
+
+--///////////////////////////////////////////////////////////////////--
+TextOverlay = {}
+TextOverlay.__index = TextOverlay
+setmetatable(TextOverlay, { __index = MinimapOverlay })
+TextOverlay.__call = function() return "TextOverlay" end
+
+function TextOverlay.New(handle, label, x,y, fontSize, alignment, font, outline, shadow)
+    local base = MinimapOverlay.New(handle, "", "", x, y, 0, 100, 100, 100, false)
+    base.Text = label
+    base.FontSize = fontSize or 13
+    base.Alignment = alignment or 1
+    base.Font = font or "$Font2"
+    base.Outline = outline or true
+    base.Shadow = shadow or false
+
+    return setmetatable(base, TextOverlay)
+end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 JobSelectionButton = setmetatable({}, JobSelectionButton)
@@ -18519,6 +16899,8 @@ function JobSelectionButton.New(title, description, details)
     }
     return setmetatable(data, JobSelectionButton)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 JobSelectionCard = setmetatable({}, JobSelectionCard)
@@ -18569,6 +16951,8 @@ function JobSelectionCard.New(title, description, txd, txn, rpMult, cashMult, ic
     return setmetatable(data, JobSelectionCard)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MissionDetailsItem = setmetatable({}, MissionDetailsItem)
 MissionDetailsItem.__index = MissionDetailsItem
@@ -18612,6 +16996,8 @@ function MissionDetailsItem.New(textLeft, textRight, seperator, icon, iconColor,
     return setmetatable(_MissionDetailsItem, MissionDetailsItem)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MissionSelectorHandler = setmetatable({
     _sc = nil,
@@ -18619,7 +17005,7 @@ MissionSelectorHandler = setmetatable({
     _timer = 0,
     enabled = false,
     alreadyVoted = false,
-    Votes = {0, 0, 0, 0, 0, 0, 0, 0, 0},
+    Votes = { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     VotedFor = -1,
     MaxVotes = 0,
     SelectedCard = 1,
@@ -18638,7 +17024,7 @@ MissionSelectorHandler.__call = function()
 end
 
 ---@class MissionSelectorHandler
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 ---@field public _start number
 ---@field public _timer number
 ---@field public enabled boolean
@@ -18676,11 +17062,11 @@ end
 ---@param actual number
 ---@param label string?
 function MissionSelectorHandler:SetVotes(actual, label)
-    local tot = actual.." / "..self.MaxVotes
+    local tot = actual .. " / " .. self.MaxVotes
     if not string.IsNullOrEmpty(label or "") then
         self.JobTitle.Label = label
     end
-    self.JobTitle.Votes = tot.." "..self.JobTitle.Label
+    self.JobTitle.Votes = tot .. " " .. self.JobTitle.Label
 end
 
 ---Adds a card to the mission selector grid menu (max 9)
@@ -18818,7 +17204,7 @@ end
 ---Loads the mission selector scaleform
 function MissionSelectorHandler:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("MP_NEXT_JOB_SELECTION")
+    self._sc = __Scaleform.Request("MP_NEXT_JOB_SELECTION")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -18995,72 +17381,74 @@ function MissionSelectorHandler:SetDetailsItem(id, menu_id, unique_id, type, ini
         rText, icon, iconColor, tick)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 MultiplayerChat = setmetatable({}, MultiplayerChat)
 MultiplayerChat.__index = MultiplayerChat
 MultiplayerChat.__call = function()
-    return "MultiplayerChat"
+  return "MultiplayerChat"
 end
 
 ---@class MultiplayerChat
----@field public _sc _Scaleform
+---@field public _sc __Scaleform
 
 local INITIALIZED = false
 
 ---@enum ChatScope
 ChatScope = {
-    Global = 0,
-    Team = 1,
-    All = 2,
-    Clan = 3
+  Global = 0,
+  Team = 1,
+  All = 2,
+  Clan = 3
 }
 
 ---@enum ChatVisible
 ChatVisible = {
-    Hidden = 0,
-    Default = 1,
-    Typing = 2
+  Hidden = 0,
+  Default = 1,
+  Typing = 2
 }
 
 ---Create a new MultiplayerChat instance
 ---@return table
 function MultiplayerChat.New()
-    local data = {
-        _sc = nil --[[@type _Scaleform]],
-        messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
-        _start = 0,
-        _enabled = false,
-        _isTyping = false,
-    }
-    return setmetatable(data, MultiplayerChat)
+  local data = {
+    _sc = nil --[[@type __Scaleform]],
+    messages = {} --[[@type table<string, string, string, boolean, HudColours>]],
+    _start = 0,
+    _enabled = false,
+    _isTyping = false,
+  }
+  return setmetatable(data, MultiplayerChat)
 end
 
 ---Load the MULTIPLAYER_CHAT scaleform
 ---@return promise
 function MultiplayerChat:Load()
-    local p = promise.new()
+  local p = promise.new()
 
-    if self._sc ~= nil then
-        p:resolve()
-        return p
-    end
-
-    self._sc = _Scaleform.Request("MULTIPLAYER_CHAT")
-    local timeout = 1000
-    local start = GlobalGameTimer
-    while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
-
-    if self._sc:IsLoaded() then
-        if not INITIALIZED then
-            self._sc:CallFunction("RESET")
-            INITIALIZED = true
-        end
-        p:resolve()
-    else
-        p:reject()
-    end
-
+  if self._sc ~= nil then
+    p:resolve()
     return p
+  end
+
+  self._sc = __Scaleform.Request("MULTIPLAYER_CHAT")
+  local timeout = 1000
+  local start = GlobalGameTimer
+  while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
+
+  if self._sc:IsLoaded() then
+    if not INITIALIZED then
+      self._sc:CallFunction("RESET")
+      INITIALIZED = true
+    end
+    p:resolve()
+  else
+    p:reject()
+  end
+
+  return p
 end
 
 ---Set the focus of the chat
@@ -19070,44 +17458,44 @@ end
 ---@param playerName? string
 ---@param colour? HudColours
 function MultiplayerChat:SetFocus(visibleState, scopeType, scopeText, playerName, colour)
-    if visibleState == ChatVisible.Hidden then
-        self._start = 0
-    elseif visibleState == ChatVisible.Default then
-        self._start = GlobalGameTimer
-    elseif visibleState == ChatVisible.Typing then
-        self._isTyping = true
-    end
+  if visibleState == ChatVisible.Hidden then
+    self._start = 0
+  elseif visibleState == ChatVisible.Default then
+    self._start = GlobalGameTimer
+  elseif visibleState == ChatVisible.Typing then
+    self._isTyping = true
+  end
 
-    self._sc:CallFunction("SET_FOCUS", visibleState, scopeType, scopeText, playerName, colour)
+  self._sc:CallFunction("SET_FOCUS", visibleState, scopeType, scopeText, playerName, colour)
 end
 
 function MultiplayerChat:Show()
-    self:SetFocus(ChatVisible.Default)
+  self:SetFocus(ChatVisible.Default)
 end
 
 function MultiplayerChat:StartTyping(scopeType, scopeText)
-    self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.HUD_COLOUR_WHITE)
+  self:SetFocus(ChatVisible.Typing, scopeType, scopeText, GetPlayerName(PlayerId()), HudColours.HUD_COLOUR_WHITE)
 end
 
 ---Scroll the chat up
 function MultiplayerChat:PageUp()
-    self._sc:CallFunction("PAGE_UP")
+  self._sc:CallFunction("PAGE_UP")
 end
 
 ---Scroll the chat down
 function MultiplayerChat:PageDown()
-    self._sc:CallFunction("PAGE_DOWN")
+  self._sc:CallFunction("PAGE_DOWN")
 end
 
 ---Delete last character
 function MultiplayerChat:DeleteText()
-    self._sc:CallFunction("DELETE_TEXT")
+  self._sc:CallFunction("DELETE_TEXT")
 end
 
 ---Set the typing state as completed
 function MultiplayerChat:SetTypingDone()
-    self._sc:CallFunction("SET_TYPING_DONE")
-    self._isTyping = false
+  self._sc:CallFunction("SET_TYPING_DONE")
+  self._isTyping = false
 end
 
 ---Add a message with player name to the chat
@@ -19117,7 +17505,7 @@ end
 ---@param teamOnly? boolean
 ---@param playerColour? HudColours
 function MultiplayerChat:AddMessage(playerName, message, scope, teamOnly, playerColour)
-    self._sc:CallFunction("ADD_MESSAGE", playerName, message, scope, teamOnly, playerColour)
+  self._sc:CallFunction("ADD_MESSAGE", playerName, message, scope, teamOnly, playerColour)
 end
 
 -- As a key is pressed this will add the letter onto the current message in the capture field
@@ -19127,62 +17515,64 @@ end
 ---Add a character to the chat
 ---@param text string -- The character to add, or "ENTER", "BACKSPACE", or "ESCAPE"
 function MultiplayerChat:AddText(text)
-    self._sc:CallFunction("ADD_TEXT", text)
+  self._sc:CallFunction("ADD_TEXT", text)
 end
 
 ---Close the chat
 function MultiplayerChat:Close()
-    self:SetFocus(ChatVisible.Hidden, ChatScope.Global, "")
-    self._start = 0
-    self._enabled = false
-    self._isTyping = false
+  self:SetFocus(ChatVisible.Hidden, ChatScope.Global, "")
+  self._start = 0
+  self._enabled = false
+  self._isTyping = false
 end
 
 ---Complete Text -- this will add the current messahe information to the chat locally, its also called by SetTypingDone
 function MultiplayerChat:CompleteText()
-    self._sc:CallFunction("COMPLETE_TEXT")
+  self._sc:CallFunction("COMPLETE_TEXT")
 end
 
 ---Abort Text
 function MultiplayerChat:AbortText()
-    self._sc:CallFunction("ABORT_TEXT")
+  self._sc:CallFunction("ABORT_TEXT")
 end
 
 ---Reset Text
 function MultiplayerChat:Reset()
-    self._sc:CallFunction("RESET")
+  self._sc:CallFunction("RESET")
 end
 
 function MultiplayerChat:IsEnabled()
-    if self._sc == nil then return false end
-    return self._start > 10000 or self._enabled
+  if self._sc == nil then return false end
+  return self._start > 10000 or self._enabled
 end
 
 function MultiplayerChat:IsTyping()
-    if self._sc == nil then return false end
-    return self._isTyping
+  if self._sc == nil then return false end
+  return self._isTyping
 end
 
 ---Update is called every frame to render the MULTIPLAYER_CHAT scaleform to the screen by mainScaleform.lua
 function MultiplayerChat:Update()
-    if self._sc == nil then return end
-    ScaleformUI.WaitTime = 0
-    self._sc:Render2D()
+  if self._sc == nil then return end
+  ScaleformUI.WaitTime = 0
+  self._sc:Render2D()
 
-    if self._enabled then
-        DisableControlAction(0, 200, true);
-    end
+  if self._enabled then
+    DisableControlAction(0, 200, true);
+  end
 
-    if GlobalGameTimer - self._start > 10000 and not self._enabled then
-        self:Close()
-    end
+  if GlobalGameTimer - self._start > 10000 and not self._enabled then
+    self:Close()
+  end
 end
 
 ---Dispose the MULTIPLAYER_CHAT scaleform
 function MultiplayerChat:Dispose()
-    self._sc:Dispose()
-    self._sc = nil
+  self._sc:Dispose()
+  self._sc = nil
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 PauseMenu = setmetatable({}, PauseMenu)
@@ -19191,11 +17581,10 @@ PauseMenu.__call = function()
     return "PauseMenu"
 end
 
----@class PauseMenu: _Scaleform
----@field public _header _Scaleform
----@field public _pause _Scaleform
----@field public _lobby _Scaleform
----@field public _pauseBG _Scaleform
+---@class PauseMenu: __Scaleform
+---@field public _header __Scaleform
+---@field public _pause __Scaleform
+---@field public _pauseBG __Scaleform
 ---@field public Loaded boolean
 ---@field public _visible boolean
 ---@field public BGEnabled boolean
@@ -19247,7 +17636,6 @@ function PauseMenu.New()
     local _data = {
         _header = nil,
         _pause = nil,
-        _lobby = nil,
         _pauseBG = nil,
         BGEnabled = false,
         Loaded = false,
@@ -19269,21 +17657,19 @@ end
 
 ---Load the pause menu scaleforms
 function PauseMenu:Load()
-    if (self._header ~= nil and self._pause ~= nil and self._lobby ~= nil and self._pauseBG ~= nil) then return end
-    self._header = _Scaleform.RequestWidescreen("pausemenuheader")
-    self._pause = _Scaleform.RequestWidescreen("pausemenu")
-    self._lobby = _Scaleform.RequestWidescreen("lobbymenu")
-    self._pauseBG = _Scaleform.RequestWidescreen("store_background")
+    if (self._header ~= nil and self._pause ~= nil and self._pauseBG ~= nil) then return end
+    self._header = __Scaleform.RequestWidescreen("pausemenuheader")
+    self._pause = __Scaleform.RequestWidescreen("ScaleformUIPause")
+    self._pauseBG = __Scaleform.RequestWidescreen("store_background")
 end
 
 function PauseMenu:FadeInMenus()
     self._header:CallFunction("DRAW_MENU")
     self._pause:CallFunction("DRAW_MENU")
-    self._lobby:CallFunction("DRAW_MENU")
 end
 
 function PauseMenu:IsLoaded()
-    return self._header ~= nil and self._header:IsLoaded() and self._pause ~= nil and self._pause:IsLoaded() and self._lobby ~= nil and self._lobby:IsLoaded() and self._pauseBG ~= nil and self._pauseBG:IsLoaded()
+    return self._header ~= nil and self._header:IsLoaded() and self._pause ~= nil and self._pause:IsLoaded() and self._pauseBG ~= nil and self._pauseBG:IsLoaded()
 end
 
 ---Set the header title and subtitle text of the pause menu header
@@ -19346,18 +17732,8 @@ end
 ---Add a tab to the pause menu
 ---@param title string
 ---@param _type number
----@param _tabContentType number
----@param color HudColours | nil Sets the color of the tab (default: SColor.HUD_Freemode)
-function PauseMenu:AddPauseMenuTab(title, _type, _tabContentType, color)
-    if color == nil then color = 116 end
-    self._header:CallFunction("ADD_HEADER_TAB", title, _type, color)
-end
-
----Add a tab to the lobby menu
----@param title string
----@param _type number
----@param color SColor | nil Sets the color of the tab (default: 116)
-function PauseMenu:AddLobbyMenuTab(title, _type, color)
+---@param color SColor Sets the color of the tab (default: SColor.HUD_Freemode)
+function PauseMenu:AddPauseMenuTab(title, _type, color)
     if color == nil then color = SColor.HUD_Freemode end
     self._header:CallFunction("ADD_HEADER_TAB", title, _type, color)
 end
@@ -19369,258 +17745,10 @@ end
 
 ---Set the focued item of the pause menu
 ---@param focus number
-function PauseMenu:SetFocus(focus)
-    self._pause:CallFunction("SET_FOCUS", focus)
-end
-
----Add a left item to the pause menu
----@param _type number
----@param title string
----@param itemColor SColor | nil Sets the color of the item (default: SColor.HUD_Pause_bg)
----@param highlightColor SColor | nil Sets the color of the item when highlighted (default: SColor.HUD_White)
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddLeftItem(_type, title, itemColor, highlightColor, enabled)
-    if itemColor == nil then itemColor = SColor.HUD_Pause_bg end
-    if highlightColor == nil then highlightColor = SColor.HUD_White end
-
-    if (itemColor ~= SColor.HUD_None and highlightColor ~= SColor.HUD_None) then
-        self._pause:CallFunction("ADD_LEFT_ITEM", _type, title, enabled, itemColor, highlightColor)
-    elseif itemColor ~= SColor.HUD_None and highlightColor == SColor.HUD_None then
-        self._pause:CallFunction("ADD_LEFT_ITEM", _type, title, enabled, itemColor)
-    else
-        self._pause:CallFunction("ADD_LEFT_ITEM", _type, title, enabled)
-    end
-end
-
----Add a right title to a tab and left item
----@param leftItemIndex number
----@param title string
-function PauseMenu:AddRightTitle(leftItemIndex, title)
-    self._pause:CallFunction("ADD_RIGHT_TITLE", leftItemIndex, title)
-end
-
----Add a right list label to a tab and left item
----@param leftItemIndex number
----@param label string
-function PauseMenu:AddRightListLabel(leftItemIndex, label, fontName, fontId)
-    AddTextEntry("PauseMenu_"..leftItemIndex, label)
-    BeginScaleformMovieMethod(self._pause.handle, "ADD_RIGHT_LIST_ITEM")
-    ScaleformMovieMethodAddParamInt(leftItemIndex)
-    ScaleformMovieMethodAddParamInt(0)
-    BeginTextCommandScaleformString("PauseMenu_"..leftItemIndex)
-    EndTextCommandScaleformString_2()
-    ScaleformMovieMethodAddParamPlayerNameString(fontName)
-    ScaleformMovieMethodAddParamInt(fontId)
-    EndScaleformMovieMethod()
-end
-
----Add a right stat item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param rightLabel string
-function PauseMenu:AddRightStatItemLabel(leftItemIndex, label, rightLabel, labelFont, rLabelFont)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 1, 0, label, rightLabel, -1, labelFont.FontName, labelFont.FontID, rLabelFont.FontName, rLabelFont.FontID)
-end
-
----Add a right stat item colour bar to a tab and left item
----@param leftItemIndex number
----@param label string
----@param value number
----@param barColor SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
-function PauseMenu:AddRightStatItemColorBar(leftItemIndex, label, value, barColor, labelFont)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 1, 1, label, value, barColor, labelFont.FontName, labelFont.FontID)
-end
-
----Add a right settings base item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param rightLabel string
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsBaseItem(leftItemIndex, label, rightLabel, enabled)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 0, label, enabled, rightLabel)
-end
-
----Add a right settings list item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param items table
----@param startIndex number
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsListItem(leftItemIndex, label, items, startIndex, enabled)
-    local stringList = table.concat(items, ",")
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 1, label, enabled, stringList,
-        startIndex)
-end
-
----Add a right settings progress item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param max number
----@param color SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
----@param index number
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsProgressItem(leftItemIndex, label, max, color, index, enabled)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 2, label, enabled, max, color, index)
-end
-
----Add a right settings progress item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param max number
----@param color SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
----@param index number
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsProgressItemAlt(leftItemIndex, label, max, color, index, enabled)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 3, label, enabled, max, color, index)
-end
-
----Add a right settings slider item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param max number
----@param color SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
----@param index number
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsSliderItem(leftItemIndex, label, max, color, index, enabled)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 5, label, enabled, max, color, index)
-end
-
----Add a right settings checkbox item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param style number
----@param check boolean
----@param enabled boolean | nil Sets the item to be enabled or disabled
-function PauseMenu:AddRightSettingsCheckboxItem(leftItemIndex, label, style, check, enabled)
-    self._pause:CallFunction("ADD_RIGHT_LIST_ITEM", leftItemIndex, 2, 4, label, enabled, style, check)
-end
-
----Add a key map title to a tab and left item
----@param leftItemIndex number
----@param title string
----@param rightLabel_1 string
----@param rightLabel_2 string
-function PauseMenu:AddKeymapTitle(leftItemIndex, title, rightLabel_1, rightLabel_2)
-    self._pause:CallFunction("ADD_RIGHT_TITLE", leftItemIndex, title, rightLabel_1, rightLabel_2)
-end
-
----Add a key map item to a tab and left item
----@param leftItemIndex number
----@param label string
----@param control1 string
----@param control2 string
-function PauseMenu:AddKeymapItem(leftItemIndex, label, control1, control2)
-    BeginScaleformMovieMethod(self._pause.handle, "ADD_RIGHT_LIST_ITEM")
-    ScaleformMovieMethodAddParamInt(leftItemIndex)
-    ScaleformMovieMethodAddParamInt(3)
-    ScaleformMovieMethodAddParamTextureNameString(label)
-    BeginTextCommandScaleformString("STRING")
-    AddTextComponentSubstringKeyboardDisplay(control1)
-    EndTextCommandScaleformString_2()
-    BeginTextCommandScaleformString("STRING")
-    AddTextComponentSubstringKeyboardDisplay(control2)
-    EndTextCommandScaleformString_2()
-    EndScaleformMovieMethod()
-end
-
----Update a key map item
----@param leftItemIndex number
----@param rightItem number
----@param control1 string
----@param control2 string
-function PauseMenu:UpdateKeymap(leftItemIndex, rightItem, control1, control2)
-    BeginScaleformMovieMethod(self._pause.handle, "UPDATE_KEYMAP_ITEM")
-    ScaleformMovieMethodAddParamInt(leftItemIndex)
-    ScaleformMovieMethodAddParamInt(rightItem)
-    BeginTextCommandScaleformString("string")
-    AddTextComponentSubstringKeyboardDisplay(control1)
-    EndTextCommandScaleformString_2()
-    BeginTextCommandScaleformString("string")
-    AddTextComponentSubstringKeyboardDisplay(control2)
-    EndTextCommandScaleformString_2()
-    EndScaleformMovieMethod()
-end
-
----Set right settings item boolean value
----@param leftItemIndex number
----@param rightItem number
----@param value boolean
-function PauseMenu:SetRightSettingsItemBool(leftItemIndex, rightItem, value)
-    self._pause:CallFunction("SET_RIGHT_SETTINGS_ITEM_VALUE", leftItemIndex, rightItem, value)
-end
-
----Set right settings item index
----@param leftItemIndex number
----@param rightItem number
----@param value number
-function PauseMenu:SetRightSettingsItemIndex(leftItemIndex, rightItem, value)
-    self._pause:CallFunction("SET_RIGHT_SETTINGS_ITEM_VALUE", leftItemIndex, rightItem, value)
-end
-
----Set right settings item value
----@param leftItemIndex number
----@param rightItem number
----@param value number
-function PauseMenu:SetRightSettingsItemValue(leftItemIndex, rightItem, value)
-    self._pause:CallFunction("SET_RIGHT_SETTINGS_ITEM_VALUE", leftItemIndex, rightItem, value)
-end
-
----Update right settings item label
----@param leftItemIndex number
----@param rightItem number
----@param label string
-function PauseMenu:UpdateItemRightLabel(leftItemIndex, rightItem, label)
-    self._pause:CallFunction("UPDATE_RIGHT_ITEM_RIGHT_LABEL", leftItemIndex, rightItem, label)
-end
-
----Update Stats Item Basic
----@param leftItemIndex number
----@param rightItem number
----@param label string
----@param rightLabel string
-function PauseMenu:UpdateStatsItemBasic(leftItemIndex, rightItem, label, rightLabel)
-    self._pause:CallFunction("UPDATE_RIGHT_STATS_ITEM", leftItemIndex, rightItem, label, rightLabel)
-end
-
----Update Stats Item Bar
----@param leftItemIndex number
----@param rightItem number
----@param label string
----@param value number
----@param color SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
-function PauseMenu:UpdateStatsItemBar(leftItemIndex, rightItem, label, value, color)
-    self._pause:CallFunction("UPDATE_RIGHT_STATS_ITEM", leftItemIndex, rightItem, label, value, color)
-end
-
----Update Item Colored Bar
----@param leftItemIndex number
----@param rightItem number
----@param color SColor | nil Sets the color of the bar (default: SColor.HUD_Freemode)
-function PauseMenu:UpdateItemColoredBar(leftItemIndex, rightItem, color)
-    if (color == nil or color == SColor.HUD_None) then
-        self._pause:CallFunction("UPDATE_COLORED_BAR_COLOR", leftItemIndex, rightItem, SColor.HUD_Freemode)
-    else
-        self._pause:CallFunction("UPDATE_COLORED_BAR_COLOR", leftItemIndex, rightItem, color)
-    end
-end
-
----Send an input event to the pause menu
----@param direction any
----@return string
-function PauseMenu:SendInputEvent(direction) -- to be awaited
-    return self._pause:CallFunctionAsyncReturnString("SET_INPUT_EVENT", direction)
-end
-
----Send a scroll event to the pause menu
----@param direction number
-function PauseMenu:SendScrollEvent(direction)
-    self._pause:CallFunction("SET_SCROLL_EVENT", direction)
-end
-
----Send a click event to the pause menu
----@return string
-function PauseMenu:SendClickEvent() -- to be awaited
-    return self._pause:CallFunctionAsyncReturnString("MOUSE_CLICK_EVENT")
+function PauseMenu:SetFocus(focus, bDontFallOff, bSkipInputSpamCheck)
+    if bDontFallOff == nil then bDontFallOff = false end
+    if  bSkipInputSpamCheck == nil then  bSkipInputSpamCheck = false end
+    self._pause:CallFunction("MENU_SHIFT_DEPTH", focus, bDontFallOff, bSkipInputSpamCheck)
 end
 
 ---Dispose the pause menu
@@ -19628,11 +17756,9 @@ function PauseMenu:Dispose()
     self._visible = false
     self._pause:CallFunction("CLEAR_ALL")
     self._header:CallFunction("CLEAR_ALL")
-    self._lobby:CallFunction("CLEAR_ALL")
     -- self._pause:Dispose()
     -- self._header:Dispose()
-    -- self._lobby:Dispose()
-    --self._pauseBG:Dispose()
+    -- self._pauseBG:Dispose()
     self.firstTick = true;
 end
 
@@ -19654,19 +17780,16 @@ function PauseMenu:Draw(isLobby)
                 self._pauseBG:Render2D()
             end
 
-
             local headx, heady, headw, headh = AdjustNormalized16_9ValuesForCurrentAspectRatio(0.501, 0.162, 0.6782, 0.145)
             local pausex, pausey, pausew, pauseh = AdjustNormalized16_9ValuesForCurrentAspectRatio(0.6617187, 0.7226667, 1.0, 1.0)
 
             self._header:Render2DNormal(headx, heady, headw, headh)
-            if isLobby then
-                self._lobby:Render2DNormal(pausex, pausey, pausew, pauseh)
-            else
-                self._pause:Render2DNormal(pausex, pausey, pausew, pauseh)
-            end
+            self._pause:Render2DNormal(pausex, pausey, pausew, pauseh)
         end
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 RankbarHandler = setmetatable({}, RankbarHandler)
@@ -19775,6 +17898,8 @@ function RankbarHandler:OverrideOnscreenDuration(duration)
         end)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 PlayerListScoreboard = setmetatable({
     _uptime = 8000,
@@ -19801,7 +17926,7 @@ end
 ---@field _uptime number
 ---@field _start number
 ---@field _timer number
----@field _sc _Scaleform
+---@field _sc __Scaleform
 ---@field public Enabled boolean
 ---@field public Index number
 ---@field public MaxPages number
@@ -19843,7 +17968,7 @@ end
 ---Load the scoreboard scaleform
 function PlayerListScoreboard:Load()
     if self._sc ~= nil then return end
-    self._sc = _Scaleform.Request("MP_MM_CARD_FREEMODE")
+    self._sc = __Scaleform.Request("MP_MM_CARD_FREEMODE")
     local timeout = 1000
     local start = GlobalGameTimer
     while not self._sc:IsLoaded() and GlobalGameTimer - start < timeout do Citizen.Wait(0) end
@@ -19865,6 +17990,7 @@ function PlayerListScoreboard:Dispose()
     for i = 0, 1024 do -- cleaning up in case of a reload, this frees up all ped headshot handles :)
         UnregisterPedheadshot(i)
     end
+    self.PlayerRows = {}
 end
 
 ---Set the title of the scoreboard
@@ -19962,7 +18088,7 @@ end
 function PlayerListScoreboard:UpdateSlot(id, row)
     if row.CrewLabelText ~= "" then
         self._sc:CallFunction("UPDATE_SLOT", id - 1, row.RightText, row.Name, row.Color, row.RightIcon,
-            row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
+            row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
             row.TextureString,
             row.TextureString, row.FriendType)
     else
@@ -19978,7 +18104,7 @@ function PlayerListScoreboard:RefreshAll()
         for index, row in pairs(self.PlayerRows) do
             if row.CrewLabelText ~= "" then
                 self._sc:CallFunction("UPDATE_SLOT", index - 1, row.RightText, row.Name, row.Color, row.RightIcon,
-                    row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
+                    row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
                     row.TextureString, row.TextureString, row.FriendType)
             else
                 self._sc:CallFunction("UPDATE_SLOT", index - 1, row.RightText, row.Name, row.Color, row.RightIcon,
@@ -20021,13 +18147,15 @@ function PlayerListScoreboard:BuildMenu()
                 row.FriendType)
         else
             self._sc:CallFunction("SET_DATA_SLOT", self.Index, row.RightText, row.Name, row.Color, row.RightIcon,
-                row.IconOverlayText, row.JobPointsText, "..+"..row.CrewLabelText, row.JobPointsDisplayType,
+                row.IconOverlayText, row.JobPointsText, "..+" .. row.CrewLabelText, row.JobPointsDisplayType,
                 row.TextureString, row.TextureString, row.FriendType)
         end
         self.Index = self.Index + 1
     end
     self._sc:CallFunction("DISPLAY_VIEW")
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 SCPlayerItem = setmetatable({}, SCPlayerItem)
@@ -20080,6 +18208,8 @@ function SCPlayerItem.New(label, color, rightIcon, rightText, friendType, crewLa
     return setmetatable(data, SCPlayerItem)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ScoreDisplayType = {
     NUMBER_ONLY = 0,
@@ -20110,88 +18240,90 @@ ScoreRightIconType = {
 SplashTextInstance = setmetatable({}, SplashTextInstance)
 SplashTextInstance.__index = SplashTextInstance
 SplashTextInstance.__call = function()
-    return "SplashText"
+  return "SplashText"
 end
 
 function SplashTextInstance.New(posX, posY, width, height)
-    local data = {
-        _scaleform = nil,
-        _posX = posX or 0.5,
-        _posY = posY or 0.5,
-        _width = width or 1.0,
-        _height = height or 1.0
-    };
-    return setmetatable(data, SplashTextInstance);
+  local data = {
+    _scaleform = nil,
+    _posX = posX or 0.5,
+    _posY = posY or 0.5,
+    _width = width or 1.0,
+    _height = height or 1.0
+  };
+  return setmetatable(data, SplashTextInstance);
 end
 
 function SplashTextInstance:SetLabel(label, sColor, transistionIn)
-    AddTextEntry("LBL_SPLASH_TEXT", label);
+  AddTextEntry("LBL_SPLASH_TEXT", label);
 
-    if not sColor then
-        sColor = SColor.White;
-    end
+  if not sColor then
+    sColor = SColor.White;
+  end
 
-    self.SetTextLabel({type = "label", data = "LBL_SPLASH_TEXT"}, sColor);
-    if transistionIn then
-        self:TransitionIn(300);
-    end
+  self.SetTextLabel({ type = "label", data = "LBL_SPLASH_TEXT" }, sColor);
+  if transistionIn then
+    self:TransitionIn(300);
+  end
 end
 
 function SplashTextInstance:SetTextLabel(label, sColor)
-    AddTextEntry("LBL_SPLASH_TEXT", label);
+  AddTextEntry("LBL_SPLASH_TEXT", label);
 
-    if not sColor then
-        sColor = SColor.White;
-    end
+  if not sColor then
+    sColor = SColor.White;
+  end
 
-    self._scaleform:CallFunction("SPLASH_TEXT_LABEL", {type = "label", data = "LBL_SPLASH_TEXT"}, sColor.R,
-        sColor.G, sColor.B, sColor.A);
+  self._scaleform:CallFunction("SPLASH_TEXT_LABEL", { type = "label", data = "LBL_SPLASH_TEXT" }, sColor.R,
+    sColor.G, sColor.B, sColor.A);
 end
 
 function SplashTextInstance:TransitionIn(duration, managed)
-    self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_IN", duration or 300, managed or false);
+  self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_IN", duration or 300, managed or false);
 end
 
 function SplashTextInstance:TransitionOut(duration, managed)
-    self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_OUT", duration or 300, managed or false);
+  self._scaleform:CallFunction("SPLASH_TEXT_TRANSITION_OUT", duration or 300, managed or false);
 end
 
 function SplashTextInstance:SetScale(width, height)
-    self._width = width;
-    self._height = height;
+  self._width = width;
+  self._height = height;
 end
 
 function SplashTextInstance:SetPosition(x, y)
-    self._posX = x;
-    self._posY = y;
+  self._posX = x;
+  self._posY = y;
 end
 
 function SplashTextInstance:Load()
-    local prom = promise.new();
+  local prom = promise.new();
 
-    self._scaleform = _Scaleform.RequestWidescreen("SPLASH_TEXT");
+  self._scaleform = __Scaleform.RequestWidescreen("SPLASH_TEXT");
 
-    while not self._scaleform:IsLoaded() do
-        Citizen.Wait(0);
-    end
+  while not self._scaleform:IsLoaded() do
+    Citizen.Wait(0);
+  end
 
-    prom:resolve();
-    return prom;
+  prom:resolve();
+  return prom;
 end
 
 function SplashTextInstance:Draw()
-    if not self._scaleform then
-        return
-    end
+  if not self._scaleform then
+    return
+  end
 
-    self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
+  self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 TaxiMeterInstance = setmetatable({}, TaxiMeterInstance)
 TaxiMeterInstance.__index = TaxiMeterInstance
 TaxiMeterInstance.__call = function()
-    return "TaxiMeter"
+  return "TaxiMeter"
 end
 
 --[[
@@ -20213,108 +18345,110 @@ end
 ]]
 
 function TaxiMeterInstance.New(posX, posY, width, height)
-    local data = {
-        _scaleform = nil,
-        _posX = posX or 0.5,
-        _posY = posY or 0.5,
-        _width = width or 1.0,
-        _height = height or 1.0,
-        _current = 0,
-        _destinations = {}
-    };
-    return setmetatable(data, TaxiMeterInstance);
+  local data = {
+    _scaleform = nil,
+    _posX = posX or 0.5,
+    _posY = posY or 0.5,
+    _width = width or 1.0,
+    _height = height or 1.0,
+    _current = 0,
+    _destinations = {}
+  };
+  return setmetatable(data, TaxiMeterInstance);
 end
 
 function TaxiMeterInstance:AddDestination(index, sprite, color, destinationName, destinationZone, streetName)
-    -- scaleform param layout:
-    -- 1: index (starts at 0)
-    -- 2: sprite (any blip sprite)
-    -- 3: Color Red (0-255)
-    -- 4: Color Green (0-255)
-    -- 5: Color Blue (0-255)
-    -- 6: Destination Name (usually the name of the blip)
-    -- 7: Destination Zone (usually uses `GetNameOfZone`)
-    -- 8: Street Name (usually uses `GetStreetNameAtCoord`)
+  -- scaleform param layout:
+  -- 1: index (starts at 0)
+  -- 2: sprite (any blip sprite)
+  -- 3: Color Red (0-255)
+  -- 4: Color Green (0-255)
+  -- 5: Color Blue (0-255)
+  -- 6: Destination Name (usually the name of the blip)
+  -- 7: Destination Zone (usually uses `GetNameOfZone`)
+  -- 8: Street Name (usually uses `GetStreetNameAtCoord`)
 
-    self._scaleform:CallFunction("ADD_TAXI_DESTINATION", index, sprite, color.r, color.g, color.b, destinationName, destinationZone, streetName)
-    self._destinations[index + 1] = {
-        index = index,
-        sprite = sprite,
-        color = color,
-        destinationName = destinationName,
-        destinationZone = destinationZone,
-        streetName = streetName
-    }
+  self._scaleform:CallFunction("ADD_TAXI_DESTINATION", index, sprite, color.r, color.g, color.b, destinationName, destinationZone, streetName)
+  self._destinations[index + 1] = {
+    index = index,
+    sprite = sprite,
+    color = color,
+    destinationName = destinationName,
+    destinationZone = destinationZone,
+    streetName = streetName
+  }
 end
 
 function TaxiMeterInstance:ShowDestination()
-    self._scaleform:CallFunction("SHOW_TAXI_DESTINATION");
+  self._scaleform:CallFunction("SHOW_TAXI_DESTINATION");
 end
 
 ---@param destination integer @index of the destination
 function TaxiMeterInstance:HighlightDestination(destination)
-    self._scaleform:CallFunction("HIGHLIGHT_DESTINATION", destination)
+  self._scaleform:CallFunction("HIGHLIGHT_DESTINATION", destination)
 end
 
 ---@param price integer
 function TaxiMeterInstance:SetPrice(price)
-    self._scaleform:CallFunction("SET_TAXI_PRICE", price)
+  self._scaleform:CallFunction("SET_TAXI_PRICE", price)
 end
 
 function TaxiMeterInstance:GetCurrentDestination()
-    return self._destinations[self._current + 1]
+  return self._destinations[self._current + 1]
 end
 
 function TaxiMeterInstance:Clear()
-    self._scaleform:CallFunction("CLEAR_TAXI_DISPLAY")
+  self._scaleform:CallFunction("CLEAR_TAXI_DISPLAY")
 end
 
 function TaxiMeterInstance:NextDestination()
-    local increased = self._current + 1
-    self._current = increased > #self._destinations and #self._destinations or increased
-    self:HighlightDestination(self._current)
+  local increased = self._current + 1
+  self._current = increased > #self._destinations and #self._destinations or increased
+  self:HighlightDestination(self._current)
 end
 
 function TaxiMeterInstance:PreviousDestination()
-    local decreased = self._current - 1
-    self._current = decreased < 0 and 0 or decreased
-    self:HighlightDestination(self._current)
+  local decreased = self._current - 1
+  self._current = decreased < 0 and 0 or decreased
+  self:HighlightDestination(self._current)
 end
 
 function TaxiMeterInstance:SetScale(width, height)
-    self._width = width;
-    self._height = height;
+  self._width = width;
+  self._height = height;
 end
 
 function TaxiMeterInstance:SetPosition(x, y)
-    self._posX = x;
-    self._posY = y;
+  self._posX = x;
+  self._posY = y;
 end
 
 function TaxiMeterInstance:Load()
-    local prom = promise.new();
+  local prom = promise.new();
 
-    self._scaleform = _Scaleform.RequestWidescreen("TAXI_DISPLAY");
+  self._scaleform = __Scaleform.RequestWidescreen("TAXI_DISPLAY");
 
-    while not self._scaleform:IsLoaded() do
-        Citizen.Wait(0);
-    end
+  while not self._scaleform:IsLoaded() do
+    Citizen.Wait(0);
+  end
 
-    prom:resolve();
-    return prom;
+  prom:resolve();
+  return prom;
 end
 
 function TaxiMeterInstance:Draw()
-    if not self._scaleform then
-        return
-    end
+  if not self._scaleform then
+    return
+  end
 
-    self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
+  self._scaleform:Render2DNormal(self._posX, self._posY, self._width, self._height);
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 WarningInstance = setmetatable({
-    _sc = nil --[[@type _Scaleform]],
+    _sc = nil --[[@type __Scaleform]],
     _disableControls = false,
     _buttonList = {},
     OnButtonPressed = function(button)
@@ -20326,7 +18460,7 @@ WarningInstance.__call = function()
 end
 
 ---@class WarningInstance
----@field _sc _Scaleform
+---@field _sc __Scaleform
 ---@field _disableControls boolean
 ---@field _buttonList table<InstructionalButton>
 ---@field OnButtonPressed fun(button: InstructionalButton)
@@ -20353,7 +18487,7 @@ function WarningInstance:Load()
         return p
     end
 
-    self._sc = _Scaleform.RequestWidescreen("POPUP_WARNING")
+    self._sc = __Scaleform.RequestWidescreen("POPUP_WARNING")
 
     if self._sc == nil then
         p:reject("Error requesting warning scaleform.")
@@ -20394,7 +18528,7 @@ function WarningInstance:ShowWarning(title, subtitle, prompt, errorMsg, warningT
         if showBackground == nil then showBackground = true end
         self._sc:CallFunction("SHOW_POPUP_WARNING", 1000, title, subtitle, prompt, showBackground, warningType, errorMsg)
     end, function(value)
-        print("Error loading warning: "..value)
+        print("Error loading warning: " .. value)
     end)
 end
 
@@ -20429,7 +18563,7 @@ function WarningInstance:ShowWarningWithButtons(title, subtitle, prompt, buttons
         ScaleformUI.Scaleforms.InstructionalButtons.UseMouseButtons = true
         self._sc:CallFunction("SHOW_POPUP_WARNING", 1000, title, subtitle, prompt, showBackground, warningType, errorMsg)
     end, function(value)
-        print("Error loading warning: "..value)
+        print("Error loading warning: " .. value)
     end)
 end
 
@@ -20466,20 +18600,22 @@ function WarningInstance:Update()
     end
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ScaleformUI = {}
 ScaleformUI.Scaleforms = {}
-ScaleformUI.Scaleforms._ui = nil --[[@type _Scaleform]] -- scaleformui
-ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]] -- pausemenu
-ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]] -- radialmenu
-ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]] -- radiomenu
-ScaleformUI.Scaleforms.MidMessageInstance = MidMessageInstance --[[@type MidMessageInstance]] -- midmessage
-ScaleformUI.Scaleforms.PlayerListScoreboard = PlayerListScoreboard --[[@type PlayerListScoreboard]] -- playerlist
-ScaleformUI.Scaleforms.InstructionalButtons = ButtonsHandler --[[@type ButtonsHandler]] -- buttons
-ScaleformUI.Scaleforms.BigMessageInstance = BigMessageInstance --[[@type BigMessageInstance]] -- bigmessage
-ScaleformUI.Scaleforms.Warning = WarningInstance --[[@type WarningInstance]] -- warning
+ScaleformUI.Scaleforms._ui = nil --[[@type __Scaleform]]                                                -- scaleformui
+ScaleformUI.Scaleforms._pauseMenu = nil --[[@type PauseMenu]]                                         -- pausemenu
+ScaleformUI.Scaleforms._radialMenu = nil --[[@type RadialMenu]]                                       -- radialmenu
+ScaleformUI.Scaleforms._radioMenu = nil --[[@type UIRadioMenu]]                                       -- radiomenu
+ScaleformUI.Scaleforms.MidMessageInstance = MidMessageInstance --[[@type MidMessageInstance]]         -- midmessage
+ScaleformUI.Scaleforms.PlayerListScoreboard = PlayerListScoreboard --[[@type PlayerListScoreboard]]   -- playerlist
+ScaleformUI.Scaleforms.InstructionalButtons = ButtonsHandler --[[@type ButtonsHandler]]               -- buttons
+ScaleformUI.Scaleforms.BigMessageInstance = BigMessageInstance --[[@type BigMessageInstance]]         -- bigmessage
+ScaleformUI.Scaleforms.Warning = WarningInstance --[[@type WarningInstance]]                          -- warning
 ScaleformUI.Scaleforms.JobMissionSelector = MissionSelectorHandler --[[@type MissionSelectorHandler]] -- missionselector
-ScaleformUI.Scaleforms.RankbarHandler = RankbarHandler --[[@type RankbarHandler]] -- rankbar
+ScaleformUI.Scaleforms.RankbarHandler = RankbarHandler --[[@type RankbarHandler]]                     -- rankbar
 ScaleformUI.Scaleforms.SplashText = SplashTextInstance
 ScaleformUI.Notifications = Notifications
 ScaleformUI.Scaleforms.BigFeed = BigFeedInstance
@@ -20493,7 +18629,7 @@ AddEventHandler("onResourceStop", function(resName)
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             MenuHandler:CloseAndClearHistory()
         end
-        if IsPauseMenuActive() or GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
+        if IsPauseMenuActive() and GetCurrentFrontendMenuVersion() == `FE_MENU_VERSION_CORONA` then
             ActivateFrontendMenu(`FE_MENU_VERSION_CORONA`, false, 0)
             AnimpostfxStop("PauseMenuIn");
             AnimpostfxPlay("PauseMenuOut", 800, false);
@@ -20514,9 +18650,9 @@ AddEventHandler("onResourceStop", function(resName)
 end)
 
 local function initializeScaleforms()
-    ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
-    ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
-    ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
+    ScaleformUI.Scaleforms._ui = __Scaleform.RequestWidescreen("scaleformui")
+    ScaleformUI.Scaleforms._radialMenu = __Scaleform.RequestWidescreen("radialmenu")
+    ScaleformUI.Scaleforms._radioMenu = __Scaleform.RequestWidescreen("radiomenu")
     ScaleformUI.Scaleforms._pauseMenu = PauseMenu.New()
     ScaleformUI.Scaleforms._pauseMenu:Load()
     ScaleformUI.Scaleforms.MinimapOverlays:Load()
@@ -20524,59 +18660,59 @@ end
 
 Citizen.CreateThread(function()
     initializeScaleforms()
-
+    
     while true do
         -- Check if any menu is active
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
                 -- Cache frontend menu version check
                 local currentMenuVersion = GetCurrentFrontendMenuVersion()
-
+                
                 if currentMenuVersion == `FE_MENU_VERSION_CORONA` then
                     SetScriptGfxDrawBehindPausemenu(true)
-
+                    
                     BeginScaleformMovieMethodOnFrontend("INSTRUCTIONAL_BUTTONS")
                     ScaleformMovieMethodAddParamPlayerNameString("SET_DATA_SLOT_EMPTY")
                     EndScaleformMovieMethod()
-
+                    
                     BeginScaleformMovieMethodOnFrontendHeader("SHOW_MENU")
                     ScaleformMovieMethodAddParamBool(false)
                     EndScaleformMovieMethod()
-
+                    
                     BeginScaleformMovieMethodOnFrontendHeader("SHOW_HEADING_DETAILS")
                     ScaleformMovieMethodAddParamBool(false)
                     EndScaleformMovieMethod()
                 end
-
+                
                 MenuHandler:ProcessMenus()
             end
         end
-
+        
         -- Update scaleforms outside menu checks
         ScaleformUI.Scaleforms.Warning:Update()
-
+        
         if ScaleformUI.Scaleforms.SplashText ~= nil then
             ScaleformUI.Scaleforms.SplashText:Draw()
         end
-
+        
         ScaleformUI.Scaleforms.InstructionalButtons:Update()
-
+        
         if not IsPauseMenuActive() then
             ScaleformUI.Scaleforms.BigMessageInstance:Update()
             ScaleformUI.Scaleforms.MidMessageInstance:Update()
             ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
             ScaleformUI.Scaleforms.JobMissionSelector:Update()
             ScaleformUI.Scaleforms.BigFeed:Update()
-
+            
             -- Check for null references once per iteration
             if ScaleformUI.Scaleforms._ui == nil then
-                ScaleformUI.Scaleforms._ui = _Scaleform.RequestWidescreen("scaleformui")
+                ScaleformUI.Scaleforms._ui = __Scaleform.RequestWidescreen("scaleformui")
             end
             if ScaleformUI.Scaleforms._radialMenu == nil then
-                ScaleformUI.Scaleforms._radialMenu = _Scaleform.RequestWidescreen("radialmenu")
+                ScaleformUI.Scaleforms._radialMenu = __Scaleform.RequestWidescreen("radialmenu")
             end
             if ScaleformUI.Scaleforms._radioMenu == nil then
-                ScaleformUI.Scaleforms._radioMenu = _Scaleform.RequestWidescreen("radiomenu")
+                ScaleformUI.Scaleforms._radioMenu = __Scaleform.RequestWidescreen("radiomenu")
             end
             if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
                 ScaleformUI.Scaleforms._pauseMenu:Load()
@@ -20588,61 +18724,62 @@ end)
 
 
 --///////////////////////////////////////////////////////////////////--
-_Scaleform = setmetatable({}, _Scaleform)
-_Scaleform.__index = _Scaleform
-_Scaleform.__call = function()
-    return "_Scaleform"
+__Scaleform = setmetatable({}, __Scaleform)
+__Scaleform.__index = __Scaleform
+__Scaleform.__call = function()
+    return "__Scaleform"
 end
 
----@class _Scaleform
----@field public CallFunction fun(self:_Scaleform, theFunction:string, ...:any):nil
----@field public CallFunctionAsyncReturnInt fun(self:_Scaleform, theFunction:string, ...:any):number
----@field public CallFunctionAsyncReturnBool fun(self:_Scaleform, theFunction:string, ...:any):boolean
----@field public CallFunctionAsyncReturnString fun(self:_Scaleform, theFunction:string, ...:any):string
----@field public Dispose fun(self:_Scaleform):nil
----@field public IsLoaded fun(self:_Scaleform):boolean
----@field public IsValid fun(self:_Scaleform):boolean
----@field public Render2D fun(self:_Scaleform):nil
----@field public Render2DNormal fun(self:_Scaleform, x:number, y:number, width:number, height:number):nil
----@field public Render3D fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
----@field public Render3DAdditive fun(self:_Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@class __Scaleform
+---@field public CallFunction fun(self:__Scaleform, theFunction:string, ...:any):nil
+---@field public CallFunctionAsyncReturnInt fun(self:__Scaleform, theFunction:string, ...:any):number
+---@field public CallFunctionAsyncReturnBool fun(self:__Scaleform, theFunction:string, ...:any):boolean
+---@field public CallFunctionAsyncReturnString fun(self:__Scaleform, theFunction:string, ...:any):string
+---@field public Dispose fun(self:__Scaleform):nil
+---@field public IsLoaded fun(self:__Scaleform):boolean
+---@field public IsValid fun(self:__Scaleform):boolean
+---@field public Render2D fun(self:__Scaleform):nil
+---@field public Render2DNormal fun(self:__Scaleform, x:number, y:number, width:number, height:number):nil
+---@field public Render3D fun(self:__Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
+---@field public Render3DAdditive fun(self:__Scaleform, x:number, y:number, z:number, rx:number, ry:number, rz:number, scale:number):nil
 ---@field public handle number
 
 ---Create a new scaleform instance
 ---@param Name string
----@return _Scaleform
-function _Scaleform.Request(Name)
+---@return __Scaleform
+function __Scaleform.Request(Name)
     assert(Name ~= "string",
-        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
+        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
     local _scaleform = {
         name = Name,
         handle = RequestScaleformMovie(Name)
     }
-    return setmetatable(_scaleform, _Scaleform)
+    return setmetatable(_scaleform, __Scaleform)
 end
 
 ---Create a new scaleform instance
 ---@param Name string
----@return _Scaleform
-function _Scaleform.RequestWidescreen(Name)
+---@return __Scaleform
+function __Scaleform.RequestWidescreen(Name)
     assert(Name ~= "string",
-        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1"..type(Name).."^7.")
+        "^1ScaleformUI [ERROR]: ^7The first argument must be a string, not a ^1" .. type(Name) .. "^7.")
     local _scaleform = {
         name = Name,
         handle = RequestScaleformMovieInstance(Name)
     }
-    return setmetatable(_scaleform, _Scaleform)
+    return setmetatable(_scaleform, __Scaleform)
 end
 
 ---Call a function on the scaleform
 ---@param theFunction string -- The name of the function to call
 ---@vararg any -- The arguments to pass to the function
 ---@return nil|number -- If returndata is true, returns the return value of the function
-function _Scaleform:CallFunction(theFunction, ...)
+function __Scaleform:CallFunction(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = {...}
-    if arg ~= nil then
+    local arg = { ... }
+    if arg ~= nil and #arg > 0 then
         for i = 1, #arg do
+            assert(arg[i] ~= nil and type(arg[i]) ~= table, "ScaleformUI - function ".. theFunction.." - argument nil or table at position " .. i)
             local sType = type(arg[i])
             if sType == "boolean" then
                 ScaleformMovieMethodAddParamBool(arg[i])
@@ -20664,7 +18801,7 @@ function _Scaleform:CallFunction(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -20685,9 +18822,9 @@ end
 ---@param theFunction string -- The name of the function to call
 ---@vararg any -- The arguments to pass to the function
 ---@return number -- If returndata is true, returns the return value of the function
-function _Scaleform:CallFunctionAsyncReturnInt(theFunction, ...)
+function __Scaleform:CallFunctionAsyncReturnInt(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = {...}
+    local arg = { ... }
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -20711,7 +18848,7 @@ function _Scaleform:CallFunctionAsyncReturnInt(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -20733,9 +18870,9 @@ end
 ---@param theFunction string -- The name of the function to call
 ---@vararg any -- The arguments to pass to the function
 ---@return boolean -- If returndata is true, returns the return value of the function
-function _Scaleform:CallFunctionAsyncReturnBool(theFunction, ...)
+function __Scaleform:CallFunctionAsyncReturnBool(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = {...}
+    local arg = { ... }
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -20759,7 +18896,7 @@ function _Scaleform:CallFunctionAsyncReturnBool(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -20781,9 +18918,9 @@ end
 ---@param theFunction string -- The name of the function to call
 ---@vararg any -- The arguments to pass to the function
 ---@return string -- If returndata is true, returns the return value of the function
-function _Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
+function __Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
     BeginScaleformMovieMethod(self.handle, theFunction)
-    local arg = {...}
+    local arg = { ... }
     if arg ~= nil then
         for i = 1, #arg do
             local sType = type(arg[i])
@@ -20807,7 +18944,7 @@ function _Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
                 elseif arg[i]() == "SColor" then
                     ScaleformMovieMethodAddParamInt(arg[i]:ToArgb())
                 else
-                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1"..type.."^7.")
+                    assert(false, "^1ScaleformUI [ERROR]: ^7Unknown type ^1" .. type .. "^7.")
                 end
             elseif sType == "string" then
                 if arg[i]:find("^menu_") or arg[i]:find("^menu_lobby_desc_{") or arg[i]:find("^PauseMenu_") or arg[i]:find("^menu_pause_playerTab{") then
@@ -20826,17 +18963,17 @@ function _Scaleform:CallFunctionAsyncReturnString(theFunction, ...)
 end
 
 ---Render the scaleform full screen
-function _Scaleform:Render2D()
+function __Scaleform:Render2D()
     DrawScaleformMovieFullscreen(self.handle, 255, 255, 255, 255, 0)
 end
 
 ---Render the scaleform in a rectangle
-function _Scaleform:Render2DNormal(x, y, width, height)
+function __Scaleform:Render2DNormal(x, y, width, height)
     DrawScaleformMovie(self.handle, x, y, width, height, 255, 255, 255, 255, 0)
 end
 
 ---Render the scaleform in a rectangle with screen space coordinates
-function _Scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
+function __Scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
     local Width, Height = GetScreenResolution()
     local x = locy / Width
     local y = locx / Height
@@ -20846,32 +18983,34 @@ function _Scaleform:Render2DScreenSpace(locx, locy, sizex, sizey)
 end
 
 ---Render the scaleform in 3D space
-function _Scaleform:Render3D(x, y, z, rx, ry, rz, scalex, scaley, scalez)
+function __Scaleform:Render3D(x, y, z, rx, ry, rz, scalex, scaley, scalez)
     DrawScaleformMovie_3dSolid(self.handle, x, y, z, rx, ry, rz, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
 end
 
 ---Render the scaleform in 3D space with additive blending
-function _Scaleform:Render3DAdditive(x, y, z, rx, ry, rz, scalex, scaley, scalez)
+function __Scaleform:Render3DAdditive(x, y, z, rx, ry, rz, scalex, scaley, scalez)
     DrawScaleformMovie_3d(self.handle, x, y, z, rx, ry, rz, 2.0, 2.0, 1.0, scalex, scaley, scalez, 2)
 end
 
 ---Disposes the scaleform
-function _Scaleform:Dispose()
+function __Scaleform:Dispose()
     SetScaleformMovieAsNoLongerNeeded(self.handle)
     self = nil
 end
 
 ---Returns true if the scaleform is valid
 ---@return boolean
-function _Scaleform:IsValid()
+function __Scaleform:IsValid()
     return self and true or false
 end
 
 ---Returns true if the scaleform is loaded
 ---@return boolean
-function _Scaleform:IsLoaded()
+function __Scaleform:IsLoaded()
     return HasScaleformMovieLoaded(self.handle)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 ---@diagnostic disable: missing-parameter -- false positive
@@ -20883,8 +19022,8 @@ ProgressTimerBar.__call = function()
 end
 
 function ProgressTimerBar.New(label, backgroundColor, foregroundColor, percentage, time)
-    if backgroundColor == nil then backgroundColor = {R = 112, G = 25, B = 25, A = 255} end
-    if foregroundColor == nil then foregroundColor = {R = 224, G = 50, B = 50, A = 255} end
+    if backgroundColor == nil then backgroundColor = { R = 112, G = 25, B = 25, A = 255 } end
+    if foregroundColor == nil then foregroundColor = { R = 224, G = 50, B = 50, A = 255 } end
     if percentage == nil then percentage = 0 end
     if percentage > 1 then percentage = 1 end
     if percentage < 0 then percentage = 0 end
@@ -20895,8 +19034,8 @@ function ProgressTimerBar.New(label, backgroundColor, foregroundColor, percentag
         _percentage = percentage or 0,
         _maxTime = time or 0,
         _time = GetGameTimer(),
-        _backgroundColor = backgroundColor or {R = 112, G = 25, B = 25, A = 255}, --darkred
-        _foregroundColor = foregroundColor or {R = 224, G = 50, B = 50, A = 255}, -- red
+        _backgroundColor = backgroundColor or { R = 112, G = 25, B = 25, A = 255 }, --darkred
+        _foregroundColor = foregroundColor or { R = 224, G = 50, B = 50, A = 255 }, -- red
         _backgroundRect = UIResRectangle.New(0, 0, 150, 15, backgroundColor.R or 112, backgroundColor.G or 25,
             backgroundColor.B or 25, backgroundColor.A or 255),
         _foregroundRect = UIResRectangle.New(0, 0, 0, 15, foregroundColor.R or 224, foregroundColor.G or 50,
@@ -21002,6 +19141,8 @@ function ProgressTimerBar:Draw(interval)
     HideHudComponentThisFrame(9);
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 ---@diagnostic disable: missing-parameter
 
@@ -21012,7 +19153,7 @@ TextTimerBar.__call = function()
 end
 
 function TextTimerBar.New(label, text, captionColor)
-    if captionColor == nil then captionColor = {R = 240, G = 240, B = 240, A = 255} end
+    if captionColor == nil then captionColor = { R = 240, G = 240, B = 240, A = 255 } end
     local _data = {
         _label = label or "",
         _caption = text or "",
@@ -21091,6 +19232,8 @@ function TextTimerBar:Draw(interval)
     HideHudComponentThisFrame(9);
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 Sprite = setmetatable({}, Sprite)
 Sprite.__index = Sprite
@@ -21133,7 +19276,7 @@ function Sprite.New(TxtDictionary, TxtName, X, Y, Width, Height, Heading, R, G, 
         Width = tonumber(Width) or 0,
         Height = tonumber(Height) or 0,
         Heading = tonumber(Heading) or 0,
-        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
+        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
     }
     return setmetatable(_Sprite, Sprite)
 end
@@ -21146,7 +19289,7 @@ function Sprite:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return {X = self.X, Y = self.Y}
+        return { X = self.X, Y = self.Y }
     end
 end
 
@@ -21158,7 +19301,7 @@ function Sprite:Size(Width, Height)
         self.Width = tonumber(Width)
         self.Height = tonumber(Height)
     else
-        return {Width = self.Width, Height = self.Height}
+        return { Width = self.Width, Height = self.Height }
     end
 end
 
@@ -21191,6 +19334,8 @@ function Sprite:Draw()
         Size.Width, Size.Height, self.Heading, self._Colour.R, self._Colour.G, self._Colour.B, self._Colour.A)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 TimerBarPool = setmetatable({}, TimerBarPool)
 TimerBarPool.__index = TimerBarPool
@@ -21213,7 +19358,7 @@ function TimerBarPool:AddBar(timerBar)
     self.Bars[timerBar.Handle] = timerBar
 end
 
-function TimerBarPool:RemoveBar(timerBar)
+function TimerBarPool:RemoveBar(timerBar)    
     self.Bars[timerBar.Handle] = nil
 end
 
@@ -21226,6 +19371,8 @@ function TimerBarPool:Draw()
         v:Draw((k * 10) + offset)
     end
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIResRectangle = setmetatable({}, UIResRectangle)
@@ -21247,7 +19394,7 @@ function UIResRectangle.New(X, Y, Width, Height, R, G, B, A)
         Y = tonumber(Y) or 0,
         Width = tonumber(Width) or 0,
         Height = tonumber(Height) or 0,
-        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
+        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
     }
     return setmetatable(_UIResRectangle, UIResRectangle)
 end
@@ -21260,7 +19407,7 @@ function UIResRectangle:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return {X = self.X, Y = self.Y}
+        return { X = self.X, Y = self.Y }
     end
 end
 
@@ -21272,7 +19419,7 @@ function UIResRectangle:Size(Width, Height)
         self.Width = tonumber(Width)
         self.Height = tonumber(Height)
     else
-        return {Width = self.Width, Height = self.Height}
+        return { Width = self.Width, Height = self.Height }
     end
 end
 
@@ -21301,6 +19448,8 @@ function UIResRectangle:Draw()
     DrawRect(Position.X + Size.Width * 0.5, Position.Y + Size.Height * 0.5, Size.Width, Size.Height, self._Colour.R,
         self._Colour.G, self._Colour.B, self._Colour.A)
 end
+
+
 
 --///////////////////////////////////////////////////////////////////--
 UIResText = setmetatable({}, UIResText)
@@ -21425,7 +19574,7 @@ function UIResText.New(Text, X, Y, Scale, R, G, B, A, Font, Alignment, DropShado
         X = tonumber(X) or 0,
         Y = tonumber(Y) or 0,
         Scale = tonumber(Scale) or 0,
-        _Colour = {R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255},
+        _Colour = { R = tonumber(R) or 255, G = tonumber(G) or 255, B = tonumber(B) or 255, A = tonumber(A) or 255 },
         Font = tonumber(Font) or 0,
         Alignment = Alignment or nil,
         DropShadow = DropShadow or nil,
@@ -21443,7 +19592,7 @@ function UIResText:Position(X, Y)
         self.X = tonumber(X)
         self.Y = tonumber(Y)
     else
-        return {X = self.X, Y = self.Y}
+        return { X = self.X, Y = self.Y }
     end
 end
 
@@ -21511,6 +19660,8 @@ function UIResText:Draw()
     EndTextCommandDisplayText(Position.X, Position.Y)
 end
 
+
+
 --///////////////////////////////////////////////////////////////////--
 -- Globals
 GlobalGameTimer = GetNetworkTime() --[[@type number]] -- GlobalGameTimer is used in many places, so we'll just define it here.
@@ -21532,7 +19683,7 @@ function Delegate(klass, methodName, memberName)
     assert(type(klass) == 'table', "klass must be a table")
     assert(type(methodName) == 'string', "methodName must be a string")
     assert(type(memberName) == 'string', "memberName must be a string")
-
+    
     -- Cache the member access for better performance
     local function getMember(self)
         local member = self[memberName]
@@ -21547,22 +19698,22 @@ function Delegate(klass, methodName, memberName)
         end
         return member
     end
-
+    
     -- Create the delegate method with error handling
     klass[methodName] = function(self, ...)
         local member = getMember(self)
         local method = member[methodName]
-
+        
         if not method then
-            error(string.format("Method '%s' not found in member '%s'",
+            error(string.format("Method '%s' not found in member '%s'", 
                 methodName, memberName))
         end
-
+        
         if type(method) ~= 'function' then
-            error(string.format("'%s' is not a function in member '%s'",
+            error(string.format("'%s' is not a function in member '%s'", 
                 methodName, memberName))
         end
-
+        
         return method(member, ...)
     end
 end
@@ -21573,13 +19724,13 @@ function DelegateMany(klass, methodNames, memberName)
     assert(type(klass) == 'table', "klass must be a table")
     assert(type(methodNames) == 'table', "methodNames must be a table")
     assert(type(memberName) == 'string', "memberName must be a string")
-
+    
     -- Validate method names array
     for i, name in ipairs(methodNames) do
-        assert(type(name) == 'string',
+        assert(type(name) == 'string', 
             string.format("Method name at index %d must be a string", i))
     end
-
+    
     -- Delegate each method
     for _, methodName in ipairs(methodNames) do
         Delegate(klass, methodName, memberName)
@@ -21599,7 +19750,7 @@ end
 ---@param str string
 ---@return boolean
 string.StartsWith = function(self, str)
-    return self:find('^'..str) ~= nil
+    return self:find('^' .. str) ~= nil
 end
 
 ---IsNullOrEmpty
@@ -21609,12 +19760,29 @@ string.IsNullOrEmpty = function(self)
     return self == nil or self == '' or not not tostring(self):find("^%s*$")
 end
 
+---SplitLabel
+---@param self string
+---@return table
+string.SplitLabel = function(self)
+    local stringsNeeded = math.ceil((self:len() - 1) / 99)
+    local outputString = {}
+
+    -- Fill table with substrings
+    for i = 0, stringsNeeded - 1 do
+        local start = i * 99
+        local length = math.min(99, self:len() - start)
+        table.insert(outputString, self:sub(start + 1, start + length))
+    end
+
+    return outputString
+end
+
 ---Insert
 ---@param self string
 ---@param pos number
 ---@param str2 string
 string.Insert = function(self, pos, str2)
-    return self:sub(1, pos)..str2..self:sub(pos + 1)
+    return self:sub(1, pos) .. str2 .. self:sub(pos + 1)
 end
 
 -- Return the first index with the given value (or -1 if not found).
@@ -21660,7 +19828,7 @@ function string.split(inputstr, sep)
         sep = "%s"
     end
     local t, i = {}, 1
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
         t[i] = str
         i = i + 1
     end
@@ -21670,7 +19838,7 @@ end
 
 function Split(pString, pPattern)
     local Table = {} -- NOTE: use {n = 0} in Lua-5.0
-    local fpat = "(.-)"..pPattern
+    local fpat = "(.-)" .. pPattern
     local last_end = 1
     local s, e, cap = pString:find(fpat, 1)
     while s do
@@ -21932,3 +20100,16 @@ function IsSuperWideScreen()
     local aspRat = GetAspectRatio(false)
     return aspRat > (16.0 / 9.0)
 end
+
+function Join(symbol, list)
+    local result = ""
+    for i, value in ipairs(list) do
+        if i ~= 1 then
+            result = result .. symbol
+        end
+        result = result .. tostring(value)
+    end
+    return result
+end
+
+

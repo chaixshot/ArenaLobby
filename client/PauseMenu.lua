@@ -193,10 +193,91 @@ local function OpenPauseMenu()
 			UpdateDetails()
 			UpdatePlayerList()
 
-			TriggerEvent("ArenaLobby:lobbymenu:Show", 1, true)
+			TriggerEvent("ArenaLobby:lobbymenu:Show", 0, true)
 		end
 	end
 end
+
+-- Citizen.CreateThread(function()
+-- 	Citizen.Wait(1000)
+-- 	UpdatePlayerState()
+-- 	UpdateInfos()
+-- 	UpdateDetails()
+-- 	UpdatePlayerList()
+
+-- 	TriggerEvent("ArenaLobby:lobbymenu:Show", 0, true)
+-- 	Citizen.Wait(1000)
+-- 	TriggerEvent("ArenaLobby:lobbymenu:Hide")
+-- 	Citizen.Wait(1000)
+-- 	local targetSource = 7
+-- 	local settingList = {}
+
+-- 	table.insert(settingList, {
+-- 		label = "Back",
+-- 		dec = "",
+-- 		callbackFunction = function()
+-- 			TriggerEvent("ArenaLobby:playermenu:Hide")
+-- 		end,
+-- 	})
+
+-- 	if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource ~= targetSource then
+-- 		table.insert(settingList, {
+-- 			label = "<font color='#c8423b'>Kick</font",
+-- 			dec = "Kick player from current lobby.",
+-- 			HudColours.HUD_COLOUR_RED,
+-- 			highlightColor = HudColours.HUD_COLOUR_REDDARK,
+-- 			textColor = HudColours.HUD_COLOUR_PURE_WHITE,
+-- 			highlightedTextColor = HudColours.HUD_COLOUR_PURE_WHITE,
+-- 			Blink = true,
+-- 			callbackFunction = function()
+-- 				PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
+-- 				TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
+-- 				TriggerEvent("ArenaLobby:playermenu:Hide")
+-- 			end,
+-- 		})
+-- 	end
+
+-- 	TriggerEvent("ArenaLobby:playermenu:SettingsColumn", settingList)
+-- 	TriggerEvent("ArenaLobby:playermenu:SetInfo", {
+-- 		{
+-- 			LeftLabel = "Map",
+-- 			RightLabel = "map",
+-- 			BadgeStyle = BadgeStyle.INFO,
+-- 			Colours = false,
+-- 		},
+-- 		{
+-- 			LeftLabel = "Min Player",
+-- 			RightLabel = "MinimumSize",
+-- 			BadgeStyle = BadgeStyle.INFO,
+-- 			Colours = false,
+-- 		},
+-- 		{
+-- 			LeftLabel = "Time Left",
+-- 			RightLabel = " Minute",
+-- 			BadgeStyle = BadgeStyle.INFO,
+-- 			Colours = false,
+-- 		},
+-- 	})
+-- 	TriggerEvent("ArenaLobby:playermenu:SetInfoTitle", {
+-- 		Title = "missionsPanel._title",
+-- 		tex = "missionsPanel.TextureDict",
+-- 		txd = "missionsPanel.TextureName",
+-- 	})
+
+-- 	TriggerEvent("ArenaLobby:playermenu:SetHeaderMenu", {
+-- 		SideTop = "LobbyMenu.SideTop",
+-- 		SideMid = "LobbyMenu.SideMid",
+-- 		SideBot = "LobbyMenu.SideBot",
+-- 		ColColor1 = "settingsPanel._color",
+-- 		ColColor2 = "playersPanel._color",
+-- 		ColColor3 = "missionsPanel._color",
+-- 	})
+-- 	TriggerEvent("ArenaLobby:playermenu:Show")
+-- 	Citizen.Wait(1000)
+-- 	TriggerEvent("ArenaLobby:playermenu:Hide")
+-- 	Citizen.Wait(1000)
+-- 	TriggerEvent("ArenaLobby:lobbymenu:Show", 0, true)
+-- end)
 
 AddEventHandler("ArenaLobby:OpenPauseMenu", OpenPauseMenu)
 

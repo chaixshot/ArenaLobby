@@ -1,45 +1,32 @@
 local PlayerMenu
+local settingsPanel = {}
+local playersPanel = {}
+local missionsPanel = {}
 local defaultSubtitle = "Template by H@mer"
-
-local selectColumnID = 1
-local selectRowID = 1
-
-local ColumnCallbackFunction = {}
-ColumnCallbackFunction[1] = {}
-ColumnCallbackFunction[2] = {}
 
 local firstLoad = true
 
 local function CreatePlayerMenuMenu()
 	if not PlayerMenu then
-		local columns = {
-			SettingsListColumn.New("COLUMN SETTINGS", SColor.HUD_Red),
-			PlayerListColumn.New("COLUMN PLAYERS", SColor.HUD_Orange),
-			MissionDetailsPanel.New("COLUMN INFO PANEL", SColor.HUD_Green),
-		}
+		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 20)
+		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 19)
+		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 20)
+
 		PlayerMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
-		PlayerMenu:SetupColumns(columns)
+		PlayerMenu:SetupLeftColumn(settingsPanel)
+		PlayerMenu:SetupCenterColumn(playersPanel)
+		PlayerMenu:SetupRightColumn(missionsPanel)
 		PlayerMenu:CanPlayerCloseMenu(true)
 
 		local item = UIMenuItem.New("UIMenuItem", "UIMenuItem description")
 		item:BlinkDescription(true)
-		PlayerMenu.SettingsColumn:AddSettings(item)
+		settingsPanel:AddSettings(item)
 
-		PlayerMenu.MissionPanel:UpdatePanelPicture("scaleformui", "lobby_panelbackground")
-		PlayerMenu.MissionPanel:Title("ScaleformUI - Title")
-		
+		missionsPanel:UpdatePanelPicture("scaleformui", "lobby_panelbackground")
+		missionsPanel:Title("ScaleformUI - Title")
+
 		local detailItem = UIMenuFreemodeDetailsItem.New("Left Label", "Right Label", false, BadgeStyle.BRIEFCASE, SColor.HUD_Freemode)
-		PlayerMenu.MissionPanel:AddItem(detailItem)
-
-		PlayerMenu.SettingsColumn.OnIndexChanged = function(idx)
-			selectRowID = idx
-			selectColumnID = 1
-		end
-
-		PlayerMenu.PlayersColumn.OnIndexChanged = function(idx)
-			selectRowID = idx
-			selectColumnID = 2
-		end
+		missionsPanel:AddItem(detailItem)
 
 		Citizen.Wait(100)
 		firstLoad = false
@@ -86,9 +73,9 @@ AddEventHandler("ArenaLobby:playermenu:SetHeaderMenu", function(data)
 		PlayerMenu.listCol[3]._label = data.Col3
 	end
 
-	PlayerMenu.listCol[1]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
-	PlayerMenu.listCol[2]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
-	PlayerMenu.listCol[3]._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
+	settingsPanel._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
+	playersPanel._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
+	missionsPanel._color = SColor.FromHudColor(HudColours.HUD_COLOUR_FREEMODE)
 end)
 
 local ClonePedData = {}
@@ -100,8 +87,7 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 		Citizen.Wait(300)
 	end
 
-	ColumnCallbackFunction[2] = {}
-	PlayerMenu.PlayersColumn:Clear()
+	playersPanel:Clear()
 
 	PlayerMenu.Subtitle = data.name
 
@@ -126,9 +112,9 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 
 	friend.ClonePed = data.ped
 	friend:SetLeftIcon(LobbyBadge, false)
-	friend:AddPedToPauseMenu(friend.ClonePed) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
+	-- friend:AddPedToPauseMenu(friend.ClonePed) -- defaulted to 0 if you set it to nil / 0 the ped will be removed from the pause menu
 	local panel = PlayerStatsPanel.New(data.name, SColor.FromHudColor(data.rowColor or HudColours.HUD_COLOUR_VIDEO_EDITOR_AMBIENT))
-	panel:Description("My name is " .. data.name)
+	panel:Description("My name is "..data.name)
 	panel:HasPlane(data.HasPlane)
 	panel:HasHeli(data.HasHeli)
 	panel:HasBoat(data.HasBoat)
@@ -146,15 +132,11 @@ AddEventHandler("ArenaLobby:playermenu:SetPlayerList", function(data)
 	panel:AddStat(PlayerStatsPanelStatItem.New("Mental State", GetSkillMentalStateDescription(data.MPPLY_KILLS_PLAYERS), data.MPPLY_KILLS_PLAYERS))
 	friend:AddPanel(panel)
 
-	PlayerMenu.PlayersColumn:AddPlayer(friend)
+	playersPanel:AddPlayer(friend)
 
-	if data.callbackFunction then
-		ColumnCallbackFunction[2][#PlayerMenu.PlayersColumn.Items] = data.callbackFunction
-	end
-
-	if PlayerMenu:Visible() then
-		PlayerMenu.PlayersColumn:refreshColumn()
-	end
+	-- if PlayerMenu:Visible() then
+	-- 	playersPanel:refreshColumn()
+	-- end
 end)
 
 AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
@@ -165,13 +147,13 @@ AddEventHandler("ArenaLobby:playermenu:SetInfo", function(data)
 		Citizen.Wait(300)
 	end
 
-	for i = 1, #PlayerMenu.MissionPanel.Items do
-		PlayerMenu.MissionPanel:RemoveItem(#PlayerMenu.MissionPanel.Items)
+	for i = 1, #missionsPanel.Items do
+		missionsPanel:RemoveItem(#missionsPanel.Items)
 	end
 
 	for k, v in pairs(data) do
 		local detailItem = UIMenuFreemodeDetailsItem.New(v.LeftLabel, v.RightLabel, false, v.BadgeStyle, v.Colours)
-		PlayerMenu.MissionPanel:AddItem(detailItem)
+		missionsPanel:AddItem(detailItem)
 	end
 end)
 
@@ -184,11 +166,11 @@ AddEventHandler("ArenaLobby:playermenu:SetInfoTitle", function(data)
 	end
 
 	if data.Title then
-		PlayerMenu.MissionPanel:Title(data.Title)
+		missionsPanel:Title(data.Title)
 	end
 
 	if data.tex and data.txd then
-		PlayerMenu.MissionPanel:UpdatePanelPicture(data.tex, data.txd)
+		missionsPanel:UpdatePanelPicture(data.tex, data.txd)
 	end
 end)
 
@@ -200,10 +182,9 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 		Citizen.Wait(300)
 	end
 
-	ColumnCallbackFunction[1] = {}
-	PlayerMenu.SettingsColumn:Clear()
+	settingsPanel:Clear()
 
-	for k,v in pairs(data) do
+	for k, v in pairs(data) do
 		local item
 		if v.type == "List" then
 			item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
@@ -214,21 +195,22 @@ AddEventHandler("ArenaLobby:playermenu:SettingsColumn", function(data)
 		elseif v.type == "Progress" then
 			item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 		else
-			item = UIMenuItem.New(v.label, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
+			item = UIMenuItem.New(v.label, v.dec)
 			if v.rightLabel then
 				item:RightLabel(v.rightLabel)
 			end
 		end
 		item:BlinkDescription(v.Blink)
-		PlayerMenu.SettingsColumn:AddSettings(item)
-
-		if v.callbackFunction then
-			ColumnCallbackFunction[1][k] = v.callbackFunction
+		item.Activated = function(menu, item)
+			if v.callbackFunction then
+				v.callbackFunction()
+			end
 		end
+		settingsPanel:AddSettings(item)
 	end
 
 	if PlayerMenu:Visible() then
-		PlayerMenu.SettingsColumn:refreshColumn()
+		settingsPanel:UpdateDescription()
 	end
 end)
 
@@ -244,12 +226,9 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 		SetFrontendActive(false)
 		Citizen.Wait(0)
 	end
-	while PlayerMenu.Subtitle == defaultSubtitle do
-		Citizen.Wait(0)
-	end
-
-	selectRowID = 1
-	selectColumnID = 1
+	-- while PlayerMenu.Subtitle == defaultSubtitle do
+	-- 	Citizen.Wait(0)
+	-- end
 
 	PlayerMenu.InstructionalButtons = {}
 	table.insert(PlayerMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT2"), -1, 191, 191, -1))
@@ -257,16 +236,11 @@ AddEventHandler("ArenaLobby:playermenu:Show", function(onClose)
 	table.insert(PlayerMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT8"), -1, -1, -1, "INPUTGROUP_FRONTEND_DPAD_ALL"))
 
 	PlayerMenu:Visible(true)
-	Citizen.SetTimeout(50, function()
-		PlayerMenu:updateFocus(2, false)
-	end)
+	-- Citizen.SetTimeout(50, function()
+	-- 	PlayerMenu:SwitchColumn(1)
+	-- end)
 
 	while PlayerMenu:Visible() do
-		if IsDisabledControlJustPressed(0, 201) then
-			if ColumnCallbackFunction[selectColumnID][selectRowID] then
-				ColumnCallbackFunction[selectColumnID][selectRowID]()
-			end
-		end
 		Citizen.Wait(0)
 	end
 
