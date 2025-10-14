@@ -183,15 +183,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		end
 
 		if data.ColColor1 then
-			settingsPanel._color = SColor.FromHudColor(data.ColColor1)
+			settingsPanel.Color = SColor.FromHudColor(data.ColColor1)
 		end
 
 		if data.ColColor2 then
-			playersPanel._color = SColor.FromHudColor(data.ColColor2)
+			playersPanel.Color = SColor.FromHudColor(data.ColColor2)
 		end
 
 		if data.ColColor3 then
-			missionsPanel._color = SColor.FromHudColor(data.ColColor3)
+			missionsPanel.Color = SColor.FromHudColor(data.ColColor3)
 		end
 
 		DataSet.HeaderMenu = data
