@@ -9,7 +9,7 @@ server_scripts {
 	'@oxmysql/lib/MySQL.lua',
 	'config.lua',
 	'server/main.lua',
-	'server/lobbymenu.lua',
+	'server/menu_lobby.lua',
 }
 
 client_scripts {
@@ -20,7 +20,7 @@ client_scripts {
 	'client/main.lua',
 	'client/PauseMenu.lua',
 
-	'client/menu/menu_lobby.lua',
+	'client/menu_lobby.lua',
 }
 
 
