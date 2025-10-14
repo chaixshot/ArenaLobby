@@ -16570,24 +16570,6 @@ function MinimapOverlays:Load()
     end)
 end
 
-Citizen.CreateThread(function()
-    while true do
-        Wait(0)
-        if ScaleformUI.Scaleforms.MinimapOverlays.isLoaded then
-            local success, event_type, context, item_id = GetScaleformMovieCursorSelection(ScaleformUI.Scaleforms.MinimapOverlays.minimapHandle)
-            if success then
-                if context == 1000 then
-                    if ScaleformUI.Scaleforms.MinimapOverlays.minimaps[item_id + 1] ~= nil then
-                        ScaleformUI.Scaleforms.MinimapOverlays.minimaps[item_id + 1].OnMouseEvent(event_type)
-                    end
-                end
-            end
-        else
-            ScaleformUI.Scaleforms.MinimapOverlays:Load()
-        end
-    end
-end)
-
 ---Adds a new overlay with variable size to the minimap
 ---@param textureDict string the texture dict
 ---@param textureName string the texture name
@@ -18677,6 +18659,8 @@ Citizen.CreateThread(function()
     initializeScaleforms()
     
     while true do
+        local sleep = 300
+
         -- Check if any menu is active
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
             if MenuHandler.ableToDraw and not (IsWarningMessageActive() or ScaleformUI.Scaleforms.Warning:IsShowing()) then
@@ -18700,6 +18684,8 @@ Citizen.CreateThread(function()
                 end
                 
                 MenuHandler:ProcessMenus()
+
+                sleep = 0
             end
         end
         
@@ -18732,8 +18718,11 @@ Citizen.CreateThread(function()
             if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
                 ScaleformUI.Scaleforms._pauseMenu:Load()
             end
+
+            sleep = 0
         end
-        Citizen.Wait(0)
+
+        Citizen.Wait(sleep)
     end
 end)
 
