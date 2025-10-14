@@ -21,7 +21,6 @@ client_scripts {
 	'client/PauseMenu.lua',
 
 	'client/menu/menu_lobby.lua',
-	'client/menu/menu_player.lua',
 }
 
 
