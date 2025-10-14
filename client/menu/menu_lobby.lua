@@ -25,7 +25,7 @@ local DataSet = {
 local function CreateLobbyMenu()
 	if not LobbyMenu then
 		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 20)
-		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 19)
+		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 18)
 		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 20)
 
 		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
@@ -44,7 +44,7 @@ local function CreateLobbyMenu()
 		end
 		local headshot = GetPedheadshotTxdString(mugshot)
 		AddReplaceTexture("ArenaLobby", "LobbyHeadshot", headshot, headshot)
-		LobbyMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") -- lobbyMenu:CrewPicture used to add a picture on the left of the HeaderPicture
+		LobbyMenu:HeaderPicture("ArenaLobby", "LobbyHeadshot") -- LobbyMenu:CrewPicture used to add a picture on the left of the HeaderPicture
 		UnregisterPedheadshot(mugshot) -- call it right after adding the menu.. this way the txd will be loaded correctly by the scaleform..
 		]]
 
@@ -65,20 +65,22 @@ local function CreateLobbyMenu()
 		local detailItem = UIMenuFreemodeDetailsItem.New("Left Label", "Right Label", false, BadgeStyle.BRIEFCASE, SColor.HUD_Freemode)
 		missionsPanel:AddItem(detailItem)
 
+		-- Player option menu
 		playersPanel.OnPlayerItemActivated = function(index)
 			-- Host select player row
 			if ArenaAPI:IsPlayerInAnyArena() and ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource == GetPlayerServerId(PlayerId()) then
 				if DataSet.PlayerList[index] and DataSet.PlayerList[index].ped then
 					local targetSource = DataSet.PlayerList[index].source
-					local settingList = {}
-
-					table.insert(settingList, {
-						label = "Back",
-						dec = "",
-						callbackFunction = function()
-							TriggerEvent("ArenaLobby:playermenu:Hide")
-						end,
-					})
+					local settingList = {
+						{
+							label = "Back",
+							dec = "",
+							callbackFunction = function()
+								UpdateDetails()
+								UpdatePlayerList()
+							end,
+						},
+					}
 
 					if ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource ~= targetSource then
 						table.insert(settingList, {
@@ -92,34 +94,15 @@ local function CreateLobbyMenu()
 							callbackFunction = function()
 								PlaySoundFrontend(-1, "MP_IDLE_KICK", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
 								TriggerServerEvent("ArenaLobby:lobbymenu:KickPlayer", targetSource)
-								TriggerEvent("ArenaLobby:playermenu:Hide")
+								TriggerEvent("ArenaLobby:lobbymenu:Hide")
 							end,
 						})
 					end
 
-					TriggerEvent("ArenaLobby:playermenu:SettingsColumn", settingList)
-					TriggerEvent("ArenaLobby:playermenu:SetInfo", DataSet.Info)
-					TriggerEvent("ArenaLobby:playermenu:SetInfoTitle", {
-						Title = missionsPanel._title,
-						tex = missionsPanel.TextureDict,
-						txd = missionsPanel.TextureName,
-					})
+					TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
+					TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", {DataSet.PlayerList[index]})
 
-					TriggerEvent("ArenaLobby:playermenu:SetHeaderMenu", {
-						SideTop = LobbyMenu.SideTop,
-						SideMid = LobbyMenu.SideMid,
-						SideBot = LobbyMenu.SideBot,
-						ColColor1 = settingsPanel._color,
-						ColColor2 = playersPanel._color,
-						ColColor3 = missionsPanel._color,
-					})
-
-					TriggerEvent("ArenaLobby:playermenu:SetPlayerList", DataSet.PlayerList[index])
-
-					LobbyMenu:Visible(false)
-					TriggerEvent("ArenaLobby:playermenu:Show", function()
-						TriggerEvent("ArenaLobby:lobbymenu:Show", 0, true)
-					end)
+					LobbyMenu:SelectColumn(0)
 				end
 			end
 		end
@@ -172,20 +155,18 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		if data.Subtitle then
 			LobbyMenu.Subtitle = data.Subtitle
 		end
-
-		--[[
-		if data.SideTop then
-			lobbyMenu.SideTop = data.SideTop
+		
+		--[[ if data.SideTop then
+			LobbyMenu.SideTop = data.SideTop
 		end
 		
 		if data.SideMid then
-			lobbyMenu.SideMid = data.SideMid
+			LobbyMenu.SideMid = data.SideMid
 		end
 		
 		if data.SideBot then
-			lobbyMenu.SideBot = data.SideBot
-		end
-		]]
+			LobbyMenu.SideBot = data.SideBot
+		end ]]
 
 		if data.Col1 then
 			settingsPanel.Label = data.Col1
@@ -282,15 +263,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 				v.MP0_STEALTH_ABILITY = DecorGetInt(v.ped, "AL_MP0_STEALTH_ABILITY")
 				v.MPPLY_KILLS_PLAYERS = DecorGetInt(v.ped, "AL_MP0_HIGHEST_MENTAL_STATE")
 			else
-				v.MP0_STAMINA = GetRandomIntInRange(10, 100)
-				v.MP0_STRENGTH = GetRandomIntInRange(10, 100)
-				v.MP0_LUNG_CAPACITY = GetRandomIntInRange(10, 100)
-				v.MP0_SHOOTING_ABILITY = GetRandomIntInRange(10, 100)
-				v.MP0_DRIVING_ABILITY = GetRandomIntInRange(10, 100)
-				v.MP0_WHEELIE_ABILITY = GetRandomIntInRange(10, 100)
-				v.MP0_FLYING_ABILITY = GetRandomIntInRange(10, 100)
-				v.MP0_STEALTH_ABILITY = GetRandomIntInRange(10, 100)
-				v.MPPLY_KILLS_PLAYERS = GetRandomIntInRange(10, 100)
+				v.MP0_STAMINA = 0
+				v.MP0_STRENGTH = 0
+				v.MP0_LUNG_CAPACITY = 0
+				v.MP0_SHOOTING_ABILITY = 0
+				v.MP0_DRIVING_ABILITY = 0
+				v.MP0_WHEELIE_ABILITY = 0
+				v.MP0_FLYING_ABILITY = 0
+				v.MP0_STEALTH_ABILITY = 0
+				v.MPPLY_KILLS_PLAYERS = 0
 			end
 			v.HasPlane = IsPedInAnyPlane(v.ped)
 			v.HasHeli = IsPedInAnyHeli(v.ped)
@@ -462,12 +443,13 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	end
 
 	if isChange then
+		settingsPanel:Populate()
 		settingsPanel:Clear()
 
 		for k, v in pairs(data) do
 			local item
 			if v.type == "List" then
-				item = UIMenuListItem.New(v.label, v.list, 0, v.dec, SColor.FromHudColor(v.mainColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.textColor or HudColours.HUD_COLOUR_PURE_WHITE), SColor.FromHudColor(v.highlightedTextColor or HudColours.HUD_COLOUR_PURE_WHITE))
+				item = UIMenuListItem.New(v.label, v.list, 0, v.dec, v.mainColor, v.highlightColor)
 			elseif v.type == "Checkbox" then
 				item = UIMenuCheckboxItem.New(v.label, true, 1, v.dec)
 			elseif v.type == "Slider" then
@@ -475,7 +457,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			elseif v.type == "Progress" then
 				item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 			else
-				item = UIMenuItem.New(v.label, v.dec)
+				item = UIMenuItem.New(v.label, v.dec, v.mainColor and SColor.FromHudColor(v.mainColor), v.highlightColor and SColor.FromHudColor(v.highlightColor))
 				if v.rightLabel then
 					item:RightLabel(v.rightLabel)
 				end
@@ -491,7 +473,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 
 		if LobbyMenu:Visible() then
 			settingsPanel:UpdateDescription()
+			settingsPanel:CurrentSelection(1)
 		end
+
 		DataSet.SettingsColumn = table.clone(data)
 	end
 end)
@@ -546,7 +530,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	CreateLobbyMenu()
 
 	if LobbyMenu:Visible() then
-		LobbyMenu:Visible(false)
+		TriggerEvent("ArenaLobby:lobbymenu:Hide")
 		Citizen.Wait(50)
 	end
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
@@ -563,7 +547,8 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	if canClose then
 		table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT3"), -1, 194, 194, -1))
 	end
-	table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT8"), -1, -1, -1, "INPUTGROUP_FRONTEND_DPAD_ALL"))
+	table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT8"), -1, -1, -1, "INPUTGROUP_FRONTEND_BUMPERS"))
+	table.insert(LobbyMenu.InstructionalButtons, InstructionalButton.New(GetLabelText("HUD_INPUT1C"), -1, -1, -1, "INPUTGROUP_FRONTEND_DPAD_ALL"))
 
 	if LobbyMenu.hasMapPanel then
 		while not LobbyMenu.MinimapButton do
@@ -575,9 +560,6 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
 	LobbyMenu:SelectColumn(focusColume)
-	-- Citizen.SetTimeout(50, function()
-	-- 	ClearPedInPauseMenu()
-	-- end)
 
 	while LobbyMenu:Visible() do
 		Citizen.Wait(0)
@@ -596,6 +578,7 @@ end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()
 	if LobbyMenu then
+		LobbyMenu:SelectColumn(0) -- Fix pause menu invisible after closed with focusColume~=0
 		LobbyMenu:Visible(false)
 	end
 end)
@@ -603,7 +586,5 @@ end)
 RegisterNetEvent("ArenaLobby:lobbymenu:leaveLobby")
 AddEventHandler("ArenaLobby:lobbymenu:leaveLobby", function()
 	ExecuteCommand("minigame leave")
-	if LobbyMenu then
-		LobbyMenu:Visible(false)
-	end
+	TriggerEvent("ArenaLobby:lobbymenu:Hide")
 end)
