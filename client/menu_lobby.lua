@@ -564,6 +564,12 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	LobbyMenu:Visible(true)
 	LobbyMenu:SelectColumn(focusColume)
 
+	if focusColume == 0 then
+		settingsPanel:CurrentSelection(1)
+	elseif focusColume == 1 then
+		playersPanel:CurrentSelection(1)
+	end
+
 	while LobbyMenu:Visible() do
 		Citizen.Wait(0)
 	end
