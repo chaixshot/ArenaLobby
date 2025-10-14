@@ -20,7 +20,7 @@ function UpdateDetails()
 			Title = "DarkRP - GameRoom",
 			Subtitle = (ArenaLabel[1] and ArenaLabel[1]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
 			SideTop = (ArenaLabel[2] and ArenaLabel[2]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
-			SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>") or ""),
+			SideMid = (ArenaLabel[4] and ArenaLabel[4]:gsub("<b", "<p"):gsub("</b>", "</p>"):sub(ArenaLabel[4]:find("%["), ArenaLabel[4]:find("%]")) or ""),
 			SideBot = (ArenaLabel[3] and ArenaLabel[3]:gsub("<b", "<p"):gsub("</b>", "</p>"):gsub("%]", ""):gsub("%[", "") or ""),
 			settingsPanel = "🕹️  GAME",
 			playersPanel = "PLAYERS "..CurrentSize.." OF "..MaximumSize,

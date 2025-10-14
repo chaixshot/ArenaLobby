@@ -29,8 +29,7 @@ local function CreateLobbyMenu()
 		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 20)
 
 		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
-		-- LobbyMenu:ShowStoreBackground(true)
-		-- LobbyMenu:StoreBackgroundAnimationSpeed(50)
+
 		LobbyMenu:SetupLeftColumn(settingsPanel)
 		LobbyMenu:SetupCenterColumn(playersPanel)
 		LobbyMenu:SetupRightColumn(missionsPanel)
@@ -158,7 +157,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 			LobbyMenu.Subtitle = data.Subtitle
 		end
 		
-		--[[ if data.SideTop then
+		if data.SideTop then
 			LobbyMenu.SideTop = data.SideTop
 		end
 		
@@ -168,7 +167,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		
 		if data.SideBot then
 			LobbyMenu.SideBot = data.SideBot
-		end ]]
+		end
 
 		if data.settingsPanel then
 			settingsPanel.Label = data.settingsPanel
