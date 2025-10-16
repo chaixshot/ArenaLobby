@@ -18659,7 +18659,7 @@ Citizen.CreateThread(function()
     initializeScaleforms()
     
     while true do
-        local sleep = 300
+        local sleep = 200
 
         -- Check if any menu is active
         if MenuHandler:IsAnyMenuOpen() or MenuHandler:IsAnyPauseMenuOpen() then
@@ -18689,39 +18689,8 @@ Citizen.CreateThread(function()
             end
         end
         
-        -- Update scaleforms outside menu checks
-        ScaleformUI.Scaleforms.Warning:Update()
-        
-        if ScaleformUI.Scaleforms.SplashText ~= nil then
-            ScaleformUI.Scaleforms.SplashText:Draw()
-        end
-        
         ScaleformUI.Scaleforms.InstructionalButtons:Update()
         
-        if not IsPauseMenuActive() then
-            ScaleformUI.Scaleforms.BigMessageInstance:Update()
-            ScaleformUI.Scaleforms.MidMessageInstance:Update()
-            ScaleformUI.Scaleforms.PlayerListScoreboard:Update()
-            ScaleformUI.Scaleforms.JobMissionSelector:Update()
-            ScaleformUI.Scaleforms.BigFeed:Update()
-            
-            -- Check for null references once per iteration
-            if ScaleformUI.Scaleforms._ui == nil then
-                ScaleformUI.Scaleforms._ui = __Scaleform.RequestWidescreen("scaleformui")
-            end
-            if ScaleformUI.Scaleforms._radialMenu == nil then
-                ScaleformUI.Scaleforms._radialMenu = __Scaleform.RequestWidescreen("radialmenu")
-            end
-            if ScaleformUI.Scaleforms._radioMenu == nil then
-                ScaleformUI.Scaleforms._radioMenu = __Scaleform.RequestWidescreen("radiomenu")
-            end
-            if not ScaleformUI.Scaleforms._pauseMenu:IsLoaded() then
-                ScaleformUI.Scaleforms._pauseMenu:Load()
-            end
-
-            sleep = 0
-        end
-
         Citizen.Wait(sleep)
     end
 end)
@@ -19675,12 +19644,12 @@ GlobalGameTimer = GetNetworkTime() --[[@type number]] -- GlobalGameTimer is used
 ---@alias integer number
 
 --Update GlobalGameTimer every 100ms, so we don't have to call GetNetworkTime() every time we need it.
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(100)
-        GlobalGameTimer = GetNetworkTime()
-    end
-end)
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(100)
+--         GlobalGameTimer = GetNetworkTime()
+--     end
+-- end)
 
 function Delegate(klass, methodName, memberName)
     -- Validate inputs
