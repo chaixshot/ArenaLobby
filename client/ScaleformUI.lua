@@ -10375,7 +10375,7 @@ function TabView:ProcessControl()
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsControlPressed(2, 21) and IsUsingKeyboard(2))) then
-        if self.coronaTab then
+        if self.IsCorona then
             if (self.coronaTab.CurrentColumnIndex > 0) then
                 self:SwitchColumn(self.coronaTab.CurrentColumnIndex - 1)
             end
@@ -10390,7 +10390,7 @@ function TabView:ProcessControl()
         end
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
-        if self.coronaTab then
+        if self.IsCorona then
             self:SwitchColumn(self.coronaTab.CurrentColumnIndex + 1)
         else
             if (#self.Tabs == 1) then return end
