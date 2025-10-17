@@ -567,7 +567,10 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	if focusColume == 0 then
 		settingsPanel:CurrentSelection(1)
 	elseif focusColume == 1 then
-		playersPanel:CurrentSelection(1)
+		Citizen.CreateThread(function()
+			Citizen.Wait(1) -- Waiting for add ped to pause menu be done
+			playersPanel:CurrentSelection(1)
+		end)
 	end
 
 	while LobbyMenu:Visible() do
