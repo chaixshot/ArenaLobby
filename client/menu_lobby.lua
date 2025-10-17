@@ -119,7 +119,7 @@ local function CreateLobbyMenu()
 		Citizen.Wait(3000)
 		settings:ResetFilter()
 		]]
-		Citizen.Wait(100)
+		-- Citizen.Wait(100)
 		firstLoad = false
 	end
 end
@@ -201,9 +201,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
-	end
+	-- if LobbyMenu:Visible() then
+	-- 	Citizen.Wait(300)
+	-- end
 
 	local isChange = false
 	if #data ~= #DataSet.PlayerList then
@@ -335,9 +335,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
-	end
+	-- if LobbyMenu:Visible() then
+	-- 	Citizen.Wait(300)
+	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -380,9 +380,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
-	end
+	-- if LobbyMenu:Visible() then
+	-- 	Citizen.Wait(300)
+	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -418,9 +418,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	while firstLoad do
 		Citizen.Wait(0)
 	end
-	if LobbyMenu:Visible() then
-		Citizen.Wait(300)
-	end
+	-- if LobbyMenu:Visible() then
+	-- 	Citizen.Wait(300)
+	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -534,7 +534,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 
 	if LobbyMenu:Visible() then
 		TriggerEvent("ArenaLobby:lobbymenu:Hide")
-		Citizen.Wait(50)
+		-- Citizen.Wait(50)
 	end
 	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
