@@ -156,15 +156,15 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 		if data.Subtitle then
 			LobbyMenu.Subtitle = data.Subtitle
 		end
-		
+
 		if data.SideTop then
 			LobbyMenu.SideTop = data.SideTop
 		end
-		
+
 		if data.SideMid then
 			LobbyMenu.SideMid = data.SideMid
 		end
-		
+
 		if data.SideBot then
 			LobbyMenu.SideBot = data.SideBot
 		end
@@ -228,6 +228,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	end
 
 	if isChange then
+		playersPanel:Populate()
 		playersPanel:Clear()
 
 		local hostSource = -1
@@ -529,7 +530,7 @@ AddEventHandler("ArenaLobby:lobbymenu:MapPanel", function(data)
 	end
 end)
 
-AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onClose)
+AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColumn, canClose, onClose)
 	CreateLobbyMenu()
 
 	if LobbyMenu:Visible() then
@@ -562,16 +563,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 
 	LobbyMenu:CanPlayerCloseMenu(canClose)
 	LobbyMenu:Visible(true)
-	LobbyMenu:SelectColumn(focusColume)
-
-	if focusColume == 0 then
-		settingsPanel:CurrentSelection(1)
-	elseif focusColume == 1 then
-		Citizen.CreateThread(function()
-			Citizen.Wait(1) -- Waiting for add ped to pause menu be done
-			playersPanel:CurrentSelection(1)
-		end)
-	end
+	TriggerEvent("ArenaLobby:lobbymenu:SetFocusColumn", focusColumn)
 
 	while LobbyMenu:Visible() do
 		Citizen.Wait(0)
@@ -588,9 +580,26 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColume, canClose, onC
 	LobbyMenu.hasMapPanel = false
 end)
 
+AddEventHandler("ArenaLobby:lobbymenu:SetFocusColumn", function(focusColumn)
+	if LobbyMenu then
+		if LobbyMenu:Visible() then
+			LobbyMenu:SelectColumn(focusColumn)
+
+			if focusColumn == 0 then
+				settingsPanel:CurrentSelection(1)
+			elseif focusColumn == 1 then
+				Citizen.CreateThread(function()
+					Citizen.Wait(1) -- Waiting for add ped to pause menu be done
+					playersPanel:CurrentSelection(1)
+				end)
+			end
+		end
+	end
+end)
+
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()
 	if LobbyMenu then
-		LobbyMenu:SelectColumn(0) -- Fix pause menu invisible after closed with focusColume~=0
+		LobbyMenu:SelectColumn(0) -- Fix pause menu invisible after closed with focusColumn~=0
 		LobbyMenu:Visible(false)
 	end
 end)
