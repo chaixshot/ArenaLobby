@@ -4695,7 +4695,7 @@ function PlayerListColumn:ShowColumn()
     PM_Column.ShowColumn(self)
     self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
     self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Parent.CurrentColumnIndex == 1, false, false)
 end
 
 function PlayerListColumn:Populate()
@@ -4726,7 +4726,7 @@ function PlayerListColumn:CurrentSelection(value)
         if self:CurrentItem().Panel ~= nil then
             self:CurrentItem().Panel:UpdatePanel()
         end
-        if self:visible() and self.Focused then
+        if self:visible() and self.Parent.CurrentColumnIndex == 1 then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
         end
         self.OnIndexChanged(self.index)
@@ -4974,7 +4974,7 @@ function SettingsListColumn:ShowColumn()
     PM_Column.ShowColumn(self)
     self:InitColumnScroll(#self.Items >= self.VisibleItems, 1, ScrollType.UP_DOWN, ScrollArrowsPosition.RIGHT)
     self:SetColumnScroll(self.index, #self.Items, self.VisibleItems, "", #self.Items < self.VisibleItems)
-    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Focused, false, false)
+    ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.position, self.Parent.CurrentColumnIndex == 0, false, false)
     if #self.Items > 0 and self:CurrentItem().ItemId == 6 and self:CurrentItem().Jumpable then
         self:CurrentItem():Selected(false)
         self.index = self.index + 1
@@ -5006,7 +5006,7 @@ function SettingsListColumn:CurrentSelection(value)
             self.index = 1
         end
         self:CurrentItem():Selected(true)
-        if self:visible() and self.Focused then
+        if self:visible() and self.Parent.CurrentColumnIndex == 0 then
             ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_HIGHLIGHT", self.position, self.index - 1, true, true)
         end
         self.OnIndexChanged(self.index)
