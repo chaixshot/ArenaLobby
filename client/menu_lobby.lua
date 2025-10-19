@@ -228,13 +228,14 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 	end
 
 	if isChange then
-		playersPanel:Populate()
-		playersPanel:Clear()
-
+		local currentRow = playersPanel:CurrentSelection()
 		local hostSource = -1
 		if ArenaAPI:IsPlayerInAnyArena() then
 			hostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
 		end
+
+		playersPanel:Populate()
+		playersPanel:Clear()
 
 		-- Sort player row
 		for k, v in pairs(data) do
@@ -327,7 +328,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 
 			playersPanel:AddPlayer(friend)
 		end
-
+		
+		-- Fixed players column row changing to 1 from playersPanel:Clear()
+		if playersPanel.Parent.CurrentColumnIndex == 1 then
+			playersPanel:CurrentSelection(currentRow)
+		end
+		
 		DataSet.PlayerList = table.clone(data)
 	end
 end)
