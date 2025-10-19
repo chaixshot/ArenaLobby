@@ -26,9 +26,9 @@ local function CreateLobbyMenu()
 	if not LobbyMenu then
 		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 
-		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 16)
-		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 16)
-		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 10)
+		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 17)
+		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 17)
+		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 11)
 
 		LobbyMenu:SetupLeftColumn(settingsPanel)
 		LobbyMenu:SetupCenterColumn(playersPanel)
