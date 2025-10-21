@@ -26,6 +26,11 @@ local function CreateLobbyMenu()
 	if not LobbyMenu then
 		LobbyMenu = MainView.New("Lobby Menu", defaultSubtitle, "", "", "")
 
+		-- Hold up/down repeat delay
+		LobbyMenu.BUTTON_PRESSED_DOWN_INTERVAL = 300
+		LobbyMenu.BUTTON_PRESSED_REFIRE_ATTRITION = 50
+		LobbyMenu.BUTTON_PRESSED_REFIRE_MINIMUM = 40
+
 		settingsPanel = SettingsListColumn.New("COLUMN SETTINGS", 17)
 		playersPanel = PlayerListColumn.New("COLUMN PLAYERS", 17)
 		missionsPanel = MissionDetailsPanel.New("COLUMN INFO PANEL", 11)
@@ -328,12 +333,12 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 
 			playersPanel:AddPlayer(friend)
 		end
-		
+
 		-- Fixed players column row changing to 1 from playersPanel:Clear()
 		if playersPanel.Parent.CurrentColumnIndex == 1 then
 			playersPanel:CurrentSelection(currentRow)
 		end
-		
+
 		DataSet.PlayerList = table.clone(data)
 	end
 end)
