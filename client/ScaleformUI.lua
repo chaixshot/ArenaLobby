@@ -10361,22 +10361,12 @@ function TabView:ProcessControl()
         self:CurrentTab():GoUp()
     elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_DOWN, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
         self:CurrentTab():GoDown()
-    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LEFT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
-        if (self:FocusLevel() == 0 and not self.IsCorona) then
-            self:Index(self.index - 1)
-        else
-            self:CurrentTab():GoLeft()
-        end
-    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RIGHT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)) then
-        if (self:FocusLevel() == 0 and not self.IsCorona) then
-            self:Index(self.index + 1)
-        else
-            self:CurrentTab():GoRight()
-        end
-    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LEFT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false))
+            or (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_LB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
             or (IsDisabledControlJustPressed(2, 192) and IsControlPressed(2, 21) and IsUsingKeyboard(2))) then
         if self.IsCorona then
             if (self.coronaTab.CurrentColumnIndex > 0) then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.coronaTab.CurrentColumnIndex, false, false, false)
                 self:SwitchColumn(self.coronaTab.CurrentColumnIndex - 1)
             end
         else
@@ -10388,10 +10378,14 @@ function TabView:ProcessControl()
 
             self:Index(self.index - 1)
         end
-    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
-            or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
+    elseif (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RIGHT, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false))
+        or (self:CheckInput(eFRONTEND_INPUT.FRONTEND_INPUT_RB, false, CHECK_INPUT_OVERRIDE_FLAG.CHECK_INPUT_OVERRIDE_FLAG_NONE, false)
+        or (IsDisabledControlJustPressed(2, 192) and IsUsingKeyboard(2))) then
         if self.IsCorona then
-            self:SwitchColumn(self.coronaTab.CurrentColumnIndex + 1)
+            if (self.coronaTab.CurrentColumnIndex < 1) then
+                ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", self.coronaTab.CurrentColumnIndex, false, false, false)
+                self:SwitchColumn(self.coronaTab.CurrentColumnIndex + 1)
+            end
         else
             if (#self.Tabs == 1) then return end
 
