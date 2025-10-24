@@ -48,8 +48,8 @@ body {
 .image2 {
 	width: 40%;
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 0.3em;
+	right: 0.3em;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	box-shadow: 0 2px 5px 0 rgb(0 0 0 / 36%), 0 2px 10px 0 rgb(0 0 0 / 32%) !important;
