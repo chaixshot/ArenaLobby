@@ -1,5 +1,6 @@
 local isMenuOpen = false
 local isInZone = false
+local isInPoint = false
 ArenaAPI = exports.ArenaAPI
 
 local timeUI = {}
@@ -69,13 +70,14 @@ local function refreshLobbyList()
 end
 
 function OpenGameMenu(isXbox)
-	if isMenuOpen or
-		 not InPoint
-		 or IsPlayerDead(PlayerId())
+	if isMenuOpen
+		 or not isInPoint
 		 or not checkPressDelay("ArenaLobby_Menu_Open", 100)
-		 or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0
+		 or IsPlayerDead(PlayerId())
 		 or IsPauseMenuActive()
-		 or IsPlayerSwitchInProgress() then
+		 or IsPlayerSwitchInProgress()
+		 or ArenaAPI:IsPlayerInAnyArena()
+	then
 		return
 	end
 
@@ -206,16 +208,16 @@ Citizen.CreateThread(function()
 			end
 
 			if dist < Config.DrawDistance and not ArenaAPI:IsPlayerInAnyArena() then
-				if not InPoint then
-					InPoint = true
+				if not isInPoint then
+					isInPoint = true
 
 					SendNUIMessage({message = "music_play"})
 				end
 
 				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords + vector3(0.0, 0.0, 1.0))
 			else
-				if InPoint then
-					InPoint = false
+				if isInPoint then
+					isInPoint = false
 					isMenuOpen = false
 
 					SendNUIMessage({message = "music_stop"})
