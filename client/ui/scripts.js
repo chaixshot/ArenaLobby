@@ -114,25 +114,6 @@ $(".GameCreate").on("click", ".ButtonBack", function () {
 	RefreshXboxHover()
 });
 
-$(".GameSelect").on("click", ".btnQuantity", function () {
-	var $button = $(this);
-	var oldValue = $button.parent().find(".number").val();
-
-	if ($button.get(0).id == "plus") {
-		var newVal = parseFloat(oldValue) + 1;
-	} else {
-		if (oldValue > 1) {
-			var newVal = parseFloat(oldValue) - 1;
-		} else {
-			newVal = 1;
-		}
-	}
-
-	$button.parent().find(".number").val(newVal);
-	soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 1.0 });
-	soundClick.play();
-});
-
 //?? Listen for NUI Events
 window.addEventListener('message', function (event) {
 	var item = event.data;

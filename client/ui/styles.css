@@ -98,60 +98,10 @@ body {
 	text-decoration: none;
 }
 
-.quantity {
-	/* padding-top: 1.047vw; */
-	/* margin-right: 3.141vw; */
-	display: flex;
-	text-align: center;
-	padding: 0;
-	width: 100%;
-	background-color: #dddddd;
-	border-radius: 500px;
-	max-height: 0.9vw;
-}
-
-.quantity .number {
-	background-color: #dddddd;
-	-webkit-appearance: none;
-	border: none;
-	text-align: center;
-	width: 5vw;
-	font-size: 0.6vw;
-	color: #000000;
-	font-weight: 300;
-	top: 10%;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
-}
-
-.btnQuantity {
-	text-align: center;
-	width: 1vw;
-	height: 1vw;
-	/* background-color: #E1E8EE; */
-	/* border-radius: 6px; */
-	padding: 0;
-	border: none;
-	cursor: pointer;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.btnQuantity:hover {
-	opacity: 0.7;
-}
-
-.minus-btn img {
-	width: 0.9vw;
-	height: 0.9vw;
-}
-.plus-btn img {
-	width: 0.9vw;
-	height: 0.9vw;
 }
 
 .banner {
