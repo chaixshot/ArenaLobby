@@ -1,9 +1,9 @@
 local isMenuOpen = false
-local Object
+local isInZone = false
 ArenaAPI = exports.ArenaAPI
 
 local timeUI = {}
-local function checkUiTime(type, time)
+local function checkPressDelay(type, time)
 	if not timeUI[type] then
 		timeUI[type] = GetGameTimer()
 		return true
@@ -21,39 +21,39 @@ local function checkAllowSetPassword()
 	return true
 end
 
-function OpenGameMenu(withXbox)
-	if isMenuOpen or not InPoint or IsPlayerDead(PlayerId()) or not checkUiTime("ArenaLobby_Menu_Open", 100) or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0 or IsPauseMenuActive() or IsPlayerSwitchInProgress() then
-		return
-	end
-
-	DisableControlAction(0, 36, true)
-
+local function refreshGamesList(resourceName)
 	local GameList = {
-		"DarkRP_Aimlab",
-		"DarkRP_Bloodbowl",
-		"DarkRP_Bomb",
-		"DarkRP_Deathmacth",
-		"DarkRP_Derby",
-		"DarkRP_CaptureTheFlag",
-		"DarkRP_Racing",
-		"DarkRP_Squidglass",
-		"DarkRP_Squidlight",
-		"DarkRP_Teamdeathmacth",
-		"DarkRP_ZombieSurvival",
+		["DarkRP_Aimlab"] = true,
+		["DarkRP_Bloodbowl"] = true,
+		["DarkRP_Bomb"] = true,
+		["DarkRP_Deathmacth"] = true,
+		["DarkRP_Derby"] = true,
+		["DarkRP_CaptureTheFlag"] = true,
+		["DarkRP_Racing"] = true,
+		["DarkRP_Squidglass"] = true,
+		["DarkRP_Squidlight"] = true,
+		["DarkRP_Teamdeathmacth"] = true,
+		["DarkRP_ZombieSurvival"] = true,
 	}
-	for k, v in pairs(GameList) do
-		SendNUIMessage({
-			message = "hideGame",
-			name = v,
-			isHide = GetResourceState(v) ~= "started",
-		})
-	end
 
-	SendNUIMessage({message = "clear"})
+	if GameList[resourceName] or not resourceName then
+		for name, bool in pairs(GameList) do
+			SendNUIMessage({
+				message = "hideGame",
+				name = name,
+				isHide = GetResourceState(name) ~= "started",
+			})
+		end
+	end
+end
+
+local function refreshLobbyList()
+	SendNUIMessage({message = "lobbyClear"})
+
 	for k, v in pairs(ArenaAPI:GetArenaList()) do
 		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
 			SendNUIMessage({
-				message = "add",
+				message = "lobbyAdd",
 				item = v.ArenaIdentifier,
 				ownerName = v.ownerName,
 				image = string.gsub(k, "%d+", ""),
@@ -61,21 +61,44 @@ function OpenGameMenu(withXbox)
 				label = v.ArenaLabel,
 				state = (v.CanJoinAfterStart and "" or v.ArenaState),
 				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-				password = tostring(v.Password),
+				password = checkAllowSetPassword() and tostring(v.Password) or "",
 				PlayerAvatar = v.PlayerAvatar,
 			})
 		end
 	end
+end
+
+function OpenGameMenu(isXbox)
+	if isMenuOpen or
+		 not InPoint
+		 or IsPlayerDead(PlayerId())
+		 or not checkPressDelay("ArenaLobby_Menu_Open", 100)
+		 or DecorGetInt(PlayerPedId(), "GameRoom") ~= 0
+		 or IsPauseMenuActive()
+		 or IsPlayerSwitchInProgress() then
+		return
+	end
+
+	isMenuOpen = true
+	checkPressDelay("ArenaLobby_Menu_Xbox_Right", 100) -- Anti double pressing D-Pad right
+
+	-- Cancel crouch animation
+	DisableControlAction(0, 36, true)
+
+	-- Show installed game list
+	refreshGamesList()
+
+	-- Add arena lobby list
+	refreshLobbyList()
 
 	SendNUIMessage({
-		message = "open",
-		allowsetPassword = checkAllowSetPassword(),
-		withXbox = withXbox,
+		message = "menuShow",
+		allowSetPassword = checkAllowSetPassword(),
+		isXbox = isXbox,
 	})
 
-	checkUiTime("ArenaLobby_Menu_Xbox_Right", 100)
-	isMenuOpen = true
-	if withXbox then
+	if isXbox then
+		-- Hide mouse cursor
 		SetCursorLocation(0.1, 0.1)
 		SetNuiFocus(true, false)
 
@@ -89,9 +112,9 @@ function OpenGameMenu(withXbox)
 
 		while isMenuOpen do
 			form:Draw2D()
-
 			Citizen.Wait(0)
 		end
+
 		form:Dispose()
 	else
 		SetCursorLocation(0.5, 0.5)
@@ -101,35 +124,22 @@ end
 
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
-	Citizen.Wait(500)
+	if isMenuOpen then
+		Citizen.Wait(300)
 
-	SendNUIMessage({message = "clear"})
-	for k, v in pairs(ArenaAPI:GetArenaList()) do
-		if v.MaximumCapacity > 0 and v.CurrentCapacity > 0 then
-			SendNUIMessage({
-				message = "add",
-				item = v.ArenaIdentifier,
-				ownerName = v.ownerName,
-				image = string.gsub(k, "%d+", ""),
-				imageUrl = v.ArenaImageUrl,
-				label = v.ArenaLabel,
-				state = (v.CanJoinAfterStart and "" or v.ArenaState),
-				players = v.CurrentCapacity.."/"..v.MaximumCapacity,
-				password = checkAllowSetPassword() and tostring(v.Password) or "",
-				PlayerAvatar = v.PlayerAvatar,
-			})
-		end
+		refreshLobbyList()
+
+		SendNUIMessage({
+			message = "refresh_controller_index",
+		})
 	end
-
-	SendNUIMessage({
-		message = "refresh_controller_index",
-	})
 end)
 
+-- Lobby created notification
 RegisterNetEvent("ArenaAPI:sendStatus")
 AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 	if eType == "create" then
-		if Object and not ArenaAPI:IsPlayerInAnyArena() then
+		if isInZone and not ArenaAPI:IsPlayerInAnyArena() then
 			SendNUIMessage({
 				message = "notify",
 				ownerName = data.ownerName,
@@ -141,10 +151,18 @@ AddEventHandler("ArenaAPI:sendStatus", function(eType, data)
 	end
 end)
 
+AddEventHandler("onClientResourceStart", function(resourceName)
+	refreshGamesList(resourceName)
+end)
+
+AddEventHandler("onClientResourceStop", function(resourceName)
+	refreshGamesList(resourceName)
+end)
+
 -- Create Blips
 Citizen.CreateThread(function()
-	local checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance * 2.0, Config.Color.red, Config.Color.green, Config.Color.blue, Config.Color.alpha, 0)
-	SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
+	local object
+	local checkpoint
 
 	local blip = AddBlipForCoord(Config.Location.x, Config.Location.y, Config.Location.z)
 	SetBlipSprite(blip, Config.Blip)
@@ -156,6 +174,7 @@ Citizen.CreateThread(function()
 	AddTextComponentSubstringPlayerName("Game Room")
 	EndTextCommandSetBlipName(blip)
 
+	-- Decor for supported scripts, let them know what is your current game
 	DecorRegister("GameRoom", 2)
 	DecorRegister("GameRoomTeam", 2)
 
@@ -163,20 +182,36 @@ Citizen.CreateThread(function()
 		local sleep = 500
 		local playerPed = PlayerPedId()
 		local playerCoords = GetEntityCoords(playerPed, false)
-		local dist = GetDistanceBetweenCoords(Config.Location.x, Config.Location.y, Config.Location.z, playerCoords, true)
+		local dist = #(vector3(Config.Location.x, Config.Location.y, Config.Location.z) - vector3(playerCoords.x, playerCoords.y, playerCoords.z))
+
+		-- Handle zone green cylinder
+		if dist < Config.DrawDistance * 30.0 then
+			if not checkpoint then
+				checkpoint = CreateCheckpoint(47, Config.Location.x, Config.Location.y, Config.Location.z, 0.0, 0.0, 0.0, Config.DrawDistance * 2.0, Config.Color.red, Config.Color.green, Config.Color.blue, Config.Color.alpha, 0)
+				SetCheckpointCylinderHeight(checkpoint, Config.Height, Config.Height, Config.Height)
+			end
+		elseif checkpoint then
+			DeleteCheckpoint(checkpoint)
+			checkpoint = nil
+		end
 
 		if dist < Config.DrawDistance * 5.0 then
-			if not Object then
-				Object = SpawnLocalObject(Config.Prop, Config.Location)
-				FreezeEntityPosition(Object, true)
-				SetEntityHeading(Object, 250.0)
+			sleep = 0
+
+			if not isInZone then
+				isInZone = true
+				object = SpawnLocalObject(Config.Prop, Config.Location)
+				FreezeEntityPosition(object, true)
+				SetEntityHeading(object, 250.0)
 			end
 
 			if dist < Config.DrawDistance and not ArenaAPI:IsPlayerInAnyArena() then
 				if not InPoint then
 					InPoint = true
+
 					SendNUIMessage({message = "music_play"})
 				end
+
 				ShowFloatingHelpNotification('Press  ~INPUT_CONTEXT~to play.', playerCoords + vector3(0.0, 0.0, 1.0))
 			else
 				if InPoint then
@@ -184,7 +219,7 @@ Citizen.CreateThread(function()
 					isMenuOpen = false
 
 					SendNUIMessage({message = "music_stop"})
-					SendNUIMessage({message = "hide"})
+					SendNUIMessage({message = "menuHide"})
 					SetNuiFocus(false, false)
 				end
 
@@ -198,24 +233,23 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, 263, true) -- Disable melee attack 1
 			DisableControlAction(0, 140, true) -- Disable light melee attack (r)
 			DisableControlAction(0, 142, true) -- Disable left mouse button (pistol whack etc)
+		elseif isInZone then
+			SetObjectAsNoLongerNeeded(object)
+			SetEntityAsNoLongerNeeded(object)
+			SetEntityAsMissionEntity(object, true, true)
+			DeleteEntity(object)
+			DeleteObject(object)
 
-			sleep = 0
-		elseif Object then
-			SetObjectAsNoLongerNeeded(Object)
-			SetEntityAsNoLongerNeeded(Object)
-			SetEntityAsMissionEntity(Object, true, true)
-			DeleteEntity(Object)
-			DeleteObject(Object)
-
-			Object = nil
+			object = nil
+			isInZone = false
 		end
 
 		Citizen.Wait(sleep)
 	end
 end)
 
-RegisterNUICallback('quit', function(data, cb)
-	SendNUIMessage({message = "hide"})
+RegisterNUICallback('menuClose', function(data, cb)
+	SendNUIMessage({message = "menuHide"})
 	isMenuOpen = false
 	SetNuiFocus(false, false)
 	cb('ok')
@@ -241,67 +275,59 @@ end)
 RegisterCommand('+ArenaLobby_Menu_Keyboard', function()
 	OpenGameMenu(false)
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Keyboard', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Keyboard', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Keyboard', 'ArenaLobby Open', 'KEYBOARD', 'E')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Open', function()
 	OpenGameMenu(true)
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Open', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Open', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Open', 'ArenaLobby Xbox Open', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_A', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_A", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_A", 100) then
 		SendNUIMessage({message = "control_a"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_A', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_A', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_A', 'ArenaLobby Xbox A', 'PAD_ANALOGBUTTON', 'RDOWN_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_B', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_B", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_B", 100) then
 		SendNUIMessage({message = "control_b"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_B', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_B', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby Xbox B', 'PAD_ANALOGBUTTON', 'RRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Right', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Right", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Right", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Right', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Right', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby Xbox Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Left', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Left", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Left", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Left', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Left', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby Xbox Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Up', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Up", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Up", 100) then
 		SendNUIMessage({message = "control_left"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Up', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Up', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby Xbox Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Down', function()
-	if isMenuOpen and checkUiTime("ArenaLobby_Menu_Xbox_Down", 100) then
+	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Down", 100) then
 		SendNUIMessage({message = "control_right"})
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Down', function()
-end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Down', function() end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Down', 'ArenaLobby Xbox Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')

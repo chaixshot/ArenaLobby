@@ -57,7 +57,7 @@ function GoBack() {
 	if ($(".ButtonBack").is(":visible")) {
 		$(".ButtonBack").trigger("click");
 	} else {
-		$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
+		$.post(`https://${GetParentResourceName()}/menuClose`, JSON.stringify({}));
 	}
 }
 
@@ -80,7 +80,7 @@ $("body").on("keyup", function (key) {
 
 // Close button
 $(".exit").click(function () {
-	$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
+	$.post(`https://${GetParentResourceName()}/menuClose`, JSON.stringify({}));
 });
 
 // Dropdown
@@ -138,13 +138,13 @@ window.addEventListener('message', function (event) {
 	var item = event.data;
 
 	//?? Open main window
-	if (item.message == "open") {
-		isXbox = item.withXbox
+	if (item.message == "menuShow") {
+		isXbox = item.isXbox
 
 		soundOpen = new Howl({ src: ["./sounds/open.ogg"], volume: 1.0 });
 		soundOpen.play();
 
-		if (item.allowsetPassword) {
+		if (item.allowSetPassword) {
 			$("#password").show();
 		} else {
 			$("#password").hide();
@@ -156,7 +156,7 @@ window.addEventListener('message', function (event) {
 	}
 
 	//?? Close main window
-	if (item.message == "hide") {
+	if (item.message == "menuHide") {
 		$(".GameLobby").fadeOut(200);
 		$(".GameCreate").fadeOut(200);
 		soundClick2 = new Howl({ src: ["./sounds/click2.ogg"], volume: 1.0 });
@@ -168,7 +168,7 @@ window.addEventListener('message', function (event) {
 		RefreshXboxHover()
 	}
 
-	if (item.message == "clear") {
+	if (item.message == "lobbyClear") {
 		$(".GameList .ArenaList").remove();
 	}
 
@@ -182,7 +182,7 @@ window.addEventListener('message', function (event) {
 	}
 
 	//?? Add lobby
-	if (item.message == "add") {
+	if (item.message == "lobbyAdd") {
 		let joinButton = `
 			<div class="card-footer text-muted text-center">
 				<button class="join controller_join btn btn-success" name="` + item.item + `">Join</button>
@@ -281,7 +281,7 @@ window.addEventListener('message', function (event) {
 $(".GameList").on("click", ".join", function () {
 	var $button = $(this);
 	var $name = $button.attr('name')
-	$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
+	$.post(`https://${GetParentResourceName()}/menuClose`, JSON.stringify({}));
 	$.post(`https://${GetParentResourceName()}/join`, JSON.stringify({
 		item: $name,
 	}));
@@ -306,7 +306,7 @@ $(".GameSelect").on("click", ".newGame", function () {
 	var $option6 = $button.parent().parent().find("#option6").val()
 
 	if ($option1 != "" && $option2 != "" && $option3 != "" && $option4 != "" && $option5 != "" && $option6 != "") {
-		$.post(`https://${GetParentResourceName()}/quit`, JSON.stringify({}));
+		$.post(`https://${GetParentResourceName()}/menuClose`, JSON.stringify({}));
 		$.post(`https://${GetParentResourceName()}/create`, JSON.stringify({
 			password: $password,
 			gameName: $gameName,
