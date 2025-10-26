@@ -309,6 +309,12 @@ window.addEventListener('message', function (event) {
 	var item = event.data;
 
 	if (item.message == "control_right") {
+		if ($(".GameLobby").is(":visible")) {
+			if (xboxIndex == $(".GameList .btn").length) {
+				return
+			}
+		}
+
 		if ($(".controller_index-" + (xboxIndex + 1)).length !== 0) {
 			$(".controller_index-" + (xboxIndex)).removeClass("xboxHovered");
 			xboxIndex += 1
@@ -321,7 +327,7 @@ window.addEventListener('message', function (event) {
 				scrollTop: position - 800
 			}, 100);
 
-			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 1.0 });
+			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 5.0 });
 			soundClick.play();
 		}
 	}
@@ -339,16 +345,22 @@ window.addEventListener('message', function (event) {
 				scrollTop: position - 800
 			}, 100);
 
-			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 1.0 });
+			soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 5.0 });
 			soundClick.play();
 		}
 	}
 
 	if (item.message == "control_a") {
 		$(".controller_index-" + xboxIndex).trigger("click");
+
+		soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 5.0 });
+		soundClick.play();
 	}
 
 	if (item.message == "control_b") {
+		soundClick = new Howl({ src: ["./sounds/click.ogg"], volume: 5.0 });
+		soundClick.play();
+
 		GoBack()
 	}
 });
