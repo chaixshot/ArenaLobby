@@ -1,6 +1,7 @@
 local isMenuOpen = false
 local isInZone = false
 local isInPoint = false
+local Controls = {}
 ArenaAPI = exports.ArenaAPI
 
 local timeUI = {}
@@ -304,32 +305,76 @@ RegisterKeyMapping('+ArenaLobby_Menu_Xbox_B', 'ArenaLobby Xbox B', 'PAD_ANALOGBU
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Right', function()
 	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Right", 100) then
+		Controls.Right = true
+
 		SendNUIMessage({message = "control_right"})
+		local timer = GetGameTimer()
+		while Controls.Right do
+			if GetTimeDifference(GetGameTimer(), timer) > 300 then
+				SendNUIMessage({message = "control_right"})
+			end
+			Citizen.Wait(50)
+		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Right', function() end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Right', function()
+	Controls.Right = false
+end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Right', 'ArenaLobby Xbox Right', 'PAD_ANALOGBUTTON', 'LRIGHT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Left', function()
 	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Left", 100) then
+		Controls.Left = true
+
 		SendNUIMessage({message = "control_left"})
+		local timer = GetGameTimer()
+		while Controls.Left do
+			if GetTimeDifference(GetGameTimer(), timer) > 300 then
+				SendNUIMessage({message = "control_left"})
+			end
+			Citizen.Wait(50)
+		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Left', function() end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Left', function()
+	Controls.Left = false
+end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Left', 'ArenaLobby Xbox Left', 'PAD_ANALOGBUTTON', 'LLEFT_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Up', function()
 	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Up", 100) then
+		Controls.Up = true
+
 		SendNUIMessage({message = "control_left"})
+		local timer = GetGameTimer()
+		while Controls.Up do
+			if GetTimeDifference(GetGameTimer(), timer) > 300 then
+				SendNUIMessage({message = "control_left"})
+			end
+			Citizen.Wait(50)
+		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Up', function() end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Up', function()
+	Controls.Up = false
+end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Up', 'ArenaLobby Xbox Up', 'PAD_ANALOGBUTTON', 'LUP_INDEX')
 
 RegisterCommand('+ArenaLobby_Menu_Xbox_Down', function()
 	if isMenuOpen and checkPressDelay("ArenaLobby_Menu_Xbox_Down", 100) then
+		Controls.Down = true
+
 		SendNUIMessage({message = "control_right"})
+		local timer = GetGameTimer()
+		while Controls.Down do
+			if GetTimeDifference(GetGameTimer(), timer) > 300 then
+				SendNUIMessage({message = "control_right"})
+			end
+			Citizen.Wait(50)
+		end
 	end
 end, false)
-RegisterCommand('-ArenaLobby_Menu_Xbox_Down', function() end, false)
+RegisterCommand('-ArenaLobby_Menu_Xbox_Down', function()
+	Controls.Down = false
+end, false)
 RegisterKeyMapping('+ArenaLobby_Menu_Xbox_Down', 'ArenaLobby Xbox Down', 'PAD_ANALOGBUTTON', 'LDOWN_INDEX')
