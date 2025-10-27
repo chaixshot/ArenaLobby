@@ -1,9 +1,52 @@
+local dui = {
+	Object = nil,
+	HandleMapImage = nil,
+}
+
 local function GetCurrentRank()
 	if GetResourceState("DarkRP_XP") == "started" then -- DarkRP_XP request.
 		return exports.DarkRP_XP:GetCurrentPlayerLevel()
 	else
 		return 1
 	end
+end
+
+local function isImageURL(image)
+	local pattern = "https?://[%w-_%.%?%.:/%+=&]+"
+	local a, b = image:find(pattern)
+	if a and b then
+		local url = image:sub(a, b)
+
+		if url:find(".jpg") or url:find(".jpeg") or url:find(".png") or url:find(".bmp") or url:find(".gif") or url:find(".webp") or url:find(".svg") then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function setDuiArenaImage(imageUrl)
+	if not dui.Object then
+		dui.Object = CreateDui(imageUrl, 320, 180)
+		local timeout = GetNetworkTime()
+		while not IsDuiAvailable(dui.Object) and GetNetworkTime() - timeout < 6000 do
+			Citizen.Wait(0)
+		end
+	end
+
+	if not dui.HandleMapImage and IsDuiAvailable(dui.Object) then
+		RequestStreamedTextureDictC("ArenaLobby")
+		dui.HandleMapImage = CreateRuntimeTextureFromDuiHandle(CreateRuntimeTxd('ArenaLobby_duiTxd'), "PreviewImage", GetDuiHandle(dui.Object))
+	end
+
+	AddReplaceTexture("ArenaLobby", "duiURL", "DarkRP_Racing", "noimage")
+	SetDuiUrl(dui.Object, imageUrl)
+	local timeout = GetNetworkTime()
+	while not IsDuiAvailable(dui.Object) and GetNetworkTime() - timeout < 6000 do
+		Citizen.Wait(0)
+	end
+	RequestStreamedTextureDictC("ArenaLobby_duiTxd")
+	AddReplaceTexture("ArenaLobby", "duiURL", "ArenaLobby_duiTxd", "PreviewImage")
 end
 
 function UpdateDetails()
@@ -30,12 +73,22 @@ function UpdateDetails()
 			ColColor3 = HudColours.HUD_COLOUR_FREEMODE,
 		})
 
-		local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
-		TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
-			Title = ArenaLabel[1],
-			tex = "ArenaLobby",
-			txd = txd
-		})
+		local imageUrl = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ArenaImageUrl
+		if isImageURL(imageUrl) then
+			setDuiArenaImage(imageUrl)
+			TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
+				Title = ArenaLabel[1],
+				tex = "ArenaLobby",
+				txd = "duiURL"
+			})
+		else
+			local txd = string.gsub(ArenaAPI:GetPlayerArena(), "%d+", "")
+			TriggerEvent("ArenaLobby:lobbymenu:SetInfoTitle", {
+				Title = ArenaLabel[1],
+				tex = "ArenaLobby",
+				txd = txd
+			})
+		end
 
 		local settingList = {
 			{
