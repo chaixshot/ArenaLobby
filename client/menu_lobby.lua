@@ -473,8 +473,17 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 				item = UIMenuProgressItem.New(v.label, 10, 5, v.dec)
 			else
 				item = UIMenuItem.New(v.label, v.dec, v.mainColor and SColor.FromHudColor(v.mainColor), v.highlightColor and SColor.FromHudColor(v.highlightColor))
+
 				if v.rightLabel then
 					item:RightLabel(v.rightLabel)
+				end
+
+				if v.leftBadge then
+					item:LeftBadge(v.leftBadge)
+				end
+				
+				if v.rightBadge then
+					item:RightBadge(v.rightBadge)
 				end
 			end
 			item:BlinkDescription(v.Blink)
