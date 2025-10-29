@@ -107,7 +107,7 @@ local function CreateLobbyMenu()
 					TriggerEvent("ArenaLobby:lobbymenu:SettingsColumn", settingList)
 					TriggerEvent("ArenaLobby:lobbymenu:SetPlayerList", {DataSet.PlayerList[index]})
 
-					LobbyMenu:SelectColumn(0)
+					LobbyMenu:SwitchColumn(0)
 				end
 			end
 		end
@@ -594,7 +594,8 @@ end)
 AddEventHandler("ArenaLobby:lobbymenu:SetFocusColumn", function(focusColumn)
 	if LobbyMenu then
 		if LobbyMenu:Visible() then
-			LobbyMenu:SelectColumn(focusColumn)
+			ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", LobbyMenu.coronaTab.CurrentColumnIndex, false, false, false)
+			LobbyMenu:SwitchColumn(focusColumn)
 
 			if focusColumn == 0 then
 				settingsPanel:CurrentSelection(1)
@@ -610,7 +611,7 @@ end)
 
 AddEventHandler("ArenaLobby:lobbymenu:Hide", function()
 	if LobbyMenu then
-		LobbyMenu:SelectColumn(0) -- Fix pause menu invisible after closed with focusColumn~=0
+		LobbyMenu:SwitchColumn(0) -- Fix pause menu invisible after closed with focusColumn~=0
 		LobbyMenu:Visible(false)
 	end
 end)
