@@ -1,11 +1,3 @@
--- CreateThread(function()
--- while true do
--- DisableControlAction(0, 200, true)
--- DisableControlAction(0, 199, true)
--- Citizen.Wait(0)
--- end
--- end)
-
 local LobbyMenu
 local settingsPanel = {}
 local playersPanel = {}
@@ -13,7 +5,6 @@ local missionsPanel = {}
 local defaultSubtitle = "Template by H@mer"
 
 local minimapLobbyEnabled = false
-local firstLoad = true
 local DataSet = {
 	HeaderMenu = {},
 	PlayerList = {},
@@ -125,13 +116,12 @@ local function CreateLobbyMenu()
 		settings:ResetFilter()
 		]]
 		-- Citizen.Wait(100)
-		firstLoad = false
 	end
 end
 
 ---Can't change while LobbyMenu already visible
 AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
-	while firstLoad do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
 
@@ -203,12 +193,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetHeaderMenu", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
-	while firstLoad do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	-- if LobbyMenu:Visible() then
-	-- 	Citizen.Wait(300)
-	-- end
 
 	local isChange = false
 	if #data ~= #DataSet.PlayerList then
@@ -239,8 +226,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			hostSource = ArenaAPI:GetArena(ArenaAPI:GetPlayerArena()).ownerSource
 		end
 
-		playersPanel:Populate()
-		playersPanel:Clear()
+		playersPanel:ClearColumn()
 
 		-- Sort player row
 		for k, v in pairs(data) do
@@ -334,9 +320,14 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 			playersPanel:AddPlayer(friend)
 		end
 
-		-- Fixed players column row changing to 1 from playersPanel:Clear()
-		if playersPanel.Parent.CurrentColumnIndex == 1 then
-			playersPanel:CurrentSelection(currentRow)
+		if playersPanel:visible() then
+			playersPanel:Populate()
+			playersPanel:ShowColumn()
+
+			-- Fixed players column row changing to 1 from playersPanel:ClearColumn()
+			if playersPanel.Parent.CurrentColumnIndex == 1 then
+				playersPanel:CurrentSelection(currentRow)
+			end
 		end
 
 		DataSet.PlayerList = table.clone(data)
@@ -344,12 +335,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetPlayerList", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
-	while firstLoad do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	-- if LobbyMenu:Visible() then
-	-- 	Citizen.Wait(300)
-	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -389,12 +377,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfo", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
-	while firstLoad do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	-- if LobbyMenu:Visible() then
-	-- 	Citizen.Wait(300)
-	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -427,12 +412,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SetInfoTitle", function(data)
 end)
 
 AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
-	while firstLoad do
+	while not LobbyMenu do
 		Citizen.Wait(0)
 	end
-	-- if LobbyMenu:Visible() then
-	-- 	Citizen.Wait(300)
-	-- end
 
 	-- Check if some row has changed before apply: optimization
 	local isChange = false
@@ -458,8 +440,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 	end
 
 	if isChange then
-		settingsPanel:Populate()
-		settingsPanel:Clear()
+		settingsPanel:ClearColumn()
 
 		for k, v in pairs(data) do
 			local item
@@ -481,7 +462,7 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 				if v.leftBadge then
 					item:LeftBadge(v.leftBadge)
 				end
-				
+
 				if v.rightBadge then
 					item:RightBadge(v.rightBadge)
 				end
@@ -495,7 +476,9 @@ AddEventHandler("ArenaLobby:lobbymenu:SettingsColumn", function(data)
 			settingsPanel:AddSettings(item)
 		end
 
-		if LobbyMenu:Visible() then
+		if settingsPanel:visible() then
+			settingsPanel:Populate()
+			settingsPanel:ShowColumn()
 			settingsPanel:UpdateDescription()
 			settingsPanel:CurrentSelection(1)
 		end
@@ -557,7 +540,7 @@ AddEventHandler("ArenaLobby:lobbymenu:Show", function(focusColumn, canClose, onC
 		TriggerEvent("ArenaLobby:lobbymenu:Hide")
 		-- Citizen.Wait(50)
 	end
-	while firstLoad or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
+	while not LobbyMenu or IsDisabledControlPressed(0, 199) or IsDisabledControlPressed(0, 200) or IsPauseMenuRestarting() or IsFrontendFading() or IsPauseMenuActive() do
 		SetPauseMenuActive(false)
 		SetFrontendActive(false)
 		Citizen.Wait(0)
@@ -603,9 +586,12 @@ end)
 AddEventHandler("ArenaLobby:lobbymenu:SetFocusColumn", function(focusColumn)
 	if LobbyMenu then
 		if LobbyMenu:Visible() then
+			-- Un highlight previous selection
 			ScaleformUI.Scaleforms._pauseMenu._pause:CallFunction("SET_COLUMN_FOCUS", LobbyMenu.coronaTab.CurrentColumnIndex, false, false, false)
+			-- Focus new column
 			LobbyMenu:SwitchColumn(focusColumn)
 
+			-- Highlight first row
 			if focusColumn == 0 then
 				settingsPanel:CurrentSelection(1)
 			elseif focusColumn == 1 then
@@ -630,3 +616,12 @@ AddEventHandler("ArenaLobby:lobbymenu:leaveLobby", function()
 	ExecuteCommand("minigame leave")
 	TriggerEvent("ArenaLobby:lobbymenu:Hide")
 end)
+
+-- !! Debugging
+-- CreateThread(function()
+-- 	while true do
+-- 		DisableControlAction(0, 200, true)
+-- 		DisableControlAction(0, 199, true)
+-- 		Citizen.Wait(0)
+-- 	end
+-- end)
